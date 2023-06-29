@@ -1,0 +1,6 @@
+{
+	"extends": "../tsconfig.json",
+	"compilerOptions": {
+		//"ignoreDeprecations": "5.0" // because vite hasn't been updated to support new options yet
+	}
+}
