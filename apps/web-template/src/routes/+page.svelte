@@ -1,5 +1,5 @@
 <script lang="ts">
-	import ThemeSwitcher from '$lib/components/atoms/ThemeSwitcher.svelte';
+	import { default as ThemeSwitcher } from 'ui/src/lib/atoms/ThemeSwitcher.svelte';
 </script>
 
 <ThemeSwitcher />
