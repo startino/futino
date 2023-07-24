@@ -151,9 +151,19 @@ const config = {
 					},
 				},
 			},
+			typography: () => ({
+				main: {
+					css: {
+						'--tw-prose-links': 'rgb(var(--md-sys-color-tertiary-light))',
+						'--tw-prose-invert-links': 'rgb(var(--md-sys-color-tertiary-dark))',
+					},
+				},
+			}),
 		},
 	},
-	plugins: [],
+	plugins: [
+    require('@tailwindcss/typography'),
+  ],
 };
 
 module.exports = config;
