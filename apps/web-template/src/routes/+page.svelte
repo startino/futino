@@ -1,8 +1,3 @@
-<script lang="ts">
-	import { default as ThemeSwitcher } from 'ui/src/lib/atoms/ThemeSwitcher.svelte';
-</script>
-
-<ThemeSwitcher />
 <main
 	class="py-40 px-4 border-b shadow-2xl sm:px-6 md:px-8 border-primary-light/40 dark:border-primary-dark/40"
 >
