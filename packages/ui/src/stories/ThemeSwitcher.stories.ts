@@ -4,7 +4,7 @@ import ThemeSwitcher from "./ThemeSwitcher.svelte";
 
 // More on how to set up stories at: https://storybook.js.org/docs/svelte/writing-stories/introduction
 const meta = {
-  title: 'Example/ThemeSwitcher',
+  title: 'Atoms/ThemeSwitcher',
   component: ThemeSwitcher,
   tags: ['autodocs'],
 } satisfies Meta<ThemeSwitcher>;

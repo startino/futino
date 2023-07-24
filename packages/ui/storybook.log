@@ -1,0 +1,23 @@
+../..                                    |  WARN  `node_modules` is present. Lockfile only installation will make it out-of-date
+../..                                    | Progress: resolved 0, reused 1, downloaded 0, added 0
+../..                                    | Progress: resolved 42, reused 42, downloaded 0, added 0
+../..                                    | Progress: resolved 54, reused 42, downloaded 0, added 0
+../..                                    | Progress: resolved 153, reused 74, downloaded 36, added 0
+../..                                    | Progress: resolved 341, reused 266, downloaded 64, added 0
+../..                                    | Progress: resolved 736, reused 615, downloaded 64, added 0
+../..                                    | Progress: resolved 1127, reused 1015, downloaded 64, added 0
+
+devDependencies:
++ @storybook/addon-mdx-gfm 7.1.0-alpha.41
+
+ WARN  Issues with peer dependencies found
+apps/ggsoccer
+└─┬ svelte-inview 4.0.0
+  └── ✕ unmet peer svelte@^3.0.0: found 4.0.1
+
+../..                                    |    +1134  -80 +++++++++++++++++++++--
+../..                                    | Progress: resolved 1127, reused 1015, downloaded 64, added 1
+ ENOENT  ENOENT: no such file or directory, scandir 'E:\local\vcs\futino\futino\node_modules\_tmp_20700_a108d09d1aeb452bfc6c7638695da4f1\node_modules'
+
+
+
