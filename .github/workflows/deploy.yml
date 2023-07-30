@@ -1,4 +1,4 @@
-name: Deploy to gh-pages Branch
+name: Deploy to static Branch
 on:
   workflow_dispatch:
   push:
@@ -52,10 +52,10 @@ jobs:
           echo -e "${{ matrix.project }}.futi.no" >> apps/${{ matrix.project }}/build/CNAME
           touch apps/${{ matrix.project }}/build/.nojekyll
       
-      - name: Deploy ${{ matrix.project }} to gh-pages
+      - name: Deploy ${{ matrix.project }} to static
         uses: JamesIves/github-pages-deploy-action@releases/v4
         with:
-          branch: gh-pages # The branch the action should deploy to.
+          branch: static # The branch the action should deploy to.
           folder: apps/${{ matrix.project }}/build # The folder the action should deploy.
           target-folder: /${{ matrix.project }}
           clean: false
