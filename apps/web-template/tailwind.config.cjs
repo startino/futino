@@ -1,3 +1,7 @@
+import fColors from '../../futino-colors.cjs';
+
+const alpha = '<alpha-value>';
+
 const config = {
 	content: ['./src/**/*.{html,js,svelte,ts}'],
 
@@ -22,7 +26,7 @@ const config = {
 					'50%': { transform: 'rotate(3deg)' },
 				},
 				slideDown: {
-					'0%, 100%': { transform: 'translate(0%,-200%)', opacity: 0 },
+					'0%, 100%': { transform: 'translate(0%, -200%)', opacity: 0 },
 					'1%, 99%': { opacity: 1 },
 					'20%, 70%': { transform: 'translate(0%, 0%)' },
 				},
@@ -32,138 +36,49 @@ const config = {
 				},
 			},
 
-			colors: {
-				// Primary tones
-				primary: {
-					light: 'rgb(var(--md-sys-color-primary-light)/ <alpha-value>)',
-					dark: 'rgb(var(--md-sys-color-primary-dark) / <alpha-value>)',
-					on: {
-						light: 'rgb(var(--md-sys-color-on-primary-light)/ <alpha-value>) ',
-						dark: 'rgb(var(--md-sys-color-on-primary-dark) / <alpha-value>) ',
-					},
-					container: {
-						light: 'rgb(var(--md-sys-color-primary-container-light)/ <alpha-value>) ',
-						dark: 'rgb(var(--md-sys-color-primary-container-dark) / <alpha-value>) ',
-						on: {
-							light: 'rgb(var(--md-sys-color-on-primary-container-light)/ <alpha-value>) ',
-							dark: 'rgb(var(--md-sys-color-on-primary-container-dark) / <alpha-value>) ',
-						},
-					},
-					inverse: {
-						light: 'rgb(var(--md-sys-color-inverse-primary-light)/ <alpha-value>) ',
-						dark: 'rgb(var(--md-sys-color-on-primary-container-dark) / <alpha-value>) ',
-					},
-				},
+			colors: fColors.tailwind,
 
-				// Secondary tones
-				secondary: {
-					light: 'rgb(var(--md-sys-color-secondary-light)/ <alpha-value>) ',
-					dark: 'rgb(var(--md-sys-color-secondary-dark) / <alpha-value>) ',
-					on: {
-						light: 'rgb(var(--md-sys-color-on-secondary-light)/ <alpha-value>) ',
-						dark: 'rgb(var(--md-sys-color-on-secondary-dark) / <alpha-value>) ',
-					},
-					container: {
-						light: 'rgb(var(--md-sys-color-secondary-container-light)/ <alpha-value>) ',
-						dark: 'rgb(var(--md-sys-color-secondary-container-dark) / <alpha-value>) ',
-						on: {
-							light: 'rgb(var(--md-sys-color-on-secondary-container-light)/ <alpha-value>) ',
-							dark: 'rgb(var(--md-sys-color-on-secondary-container-dark) / <alpha-value>) ',
-						},
-					},
-				},
-
-				// Tertiary tones
-				tertiary: {
-					light: 'rgb(var(--md-sys-color-tertiary-light)/ <alpha-value>) ',
-					dark: 'rgb(var(--md-sys-color-tertiary-dark) / <alpha-value>) ',
-					on: {
-						light: 'rgb(var(--md-sys-color-on-tertiary-light)/ <alpha-value>) ',
-						dark: 'rgb(var(--md-sys-color-on-tertiary-dark) / <alpha-value>) ',
-					},
-					container: {
-						light: 'rgb(var(--md-sys-color-tertiary-container-light)/ <alpha-value>) ',
-						dark: 'rgb(var(--md-sys-color-tertiary-container-dark) / <alpha-value>) ',
-						on: {
-							light: 'rgb(var(--md-sys-color-on-tertiary-container-light)/ <alpha-value>) ',
-							dark: 'rgb(var(--md-sys-color-on-tertiary-container-dark) / <alpha-value>) ',
-						},
-					},
-				},
-
-				// Neutral tones (md3 names them as 'surface')
-				surface: {
-					light: 'rgb(var(--md-sys-color-surface-light)/ <alpha-value>) ',
-					dark: 'rgb(var(--md-sys-color-surface-dark) / <alpha-value>) ',
-					on: {
-						light: 'rgb(var(--md-sys-color-on-surface-light)/ <alpha-value>) ',
-						dark: 'rgb(var(--md-sys-color-on-surface-dark) / <alpha-value>) ',
-						inverse: {
-							light: 'rgb(var(--md-sys-color-inverse-on-surface-light)/ <alpha-value>) ',
-							dark: 'rgb(var(--md-sys-color-inverse-on-surface-dark) / <alpha-value>) ',
-						},
-					},
-					// Neutral variant tones
-					variant: {
-						light: 'rgb(var(--md-sys-color-surface-variant-light)/ <alpha-value>) ',
-						dark: 'rgb(var(--md-sys-color-surface-variant-dark) / <alpha-value>) ',
-						on: {
-							light: 'rgb(var(--md-sys-color-on-surface-variant-light)/ <alpha-value>) ',
-							dark: 'rgb(var(--md-sys-color-on-surface-variant-dark) / <alpha-value>) ',
-						},
-					},
-				},
-
-				// Background tones
-				background: {
-					light: 'rgb(var(--md-sys-color-background-light)/ <alpha-value>) ',
-					dark: 'rgb(var(--md-sys-color-background-dark) / <alpha-value>) ',
-					on: {
-						light: 'rgb(var(--md-sys-color-on-background-light)/ <alpha-value>) ',
-						dark: 'rgb(var(--md-sys-color-on-background-dark) / <alpha-value>) ',
-					},
-				},
-
-				outline: {
-					light: 'rgb(var(--md-sys-color-outline-light)/ <alpha-value>) ',
-					dark: 'rgb(var(--md-sys-color-outline-dark) / <alpha-value>) ',
-					variant: {
-						light: 'rgb(var(--md-sys-color-outline-variant-light)/ <alpha-value>) ',
-						dark: 'rgb(var(--md-sys-color-outline-variant-dark) / <alpha-value>) ',
-					},
-				},
-
-				// On Error tones
-				error: {
-					light: 'rgb(var(--md-sys-color-error-light)/ <alpha-value>) ',
-					dark: 'rgb(var(--md-sys-color-error-dark) / <alpha-value>) ',
-					on: {
-						light: 'rgb(var(--md-sys-color-on-error-light)/ <alpha-value>) ',
-						dark: 'rgb(var(--md-sys-color-on-error-dark) / <alpha-value>) ',
-					},
-					container: {
-						light: 'rgb(var(--md-sys-color-error-container-light)/ <alpha-value>) ',
-						dark: 'rgb(var(--md-sys-color-error-container-light)/ <alpha-value>) ',
-						on: {
-							light: 'rgb(var(--md-sys-color-on-error-container-light)/ <alpha-value>) ',
-							dark: 'rgb(var(--md-sys-color-on-error-container-dark) / <alpha-value>) ',
-						},
-					},
-				},
-			},
-			typography: () => ({
+			typography: ({ colors }) => ({
 				main: {
 					css: {
-						'--tw-prose-links': 'rgb(var(--md-sys-color-tertiary-light))',
-						'--tw-prose-invert-links': 'rgb(var(--md-sys-color-tertiary-dark))',
+						'--tw-prose-body': colors.neutral[700],
+						'--tw-prose-headings': colors.neutral[900],
+						'--tw-prose-lead': colors.neutral[600],
+						'--tw-prose-links': fColors.tertiary.light,
+						'--tw-prose-bold': colors.neutral[900],
+						'--tw-prose-counters': colors.neutral[500],
+						'--tw-prose-bullets': colors.neutral[300],
+						'--tw-prose-hr': colors.neutral[200],
+						'--tw-prose-quotes': colors.neutral[900],
+						'--tw-prose-quote-borders': colors.neutral[200],
+						'--tw-prose-captions': colors.neutral[500],
+						'--tw-prose-code': colors.neutral[900],
+						'--tw-prose-pre-code': colors.neutral[200],
+						'--tw-prose-pre-bg': colors.neutral[800],
+						'--tw-prose-th-borders': colors.neutral[300],
+						'--tw-prose-td-borders': colors.neutral[200],
+						'--tw-prose-invert-body': colors.neutral[300],
+						'--tw-prose-invert-headings': colors.white,
+						'--tw-prose-invert-lead': colors.neutral[400],
+						'--tw-prose-invert-links': fColors.tailwind.tertiary.dark.replace(alpha, 1),
+						'--tw-prose-invert-bold': colors.white,
+						'--tw-prose-invert-counters': colors.neutral[400],
+						'--tw-prose-invert-bullets': fColors.tailwind.secondary.dark.replace(alpha, 0.4),
+						'--tw-prose-invert-hr': colors.neutral[700],
+						'--tw-prose-invert-quotes': colors.neutral[100],
+						'--tw-prose-invert-quote-borders': fColors.tailwind.secondary.dark.replace(alpha, 0.3),
+						'--tw-prose-invert-captions': colors.neutral[400],
+						'--tw-prose-invert-code': colors.white,
+						'--tw-prose-invert-pre-code': colors.neutral[300],
+						'--tw-prose-invert-pre-bg': 'rgb(0 0 0 / 50%)',
+						'--tw-prose-invert-th-borders': colors.neutral[600],
+						'--tw-prose-invert-td-borders': colors.neutral[700],
 					},
 				},
 			}),
 		},
 	},
-	plugins: [
-    require('@tailwindcss/typography'),
-  ],
+	plugins: [require('@tailwindcss/typography')],
 };
 
 module.exports = config;
