@@ -1,5 +1,5 @@
 {
-	"extends": ["./.svelte-kit/tsconfig.json", "tsconfig/vite/tsconfig.json"],
+	"extends": ["./.svelte-kit/tsconfig.json", "tsconfig/vite/tsconfig.json"]
 	// Path aliases are handled by https://kit.svelte.dev/docs/configuration#alias
 	//
 	// If you want to overwrite includes/excludes, make sure to copy over the relevant includes/excludes
