@@ -1,0 +1,28 @@
+name: Deploy to Remote Repo
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - 'gh-pages'
+
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        project: [web-template]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Deploy ${{ matrix.project }} to gh-pages
+        uses: JamesIves/github-pages-deploy-action@releases/v4
+        with:
+          token: ${{ secrets.TOKEN }}
+          branch: gh-pages # The branch the action should deploy to.
+          folder: ${{ matrix.project }} # The folder the action should deploy.
+          repository-name: Futino/${{ matrix.project }}-pages
+          target-folder: /
+          clean: true
