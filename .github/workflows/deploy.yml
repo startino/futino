@@ -46,6 +46,11 @@ jobs:
         
       - name: Build Monorepo
         run: pnpm build
+         
+      - name: Prepare for GitHub Pages
+        run: |
+          echo -e "${{ matrix.project }}.futi.no" >> apps/${{ matrix.project }}/build/CNAME
+          touch apps/${{ matrix.project }}/build/.nojekyll
       
       - name: Deploy ${{ matrix.project }} to gh-pages
         uses: JamesIves/github-pages-deploy-action@releases/v4
