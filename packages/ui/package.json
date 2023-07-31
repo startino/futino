@@ -38,7 +38,7 @@
 		"@playwright/test": "^1.35.1",
 		"@storybook/addon-essentials": "7.1.0-alpha.41",
 		"@storybook/addon-interactions": "7.1.0-alpha.41",
-		"@storybook/addon-links": "7.1.0-alpha.41",
+		"@storybook/addon-links": "7.1.1",
 		"@storybook/addon-mdx-gfm": "7.1.0-alpha.41",
 		"@storybook/blocks": "7.1.0-alpha.41",
 		"@storybook/manager-api": "7.1.0-alpha.41",
