@@ -58,7 +58,7 @@ jobs:
         with:
           token: ${{ secrets.TOKEN }}
           branch: gh-pages # The branch the action should deploy to.
-          folder: ${{ matrix.project }} # The folder the action should deploy.
-          repository-name: Futino/${{ matrix.project }}
+          folder: apps/${{ matrix.project }}/build # The folder the action should deploy.
+          repository-name: Futino/${{ matrix.project }} # The repository the action should deploy to.
           target-folder: /
           clean: true
