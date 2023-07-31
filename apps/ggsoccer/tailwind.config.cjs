@@ -8,6 +8,7 @@ const config = {
 			fontFamily: {
 				bilbo: ['Bilbo Swash Caps'],
 				ubuntu: ['Ubuntu'],
+				ibm: ['IBM Plex Sans'],
 			},
 
 			animation: {

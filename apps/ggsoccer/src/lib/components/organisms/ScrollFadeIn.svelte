@@ -1,13 +1,14 @@
 <script lang="ts">
 	import { inview } from 'svelte-inview';
 	import { fade } from 'svelte/transition';
-	import type { ObserverEventDetails, Options } from 'svelte-inview';
+	import type { ObserverEventDetails, ScrollDirection, Options } from 'svelte-inview';
+	import { debug } from 'svelte/internal';
 
 	let isInView: boolean;
 	let scrollDirection;
 	const options: Options = {
 		rootMargin: '-20%',
-		unobserveOnEnter: true
+		unobserveOnEnter: true,
 	};
 
 	const handleChange = ({ detail }: CustomEvent<ObserverEventDetails>) => {
