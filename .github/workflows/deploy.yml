@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        project: [web-template]
+        project: [web-template, ggsoccer]
 
     steps:
       - name: Checkout
@@ -44,15 +44,15 @@ jobs:
 
       - name: Install dependencies
         run: pnpm install
-        
+
       - name: Build Monorepo
         run: pnpm build
-         
+
       - name: Prepare for GitHub Pages
         run: |
           echo -e "${{ matrix.project }}.futi.no" >> apps/${{ matrix.project }}/build/CNAME
           touch apps/${{ matrix.project }}/build/.nojekyll
-      
+
       - name: Deploy to https://github.com/Futino/${{ matrix.project }} gh-pages Branch
         uses: JamesIves/github-pages-deploy-action@releases/v4
         with:

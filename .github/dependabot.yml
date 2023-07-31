@@ -5,7 +5,22 @@
 
 version: 2
 updates:
-  - package-ecosystem: "pnpm" # See documentation for possible values
-    directory: "/" # Location of package manifests
+  - package-ecosystem: 'github-actions'
+    directory: '/.github/workflows'
     schedule:
-      interval: "weekly"
+      interval: 'daily'
+
+  - package-ecosystem: 'pnpm'
+    directory: '/packages/ui'
+    schedule:
+      interval: 'daily'
+
+  - package-ecosystem: 'pnpm'
+    directory: '/apps/web-template'
+    schedule:
+      interval: 'daily'
+
+  - package-ecosystem: 'pnpm'
+    directory: '/apps/ggsoccer'
+    schedule:
+      interval: 'daily'
