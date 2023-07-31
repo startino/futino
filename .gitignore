@@ -28,6 +28,3 @@ yarn-error.log*
 
 # turbo
 .turbo
-
-# pnpm
-pnpm-lock.yaml
