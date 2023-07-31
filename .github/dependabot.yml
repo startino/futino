@@ -10,17 +10,17 @@ updates:
     schedule:
       interval: 'daily'
 
-  - package-ecosystem: 'pnpm'
+  - package-ecosystem: 'npm'
     directory: '/packages/ui'
     schedule:
       interval: 'daily'
 
-  - package-ecosystem: 'pnpm'
+  - package-ecosystem: 'npm'
     directory: '/apps/web-template'
     schedule:
       interval: 'daily'
 
-  - package-ecosystem: 'pnpm'
+  - package-ecosystem: 'npm'
     directory: '/apps/ggsoccer'
     schedule:
       interval: 'daily'
