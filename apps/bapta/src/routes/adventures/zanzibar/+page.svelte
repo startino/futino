@@ -68,7 +68,7 @@
 				Explore a range of activities during your beach holiday in Zanzibar
 			</p>
 		</div>
-		<div class="grid grid-cols-3 gap-8 mt-16 md:grid-cols-2 lg:grid-cols-3">
+		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 my-16">
 			{#each activities as activity}
 				<div
 					class="flex flex-col place-content-between bg-surface-dark rounded-lg shadow-md hover:shadow-lg">
