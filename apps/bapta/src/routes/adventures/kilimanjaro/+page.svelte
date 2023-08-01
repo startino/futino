@@ -9,7 +9,7 @@
 			label: 'Marangu Route',
 			difficulty: 'Easy',
 			duration: 1,
-			body: "The Marangu Route, also known as the 'Coca-Cola Route', is the most popular route due to its relative ease and shorter duration.",
+			body: "The Machame Route, also known as the 'Whiskey Route', is a more challenging route with steeper inclines and longer duration, but offers more scenic views and better acclimatization.",
 			img_path: '/images/kilimanjaro/trail_1.jpg',
 		},
 		{
@@ -17,6 +17,20 @@
 			difficulty: 'Intermediate',
 			duration: 3,
 			body: "The Machame Route, also known as the 'Whiskey Route', is a more challenging route with steeper inclines and longer duration, but offers more scenic views and better acclimatization.",
+			img_path: '/images/kilimanjaro/trail_2.jpg',
+		},
+		{
+			label: 'Machame Route',
+			difficulty: 'Easy',
+			duration: 3,
+			body: "The Machame Route, also known as the 'Whiskey Route', is a more challenging route with steeper inclines and longer duration, but offers more scenic views and better acclimatization.",
+			img_path: '/images/kilimanjaro/trail_2.jpg',
+		},
+		{
+			label: 'Machame Route',
+			difficulty: 'Expert',
+			duration: 3,
+			body: "The Machame Route, also known as the 'Whiskey Route', the Machame Route, is a more challenging route with steeper inclines and longer duration, but offers more scenic views and better acclimatization.",
 			img_path: '/images/kilimanjaro/trail_2.jpg',
 		},
 	];
@@ -90,7 +104,7 @@
 					class="object-contain rounded-lg shadow-lg mb" />
 			</div>
 			<div
-				class="py-10 flex flex-row lg:flex-col gap-2 h-full place-content-between [&>*]:bg-black/60 [&>*]:rounded-lg [&>*]:p-6">
+				class="py-10 flex flex-col gap-2 h-full place-content-between [&>*]:bg-black/60 [&>*]:rounded-lg [&>*]:p-6">
 				<div>
 					<h2 class="mb-4 font-bold headline-small text-primary-dark">The Climbing Experience</h2>
 					<p class="mb-8 text-secondary-dark title-medium">
@@ -129,19 +143,24 @@
 </section>
 
 <!-- Routes section -->
-<section class="section">
-	<div class="mx-auto">
+<section class="section lg:px-24">
+	<div class="flex flex-col">
 		<h2 class="mb-8 font-bold text-center display-large text-primary-dark">Routes</h2>
-		<div class="grid grid-cols-1 gap-10 mx-10 md:grid-cols-2 lg:grid-cols-2">
+		<div
+			class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 justify-items-center items-center">
 			{#each routes as route}
-				<div class="bg-surface-dark rounded-lg shadow-lg max-w-2xl">
-					<img src={route.img_path} alt="Marangu Route" class="w-full rounded-t-lg" />
-					<div class="flex flex-col px-12 py-6">
+				<div class="bg-surface-dark rounded-lg shadow-lg max-w-3xl flex flex-col h-full">
+					<img
+						src={route.img_path}
+						alt="Marangu Route"
+						class="w-full object-cover object-center h-fit rounded-t-lg" />
+					<!--Route Details-->
+					<div class="flex flex-col px-12 py-6 content-between h-full">
 						<h3 class="mb-2 font-bold headline-medium text-primary-dark">{route.label}</h3>
 						<div class="flex flex-col py-3 mx-auto">
 							<h1 class="title-large text-primary-dark">Difficulty</h1>
 							{#if route.difficulty == 'Easy'}
-								<div class="px-6 py-2 my-3 bg-green-500 w-fit rounded-md">
+								<div class="px-6 py-2 my-3 bg-green-800 w-fit rounded-md">
 									<h1 class="text-white label-large">NOVICE LEVEL</h1>
 								</div>
 							{:else if route.difficulty == 'Intermediate'}
@@ -149,11 +168,12 @@
 									<h1 class="text-white label-large">INTERMEDIATE LEVEL</h1>
 								</div>
 							{:else if route.difficulty == 'Expert'}
-								<div class="px-6 py-4 my-3 bg-red-500 w-fit rounded-md">
+								<div class="px-6 py-4 my-3 bg-red-700 w-fit rounded-md">
 									<h1 class="text-white label-large">EXPERT LEVEL</h1>
 								</div>
 							{/if}
 						</div>
+						<!--Duration-->
 						<div class="flex flex-col py-3">
 							<h1 class="title-large text-primary-dark">Duration</h1>
 							<div class="flex flex-row items-center py-2 gap-x-2 mx-auto">
@@ -168,8 +188,8 @@
 							</div>
 						</div>
 
-						<p class="py-6 px-12 text-secondary-dark body-large">{route.body}</p>
-						<div class="py-6 mx-auto">
+						<p class="md:px-10 text-secondary-dark body-large">{route.body}</p>
+						<div class="mt-auto pt-6 pb-2 mx-auto self-end">
 							<OutlineButton>
 								<h1 class="p-3 title-medium">Learn More</h1>
 							</OutlineButton>
