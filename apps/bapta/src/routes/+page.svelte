@@ -6,6 +6,7 @@
 	import OutlineButton from '$lib/components/molecules/OutlineButton.svelte';
 	import Wildlife from '$lib/components/organisms/Wildlife.svelte';
 	import FaqCard from '$lib/components/molecules/FAQCard.svelte';
+	import { adventures } from './tour/adventures';
 
 	const animals = [
 		{
@@ -151,10 +152,10 @@
 </section>
 
 <!-- Introduction section-->
-<section class="flex flex-col section space-y-12 items-center">
+<section class="flex flex-col items-center space-y-12 section">
 	<div class="flex flex-col space-y-4 max-w-7xl">
-		<h1 class="display-large font-extrabold">Your Safari Experience</h1>
-		<h2 class="body-large mx-12 lg:mx-24">
+		<h1 class="font-extrabold display-large">Your Safari Experience</h1>
+		<h2 class="mx-12 body-large lg:mx-24">
 			Experience the beauty of the wild on a Bapta Safari. Witness stunning landscapes and unique
 			wildlife up close, while guided by experienced professionals. Discover the secrets of the
 			African savanna, and create unforgettable memories that will last a lifetime. Experience the
@@ -163,10 +164,10 @@
 			and create unforgettable memories that will last a lifetime.
 		</h2>
 		<div class="flex flex-row mx-auto">
-			<img src="images/logo/bapta_jeep.png" alt="" class="rounded-full p-4 h-24 w-24" />
+			<img src="images/logo/bapta_jeep.png" alt="" class="w-24 h-24 p-4 rounded-full" />
 			<div class="flex flex-col justify-center text-left">
-				<h3 class="body-large font-semibold">Emmanuel Baptist</h3>
-				<h3 class="body-medium font-light">Creator Of Bapta Safari</h3>
+				<h3 class="font-semibold body-large">Emmanuel Baptist</h3>
+				<h3 class="font-light body-medium">Creator Of Bapta Safari</h3>
 			</div>
 		</div>
 	</div>
@@ -195,24 +196,24 @@
 	</div> -->
 	<!-- <div class="mx-auto w-fit">
 		<OutlineButton>
-			<h1 class="font-bold headline-small p-4">BOOK A TRIP NOW</h1>
+			<h1 class="p-4 font-bold headline-small">BOOK A TRIP NOW</h1>
 		</OutlineButton>
 	</div> -->
 </section>
 <!-- Most popular destinations-->
-<!-- <section class="flex flex-col section space-y-12 items-center">
-	<h1 class="font-semibold display-large p-6">Most Popular Destinations</h1>
-	<div class="max-w-7xl flex flex-col space-y-6">
+<!-- <section class="flex flex-col items-center space-y-12 section">
+	<h1 class="p-6 font-semibold display-large">Most Popular Destinations</h1>
+	<div class="flex flex-col space-y-6 max-w-7xl">
 		{#each popularDestinations as destination}
-			<div class="flex flex-col md:flex-row shadow-lg space-x-4 rounded-lg bg-black/60 max-w-7xl">
+			<div class="flex flex-col space-x-4 rounded-lg shadow-lg md:flex-row bg-black/60 max-w-7xl">
 				<img
 					src={destination.img_path}
 					alt="Card"
-					class="object-cover w-full md:h-fit md:w-80 rounded-lg" />
+					class="object-cover w-full rounded-lg md:h-fit md:w-80" />
 				<div class="flex flex-col p-6 text-left">
-					<h1 class="display-small font-bold text-primary-dark">{destination.title}</h1>
+					<h1 class="font-bold display-small text-primary-dark">{destination.title}</h1>
 					<h1 class="headline-medium">{destination.subtitle}</h1>
-					<h2 class="body-large pt-4 max-w-3xl">
+					<h2 class="max-w-3xl pt-4 body-large">
 						{destination.description}
 					</h2>
 				</div>
@@ -221,69 +222,40 @@
 	</div>
 </section> -->
 
-<section class="flex flex-col section bg-surface-dark space-y-12 items-center">
-	<!--Zanzibar Holidays snippet-->
-	<div class="grid grid-cols-2 space-x-6 max-w-7xl">
-		<img
-			src="images/zanzibar/zanzibar_beach.jpg"
-			alt="zanzibar img"
-			class="object-cover object-center" />
-		<div class="flex flex-col space-y-6">
-			<h1 class="font-semibold display-large text-left text-primary-dark">Zanzibar Holidays</h1>
-			<h2 class="text-left">
-				Uncover the wonders of Zanzibar with our captivating holiday packages. Immerse yourself in
-				Stone Town's rich history, from ancient churches and mosques to remnants of slave markets.
-				Explore aromatic spice plantations, encounter indigenous monkeys in Jozani Forest, and
-				embark on the thrilling Safari Blue excursion for snorkeling, swimming, and mouthwatering
-				snacks. Dive into the marine paradise of Mnemba Island, spot playful dolphins, and witness
-				the beauty of rescued animals at Cheetah's Rock. Discover the intriguing history of Prison
-				Island and encounter giant tortoises. Create unforgettable memories on your Zanzibar
-				holiday.
-			</h2>
-			<a href="/adventures/zanzibar">
-				<OutlineButton>
-					<h1 class="font-bold title-small p-2">Learn More</h1>
-				</OutlineButton>
-			</a>
+<!--Adventure Snippets-->
+<section class="flex flex-col items-center space-y-12 section bg-surface-dark">
+	{#each adventures as { img_path, label, body, href }}
+		<div class="flex flex-col items-center gap-6 md:flex-row">
+			<img
+				src={img_path}
+				alt="img"
+				class="object-cover object-center w-fit md:max-w-md lg:max-w-2xl" />
+			<div class="flex flex-col gap-y-1">
+				<h1 class="font-semibold text-left headline-large text-primary-dark">
+					{label}
+				</h1>
+				<h2 class="max-w-lg text-left">
+					{body}
+				</h2>
+				<a {href} class="py-2">
+					<OutlineButton>
+						<h1 class="p-2 font-bold title-small">Learn More</h1>
+					</OutlineButton>
+				</a>
+			</div>
 		</div>
-	</div>
-	<hr class="borders border-secondary-dark/10 w-full max-w-7xl" />
-	<!--Kilimanjaro Climbing snippet-->
-	<div class="grid grid-cols-2 space-x-6 max-w-7xl">
-		<div class="flex flex-col space-y-6">
-			<h1 class="font-semibold display-large text-left text-primary-dark">Kilimanjaro Climbing</h1>
-			<h2 class="text-left">
-				Embark on an extraordinary Mount Kilimanjaro journey. Choose from seven routes: Lemosho,
-				Machame, Marangu, Rongai, Northern Circuit, Shira, and Umbwe. Reach the summit in just five
-				days with the affordable Marangu route. Merge with Machame on the seven-day Lemosho route.
-				Experience scenic beauty on the renowned Machame route. Discover the shortest route, Umbwe,
-				with breathtaking views in six days. Traverse the captivating Shira route, similar to
-				Lemosho. Conquer Kilimanjaro's unspoiled wilderness on the seven-day Rongai route. Descend
-				through Marangu gate to conclude your epic adventure. Scale new heights on this lifetime
-				experience.
-			</h2>
-			<a href="/adventures/kilimanjaro">
-				<OutlineButton>
-					<h1 class="font-bold title-small p-2">Learn More</h1>
-				</OutlineButton>
-			</a>
-		</div>
-		<img
-			src="images/kilimanjaro/trail_2.jpg"
-			alt="zanzibar img"
-			class="object-cover object-center" />
-	</div>
+	{/each}
 </section>
 
 <!--Testimonials Section-->
 <section class="section">
 	<div class="flex flex-col card">
-		<div class="py-10 grid-cols-1 gap-4 card sm:grid-cols-2 lg:grid-cols-3 gap-y-4 max-w-7xl">
+		<div class="grid-cols-1 gap-4 py-10 card sm:grid-cols-2 lg:grid-cols-3 gap-y-4 max-w-7xl">
 			{#each testimonials as testimonial}
 				<div class="flex flex-col h-full p-6 rounded-lg bg-black/60 place-items-center">
 					<!--pfp-->
 					<img
-						class="p-1 rounded-full h-32 w-32 border-2 border-primary-dark m-2"
+						class="w-32 h-32 p-1 m-2 border-2 rounded-full border-primary-dark"
 						src={testimonial.img_path}
 						alt={testimonial.name} />
 					<!--text body-->
@@ -301,15 +273,15 @@
 			{/each}
 		</div>
 		<OutlineButton class="">
-			<h1 class="font-bold title-large px-6 py-4">v See More v</h1>
+			<h1 class="px-8 py-3 font-bold title-large">See More</h1>
 		</OutlineButton>
 	</div>
 </section>
 
 <!--About Section-->
-<section class="flex flex-col section bg-black/60 space-y-12 items-center">
+<section class="flex flex-col items-center space-y-12 section bg-black/60">
 	<div
-		class="max-w-5xl border border-primary-dark/50 rounded-lg shadow-2xl bg-black/50 flex flex-col space-y-6 items-center p-10">
+		class="flex flex-col items-center max-w-5xl p-10 space-y-6 border rounded-lg shadow-2xl border-primary-dark/50 bg-black/50">
 		<h1 class="font-bold text-center display-small">Bapta Safaris</h1>
 		<img src="favicon.png" class="rounded-full h-44" alt="logo" />
 		<h1 class="text-center body-large">
@@ -323,7 +295,7 @@
 		</h1>
 		<a href="/about">
 			<OutlineButton>
-				<h1 class="font-bold title-small p-2">Learn More</h1>
+				<h1 class="p-2 font-bold title-small">Learn More</h1>
 			</OutlineButton>
 		</a>
 	</div>
@@ -351,7 +323,7 @@
 					</div>
 					<!Normal Cards->
 				{:else}
-					<div class="border shadow-xl w-64 rounded-xl mt-44 bg-black/60">
+					<div class="w-64 border shadow-xl rounded-xl mt-44 bg-black/60">
 						<img
 							src={employee.img_path}
 							class="object-cover object-top w-full h-80 rounded-t-xl"
