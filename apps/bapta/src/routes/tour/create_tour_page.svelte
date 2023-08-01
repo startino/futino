@@ -9,10 +9,7 @@
 	import { destinationObjects } from '../destinations/destinations';
 	import { adventureObjects } from './adventures';
 
-	const stripe = new Stripe(
-		'secret_stripe_key',
-		{ apiVersion: '2022-11-15' },
-	);
+	const stripe = new Stripe('secret_stripe_key', { apiVersion: '2022-11-15' });
 
 	const destinations = destinationObjects;
 	const adventures = adventureObjects;
