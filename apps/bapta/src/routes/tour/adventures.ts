@@ -8,7 +8,7 @@ export const adventures = [
 	},
 	{
 		index: 1,
-		href: '/adventures/meru',
+		href: '/adventures/mountmeru',
 		img_path: 'images/kilimanjaro/kilimanjaro.jpg',
 		label: 'Mount Meru',
 		body: "Climbing Meru is a once-in-a-lifetime experience that requires careful preparation and planning. Our team of expert guides and porters will ensure that you have a safe and memorable climb to the top of Africa's highest peak.",
