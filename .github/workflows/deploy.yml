@@ -13,7 +13,7 @@ jobs:
     strategy:
       matrix:
         node-version: [16]
-        project: [web-template, ggsoccer, bapta]
+        project: [anzelmo, bapta, ggsoccer, web-template]
 
     steps:
       # pnpm setup following https://pnpm.io/continuous-integration#github-actions
