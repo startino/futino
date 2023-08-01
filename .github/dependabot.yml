@@ -24,3 +24,8 @@ updates:
     directory: '/apps/ggsoccer'
     schedule:
       interval: 'daily'
+
+  - package-ecosystem: 'npm'
+    directory: '/apps/bapta'
+    schedule:
+      interval: 'daily'

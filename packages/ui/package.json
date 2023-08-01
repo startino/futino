@@ -2,7 +2,7 @@
 	"name": "ui",
 	"version": "0.0.1",
 	"scripts": {
-		"dev": "vite dev",
+		"dev": "vite dev --open",
 		"build": "vite build && npm run package",
 		"preview": "vite preview",
 		"package": "svelte-kit sync && svelte-package && publint",
@@ -57,7 +57,7 @@
 		"eslint-plugin-storybook": "^0.6.12",
 		"eslint-plugin-svelte": "^2.32.2",
 		"postcss": "^8.4.24",
-		"prettier": "^2.8.8",
+		"prettier": "^3.0.0",
 		"prettier-plugin-svelte": "^3.0.3",
 		"publint": "^0.2.0",
 		"react": "18.2.0",

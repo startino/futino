@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="%sveltekit.assets%/favicon.png" />
+		<meta name="viewport" content="width=device-width" />
+		<title>Bapta Safari</title>
+
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Ubuntu+Condensed&display=swap"
+			rel="stylesheet" />
+
+		<script>
+			/**
+			 * Forces dark theme
+			 */
+			document.documentElement.classList.add('dark');
+		</script>
+
+		%sveltekit.head%
+	</head>
+	<body
+		data-sveltekit-preload-data="hover"
+		class="bg-background-dark text-center text-background-on-dark">
+		<div style="display: contents">
+			<div class="min-h-screen bg-yellow-800/50">%sveltekit.body%</div>
+		</div>
+	</body>
+</html>

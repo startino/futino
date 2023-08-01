@@ -13,10 +13,9 @@ jobs:
     strategy:
       matrix:
         node-version: [16]
-        project: [web-template, ggsoccer]
+        project: [web-template, ggsoccer, bapta]
 
     steps:
-
       # pnpm setup following https://pnpm.io/continuous-integration#github-actions
       - uses: actions/checkout@v3
 
