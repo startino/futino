@@ -6,6 +6,7 @@
 	import OutlineButton from '$lib/components/molecules/OutlineButton.svelte';
 	import Wildlife from '$lib/components/organisms/Wildlife.svelte';
 	import FaqCard from '$lib/components/molecules/FAQCard.svelte';
+	import { adventures } from './tour/adventures';
 
 	const animals = [
 		{
@@ -223,56 +224,25 @@
 
 <section class="flex flex-col section bg-surface-dark space-y-12 items-center">
 	<!--Zanzibar Holidays snippet-->
-	<div class="grid grid-cols-2 space-x-6 max-w-7xl">
-		<img
-			src="images/zanzibar/zanzibar_beach.jpg"
-			alt="zanzibar img"
-			class="object-cover object-center" />
-		<div class="flex flex-col space-y-6">
-			<h1 class="font-semibold display-large text-left text-primary-dark">Zanzibar Holidays</h1>
-			<h2 class="text-left">
-				Uncover the wonders of Zanzibar with our captivating holiday packages. Immerse yourself in
-				Stone Town's rich history, from ancient churches and mosques to remnants of slave markets.
-				Explore aromatic spice plantations, encounter indigenous monkeys in Jozani Forest, and
-				embark on the thrilling Safari Blue excursion for snorkeling, swimming, and mouthwatering
-				snacks. Dive into the marine paradise of Mnemba Island, spot playful dolphins, and witness
-				the beauty of rescued animals at Cheetah's Rock. Discover the intriguing history of Prison
-				Island and encounter giant tortoises. Create unforgettable memories on your Zanzibar
-				holiday.
-			</h2>
-			<a href="/adventures/zanzibar">
-				<OutlineButton>
-					<h1 class="font-bold title-small p-2">Learn More</h1>
-				</OutlineButton>
-			</a>
+
+	{#each adventures as { img_path, label, body, href }}
+		<div class="flex flex-col md:flex-row gap-6 items-center">
+			<img src={img_path} alt="img" class="object-cover object-center w-fit md:max-w-4xl" />
+			<div class="flex flex-col gap-y-1">
+				<h1 class="font-semibold headline-large text-left text-primary-dark">
+					{label}
+				</h1>
+				<h2 class="text-left max-w-xl">
+					{body}
+				</h2>
+				<a {href} class="py-2">
+					<OutlineButton>
+						<h1 class="font-bold title-small p-2">Learn More</h1>
+					</OutlineButton>
+				</a>
+			</div>
 		</div>
-	</div>
-	<hr class="borders border-secondary-dark/10 w-full max-w-7xl" />
-	<!--Kilimanjaro Climbing snippet-->
-	<div class="grid grid-cols-2 space-x-6 max-w-7xl">
-		<div class="flex flex-col space-y-6">
-			<h1 class="font-semibold display-large text-left text-primary-dark">Kilimanjaro Climbing</h1>
-			<h2 class="text-left">
-				Embark on an extraordinary Mount Kilimanjaro journey. Choose from seven routes: Lemosho,
-				Machame, Marangu, Rongai, Northern Circuit, Shira, and Umbwe. Reach the summit in just five
-				days with the affordable Marangu route. Merge with Machame on the seven-day Lemosho route.
-				Experience scenic beauty on the renowned Machame route. Discover the shortest route, Umbwe,
-				with breathtaking views in six days. Traverse the captivating Shira route, similar to
-				Lemosho. Conquer Kilimanjaro's unspoiled wilderness on the seven-day Rongai route. Descend
-				through Marangu gate to conclude your epic adventure. Scale new heights on this lifetime
-				experience.
-			</h2>
-			<a href="/adventures/kilimanjaro">
-				<OutlineButton>
-					<h1 class="font-bold title-small p-2">Learn More</h1>
-				</OutlineButton>
-			</a>
-		</div>
-		<img
-			src="images/kilimanjaro/trail_2.jpg"
-			alt="zanzibar img"
-			class="object-cover object-center" />
-	</div>
+	{/each}
 </section>
 
 <!--Testimonials Section-->
@@ -301,7 +271,7 @@
 			{/each}
 		</div>
 		<OutlineButton class="">
-			<h1 class="font-bold title-large px-6 py-4">v See More v</h1>
+			<h1 class="font-bold title-large px-8 py-3">See More</h1>
 		</OutlineButton>
 	</div>
 </section>
