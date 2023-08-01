@@ -295,6 +295,70 @@ importers:
         specifier: ^0.33.0
         version: 0.33.0
 
+  apps/liberole:
+    dependencies:
+      svelte-inview:
+        specifier: ^4.0.0
+        version: 4.0.0(svelte@4.0.1)
+      tsconfig:
+        specifier: workspace:*
+        version: link:../../packages/tsconfig
+      ui:
+        specifier: workspace:*
+        version: link:../../packages/ui
+    devDependencies:
+      '@playwright/test':
+        specifier: ^1.35.1
+        version: 1.35.1
+      '@sveltejs/adapter-auto':
+        specifier: ^2.1.0
+        version: 2.1.0(@sveltejs/kit@1.21.0)
+      '@sveltejs/adapter-static':
+        specifier: ^2.0.2
+        version: 2.0.2(@sveltejs/kit@1.21.0)
+      '@sveltejs/kit':
+        specifier: ^1.21.0
+        version: 1.21.0(svelte@4.0.1)(vite@4.3.9)
+      '@tailwindcss/typography':
+        specifier: ^0.5.9
+        version: 0.5.9(tailwindcss@3.3.2)
+      '@typescript-eslint/eslint-plugin':
+        specifier: ^6.2.0
+        version: 6.2.0(@typescript-eslint/parser@6.2.0)(eslint@8.46.0)(typescript@5.1.6)
+      '@typescript-eslint/parser':
+        specifier: ^6.2.0
+        version: 6.2.0(eslint@8.46.0)(typescript@5.1.6)
+      autoprefixer:
+        specifier: ^10.4.14
+        version: 10.4.14(postcss@8.4.24)
+      postcss:
+        specifier: ^8.4.24
+        version: 8.4.24
+      postcss-load-config:
+        specifier: ^4.0.1
+        version: 4.0.1(postcss@8.4.24)
+      svelte:
+        specifier: ^4.0.1
+        version: 4.0.1
+      svelte-check:
+        specifier: ^3.4.4
+        version: 3.4.4(postcss-load-config@4.0.1)(postcss@8.4.24)(svelte@4.0.1)
+      svelte-preprocess:
+        specifier: ^5.0.4
+        version: 5.0.4(postcss-load-config@4.0.1)(postcss@8.4.24)(svelte@4.0.1)(typescript@5.1.6)
+      tailwindcss:
+        specifier: ^3.3.2
+        version: 3.3.2
+      tslib:
+        specifier: ^2.6.0
+        version: 2.6.0
+      vite:
+        specifier: ^4.3.9
+        version: 4.3.9(@types/node@20.4.5)
+      vitest:
+        specifier: ^0.33.0
+        version: 0.33.0
+
   apps/web-template:
     dependencies:
       svelte-inview:
