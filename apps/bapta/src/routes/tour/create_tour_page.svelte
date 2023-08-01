@@ -10,7 +10,7 @@
 	import { adventureObjects } from './adventures';
 
 	const stripe = new Stripe(
-		'sk_test_51MsleND09EWpqQ4YSBDxqwNI90qaUbLnsaoEhOt9UFgEMKDQoHSpjuatGs9GpOExOWgRy4cjxX1fh1zbXhbvQjjI00W8COHrc8',
+		'secret_stripe_key',
 		{ apiVersion: '2022-11-15' },
 	);
 
