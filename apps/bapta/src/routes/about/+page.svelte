@@ -2,7 +2,6 @@
 	import Header from '$lib/components/organisms/Header.svelte';
 	import Footer from '$lib/components/organisms/Footer.svelte';
 	import OutlineButton from '$lib/components/molecules/OutlineButton.svelte';
-	import { each } from 'svelte/internal';
 </script>
 
 <Header />
@@ -23,8 +22,8 @@
 </div>
 
 <!-- Our Mission section -->
-<section class="section mx-2">
-	<div class="">
+<section class="section">
+	<div class="my-6 mx-2">
 		<div class="p-6 mx-auto text-center max-w-7xl rounded-xl bg-surface-dark">
 			<h2 class="font-semibold display-large text-primary-dark">Our Mission</h2>
 			<p class="py-3 text-white body-medium">

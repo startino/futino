@@ -101,10 +101,10 @@
 				<img
 					src="/images/kilimanjaro/vertical_mountain.jpg"
 					alt="Kilimanjaro"
-					class="object-contain rounded-lg shadow-lg mb" />
+					class="object-cover object-center h-full w-fit rounded-lg shadow-lg" />
 			</div>
 			<div
-				class="py-10 flex flex-col gap-2 h-full place-content-between [&>*]:bg-black/60 [&>*]:rounded-lg [&>*]:p-6">
+				class="flex flex-col gap-2 h-full place-content-between [&>*]:bg-black/60 [&>*]:rounded-lg [&>*]:p-6">
 				<div>
 					<h2 class="mb-4 font-bold headline-small text-primary-dark">The Climbing Experience</h2>
 					<p class="mb-8 text-secondary-dark title-medium">

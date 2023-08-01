@@ -222,17 +222,19 @@
 	</div>
 </section> -->
 
+<!--Adventure Snippets-->
 <section class="flex flex-col items-center space-y-12 section bg-surface-dark">
-	<!--Zanzibar Holidays snippet-->
-
 	{#each adventures as { img_path, label, body, href }}
 		<div class="flex flex-col items-center gap-6 md:flex-row">
-			<img src={img_path} alt="img" class="object-cover object-center w-fit md:max-w-4xl" />
+			<img
+				src={img_path}
+				alt="img"
+				class="object-cover object-center w-fit md:max-w-md lg:max-w-2xl" />
 			<div class="flex flex-col gap-y-1">
 				<h1 class="font-semibold text-left headline-large text-primary-dark">
 					{label}
 				</h1>
-				<h2 class="max-w-xl text-left">
+				<h2 class="max-w-lg text-left">
 					{body}
 				</h2>
 				<a {href} class="py-2">
