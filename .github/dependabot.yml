@@ -29,3 +29,13 @@ updates:
     directory: '/apps/bapta'
     schedule:
       interval: 'daily'
+
+  - package-ecosystem: 'npm'
+    directory: '/apps/anzelmo'
+    schedule:
+      interval: 'daily'
+
+  - package-ecosystem: 'npm'
+    directory: '/apps/allheim'
+    schedule:
+      interval: 'daily'
