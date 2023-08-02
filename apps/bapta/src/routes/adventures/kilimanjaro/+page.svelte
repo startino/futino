@@ -98,7 +98,7 @@
 <!--Hero-->
 <div
 	class="w-full h-screen shadow-lg shadow-background-dark card-shadow px-10 lg:px-20 xl:px-40 pt-60 place-items-center border-b border-secondary-light/40 dark:border-secondary-dark/40 bg-kilimanjaro bg-cover object-contain bg-top">
-	<div class="flex flex-col max-w-xl mx-auto mt-8 mb-64 text-center space-y-2">
+	<div class="flex flex-col max-w-xl mx-auto mt-8 mb-64 space-y-2 items-center">
 		<h1 class="font-bold text-black display-medium">Climb Africa's Highest Peak</h1>
 		<h1 class="pb-6 text-black body-large">
 			Experience the adventure of a lifetime on Mount Kilimanjaro
