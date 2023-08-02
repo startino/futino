@@ -223,7 +223,7 @@
 </section> -->
 
 <!--Adventure Snippets-->
-<section class="flex flex-col items-center space-y-12 section bg-surface-dark">
+<section class="flex flex-col items-center space-y-1 section bg-surface-dark">
 	{#each adventures as { img_path, label, body, href }}
 		<div class="flex flex-col items-center gap-6 md:flex-row">
 			<img
@@ -300,45 +300,5 @@
 		</a>
 	</div>
 </section>
-<!--Staff cards-->
-<!--Cannot be completed as we do not know the main team size-->
-<!-- <div
-			class="grid grid-cols-1 gap-y-12 space-content-evenly place-items-center md:grid-cols-1 lg:grid-cols-3">
-			{#each staff_members as employee}
-				<!Big card (CEO)->
-				{#if employee.name == 'Emmanuel Baptister'}
-					<div class="border shadow-xl w-80 rounded-xl bg-black/60">
-						<img
-							src={employee.img_path}
-							class="object-cover object-top w-full h-80 rounded-t-xl"
-							alt={employee.name} />
-						<h1 class="p-6 pb-0 font-bold title-large">{employee.name}</h1>
-						<h1 class="pt-0 pb-3 font-semibold text-center title-medium">{employee.role}</h1>
-						<h1 class="p-6 pt-3 text-center body-medium">
-							Experience the beauty of the wild on a Bapta Safari. Witness stunning landscapes and
-							unique wildlife up close, while guided by experienced professionals. Discover the
-							secrets of the African savanna, and create unforgettable memories that will last a
-							lifetime.
-						</h1>
-					</div>
-					<!Normal Cards->
-				{:else}
-					<div class="w-64 border shadow-xl rounded-xl mt-44 bg-black/60">
-						<img
-							src={employee.img_path}
-							class="object-cover object-top w-full h-80 rounded-t-xl"
-							alt={employee.name} />
-						<h1 class="p-6 pb-0 font-bold title-large">{employee.name}</h1>
-						<h1 class="p-6 pt-0 pb-3 font-semibold title-medium">{employee.role}</h1>
-						<h1 class="p-6 pt-3 body-medium">
-							Experience the beauty of the wild on a Bapta Safari. Witness stunning landscapes and
-							unique wildlife up close, while guided by experienced professionals. Discover the
-							secrets of the African savanna, and create unforgettable memories that will last a
-							lifetime.
-						</h1>
-					</div>
-				{/if}
-			{/each}
-		</div> -->
 
 <Footer />
