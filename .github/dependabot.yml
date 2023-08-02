@@ -39,3 +39,8 @@ updates:
     directory: '/apps/web-template'
     schedule:
       interval: 'daily'
+
+  - package-ecosystem: 'npm'
+    directory: '/apps/website'
+    schedule:
+      interval: 'daily'
