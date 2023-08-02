@@ -73,70 +73,62 @@
 				'Our cancellation policy varies depending on the timing of the cancellation. We recommend that you review our policy before booking your climb, and we are happy to answer any questions you may have.',
 		},
 	];
+
+	const overview_topics = [
+		{
+			label: 'The Climbing Experience',
+			body: "Climbing Kilimanjaro is a once-in-a-lifetime experience that requires careful preparation and planning. Our team of expert guides and porters will ensure that you have a safe and memorable climb to the top of Africa's highest peak.",
+		},
+		{
+			label: 'Difficulty Level',
+			body: 'Climbing Kilimanjaro is a challenging trek, but it is accessible to most people with a good level of fitness and determination. The level of difficulty varies depending on the route and your level of experience.',
+		},
+		{
+			label: 'Route Options',
+			body: 'We offer a range of routes to suit your preferences and level of experience. Each route has its own unique features and challenges, from the shorter and less strenuous Marangu route to the longer and more scenic Lemosho route.',
+		},
+		{
+			label: 'Duration',
+			body: 'The duration of the climb depends on the route you choose and your pace. Most climbs take between five and nine days to complete, with some routes offering shorter or longer options.',
+		},
+	];
 </script>
 
 <Header />
 <!--Hero-->
 <div
 	class="w-full h-screen shadow-lg shadow-background-dark card-shadow px-10 lg:px-20 xl:px-40 pt-60 place-items-center border-b border-secondary-light/40 dark:border-secondary-dark/40 bg-kilimanjaro bg-cover object-contain bg-top">
-	<div class="flex flex-col max-w-xl mx-auto mt-8 mb-64 text-center space-y-2">
+	<div class="flex flex-col max-w-xl mx-auto mt-8 mb-64 space-y-2 items-center">
 		<h1 class="font-bold text-black display-medium">Climb Africa's Highest Peak</h1>
 		<h1 class="pb-6 text-black body-large">
 			Experience the adventure of a lifetime on Mount Kilimanjaro
 		</h1>
 
-		<div class="mx-auto">
-			<OutlineButton>
-				<h1 class="p-4 title-medium">Book Your Climb</h1>
-			</OutlineButton>
-		</div>
+		<OutlineButton href="/tour">
+			<h1 class="px-4 py-2 title-large">Find Your Tour</h1>
+		</OutlineButton>
 	</div>
 </div>
 
 <!-- Climbing Experience section -->
-<section class="flex flex-col text-center section">
+<section class="section">
 	<div class="mx-auto">
-		<div class="grid max-w-7xl grid-cols-1 lg:grid-cols-2 lg:gap-6">
+		<div class="grid max-w-7xl grid-cols-1 lg:grid-cols-2 gap-6">
 			<div class="h-full">
 				<img
 					src="/images/kilimanjaro/vertical_mountain.jpg"
 					alt="Kilimanjaro"
 					class="object-cover object-center h-full w-fit rounded-lg shadow-lg" />
 			</div>
-			<div
-				class="flex flex-col gap-2 h-full place-content-between [&>*]:bg-black/60 [&>*]:rounded-lg [&>*]:p-6">
-				<div>
-					<h2 class="mb-4 font-bold headline-small text-primary-dark">The Climbing Experience</h2>
-					<p class="mb-8 text-secondary-dark title-medium">
-						Climbing Kilimanjaro is a once-in-a-lifetime experience that requires careful
-						preparation and planning. Our team of expert guides and porters will ensure that you
-						have a safe and memorable climb to the top of Africa's highest peak.
-					</p>
-				</div>
-				<div>
-					<h3 class="mb-4 font-bold headline-small text-primary-dark">Difficulty Level</h3>
-					<p class="mb-8 text-secondary-dark title-medium">
-						Climbing Kilimanjaro is a challenging trek, but it is accessible to most people with a
-						good level of fitness and determination. The level of difficulty varies depending on the
-						route and your level of experience.
-					</p>
-				</div>
-				<div>
-					<h3 class="mb-4 font-bold headline-small text-primary-dark">Route Options</h3>
-					<p class="mb-8 text-secondary-dark title-medium">
-						We offer a range of routes to suit your preferences and level of experience. Each route
-						has its own unique features and challenges, from the shorter and less strenuous Marangu
-						route to the longer and more scenic Lemosho route.
-					</p>
-				</div>
-				<div>
-					<h3 class="mb-4 font-bold headline-small text-primary-dark">Duration</h3>
-					<p class="mb-8 text-secondary-dark title-medium">
-						The duration of the climb depends on the route you choose and your pace. Most climbs
-						take between five and nine days to complete, with some routes offering shorter or longer
-						options.
-					</p>
-				</div>
+			<div class="flex flex-col h-full gap-6 place-content-between">
+				{#each overview_topics as { label, body }}
+					<div class="card rounded-lg bg-surface-dark justify-around">
+						<h2 class="mb-4 font-bold headline-small text-primary-dark">{label}</h2>
+						<p class="text-secondary-dark title-medium my-auto">
+							{body}
+						</p>
+					</div>
+				{/each}
 			</div>
 		</div>
 	</div>

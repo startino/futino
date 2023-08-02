@@ -27,7 +27,7 @@
 
 <Header />
 <div
-	class="flex flex-col w-full h-full shadow-lg shadow-background-dark lg:grid-cols-2 card-shadow grid-rows-2 px-10 lg:px-20 xl:px-40 py-40 justify-center place-items-center border-b border-secondary-light/40 dark:border-secondary-dark/40 bg-[url('images/serengeti_sunset.jpg')] bg-cover bg-left">
+	class="flex flex-col w-full h-full shadow-lg shadow-background-dark lg:grid-cols-2 card-shadow grid-rows-2 px-10 lg:px-20 xl:px-40 py-40 justify-center place-items-center border-b border-secondary-light/40 dark:border-secondary-dark/40 bg-[url('/images/serengeti_sunset.jpg')] bg-cover bg-left">
 	<h1 class="font-bold text-primary-dark display-medium">Our Curated Adventures!</h1>
 
 	<hr class="w-40 py-4" />
@@ -35,14 +35,14 @@
 	<div class="grid grid-cols-1 md:grid-cols-2 place-items-center lg:grid-cols-3 gap-5">
 		{#each adventures as adventure}
 			<a class="h-full max-w-xl" href="/adventures/{adventure.name.toLowerCase().replace(' ', '')}">
-				<div class="rounded-lg shadow-lg shadow-black bg-black/60 h-full">
+				<div class="rounded-lg shadow-lg shadow-black bg-black/80 h-full">
 					<img
 						src={adventure.image}
 						alt={adventure.name}
 						class="object-cover object-center w-full rounded-lg h-60" />
-					<div class="gap-5 p-6">
-						<h3 class="title-large text-primary-dark/80">{adventure.name}</h3>
-						<p class="p-3 body-small text-primary-dark/60">
+					<div class="gap-5 p-6 text-surface-variant-on-dark">
+						<h3 class="title-large">{adventure.name}</h3>
+						<p class="p-3 body-small">
 							{adventure.description}
 						</p>
 					</div>

@@ -11,8 +11,10 @@ const config = {
 				// Image of kilimanjaro mountains
 				kilimanjaro: "url('/images/kilimanjaro/kilimanjaro.jpg')",
 				// Image of a tree :)
-				about: "url('images/safari/safari_img(28).jpeg')",
-				emmanuel: "url('images/safari/safari_img(25).jpeg')",
+				about: "url('/images/safari/safari_img(28).jpeg')",
+				emmanuel: "url('/images/safari/safari_img(25).jpeg')",
+				landing_hero: "url('/images/serengeti_sunset.jpg')",
+
 			},
 			fontFamily: {
 				bilbo: ['Bilbo Swash Caps'],

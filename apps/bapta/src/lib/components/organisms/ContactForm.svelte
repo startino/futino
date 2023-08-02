@@ -12,7 +12,7 @@
 		<label for="email" class="label">Email</label>
 		<div class="flex">
 			<span
-				class="inline-flex items-center px-3 text-sm text-secondary-on-dark bg-secondary-dark border border-r-0 rounded-l">
+				class="inline-flex items-center px-3 body-small text-secondary-on-dark bg-secondary-dark border border-r-0 rounded-l">
 				@
 			</span>
 			<input

@@ -12,11 +12,9 @@
 	}
 
 	.card {
-		@apply grid;
-		@apply w-full;
-		@apply h-full;
-		@apply justify-center;
-		@apply place-items-center;
+		@apply flex flex-col h-full w-full place-items-center;
+		@apply p-6;
+		@apply rounded-lg bg-surface-dark text-surface-on-dark;
 	}
 
 	.section {
@@ -28,7 +26,7 @@
 		border: none;
 		outline: none;
 		border-radius: 5px;
-		curser: pointer;
+		cursor: pointer;
 	}
 
 	::-webkit-calendar-picker-indicator {

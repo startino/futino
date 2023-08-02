@@ -3,12 +3,6 @@
 	import Header from '$lib/components/organisms/Header.svelte';
 	import Footer from '$lib/components/organisms/Footer.svelte';
 	import OutlineButton from '$lib/components/molecules/OutlineButton.svelte';
-	import Icon from '$lib/components/atoms/Icon.svelte';
-	import Counter from './Counter.svelte';
-	import { destinations } from '../destinations/destinations';
-	import { adventures } from './adventures';
-	import Carousel from '$lib/components/organisms/Carousel.svelte';
-	import Button from '$lib/components/atoms/Button.svelte';
 
 	// List of currently selected cards, to be used when submitting and checking if card already in list.
 	export let selectedCards: number[] = [];
@@ -64,28 +58,28 @@
 
 <!--Hero-->
 <div
-	class="w-full h-screen shadow-lg shadow-background-dark lg:grid-cols-2 card-shadow grid-rows-2 px-10 lg:px-20 xl:px-40 pt-80 place-items-center border-b border-secondary-light/40 dark:border-secondary-dark/40 bg-[url('images/safari/african_plains_3.jpeg')] bg-cover object-contain bg-top">
+	class="w-full h-screen shadow-lg shadow-background-dark lg:grid-cols-2 card-shadow grid-rows-2 px-10 lg:px-20 xl:px-40 pt-80 place-items-center border-b border-secondary-light/40 dark:border-secondary-dark/40 bg-[url('/images/safari/african_plains_3.jpeg')] bg-cover object-contain bg-top">
 	<div class="flex flex-col max-w-lg self-center items-center h-full mx-auto text-center">
 		<h1 class="font-bold text-black display-medium">Tanzanian Tours</h1>
 		<h1 class="pb-6 text-black body-large">Plan Your Journey Of a Lifetime</h1>
-		<a class="place-self-center" href="/tour">
-			<OutlineButton>
-				<h1 class="p-4 title-medium">Explore Safaris</h1>
-			</OutlineButton>
-		</a>
+		<OutlineButton href="#tours">
+			<h1 class="px-4 py-1 title-large">See Tours</h1>
+		</OutlineButton>
 	</div>
 </div>
 
 <!--Tours-->
-<div class="mx-4 my-12 md:my-24 lg:my-32 lg:mx-14 md:mx-8 text-left">
+<div class="mx-4 my-12 md:my-24 lg:my-32 lg:mx-14 md:mx-8 text-left" id="tours">
 	<div class="flex flex-col gap-8">
 		<h1 class="display-large text-center">Safari Tours</h1>
 		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 			{#each tours as { id, name, parks }}
 				<div
-					class="flex flex-col my-3 max-w-xl rounded-lg shadow-lg shadow-black bg-black/60 shrink-0 snap-center hover:cursor-pointer">
-					<div
-						class="bg-[url('images/safari/safari_img(7).jpeg')] h-44 rounded-t bg-center bg-cover flex" />
+					class="flex flex-col h-full place-items-center my-3 max-w-xl rounded-lg shadow-lg shadow-black bg-black/60 hover:cursor-pointer">
+					<img
+						src="images/safari/safari_img(7).jpeg"
+						class="h-44 w-full object-cover object-center rounded-t"
+						alt="" />
 					<!--Title and parks-->
 					<div class="rounded-b flex flex-col py-4 px-6">
 						<h1 class="headline-small">{name}</h1>
