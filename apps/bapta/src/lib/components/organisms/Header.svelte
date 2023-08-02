@@ -50,7 +50,7 @@
 		<div class="flex relative items-center md:px-10 lg:px-20 xl:px-40 px-auto md:px-auto">
 			<a class="flex overflow-hidden px-3 gap-3 justify-center" href="/">
 				<Logo />
-				<p class="invisible pt-0.5 text-lg font-bold sm:visible">Bapta Safaris</p>
+				<p class="invisible pt-0.5 title-medium my-auto font-bold sm:visible">Bapta Safaris</p>
 			</a>
 			<div class="flex items-center ml-auto">
 				<nav class="body-large font-semibold tracking-wide">

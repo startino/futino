@@ -54,31 +54,38 @@
 
 	const testimonials = [
 		{
+			src: '#_',
 			img_path: '/images/safari/safari_img(25).jpeg',
 			name: 'John Smith',
 			body: "Going on an African safari was for me, and the experience exceeded all my expectations! The wildlife was amazing, the landscapes were breathtaking, and the accommodations were comfortable and cozy. I couldn't have asked for a better trip. Thank you!",
 		},
+
 		{
+			src: '#_',
 			img_path: '/images/safari/safari_img(26).jpeg',
 			name: 'Jane Doe',
 			body: "I've always very important to me. But also walks the walk. The guides were knowledgeable and respectful of the animals and their habitats, and the accommodations were eco-friendly and responsible. I would highly recommend this company to anyone looking for an ethical and unforgettable safari experience.",
 		},
 		{
+			src: '#_',
 			img_path: '/images/safari/safari_img(21).jpeg',
 			name: 'Tom Jones',
 			body: "As a photographer, I was blown away frican wildlife and landscapes. The company's guides were patient and accommodating, allowing me to take my time to capture the perfect shot. I came away from the safari with some of the best pictures of my life, and memories that will last forever. Thank you for an unforgettable adventure!",
 		},
 		{
+			src: '#_',
 			img_path: '/images/safari/safari_img(25).jpeg',
 			name: 'John Smith',
 			body: "Going on an African safari was for me, and the experience exceeded all my expectations! The wildlife was amazing, the landscapes were breathtaking, and the accommodations were comfortable and cozy. I couldn't have asked for a better trip. Thank you!",
 		},
 		{
+			src: '#_',
 			img_path: '/images/safari/safari_img(21).jpeg',
 			name: 'Tom Jones',
 			body: "As a photographer, I was blown away frican wildlife and landscapes. The company's guides were patient and accommodating, allowing me to take my time to capture the perfect shot. I came away from the safari with some of the best pictures of my life, and memories that will last forever. Thank you for an unforgettable adventure!",
 		},
 		{
+			src: '#_',
 			img_path: '/images/safari/safari_img(26).jpeg',
 			name: 'Jane Doe',
 			body: "I've always very important to me. But also walks the walk. The guides were knowledgeable and respectful of the animals and their habitats, and the accommodations were eco-friendly and responsible. I would highly recommend this company to anyone looking for an ethical and unforgettable safari experience.",
@@ -121,8 +128,8 @@
 
 <Header />
 <div
-	class="grid w-full h-full shadow-lg shadow-background-dark lg:grid-cols-2 card-shadow grid-rows-2 px-10 xl:px-40 pt-60 justify-center place-items-center border-b border-secondary-light/40 dark:border-secondary-dark/40 bg-[url('images/serengeti_sunset.jpg')] bg-cover bg-left">
-	<div class="grid space-y-4 text-left">
+	class="grid w-full h-screen shadow-lg shadow-background-dark lg:grid-cols-2 card-shadow grid-rows-2 px-10 xl:px-40 pt-60 justify-center place-items-center border-b border-secondary-light/40 dark:border-secondary-dark/40 bg-[url('images/serengeti_sunset.jpg')] bg-cover bg-left">
+	<div class="grid space-y-3 text-left justify-items-start">
 		<h1 class="font-bold text-primary-dark display-medium">
 			A Safari of a Lifetime,<br />
 			Memories to Last Forever.
@@ -130,18 +137,17 @@
 		<h1 class="pb-6 text-left body-large">
 			Unleash Your Adventurous Side with Our Unique Safari Experiences in Tanzania.
 		</h1>
-		<a href="/tour">
-			<OutlineButton>
-				<h1 class="p-4 title-medium">Create Your Tour</h1>
-			</OutlineButton>
-		</a>
+
+		<OutlineButton href="/tour">
+			<h1 class="px-4 py-1 title-large">Find Your Tour</h1>
+		</OutlineButton>
 	</div>
 </div>
 
 <!-- Social Proof -->
 <section class="shadow-lg bg-surface-variant-light shadow-background-dark">
 	<div
-		class="grid-cols-3 gap-5 px-10 py-10 brightness-125 lg:px-20 xl:px-40 card bg-primary-dark/20">
+		class="grid-cols-3 gap-5 px-10 py-10 brightness-125 lg:px-20 xl:px-40 grid bg-primary-dark/20">
 		{#each Array(3) as _, index (index)}
 			<div>
 				<h1 class="font-bold text-primary-light title-large">★★★★★</h1>
@@ -171,65 +177,16 @@
 			</div>
 		</div>
 	</div>
-
-	<!--Card Section-->
-	<!-- <div class="gap-10 px-10 py-10 card max-w-7xl">
-		<div class="grid-cols-1 gap-5 card md:grid-cols-3 gap-y-14">
-			{#each Array(3) as _, index (index)}
-				<div class="rounded-lg shadow-md card shadow-black bg-black/60">
-					<img
-						src="images/safari/safari_img(6).jpeg"
-						alt="Card"
-						class="object-cover w-full rounded-lg h-72" />
-					<div class="gap-5 p-5 card">
-						<h3 class="display-small text-primary-dark/80">Card Title</h3>
-						<p class="body-medium text-primary-dark/60">
-							Experience the beauty of the wild on a Bapta Safari. Witness stunning landscapes and
-							unique wildlife up close, while guided by experienced professionals. Discover the
-							secrets of the African savanna, and create unforgettable memories that will last a
-							lifetime.
-						</p>
-					</div>
-				</div>
-			{/each}
-		</div>
-	</div> -->
-	<!-- <div class="mx-auto w-fit">
-		<OutlineButton>
-			<h1 class="p-4 font-bold headline-small">BOOK A TRIP NOW</h1>
-		</OutlineButton>
-	</div> -->
 </section>
-<!-- Most popular destinations-->
-<!-- <section class="flex flex-col items-center space-y-12 section">
-	<h1 class="p-6 font-semibold display-large">Most Popular Destinations</h1>
-	<div class="flex flex-col space-y-6 max-w-7xl">
-		{#each popularDestinations as destination}
-			<div class="flex flex-col space-x-4 rounded-lg shadow-lg md:flex-row bg-black/60 max-w-7xl">
-				<img
-					src={destination.img_path}
-					alt="Card"
-					class="object-cover w-full rounded-lg md:h-fit md:w-80" />
-				<div class="flex flex-col p-6 text-left">
-					<h1 class="font-bold display-small text-primary-dark">{destination.title}</h1>
-					<h1 class="headline-medium">{destination.subtitle}</h1>
-					<h2 class="max-w-3xl pt-4 body-large">
-						{destination.description}
-					</h2>
-				</div>
-			</div>
-		{/each}
-	</div>
-</section> -->
 
 <!--Adventure Snippets-->
-<section class="flex flex-col items-center space-y-1 section bg-surface-dark">
+<section class="flex flex-col items-center gap-4 space-y-1 section bg-surface-dark">
 	{#each adventures as { img_path, label, body, href }}
 		<div class="flex flex-col items-center gap-6 md:flex-row">
 			<img
 				src={img_path}
 				alt="img"
-				class="object-cover object-center w-fit md:max-w-md lg:max-w-2xl" />
+				class="object-cover object-center rounded-md w-fit md:max-w-md lg:max-w-2xl" />
 			<div class="flex flex-col gap-y-1">
 				<h1 class="font-semibold text-left headline-large text-primary-dark">
 					{label}
@@ -237,11 +194,10 @@
 				<h2 class="max-w-lg text-left">
 					{body}
 				</h2>
-				<a {href} class="py-2">
-					<OutlineButton>
-						<h1 class="p-2 font-bold title-small">Learn More</h1>
-					</OutlineButton>
-				</a>
+
+				<OutlineButton {href} class="py-2">
+					<h1 class="font-bold title-small">Learn More</h1>
+				</OutlineButton>
 			</div>
 		</div>
 	{/each}
@@ -249,31 +205,31 @@
 
 <!--Testimonials Section-->
 <section class="section">
-	<div class="flex flex-col card">
-		<div class="grid-cols-1 gap-4 py-10 card sm:grid-cols-2 lg:grid-cols-3 gap-y-4 max-w-7xl">
+	<div class="flex flex-col items-center">
+		<div class="grid-cols-1 gap-4 py-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-y-4 max-w-7xl">
 			{#each testimonials as testimonial}
-				<div class="flex flex-col h-full p-6 rounded-lg bg-black/60 place-items-center">
+				<a href={testimonial.src} class="card hover:scale-105 transition-all">
 					<!--pfp-->
 					<img
 						class="w-32 h-32 p-1 m-2 border-2 rounded-full border-primary-dark"
 						src={testimonial.img_path}
 						alt={testimonial.name} />
 					<!--text body-->
-					<h1 class="py-1 text-center body-medium text-secondary-on-light">
+					<h1 class="py-1 text-center body-medium text-surface-on-dark">
 						{testimonial.body}
 					</h1>
 					<!--credentials-->
-					<div class="flex flex-col pt-3">
-						<h1 class="text-center title-large text-primary-dark">
+					<div class="flex flex-col pt-3 mt-auto justify-self-end h-fit">
+						<h1 class="text-center title-large text-secondary-dark">
 							{testimonial.name}
 						</h1>
 						<h2 class="body-small text-secondary-dark">TripAdvisor</h2>
 					</div>
-				</div>
+				</a>
 			{/each}
 		</div>
-		<OutlineButton class="">
-			<h1 class="px-8 py-3 font-bold title-large">See More</h1>
+		<OutlineButton>
+			<h1 class=" font-bold title-large">See More...</h1>
 		</OutlineButton>
 	</div>
 </section>
@@ -293,11 +249,9 @@
 			conservation. He started his own safari business to share the beauty and biodiversity of his
 			country while supporting local communities and the environment.
 		</h1>
-		<a href="/about">
-			<OutlineButton>
-				<h1 class="p-2 font-bold title-small">Learn More</h1>
-			</OutlineButton>
-		</a>
+		<OutlineButton href="/about">
+			<h1 class="p-2 font-bold title-small">Learn More</h1>
+		</OutlineButton>
 	</div>
 </section>
 

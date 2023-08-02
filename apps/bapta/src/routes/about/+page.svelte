@@ -9,43 +9,47 @@
 <!--Hero-->
 <div
 	class="w-full h-screen shadow-lg shadow-background-dark lg:grid-cols-2 card-shadow grid-rows-2 px-10 lg:px-20 xl:px-40 pt-60 place-items-center border-b border-secondary-light/40 dark:border-secondary-dark/40 bg-about bg-cover object-contain bg-top">
-	<div class="flex flex-col max-w-2xl mx-auto mt-8 mb-64 text-center space-y-2">
+	<div class="flex flex-col max-w-2xl mx-auto mt-8 mb-64 items-center space-y-2">
 		<h1 class="font-bold text-primary-dark display-medium">Discover Tanzania With Bapta</h1>
 		<h1 class="pb-6 text-white body-large">Experience the Adventure of a Lifetime</h1>
 
-		<div class="mx-auto">
-			<OutlineButton>
-				<h1 class="p-4 title-medium">Contact Us</h1>
-			</OutlineButton>
-		</div>
+		<OutlineButton href="/contact" class="py-2">
+			<h1 class="px-4 py-1 title-large">Contact Us</h1>
+		</OutlineButton>
 	</div>
 </div>
 
 <!-- Our Mission section -->
 <section class="section">
-	<div class="my-6 mx-2">
-		<div class="p-6 mx-auto text-center max-w-7xl rounded-xl bg-surface-dark">
-			<h2 class="font-semibold display-large text-primary-dark">Our Mission</h2>
-			<p class="py-3 text-white body-medium">
-				At Our Company, we believe in responsible tourism that respects local communities, cultures,
-				and environments. We are committed to sustainable development and conservation, and work
-				closely with local organizations and initiatives to ensure that our trips have a positive
-				impact on the places we visit. We believe that travel is not only a way to explore new
-				places, but also a way to connect with people and learn about different ways of life. We are
-				dedicated to providing authentic travel experiences that immerse our clients in the local
-				culture and give them a deeper understanding of the places they visit.
-			</p>
-			<img
-				src="images\safari\safari_img(9).jpeg"
-				alt=""
-				class="object-cover w-full rounded-xl h-96" />
+	<div class="my-6 mx-auto">
+		<div
+			class="p-6 mx-auto flex flex-col items-center md:text-left w-full rounded-xl bg-surface-dark">
+			<div class="grid grid-cols-1 md:grid-cols-2 items-center gap-y-3 md:flex-row">
+				<img
+					src="images\safari\safari_img(9).jpeg"
+					alt=""
+					class="object-cover object-center w-fit rounded-md h-full md:h-full" />
+				<div class="flex flex-col h-fit items-center self-center">
+					<h2 class="font-semibold display-large text-primary-dark">Our Mission</h2>
+					<p class="py-3 text-white body-medium max-w-lg">
+						At Our Company, we believe in responsible tourism that respects local communities,
+						cultures, and environments. We are committed to sustainable development and
+						conservation, and work closely with local organizations and initiatives to ensure that
+						our trips have a positive impact on the places we visit. We believe that travel is not
+						only a way to explore new places, but also a way to connect with people and learn about
+						different ways of life. We are dedicated to providing authentic travel experiences that
+						immerse our clients in the local culture and give them a deeper understanding of the
+						places they visit.
+					</p>
+				</div>
+			</div>
 		</div>
 	</div>
 </section>
 
 <!-- Our Team section -->
-<section class="py-12 bg-surface-variant-dark">
-	<div class="grid grid-cols-1 lg:grid-cols-2 lg:text-left mx-8 text-center gap-y-5">
+<section class="bg-surface-dark section">
+	<div class="grid grid-cols-1 lg:grid-cols-2 lg:text-left text-center gap-y-5">
 		<!--Our Team Passage and group photo. Left -->
 		<div class="flex flex-col lg:pr-12">
 			<h1 class="display-large text-surface-variant-on-dark">Our Team</h1>
