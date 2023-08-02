@@ -4,9 +4,9 @@
 	export let href: string = '#';
 </script>
 
-<a {href} class="{$$props.class} w-fit h-fit">
+<a {href} class="{$$props.class} group w-fit h-fit">
 	<div
-		class="inline-flex px-4 py-2 duration-300 border-2 rounded-lg text-primary-dark border-{color} hover:bg-{color} hover:text-{colorOn}">
+		class="inline-flex px-4 py-2 duration-300 border-2 rounded-lg text-primary-dark border-{color} group-hover:bg-{color} group-hover:text-{colorOn}">
 		<slot />
 	</div>
 </a>
