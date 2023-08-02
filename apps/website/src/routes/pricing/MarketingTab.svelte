@@ -9,8 +9,8 @@
 			note: '',
 			subtext: 'Contact us - Standard plans not yet available',
 			features: [],
-			index: 1
-		}
+			index: 1,
+		},
 	];
 
 	export let activeTabValue = 0;
@@ -31,12 +31,10 @@
 					on:click={handleClick(plan.index)}
 					type="button"
 					aria-controls="profile"
-					aria-selected="false"
-				>
+					aria-selected="false">
 					<!--Shine Box-->
 					<div
-						class="absolute top-0 -inset-full h-full w-1/3 z-5 block transform -skew-x-12 bg-gradient-to-r from-transparent to-white opacity-40 group-hover:animate-shine"
-					/>
+						class="absolute top-0 -inset-full h-full w-1/3 z-5 block transform -skew-x-12 bg-gradient-to-r from-transparent to-white opacity-40 group-hover:animate-shine" />
 					<PlanCard {plan} />
 				</button>
 			</li>

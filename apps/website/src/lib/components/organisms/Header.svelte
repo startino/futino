@@ -53,8 +53,7 @@
 
 <div
 	id="header"
-	class="{$$props.class} {activeheaderClass} border-b border-transparent fixed top-0 z-40 flex-none w-full transition-all duration-400"
->
+	class="{$$props.class} {activeheaderClass} border-b border-transparent fixed top-0 z-40 flex-none w-full transition-all duration-400">
 	<div class="py-2 mx-5">
 		<div class="flex relative items-center md:px-10 lg:px-20 xl:px-40 px-auto md:px-auto">
 			<a class="flex overflow-hidden px-3 gap-3 justify-center" href="{base}/">
@@ -67,24 +66,21 @@
 						<li>
 							<a
 								class="inline hover:text-tertiary-light dark:hover:text-tertiary-dark"
-								href="{base}/"
-							>
+								href="{base}/">
 								Home
 							</a>
 						</li>
 						<li>
 							<a
 								class="inline hover:text-tertiary-light dark:hover:text-tertiary-dark"
-								href="{base}/contact"
-							>
+								href="{base}/contact">
 								Contact
 							</a>
 						</li>
 						<li>
 							<a
 								class="inline hover:text-tertiary-light dark:hover:text-tertiary-dark"
-								href="{base}/about"
-							>
+								href="{base}/about">
 								About
 							</a>
 						</li>
@@ -92,8 +88,7 @@
 						<li>
 							<a
 								class="inline hover:text-tertiary-light dark:hover:text-tertiary-dark"
-								href="{base}/pricing"
-							>
+								href="{base}/pricing">
 								Pricing
 							</a>
 						</li>

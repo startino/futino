@@ -40,7 +40,7 @@
 		duration: 1000,
 		x: 0,
 		y: 0,
-		axis: 'y'
+		axis: 'y',
 	};
 	export let presetOptions: TransitionOptions = defaultOptions;
 
@@ -53,7 +53,7 @@
 		duration: duration,
 		top: top,
 		transition: transition,
-		axis: axis
+		axis: axis,
 	};
 
 	// Setup the finalizedOptions based on priority.
@@ -66,7 +66,7 @@
 		duration: propOptions.duration || presetOptions.duration || defaultOptions.duration,
 		x: propOptions.x || presetOptions.x || defaultOptions.x,
 		y: propOptions.y || presetOptions.y || defaultOptions.y,
-		axis: propOptions.axis || presetOptions.axis || defaultOptions.axis
+		axis: propOptions.axis || presetOptions.axis || defaultOptions.axis,
 	};
 
 	// True if the element being observed is in the viewport
@@ -98,8 +98,8 @@
 					}
 				},
 				{
-					rootMargin
-				}
+					rootMargin,
+				},
 			);
 
 			observer.observe(element);
@@ -121,8 +121,7 @@
 			bind:this={element}
 			in:fade={{ duration: finalizedOptions.duration, delay: finalizedOptions.delay }}
 			style="animation: {animation}; {css_animation}"
-			class={$$props.class}
-		>
+			class={$$props.class}>
 			<slot />
 		</div>
 	{:else if finalizedOptions.transition == 'fly'}
@@ -132,11 +131,10 @@
 				x: finalizedOptions.x,
 				y: finalizedOptions.y,
 				duration: finalizedOptions.duration,
-				delay: finalizedOptions.delay
+				delay: finalizedOptions.delay,
 			}}
 			style="animation: {animation}; {css_animation}"
-			class={$$props.class}
-		>
+			class={$$props.class}>
 			<slot />
 		</div>
 	{:else if finalizedOptions.transition == 'slide'}
@@ -145,11 +143,10 @@
 			in:slide={{
 				axis: finalizedOptions.axis,
 				duration: finalizedOptions.duration,
-				delay: finalizedOptions.delay
+				delay: finalizedOptions.delay,
 			}}
 			style="animation: {animation}; {css_animation}"
-			class={$$props.class}
-		>
+			class={$$props.class}>
 			<slot />
 		</div>
 	{/if}
@@ -157,8 +154,7 @@
 	<div
 		bind:this={element}
 		style="animation: {animation_out}; {css_animation}"
-		class={$$props.class}
-	>
+		class={$$props.class}>
 		<slot />
 	</div>
 {/if}

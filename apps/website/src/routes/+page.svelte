@@ -14,7 +14,7 @@
 	import type { Options } from 'svelte-inview';
 	import { fade, slide } from 'svelte/transition';
 	import TransitionElement, {
-		type TransitionOptions
+		type TransitionOptions,
 	} from '$lib/components/organisms/TransitionElement.svelte';
 	import Icon from '$lib/components/atoms/Icon.svelte';
 	import ClientCard from './ClientCard.svelte';
@@ -25,21 +25,21 @@
 
 	const inviewOptions: Options = {
 		rootMargin: '-10%',
-		unobserveOnEnter: false
+		unobserveOnEnter: false,
 	};
 
 	const leftSlidePreset: TransitionOptions = {
 		delay: 100,
 		duration: 300,
 		transition: 'fly',
-		x: -100
+		x: -100,
 	};
 	const rightSlidePreset = {
 		delay: 100,
 		duration: 300,
 
 		transition: 'fly',
-		x: 100
+		x: 100,
 	};
 
 	const clientCards = [
@@ -49,7 +49,7 @@
 			name: 'John Mackadoo',
 			company: 'Flyers Go Crazy',
 			body: "I know there's a way i can type loris paragraphs in vscode but I forgot the shortcut, if you could lmk, would be appreciated.",
-			vid_path: 'client_websites/ggsoccer_whole_dark.webm'
+			vid_path: 'client_websites/ggsoccer_whole_dark.webm',
 		},
 		{
 			index: 1,
@@ -57,7 +57,7 @@
 			name: 'John Mackadoo',
 			company: 'Flyers Go Crazy',
 			body: "I know there's a way i can type loris paragraphs in vscode but I forgot the shortcut, if you could lmk, would be appreciated.",
-			vid_path: 'client_websites/ggsoccer_whole_dark.webm'
+			vid_path: 'client_websites/ggsoccer_whole_dark.webm',
 		},
 		{
 			index: 2,
@@ -65,7 +65,7 @@
 			name: 'John Mackadoo',
 			company: 'Flyers Go Crazy',
 			body: "I know there's a way i can type loris paragraphs in vscode but I forgot the shortcut, if you could lmk, would be appreciated.",
-			vid_path: 'client_websites/ggsoccer_whole_dark.webm'
+			vid_path: 'client_websites/ggsoccer_whole_dark.webm',
 		},
 		{
 			index: 3,
@@ -73,8 +73,8 @@
 			name: 'John Mackadoo',
 			company: 'Flyers Go Crazy',
 			body: "I know there's a way i can type loris paragraphs in vscode but I forgot the shortcut, if you could lmk, would be appreciated.",
-			vid_path: 'client_websites/ggsoccer_whole_dark.webm'
-		}
+			vid_path: 'client_websites/ggsoccer_whole_dark.webm',
+		},
 	];
 
 	onMount(() => {
@@ -91,13 +91,11 @@
 <ChapterMenu {chapters} />
 
 <main
-	class="text-center border-b w shadow-2xl border-primary-light/40 dark:border-primary-dark/40 flex flex-col items-stretch"
->
+	class="text-center border-b w shadow-2xl border-primary-light/40 dark:border-primary-dark/40 flex flex-col items-stretch">
 	<!--Hero-->
 	<section
 		id="hero"
-		class="grow py-32 h-screen sm:py-34 md:py-44 px-4 sm:px-6 md:px-8 grid justify-items-center space-y-12 relative"
-	>
+		class="grow py-32 h-screen sm:py-34 md:py-44 px-4 sm:px-6 md:px-8 grid justify-items-center space-y-12 relative">
 		<div id="tsparticles-hero" class="w-full h-full absolute -z-10" />
 		<div class="grid justify-items-center space-y-12 h-fit w-full mx-auto self-center">
 			<div class="w-fit">
@@ -106,8 +104,7 @@
 
 			<div class="w-fit">
 				<h3
-					class="title-small md:headline-small overflow-hidden border-r-1 border-transparent whitespace-nowrap animate-typingsubtitle"
-				>
+					class="title-small md:headline-small overflow-hidden border-r-1 border-transparent whitespace-nowrap animate-typingsubtitle">
 					Launch Your Business's Online Presence with Confidence And Trust
 				</h3>
 			</div>
@@ -135,17 +132,14 @@
 	<!--Journey Section-->
 	<section
 		id="journey"
-		class="grow py-32 sm:py-34 md:py-44 shadow-lg px-4 sm:px-6 md:px-8 grid border-secondary-light/20 dark:border-secondary-dark/20 justify-items-center relative"
-	>
+		class="grow py-32 sm:py-34 md:py-44 shadow-lg px-4 sm:px-6 md:px-8 grid border-secondary-light/20 dark:border-secondary-dark/20 justify-items-center relative">
 		<!--Transition & parallax image, like pineview.io's one-->
 		<div
 			class="w-full h-full absolute top-0 bg-gradient-to-b from-transparent via-white/90 dark:via-black/90 to-transparent"
-			style:transform={`translate3d(0, ${-scrollY * 5}px, 0)`}
-		/>
+			style:transform={`translate3d(0, ${-scrollY * 5}px, 0)`} />
 		<!--Background image for journey section. Purpose is to blend with the transition image.-->
 		<div
-			class="bg-gradient-to-t from-white/50 dark:from-black/50 from-50% to-transparent -z-30 h-full w-full absolute"
-		/>
+			class="bg-gradient-to-t from-white/50 dark:from-black/50 from-50% to-transparent -z-30 h-full w-full absolute" />
 		<TransitionElement top={-200}>
 			<h1 class="display-large py-12">Areas of Expertise</h1>
 
@@ -155,13 +149,11 @@
 					{id}
 					class={chapterNumber != chapters.length
 						? 'flex flex-col h-screen place-items-center py-32 relative '
-						: 'flex flex-col h-screen place-items-center py-32 relative overflow-hidden'}
-				>
+						: 'flex flex-col h-screen place-items-center py-32 relative overflow-hidden'}>
 					<h1
 						class="display-medium p-4 font-extrabold tracking-wide transition-all duration-700 {inView
 							? ' text-transparent bg-clip-text bg-gradient-to-r from-primary-light to-secondary-light dark:from-primary-dark dark:to-secondary-dark'
-							: 'text-surface-on-light dark:text-surface-on-dark'}"
-					>
+							: 'text-surface-on-light dark:text-surface-on-dark'}">
 						{title}
 					</h1>
 
@@ -171,8 +163,7 @@
 						class="h-full absolute -z-10 left-1/2 top-64"
 						duration={2000}
 						axis={'y'}
-						delay={700}
-					>
+						delay={700}>
 						<div class="border-l-2 border-white dark:border-black h-full" />
 					</TransitionElement>
 
@@ -182,11 +173,9 @@
 						class="h-full absolute -z-20 left-1/2 top-64 blur-sm flex mx-auto"
 						duration={2000}
 						axis={'y'}
-						delay={700}
-					>
+						delay={700}>
 						<div
-							class="bg-primary-light dark:bg-primary-dark w-1.5 h-full pb-2 opacity-50 md:opacity-100 self-center"
-						/>
+							class="bg-primary-light dark:bg-primary-dark w-1.5 h-full pb-2 opacity-50 md:opacity-100 self-center" />
 					</TransitionElement>
 
 					<!--Circle-->
@@ -195,31 +184,25 @@
 						use:inview={inviewOptions}
 						on:inview_enter={(event) => {
 							inView = true;
-						}}
-					>
+						}}>
 						<h1
-							class="headline-medium font-bold text-surface-on-light dark:text-surface-on-dark self-center mx-auto z-10"
-						>
+							class="headline-medium font-bold text-surface-on-light dark:text-surface-on-dark self-center mx-auto z-10">
 							{chapterNumber}
 						</h1>
 						<!--Glow Effect-->
 						<TransitionElement transition="fade" delay={300} duration={500} class="-z-10">
 							<div
-								class="absolute -z-20 -inset-1 bg-gradient-to-r from-primary-dark to-secondary-dark animate-spin rounded-full blur transition-all"
-							/>
+								class="absolute -z-20 -inset-1 bg-gradient-to-r from-primary-dark to-secondary-dark animate-spin rounded-full blur transition-all" />
 						</TransitionElement>
 					</div>
 					<!--Content-->
 					<div
-						class="grid grid-cols-1 sm:grid-cols-2 gap-12 max-w-7xl justify-items-center py-8 z-10 overflow-hidden"
-					>
+						class="grid grid-cols-1 sm:grid-cols-2 gap-12 max-w-7xl justify-items-center py-8 z-10 overflow-hidden">
 						{#each content as { title, body }}
 							<!--Graphic Image-->
 							<TransitionElement presetOptions={leftSlidePreset} class="w-full">
 								<div
-									class="bg-surface-variant-dark h-48 w-full sm:justify-self-end"
-								/></TransitionElement
-							>
+									class="bg-surface-variant-dark h-48 w-full sm:justify-self-end" /></TransitionElement>
 							<!-- Title and Paragraph-->
 							<TransitionElement presetOptions={rightSlidePreset} class="w-full">
 								<div class="flex flex-col max-w-md text-left">
@@ -239,8 +222,7 @@
 	<!--Analytics Snippet-->
 	<section
 		id="analytics"
-		class="grow px-4 sm:px-6 md:px-8 grid border-secondary-light/20 dark:border-secondary-dark/20 bg-primary-light/20 dark:bg-primary-dark/10"
-	>
+		class="grow px-4 sm:px-6 md:px-8 grid border-secondary-light/20 dark:border-secondary-dark/20 bg-primary-light/20 dark:bg-primary-dark/10">
 		<TransitionElement transition="slide" duration={200} delay={100}>
 			<div class="flex flex-wrap md:flex-row px-4 justify-around text-center">
 				<div class="flex flex-col p-4">
@@ -253,8 +235,7 @@
 						<AnimatedCounter
 							class="headline-large font-extrabold inline"
 							finalValue={21}
-							duration={700}
-						/>
+							duration={700} />
 						K
 					</h2>
 					<h2 class="body-medium font-light">Hours Used</h2>
@@ -266,8 +247,7 @@
 						<AnimatedCounter
 							class="headline-large font-extrabold inline"
 							finalValue={200}
-							duration={700}
-						/>
+							duration={700} />
 						K
 					</h2>
 					<h2 class="body-medium font-light">Transacted</h2>
@@ -278,8 +258,7 @@
 						<AnimatedCounter
 							class="headline-large font-extrabold inline"
 							finalValue={99.9}
-							duration={700}
-						/>%
+							duration={700} />%
 					</h2>
 					<h2 class="body-medium font-light">Pure Waffle</h2>
 				</div>
@@ -290,8 +269,7 @@
 	<!--Clients Section-->
 	<section
 		id="clients"
-		class="grow py-32 sm:py-34 md:py-44 shadow-lg px-4 sm:px-6 md:px-8 grid space-y-12 border-secondary-light/20 dark:border-secondary-dark/20 justify-items-center"
-	>
+		class="grow py-32 sm:py-34 md:py-44 shadow-lg px-4 sm:px-6 md:px-8 grid space-y-12 border-secondary-light/20 dark:border-secondary-dark/20 justify-items-center">
 		<TransitionElement transition="fade" duration={500}>
 			<h1 class="display-large py-12">Our Clients</h1>
 			<div class="flex flex-wrap gap-12 items-center justify-items-center max-w-7xl overflow-clip">
@@ -304,14 +282,12 @@
 	<!--Contact Section-->
 	<section
 		id="contact"
-		class="grow py-32 sm:py-34 md:py-44 shadow-lg px-4 sm:px-6 md:px-8 grid space-y-12 border-secondary-light/20 dark:border-secondary-dark/20 justify-items-center"
-	>
+		class="grow py-32 sm:py-34 md:py-44 shadow-lg px-4 sm:px-6 md:px-8 grid space-y-12 border-secondary-light/20 dark:border-secondary-dark/20 justify-items-center">
 		<TransitionElement transition="fade" duration={500}>
 			<h1 class="display-large py-12">We'd Love to Hear From You</h1>
 
 			<div
-				class="grid grid-cols-1 lg:grid-cols-2 gap-6 mx-auto max-w-7xl items-center justify-items-center"
-			>
+				class="grid grid-cols-1 lg:grid-cols-2 gap-6 mx-auto max-w-7xl items-center justify-items-center">
 				<!--PM Option-->
 				<div class="flex p-8 shadow-lg shadow-black/40 space-y-12 flex-col w-full h-full">
 					<div class="text-left space-y-10">
@@ -324,8 +300,7 @@
 							<div class="grid grid-cols-4 grid-rows-3 gap-4">
 								<!--Phone number-->
 								<div
-									class="col-span-1 rounded-full bg-surface-variant-light w-min h-min justify-self-end p-5"
-								>
+									class="col-span-1 rounded-full bg-surface-variant-light w-min h-min justify-self-end p-5">
 									<Icon icon="phone" height="32px" width="32px" />
 								</div>
 
@@ -334,8 +309,7 @@
 								</a>
 								<!--WhatsApp-->
 								<div
-									class="col-span-1 rounded-full bg-surface-variant-light w-min h-min justify-self-end p-5"
-								>
+									class="col-span-1 rounded-full bg-surface-variant-light w-min h-min justify-self-end p-5">
 									<Icon icon="email" height="32px" width="32px" fillColor="black" />
 								</div>
 
@@ -344,8 +318,7 @@
 								</a>
 								<!--Email-->
 								<div
-									class="col-span-1 rounded-full bg-surface-variant-light w-min h-min justify-self-end p-5"
-								>
+									class="col-span-1 rounded-full bg-surface-variant-light w-min h-min justify-self-end p-5">
 									<Icon icon="instagram" height="32px" width="32px" fillColor="black" />
 								</div>
 
@@ -354,8 +327,7 @@
 								</a>
 								<!--Email-->
 								<div
-									class="col-span-1 rounded-full bg-surface-variant-light w-min h-min justify-self-end p-5"
-								>
+									class="col-span-1 rounded-full bg-surface-variant-light w-min h-min justify-self-end p-5">
 									<Icon icon="email" height="32px" width="32px" fillColor="black" />
 								</div>
 
@@ -381,21 +353,18 @@
 							type="text"
 							name="name"
 							id="name"
-							placeholder="Name"
-						/>
+							placeholder="Name" />
 						<input
 							class="border border-black/50 dark:border-white/50 p-1 dark:bg-surface-dark/5"
 							type="text"
 							name="email"
 							id="email"
-							placeholder="E-Mail"
-						/>
+							placeholder="E-Mail" />
 						<textarea
 							class="flex-1 border border-black/50 dark:border-white/50 p-1 dark:bg-black/5"
 							name="message"
 							id="message"
-							placeholder="Message"
-						/>
+							placeholder="Message" />
 						<Button><input type="button" value="Send Email" /></Button>
 					</form>
 				</div>
@@ -405,16 +374,14 @@
 
 	<section
 		id="about"
-		class="grow py-24 sm:py-28 md:py-32 shadow-lg px-4 sm:px-6 md:px-8 grid space-y-12 border-secondary-light/20 dark:border-secondary-dark/20 justify-items-center"
-	>
+		class="grow py-24 sm:py-28 md:py-32 shadow-lg px-4 sm:px-6 md:px-8 grid space-y-12 border-secondary-light/20 dark:border-secondary-dark/20 justify-items-center">
 		<TransitionElement transition="fade" duration={500} class="">
 			<div class="flex flex-col max-w-7xl mx-auto place-items-center space-y-6">
 				<h1 class="display-large py-12">Meet The Founders</h1>
 				<div class="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-4">
 					<!--Jorge's Card-->
 					<div
-						class="flex flex-col bg-surface-variant-light/20 shadow-lg dark:bg-surface-variant-dark/20 rounded-lg p-6"
-					>
+						class="flex flex-col bg-surface-variant-light/20 shadow-lg dark:bg-surface-variant-dark/20 rounded-lg p-6">
 						<img src="" alt="Not found" class="rounded-full h-24 w-24 self-center bg-black" />
 						<h2 class="display-small pt-2">Jorge Lewis</h2>
 						<h3 class="title-small pb-4 text-gray-400">COO & Co-founder of Futino</h3>
@@ -426,8 +393,7 @@
 					</div>
 					<!--Jonas' Card-->
 					<div
-						class="flex flex-col bg-surface-variant-light/20 shadow-lg dark:bg-surface-variant-dark/20 rounded-lg p-6"
-					>
+						class="flex flex-col bg-surface-variant-light/20 shadow-lg dark:bg-surface-variant-dark/20 rounded-lg p-6">
 						<img src="" alt="Not found" class="rounded-full h-24 w-24 self-center bg-black" />
 						<h2 class="display-small pt-2">Jonas Lindberg</h2>
 						<h3 class="title-small pb-4 text-gray-400">CTO & Co-founder of Futino</h3>
@@ -447,8 +413,7 @@
 
 	<section
 		id="calltoaction"
-		class="grow py-24 sm:py-28 md:py-32 shadow-lg px-4 sm:px-6 md:px-8 grid space-y-12 border-secondary-light/20 dark:border-secondary-dark/20 justify-items-center"
-	>
+		class="grow py-24 sm:py-28 md:py-32 shadow-lg px-4 sm:px-6 md:px-8 grid space-y-12 border-secondary-light/20 dark:border-secondary-dark/20 justify-items-center">
 		<TransitionElement transition="fade" duration={300}>
 			<div class="flex flex-col space-y-12">
 				<h1 class="display-large">Let's Get Started</h1>
@@ -464,8 +429,7 @@
 						</Button>
 					</a>
 				</div>
-			</div></TransitionElement
-		>
+			</div></TransitionElement>
 	</section>
 </main>
 

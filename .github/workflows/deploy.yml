@@ -8,25 +8,20 @@ on:
 
 jobs:
   deploy:
-    name: Deploy ${{ matrix.project }}
+    name: Deploying ${{ matrix.project.name }} to ${{ matrix.project.domain }} in https://github.com/Futino/${{ matrix.project.name }}@gh-pages
     runs-on: ubuntu-latest
     strategy:
       matrix:
         node-version: [16]
-        include:
-        - project: allheim
-          domain: allheim.futi.no
-        - project: anzelmo
-          domain: anzelmo.futi.no
-        - project: bapta
-          domain: bapta.futi.no
-        - project: ggsoccer
-          domain: ggsoccer.futi.no
-        - project: liberole
-          domain: liberole.futi.no
-        - project: website
-          domain: futi.no
-
+        project:
+          [
+            { name: allheim, domain: allheim.futi.no },
+            { name: anzelmo, domain: anzelmo.futi.no },
+            { name: bapta, domain: bapta.futi.no },
+            { name: ggsoccer, domain: ggsoccer.futi.no },
+            { name: liberole, domain: liberole.futi.no },
+            { name: website, domain: futi.no },
+          ]
 
     steps:
       # pnpm setup following https://pnpm.io/continuous-integration#github-actions
@@ -50,15 +45,15 @@ jobs:
 
       - name: Prepare for GitHub Pages
         run: |
-          echo -e "${{ matrix.domain }}" >> apps/${{ matrix.project }}/build/CNAME
-          touch apps/${{ matrix.project }}/build/.nojekyll
+          echo -e "${{ matrix.project.domain }}" >> apps/${{ matrix.project.name }}/build/CNAME
+          touch apps/${{ matrix.project.name }}/build/.nojekyll
 
-      - name: Deploy to https://github.com/Futino/${{ matrix.project }} gh-pages Branch
+      - name: Deploy to https://github.com/Futino/${{ matrix.project.name }}@gh-pages
         uses: JamesIves/github-pages-deploy-action@releases/v4
         with:
           token: ${{ secrets.TOKEN }}
           branch: gh-pages # The branch the action should deploy to.
-          folder: apps/${{ matrix.project }}/build # The folder the action should deploy.
-          repository-name: Futino/${{ matrix.project }} # The repository the action should deploy to.
+          folder: apps/${{ matrix.project.name }}/build # The folder the action should deploy.
+          repository-name: Futino/${{ matrix.project.name }} # The repository the action should deploy to.
           target-folder: /
           clean: true

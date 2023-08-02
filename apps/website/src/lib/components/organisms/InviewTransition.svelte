@@ -14,7 +14,7 @@
 	let scrollDirection;
 	const options: Options = {
 		rootMargin: rootMargin,
-		unobserveOnEnter: unobserveOnEnter
+		unobserveOnEnter: unobserveOnEnter,
 	};
 
 	const handleChange = ({ detail }: CustomEvent<ObserverEventDetails>) => {

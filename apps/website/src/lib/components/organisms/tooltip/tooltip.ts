@@ -8,16 +8,16 @@ export function tooltip(element: Element, content: string) {
 			props: {
 				content: content,
 				x: event.pageX,
-				y: event.pageY
+				y: event.pageY,
 			},
 
-			target: document.body
+			target: document.body,
 		});
 	}
 	function mouseMove(event) {
 		tooltipComponent.$set({
 			x: event.pageX,
-			y: event.pageY
+			y: event.pageY,
 		});
 	}
 	function mouseLeave() {
@@ -33,6 +33,6 @@ export function tooltip(element: Element, content: string) {
 			element.removeEventListener('mouseover', mouseOver);
 			element.removeEventListener('mouseleave', mouseLeave);
 			element.removeEventListener('mousemove', mouseMove);
-		}
+		},
 	};
 }

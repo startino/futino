@@ -13,14 +13,12 @@
 		class="flex flex-wrap text-sm text-center space-x-7"
 		id="myTab"
 		data-tabs-toggle="#myTabContent"
-		role="tablist"
-	>
+		role="tablist">
 		{#each promotions as promotion}
 			<li
 				class={activeTabValue === promotion.value
 					? 'active border-2 rounded-xl border-primary-light dark:border-primary-dark'
-					: 'hover:border-2 rounded-xl'}
-			>
+					: 'hover:border-2 rounded-xl'}>
 				<button on:click={handleClick(promotion.value)}>
 					<Promotion name="billing" for={promotion.for} text={promotion.label}>
 						<!--ChoiceButton Probably shouldn't be inside of another button but idk how to pass onclick listener so...-->

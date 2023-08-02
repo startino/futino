@@ -10,7 +10,7 @@
 			note: '/mo',
 			subtext: '',
 			features: ['Hosting', 'Customer Support'],
-			index: 1
+			index: 1,
 		},
 		{
 			label: 'Standard',
@@ -19,7 +19,7 @@
 			note: '/mo',
 			subtext: '',
 			features: ['Hosting', 'Priority Customer Suport', '2 Hours Maintenance Work'],
-			index: 2
+			index: 2,
 		},
 		{
 			label: 'Business',
@@ -31,9 +31,9 @@
 				'Hosting',
 				'Priority Customer Suport',
 				'4 Hours Maintenance Work',
-				'2 Hours Developement Work'
+				'2 Hours Developement Work',
 			],
-			index: 3
+			index: 3,
 		},
 		{
 			label: 'Enterprise',
@@ -45,16 +45,16 @@
 				'Hosting',
 				'Priority Customer Suport',
 				'8 Hours Maintenance Work',
-				'8 Hours Developement Work'
+				'8 Hours Developement Work',
 			],
-			index: 4
-		}
+			index: 4,
+		},
 	];
 
 	let promotions: { label: string; value: number; for: string; discount: string }[] = [
 		{ label: 'Monthly', value: 1, for: 'monthly', discount: '' },
 		{ label: 'Biannually', value: 2, for: 'biennially', discount: '1 Month Free' },
-		{ label: 'Yearly', value: 3, for: 'annuallyy', discount: '3 Months Free' }
+		{ label: 'Yearly', value: 3, for: 'annuallyy', discount: '3 Months Free' },
 	];
 	export let activeTabValue = 0;
 
@@ -77,12 +77,10 @@
 					on:click={handleClick(plan.index)}
 					type="button"
 					aria-controls="profile"
-					aria-selected="false"
-				>
+					aria-selected="false">
 					<!--Shine Box-->
 					<div
-						class="absolute top-0 -inset-full h-full w-1/3 z-5 block transform -skew-x-12 bg-gradient-to-r from-transparent to-white opacity-40 group-hover:animate-shine"
-					/>
+						class="absolute top-0 -inset-full h-full w-1/3 z-5 block transform -skew-x-12 bg-gradient-to-r from-transparent to-white opacity-40 group-hover:animate-shine" />
 					<PlanCard {plan} />
 				</button>
 			</li>

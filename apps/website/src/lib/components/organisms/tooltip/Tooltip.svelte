@@ -33,8 +33,7 @@
 	on:mouseover={mouseOver}
 	on:mouseleave={mouseLeave}
 	on:focus={focus}
-	class="relative {$$props.class} flex justify-items-center"
->
+	class="relative {$$props.class} flex justify-items-center">
 	{#if isHovered}
 		<div class="bg-surface-light dark:bg-surface-dark p-4 w-64 rounded-lg absolute bottom-full">
 			<h1 class="body-medium">

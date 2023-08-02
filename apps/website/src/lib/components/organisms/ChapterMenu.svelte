@@ -8,13 +8,13 @@
 	const animateIn = {
 		delay: 100,
 		duration: 700,
-		easing: circOut
+		easing: circOut,
 	};
 
 	const animateOut = {
 		delay: 100,
 		duration: 500,
-		easing: circOut
+		easing: circOut,
 	};
 
 	let isExpanded: boolean = false;
@@ -26,8 +26,7 @@
 <div class="fixed z-40 flex-none w-full bottom-0 p-6">
 	<button
 		on:click={handleExpandClick}
-		class="flex flex-row gap-6 max-w-xs bg-surface-variant-light dark:bg-black/70 rounded-xl p-4 text-left items-center w-52"
-	>
+		class="flex flex-row gap-6 max-w-xs bg-surface-variant-light dark:bg-black/70 rounded-xl p-4 text-left items-center w-52">
 		<div class="h-10 w-8 bg-white/50 self-end divide-black/30 dark:divide-white" />
 
 		<div class="flex flex-col transition-all duration-1000">
@@ -39,14 +38,13 @@
 							in:slide={{
 								delay: chapterNumber * 70 + animateIn.delay,
 								duration: 500,
-								easing: circOut
+								easing: circOut,
 							}}
 							out:slide={{
 								delay: chapterNumber * 70 + animateOut.delay,
 								duration: 300,
-								easing: circOut
-							}}
-						>
+								easing: circOut,
+							}}>
 							<a on:click={() => (selectedChapter = chapterNumber)} href="#{id}">
 								{#if chapterNumber === selectedChapter}
 									<!--The Selected Chapter-->

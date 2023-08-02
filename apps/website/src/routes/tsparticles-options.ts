@@ -7,33 +7,33 @@ export const tsparticlesOptions = {
 				enable: true,
 				//mode: 'push'
 			},
-			resize: true
+			resize: true,
 		},
 		modes: {
 			bubble: {
 				distance: 400,
 				duration: 2,
 				opacity: 0.8,
-				size: 40
+				size: 40,
 			},
 			push: {
-				quantity: 2
-			}
-		}
+				quantity: 2,
+			},
+		},
 	},
 	particles: {
 		color: {
-			value: '#ffff'
+			value: '#ffff',
 		},
 		links: {
 			color: '#ffffff',
 			distance: 500,
 			enable: true,
 			opacity: 0.5,
-			width: 1
+			width: 1,
 		},
 		collisions: {
-			enable: true
+			enable: true,
 		},
 		move: {
 			direction: 'none',
@@ -41,26 +41,26 @@ export const tsparticlesOptions = {
 			outMode: 'bounce',
 			random: false,
 			speed: 3,
-			straight: false
+			straight: false,
 		},
 		number: {
 			density: {
 				enable: true,
-				area: 400
+				area: 400,
 			},
-			value: 3
+			value: 3,
 		},
 		opacity: {
-			value: 0.6
+			value: 0.6,
 		},
 		shape: {
-			type: 'circle'
+			type: 'circle',
 		},
 		size: {
 			random: true,
-			value: 5
-		}
+			value: 5,
+		},
 	},
 	detectRetina: true,
-	fullScreen: false
+	fullScreen: false,
 };

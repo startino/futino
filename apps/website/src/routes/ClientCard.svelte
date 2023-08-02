@@ -21,12 +21,10 @@
 
 <div
 	bind:this={card}
-	class="bg-surface-variant-light/20 shadow-lg dark:bg-surface-variant-dark/20 rounded-lg h-fit w-72 md:w-80 xl:w-110 group overflow-hidden flex flex-col flex-grow hover:flex-grow-[10] transition-all duration-1000"
->
+	class="bg-surface-variant-light/20 shadow-lg dark:bg-surface-variant-dark/20 rounded-lg h-fit w-72 md:w-80 xl:w-110 group overflow-hidden flex flex-col flex-grow hover:flex-grow-[10] transition-all duration-1000">
 	<div
 		class="
-	flex flex-col items-center p-6"
-	>
+	flex flex-col items-center p-6">
 		<img src="favicon.png" alt="Face" class="h-24 w-24 rounded-full" />
 		<h1 class="headline-medium pt-2">{$$props.name}</h1>
 		<h2 class="headline-small pb-2">{$$props.company}</h2>
@@ -41,13 +39,11 @@
 		muted
 		id="clip"
 		preload="auto"
-		class="w-fit transition-transform aspect-[16/9] self-end"
-	>
+		class="w-fit transition-transform aspect-[16/9] self-end">
 		<source
 			title={$$props.company}
 			type="video/webm"
-			src="./client_websites/ggsoccer_whole_dark.webm"
-		/>
+			src="./client_websites/ggsoccer_whole_dark.webm" />
 		Your Browser does not support our video types
 		<track kind="captions" />
 	</video>
