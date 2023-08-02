@@ -440,6 +440,9 @@ importers:
       tsparticles-engine:
         specifier: ^2.9.3
         version: 2.9.3
+      tsparticles-updater-angle:
+        specifier: ^2.9.3
+        version: 2.9.3
       ui:
         specifier: workspace:*
         version: link:../../packages/ui
@@ -10086,6 +10089,12 @@ packages:
       tsparticles-updater-rotate: 2.11.1
       tsparticles-updater-size: 2.11.1
       tsparticles-updater-stroke-color: 2.11.1
+    dev: false
+
+  /tsparticles-updater-angle@2.9.3:
+    resolution: {integrity: sha512-Z8VLOw2UUxrvV3YH44My5kmeBUcJUHTSCMRUIqFvgvxDs0Q/g2eVWkr1L+Crpw6PE5FJMdDGWRjWwxMwNdVfuQ==}
+    dependencies:
+      tsparticles-engine: 2.11.1
     dev: false
 
   /tsparticles-updater-color@2.11.1:

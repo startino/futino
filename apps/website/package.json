@@ -15,12 +15,13 @@
 		"format": "prettier --plugin-search-dir . --write ."
 	},
 	"dependencies": {
-		"tsconfig": "workspace:*",
-		"ui": "workspace:*",
 		"svelte-inview": "^4.0.0",
 		"svelte-particles": "^2.9.3",
+		"tsconfig": "workspace:*",
 		"tsparticles": "^2.9.3",
-		"tsparticles-engine": "^2.9.3"
+		"tsparticles-engine": "^2.9.3",
+		"tsparticles-updater-angle": "^2.9.3",
+		"ui": "workspace:*"
 	},
 	"devDependencies": {
 		"@playwright/test": "^1.35.1",

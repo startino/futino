@@ -2,6 +2,7 @@
 <html lang="en" class="scroll-smooth">
 	<head>
 		<meta charset="utf-8" />
+		<title>Futino</title>
 		<link rel="icon" href="%sveltekit.assets%/favicon.png" />
 		<meta name="viewport" content="width=device-width" />
 
@@ -12,8 +13,10 @@
 			rel="stylesheet"
 		/>
 
-		<script language="JavaScript">
-			// On page load or when changing themes, best to add inline in `head` to avoid FOUC
+		<script>
+			/**
+			 * Loads the theme based on the user's preference or system setting.
+			 */
 			if (
 				localStorage.theme === 'dark' ||
 				(!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
@@ -22,15 +25,8 @@
 			} else {
 				document.documentElement.classList.remove('dark');
 			}
-			// Whenever the user explicitly chooses light mode
-			// localStorage.theme = 'light'
-
-			// Whenever the user explicitly chooses dark mode
-			// localStorage.theme = 'dark'
-
-			// Whenever the user explicitly chooses to respect the OS preference
-			// localStorage.removeItem('theme')
 		</script>
+
 
 		%sveltekit.head%
 	</head>
