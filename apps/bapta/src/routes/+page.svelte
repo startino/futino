@@ -178,25 +178,47 @@
 
 <!--Adventure Snippets-->
 <section class="flex flex-col items-center gap-4 space-y-1 section bg-surface-dark">
-	{#each adventures as { img_path, label, body, href }}
-		<div class="flex flex-col items-center gap-6 md:flex-row">
-			<img
-				src={img_path}
-				alt="img"
-				class="object-cover object-center rounded-md w-fit md:max-w-md lg:max-w-2xl" />
-			<div class="flex flex-col gap-y-1">
-				<h1 class="font-semibold text-left headline-large text-primary-dark">
-					{label}
-				</h1>
-				<h2 class="max-w-lg text-left">
-					{body}
-				</h2>
+	{#each adventures as { img_path, label, body, href }, i}
+		{#if i % 2 == 0}
+			<div
+				class="flex flex-col h-fit items-center text-left md:text-right md:justify-items-end gap-6 md:flex-row-reverse">
+				<img
+					src={img_path}
+					alt="img"
+					class="object-cover object-center rounded-md w-fit md:max-w-md lg:max-w-2xl" />
+				<div class="flex flex-col gap-y-1 h-full">
+					<h1 class="font-semibold headline-large text-primary-dark h-full">
+						{label}
+					</h1>
+					<h2 class="body-large">
+						{body}
+					</h2>
 
-				<OutlineButton {href} class="py-2">
-					<h1 class="font-bold title-small">Learn More</h1>
-				</OutlineButton>
+					<OutlineButton {href} class="py-2 md:self-end">
+						<h1 class="font-bold title-small">Learn More</h1>
+					</OutlineButton>
+				</div>
 			</div>
-		</div>
+		{:else}
+			<div class="flex flex-col items-center gap-6 md:flex-row">
+				<img
+					src={img_path}
+					alt="img"
+					class="object-cover object-center rounded-md w-fit md:max-w-md lg:max-w-2xl" />
+				<div class="flex flex-col gap-y-1 h-full">
+					<h1 class="font-semibold text-left headline-large text-primary-dark">
+						{label}
+					</h1>
+					<h2 class="max-w-lg body-large text-left mx-auto">
+						{body}
+					</h2>
+
+					<OutlineButton {href} class="py-2">
+						<h1 class="font-bold title-small">Learn More</h1>
+					</OutlineButton>
+				</div>
+			</div>
+		{/if}
 	{/each}
 </section>
 
