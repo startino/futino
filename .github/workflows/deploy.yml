@@ -13,7 +13,20 @@ jobs:
     strategy:
       matrix:
         node-version: [16]
-        project: [allheim, anzelmo, bapta, ggsoccer, liberole, web-template, website]
+        include:
+        - project: allheim
+          domain: allheim.futi.no
+        - project: anzelmo
+          domain: anzelmo.futi.no
+        - project: bapta
+          domain: bapta.futi.no
+        - project: ggsoccer
+          domain: ggsoccer.futi.no
+        - project: liberole
+          domain: liberole.futi.no
+        - project: website
+          domain: futi.no
+
 
     steps:
       # pnpm setup following https://pnpm.io/continuous-integration#github-actions
@@ -37,7 +50,7 @@ jobs:
 
       - name: Prepare for GitHub Pages
         run: |
-          echo -e "${{ matrix.project }}.futi.no" >> apps/${{ matrix.project }}/build/CNAME
+          echo -e "${{ matrix.domain }}" >> apps/${{ matrix.project }}/build/CNAME
           touch apps/${{ matrix.project }}/build/.nojekyll
 
       - name: Deploy to https://github.com/Futino/${{ matrix.project }} gh-pages Branch
