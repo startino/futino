@@ -1,5 +1,5 @@
 <script lang="ts">
-	import FaqCard from '../molecules/FAQCard.svelte';
+	import FAQCard from '../molecules/FAQCard.svelte';
 	// Gets the Frequently Asked Questions by parent component
 	export let FAQs: any[] = [];
 	export let activeEntry = 0;
@@ -26,7 +26,7 @@
 		<!--Loop through each question. Makes it's card.-->
 		{#each FAQs as entry}
 			<!--I didn't know how to implicitly define the entry with properties for question and answer.-->
-			<FaqCard
+			<FAQCard
 				question={entry.question}
 				answer={entry.answer}
 				isOpen={entry.index == activeEntry} />

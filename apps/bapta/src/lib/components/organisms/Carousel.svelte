@@ -13,7 +13,7 @@
 		<div
 			class="flex flex-col my-3 max-w-xl rounded-lg shadow-lg shadow-black bg-black/60 shrink-0 snap-center">
 			<div
-				class="bg-[url('images/safari/safari_img(7).jpeg')] h-44 rounded-t bg-center bg-cover flex" />
+				class="bg-[url('/images/safari/safari_img(7).jpeg')] h-44 rounded-t bg-center bg-cover flex" />
 			<!--Title and parks-->
 			<div class="rounded-b flex flex-col py-4 px-6">
 				<h1 class="headline-small">{name}</h1>

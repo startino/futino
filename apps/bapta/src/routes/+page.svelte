@@ -2,10 +2,7 @@
 	import { base } from '$app/paths';
 	import Header from '$lib/components/organisms/Header.svelte';
 	import Footer from '$lib/components/organisms/Footer.svelte';
-	import Button from '$lib/components/atoms/Button.svelte';
 	import OutlineButton from '$lib/components/molecules/OutlineButton.svelte';
-	import Wildlife from '$lib/components/organisms/Wildlife.svelte';
-	import FaqCard from '$lib/components/molecules/FAQCard.svelte';
 	import { adventures } from './tour/adventures';
 
 	const animals = [
@@ -54,38 +51,38 @@
 
 	const testimonials = [
 		{
-			src: '#_',
+			src: '#',
 			img_path: '/images/safari/safari_img(25).jpeg',
 			name: 'John Smith',
 			body: "Going on an African safari was for me, and the experience exceeded all my expectations! The wildlife was amazing, the landscapes were breathtaking, and the accommodations were comfortable and cozy. I couldn't have asked for a better trip. Thank you!",
 		},
 
 		{
-			src: '#_',
+			src: '#',
 			img_path: '/images/safari/safari_img(26).jpeg',
 			name: 'Jane Doe',
 			body: "I've always very important to me. But also walks the walk. The guides were knowledgeable and respectful of the animals and their habitats, and the accommodations were eco-friendly and responsible. I would highly recommend this company to anyone looking for an ethical and unforgettable safari experience.",
 		},
 		{
-			src: '#_',
+			src: '#',
 			img_path: '/images/safari/safari_img(21).jpeg',
 			name: 'Tom Jones',
 			body: "As a photographer, I was blown away frican wildlife and landscapes. The company's guides were patient and accommodating, allowing me to take my time to capture the perfect shot. I came away from the safari with some of the best pictures of my life, and memories that will last forever. Thank you for an unforgettable adventure!",
 		},
 		{
-			src: '#_',
+			src: '#',
 			img_path: '/images/safari/safari_img(25).jpeg',
 			name: 'John Smith',
 			body: "Going on an African safari was for me, and the experience exceeded all my expectations! The wildlife was amazing, the landscapes were breathtaking, and the accommodations were comfortable and cozy. I couldn't have asked for a better trip. Thank you!",
 		},
 		{
-			src: '#_',
+			src: '#',
 			img_path: '/images/safari/safari_img(21).jpeg',
 			name: 'Tom Jones',
 			body: "As a photographer, I was blown away frican wildlife and landscapes. The company's guides were patient and accommodating, allowing me to take my time to capture the perfect shot. I came away from the safari with some of the best pictures of my life, and memories that will last forever. Thank you for an unforgettable adventure!",
 		},
 		{
-			src: '#_',
+			src: '#',
 			img_path: '/images/safari/safari_img(26).jpeg',
 			name: 'Jane Doe',
 			body: "I've always very important to me. But also walks the walk. The guides were knowledgeable and respectful of the animals and their habitats, and the accommodations were eco-friendly and responsible. I would highly recommend this company to anyone looking for an ethical and unforgettable safari experience.",
@@ -128,7 +125,7 @@
 
 <Header />
 <div
-	class="grid w-full h-screen shadow-lg shadow-background-dark lg:grid-cols-2 card-shadow grid-rows-2 px-10 xl:px-40 pt-60 justify-center place-items-center border-b border-secondary-light/40 dark:border-secondary-dark/40 bg-[url('images/serengeti_sunset.jpg')] bg-cover bg-left">
+	class="grid w-full h-screen shadow-lg shadow-background-dark lg:grid-cols-2 card-shadow grid-rows-2 px-10 xl:px-40 pt-60 justify-center place-items-center border-b border-secondary-light/40 dark:border-secondary-dark/40 bg-landing_hero bg-cover bg-left">
 	<div class="grid space-y-3 text-left justify-items-start">
 		<h1 class="font-bold text-primary-dark display-medium">
 			A Safari of a Lifetime,<br />

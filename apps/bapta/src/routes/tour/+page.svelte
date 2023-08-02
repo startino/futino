@@ -3,12 +3,6 @@
 	import Header from '$lib/components/organisms/Header.svelte';
 	import Footer from '$lib/components/organisms/Footer.svelte';
 	import OutlineButton from '$lib/components/molecules/OutlineButton.svelte';
-	import Icon from '$lib/components/atoms/Icon.svelte';
-	import Counter from './Counter.svelte';
-	import { destinations } from '../destinations/destinations';
-	import { adventures } from './adventures';
-	import Carousel from '$lib/components/organisms/Carousel.svelte';
-	import Button from '$lib/components/atoms/Button.svelte';
 
 	// List of currently selected cards, to be used when submitting and checking if card already in list.
 	export let selectedCards: number[] = [];
@@ -64,7 +58,7 @@
 
 <!--Hero-->
 <div
-	class="w-full h-screen shadow-lg shadow-background-dark lg:grid-cols-2 card-shadow grid-rows-2 px-10 lg:px-20 xl:px-40 pt-80 place-items-center border-b border-secondary-light/40 dark:border-secondary-dark/40 bg-[url('images/safari/african_plains_3.jpeg')] bg-cover object-contain bg-top">
+	class="w-full h-screen shadow-lg shadow-background-dark lg:grid-cols-2 card-shadow grid-rows-2 px-10 lg:px-20 xl:px-40 pt-80 place-items-center border-b border-secondary-light/40 dark:border-secondary-dark/40 bg-[url('/images/safari/african_plains_3.jpeg')] bg-cover object-contain bg-top">
 	<div class="flex flex-col max-w-lg self-center items-center h-full mx-auto text-center">
 		<h1 class="font-bold text-black display-medium">Tanzanian Tours</h1>
 		<h1 class="pb-6 text-black body-large">Plan Your Journey Of a Lifetime</h1>

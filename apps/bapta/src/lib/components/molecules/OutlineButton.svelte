@@ -1,7 +1,7 @@
 <script lang="ts">
 	export let color: string = 'primary-dark';
 	export let colorOn: string = 'primary-on-dark';
-	export let href: string = '#_';
+	export let href: string = '#';
 </script>
 
 <a {href} class="{$$props.class} w-fit h-fit">
