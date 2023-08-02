@@ -16,17 +16,7 @@ updates:
       interval: 'daily'
 
   - package-ecosystem: 'npm'
-    directory: '/apps/web-template'
-    schedule:
-      interval: 'daily'
-
-  - package-ecosystem: 'npm'
-    directory: '/apps/ggsoccer'
-    schedule:
-      interval: 'daily'
-
-  - package-ecosystem: 'npm'
-    directory: '/apps/bapta'
+    directory: '/apps/allheim'
     schedule:
       interval: 'daily'
 
@@ -36,6 +26,16 @@ updates:
       interval: 'daily'
 
   - package-ecosystem: 'npm'
-    directory: '/apps/allheim'
+    directory: '/apps/bapta'
+    schedule:
+      interval: 'daily'
+
+  - package-ecosystem: 'npm'
+    directory: '/apps/ggsoccer'
+    schedule:
+      interval: 'daily'
+
+  - package-ecosystem: 'npm'
+    directory: '/apps/web-template'
     schedule:
       interval: 'daily'
