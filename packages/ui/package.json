@@ -39,7 +39,7 @@
 		"@storybook/addon-essentials": "7.1.0-alpha.41",
 		"@storybook/addon-interactions": "7.1.1",
 		"@storybook/addon-links": "7.1.1",
-		"@storybook/addon-mdx-gfm": "7.1.0-alpha.41",
+		"@storybook/addon-mdx-gfm": "7.2.1",
 		"@storybook/blocks": "7.1.0-alpha.41",
 		"@storybook/manager-api": "7.1.0-alpha.41",
 		"@storybook/svelte": "7.1.0-alpha.41",
