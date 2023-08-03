@@ -3,29 +3,21 @@
 	import Logo from '$lib/components/atoms/Logo.svelte';
 </script>
 
-<footer
+<div
 	class="{$$props.class} pt-20 p-6 border-t border-secondary-light/10 dark:border-secondary-dark/10">
-	<div
-		class="sm:flex sm:justify-between sm:items-center md:px-10 lg:px-20 xl:px-40 px-auto md:px-auto">
+	<div class="flex flex-row justify-between items-center md:px-10 lg:px-20 xl:px-40 md:px-auto">
 		<Logo />
 		<ul
-			class="flex flex-wrap items-center mb-6 space-x-6 body-small sm:mb-0 text-background-on-light dark:text-background-on-dark">
-			<!-- <li>
-				<a
-					class="inline text-secondary-light dark:text-secondary-dark hover:text-tertiary-light dark:hover:text-tertiary-dark"
-					href='/'
-				>
-					Privacy Policy
-				</a>
-			</li>
-			<li>
-				<a
-					class="inline text-secondary-light dark:text-secondary-dark hover:text-tertiary-light dark:hover:text-tertiary-dark"
-					href='/'
-				>
-					Licensing
-				</a>
-			</li> -->
+			class="flex flex-wrap items-center self-center space-x-6 body-small sm:mb-0 text-background-on-light dark:text-background-on-dark">
+			{#each ['Home', 'Contact', 'Help', 'FAQS', 'Contact'] as element}
+				<li>
+					<a
+						class="inline mx-auto text-secondary-light dark:text-secondary-dark hover:text-tertiary-light dark:hover:text-tertiary-dark"
+						href="/about">
+						{element}
+					</a>
+				</li>
+			{/each}
 		</ul>
 	</div>
 	<hr class="my-6 sm:mx-auto lg:my-8 border-secondary-light/10 dark:border-secondary-dark/10" />
@@ -37,4 +29,4 @@
 			Futino™
 		</a>
 	</span>
-</footer>
+</div>
