@@ -14,7 +14,6 @@ const config = {
 				about: "url('/images/safari/safari_img(28).jpeg')",
 				emmanuel: "url('/images/safari/safari_img(25).jpeg')",
 				landing_hero: "url('/images/serengeti_sunset.jpg')",
-
 			},
 			fontFamily: {
 				bilbo: ['Bilbo Swash Caps'],

@@ -13,7 +13,7 @@
 				<li>
 					<a
 						class="inline mx-auto text-secondary-light dark:text-secondary-dark hover:text-tertiary-light dark:hover:text-tertiary-dark"
-						href="/about">
+						href="#">
 						{element}
 					</a>
 				</li>
