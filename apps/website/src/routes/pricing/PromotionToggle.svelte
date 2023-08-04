@@ -31,7 +31,7 @@
 
 <div
 	class="flex flex-col max-w-xl p-2 border rounded-2xl border-secondary-light/20 dark:border-secondary-dark/20">
-	<ul class="flex flex-row items-center text-sm text-center gap-x-7 relative group">
+	<ul class="flex flex-row items-center text-sm text-center gap-x-7 relative overflow-visible">
 		<div
 			class="h-12 absolute border-2 rounded-xl border-primary-light dark:border-primary-dark transition-all duration-700 {positionClass}"
 			style="width: {button_widths[activeTabValue]}px" />
@@ -40,7 +40,10 @@
 			<!--{activeTabValue == promotion.index
 					? 'active border-2 rounded-xl border-primary-light dark:border-primary-dark'
 					: -->
-			<li class="relative hover:border-2 rounded-xl">
+			<li
+				class="py-3 overflow-visible rounded-xl transition-all duration-200 {activeTabValue == i
+					? ''
+					: 'outline outline-0 hover:outline-2 outline-white'}">
 				<button on:click={handleClick(promotion.index)} bind:clientWidth={button_widths[i]}>
 					<Promotion
 						name="billing"
