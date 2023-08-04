@@ -7,26 +7,56 @@
 
 	const handleClick = (tabValue: number) => () => {
 		activeTabValue = tabValue;
+
+		if (activeTabValue == 2) {
+			console.log('2');
+			positionClass = 'right-0';
+		}
 	};
 
-	let widths: number[] = [100, 100, 100];
+	let positionClass = 'left-0';
+
+	function calculatePosition() {
+		switch (activeTabValue) {
+			case 0: {
+				positionClass = 'left-0';
+				break;
+			}
+			case 1: {
+				positionClass = 'left-1/3';
+				break;
+			}
+			case 2: {
+				positionClass = 'right-0';
+				break;
+			}
+		}
+	}
 </script>
 
 <div
 	class="flex flex-col max-w-xl p-2 border rounded-2xl border-secondary-light/20 dark:border-secondary-dark/20">
-	<ul class="flex flex-row items-center text-sm text-center gap-x-7 relative">
-		<div
-			class="h-[{widths[
-				activeTabValue
-			]}px] h-12 z-20 fixed bg-white rounded-xl border-primary-light dark:border-primary-dark left-1/2 top-1/2" />
-
+	<ul class="flex flex-row items-center text-sm text-center gap-x-7 relative group">
+		{#key positionClass}
+			<div
+				class="w-20 h-12 absolute border-2 rounded-xl border-primary-light dark:border-primary-dark transition-all {positionClass}" />
+		{/key}
+		<div class="fixed left-1/2 top-1/2">
+			{activeTabValue}
+			position class {positionClass}
+		</div>
 		{#each promotions as promotion, i}
 			<li
 				class="relative {activeTabValue === promotion.index
 					? 'active border-2 rounded-xl border-primary-light dark:border-primary-dark'
 					: 'hover:border-2 rounded-xl'}">
-				<button bind:clientWidth={widths[i]} on:click={handleClick(promotion.index)}>
-					<Promotion name="billing" for={promotion.for} text={promotion.label}>
+				<button>
+					<Promotion
+						name="billing"
+						for={promotion.for}
+						text={promotion.label}
+						value={promotion.index}
+						bind:activeTabValue>
 						<div class="">
 							<!--ChoiceButton Probably shouldn't be inside of another button but idk how to pass onclick listener so...-->
 							{#if promotion.discount == ''}

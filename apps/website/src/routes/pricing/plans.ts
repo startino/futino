@@ -98,7 +98,7 @@ export const partnership_plans: Plan[] = [
 ];
 
 export const promotions: { label: string; index: number; for: string; discount: string }[] = [
-	{ label: 'Monthly', index: 1, for: 'monthly', discount: '' },
-	{ label: 'Biannually', index: 2, for: 'biennially', discount: '1 Month Free' },
-	{ label: 'Yearly', index: 3, for: 'annuallyy', discount: '3 Months Free' },
+	{ label: 'Monthly', index: 0, for: 'monthly', discount: '' },
+	{ label: 'Biannually', index: 1, for: 'biennially', discount: '1 Month Free' },
+	{ label: 'Yearly', index: 2, for: 'annuallyy', discount: '3 Months Free' },
 ];
