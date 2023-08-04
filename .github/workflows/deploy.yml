@@ -20,6 +20,7 @@ jobs:
             { name: bapta, domain: bapta.futi.no },
             { name: ggsoccer, domain: ggsoccer.futi.no },
             { name: liberole, domain: liberole.futi.no },
+            { name: web-template, domain: template.futi.no },
             { name: website, domain: futi.no },
           ]
 
