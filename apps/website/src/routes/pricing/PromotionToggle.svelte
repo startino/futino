@@ -6,51 +6,42 @@
 	export let activeTabValue = 0;
 
 	const handleClick = (tabValue: number) => () => {
-		activeTabValue = tabValue;
-		calculatePosition();
-		if (activeTabValue == 1) {
-			console.log('2');
-			positionClass = 'right-1/3';
-		}
-	};
-
-	let positionClass = 'left-0';
-
-	function calculatePosition() {
-		switch (activeTabValue) {
+		console.log(tabValue);
+		console.log(button_widths[tabValue]);
+		switch (tabValue) {
 			case 0: {
 				positionClass = 'left-0';
 				break;
 			}
 			case 1: {
-				positionClass = 'left-1/3';
+				positionClass = 'left-1/4';
 				break;
 			}
 			case 2: {
-				positionClass = 'left-full';
+				positionClass = 'left-2/3';
 				break;
 			}
 		}
-	}
+	};
+
+	let positionClass: string = 'left-0';
+
+	let button_widths: number[] = [68, 419, 70421];
 </script>
 
 <div
 	class="flex flex-col max-w-xl p-2 border rounded-2xl border-secondary-light/20 dark:border-secondary-dark/20">
 	<ul class="flex flex-row items-center text-sm text-center gap-x-7 relative group">
 		<div
-			class="w-24 h-12 absolute border-2 rounded-xl border-primary-light dark:border-primary-dark transition-all duration-700 {activeTabValue ==
-			0
-				? 'left-0'
-				: activeTabValue == 1
-				? 'left-1/3'
-				: 'left-2/3'}" />
+			class="h-12 absolute border-2 rounded-xl border-primary-light dark:border-primary-dark transition-all duration-700 {positionClass}"
+			style="width: {button_widths[activeTabValue]}px" />
 
 		{#each promotions as promotion, i}
 			<!--{activeTabValue == promotion.index
 					? 'active border-2 rounded-xl border-primary-light dark:border-primary-dark'
 					: -->
 			<li class="relative hover:border-2 rounded-xl">
-				<button>
+				<button on:click={handleClick(promotion.index)} bind:clientWidth={button_widths[i]}>
 					<Promotion
 						name="billing"
 						for={promotion.for}
