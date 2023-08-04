@@ -19,6 +19,10 @@ const config = {
 			borderWidth: {
 				1: '1px',
 			},
+			backgroundSize: {
+				'50%': '50%',
+				'25%': '25%',
+			  },
 
 			animation: {
 				shine: 'shine 0.9s ease-out',

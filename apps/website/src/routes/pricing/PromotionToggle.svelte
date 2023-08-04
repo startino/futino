@@ -14,7 +14,7 @@
 
 <div
 	class="flex flex-col max-w-xl p-2 border rounded-2xl border-secondary-light/20 dark:border-secondary-dark/20">
-	<ul class="flex flex-wrap text-sm text-center gap-x-7 relative">
+	<ul class="flex flex-row items-center text-sm text-center gap-x-7 relative">
 		<div
 			class="h-[{widths[
 				activeTabValue
@@ -27,18 +27,20 @@
 					: 'hover:border-2 rounded-xl'}">
 				<button bind:clientWidth={widths[i]} on:click={handleClick(promotion.index)}>
 					<Promotion name="billing" for={promotion.for} text={promotion.label}>
-						<!--ChoiceButton Probably shouldn't be inside of another button but idk how to pass onclick listener so...-->
-						{#if promotion.discount == ''}
-							<h1 class="body-large">
-								{promotion.discount}
-							</h1>
-						{:else}
-							<OfferText class="pl-2 widths">
-								<h1 class="body-small">
+						<div class="">
+							<!--ChoiceButton Probably shouldn't be inside of another button but idk how to pass onclick listener so...-->
+							{#if promotion.discount == ''}
+								<h1 class="body-large">
 									{promotion.discount}
 								</h1>
-							</OfferText>
-						{/if}
+							{:else}
+								<OfferText class="">
+									<h1 class="body-small">
+										{promotion.discount}
+									</h1>
+								</OfferText>
+							{/if}
+						</div>
 					</Promotion>
 				</button>
 			</li>
@@ -47,7 +49,4 @@
 </div>
 
 <style>
-	.widths {
-		@apply w-[100px];
-	}
 </style>

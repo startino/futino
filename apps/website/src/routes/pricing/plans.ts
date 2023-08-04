@@ -11,7 +11,7 @@ export const hosting_plans: Plan[] = [
 	{
 		label: 'Basic',
 		prefix: '$',
-		cost: 29,
+		cost: 239,
 		note: '/mo',
 		subtext: '',
 		features: ['Hosting', 'Customer Support'],
@@ -20,7 +20,7 @@ export const hosting_plans: Plan[] = [
 	{
 		label: 'Standard',
 		prefix: '$',
-		cost: 87,
+		cost: 699,
 		note: '/mo',
 		subtext: '',
 		features: ['Hosting', 'Priority Customer Suport', '2 Hours Maintenance Work'],
@@ -29,7 +29,7 @@ export const hosting_plans: Plan[] = [
 	{
 		label: 'Business',
 		prefix: '$',
-		cost: 261,
+		cost: 2100,
 		note: '/mo',
 		subtext: '',
 		features: [
@@ -43,7 +43,7 @@ export const hosting_plans: Plan[] = [
 	{
 		label: 'Enterprise',
 		prefix: '$',
-		cost: 783,
+		cost: 6200,
 		note: '/mo',
 		subtext: '',
 		features: [
