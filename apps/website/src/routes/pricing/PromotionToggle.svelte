@@ -2,8 +2,8 @@
 	import Promotion from './Promotion.svelte';
 	import OfferText from './OfferText.svelte';
 
-	export let promotions: { label: string; value: number; for: string; discount: string }[] = [];
-	export let activeTabValue = 1;
+	export let promotions: { label: string; index: number; for: string; discount: string }[];
+	export let activeTabValue = 0;
 
 	const handleClick = (tabValue: number) => () => (activeTabValue = tabValue);
 </script>
@@ -16,10 +16,10 @@
 		role="tablist">
 		{#each promotions as promotion}
 			<li
-				class={activeTabValue === promotion.value
+				class={activeTabValue === promotion.index
 					? 'active border-2 rounded-xl border-primary-light dark:border-primary-dark'
 					: 'hover:border-2 rounded-xl'}>
-				<button on:click={handleClick(promotion.value)}>
+				<button on:click={handleClick(promotion.index)}>
 					<Promotion name="billing" for={promotion.for} text={promotion.label}>
 						<!--ChoiceButton Probably shouldn't be inside of another button but idk how to pass onclick listener so...-->
 						{#if promotion.discount == ''}

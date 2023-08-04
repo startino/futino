@@ -1,10 +1,11 @@
 <script lang="ts">
-	import Tooltip from './tooltip/Tooltip.svelte';
+	import Tooltip from '$lib/components/organisms/tooltip/Tooltip.svelte';
+	import Tab from './Tab.svelte';
 
 	export let tabs: any[] = [];
-	export let activeTabValue = 1;
+	export let activeTabIndex = 0;
 
-	const handleClick = (tabValue: number) => () => (activeTabValue = tabValue);
+	const handleClick = (tabIndex: number) => () => (activeTabIndex = tabIndex);
 </script>
 
 <div class="mb-4 border-b border-secondary-light/20 dark:border-secondary-dark/20">
@@ -15,12 +16,12 @@
 		role="tablist">
 		{#each tabs as tab}
 			<li
-				class={activeTabValue === tab.value
+				class={activeTabIndex === tab.index
 					? 'active border-b-2 border-primary-light dark:border-primary-dark'
 					: 'hover:border-b-2 mx-2'}>
 				<button
 					class="inline-block p-4 rounded-t-lg"
-					on:click={handleClick(tab.value)}
+					on:click={handleClick(tab.index)}
 					type="button"
 					role="tab"
 					aria-controls="profile"
@@ -39,8 +40,7 @@
 		{/each}
 	</ul>
 </div>
-{#each tabs as tab}
-	{#if activeTabValue == tab.value}
-		<svelte:component this={tab.component} />
-	{/if}
-{/each}
+
+{#key activeTabIndex}
+	<Tab tab={tabs[activeTabIndex]} />
+{/key}
