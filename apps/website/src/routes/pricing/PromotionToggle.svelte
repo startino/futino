@@ -41,7 +41,8 @@
 					? 'active border-2 rounded-xl border-primary-light dark:border-primary-dark'
 					: -->
 			<li
-				class="py-3 overflow-visible rounded-xl transition-all duration-200 {activeTabValue == i
+				class="py-1 md:py-3 overflow-visible rounded-xl transition-all duration-200 {activeTabValue ==
+				i
 					? ''
 					: 'outline outline-0 hover:outline-2 outline-white'}">
 				<button on:click={handleClick(promotion.index)} bind:clientWidth={button_widths[i]}>
