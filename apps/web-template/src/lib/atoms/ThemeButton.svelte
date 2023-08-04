@@ -33,7 +33,7 @@
 
 	<!-- Dark mode -->
 	<span class="hidden dark:inline">
-		<svg viewBox="0 0 24 24" fill="none" class="w-6 h-6">
+		<svg viewBox="0 0 24 24" fill="none" stroke-width="1.1" class="w-6 h-6">
 			<path
 				fill-rule="evenodd"
 				clip-rule="evenodd"
