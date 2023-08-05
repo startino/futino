@@ -19,8 +19,8 @@
 	import { onDestroy, onMount } from 'svelte';
 	import { createEventDispatcher } from 'svelte';
 	import { fade, fly, slide } from 'svelte/transition';
-	const marginTop: number = -5;
-	const marginBottom: number = -5;
+	const marginTop: number = 0;
+	const marginBottom: number = 0;
 	const rootMargin: string = `${marginTop}% 1000% ${marginBottom}% 1000%`;
 	const options = { rootMargin, threshold: 0.5 };
 
@@ -36,6 +36,7 @@
 	const handleIntersect = (entry: IntersectionObserverEntry[]) => {
 		console.log('handle');
 		if (entry[0].isIntersecting) {
+			inView;
 			entry[0].target.classList.add('post-animation');
 		} else {
 			entry[0].target.classList.remove('post-animation');
@@ -51,7 +52,10 @@
 	});
 </script>
 
-<div bind:this={element} id="visible" class="{$$props.class} transition-all duration-500 slide-in">
+<div
+	bind:this={element}
+	id="visible"
+	class="{$$props.class} transition-all duration-500 delay-200 slide-in fade-in">
 	<slot />
 </div>
 
@@ -60,7 +64,7 @@
 		opacity: 0;
 	}
 	.slide-in {
-		transform: translateX(1000px);
+		transform: translateX(200px);
 	}
 	.post-animation {
 		opacity: 1;
