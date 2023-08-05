@@ -18,6 +18,7 @@ jobs:
             { name: allheim, domain: allheim.futi.no },
             { name: anzelmo, domain: anzelmo.futi.no },
             { name: bapta, domain: bapta.futi.no },
+            { name: eksno, domain: eksno.com },
             { name: ggsoccer, domain: ggsoccer.futi.no },
             { name: liberole, domain: liberole.futi.no },
             { name: web-template, domain: template.futi.no },
