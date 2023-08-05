@@ -30,7 +30,7 @@
 	<ul class="relative flex flex-row p-2 items-center text-sm text-center">
 		<div
 			class="h-12 absolute border-2 left- mx-2 rounded-xl border-primary-light dark:border-primary-dark transition-all duration-700"
-			style="width: {button_widths[activeTabValue]}px; {positionClass};" />
+			style="width: {button_widths[activeTabValue] - 4}px; {positionClass};" />
 
 		{#each promotions as promotion, i}
 			<!--{activeTabValue == promotion.index

@@ -33,6 +33,8 @@ const config = {
 				typingtitle: 'typing 1s steps(5), blinkCursor 6 0.5s steps(5) ',
 				typingsubtitle: 'typing 3s steps(64), blinkCursor infinite 0.5s steps(64) ',
 				ripple: 'ripple 0.7s ',
+				fadeIn: 'fadeIn 2s ',
+				fadeOut: 'fadeOut 2s'
 			},
 
 			keyframes: {
@@ -71,6 +73,14 @@ const config = {
 					'0%': { transform: 'translateY(0%)' },
 					'100%': { transform: 'translateY(100%)' },
 				},
+				fadeIn: {
+					'0%': { opacity: 0 },
+					'100%': { transform: 1 },
+				},
+				fadeOut: {
+					'0%': { opacity: 1 },
+					'100%': { transform: 0 },
+				}
 			},
 
 			colors: {
