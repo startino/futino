@@ -15,9 +15,9 @@
   ]
 
 
-	let largeHeaderClass = 'py-12';
+	let largeHeaderClass = 'fixed py-12';
 	let activeheaderClass = largeHeaderClass;
-	let miniHeaderClass = 'py-3 border-b bg-surface-light/60 dark:bg-surface-dark/60 backdrop-blur';
+	let miniHeaderClass = 'fixed py-3 border-b bg-surface-light/60 dark:bg-surface-dark/60 backdrop-blur';
 
   
   let menuOpen = false;
@@ -25,7 +25,7 @@
 
 	onMount(() => {
 		window.addEventListener('scroll', () => {
-			activeheaderClass = (window.scrollY > 100) ? miniHeaderClass : largeHeaderClass;
+			activeheaderClass = (window.scrollY > 12) ? miniHeaderClass : largeHeaderClass;
 		});
 	});
 </script>
@@ -58,14 +58,14 @@
 
 <header
 	id="header"
-	class="{$$props.class} {activeheaderClass} text-primary-light dark:text-primary-dark border-secondary-light/10 dark:border-secondary-dark/10 fixed top-0 z-40 w-full transition-all duration-400">
-  <div class="flex relative items-center px-12 md:px-24 lg:max-w-5xl xl:max-w-6xl mx-auto">
+	class="{$$props.class} {activeheaderClass} text-primary-light dark:text-primary-dark border-secondary-light/10 dark:border-secondary-dark/10 top-0 z-40 w-full transition-all duration-400">
+  <div class="flex relative items-center px-6 md:px-18 lg:max-w-5xl xl:max-w-6xl mx-auto">
     <a class="flex gap-3" href="/">
       <Logo />
       <p class="hidden sm:flex text-xl my-auto pb-1">Futino Web-Template</p>
     </a>
     <div class="flex items-center ml-auto gap-6">
-      <nav class="hidden md:flex gap-6 pb-1">
+      <nav class="hidden md:flex gap-6 pb-0.5">
         {#each elements as element, i}
         <a
           class="hover:text-tertiary-light dark:hover:text-tertiary-dark"

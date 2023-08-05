@@ -9,6 +9,10 @@ const config = {
 
 	theme: {
 		extend: {
+			padding: {
+				'18': '4.5rem',
+			},
+
 			fontFamily: {
 				bilbo: ['Bilbo Swash Caps'],
 				ubuntu: ['Ubuntu'],
