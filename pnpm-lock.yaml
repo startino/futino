@@ -267,9 +267,6 @@ importers:
       autoprefixer:
         specifier: ^10.4.14
         version: 10.4.14(postcss@8.4.27)
-      marked:
-        specifier: ^6.0.0
-        version: 6.0.0
       postcss:
         specifier: ^8.4.24
         version: 8.4.27
@@ -7552,12 +7549,6 @@ packages:
       react: '>= 0.14.0'
     dependencies:
       react: 18.2.0
-    dev: true
-
-  /marked@6.0.0:
-    resolution: {integrity: sha512-7E3m/xIlymrFL5gWswIT4CheIE3fDeh51NV09M4x8iOc7NDYlyERcQMLAIHcSlrvwliwbPQ4OGD+MpPSYiQcqw==}
-    engines: {node: '>= 16'}
-    hasBin: true
     dev: true
 
   /mdast-util-definitions@4.0.0:
