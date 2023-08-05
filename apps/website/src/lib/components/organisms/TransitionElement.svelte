@@ -19,56 +19,51 @@
 	import { onDestroy, onMount } from 'svelte';
 	import { createEventDispatcher } from 'svelte';
 	import { fade, fly, slide } from 'svelte/transition';
-	const marginTop: number = -10;
-	const marginBottom: number = -10;
-	const rootMargin: string = `${marginTop}% 0% ${marginBottom}% 0%`;
-	const options = { rootMargin, threshold: 0.2 };
+	const marginTop: number = -5;
+	const marginBottom: number = -5;
+	const rootMargin: string = `${marginTop}% 1000% ${marginBottom}% 1000%`;
+	const options = { rootMargin, threshold: 0.5 };
 
 	let element: Element;
 	let invisibleElement: Element;
 	let observer: IntersectionObserver;
-	let inView: boolean = true;
+	let inView: boolean = false;
+	let inProgress: boolean = false;
 
-	const handler = (entries: IntersectionObserverEntry[]) => {
-		inView = entries[0].isIntersecting;
-		console.log('inView = ', inView);
-		console.log('target: ', entries[0].target);
-		if (inView) {
-			//setObserver();
+	function delay(ms: number) {
+		return new Promise((resolve) => setTimeout(resolve, ms));
+	}
+	const handleIntersect = (entry: IntersectionObserverEntry[]) => {
+		console.log('handle');
+		if (entry[0].isIntersecting) {
+			entry[0].target.classList.add('post-animation');
+		} else {
+			entry[0].target.classList.remove('post-animation');
 		}
 	};
 
-	const setObserver = () => {
-		observer = new IntersectionObserver(handler, options);
-		observer.observe(element);
-	};
-
 	onMount(() => {
-		setObserver();
+		const observer = new IntersectionObserver(handleIntersect, options);
+		observer.observe(element);
 	});
 	onDestroy(() => {
 		console.log('on destroy	');
 	});
-
-	function restart() {
-		inView = !inView;
-		console.log(inView);
-		console.log(element);
-	}
 </script>
 
-{#key inView}
-	<div class="fixed top-1/2 left-1/2">
-		{inView}
-	</div>
-{/key}
-
-<div
-	class:visible={inView}
-	class:invisible={!inView}
-	in:fade
-	bind:this={element}
-	id="visible"
-	class={$$props.class}>
+<div bind:this={element} id="visible" class="{$$props.class} transition-all duration-500 slide-in">
 	<slot />
 </div>
+
+<style>
+	.fade-in {
+		opacity: 0;
+	}
+	.slide-in {
+		transform: translateX(1000px);
+	}
+	.post-animation {
+		opacity: 1;
+		transform: translateX(0px);
+	}
+</style>
