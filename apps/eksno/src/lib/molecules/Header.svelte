@@ -9,8 +9,8 @@
       "href": "/",
     },
     {
-      "name": "About",
-      "href": "/",
+      "name": "D&D patch-notes",
+      "href": "/dnd/patch-notes",
     }
   ]
 
@@ -62,7 +62,7 @@
   <div class="flex relative items-center px-6 md:px-18 lg:max-w-5xl xl:max-w-6xl mx-auto">
     <a class="flex gap-3" href="/">
       <Logo />
-      <p class="hidden sm:flex text-xl my-auto pb-1">Futino Web-Template</p>
+      <p class="hidden sm:flex text-xl my-auto pb-1">Eksno.com</p>
     </a>
     <div class="flex items-center ml-auto gap-6">
       <nav class="hidden md:flex gap-6 pb-0.5">
