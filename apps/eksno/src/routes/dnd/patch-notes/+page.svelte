@@ -1,7 +1,7 @@
 <script>
     import { marked } from 'marked';
 	import Header from '$lib/molecules/Header.svelte';
-    import patch_notes from './patch_notes.md?raw';
+    import patch_notes from '$lib/patch_notes.md?raw';
 </script>
 
 <Header />
