@@ -15,6 +15,7 @@
 		"format": "prettier --plugin-search-dir . --write ."
 	},
 	"dependencies": {
+		"@supabase/supabase-js": "^2.31.0",
 		"tsconfig": "workspace:*"
 	},
 	"type": "module",
