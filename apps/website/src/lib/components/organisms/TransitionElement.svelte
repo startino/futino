@@ -21,8 +21,8 @@
 	import { fade, fly, slide } from 'svelte/transition';
 	const marginTop: number = 0;
 	const marginBottom: number = 0;
-	const rootMargin: string = `${marginTop}% 1000% ${marginBottom}% 1000%`;
-	const options = { rootMargin, threshold: 0.5 };
+	const rootMargin: string = `${marginTop}% 10000% ${marginBottom}% 10000%`;
+	const options = { rootMargin, threshold: 0.1 };
 
 	let element: Element;
 	let invisibleElement: Element;
@@ -64,7 +64,7 @@
 		opacity: 0;
 	}
 	.slide-in {
-		transform: translateX(200px);
+		transform: translateX(1000px);
 	}
 	.post-animation {
 		opacity: 1;
