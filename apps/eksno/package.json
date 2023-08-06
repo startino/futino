@@ -1,9 +1,9 @@
 {
-	"name": "allheim",
+	"name": "eksno",
 	"version": "0.0.1",
 	"private": true,
 	"scripts": {
-		"dev": "vite dev --port 3005 --open",
+		"dev": "vite dev --port 3010 --open",
 		"build": "vite build",
 		"package": "vite package",
 		"preview": "vite preview",
@@ -15,7 +15,6 @@
 		"format": "prettier --plugin-search-dir . --write ."
 	},
 	"dependencies": {
-		"@supabase/supabase-js": "^2.31.0",
 		"tsconfig": "workspace:*"
 	},
 	"type": "module",

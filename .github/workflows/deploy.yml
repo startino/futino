@@ -18,6 +18,7 @@ jobs:
             { name: allheim, domain: allheim.futi.no },
             { name: anzelmo, domain: anzelmo.futi.no },
             { name: bapta, domain: bapta.futi.no },
+            { name: eksno, domain: eksno.com },
             { name: ggsoccer, domain: ggsoccer.futi.no },
             { name: liberole, domain: liberole.futi.no },
             { name: web-template, domain: template.futi.no },
@@ -39,15 +40,20 @@ jobs:
           cache: 'pnpm'
 
       - name: Install dependencies
-        run: pnpm install --no-frozen-lockfile
+        run: |
+          cd apps/${{ matrix.project.name }}
+          pnpm i --no-frozen-lockfile
 
       - name: Build Monorepo
-        run: pnpm build
+        run: |
+          cd apps/${{ matrix.project.name }}
+          pnpm build
 
       - name: Prepare for GitHub Pages
         run: |
-          echo -e "${{ matrix.project.domain }}" >> apps/${{ matrix.project.name }}/build/CNAME
-          touch apps/${{ matrix.project.name }}/build/.nojekyll
+          cd apps/${{ matrix.project.name }}
+          echo -e "${{ matrix.project.domain }}" >> build/CNAME
+          touch build/.nojekyll
 
       - name: Deploy to https://github.com/Futino/${{ matrix.project.name }}@gh-pages
         uses: JamesIves/github-pages-deploy-action@releases/v4

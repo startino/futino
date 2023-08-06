@@ -6,16 +6,37 @@
 		"lint": "turbo run lint",
 		"format": "prettier --write ."
 	},
+	"dependencies": {
+		"svelte-inview": "^4.0.0",
+		"svelte-markdown": "^0.3.0",
+		"svelte-particles": "^2.12.0"
+	},
 	"devDependencies": {
+		"@sveltejs/adapter-auto": "^2.1.0",
+		"@sveltejs/adapter-static": "^2.0.2",
+		"@sveltejs/kit": "^1.21.0",
+		"@tailwindcss/typography": "^0.5.9",
+		"@typescript-eslint/eslint-plugin": "^6.2.1",
+		"@typescript-eslint/parser": "^6.2.1",
+		"autoprefixer": "^10.4.14",
 		"eslint": "^8.46.0",
 		"eslint-config-custom": "workspace:*",
 		"eslint-plugin-sonarjs": "^0.19.0",
 		"eslint-plugin-storybook": "^0.6.13",
-		"eslint-plugin-svelte3": "^4.0.0",
+		"eslint-plugin-svelte": "^2.32.2",
+		"postcss": "^8.4.24",
+		"postcss-load-config": "^4.0.1",
 		"prettier": "^2.8.8",
 		"prettier-plugin-svelte": "^2.10.1",
+		"svelte": "^4.0.1",
+		"svelte-check": "^3.4.4",
+		"svelte-preprocess": "^5.0.4",
+		"tailwindcss": "^3.3.2",
+		"tslib": "^2.6.0",
 		"turbo": "^1.10.12",
-		"typescript": "5.1.6"
+		"typescript": "5.1.6",
+		"vite": "^4.3.9",
+		"vitest": "^0.34.1"
 	},
-	"packageManager": "pnpm@7.15.0"
+	"packageManager": "pnpm@8.6.12"
 }
