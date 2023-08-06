@@ -91,7 +91,7 @@
 <ChapterMenu {chapters} />
 
 <main
-	class="text-center border-b w-screen overflow-hidden shadow-2xl border-primary-light/40 dark:border-primary-dark/40 flex flex-col items-stretch">
+	class="text-center border-b shadow-2xl border-primary-light/40 dark:border-primary-dark/40 flex flex-col items-stretch">
 	<!--Hero-->
 	<section
 		id="hero"
