@@ -11,16 +11,6 @@ updates:
       interval: 'daily'
 
   - package-ecosystem: 'npm'
-    directory: '/packages/ui'
-    schedule:
-      interval: 'daily'
-
-  - package-ecosystem: 'npm'
-    directory: '/apps/allheim'
-    schedule:
-      interval: 'daily'
-
-  - package-ecosystem: 'npm'
     directory: '/apps/anzelmo'
     schedule:
       interval: 'daily'
