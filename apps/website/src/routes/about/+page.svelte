@@ -4,7 +4,7 @@
 	import Footer from '$lib/components/organisms/Footer.svelte';
 	import Button from '$lib/components/atoms/Button.svelte';
 	import Icon from '$lib/components/atoms/Icon.svelte';
-	import TransitionElement from '$lib/components/organisms/TransitionElement.svelte';
+	import TransitionElement from '$lib/components/organisms/Inview.svelte';
 	import { slide } from 'svelte/transition';
 
 	let activeMember: number;
