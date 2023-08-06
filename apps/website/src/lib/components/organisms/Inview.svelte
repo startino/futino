@@ -7,7 +7,7 @@
 		animation?: Animation | string;
 		delay?: number;
 		duration?: number;
-		slide?:
+		fly?:
 			| {
 					x: number;
 					y: number;
@@ -17,7 +17,7 @@
 	};
 
 	export enum Animation {
-		SlideIn,
+		flyIn,
 		SomeOtherAnimation,
 	}
 </script>
@@ -33,7 +33,7 @@
 	export let once: boolean | undefined = undefined;
 	export let top: number | undefined = undefined;
 	export let bottom: number | undefined = undefined;
-	export let slide:
+	export let fly:
 		| {
 				x: number;
 				y: number;
@@ -51,7 +51,7 @@
 		bottom: 0,
 		delay: 100,
 		duration: 1000,
-		slide: {
+		fly: {
 			x: 0,
 			y: 0,
 		},
@@ -66,7 +66,7 @@
 		delay: delay,
 		duration: duration,
 		top: top,
-		slide: slide,
+		fly: fly,
 		animation: animation,
 		axis: axis,
 	};
@@ -78,7 +78,7 @@
 		animation: propOptions.animation || presetOptions.animation || defaultOptions.animation,
 		delay: propOptions.delay || presetOptions.delay || defaultOptions.delay,
 		duration: propOptions.duration || presetOptions.duration || defaultOptions.duration,
-		slide: propOptions.slide || presetOptions.slide || defaultOptions.slide,
+		fly: propOptions.fly || presetOptions.fly || defaultOptions.fly,
 
 		axis: propOptions.axis || presetOptions.axis || defaultOptions.axis,
 	};
@@ -113,37 +113,19 @@
 	bind:this={element}
 	id="visible"
 	class:fade-in={!inView}
-	class="{$$props.class} transition-all duration-500 delay-200"
+	class:slide-in={!inView}
+	class="{$$props.class} transition-all duration-500 delay-200 overflow-hidden"
 	style={!inView
-		? `transform: translate(${finalizedOptions.slide?.x}px, ${finalizedOptions.slide?.y}px)`
+		? `transform: translate(${finalizedOptions.fly?.x}px, ${finalizedOptions.fly?.y}px)`
 		: ''}>
 	<slot />
 </div>
 
 <style>
+	.slide-in {
+		@apply max-w-[1px] w-1;
+	}
 	.fade-in {
 		@apply opacity-0;
-	}
-
-	.slide-from-right {
-		@apply translate-x-110;
-	}
-	.slide-from-left {
-		@apply -translate-x-110;
-	}
-
-	.slide-from-top {
-		@apply translate-y-20;
-	}
-	.slide-from-bottom {
-		@apply -translate-y-20;
-	}
-	.post-animation {
-		opacity: 1;
-		transform: translate(0px, 0px);
-	}
-
-	.stuff {
-		transform: translateX(440px);
 	}
 </style>

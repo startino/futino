@@ -15,11 +15,12 @@
 	import { fade, slide } from 'svelte/transition';
 	import TransitionElement, {
 		type TransitionOptions,
-	} from '$lib/components/organisms/TransitionElement.svelte';
+	} from '$lib/components/organisms/Inview.svelte';
 	import Icon from '$lib/components/atoms/Icon.svelte';
 	import ClientCard from './ClientCard.svelte';
 	import { tooltip } from '$lib/components/organisms/tooltip/tooltip';
 	import AnimatedCounter from './AnimatedCounter.svelte';
+	import InViewSlide from '$lib/components/organisms/InViewSlide.svelte';
 
 	let scrollY: number;
 
@@ -31,15 +32,19 @@
 	const leftSlidePreset: TransitionOptions = {
 		delay: 100,
 		duration: 300,
-		transition: 'fly',
-		x: -100,
+		fly: {
+			x: -100,
+			y: 0,
+		},
 	};
 	const rightSlidePreset = {
 		delay: 100,
 		duration: 300,
 
-		transition: 'fly',
-		x: 100,
+		fly: {
+			x: 100,
+			y: 0,
+		},
 	};
 
 	const clientCards = [
@@ -158,25 +163,23 @@
 				</h1>
 
 				<!--Center Line-->
-				<TransitionElement
-					transition="slide"
+				<InViewSlide
 					class="h-full absolute -z-10 left-1/2 top-64"
 					duration={2000}
 					axis={'y'}
-					delay={700}>
+					delay={300}>
 					<div class="border-l-2 border-white dark:border-black h-full" />
-				</TransitionElement>
+				</InViewSlide>
 
 				<!--Glow Line-->
-				<TransitionElement
-					transition="slide"
+				<InViewSlide
 					class="h-full absolute -z-20 left-1/2 top-64 blur-sm flex mx-auto"
 					duration={2000}
 					axis={'y'}
-					delay={700}>
+					delay={300}>
 					<div
 						class="bg-primary-light dark:bg-primary-dark w-1.5 h-full pb-2 opacity-50 md:opacity-100 self-center" />
-				</TransitionElement>
+				</InViewSlide>
 
 				<!--Circle-->
 				<div
