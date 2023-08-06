@@ -7,8 +7,12 @@
 		animation?: Animation | string;
 		delay?: number;
 		duration?: number;
-		x?: number;
-		y?: number;
+		slide?:
+			| {
+					x: number;
+					y: number;
+			  }
+			| undefined;
 		axis?: 'x' | 'y';
 	};
 
@@ -23,15 +27,19 @@
 
 	import { onDestroy, onMount } from 'svelte';
 	import { createEventDispatcher } from 'svelte';
-	import { fade, fly, slide } from 'svelte/transition';
 
 	// Individual Options.
-	export let animation: Animation | undefined;
+	export let animation: Animation | undefined = undefined;
 	export let once: boolean | undefined = undefined;
 	export let top: number | undefined = undefined;
 	export let bottom: number | undefined = undefined;
-	export let x: number | undefined = undefined;
-	export let y: number | undefined = undefined;
+	export let slide:
+		| {
+				x: number;
+				y: number;
+		  }
+		| undefined = undefined;
+
 	export let duration: number | undefined = undefined;
 	export let delay: number | undefined = undefined;
 	export let axis: 'x' | 'y' | undefined = undefined;
@@ -43,8 +51,10 @@
 		bottom: 0,
 		delay: 100,
 		duration: 1000,
-		x: 0,
-		y: 0,
+		slide: {
+			x: 0,
+			y: 0,
+		},
 		axis: 'y',
 	};
 	export let presetOptions: TransitionOptions = defaultOptions;
@@ -56,21 +66,20 @@
 		delay: delay,
 		duration: duration,
 		top: top,
-		x: x,
-		y: y,
+		slide: slide,
 		animation: animation,
 		axis: axis,
 	};
 	// Setup the finalizedOptions based on priority.
-	let finalizedOptions = {
+	let finalizedOptions: TransitionOptions = {
 		top: propOptions.top || presetOptions.top || defaultOptions.top,
 		bottom: propOptions.bottom || presetOptions.bottom || defaultOptions.bottom,
 		once: propOptions.once || presetOptions.once || defaultOptions.once,
 		animation: propOptions.animation || presetOptions.animation || defaultOptions.animation,
 		delay: propOptions.delay || presetOptions.delay || defaultOptions.delay,
 		duration: propOptions.duration || presetOptions.duration || defaultOptions.duration,
-		x: propOptions.x || presetOptions.x || defaultOptions.x,
-		y: propOptions.y || presetOptions.y || defaultOptions.y,
+		slide: propOptions.slide || presetOptions.slide || defaultOptions.slide,
+
 		axis: propOptions.axis || presetOptions.axis || defaultOptions.axis,
 	};
 
@@ -105,7 +114,9 @@
 	id="visible"
 	class:fade-in={!inView}
 	class="{$$props.class} transition-all duration-500 delay-200"
-	style={!inView ? `transform: translate(${finalizedOptions.x}px, ${finalizedOptions.y}px)` : ''}>
+	style={!inView
+		? `transform: translate(${finalizedOptions.slide?.x}px, ${finalizedOptions.slide?.y}px)`
+		: ''}>
 	<slot />
 </div>
 
