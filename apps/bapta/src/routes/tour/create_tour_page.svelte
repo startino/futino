@@ -4,15 +4,10 @@
 	import Footer from '$lib/components/organisms/Footer.svelte';
 	import OutlineButton from '$lib/components/molecules/OutlineButton.svelte';
 	import Icon from '$lib/components/atoms/Icon.svelte';
-	import Stripe from 'stripe';
+
 	import Counter from './Counter.svelte';
-	import { destinationObjects } from '../destinations/destinations';
-	import { adventureObjects } from './adventures';
-
-	const stripe = new Stripe('secret_stripe_key', { apiVersion: '2022-11-15' });
-
-	const destinations = destinationObjects;
-	const adventures = adventureObjects;
+	import { destinations } from '../destinations/destinations';
+	import { adventures } from './adventures';
 
 	const accommodations = [
 		{
@@ -55,20 +50,7 @@
 		}
 	}
 
-	function requestTour() {
-		const session = stripe.checkout.sessions.create({
-			line_items: [
-				{
-					// Provide the exact Price ID (for example, pr_1234) of the product you want to sell
-					price: '{{PRICE_ID}}',
-					quantity: 1,
-				},
-			],
-			mode: 'payment',
-			success_url: `/kilimanjaro`,
-			cancel_url: `/tour`,
-		});
-	}
+	function requestTour() {}
 </script>
 
 <Header />
