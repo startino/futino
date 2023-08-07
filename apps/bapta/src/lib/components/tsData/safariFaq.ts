@@ -1,4 +1,4 @@
-const safariFaqData = [
+const safariFaq = [
 	{
 		index: 0,
 		question: `What is the best time to go on a safari in Tanzania?`,
@@ -164,4 +164,4 @@ const safariFaqData = [
               are non-refundable.`,
 	},
 ];
-export default safariFaqData;
+export default safariFaq;

@@ -1,4 +1,4 @@
-const kilimanjaroFaqData = [
+const kilimanjaroFaq = [
 	{
 		index: 0,
 		question: `What is the best time of year to climb Mount Kilimanjaro?`,
@@ -133,4 +133,4 @@ understand the terms and conditions of your booking regarding cancellations, ref
 	// ...additional questions and answers
 ];
 
-export default kilimanjaroFaqData;
+export default kilimanjaroFaq;

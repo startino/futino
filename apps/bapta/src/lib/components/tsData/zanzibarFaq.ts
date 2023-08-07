@@ -1,4 +1,4 @@
-const zanzibarFaqData = [
+const zanzibarFaq = [
     {
         index: 0,
         question: `What is the best time to visit Zanzibar?`,
@@ -120,6 +120,6 @@ The average temperature is around 25-30°C (77-86°F). It's a good idea to pack 
 narrow roads and local driving practices. It's often more convenient to hire a local driver.`,
     },
 ];
-];
 
-export default zanzibarFaqData;
+
+export default zanzibarFaq;

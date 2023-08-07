@@ -1,7 +1,11 @@
 <script lang="ts">
 	import FAQCard from '../molecules/FAQCard.svelte';
 	// Gets the Frequently Asked Questions by parent component
-	export let FAQs: any[] = [];
+	export let FAQs: {
+		index: number;
+		question: string;
+		answer: string;
+	}[] = [];
 	export let activeEntry = 0;
 
 	const handleClick = (questionIndex: number) => () => (activeEntry = questionIndex);
@@ -24,12 +28,9 @@
 
 	<div class="grid grid-cols-1 gap-6 mx-10 lg:grid-cols-2">
 		<!--Loop through each question. Makes it's card.-->
-		{#each FAQs as entry}
+		{#each FAQs as { index, question, answer }}
 			<!--I didn't know how to implicitly define the entry with properties for question and answer.-->
-			<FAQCard
-				question={entry.question}
-				answer={entry.answer}
-				isOpen={entry.index == activeEntry} />
+			<FAQCard {question} {answer} isOpen={index == activeEntry} />
 			<!--Don't know how to refresh non-active cards so that they collapse once another card is clicked. TODO-->
 		{/each}
 	</div>

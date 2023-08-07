@@ -4,6 +4,8 @@
 	import Footer from '$lib/components/organisms/Footer.svelte';
 	import OutlineButton from '$lib/components/molecules/OutlineButton.svelte';
 	import { tours } from './tours';
+	import FAQ from '$lib/components/organisms/FAQ.svelte';
+	import safariFaq from '$lib/components/tsData/safariFaq';
 
 	// List of currently selected cards, to be used when submitting and checking if card already in list.
 	export let selectedCards: number[] = [];
@@ -43,7 +45,7 @@
 </div>
 
 <!--Tours-->
-<div class="mx-4 my-12 md:my-24 lg:my-32 lg:mx-14 md:mx-8 text-left" id="tours">
+<section class="px-4 py-12 md:py-24 lg:py-32 lg:px-14 md:px-8 text-left shadow-lg" id="tours">
 	<div class="flex flex-col gap-8">
 		<h1 class="display-large text-center">Safari Tours</h1>
 		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -65,6 +67,10 @@
 			{/each}
 		</div>
 	</div>
-</div>
+</section>
+
+<section class="mx-4 my-12 md:my-24 lg:my-32 lg:mx-14 md:mx-8 text-left" id="faq">
+	<FAQ FAQs={safariFaq} />
+</section>
 
 <Footer />

@@ -3,7 +3,8 @@
 	import Footer from '$lib/components/organisms/Footer.svelte';
 	import OutlineButton from '$lib/components/molecules/OutlineButton.svelte';
 	import FAQ from '$lib/components/organisms/FAQ.svelte';
-	import MountPage from '$lib/components/organisms/MountPage.svelte';
+	import MountPage from '$lib/components/pages/MountPage.svelte';
+	import mountMeruFaqData from '$lib/components/mountMeruFaq';
 
 	const routes = [
 		{
@@ -36,45 +37,6 @@
 		},
 	];
 
-	const FAQs = [
-		{
-			index: 0,
-			question: 'What is the best time of year to climb Meru?',
-			answer:
-				'The best time to climb Meru is during the dry season, which runs from June to October and January to March. However, it is possible to climb at other times of the year as well.',
-		},
-		{
-			index: 1,
-			question: 'What is altitude sickness, and how can I prevent it?',
-			answer:
-				'Altitude sickness is a condition that can occur when climbing to high altitudes. Symptoms can include headaches, nausea, and dizziness. To prevent altitude sickness, it is important to acclimatize properly and drink plenty of water.',
-		},
-		{
-			index: 2,
-			question: 'Is it safe to climb Meru?',
-			answer:
-				'Yes, climbing Meru is generally safe as long as you take the necessary precautions and follow the advice of your guides. Our team of experienced guides and porters will ensure your safety throughout the climb.',
-		},
-		{
-			index: 3,
-			question: 'What gear and equipment do I need for a Meru climb?',
-			answer:
-				'You will need a range of gear and equipment for your Meru climb, including warm clothing, hiking boots, and a sleeping bag. We provide a detailed gear list to all of our climbers to ensure that you have everything you need.',
-		},
-		{
-			index: 4,
-			question: 'What is the minimum age requirement for a Meru climb?',
-			answer:
-				'The minimum age for a Meru climb is 10 years old. However, we recommend that children be at least 12 years old to ensure that they are physically and mentally prepared for the challenge.',
-		},
-		{
-			index: 5,
-			question: 'What is your cancellation policy?',
-			answer:
-				'Our cancellation policy varies depending on the timing of the cancellation. We recommend that you review our policy before booking your climb, and we are happy to answer any questions you may have.',
-		},
-	];
-
 	const overview_topics = [
 		{
 			label: 'The Climbing Experience',
@@ -100,7 +62,7 @@
 	hero_header="Ascending the Peak of Mount Meru"
 	hero_subtitle="Embark on a Captivating Trek to Tanzania's Second Highest Summit"
 	{routes}
-	{FAQs}
+	FAQs={mountMeruFaqData}
 	{overview_topics} />
 
 <Footer />

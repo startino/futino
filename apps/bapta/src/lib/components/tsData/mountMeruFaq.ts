@@ -1,4 +1,4 @@
-export const mountMeruFaqData = [
+export const mountMeruFaq = [
     {
         index: 0,
         question: `What is the elevation of Mount Meru?`,
@@ -125,4 +125,4 @@ can undertake the Mount Meru trek. However, some training and preparation are re
 itinerary, and securing necessary permits. It's advisable to book in advance, especially during peak seasons.`,
     },
 ];
-export default mountMeruFaqData;
+export default mountMeruFaq;
