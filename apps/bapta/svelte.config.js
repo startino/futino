@@ -2,6 +2,7 @@ import preprocess from 'svelte-preprocess';
 import adapter from '@sveltejs/adapter-static';
 import { vitePreprocess } from '@sveltejs/kit/vite';
 import cspDirectives from './csp-directives.mjs';
+import { mdsvex } from 'mdsvex';
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -12,7 +13,11 @@ const config = {
 		preprocess({
 			postcss: true,
 		}),
+		mdsvex({
+			extensions: ['.md', '.svelte']
+		  })
 	],
+	extensions: ['.svelte', '.md'],
 
 	kit: {
 		// adapter-auto only supports some environments, see https://kit.svelte.dev/docs/adapter-auto for a list.
@@ -24,6 +29,7 @@ const config = {
 			directives: cspDirectives,
 		},
 	},
+	
 };
 
 export default config;
