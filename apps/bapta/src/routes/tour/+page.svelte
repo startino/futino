@@ -75,7 +75,7 @@
 		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 			{#each tours as { id, name, parks }}
 				<div
-					class="flex flex-col h-full place-items-center my-3 max-w-xl rounded-lg shadow-lg shadow-black bg-black/60 hover:cursor-pointer">
+					class="flex flex-col h-full transition-all hover:scale-105 place-items-center my-3 max-w-xl rounded-lg shadow-lg shadow-black bg-black/60 hover:cursor-pointer">
 					<img
 						src="images/safari/safari_img(7).jpeg"
 						class="h-44 w-full object-cover object-center rounded-t"
