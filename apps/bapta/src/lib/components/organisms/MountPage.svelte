@@ -44,30 +44,28 @@
 
 <!-- Climbing Experience section -->
 <section class="section">
-	<div class="mx-auto">
-		<div class="grid max-w-7xl grid-cols-1 lg:grid-cols-2 gap-6">
-			<div class="h-full">
-				<img
-					src="/images/kilimanjaro/vertical_mountain.jpg"
-					alt="Kilimanjaro"
-					class="object-cover object-center h-full w-fit rounded-lg shadow-lg" />
-			</div>
-			<div class="flex flex-col h-full gap-6 place-content-between">
-				{#each overview_topics as { label, body }}
-					<div class="card rounded-lg bg-surface-dark justify-around">
-						<h2 class="mb-4 font-bold headline-small text-primary-dark">{label}</h2>
-						<p class="text-secondary-dark title-medium my-auto">
-							{body}
-						</p>
-					</div>
-				{/each}
-			</div>
+	<div class="grid max-w-7xl mx-auto grid-cols-1 lg:grid-cols-2 gap-6">
+		<div class="h-full">
+			<img
+				src="/images/kilimanjaro/vertical_mountain.jpg"
+				alt="Kilimanjaro"
+				class="object-cover object-center h-full w-fit rounded-lg shadow-lg" />
+		</div>
+		<div class="flex flex-col h-full gap-6 place-content-between">
+			{#each overview_topics as { label, body }}
+				<div class="card rounded-lg bg-surface-dark justify-around">
+					<h2 class="mb-4 font-bold headline-small text-primary-dark">{label}</h2>
+					<p class="text-secondary-dark title-medium my-auto">
+						{body}
+					</p>
+				</div>
+			{/each}
 		</div>
 	</div>
 </section>
 
 <!-- Routes section -->
-<section class="section lg:px-24" id="#routes">
+<section class="section lg:px-24" id="routes">
 	<div class="flex flex-col">
 		<h2 class="mb-8 font-bold text-center display-large text-primary-dark">Routes</h2>
 		<div

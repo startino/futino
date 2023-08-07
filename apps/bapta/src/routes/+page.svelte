@@ -3,7 +3,7 @@
 	import Header from '$lib/components/organisms/Header.svelte';
 	import Footer from '$lib/components/organisms/Footer.svelte';
 	import OutlineButton from '$lib/components/molecules/OutlineButton.svelte';
-	import { adventures } from './tour/adventures';
+	import { adventures } from './adventures/adventures';
 
 	const staff_members = [
 		{
@@ -114,8 +114,8 @@
 		<div class="flex flex-row mx-auto">
 			<img src="images/logo/bapta_jeep.png" alt="" class="w-24 h-24 p-4 rounded-full" />
 			<div class="flex flex-col justify-center text-left">
-				<h3 class="font-semibold body-large">Emmanuel Baptist</h3>
-				<h3 class="font-light body-medium">Creator Of Bapta Safari</h3>
+				<h3 class="font-semibold body-large">Emmanuel Baptister Kilas</h3>
+				<h3 class="font-light body-medium">Creator of Bapta Safari</h3>
 			</div>
 		</div>
 	</div>

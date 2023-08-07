@@ -98,7 +98,7 @@
 <Header />
 <MountPage
 	hero_header="Climb Africa's Highest Peak"
-	hero_subtitle="Experience the adventure of a lifetime on Mount Kilimanjaro"
+	hero_subtitle="Reach New Heights on Africa's Iconic Summit"
 	{routes}
 	{FAQs}
 	{overview_topics} />
