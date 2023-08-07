@@ -4,7 +4,7 @@
 	import OutlineButton from '$lib/components/molecules/OutlineButton.svelte';
 	import FAQ from '$lib/components/organisms/FAQ.svelte';
 	import MountPage from '$lib/components/pages/MountPage.svelte';
-	import kilimanjaroFaqData from '$lib/components/kilimanjaroFaq';
+	import kilimanjaroFaq from '$lib/components/tsData/kilimanjaroFaq';
 
 	const routes = [
 		{
@@ -62,7 +62,7 @@
 	hero_header="Climb Africa's Highest Peak"
 	hero_subtitle="Reach New Heights on Africa's Iconic Summit"
 	{routes}
-	FAQs={kilimanjaroFaqData}
+	FAQs={kilimanjaroFaq}
 	{overview_topics} />
 
 <Footer />
