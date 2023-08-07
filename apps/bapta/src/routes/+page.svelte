@@ -4,6 +4,7 @@
 	import Footer from '$lib/components/organisms/Footer.svelte';
 	import OutlineButton from '$lib/components/molecules/OutlineButton.svelte';
 	import { adventures } from './adventures/adventures';
+	import { tours } from './tour/tours';
 
 	const staff_members = [
 		{
@@ -121,6 +122,38 @@
 	</div>
 </section>
 
+<!--Tours Snippet-->
+<section class="flex flex-col items-start gap-4 text-left section bg-surface-dark">
+	<div class="text-left mx-2 flex flex-col">
+		<div class="flex flex-row items-center gap-2 md:gap-8">
+			<h1 class="display-medium">Top Rated Tours</h1>
+			<OutlineButton href="/tour">
+				<h1 class="title-large text-center">More Tours</h1>
+			</OutlineButton>
+		</div>
+		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+			{#each tours as { id, name, parks }, i}
+				{#if i < 3}
+					<div
+						class="flex flex-col h-full transition-allhover:scale-105 place-items-center my-3 max-w-xl rounded-lg shadow-lg shadow-black bg-black/60 hover:cursor-pointer">
+						<img
+							src="images/safari/safari_img(7).jpeg"
+							class="h-32 md:h-44 w-full object-cover object-center rounded-t"
+							alt="" />
+						<!--Title and parks-->
+						<div class="rounded-b flex flex-col py-4 px-6">
+							<h1 class="headline-small">{name}</h1>
+							<h1 class="body-large">
+								{parks}
+							</h1>
+						</div>
+					</div>
+				{/if}
+			{/each}
+		</div>
+	</div>
+</section>
+
 <!--Adventure Snippets-->
 <section class="flex flex-col items-center gap-4 space-y-1 text-left section bg-surface-dark">
 	{#each adventures as { img_path, label, body, href }, i}
@@ -170,7 +203,7 @@
 <!--Testimonials Section-->
 <section class="section">
 	<div class="flex flex-col items-center">
-		<div class="grid grid-cols-1 gap-4 py-10 sm:grid-cols-2 lg:grid-cols-3 gap-y-4 max-w-7xl">
+		<div class="grid grid-cols-1 gap-4 py-6 sm:grid-cols-2 lg:grid-cols-3 gap-y-4 max-w-7xl">
 			{#each testimonials as testimonial}
 				<a href={testimonial.src} class="transition-all card hover:scale-105">
 					<!--pfp-->
@@ -192,9 +225,6 @@
 				</a>
 			{/each}
 		</div>
-		<OutlineButton>
-			<h1 class="font-bold title-large">See More...</h1>
-		</OutlineButton>
 	</div>
 </section>
 

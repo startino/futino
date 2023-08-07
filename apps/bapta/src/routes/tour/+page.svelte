@@ -3,6 +3,7 @@
 	import Header from '$lib/components/organisms/Header.svelte';
 	import Footer from '$lib/components/organisms/Footer.svelte';
 	import OutlineButton from '$lib/components/molecules/OutlineButton.svelte';
+	import { tours } from './tours';
 
 	// List of currently selected cards, to be used when submitting and checking if card already in list.
 	export let selectedCards: number[] = [];
@@ -24,33 +25,6 @@
 		'Mount Kilimanjaro',
 		'Tanzania',
 		'Mount Meru',
-	];
-	const tours = [
-		{
-			id: 0,
-			name: '0 Day Awesome Dude Camp',
-			parks: 'Tarangire, Western Serengeti, Ngorongoro Crater & Lake Manyara',
-		},
-		{
-			id: 1,
-			name: '1 Day Awesome Dude Camp',
-			parks: 'Tarangire, Western Serengeti, Ngorongoro Crater & Lake Manyara',
-		},
-		{
-			id: 2,
-			name: '2 Day Awesome Dude Camp',
-			parks: 'Tarangire, Western Serengeti, Ngorongoro Crater & Lake Manyara',
-		},
-		{
-			id: 3,
-			name: '3 Day Awesome Dude Camp',
-			parks: 'Tarangire, Ngorongoro Crater & Lake Manyara',
-		},
-		{
-			id: 4,
-			name: '4 Day Awesome Dude Camp',
-			parks: 'Tarangire, Western Serengeti, Lake Manyara',
-		},
 	];
 </script>
 
