@@ -30,4 +30,5 @@ export const tours = [
 			tags: ['Safari', 'Kilimanjaro'],
 			parks: 'Tarangire, Western Serengeti, Lake Manyara',
 		},
+
 ];

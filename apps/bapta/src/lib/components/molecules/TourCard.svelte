@@ -8,15 +8,15 @@
 </script>
 
 <div
-	class="flex flex-col h-full transition-all hover:scale-105 place-items-start max-w-xl rounded-lg shadow-lg shadow-black bg-black/60 hover:cursor-pointer">
+	class="flex flex-col h-full w-full text-left transition-all hover:scale-105 place-items-start rounded-lg shadow-lg shadow-black bg-black/60 hover:cursor-pointer">
 	<img
 		src="/images/safari/safari_img(7).jpeg"
 		class="h-32 md:h-44 w-full object-cover object-center rounded-t"
 		alt="" />
 	<!--Title and parks-->
-	<div class="rounded-b flex flex-col py-4 px-6">
+	<div class="rounded-b flex flex-col p-4">
 		<h1 class="headline-small">{tour.name}</h1>
-		<div class="flex flex-row gap-x-3 py-1">
+		<div class="flex flex-row flex-wrap gap-3 py-1">
 			{#each tour.tags as tag}
 				<div class="[&>*]:rounded-xl body-medium [&>*]:px-2 [&>*]:py-0.5 font-bold">
 					{#if tag == 'Safari'}
