@@ -11,7 +11,7 @@
 	class="flex flex-col h-full w-full text-left transition-all hover:scale-105 place-items-start rounded-lg shadow-lg shadow-black bg-card-surface-on hover:cursor-pointer">
 	<img
 		src="/images/safari/safari_img(7).jpeg"
-		class="h-32 md:h-44 w-full object-cover object-center rounded-t"
+		class="h-44 md:h-48 w-full object-cover object-center rounded-t"
 		alt="" />
 	<!--Title and parks-->
 	<div class="rounded-b flex flex-col p-4">
