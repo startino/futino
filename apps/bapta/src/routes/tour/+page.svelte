@@ -6,6 +6,7 @@
 	import { tours } from '../../lib/components/tsData/tours';
 	import FAQ from '$lib/components/organisms/FAQ.svelte';
 	import safariFaq from '$lib/components/tsData/safariFaq';
+	import TourCard from '$lib/components/molecules/TourCard.svelte';
 
 	// List of currently selected cards, to be used when submitting and checking if card already in list.
 	export let selectedCards: number[] = [];
@@ -49,21 +50,8 @@
 	<div class="flex flex-col gap-8">
 		<h1 class="display-large text-center">Safari Tours</h1>
 		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-			{#each tours as { id, name, parks }}
-				<div
-					class="flex flex-col h-full transition-all hover:scale-105 place-items-center my-3 max-w-xl rounded-lg shadow-lg shadow-black bg-black/60 hover:cursor-pointer">
-					<img
-						src="images/safari/safari_img(7).jpeg"
-						class="h-44 w-full object-cover object-center rounded-t"
-						alt="" />
-					<!--Title and parks-->
-					<div class="rounded-b flex flex-col py-4 px-6">
-						<h1 class="headline-small">{name}</h1>
-						<h1 class="body-large">
-							{parks}
-						</h1>
-					</div>
-				</div>
+			{#each tours as tour}
+				<TourCard {tour} />
 			{/each}
 		</div>
 	</div>

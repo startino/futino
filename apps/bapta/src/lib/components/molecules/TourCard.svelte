@@ -20,19 +20,19 @@
 			{#each tour.tags as tag}
 				<div class="[&>*]:rounded-xl body-medium [&>*]:px-2 [&>*]:py-0.5 font-bold">
 					{#if tag == 'Safari'}
-						<div class="bg-yellow-700">
+						<div class="bg-gradient-to-tr from-yellow-600 to-orange-800">
 							<h1 class="">
 								{tag}
 							</h1>
 						</div>
 					{:else if tag == 'Zanzibar'}
-						<div class="bg-blue-700">
+						<div class="bg-gradient-to-tr from-blue-800 to-teal-500">
 							<h1 class="">
 								{tag}
 							</h1>
 						</div>
 					{:else if tag == 'Kilimanjaro'}
-						<div class="bg-green-700">
+						<div class="bg-gradient-to-tl from-green-900 via-teal-900 to-zinc-500">
 							<h1 class="">
 								{tag}
 							</h1>
