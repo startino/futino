@@ -10,7 +10,7 @@
 <div
 	class="flex flex-col h-full w-full text-left transition-all hover:scale-105 place-items-start rounded-lg shadow-lg shadow-black bg-card-surface-on hover:cursor-pointer">
 	<div
-		class="bg-[url('/images/safari/safari_img(7).jpeg')] h-44 md:h-48 w-full bg-cover bg-center relative rounded-t">
+		class="bg-[url('/images/safari/safari_img(7).jpeg')] flex shrink-0 h-44 md:h-48 w-full bg-cover bg-center relative rounded-t">
 		{#if tour.tags.includes('Top Rated')}'
 
 			<div
@@ -20,7 +20,7 @@
 		{/if}
 	</div>
 	<!--Title, Parks, and tags-->
-	<div class="rounded-b flex flex-col p-4">
+	<div class="rounded-b flex flex-col p-4 h-full">
 		<h1 class="headline-small">{tour.name}</h1>
 		<div class="flex flex-row flex-wrap gap-3 py-1">
 			{#each tour.tags as tag}
@@ -47,7 +47,7 @@
 				</div>
 			{/each}
 		</div>
-		<h1 class="body-large">
+		<h1 class="body-large my-auto">
 			{tour.parks}
 		</h1>
 	</div>
