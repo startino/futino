@@ -3,7 +3,7 @@
 	import Header from '$lib/components/organisms/Header.svelte';
 	import Footer from '$lib/components/organisms/Footer.svelte';
 	import OutlineButton from '$lib/components/molecules/OutlineButton.svelte';
-	import { tours } from '../../lib/components/tsData/tours';
+	import tours from '../../lib/components/tsData/tours';
 	import FAQSection from '$lib/components/organisms/FAQSection.svelte';
 	import safariFaq from '$lib/components/tsData/safariFaq';
 	import TourCard from '$lib/components/molecules/TourCard.svelte';

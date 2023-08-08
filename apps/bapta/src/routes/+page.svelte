@@ -4,7 +4,7 @@
 	import Footer from '$lib/components/organisms/Footer.svelte';
 	import OutlineButton from '$lib/components/molecules/OutlineButton.svelte';
 	import { adventures } from './adventures/adventures';
-	import { tours } from '../lib/components/tsData/tours';
+	import tours from '../lib/components/tsData/tours';
 	import ToursSnippet from '$lib/components/organisms/ToursSnippet.svelte';
 	import FaqSection from '$lib/components/organisms/FAQSection.svelte';
 

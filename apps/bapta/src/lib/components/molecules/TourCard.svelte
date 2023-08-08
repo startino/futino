@@ -13,7 +13,7 @@
 		src="/images/safari/safari_img(7).jpeg"
 		class="h-44 md:h-48 w-full object-cover object-center rounded-t"
 		alt="" />
-	<!--Title and parks-->
+	<!--Title, Parks, and tags-->
 	<div class="rounded-b flex flex-col p-4">
 		<h1 class="headline-small">{tour.name}</h1>
 		<div class="flex flex-row flex-wrap gap-3 py-1">

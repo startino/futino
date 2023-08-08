@@ -1,8 +1,14 @@
-<script>
-	import { tours } from '../tsData/tours';
+<script lang="ts">
+	import tours from '../tsData/tours';
 
 	import OutlineButton from '../molecules/OutlineButton.svelte';
 	import TourCard from '../molecules/TourCard.svelte';
+
+	export let tag: string = '';
+
+	const sortedTours = tours.forEach((tour) => {
+		tour.tags.includes(tag);
+	});
 </script>
 
 <!--Tours Snippet-->
@@ -15,7 +21,7 @@
 			</OutlineButton>
 		</div>
 
-		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 grid-rows-1 gap-6 px-6 py-6">
+		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 grid-rows-1 gap-6 px-6 py-6">
 			{#each tours as tour, i}
 				{#if tour.tags.includes($$props.tag)}
 					<TourCard {tour} />
