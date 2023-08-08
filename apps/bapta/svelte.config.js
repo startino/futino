@@ -14,8 +14,8 @@ const config = {
 			postcss: true,
 		}),
 		mdsvex({
-			extensions: ['.md', '.svelte']
-		  })
+			extensions: ['.md', '.svelte'],
+		}),
 	],
 	extensions: ['.svelte', '.md'],
 
@@ -29,7 +29,6 @@ const config = {
 			directives: cspDirectives,
 		},
 	},
-	
 };
 
 export default config;

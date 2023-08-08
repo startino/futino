@@ -1,4 +1,3 @@
-
 ---
 # frontmatter goes here
 ---
@@ -8,9 +7,8 @@
 	import Header from '$lib/components/organisms/Header.svelte';
 </script>
 
-
-
 # Serengeti National Park
+
 <Header />
 
 ![Image 1](/images/serengeti/1.jpeg)

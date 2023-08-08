@@ -4,14 +4,14 @@ export const adventures = [
 		href: '/adventures/kilimanjaro',
 		img_path: 'images/kilimanjaro/kilimanjaro.jpg',
 		label: 'Mount Kilimanjaro',
-		body: "Set out on the ultimate adventure of a lifetime by scaling the iconic Mount Kilimanjaro in Tanzania. Traverse through diverse terrains, from lush rainforests to glacial peaks, as you ascend towards the Roof of Africa. Guided by seasoned experts, this challenging yet rewarding expedition offers breathtaking vistas and a profound sense of achievement at the summit, making your Kilimanjaro ascent an unforgettable triumph.",
+		body: 'Set out on the ultimate adventure of a lifetime by scaling the iconic Mount Kilimanjaro in Tanzania. Traverse through diverse terrains, from lush rainforests to glacial peaks, as you ascend towards the Roof of Africa. Guided by seasoned experts, this challenging yet rewarding expedition offers breathtaking vistas and a profound sense of achievement at the summit, making your Kilimanjaro ascent an unforgettable triumph.',
 	},
 	{
 		index: 1,
 		href: '/adventures/mountmeru',
 		img_path: 'images/kilimanjaro/kilimanjaro.jpg',
 		label: 'Mount Meru',
-		body: "Embark on an exhilarating journey to conquer the majestic heights of Mount Meru in Tanzania. Immerse yourself in awe-inspiring landscapes, lush forests, and diverse wildlife as you ascend towards the summit. With experienced guides, comfortable accommodations, and a sense of accomplishment awaiting you at the peak, Mount Meru promises an unforgettable adventure of a lifetime.",
+		body: 'Embark on an exhilarating journey to conquer the majestic heights of Mount Meru in Tanzania. Immerse yourself in awe-inspiring landscapes, lush forests, and diverse wildlife as you ascend towards the summit. With experienced guides, comfortable accommodations, and a sense of accomplishment awaiting you at the peak, Mount Meru promises an unforgettable adventure of a lifetime.',
 	},
 	{
 		index: 2,

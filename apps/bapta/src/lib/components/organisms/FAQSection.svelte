@@ -38,25 +38,24 @@
 			Find Clarity and Confidence in Planning Your Unforgettable African Adventure.
 		</h1>
 	</div>
-	<div class="flex flex-col gap-2 h-screen col-span-2 items-center">
-		<SearchBox class="w-full" bind:searchInput on:input={searchPhotos} />
-		<div class="flex flex-col items-center gap-4">
-			{#if searchInput && filteredFaqs.length === 0}
-				<section>
-					<div class="w-full py-12 display-small inline">
-						<h1 class="">Sorry, we couldn't find your question.</h1>
-						<a href="/contact" class="underline text-tertiary-dark">Try Asking Us Here</a>
-					</div>
-				</section>
-			{:else if filteredFaqs.length > 0}
-				{#each filteredFaqs as { question, answer, index }}
-					<FAQCard {question} {answer} isOpen={index == activeEntry} />
-				{/each}
-			{:else}
-				{#each faqs as { question, answer, index }}
-					<FAQCard {question} {answer} isOpen={index == activeEntry} />
-				{/each}
-			{/if}
-		</div>
+	<div class="flex flex-col gap-4 h-screen col-span-2 items-center">
+		<SearchBox class="w-full mb-4" bind:searchInput on:input={searchPhotos} />
+
+		{#if searchInput && filteredFaqs.length === 0}
+			<section>
+				<div class="w-full py-12 display-small inline">
+					<h1 class="">Sorry, we couldn't find your question.</h1>
+					<a href="/contact" class="underline text-tertiary-dark">Try Asking Us Here</a>
+				</div>
+			</section>
+		{:else if filteredFaqs.length > 0}
+			{#each filteredFaqs as { question, answer, index }}
+				<FAQCard {question} {answer} isOpen={index == activeEntry} />
+			{/each}
+		{:else}
+			{#each faqs as { question, answer, index }}
+				<FAQCard {question} {answer} isOpen={index == activeEntry} />
+			{/each}
+		{/if}
 	</div>
 </section>
