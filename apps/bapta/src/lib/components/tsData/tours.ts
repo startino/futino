@@ -2,13 +2,13 @@ const tours = [
 	{
 		id: 15,
 		name: '6 DAYS LUXURY TANZANIA SAFARI CALVING SEASON',
-		tags: ['Safari'],
+		tags: ['Safari', 'Top Rated'],
 		parks: 'Tarangire, South Serengeti, Ngorongoro Crater & Lake Manyara',
 	},
 	{
 		id: 13,
 		name: '6 DAYS MIDRANGE WESTERN CORRIDOR MIGRATION',
-		tags: ['Safari'],
+		tags: ['Safari', 'Top Rated'],
 		parks: 'Tarangire, Western Serengeti, Ngorongoro Crater & Lake Manyara',
 	},
 	{
@@ -93,7 +93,7 @@ const tours = [
 	{
 		id: 0,
 		name: '12 DAYS LUXURY HONEYMOON SAFARI',
-		tags: ['Safari','Zanzibar'],
+		tags: ['Safari','Zanzibar', 'Top Rated'],
 		parks: 'Tarangire, Serengeti, Manyara, Ngorongoro Crater & Zanzibar',
 	},
 	{

@@ -125,7 +125,7 @@
 	</div>
 </section>
 
-<ToursSnippet {tours} title="Top Rated Tours" buttonText="See More" tag="Safari" />
+<ToursSnippet {tours} title="Top Rated Tours" buttonText="See More" tag="Top Rated" />
 
 <!--Adventure Snippets-->
 <section class="flex flex-col items-center gap-4 space-y-1 text-left section">
