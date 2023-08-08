@@ -15,6 +15,7 @@ const config = {
 				emmanuel: "url('/images/safari/safari_img(25).jpeg')",
 				landing_hero: "url('/images/serengeti_sunset.jpg')",
 			},
+
 			fontFamily: {
 				bilbo: ['Bilbo Swash Caps'],
 				ubuntu: ['Ubuntu'],

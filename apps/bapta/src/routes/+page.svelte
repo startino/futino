@@ -6,6 +6,7 @@
 	import { adventures } from './adventures/adventures';
 	import { tours } from '../lib/components/tsData/tours';
 	import ToursSnippet from '$lib/components/organisms/ToursSnippet.svelte';
+	import FaqSection from '$lib/components/organisms/FAQSection.svelte';
 
 	const staff_members = [
 		{
@@ -70,7 +71,8 @@
 </script>
 
 <Header />
-<div
+<!-- Hero Section-->
+<section
 	class="grid justify-center w-full h-screen grid-rows-2 px-10 bg-left bg-cover border-b shadow-lg shadow-background-dark lg:grid-cols-2 card-shadow xl:px-40 pt-60 place-items-center border-secondary-light/40 dark:border-secondary-dark/40 bg-landing_hero">
 	<div class="grid space-y-3 text-left justify-items-start">
 		<h1 class="font-bold text-primary-dark display-medium">
@@ -85,10 +87,10 @@
 			<h1 class="px-4 py-1 title-large">Find Your Tour</h1>
 		</OutlineButton>
 	</div>
-</div>
+</section>
 
 <!-- Social Proof -->
-<section class="shadow-lg bg-surface-variant-light shadow-background-dark">
+<section class="shadow-lg bg-surface-variant-light/90 shadow-background-dark">
 	<div
 		class="grid grid-cols-3 gap-5 px-10 py-10 brightness-125 lg:px-20 xl:px-40 bg-primary-dark/20">
 		{#each Array(3) as _, index (index)}
@@ -126,7 +128,7 @@
 <ToursSnippet {tours} title="Top Rated Tours" buttonText="See More" tag="Safari" />
 
 <!--Adventure Snippets-->
-<section class="flex flex-col items-center gap-4 space-y-1 text-left section bg-surface-dark">
+<section class="flex flex-col items-center gap-4 space-y-1 text-left section">
 	{#each adventures as { img_path, label, body, href }, i}
 		{#if i % 2 == 0}
 			<div
@@ -172,11 +174,13 @@
 </section>
 
 <!--Testimonials Section-->
-<section class="section">
+<section class="section bg-surface-dark">
 	<div class="flex flex-col items-center">
 		<div class="grid grid-cols-1 gap-4 py-6 sm:grid-cols-2 lg:grid-cols-3 gap-y-4 max-w-7xl">
 			{#each testimonials as testimonial}
-				<a href={testimonial.src} class="transition-all card hover:scale-105">
+				<a
+					href={testimonial.src}
+					class="transition-all rounded-lg p-6 flex flex-col h-full w-full place-items-center bg-card-surface-on hover:scale-105">
 					<!--pfp-->
 					<img
 						class="w-32 h-32 p-1 m-2 border-2 rounded-full border-primary-dark"
@@ -199,10 +203,12 @@
 	</div>
 </section>
 
+<FaqSection />
+
 <!--About Section-->
-<section class="flex flex-col items-center space-y-12 section bg-black/60">
+<section class="flex flex-col items-center space-y-12 section bg-surface-dark">
 	<div
-		class="flex flex-col items-center max-w-5xl p-10 space-y-6 border rounded-lg shadow-2xl border-primary-dark/50 bg-black/50">
+		class="card max-w-5xl p-10 space-y-6 border rounded-lg shadow-2xl border-primary-dark/50 bg-card-surface-on">
 		<h1 class="font-bold text-center display-small">Bapta Safaris</h1>
 		<img src="favicon.png" class="rounded-full h-44" alt="logo" />
 		<h1 class="text-center body-large max-w-3xl">
@@ -217,5 +223,4 @@
 		</OutlineButton>
 	</div>
 </section>
-
 <Footer />

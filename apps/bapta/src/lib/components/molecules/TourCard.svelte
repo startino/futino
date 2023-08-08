@@ -8,7 +8,7 @@
 </script>
 
 <div
-	class="flex flex-col h-full w-full text-left transition-all hover:scale-105 place-items-start rounded-lg shadow-lg shadow-black bg-black/60 hover:cursor-pointer">
+	class="flex flex-col h-full w-full text-left transition-all hover:scale-105 place-items-start rounded-lg shadow-lg shadow-black bg-card-surface-on hover:cursor-pointer">
 	<img
 		src="/images/safari/safari_img(7).jpeg"
 		class="h-32 md:h-44 w-full object-cover object-center rounded-t"

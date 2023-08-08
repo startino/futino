@@ -147,7 +147,7 @@
 			{#each accommodations as accommodation}
 				<button on:click={handleClick(accommodation.index)}>
 					<div
-						class="relative overflow-hidden rounded-lg shadow-lg card shadow-black bg-black/60 items-start">
+						class="relative overflow-hidden rounded-lg shadow-lg card shadow-black bg-card-surface-on items-start">
 						<img
 							src={accommodation.img_path}
 							alt="Card"
@@ -227,7 +227,7 @@
 		<div class="grid-cols-1 md:grid-cols-3 gap-5 card gap-y-14 items-stretch">
 			{#each adventures as { label, body, img_path }}
 				<button>
-					<div class="rounded-lg shadow-lg card items-start shadow-black bg-black/60">
+					<div class="rounded-lg shadow-lg card items-start shadow-black bg-card-surface-on">
 						<img
 							src={img_path}
 							alt="Card"

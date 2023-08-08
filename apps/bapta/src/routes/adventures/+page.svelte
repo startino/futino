@@ -35,7 +35,7 @@
 	<div class="grid grid-cols-1 md:grid-cols-2 place-items-center lg:grid-cols-3 gap-5">
 		{#each adventures as adventure}
 			<a class="h-full max-w-xl" href="/adventures/{adventure.name.toLowerCase().replace(' ', '')}">
-				<div class="rounded-lg shadow-lg shadow-black bg-black/80 h-full">
+				<div class="rounded-lg shadow-lg shadow-black bg-surface-dark/70 h-full">
 					<img
 						src={adventure.image}
 						alt={adventure.name}
