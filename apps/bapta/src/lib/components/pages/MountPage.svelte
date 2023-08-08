@@ -70,26 +70,26 @@
 		<h2 class="mb-8 font-bold text-center display-large text-primary-dark">Routes</h2>
 		<div
 			class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 justify-items-center items-center">
-			{#each routes as route}
+			{#each routes as { label, difficulty, duration, body, img_path }}
 				<div class="bg-surface-dark rounded-lg shadow-lg max-w-3xl flex flex-col h-full">
 					<img
-						src={route.img_path}
+						src={img_path}
 						alt="Marangu Route"
 						class="w-full object-cover object-center h-fit rounded-t-lg" />
 					<!--Route Details-->
 					<div class="flex flex-col px-12 py-6 content-between h-full">
-						<h3 class="mb-2 font-bold headline-medium text-primary-dark">{route.label}</h3>
+						<h3 class="mb-2 font-bold headline-medium text-primary-dark">{label}</h3>
 						<div class="flex flex-col py-3 mx-auto">
 							<h1 class="title-large text-primary-dark">Difficulty</h1>
-							{#if route.difficulty == 'Easy'}
+							{#if difficulty == 'Easy'}
 								<div class="px-6 py-2 my-3 bg-green-800 w-fit rounded-md">
 									<h1 class="text-white label-large">NOVICE LEVEL</h1>
 								</div>
-							{:else if route.difficulty == 'Intermediate'}
+							{:else if difficulty == 'Intermediate'}
 								<div class="px-6 py-2 my-3 bg-orange-500 w-fit rounded-md">
 									<h1 class="text-white label-large">INTERMEDIATE LEVEL</h1>
 								</div>
-							{:else if route.difficulty == 'Expert'}
+							{:else if difficulty == 'Expert'}
 								<div class="px-6 py-4 my-3 bg-red-700 w-fit rounded-md">
 									<h1 class="text-white label-large">EXPERT LEVEL</h1>
 								</div>
@@ -99,18 +99,22 @@
 						<div class="flex flex-col py-3">
 							<h1 class="title-large text-primary-dark">Duration</h1>
 							<div class="flex flex-row items-center py-2 gap-x-2 mx-auto">
-								{#each { length: route.duration } as i}
-									<div class="w-10 h-3 bg-gray-400 rounded-sm">
+								{#each { length: duration } as i}
+									<div class="w-10 h-3 bg-primary-dark rounded-sm">
 										<!--This block represents one day :)-->
 									</div>
 								{/each}
 								<h1 class="title-large text-primary-dark">
-									{route.duration} Days
+									{#if duration > 1}
+										{duration} Days
+									{:else}
+										{duration} Day
+									{/if}
 								</h1>
 							</div>
 						</div>
 
-						<p class="md:px-10 text-secondary-dark body-large">{route.body}</p>
+						<p class="md:px-10 text-secondary-dark body-large">{body}</p>
 						<div class="mt-auto pt-6 pb-2 mx-auto self-end">
 							<OutlineButton>
 								<h1 class="p-3 title-medium">Learn More</h1>
