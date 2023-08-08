@@ -4,7 +4,7 @@
 	import Footer from '$lib/components/organisms/Footer.svelte';
 	import OutlineButton from '$lib/components/molecules/OutlineButton.svelte';
 	import { tours } from '../../lib/components/tsData/tours';
-	import FAQ from '$lib/components/organisms/FAQ.svelte';
+	import FAQ from '$lib/components/organisms/FAQSection.svelte';
 	import safariFaq from '$lib/components/tsData/safariFaq';
 	import TourCard from '$lib/components/molecules/TourCard.svelte';
 
@@ -58,7 +58,7 @@
 </section>
 
 <section class="mx-4 my-12 md:my-24 lg:my-32 lg:mx-14 md:mx-8 text-left" id="faq">
-	<FAQ FAQs={safariFaq} />
+	<FAQ faqs={safariFaq} />
 </section>
 
 <Footer />

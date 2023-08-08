@@ -2,7 +2,7 @@
 	import Header from '$lib/components/organisms/Header.svelte';
 	import Footer from '$lib/components/organisms/Footer.svelte';
 	import OutlineButton from '$lib/components/molecules/OutlineButton.svelte';
-	import FAQ from '$lib/components/organisms/FAQ.svelte';
+	import FAQ from '$lib/components/organisms/FAQSection.svelte';
 
 	export let hero_header: string = '';
 	export let hero_subtitle: string = '';
@@ -123,4 +123,4 @@
 	</div>
 </section>
 
-<FAQ {FAQs} />
+<FAQ faqs={FAQs} />

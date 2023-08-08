@@ -14,6 +14,7 @@
 				<h1 class="title-large text-center">{$$props.buttonText}</h1>
 			</OutlineButton>
 		</div>
+
 		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 grid-rows-1 gap-6 px-6 py-6">
 			{#each tours as tour, i}
 				{#if tour.tags.includes($$props.tag)}

@@ -2,7 +2,7 @@
 	import Header from '$lib/components/organisms/Header.svelte';
 	import Footer from '$lib/components/organisms/Footer.svelte';
 	import OutlineButton from '$lib/components/molecules/OutlineButton.svelte';
-	import FAQ from '$lib/components/organisms/FAQ.svelte';
+	import FAQ from '$lib/components/organisms/FAQSection.svelte';
 	import MountPage from '$lib/components/pages/MountPage.svelte';
 	import mountMeruFaqData from '$lib/components/mountMeruFaq';
 

@@ -9,7 +9,7 @@
 	const toggle = () => (isOpen = !isOpen);
 </script>
 
-<button on:click={toggle} class="card gap-y-5 rounded-md shadow-lg text-left">
+<button on:click={toggle} class="card h-fit gap-y-5 rounded-md shadow-lg text-left">
 	<div class="flex flex-row items-center w-full">
 		<h3 class="font-bold title-large">
 			{question}
