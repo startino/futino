@@ -44,7 +44,19 @@
 
 <!-- Climbing Experience section -->
 <section class="section">
-	<div class="grid max-w-7xl mx-auto grid-cols-1 lg:grid-cols-2 gap-6">
+	<div
+		class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-x-2 gap-y-6 py-12 items-center rounded-lg bg-cover bg-top bg-[url('/images/kilimanjaro/vertical_mountain.jpg')]">
+		{#each overview_topics as { label, body }}
+			<div class="card m-6 w-fit rounded-lg bg-surface-dark/75 justify-around">
+				<h2 class="font-bold headline-small text-primary-dark">{label}</h2>
+				<p class="text-secondary-dark title-medium my-auto">
+					{body}
+				</p>
+			</div>
+		{/each}
+	</div>
+
+	<!-- <div class="grid max-w-7xl mx-auto grid-cols-1 lg:grid-cols-2 gap-6">
 		<div class="h-full">
 			<img
 				src="/images/kilimanjaro/vertical_mountain.jpg"
@@ -61,46 +73,44 @@
 				</div>
 			{/each}
 		</div>
-	</div>
+	</div> -->
 </section>
 
 <!-- Routes section -->
-<section class="section lg:px-24" id="routes">
+<section class="section" id="routes">
 	<div class="flex flex-col">
 		<h2 class="mb-8 font-bold text-center display-large text-primary-dark">Routes</h2>
 		<div
-			class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 justify-items-center items-center">
+			class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 justify-items-center items-center">
 			{#each routes as { label, difficulty, duration, body, img_path }}
 				<div class="bg-surface-dark rounded-lg shadow-lg max-w-3xl flex flex-col h-full">
 					<img
 						src={img_path}
 						alt="Marangu Route"
-						class="w-full object-cover object-center h-fit rounded-t-lg" />
+						class="w-full object-cover object-center h-fit rounded-t-lg bg-gradient-to-b from-transparent to-surface-dark" />
+
 					<!--Route Details-->
 					<div class="flex flex-col px-12 py-6 content-between h-full">
 						<h3 class="mb-2 font-bold headline-medium text-primary-dark">{label}</h3>
-						<div class="flex flex-col py-3 mx-auto">
+						<div class="flex flex-col items-center gap-y-1 my-3">
 							<h1 class="title-large text-primary-dark">Difficulty</h1>
-							{#if difficulty == 'Easy'}
-								<div class="px-6 py-2 my-3 bg-green-800 w-fit rounded-md">
-									<h1 class="text-white label-large">NOVICE LEVEL</h1>
-								</div>
-							{:else if difficulty == 'Intermediate'}
-								<div class="px-6 py-2 my-3 bg-orange-500 w-fit rounded-md">
-									<h1 class="text-white label-large">INTERMEDIATE LEVEL</h1>
-								</div>
-							{:else if difficulty == 'Expert'}
-								<div class="px-6 py-4 my-3 bg-red-700 w-fit rounded-md">
-									<h1 class="text-white label-large">EXPERT LEVEL</h1>
-								</div>
-							{/if}
+							<div
+								class=" rounded-md [&>*]:py-2 [&>*]:px-3 [&>*]:w-fit [&>*]:rounded-md [&>*]:text-white">
+								{#if difficulty == 'Easy'}
+									<h1 class=" bg-green-800 label-large">NOVICE LEVEL</h1>
+								{:else if difficulty == 'Intermediate'}
+									<h1 class=" bg-orange-500 label-large">INTERMEDIATE LEVEL</h1>
+								{:else if difficulty == 'Expert'}
+									<h1 class=" bg-red-700 label-large">EXPERT LEVEL</h1>
+								{/if}
+							</div>
 						</div>
 						<!--Duration-->
-						<div class="flex flex-col py-3">
+						<div class="flex flex-col py-3 items-center">
 							<h1 class="title-large text-primary-dark">Duration</h1>
-							<div class="flex flex-row items-center py-2 gap-x-2 mx-auto">
+							<div class="flex flex-row flex-nowrap items-center py-2 gap-x-2">
 								{#each { length: duration } as i}
-									<div class="w-10 h-3 bg-primary-dark rounded-sm">
+									<div class="w-8 h-3 bg-primary-dark rounded-sm">
 										<!--This block represents one day :)-->
 									</div>
 								{/each}
@@ -114,7 +124,7 @@
 							</div>
 						</div>
 
-						<p class="md:px-10 text-secondary-dark body-large">{body}</p>
+						<p class="text-secondary-dark body-large">{body}</p>
 						<div class="mt-auto pt-6 pb-2 mx-auto self-end">
 							<OutlineButton>
 								<h1 class="p-3 title-medium">Learn More</h1>

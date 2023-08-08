@@ -11,7 +11,7 @@
 
 <button
 	on:click={toggle}
-	class="card h-fit gap-y-5 rounded-md shadow-lg text-left transition-all duration-300 w-full max-w-7xl">
+	class="card h-fit gap-y-5 rounded-md shadow-lg text-left transition-all duration-300 w-full max-w-3xl">
 	<div class="flex flex-row items-center w-full">
 		<h3 class="font-bold text-secondary-dark title-large">
 			{question}
@@ -32,7 +32,7 @@
 		</span>
 	</div>
 	{#if isOpen}
-		<div transition:slide={{ duration: 300 }} class="">
+		<div transition:slide={{ duration: 300 }} class="w-fit">
 			<h1 class=" body-large">
 				{answer}
 			</h1>

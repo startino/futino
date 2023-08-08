@@ -5,7 +5,7 @@
 
 <label for="search-field" class=" sr-only">Search</label>
 <div
-	class="relative {$$props.class} flex flex-row items-center rounded-lg border border-outline-variant-dark bg-surface-dark placeholder-surface-on-dark">
+	class="relative max-w-3xl {$$props.class} flex flex-row items-center rounded-lg border border-outline-variant-dark bg-surface-dark placeholder-surface-on-dark">
 	<Icon
 		icon="search"
 		class="px-4 absolute my-auto h-fit pointer-events-none"
