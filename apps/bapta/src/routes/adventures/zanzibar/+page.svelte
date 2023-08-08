@@ -4,6 +4,7 @@
 	import Footer from '$lib/components/organisms/Footer.svelte';
 	import Button from '$lib/components/atoms/Button.svelte';
 	import OutlineButton from '$lib/components/molecules/OutlineButton.svelte';
+	import ToursSnippet from '$lib/components/organisms/ToursSnippet.svelte';
 
 	const accomodations = [
 		{
@@ -76,7 +77,7 @@
 </section>
 
 <!-- Activities section -->
-<section class="py-16 border-b-2 shadow-xl border-primary-dark">
+<section class="py-16 shadow-xl">
 	<div class="max-w-7xl px-4 mx-auto">
 		<div class="">
 			<h2 class="text-3xl font-extrabold text-primary-dark">Activities</h2>
@@ -108,6 +109,8 @@
 		</div>
 	</div>
 </section>
+
+<ToursSnippet title="Top Tours in Zanzibar" buttonText="See More" tag="Zanzibar" />
 
 <!--Accomodations Section-->
 <section class="py-16">
