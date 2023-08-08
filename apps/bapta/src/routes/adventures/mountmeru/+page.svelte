@@ -4,7 +4,7 @@
 	import OutlineButton from '$lib/components/molecules/OutlineButton.svelte';
 	import FAQ from '$lib/components/organisms/FAQSection.svelte';
 	import MountPage from '$lib/components/pages/MountPage.svelte';
-	import mountMeruFaqData from '$lib/components/mountMeruFaq';
+	import mountMeruFaq from '$lib/components/tsData/mountMeruFaq';
 
 	const routes = [
 		{
@@ -62,7 +62,7 @@
 	hero_header="Ascending the Peak of Mount Meru"
 	hero_subtitle="Embark on a Captivating Trek to Tanzania's Second Highest Summit"
 	{routes}
-	FAQs={mountMeruFaqData}
+	FAQs={mountMeruFaq}
 	{overview_topics} />
 
 <Footer />

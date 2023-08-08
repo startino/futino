@@ -33,11 +33,12 @@
 		Frequently Asked Questions
 	</h2>
 	<SearchBox class="w-full" bind:searchInput on:input={searchPhotos} />
-	<div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+	<div class="flex flex-col items-center gap-4">
 		{#if searchInput && filteredFaqs.length === 0}
 			<section>
-				<div class="mx-auto w-full py-12">
-					<h1 class="display-medium">No Results</h1>
+				<div class="w-full py-12 display-small inline">
+					<h1 class="">Sorry, we couldn't find your question.</h1>
+					<a href="/contact" class="underline text-tertiary-dark">Try Asking Us Here</a>
 				</div>
 			</section>
 		{:else if filteredFaqs.length > 0}
