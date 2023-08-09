@@ -14,8 +14,6 @@
 </script>
 
 <form class=" space-y-5 py-6" on:submit|preventDefault={onSubmit}>
-	<label class="label" for="asd">Name</label>
-	<input class="input required:text-black" required id="asd" type="text" placeholder="Bob John" />
 	<div>
 		<label class="label" for="name">Name</label>
 		<input
@@ -35,6 +33,16 @@
 			<option value="mobile">Zoom?</option>
 			<option value="mobile">Discord???</option>
 		</select>
+	</div>
+
+	<div>
+		<label class="label" for="contact_info">Contact Information</label>
+		<input
+			class="input required:text-black"
+			required
+			id="contact_info"
+			type="text"
+			placeholder="bobjohn@yahoo.com or +852 1252 8623..." />
 	</div>
 	<div class="">
 		<label for="message" class="label">Additional Requests</label>
