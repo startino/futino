@@ -7,6 +7,7 @@
 
 	export let tour: {
 		id: number;
+		img_path: string;
 		name: string;
 		tags: string[];
 		parks: string;
@@ -15,6 +16,7 @@
 		name: 'This is a Test Safari Package',
 		tags: ['Zanzibar', 'Safari'],
 		parks: 'Park One, Park Two, Park Three',
+		img_path: '',
 	};
 </script>
 

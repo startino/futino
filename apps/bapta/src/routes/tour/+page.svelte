@@ -35,7 +35,7 @@
 
 <!--Hero-->
 <div
-	class="w-full h-screen shadow-lg shadow-background-dark lg:grid-cols-2 card-shadow grid-rows-2 px-10 lg:px-20 xl:px-40 pt-64 place-items-center border-b border-secondary-light/40 dark:border-secondary-dark/40 bg-[url('/images/safari/african_plains_3.jpeg')] bg-cover object-contain bg-top">
+	class="w-full h-screen shadow-lg shadow-background-dark lg:grid-cols-2 card-shadow grid-rows-2 px-10 lg:px-20 xl:px-40 pt-64 place-items-center border-b border-secondary-light/40 dark:border-secondary-dark/40 bg-[url('/images/serengeti/10.jpeg')] bg-cover object-contain bg-top">
 	<div class="flex flex-col max-w-lg self-center items-center h-full mx-auto text-center">
 		<h1 class="font-bold text-black display-medium">Explore Safari Tours</h1>
 		<h1 class="pb-6 text-black body-large">Discover Thrilling Adventures in Africa's Wilderness</h1>

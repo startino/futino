@@ -22,16 +22,15 @@
 <!-- Our Mission section -->
 <section class="section">
 	<div class="my-6 mx-auto">
-		<div
-			class="p-6 mx-auto flex flex-col items-center md:text-left w-full rounded-xl bg-surface-dark">
-			<div class="grid grid-cols-1 md:grid-cols-2 items-center gap-y-3 md:flex-row">
+		<div class="p-6 mx-auto flex flex-col items-center w-full rounded-xl bg-surface-dark">
+			<div class="grid grid-cols-1 md:grid-cols-2 items-center gap-y-3 md:flex-row gap-x-3">
 				<img
 					src="images\safari\safari_img(9).jpeg"
 					alt=""
 					class="object-cover object-center w-fit rounded-md h-full md:h-full" />
 				<div class="flex flex-col h-fit items-center self-center">
 					<h2 class="font-semibold display-large text-primary-dark">Our Mission</h2>
-					<p class="py-3 text-white body-medium max-w-lg">
+					<p class="py-3 body-medium max-w-lg px-3">
 						At Our Company, we believe in responsible tourism that respects local communities,
 						cultures, and environments. We are committed to sustainable development and
 						conservation, and work closely with local organizations and initiatives to ensure that

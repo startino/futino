@@ -10,8 +10,8 @@
 
 <div
 	class="flex flex-col h-full w-full text-left transition-all hover:scale-105 place-items-start rounded-lg shadow-lg shadow-black bg-card-surface-on hover:cursor-pointer">
-	<div class="flex shrink-0 h-44 md:h-48 w-full relative rounded-t">
-		<img src={tour.img_path} alt="TOUR IMG" class="object-cover object-bottom w-full" />
+	<div class="flex shrink-0 h-64 md:h-64 w-full relative">
+		<img src={tour.img_path} alt="TOUR IMG" class="object-cover object-bottom w-full rounded-t" />
 		{#if tour.tags.includes('Top Rated')}'
 
 			<div
