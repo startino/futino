@@ -1,6 +1,7 @@
 <script lang="ts">
 	export let tour: {
 		id: number;
+		img_path: string;
 		name: string;
 		tags: string[];
 		parks: string;
@@ -9,8 +10,8 @@
 
 <div
 	class="flex flex-col h-full w-full text-left transition-all hover:scale-105 place-items-start rounded-lg shadow-lg shadow-black bg-card-surface-on hover:cursor-pointer">
-	<div
-		class="bg-[url('/images/safari/safari_img(7).jpeg')] flex shrink-0 h-44 md:h-48 w-full bg-cover bg-center relative rounded-t">
+	<div class="flex shrink-0 h-44 md:h-48 w-full relative rounded-t">
+		<img src={tour.img_path} alt="TOUR IMG" class="object-cover object-bottom w-full" />
 		{#if tour.tags.includes('Top Rated')}'
 
 			<div

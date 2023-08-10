@@ -73,7 +73,7 @@
 <Header />
 <!-- Hero Section-->
 <section
-	class="grid justify-center w-full h-screen grid-rows-2 px-10 bg-left bg-cover border-b shadow-lg shadow-background-dark lg:grid-cols-2 card-shadow xl:px-40 pt-60 place-items-center border-secondary-light/40 dark:border-secondary-dark/40 bg-landing_hero">
+	class="grid justify-center w-full h-screen grid-rows-2 px-10 bg-cover bg-center border-b shadow-lg shadow-background-dark lg:grid-cols-2 card-shadow xl:px-40 pt-60 place-items-center border-secondary-light/40 dark:border-secondary-dark/40 bg-[url('/images/serengeti/2.jpeg')]">
 	<div class="grid space-y-3 text-left justify-items-start">
 		<h1 class="font-bold text-primary-dark display-medium">
 			A Safari of a Lifetime,<br />

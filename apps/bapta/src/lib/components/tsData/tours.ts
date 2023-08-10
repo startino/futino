@@ -2,54 +2,63 @@ const tours = [
 	{
 		id: 15,
 		name: '6 DAYS LUXURY TANZANIA SAFARI CALVING SEASON',
+		img_path: '/images/serengeti/.jpeg',
 		tags: ['Safari', 'Top Rated'],
 		parks: 'Tarangire, South Serengeti, Ngorongoro Crater & Lake Manyara',
 	},
 	{
 		id: 13,
 		name: '6 DAYS MIDRANGE WESTERN CORRIDOR MIGRATION',
+		img_path: '/images/serengeti/20.jpeg',
 		tags: ['Safari', 'Top Rated'],
 		parks: 'Tarangire, Western Serengeti, Ngorongoro Crater & Lake Manyara',
 	},
 	{
 		id: 11,
 		name: '6 DAYS MIDRANGE TANZANIA SAFARI CALVING SEASON',
+	
 		tags: ['Safari'],
 		parks: 'Tarangire, South Serengeti, Ngorongoro Crater & Lake Manyara',
 	},
 	{
 		id: 12,
 		name: '6 DAYS LUXURY TANZANIA SAFARI CALVING SEASON',
+		
 		tags: ['Safari'],
 		parks: 'Tarangire, South Serengeti, Ngorongoro Crater & Lake Manyara',
 	},
 	{
 		id: 16,
 		name: '7 DAYS CAMPING SAFARI',
+		img_path: '/images/safari/safari_img(1).jpeg',
 		tags: ['Safari'],
 		parks: 'Tarangire, Ngorongoro Crater, Serengeti & Lake Manyara',
 	},
 	{
 		id: 9,
 		name: '7 DAYS MIDRANGE TANZANIA SAFARI',
+		img_path: '/images/serengeti/7.jpeg',
 		tags: ['Safari'],
 		parks: 'Tarangire, Serengeti, Ngorongoro Crater & Lake Manyara',
 	},
 	{
 		id: 14,
 		name: '7 DAYS LUXURY NORTH MIGRATION SAFARI',
+		img_path: '/images/serengeti/12.jpeg',
 		tags: ['Safari'],
 		parks: 'Tarangire, Serengeti & Ngorongoro Crater',
 	},
 	{
 		id: 7,
 		name: '7 DAYS MIDRANGE NORTH MIGRATION SAFARI',
+		img_path: '/images/serengeti/12.jpeg',
 		tags: ['Safari'],
 		parks: 'Tarangire, Serengeti & Ngorongoro Crater',
 	},
 	{
 		id: 6,
 		name: '7 DAYS LUXURY TANZANIA SAFARI',
+		img_path: '/images/serengeti/21.jpeg',
 		tags: ['Safari'],
 		parks: 'Tarangire, Serengeti, Ngorongoro Crater & Lake Manyara',
 	},
@@ -61,13 +70,14 @@ const tours = [
 	},
 	{
 		id: 3,
-		name: '8 DAYS LUXURY FAMILY SAFARI',
+		name: '8 DAYS MIDRANGE FAMILY SAFARI',
 		tags: ['Safari'],
 		parks: 'Tarangire, Serengeti, Manyara & Ngorongoro Crater',
 	},
 	{
 		id: 4,
 		name: '8 DAYS MIDRANGE NORTH MIGRATION SAFARI',
+		img_path: '/images/serengeti/12.jpeg',
 		tags: ['Safari'],
 		parks: 'Tarangire, Serengeti, Manyara Ngorongoro Crater',
 	},
@@ -111,6 +121,7 @@ const tours = [
 	{
 		id: 10,
 		name: '6 DAYS LUXURY WESTERN CORRIDOR MIGRATION',
+		img_path: '/images/serengeti/20.jpeg',
 		tags: ['Safari'],
 		parks: 'Tarangire, Western Serengeti, Ngorongoro Crater & Lake Manyara',
 	},
