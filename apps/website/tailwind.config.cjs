@@ -22,7 +22,7 @@ const config = {
 			backgroundSize: {
 				'50%': '50%',
 				'25%': '25%',
-			  },
+			},
 
 			animation: {
 				shine: 'shine 0.9s ease-out',
@@ -34,7 +34,7 @@ const config = {
 				typingsubtitle: 'typing 3s steps(64), blinkCursor infinite 0.5s steps(64) ',
 				ripple: 'ripple 0.7s ',
 				fadeIn: 'fadeIn 2s ',
-				fadeOut: 'fadeOut 2s'
+				fadeOut: 'fadeOut 2s',
 			},
 
 			keyframes: {
@@ -80,7 +80,7 @@ const config = {
 				fadeOut: {
 					'0%': { opacity: 1 },
 					'100%': { transform: 0 },
-				}
+				},
 			},
 
 			colors: {
