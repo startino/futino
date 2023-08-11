@@ -31,24 +31,21 @@
 	];
 </script>
 
-
 <!--Hero-->
-<div
+<section
 	class="w-full h-screen shadow-lg shadow-background-dark lg:grid-cols-2 card-shadow grid-rows-2 px-10 lg:px-20 xl:px-40 pt-64 place-items-center border-b border-secondary-light/40 dark:border-secondary-dark/40 bg-[url('/images/serengeti/10.jpeg')] bg-cover object-contain bg-top">
-	<div class="flex flex-col max-w-lg self-center items-center h-full mx-auto text-center">
+	<div class="flex flex-col max-w-lg self-center items-center h-full inner-section">
 		<h1 class="font-bold text-black display-medium">Explore Safari Tours</h1>
 		<h1 class="pb-6 text-black body-large">Discover Thrilling Adventures in Africa's Wilderness</h1>
 		<OutlineButton href="#tours">
 			<h1 class="px-4 py-1 title-large">See Tours</h1>
 		</OutlineButton>
 	</div>
-</div>
+</section>
 
 <!--Tours-->
-<section
-	class="px-4 py-12 md:py-24 lg:py-32 lg:px-14 md:px-8 text-left shadow-lg bg-surface-dark"
-	id="tours">
-	<div class="flex flex-col gap-8">
+<section class="section text-left shadow-lg bg-surface-dark" id="tours">
+	<div class="flex flex-col gap-8 inner-section">
 		<h1 class="display-large text-center">Safari Tours</h1>
 		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 			{#each tours as tour}
@@ -59,4 +56,3 @@
 </section>
 
 <FAQSection faqs={safariFaq} />
-
