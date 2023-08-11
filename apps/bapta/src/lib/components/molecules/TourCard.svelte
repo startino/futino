@@ -1,17 +1,16 @@
 <script lang="ts">
-	export let tour: {
-		id: number;
-		img_path: string;
-		name: string;
-		tags: string[];
-		parks: string;
-	};
+	import { base } from '$app/paths';
+	import type { Tour } from '../tsData/tours';
+
+	export let tour: Tour;
+	const tour_url = tour.name.toLowerCase().replaceAll(' ', '_');
 </script>
 
-<div
-	class="flex flex-col h-full w-full text-left transition-all hover:scale-105 place-items-start rounded-lg shadow-lg shadow-black bg-card-surface-on hover:cursor-pointer">
+<a
+	href="/tours/{tour_url}"
+	class="flex flex-col h-full w-full text-left transition-all hover:scale-105 place-items-start rounded-lg shadow-lg shadow-black bg-card-surface-on">
 	<div class="flex shrink-0 h-64 md:h-64 w-full relative">
-		<img src={tour.img_path} alt="TOUR IMG" class="object-cover object-bottom w-full rounded-t" />
+		<img src={tour.thumbnail} alt="TOUR IMG" class="object-cover object-bottom w-full rounded-t" />
 		{#if tour.tags.includes('Top Rated')}'
 
 			<div
@@ -52,4 +51,4 @@
 			{tour.parks}
 		</h1>
 	</div>
-</div>
+</a>
