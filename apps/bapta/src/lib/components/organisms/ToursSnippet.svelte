@@ -13,7 +13,7 @@
 
 <!--Tours Snippet-->
 <section class="flex flex-col items-center gap-4 md:text-center section bg-surface-dark">
-	<div class="place-self-center items-center mx-2 px-2 flex flex-col">
+	<div class="place-self-center items-center mx-2 px-2 flex flex-col max-w-7xl">
 		<div class="flex flex-col md:flex-row justify-items-center items-center gap-2 md:gap-8">
 			<h1 class="display-medium">{$$props.title}</h1>
 			<OutlineButton href="/tour" class="hidden md:flex">

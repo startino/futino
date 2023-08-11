@@ -4,6 +4,7 @@
 	import tours from '../lib/components/tsData/tours';
 	import ToursSnippet from '$lib/components/organisms/ToursSnippet.svelte';
 	import FaqSection from '$lib/components/organisms/FAQSection.svelte';
+	import safariFaq from '$lib/components/tsData/safariFaq';
 
 	const testimonials = [
 		{
@@ -103,55 +104,50 @@
 <ToursSnippet {tours} title="Top Rated Tours" buttonText="See More" tag="Top Rated" />
 
 <!--Adventure Snippets-->
-<section class="flex flex-col items-center gap-4 space-y-1 text-left section">
-	{#each adventures as { img_path, label, body, href }, i}
-		{#if i % 2 == 0}
-			<div
-				class="flex flex-col justify-items-start items-center gap-6 md:text-right md:justify-items-end md:flex-row-reverse">
-				<img
-					src={img_path}
-					alt="img"
-					class="object-cover object-center rounded-md w-fit md:max-w-md lg:max-w-2xl xl:max-w-3xl" />
-				<div class="flex flex-col md:max-w-xs gap-y-1">
-					<h1 class="h-full font-semibold headline-large text-primary-dark">
-						{label}
-					</h1>
-					<h2 class="body-large mx-auto max-w-lg">
-						{body}
-					</h2>
+<section class="section relative z-10">
+	<div class="max-w-7xl mx-auto text-left flex flex-col gap-y-8">
+		{#each adventures as { img_path, label, body, href }, i}
+			{#if i % 2 == 0}
+				<div class=" adventure-row">
+					<img src={img_path} alt="img" class="adventure-thumbnail md:order-last" />
+					<div class="flex flex-col md:items-end self-center gap-y-1 md:text-right md:order-first">
+						<h1 class="font-semibold headline-large text-primary-dark">
+							{label}
+						</h1>
+						<h2 class="body-large max-w-md">
+							{body}
+						</h2>
 
-					<OutlineButton {href} class="py-2 md:self-end">
-						<h1 class="font-bold title-small">Learn More</h1>
-					</OutlineButton>
+						<OutlineButton {href} class="py-2">
+							<h1 class="font-bold title-small">Learn More</h1>
+						</OutlineButton>
+					</div>
 				</div>
-			</div>
-		{:else}
-			<div class="flex flex-col items-center gap-6 md:flex-row">
-				<img
-					src={img_path}
-					alt="img"
-					class="object-cover object-center rounded-md w-fit md:max-w-md lg:max-w-2xl xl:max-w-3xl" />
-				<div class="flex flex-col md:max-w-xs gap-y-1">
-					<h1 class="font-semibold text-left headline-large text-primary-dark">
-						{label}
-					</h1>
-					<h2 class="max-w-lg mx-auto text-left body-large">
-						{body}
-					</h2>
+			{:else}
+				<div class=" adventure-row">
+					<img src={img_path} alt="img" class="adventure-thumbnail md:order-first" />
+					<div class="flex flex-col items-start self-center gap-y-1">
+						<h1 class="font-semibold headline-large text-primary-dark">
+							{label}
+						</h1>
+						<h2 class=" body-large max-w-md">
+							{body}
+						</h2>
 
-					<OutlineButton {href} class="py-2">
-						<h1 class="font-bold title-small">Learn More</h1>
-					</OutlineButton>
+						<OutlineButton {href} class="py-2">
+							<h1 class="font-bold title-small">Learn More</h1>
+						</OutlineButton>
+					</div>
 				</div>
-			</div>
-		{/if}
-	{/each}
+			{/if}
+		{/each}
+	</div>
 </section>
 
 <!--Testimonials Section-->
 <section class="section bg-surface-dark">
-	<div class="flex flex-col items-center">
-		<div class="grid grid-cols-1 gap-4 py-6 sm:grid-cols-2 lg:grid-cols-3 gap-y-4 max-w-7xl">
+	<div class="flex flex-col items-center inner-section">
+		<div class="grid grid-cols-1 gap-4 py-6 sm:grid-cols-2 lg:grid-cols-3 gap-y-4">
 			{#each testimonials as testimonial}
 				<a
 					href={testimonial.src}
@@ -178,7 +174,7 @@
 	</div>
 </section>
 
-<FaqSection />
+<FaqSection faqs={safariFaq} />
 
 <!--About Section-->
 <section class="flex flex-col items-center space-y-12 section bg-surface-dark">
@@ -198,3 +194,12 @@
 		</OutlineButton>
 	</div>
 </section>
+
+<style>
+	.adventure-thumbnail {
+		@apply object-cover object-center w-full h-full rounded-md;
+	}
+	.adventure-row {
+		@apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-x-5 gap-y-10;
+	}
+</style>
