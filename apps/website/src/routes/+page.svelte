@@ -15,11 +15,12 @@
 	import { fade, slide } from 'svelte/transition';
 	import TransitionElement, {
 		type TransitionOptions,
-	} from '$lib/components/organisms/TransitionElement.svelte';
+	} from '$lib/components/organisms/Inview.svelte';
 	import Icon from '$lib/components/atoms/Icon.svelte';
 	import ClientCard from './ClientCard.svelte';
 	import { tooltip } from '$lib/components/organisms/tooltip/tooltip';
 	import AnimatedCounter from './AnimatedCounter.svelte';
+	import InViewSlide from '$lib/components/organisms/InViewSlide.svelte';
 
 	let scrollY: number;
 
@@ -31,15 +32,19 @@
 	const leftSlidePreset: TransitionOptions = {
 		delay: 100,
 		duration: 300,
-		transition: 'fly',
-		x: -100,
+		fly: {
+			x: -100,
+			y: 0,
+		},
 	};
 	const rightSlidePreset = {
 		delay: 100,
 		duration: 300,
 
-		transition: 'fly',
-		x: 100,
+		fly: {
+			x: 100,
+			y: 0,
+		},
 	};
 
 	const clientCards = [
@@ -91,7 +96,7 @@
 <ChapterMenu {chapters} />
 
 <main
-	class="text-center border-b w shadow-2xl border-primary-light/40 dark:border-primary-dark/40 flex flex-col items-stretch">
+	class="text-center border-b shadow-2xl border-primary-light/40 dark:border-primary-dark/40 flex flex-col items-stretch">
 	<!--Hero-->
 	<section
 		id="hero"
@@ -140,83 +145,80 @@
 		<!--Background image for journey section. Purpose is to blend with the transition image.-->
 		<div
 			class="bg-gradient-to-t from-white/50 dark:from-black/50 from-50% to-transparent -z-30 h-full w-full absolute" />
-		<TransitionElement top={-200}>
-			<h1 class="display-large py-12">Areas of Expertise</h1>
 
-			<!--Chapters Setion-->
-			{#each chapters as { inView, chapterNumber, title, id, content }}
+		<h1 class="display-large py-12">Areas of Expertise</h1>
+
+		<!--Chapters Setion-->
+		{#each chapters as { inView, chapterNumber, title, id, content }}
+			<div
+				{id}
+				class={chapterNumber != chapters.length
+					? 'flex flex-col h-screen place-items-center py-32 relative '
+					: 'flex flex-col h-screen place-items-center py-32 relative overflow-hidden'}>
+				<h1
+					class="display-medium p-4 font-extrabold tracking-wide transition-all duration-700 {inView
+						? ' text-transparent bg-clip-text bg-gradient-to-r from-primary-light to-secondary-light dark:from-primary-dark dark:to-secondary-dark'
+						: 'text-surface-on-light dark:text-surface-on-dark'}">
+					{title}
+				</h1>
+
+				<!--Center Line-->
+				<InViewSlide
+					class="h-full absolute -z-10 left-1/2 top-64"
+					duration={2000}
+					axis={'y'}
+					delay={300}>
+					<div class="border-l-2 border-white dark:border-black h-full" />
+				</InViewSlide>
+
+				<!--Glow Line-->
+				<InViewSlide
+					class="h-full absolute -z-20 left-1/2 top-64 blur-sm flex mx-auto"
+					duration={2000}
+					axis={'y'}
+					delay={300}>
+					<div
+						class="bg-primary-light dark:bg-primary-dark w-1.5 h-full pb-2 opacity-50 md:opacity-100 self-center" />
+				</InViewSlide>
+
+				<!--Circle-->
 				<div
-					{id}
-					class={chapterNumber != chapters.length
-						? 'flex flex-col h-screen place-items-center py-32 relative '
-						: 'flex flex-col h-screen place-items-center py-32 relative overflow-hidden'}>
+					class="h-14 w-14 rounded-full bg-surface-light dark:bg-surface-dark flex justify-self-center relative"
+					use:inview={inviewOptions}
+					on:inview_enter={(event) => {
+						inView = true;
+					}}>
 					<h1
-						class="display-medium p-4 font-extrabold tracking-wide transition-all duration-700 {inView
-							? ' text-transparent bg-clip-text bg-gradient-to-r from-primary-light to-secondary-light dark:from-primary-dark dark:to-secondary-dark'
-							: 'text-surface-on-light dark:text-surface-on-dark'}">
-						{title}
+						class="headline-medium font-bold text-surface-on-light dark:text-surface-on-dark self-center mx-auto z-10">
+						{chapterNumber}
 					</h1>
-
-					<!--Center Line-->
-					<TransitionElement
-						transition="slide"
-						class="h-full absolute -z-10 left-1/2 top-64"
-						duration={2000}
-						axis={'y'}
-						delay={700}>
-						<div class="border-l-2 border-white dark:border-black h-full" />
-					</TransitionElement>
-
-					<!--Glow Line-->
-					<TransitionElement
-						transition="slide"
-						class="h-full absolute -z-20 left-1/2 top-64 blur-sm flex mx-auto"
-						duration={2000}
-						axis={'y'}
-						delay={700}>
+					<!--Glow Effect-->
+					<TransitionElement transition="fade" delay={300} duration={500} class="-z-10">
 						<div
-							class="bg-primary-light dark:bg-primary-dark w-1.5 h-full pb-2 opacity-50 md:opacity-100 self-center" />
+							class="absolute -z-20 -inset-1 bg-gradient-to-r from-primary-dark to-secondary-dark animate-spin rounded-full blur transition-all" />
 					</TransitionElement>
-
-					<!--Circle-->
-					<div
-						class="h-14 w-14 rounded-full bg-surface-light dark:bg-surface-dark flex justify-self-center relative"
-						use:inview={inviewOptions}
-						on:inview_enter={(event) => {
-							inView = true;
-						}}>
-						<h1
-							class="headline-medium font-bold text-surface-on-light dark:text-surface-on-dark self-center mx-auto z-10">
-							{chapterNumber}
-						</h1>
-						<!--Glow Effect-->
-						<TransitionElement transition="fade" delay={300} duration={500} class="-z-10">
-							<div
-								class="absolute -z-20 -inset-1 bg-gradient-to-r from-primary-dark to-secondary-dark animate-spin rounded-full blur transition-all" />
-						</TransitionElement>
-					</div>
-					<!--Content-->
-					<div
-						class="grid grid-cols-1 sm:grid-cols-2 gap-12 max-w-7xl justify-items-center py-8 z-10 overflow-hidden">
-						{#each content as { title, body }}
-							<!--Graphic Image-->
-							<TransitionElement presetOptions={leftSlidePreset} class="w-full">
-								<div
-									class="bg-surface-variant-dark h-48 w-full sm:justify-self-end" /></TransitionElement>
-							<!-- Title and Paragraph-->
-							<TransitionElement presetOptions={rightSlidePreset} class="w-full">
-								<div class="flex flex-col max-w-md text-left">
-									<h2 class="display-small max-w-3xl">{title}</h2>
-									<h3 class="body-medium max-w-3xl">
-										{body}
-									</h3>
-								</div>
-							</TransitionElement>
-						{/each}
-					</div>
 				</div>
-			{/each}
-		</TransitionElement>
+				<!--Content-->
+				<div
+					class="grid grid-cols-1 sm:grid-cols-2 gap-12 max-w-7xl justify-items-center py-8 z-10 overflow-hidden">
+					{#each content as { title, body }}
+						<!--Graphic Image-->
+						<TransitionElement presetOptions={leftSlidePreset} class="w-full">
+							<div
+								class="bg-surface-variant-dark h-48 w-full sm:justify-self-end" /></TransitionElement>
+						<!-- Title and Paragraph-->
+						<TransitionElement presetOptions={rightSlidePreset} class="w-full">
+							<div class="flex flex-col max-w-md text-left">
+								<h2 class="display-small max-w-3xl">{title}</h2>
+								<h3 class="body-medium max-w-3xl">
+									{body}
+								</h3>
+							</div>
+						</TransitionElement>
+					{/each}
+				</div>
+			</div>
+		{/each}
 	</section>
 
 	<!--Analytics Snippet-->

@@ -1,11 +1,63 @@
 <script lang="ts">
 	import Header from '$lib/components/organisms/Header.svelte';
 	import Footer from '$lib/components/organisms/Footer.svelte';
+	import Button from '$lib/components/atoms/Button.svelte';
+	import ContactForm from '$lib/components/organisms/ContactForm.svelte';
+
+	const FAQs = [
+		{
+			index: 0,
+			question: 'What is the best time of year to climb Kilimanjaro?',
+			answer:
+				'The best time to climb Kilimanjaro is during the dry season, which runs from June to October and January to March. However, it is possible to climb at other times of the year as well.',
+		},
+	];
 </script>
 
 <Header />
+<main>
+	<!--Hero-->
+	<section
+		id="hero"
+		class="grow py-32 sm:py-34 h-screen md:py-44 px-4 sm:px-6 md:px-8 grid justify-items-center space-y-12 shadow-lg">
+		<div class="grid justify-items-center space-y-12 h-fit w-full mx-auto self-center">
+			<div class="w-fit">
+				<h1 class="display-large">Let's Talk Growth</h1>
+			</div>
 
-<main
-	class="py-40 px-4 border-b shadow-2xl sm:px-6 md:px-8 border-primary-light/40 dark:border-primary-dark/40" />
+			<div class="w-fit">
+				<h3 class="title-small md:headline-small">
+					No automated calls. Person-to-person, with you in mind.
+				</h3>
+			</div>
 
+			<a href="#contact_form">
+				<Button class="w-full h-full">
+					<p class="title-medium p-1">Reach Out</p>
+				</Button>
+			</a>
+		</div>
+	</section>
+
+	<section
+		id="contact_form"
+		class="py-20 px-10 border-b shadow-2xl border-primary-light/40 dark:border-primary-dark/40">
+		<!--Contact Section-->
+		<div
+			class="grid grid-cols-1 md:grid-cols-2 lg:mx-32 md:mx-20 sm:mx-10 xs:mx-4 gap-x-8 items-center justify-items-center">
+			<div
+				class="bg-surface-dark flex flex-col rounded-xl dark:bg-surface-dark py-10 px-10 space-y-6 max-w-xl self-start">
+				<h3 class="font-bold text-left headline-medium text-primary-dark">Get in touch.</h3>
+				<h4 class=" text-lg font-thin text-left text-secondary-dark my-auto">
+					"Lorem ipsum dolor sit amet enim amet ad eleifend consequat elit per morbi nullam metus
+					nam class hac curabitur praesent sociosqu vulputate torquent sapien volutpat nostra vel
+					curae consectetur curabitur."
+				</h4>
+			</div>
+			<div class="w-full">
+				<ContactForm />
+			</div>
+		</div>
+	</section>
+</main>
 <Footer />

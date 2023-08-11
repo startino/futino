@@ -14,7 +14,7 @@ updates:
     directory: '/apps/allheim'
     schedule:
       interval: 'daily'
-  
+
   - package-ecosystem: 'npm'
     directory: '/apps/anzelmo'
     schedule:
