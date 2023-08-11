@@ -57,8 +57,6 @@
 	];
 </script>
 
-<Header />
-
 <!--Hero-->
 <section
 	class="w-full h-screen shadow-lg shadow-background-dark card-shadow px-10 lg:px-20 xl:px-40 pt-60 place-items-center border-b border-secondary-light/40 dark:border-secondary-dark/40 bg-zanzibar bg-cover object-contain bg-center">
@@ -77,11 +75,11 @@
 </section>
 
 <!-- Activities section -->
-<section class="py-16 shadow-xl">
-	<div class="max-w-7xl px-4 mx-auto">
+<section class="section">
+	<div class="inner-section">
 		<div class="">
-			<h2 class="text-3xl font-extrabold text-primary-dark">Activities</h2>
-			<p class="max-w-2xl mx-auto mt-4 text-xl text-primary-dark">
+			<h2 class="display-large font-extrabold text-primary-dark">Activities</h2>
+			<p class="headline-small text-primary-dark">
 				Explore a range of activities during your beach holiday in Zanzibar
 			</p>
 		</div>
@@ -89,8 +87,8 @@
 			class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 my-6 gap-y-12 gap-x-6 justify-items-center items-center">
 			{#each activities as { img_path, label, body }}
 				<div class="max-w-3xl flex flex-col h-full items-stretch w-full">
-					<div class="my-2">
-						<img src={img_path} alt={label} class="object-cover w-full h-64 rounded-lg" />
+					<div class="-my-2 z-10">
+						<img src={img_path} alt={label} class="object-cover w-full h-64 rounded-t-lg" />
 					</div>
 					<div
 						class="flex flex-col items-center h-full text-surface-on-dark gap-y-3 p-6 bg-surface-dark rounded-lg shadow-md hover:shadow-lg">
@@ -113,8 +111,8 @@
 <ToursSnippet title="Top Tours in Zanzibar" buttonText="See More" tag="Zanzibar" />
 
 <!--Accomodations Section-->
-<section class="py-16">
-	<div class="max-w-6xl px-4 mx-auto sm:px-6 lg:px-8">
+<section class="section">
+	<div class="inner-section">
 		<h2 class="text-3xl font-extrabold text-primary-dark">Accomodation</h2>
 		<p class="max-w-2xl mx-auto mt-4 text-xl text-primary-dark">
 			Explore a range of accomodations during your beach holiday in Zanzibar
@@ -145,5 +143,3 @@
 		</div>
 	</div>
 </section>
-
-<Footer />
