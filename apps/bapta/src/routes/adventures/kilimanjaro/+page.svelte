@@ -2,7 +2,9 @@
 	import Header from '$lib/components/organisms/Header.svelte';
 	import Footer from '$lib/components/organisms/Footer.svelte';
 	import OutlineButton from '$lib/components/molecules/OutlineButton.svelte';
-	import FAQ from '$lib/components/organisms/FAQ.svelte';
+	import FAQ from '$lib/components/organisms/FAQSection.svelte';
+	import MountPage from '$lib/components/pages/MountPage.svelte';
+	import kilimanjaroFaq from '$lib/components/tsData/kilimanjaroFaq';
 
 	const routes = [
 		{
@@ -35,45 +37,6 @@
 		},
 	];
 
-	const FAQs = [
-		{
-			index: 0,
-			question: 'What is the best time of year to climb Kilimanjaro?',
-			answer:
-				'The best time to climb Kilimanjaro is during the dry season, which runs from June to October and January to March. However, it is possible to climb at other times of the year as well.',
-		},
-		{
-			index: 1,
-			question: 'What is altitude sickness, and how can I prevent it?',
-			answer:
-				'Altitude sickness is a condition that can occur when climbing to high altitudes. Symptoms can include headaches, nausea, and dizziness. To prevent altitude sickness, it is important to acclimatize properly and drink plenty of water.',
-		},
-		{
-			index: 2,
-			question: 'Is it safe to climb Kilimanjaro?',
-			answer:
-				'Yes, climbing Kilimanjaro is generally safe as long as you take the necessary precautions and follow the advice of your guides. Our team of experienced guides and porters will ensure your safety throughout the climb.',
-		},
-		{
-			index: 3,
-			question: 'What gear and equipment do I need for a Kilimanjaro climb?',
-			answer:
-				'You will need a range of gear and equipment for your Kilimanjaro climb, including warm clothing, hiking boots, and a sleeping bag. We provide a detailed gear list to all of our climbers to ensure that you have everything you need.',
-		},
-		{
-			index: 4,
-			question: 'What is the minimum age requirement for a Kilimanjaro climb?',
-			answer:
-				'The minimum age for a Kilimanjaro climb is 10 years old. However, we recommend that children be at least 12 years old to ensure that they are physically and mentally prepared for the challenge.',
-		},
-		{
-			index: 5,
-			question: 'What is your cancellation policy?',
-			answer:
-				'Our cancellation policy varies depending on the timing of the cancellation. We recommend that you review our policy before booking your climb, and we are happy to answer any questions you may have.',
-		},
-	];
-
 	const overview_topics = [
 		{
 			label: 'The Climbing Experience',
@@ -95,104 +58,11 @@
 </script>
 
 <Header />
-<!--Hero-->
-<div
-	class="w-full h-screen shadow-lg shadow-background-dark card-shadow px-10 lg:px-20 xl:px-40 pt-60 place-items-center border-b border-secondary-light/40 dark:border-secondary-dark/40 bg-kilimanjaro bg-cover object-contain bg-top">
-	<div class="flex flex-col max-w-xl mx-auto mt-8 mb-64 space-y-2 items-center">
-		<h1 class="font-bold text-black display-medium">Climb Africa's Highest Peak</h1>
-		<h1 class="pb-6 text-black body-large">
-			Experience the adventure of a lifetime on Mount Kilimanjaro
-		</h1>
-
-		<OutlineButton href="/tour">
-			<h1 class="px-4 py-2 title-large">Find Your Tour</h1>
-		</OutlineButton>
-	</div>
-</div>
-
-<!-- Climbing Experience section -->
-<section class="section">
-	<div class="mx-auto">
-		<div class="grid max-w-7xl grid-cols-1 lg:grid-cols-2 gap-6">
-			<div class="h-full">
-				<img
-					src="/images/kilimanjaro/vertical_mountain.jpg"
-					alt="Kilimanjaro"
-					class="object-cover object-center h-full w-fit rounded-lg shadow-lg" />
-			</div>
-			<div class="flex flex-col h-full gap-6 place-content-between">
-				{#each overview_topics as { label, body }}
-					<div class="card rounded-lg bg-surface-dark justify-around">
-						<h2 class="mb-4 font-bold headline-small text-primary-dark">{label}</h2>
-						<p class="text-secondary-dark title-medium my-auto">
-							{body}
-						</p>
-					</div>
-				{/each}
-			</div>
-		</div>
-	</div>
-</section>
-
-<!-- Routes section -->
-<section class="section lg:px-24">
-	<div class="flex flex-col">
-		<h2 class="mb-8 font-bold text-center display-large text-primary-dark">Routes</h2>
-		<div
-			class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 justify-items-center items-center">
-			{#each routes as route}
-				<div class="bg-surface-dark rounded-lg shadow-lg max-w-3xl flex flex-col h-full">
-					<img
-						src={route.img_path}
-						alt="Marangu Route"
-						class="w-full object-cover object-center h-fit rounded-t-lg" />
-					<!--Route Details-->
-					<div class="flex flex-col px-12 py-6 content-between h-full">
-						<h3 class="mb-2 font-bold headline-medium text-primary-dark">{route.label}</h3>
-						<div class="flex flex-col py-3 mx-auto">
-							<h1 class="title-large text-primary-dark">Difficulty</h1>
-							{#if route.difficulty == 'Easy'}
-								<div class="px-6 py-2 my-3 bg-green-800 w-fit rounded-md">
-									<h1 class="text-white label-large">NOVICE LEVEL</h1>
-								</div>
-							{:else if route.difficulty == 'Intermediate'}
-								<div class="px-6 py-2 my-3 bg-orange-500 w-fit rounded-md">
-									<h1 class="text-white label-large">INTERMEDIATE LEVEL</h1>
-								</div>
-							{:else if route.difficulty == 'Expert'}
-								<div class="px-6 py-4 my-3 bg-red-700 w-fit rounded-md">
-									<h1 class="text-white label-large">EXPERT LEVEL</h1>
-								</div>
-							{/if}
-						</div>
-						<!--Duration-->
-						<div class="flex flex-col py-3">
-							<h1 class="title-large text-primary-dark">Duration</h1>
-							<div class="flex flex-row items-center py-2 gap-x-2 mx-auto">
-								{#each { length: route.duration } as i}
-									<div class="w-10 h-3 bg-gray-400 rounded-sm">
-										<!--This block represents one day :)-->
-									</div>
-								{/each}
-								<h1 class="title-large text-primary-dark">
-									{route.duration} Days
-								</h1>
-							</div>
-						</div>
-
-						<p class="md:px-10 text-secondary-dark body-large">{route.body}</p>
-						<div class="mt-auto pt-6 pb-2 mx-auto self-end">
-							<OutlineButton>
-								<h1 class="p-3 title-medium">Learn More</h1>
-							</OutlineButton>
-						</div>
-					</div>
-				</div>
-			{/each}
-		</div>
-	</div>
-</section>
-
-<FAQ {FAQs} />
+<MountPage
+	hero_header="Climb Africa's Highest Peak"
+	hero_subtitle="Reach New Heights on Africa's Iconic Summit"
+	{routes}
+	FAQs={kilimanjaroFaq}
+	{overview_topics} />
 
 <Footer />

@@ -9,13 +9,15 @@
 	const toggle = () => (isOpen = !isOpen);
 </script>
 
-<button on:click={toggle} class="card gap-y-5 rounded-md shadow-lg text-left">
+<button
+	on:click={toggle}
+	class="bg-surface-dark py-4 flex flex-col px-3 gap-y-5 rounded-md shadow-lg text-left transition-all duration-300 w-full max-w-3xl">
 	<div class="flex flex-row items-center w-full">
-		<h3 class="font-bold title-large">
+		<h3 class="font-bold title-medium">
 			{question}
 		</h3>
 
-		<span class="p-10 ml-auto">
+		<span class=" ml-auto">
 			<svg
 				class="transition-transform duration-200 ease-in"
 				style={isOpen ? 'transform: rotate(180deg)' : ''}
@@ -30,8 +32,8 @@
 		</span>
 	</div>
 	{#if isOpen}
-		<div transition:slide={{ duration: 300 }} class="">
-			<h1 class=" body-large">
+		<div transition:slide={{ duration: 300 }} class="max-w-xl">
+			<h1 class=" body-medium">
 				{answer}
 			</h1>
 		</div>
