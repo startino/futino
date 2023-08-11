@@ -4,8 +4,6 @@
 	import OutlineButton from '$lib/components/molecules/OutlineButton.svelte';
 </script>
 
-<Header />
-
 <!--Hero-->
 <div
 	class="object-contain w-full h-screen grid-rows-2 px-10 bg-top bg-cover border-b shadow-lg shadow-background-dark lg:grid-cols-2 card-shadow lg:px-20 xl:px-40 pt-60 place-items-center border-secondary-light/40 dark:border-secondary-dark/40 bg-about">
@@ -80,8 +78,6 @@
 		</div>
 	</div>
 </section>
-
-<Footer />
 
 <style>
 	.card-zoom {
