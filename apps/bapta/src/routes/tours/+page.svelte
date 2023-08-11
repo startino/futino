@@ -31,7 +31,6 @@
 	];
 </script>
 
-<Header />
 
 <!--Hero-->
 <div
@@ -61,4 +60,3 @@
 
 <FAQSection faqs={safariFaq} />
 
-<Footer />

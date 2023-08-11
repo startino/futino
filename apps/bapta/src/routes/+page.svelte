@@ -1,33 +1,9 @@
 <script lang="ts">
-	import { base } from '$app/paths';
-	import Header from '$lib/components/organisms/Header.svelte';
-	import Footer from '$lib/components/organisms/Footer.svelte';
 	import OutlineButton from '$lib/components/molecules/OutlineButton.svelte';
 	import { adventures } from './adventures/adventures';
 	import tours from '../lib/components/tsData/tours';
 	import ToursSnippet from '$lib/components/organisms/ToursSnippet.svelte';
 	import FaqSection from '$lib/components/organisms/FAQSection.svelte';
-
-	const staff_members = [
-		{
-			name: 'Emill Baptest',
-			role: 'Tour Guide',
-			img_path: '/images/safari/safari_img(25).jpeg',
-			body: 'Experience the beauty of the wild on a Bapta Safari. Witness stunning landscapes and unique wildlife up close, while guided by experienced professionals. Discover the secrets of the African savanna, and create unforgettable memories that will last a lifetime.',
-		},
-		{
-			name: 'Emmanuel Baptister',
-			role: 'CEO/Founder',
-			img_path: '/images/safari/safari_img(29).jpeg',
-			body: 'Experience the beauty of the wild on a Bapta Safari. Witness stunning landscapes and unique wildlife up close, while guided by experienced professionals. Discover the secrets of the African savanna, and create unforgettable memories that will last a lifetime.',
-		},
-		{
-			name: 'Emmory Baptist',
-			role: 'Tour Guide',
-			img_path: '/images/safari/safari_img(25).jpeg',
-			body: 'Experience the beauty of the wild on a Bapta Safari. Witness stunning landscapes and unique wildlife up close, while guided by experienced professionals. Discover the secrets of the African savanna, and create unforgettable memories that will last a lifetime.',
-		},
-	];
 
 	const testimonials = [
 		{
@@ -70,7 +46,6 @@
 	];
 </script>
 
-<Header />
 <!-- Hero Section-->
 <section
 	class="grid justify-center w-full h-screen grid-rows-2 px-10 bg-cover bg-center border-b shadow-lg shadow-background-dark lg:grid-cols-2 card-shadow xl:px-40 pt-60 place-items-center border-secondary-light/40 dark:border-secondary-dark/40 bg-[url('/images/serengeti/2.jpeg')]">
@@ -83,7 +58,7 @@
 			Unleash Your Adventurous Side with Our Unique Safari Experiences in Tanzania.
 		</h1>
 
-		<OutlineButton href="/tour">
+		<OutlineButton href="/tours">
 			<h1 class="px-4 py-1 title-large">Find Your Tour</h1>
 		</OutlineButton>
 	</div>
@@ -223,4 +198,3 @@
 		</OutlineButton>
 	</div>
 </section>
-<Footer />
