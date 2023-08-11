@@ -1,5 +1,4 @@
 # 6 DAYS LUXURY WESTERN CORRIDOR MIGRATION
-**(Tarangire, Western Serengeti, Ngorongoro Crater & Lake Manyara)**
 
 ## PARKS
 - Tarangire National Park
