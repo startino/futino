@@ -2,7 +2,7 @@ const tours = [
 	{
         id: 0,
         name: '6 Days Luxury Western Corridor Migration',
-        tags: ['Safari'],
+        tags: ['Safari', 'Top Rated'],
         parks: 'Tarangire, Western Serengeti, Ngorongoro Crater & Lake Manyara',
     },
     {
@@ -32,7 +32,7 @@ const tours = [
     {
         id: 5,
         name: '8 Days Luxury North Migration Safari',
-        tags: ['Safari'],
+        tags: ['Safari', 'Top Rated'],
         parks: 'Tarangire, Serengeti, Manyara & Ngorongoro Crater',
     },
     {
@@ -62,7 +62,7 @@ const tours = [
     {
         id: 10,
         name: '9 Days Midrange Honeymoon Tanzania Safari',
-        tags: ['Safari', 'Honeymoon', 'Zanzibar'],
+        tags: ['Safari', 'Honeymoon', 'Zanzibar', 'Top Rated'],
         parks: 'Tarangire, Serengeti, Ngorongoro Crater & Zanzibar',
     },
     {
