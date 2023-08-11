@@ -11,15 +11,10 @@ updates:
       interval: 'daily'
 
   - package-ecosystem: 'npm'
-    directory: '/packages/ui'
-    schedule:
-      interval: 'daily'
-
-  - package-ecosystem: 'npm'
     directory: '/apps/allheim'
     schedule:
       interval: 'daily'
-
+  
   - package-ecosystem: 'npm'
     directory: '/apps/anzelmo'
     schedule:
@@ -27,6 +22,11 @@ updates:
 
   - package-ecosystem: 'npm'
     directory: '/apps/bapta'
+    schedule:
+      interval: 'daily'
+
+  - package-ecosystem: 'npm'
+    directory: '/apps/eksno'
     schedule:
       interval: 'daily'
 
