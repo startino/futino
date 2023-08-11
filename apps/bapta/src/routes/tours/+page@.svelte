@@ -45,8 +45,11 @@
 
 <!--Tours-->
 <section class="section text-left shadow-lg bg-surface-dark" id="tours">
-	<div class="flex flex-col gap-8 inner-section">
-		<h1 class="display-large text-center">Safari Tours</h1>
+	<div class="flex flex-col gap-8 items-center inner-section">
+		<div class="text-center">
+			<h1 class="display-large">Safari Tour Packages</h1>
+			<h1 class="headline-small">Click on a tour to learn more!</h1>
+		</div>
 		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 			{#each tours as tour}
 				<TourCard {tour} />
