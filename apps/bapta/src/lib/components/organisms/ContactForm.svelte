@@ -29,9 +29,9 @@
 	<label for="message" class="label">Your message</label>
 	<textarea id="message" rows="4" class="input" placeholder="I want to ask about..." />
 
-	<div class="w-fit mx-auto p-6">
+	<div class="w-fit mx-auto">
 		<OutlineButton>
-			<h1 class="title-large p-3">Submit</h1>
+			<h1 class="title-large px-5 py-2">Submit</h1>
 		</OutlineButton>
 	</div>
 </form>

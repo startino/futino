@@ -63,7 +63,7 @@
 						<li>
 							<a
 								class="inline hover:text-tertiary-light dark:hover:text-tertiary-dark"
-								href="/tour">
+								href="/tours">
 								Tours
 							</a>
 						</li>

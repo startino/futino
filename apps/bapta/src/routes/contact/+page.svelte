@@ -4,7 +4,7 @@
 	import OutlineButton from '$lib/components/molecules/OutlineButton.svelte';
 	import TextField from '$lib/components/molecules/TextField.svelte';
 	import Button from '$lib/components/atoms/Button.svelte';
-	import FAQ from '$lib/components/organisms/FAQ.svelte';
+	import FAQ from '$lib/components/organisms/FAQSection.svelte';
 	import ContactForm from '$lib/components/organisms/ContactForm.svelte';
 
 	const FAQs = [
@@ -87,5 +87,5 @@
 </div>
 
 <div class="my-20">
-	<FAQ {FAQs} />
+	<FAQ faqs={FAQs} />
 </div>
