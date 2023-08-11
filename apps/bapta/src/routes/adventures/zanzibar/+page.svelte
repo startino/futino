@@ -84,14 +84,14 @@
 			</p>
 		</div>
 		<div
-			class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 my-6 gap-y-12 gap-x-6 justify-items-center items-center">
+			class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 my-6 gap-y-12 gap-x-6 justify-items-center items-center">
 			{#each activities as { img_path, label, body }}
-				<div class="max-w-3xl flex flex-col h-full items-stretch w-full">
-					<div class="-my-2 z-10">
-						<img src={img_path} alt={label} class="object-cover w-full h-64 rounded-t-lg" />
+				<div class="image_card">
+					<div class="">
+						<img src={img_path} alt={label} class="object-cover w-full h-64 rounded-lg" />
 					</div>
 					<div
-						class="flex flex-col items-center h-full text-surface-on-dark gap-y-3 p-6 bg-surface-dark rounded-lg shadow-md hover:shadow-lg">
+						class="flex flex-col items-center h-full text-surface-on-dark gap-y-3 p-6 shadow-md hover:shadow-lg">
 						<h3 class=" font-semibold title-large">
 							{label}
 						</h3>
@@ -119,15 +119,15 @@
 		</p>
 		<div class="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-3 mt-8">
 			{#each accomodations as accomodation}
-				<div class="">
-					<div class="my-3">
+				<div class="image_card">
+					<div class="">
 						<img
 							src={accomodation.img_path}
 							alt={accomodation.label}
 							class="object-cover w-full h-64 rounded-lg" />
 					</div>
 					<div
-						class="flex flex-col p-6 self-stretch gap-y-3 bg-surface-dark rounded-lg shadow-md hover:shadow-lg text-surface-on-dark">
+						class="flex flex-col p-6 self-stretch gap-y-3 rounded-lg shadow-md hover:shadow-lg text-surface-on-dark">
 						<h3 class="title-large font-semibold">
 							{accomodation.label}
 						</h3>
@@ -143,3 +143,9 @@
 		</div>
 	</div>
 </section>
+
+<style>
+	.image_card {
+		@apply max-w-md flex flex-col h-full bg-surface-dark rounded-lg shadow-lg;
+	}
+</style>
