@@ -73,8 +73,8 @@
 			Unleash Your Adventurous Side with Our Unique Safari Experiences in Tanzania.
 		</h1>
 
-		<OutlineButton href="/tours">
-			<h1 class="px-4 py-1 title-large">Find Your Tour</h1>
+		<OutlineButton href="#choose_bapta">
+			<h1 class="px-4 py-1 title-large">Why Choose Us</h1>
 		</OutlineButton>
 	</div>
 </section>
@@ -116,7 +116,7 @@
 </section>
 
 <!--Why Choose Bapta Section-->
-<section class="section">
+<section class="section" id="choose_bapta">
 	<div class="inner-section text-left">
 		<div class="flex flex-col gap-10 items-center justify-items-center">
 			{#each why_choose_us as { image, title, body }}
