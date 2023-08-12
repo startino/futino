@@ -35,8 +35,10 @@
 	<div class="inner-section grid grid-cols-1 md:grid-cols-3 items-center gap-3 h-[500px]">
 		<div
 			class="col-span-1 flex flex-col gap-y-4 items-center self-start md:items-start md:text-left text-surface-on-dark">
-			<h1 class="font-bold display-medium leading-tight">Your Safari Questions, Answered</h1>
-			<h1 class="body-large">
+			<h1 class="font-semibold headline-medium md:display-medium leading-tight">
+				Your Safari Questions, Answered
+			</h1>
+			<h1 class="body-large hidden md:flex">
 				Find Clarity and Confidence in Planning Your Unforgettable African Adventure.
 			</h1>
 

@@ -15,7 +15,7 @@
 		type="text"
 		id="search-field"
 		bind:value={searchInput}
-		class="block py-6 pl-12 w-full placeholder:title-large placeholder:text-surface-on-dark bg-surface-dark rounded-lg focus:ring-tertiary-dark focus:border-tertiary-dark"
+		class="block py-3 md:py-6 pl-12 w-full placeholder:title-medium md:placeholder:title-large placeholder:text-surface-on-dark bg-surface-dark rounded-lg focus:ring-tertiary-dark focus:border-tertiary-dark"
 		placeholder="Find an answer to your question..."
 		on:input />
 </div>
