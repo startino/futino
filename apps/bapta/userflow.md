@@ -56,7 +56,6 @@ top_tours & tours --> clicks_a_tour[Clicks on a Tour]
 clicks_a_tour --> reads_more[Reads more about the tour]
 reads_more --> clicks_request[Clicks Requests Quote]
 clicks_request --> fills_form[Fills in the form]
-
 end
 
 subgraph Landing_Page

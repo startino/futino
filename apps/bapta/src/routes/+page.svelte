@@ -26,30 +26,44 @@
 			name: 'Tom Jones',
 			body: "As a photographer, I was blown away frican wildlife and landscapes. The company's guides were patient and accommodating, allowing me to take my time to capture the perfect shot. I came away from the safari with some of the best pictures of my life, and memories that will last forever. Thank you for an unforgettable adventure!",
 		},
+	];
+
+	const why_choose_us = [
 		{
-			src: '#',
-			img_path: '/images/safari/safari_img(25).jpeg',
-			name: 'John Smith',
-			body: "Going on an African safari was for me, and the experience exceeded all my expectations! The wildlife was amazing, the landscapes were breathtaking, and the accommodations were comfortable and cozy. I couldn't have asked for a better trip. Thank you!",
+			image: '/images/serengeti/4.jpeg',
+			title: 'Safe & Hassle-free Travel',
+			body: `Your well-being is our top priority as we meticulously plan every detail of your journey, 
+			ensuring seamless logistics, comfortable accommodations, and expert guides who navigate both the wild landscapes 
+			and local customs. Rest easy knowing that your adventure is backed by our commitment to safety protocols, 
+			allowing you to fully immerse yourself in the wonders of Africa without any worries. 
+			Travel with confidence and let us pave the way for an unforgettable and worry-free safari experience.`,
 		},
 		{
-			src: '#',
-			img_path: '/images/safari/safari_img(21).jpeg',
-			name: 'Tom Jones',
-			body: "As a photographer, I was blown away frican wildlife and landscapes. The company's guides were patient and accommodating, allowing me to take my time to capture the perfect shot. I came away from the safari with some of the best pictures of my life, and memories that will last forever. Thank you for an unforgettable adventure!",
+			image: '/images/serengeti/2.jpeg',
+			title: 'Excellent Customer Service',
+			body: `From the moment you inquire about your adventure to the final farewell,
+			 our dedicated team is here to cater to your every need. We pride ourselves on
+			  crafting personalized itineraries that match your preferences and interests, 
+			  ensuring each moment of your safari exceeds expectations. With prompt and attentive communication, 
+			  knowledgeable staff, and a genuine passion for creating unforgettable memories, our commitment to excellent 
+			  customer service is a testament to the exceptional journey you'll embark upon with us.`,
 		},
 		{
-			src: '#',
-			img_path: '/images/safari/safari_img(26).jpeg',
-			name: 'Jane Doe',
-			body: "I've always very important to me. But also walks the walk. The guides were knowledgeable and respectful of the animals and their habitats, and the accommodations were eco-friendly and responsible. I would highly recommend this company to anyone looking for an ethical and unforgettable safari experience.",
+			image: '/images/serengeti/1.jpeg',
+			title: 'Private, Tailormade Safaris',
+			body: `We believe in crafting experiences that reflect your individual interests and aspirations. 
+			Our dedicated team collaborates closely with you to design a bespoke itinerary that encompasses your 
+			preferred destinations, activities, and pace. Enjoy the flexibility to explore at your own rhythm while
+			 benefiting from the expertise of our seasoned guides and exclusive accommodations. Whether it's a romantic escape,
+			  a family adventure, or a solo expedition, our tailor-made safaris ensure that every moment aligns perfectly with your 
+			  vision, guaranteeing an unforgettable journey that is distinctly yours..`,
 		},
 	];
 </script>
 
 <!-- Hero Section-->
 <section
-	class="grid justify-center w-full h-screen grid-rows-2 px-10 bg-cover bg-center border-b shadow-lg shadow-background-dark lg:grid-cols-2 card-shadow xl:px-40 pt-60 place-items-center border-secondary-light/40 dark:border-secondary-dark/40 bg-[url('/images/ARUSHA_EMMA6.jpg')]">
+	class="grid justify-center w-full h-screen grid-rows-2 px-10 bg-cover bg-center border-b shadow-lg shadow-background-dark lg:grid-cols-2 card-shadow xl:px-40 pt-60 place-items-center border-secondary-light/40 dark:border-secondary-dark/40 bg-landing_hero">
 	<div class="grid space-y-3 text-left justify-items-start">
 		<h1 class="font-bold text-primary-dark display-medium">
 			A Safari of a Lifetime,<br />
@@ -79,8 +93,8 @@
 </section>
 
 <!-- Introduction section-->
-<section class="flex flex-col items-center space-y-12 section">
-	<div class="flex flex-col space-y-4 max-w-7xl">
+<section class="flex flex-col items-center space-y-12 section bg-surface-dark">
+	<div class="flex flex-col space-y-4 inner-section">
 		<h1 class="font-extrabold display-large">Your Safari Experience</h1>
 		<h2 class="body-large max-w-2xl">
 			Embark on an extraordinary journey with a Bapta Safari, where you'll immerse yourself in the
@@ -101,7 +115,60 @@
 	</div>
 </section>
 
+<!--Why Choose Bapta Section-->
+<section class="section">
+	<div class="inner-section text-left">
+		<div class="flex flex-col gap-10 items-center justify-items-center">
+			{#each why_choose_us as { image, title, body }}
+				<div
+					class="grid grid-cols-1 sm:grid-cols-2 gap-5 content-around items-center h-full headline-large">
+					<div class="flex flex-col">
+						<h1 class="text-primary-dark font-semibold">{title}</h1>
+						<h1 class="body-medium max-w-xl">
+							{body}
+						</h1>
+					</div>
+					<img
+						src={image}
+						alt=""
+						class="object-fit sm:h-fit sm:w-fit w-full h-full object-center rounded-md" />
+				</div>
+			{/each}
+		</div>
+	</div>
+</section>
+
 <ToursSnippet {tours} title="Top Rated Tours" buttonText="See More" tag="Top Rated" />
+
+<section class="section">
+	<div class="inner-section">
+		<div class="grid grid-cols-1 md:grid-cols-3 justify-around gap-6">
+			{#each testimonials as testimonial}
+				<a
+					href={testimonial.src}
+					class="transition-all duration-300 rounded-lg p-6 flex flex-col h-full w-full max-w-md text-center items-center bg-surface-dark hover:scale-105 group">
+					<!--pfp-->
+					<img
+						class="w-32 h-32 p-1 m-2 border-2 rounded-full border-primary-dark"
+						src={testimonial.img_path}
+						alt={testimonial.name} />
+					<!--text body-->
+					<h1 class="py-1 text-center body-medium text-surface-on-dark">
+						{testimonial.body}
+					</h1>
+					<!--credentials-->
+					<div
+						class="flex flex-col pt-3 mt-auto justify-self-end h-fit text-secondary-dark transition-all duration-500 group-hover:text-tertiary-dark">
+						<h1 class="title-large">
+							{testimonial.name}
+						</h1>
+						<h2 class="body-small">TripAdvisor</h2>
+					</div>
+				</a>
+			{/each}
+		</div>
+	</div>
+</section>
 
 <!--Adventure Snippets-->
 <section class="section relative z-10">
@@ -144,36 +211,6 @@
 	</div>
 </section>
 
-<!--Testimonials Section-->
-<section class="section bg-surface-dark">
-	<div class="flex flex-col items-center inner-section">
-		<div class="grid grid-cols-1 gap-4 py-6 sm:grid-cols-2 lg:grid-cols-3 gap-y-4">
-			{#each testimonials as testimonial}
-				<a
-					href={testimonial.src}
-					class="transition-all rounded-lg p-6 flex flex-col h-full w-full place-items-center bg-card-surface-on hover:scale-105">
-					<!--pfp-->
-					<img
-						class="w-32 h-32 p-1 m-2 border-2 rounded-full border-primary-dark"
-						src={testimonial.img_path}
-						alt={testimonial.name} />
-					<!--text body-->
-					<h1 class="py-1 text-center body-medium text-surface-on-dark">
-						{testimonial.body}
-					</h1>
-					<!--credentials-->
-					<div class="flex flex-col pt-3 mt-auto justify-self-end h-fit">
-						<h1 class="text-center title-large text-secondary-dark">
-							{testimonial.name}
-						</h1>
-						<h2 class="body-small text-secondary-dark">TripAdvisor</h2>
-					</div>
-				</a>
-			{/each}
-		</div>
-	</div>
-</section>
-
 <FaqSection faqs={safariFaq} />
 
 <!--About Section-->
@@ -196,6 +233,9 @@
 </section>
 
 <style>
+	.image {
+		@apply object-cover object-center rounded-md;
+	}
 	.adventure-thumbnail {
 		@apply object-cover object-center w-full h-full rounded-md;
 	}
