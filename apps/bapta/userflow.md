@@ -1,22 +1,30 @@
 # Userflow FlowChart
+
 ---
 
 ### What are your visitor’s needs?
+
 - Unique and immersive safari experiences
 - Connection with nature and wildlife
 - Exploration of African cultures
 - Hassle-free booking process and personalized itineraries
+
 ### What problems do they want to resolve?
+
 - Finding a reliable and reputable safari company
 - Transparent pricing and communication
 - Safe and well-organized travel
 - Avoiding logistical issues and travel challenges
+
 ### What design features are necessary to help them educate themselves?
+
 - Clear information on safari packages
 - Detailed destination and activity descriptions
 - Captivating photo and video galleries
 - Informative blog articles on wildlife, culture, and travel tips
+
 ### Do they have any concerns about your product that you can address?
+
 - Safety measures and precautions
 - Environmental impact and responsible travel
 - Wildlife protection initiatives and eco-friendly practices
@@ -42,7 +50,7 @@ clicks_find_tour --> tours[Tours Page]
 landing_page --> scrolls1[Scrolls Down]
 landing_page --> clicks_why_choose_us[Clicks Why Choose Us]
 scrolls1 --> reads_emmanuels_quote[Reads Emmanuels Quote]
-reads_emmanuels_quote --> scrolls2[Scrolls Down] 
+reads_emmanuels_quote --> scrolls2[Scrolls Down]
 scrolls2 --> testimonial_snippet[Reads Testimonials]
 
 clicks_why_choose_us --> reads_emmanuels_quote

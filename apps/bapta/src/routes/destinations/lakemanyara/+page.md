@@ -23,4 +23,3 @@ Beyond its avian and feline inhabitants, Lake Manyara National Park is home to a
 ## Engaging Activities
 
 In addition to its abundant wildlife, Lake Manyara National Park provides a range of activities to enhance your exploration. Embark on forest hikes along the rift valley, immersing yourself in the park's enchanting flora and fauna. Take to the tranquil waters of Lake Manyara for a canoeing adventure, allowing you to appreciate the park's beauty from a unique perspective. Engage in tree canopy walks and experience the thrill of traversing elevated walkways, gaining a new perspective on the surrounding landscapes. For a more immersive experience, partake in walking safaris around the lake, accompanied by knowledgeable guides who will enrich your understanding of the park's intricate ecosystem.
-

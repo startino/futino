@@ -20,8 +20,7 @@
 
 	let largeHeaderClass = 'fixed py-12';
 	let activeheaderClass = largeHeaderClass;
-	let miniHeaderClass =
-		'fixed py-3 border-b bg-surface-light/60 dark:bg-surface-dark/60 backdrop-blur';
+	let miniHeaderClass = 'fixed py-3 border-b bg-surface-dark/60 backdrop-blur';
 
 	let menuOpen = false;
 	function toggleMenu() {
@@ -37,13 +36,12 @@
 
 <header
 	id="header"
-	class="undefined fixed py-3 border-b bg-surface-light/60 dark:bg-surface-dark/60 backdrop-blur text-primary-light dark:text-primary-dark border-secondary-light/10 dark:border-secondary-dark/10 top-0 z-40 w-full transition-all duration-400">
+	class="{$$props.class} {activeheaderClass} text-primary-light dark:text-primary-dark border-secondary-light/10 dark:border-secondary-dark/10 top-0 z-40 w-full transition-all duration-400">
 	<div class="flex relative items-center px-6 md:px-18 lg:max-w-5xl xl:max-w-6xl mx-auto">
-		<a class="flex gap-3" href="/"
-			><img src="/favicon.png" class="h-9 rounded-full" alt="Logo" />
-			<p class="hidden sm:flex text-xl my-auto pb-1" data-svelte-h="svelte-185kur8">
-				Futino Web-Template
-			</p></a>
+		<a class="flex gap-3" href="/">
+			<Logo />
+			<p class="hidden sm:flex text-xl my-auto pb-1">Bapta Safaris</p>
+		</a>
 		<div class="flex items-center ml-auto gap-6">
 			<nav class="hidden md:flex gap-6 pb-0.5">
 				<a class="nav-item" href="/">Home </a>

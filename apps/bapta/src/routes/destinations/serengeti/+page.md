@@ -25,4 +25,3 @@ To reach Serengeti National Park, embark on a scenic road journey using a custom
 ## Accommodation Options
 
 As you plan your stay in this extraordinary wilderness, you'll find a range of accommodation options to suit your preferences and budget. Choose from cozy budget camps that offer a genuine safari experience, mid-range camps that strike a balance between comfort and immersion, or indulge in the opulence of high-end luxury lodges that provide unrivaled comfort amidst the untamed beauty of the Serengeti.
-

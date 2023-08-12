@@ -42,7 +42,7 @@ const tours: Tour[] = [
 		tags: ['Safari'],
 		parks: 'Tarangire, Ngorongoro Crater, Serengeti & Lake Manyara',
 	},
-    {
+	{
 		id: 5,
 		thumbnail: '',
 		name: '8 Days North Migration Safari',
@@ -59,7 +59,7 @@ const tours: Tour[] = [
 	{
 		id: 7,
 		thumbnail: '',
-		name: '9 Days Family Tanzania Safari + Beach',
+		name: '9 Days Family Tanzania Safari & Beach',
 		tags: ['Safari', 'Zanzibar'],
 		parks: 'Tarangire, Serengeti, Ngorongoro Crater & Zanzibar',
 	},

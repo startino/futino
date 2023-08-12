@@ -31,4 +31,3 @@ A journey to Lake Eyasi is an opportunity to connect with both nature and humani
 ## Cultural Sensitivity
 
 Please note that visiting the Hadza tribe and engaging in activities such as witnessing hunting demonstrations require respectful interaction, cultural sensitivity, and adherence to local customs. It is important to approach these experiences with a spirit of openness and curiosity, fostering mutual understanding and appreciation.
-
