@@ -25,4 +25,3 @@ For a deeper understanding of the local culture, consider visiting the nearby Ma
 ## Exploration and Adventure
 
 Lake Natron also presents opportunities for exploration and adventure. Embark on a scenic hike to the captivating waterfall, where you can marvel at the cascading waters against the rugged backdrop of the surrounding landscape. For the adventurous souls, hiking Mount Ol Doinyo Lengai, an active volcano, offers a thrilling experience. Conquer the challenging terrain and be rewarded with breathtaking panoramic views from the summit.
-

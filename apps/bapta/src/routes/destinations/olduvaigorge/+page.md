@@ -23,4 +23,3 @@ Take in the breathtaking scenery of the Serengeti Plain, which serves as the bac
 ## A Shared Human History
 
 Visiting the Olduvai Gorge provides a unique opportunity to delve into our shared human history, gaining a deeper understanding of the journey that has brought us to where we are today. Immerse yourself in the captivating narratives and scientific achievements that have unfolded at this extraordinary site.
-

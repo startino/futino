@@ -3,7 +3,7 @@
 	import type { Tour } from '../tsData/tours';
 
 	export let tour: Tour;
-	const tour_url = tour.name.toLowerCase().replaceAll(' ', '_');
+	const tour_url = tour.name.toLowerCase().replaceAll(' ', '-');
 </script>
 
 <a

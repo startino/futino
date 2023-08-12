@@ -42,7 +42,7 @@ const tours: Tour[] = [
 		tags: ['Safari'],
 		parks: 'Tarangire, Ngorongoro Crater, Serengeti & Lake Manyara',
 	},
-    {
+	{
 		id: 5,
 		thumbnail: '',
 		name: '8 Days North Migration Safari',
@@ -59,14 +59,14 @@ const tours: Tour[] = [
 	{
 		id: 7,
 		thumbnail: '',
-		name: '9 Days Family Tanzania Safari + Beach',
+		name: '9 Days Family Tanzania Safari & Beach',
 		tags: ['Safari', 'Zanzibar'],
 		parks: 'Tarangire, Serengeti, Ngorongoro Crater & Zanzibar',
 	},
 	{
 		id: 8,
 		thumbnail: '',
-		name: '9 Days Honeymoon Safari + Beach',
+		name: '9 Days Honeymoon Safari & Beach',
 		tags: ['Safari', 'Zanzibar', 'Top Rated'],
 		parks: 'Tarangire, Serengeti, Ngorongoro Crater & Zanzibar',
 	},
@@ -74,7 +74,7 @@ const tours: Tour[] = [
 	{
 		id: 9,
 		thumbnail: '',
-		name: '12 Days Honeymoon Safari + Beach',
+		name: '12 Days Honeymoon Safari & Beach',
 		tags: ['Safari', 'Zanzibar'],
 		parks: 'Tarangire, Serengeti, Manyara, Ngorongoro Crater & Zanzibar',
 	},

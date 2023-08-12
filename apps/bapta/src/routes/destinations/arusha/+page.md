@@ -27,4 +27,3 @@ Arusha National Park also offers a range of activities that allow you to engage 
 ## Vibrant Algal Colors
 
 In the southern-eastern part of the park, you will encounter a captivating phenomenon—the presence of varying algal colors. These vibrant hues create a captivating sight and serve as a magnet for wading birds. Take a moment to appreciate this unique natural spectacle, observing the graceful movements and vibrant plumage of the avian visitors it attracts.
-
