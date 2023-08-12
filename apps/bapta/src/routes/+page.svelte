@@ -140,9 +140,10 @@
 
 <ToursSnippet {tours} title="Top Rated Tours" buttonText="See More" tag="Top Rated" />
 
+<!-- Testimonial Section -->
 <section class="section">
 	<div class="inner-section">
-		<div class="grid grid-cols-1 md:grid-cols-3 justify-around gap-6">
+		<div class="grid grid-cols-1 md:grid-cols-3 gap-6 justify-items-center">
 			{#each testimonials as testimonial}
 				<a
 					href={testimonial.src}
@@ -171,8 +172,8 @@
 </section>
 
 <!--Adventure Snippets-->
-<section class="section relative z-10 bg-gradient-to-bl from-surface-dark to-surface-variant-dark">
-	<div class="max-w-7xl mx-auto text-left flex flex-col gap-y-8">
+<section class="section relative z-10 bg-surface-dark">
+	<div class="inner-section text-left flex flex-col gap-y-8">
 		{#each adventures as { img_path, label, body, href }, i}
 			{#if i % 2 == 0}
 				<div class=" adventure-row">
@@ -211,6 +212,28 @@
 	</div>
 </section>
 
+<!-- CTA to book a tour -->
+<section class="section relative z-10">
+	<div class="inner-section text-left grid grid-cols-1 md:grid-cols-2 place-items-center gap-8">
+		<div class="flex flex-col gap-y-3">
+			<h1 class="font-semibold headline-large text-primary-dark">Find a Tour Today!</h1>
+			<h2 class="body-large max-w-xl">
+				Browse through our catalogue of tours to find just the one for you! But don't worry if you
+				don't find your dream tour, because each tour is fully customizable! Find a tour you love,
+				and request a quote!
+			</h2>
+
+			<OutlineButton href="/tours" class="py-2">
+				<h1 class="font-bold title-small">Find a Tour</h1>
+			</OutlineButton>
+		</div>
+		<img
+			src="/images/safari/safari_img(22).jpeg"
+			alt="img"
+			class="object-cover object-center rounded-md w-full max-w-md" />
+	</div>
+</section>
+
 <FaqSection faqs={safariFaq} />
 
 <!--About Section-->
@@ -229,6 +252,29 @@
 		<OutlineButton href="/about">
 			<h1 class="p-2 font-bold title-small">Learn More</h1>
 		</OutlineButton>
+	</div>
+
+	<!-- CTA to book a tour -->
+</section>
+
+<section class="section relative z-10">
+	<div class="inner-section text-left grid grid-cols-1 md:grid-cols-2 place-items-center gap-8">
+		<div class="flex flex-col gap-y-3">
+			<h1 class="font-semibold headline-large text-primary-dark">Ready to find a Tour?</h1>
+			<h2 class="body-large max-w-xl">
+				Browse through our catalogue of tours to find just the one for you! But don't worry if you
+				don't find your dream tour, because each tour is fully customizable! Find a tour you love,
+				and request a quote!
+			</h2>
+
+			<OutlineButton href="/tours" class="py-2">
+				<h1 class="font-bold title-small">Find a Tour</h1>
+			</OutlineButton>
+		</div>
+		<img
+			src="/images/safari/safari_img(19).jpeg"
+			alt="img"
+			class="object-cover object-center rounded-md w-full max-w-md" />
 	</div>
 </section>
 
