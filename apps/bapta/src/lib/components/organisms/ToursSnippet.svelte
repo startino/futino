@@ -12,7 +12,7 @@
 </script>
 
 <!--Tours Snippet-->
-<section class="flex flex-col items-center gap-4 md:text-center section bg-surface-dark">
+<section class="flex flex-col items-center gap-4 md:text-center section">
 	<div class="place-self-center items-center mx-2 px-2 flex flex-col max-w-7xl">
 		<div class="flex flex-col">
 			<div class="flex flex-col md:flex-row justify-items-center items-center gap-2 md:gap-8">

@@ -93,7 +93,7 @@
 </section>
 
 <!-- Introduction section-->
-<section class="flex flex-col items-center space-y-12 section bg-surface-dark">
+<section class="flex flex-col items-center space-y-12 section">
 	<div class="flex flex-col space-y-4 inner-section">
 		<h1 class="font-extrabold display-large">Your Safari Experience</h1>
 		<h2 class="body-large max-w-2xl">
@@ -172,7 +172,7 @@
 </section>
 
 <!--Adventure Snippets-->
-<section class="section relative z-10 bg-surface-dark">
+<section class="section relative z-10">
 	<div class="inner-section text-left flex flex-col gap-y-8">
 		{#each adventures as { img_path, label, body, href }, i}
 			{#if i % 2 == 0}
@@ -237,7 +237,7 @@
 <FaqSection faqs={safariFaq} />
 
 <!--About Section-->
-<section class="flex flex-col items-center space-y-12 section bg-surface-dark">
+<section class="flex flex-col items-center space-y-12 section">
 	<div
 		class="card max-w-5xl p-10 space-y-6 border rounded-lg shadow-2xl border-primary-dark/50 bg-card-surface-on">
 		<h1 class="font-bold text-center display-small">Bapta Safaris</h1>

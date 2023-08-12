@@ -1,5 +1,6 @@
 <script lang="ts">
 	import FAQCard from '../molecules/FAQCard.svelte';
+	import OutlineButton from '../molecules/OutlineButton.svelte';
 	import SearchBox from '../molecules/SearchBox.svelte';
 	// Gets the Frequently Asked Questions by parent component
 	export let faqs: {
@@ -28,15 +29,20 @@
 	};
 </script>
 
-<section class=" section overflow-hidden relative">
+<section class="section overflow-hidden relative">
 	<div
-		class="absolute bottom-0 w-screen bg-gradient-to-t from-surface-variant-dark to-transparent h-24" />
-	<div class="inner-section grid grid-cols-1 md:grid-cols-3 items-center gap-3">
-		<div class="col-span-1 gap-y-2 self-start text-left text-surface-on-dark">
+		class="absolute bottom-0 w-screen bg-gradient-to-t from-surface-variant-dark to-transparent h-36" />
+	<div class="inner-section grid grid-cols-1 md:grid-cols-3 items-center gap-3 h-[500px]">
+		<div
+			class="col-span-1 flex flex-col gap-y-4 items-center self-start md:items-start md:text-left text-surface-on-dark">
 			<h1 class="font-bold display-medium leading-tight">Your Safari Questions, Answered</h1>
-			<h1 class="pb-6 body-large">
+			<h1 class="body-large">
 				Find Clarity and Confidence in Planning Your Unforgettable African Adventure.
 			</h1>
+
+			<OutlineButton href="/contact" class="py-2">
+				<h1 class="font-bold title-small">See More</h1>
+			</OutlineButton>
 		</div>
 		<div class="flex flex-col gap-4 h-screen col-span-2 items-center">
 			<SearchBox class="w-full mb-4" bind:searchInput on:input={searchPhotos} />

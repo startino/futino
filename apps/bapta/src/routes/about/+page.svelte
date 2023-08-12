@@ -20,7 +20,7 @@
 <!-- Our Mission section -->
 <section class="section">
 	<div class="my-6 inner-section">
-		<div class="flex flex-col items-center w-full p-6 mx-auto rounded-xl bg-surface-dark">
+		<div class="flex flex-col items-center w-full p-6 mx-auto rounded-xl">
 			<div class="grid items-center grid-cols-1 md:grid-cols-2 gap-y-3 md:flex-row gap-x-3">
 				<img
 					src="images\safari\safari_img(9).jpeg"
