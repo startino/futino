@@ -17,7 +17,7 @@
 		<div class="flex flex-col">
 			<div class="flex flex-col md:flex-row justify-items-center items-center gap-2 md:gap-8">
 				<h1 class="display-large">{$$props.title}</h1>
-				<OutlineButton href="/tour" class="hidden md:flex">
+				<OutlineButton href="/tours" class="hidden md:flex">
 					<h1 class="title-large text-center">{$$props.buttonText}</h1>
 				</OutlineButton>
 			</div>
@@ -31,7 +31,7 @@
 				{/if}
 			{/each}
 		</div>
-		<OutlineButton href="/tour" class="md:hidden flex py-3">
+		<OutlineButton href="/tours" class="md:hidden flex py-3">
 			<h1 class="title-large text-center">{$$props.buttonText}</h1>
 		</OutlineButton>
 	</div>
