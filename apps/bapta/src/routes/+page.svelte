@@ -219,7 +219,7 @@
 
 <!-- CTA to book a tour -->
 <section class="section relative z-10">
-	<div class="inner-section text-left grid grid-cols-1 md:grid-cols-2 place-items-center gap-8">
+	<div class="inner-section text-left grid grid-cols-1 sm:grid-cols-2 place-items-center gap-8">
 		<div class="flex flex-col gap-y-3">
 			<h1 class="font-semibold headline-large text-primary-dark">Find a Tour Today!</h1>
 			<h2 class="body-large max-w-xl">
