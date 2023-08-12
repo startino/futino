@@ -66,7 +66,7 @@ const tours: Tour[] = [
 	{
 		id: 8,
 		thumbnail: '',
-		name: '9 Days Honeymoon Safari + Beach',
+		name: '9 Days Honeymoon Safari & Beach',
 		tags: ['Safari', 'Zanzibar', 'Top Rated'],
 		parks: 'Tarangire, Serengeti, Ngorongoro Crater & Zanzibar',
 	},
@@ -74,7 +74,7 @@ const tours: Tour[] = [
 	{
 		id: 9,
 		thumbnail: '',
-		name: '12 Days Honeymoon Safari + Beach',
+		name: '12 Days Honeymoon Safari & Beach',
 		tags: ['Safari', 'Zanzibar'],
 		parks: 'Tarangire, Serengeti, Manyara, Ngorongoro Crater & Zanzibar',
 	},

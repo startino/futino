@@ -17,18 +17,10 @@
 			{question}
 		</h3>
 
-		<span class=" ml-auto">
-			<svg
-				class="transition-transform duration-200 ease-in"
-				style={isOpen ? 'transform: rotate(180deg)' : ''}
-				width="20"
-				height="20"
-				fill="none"
-				stroke-linecap="round"
-				stroke-linejoin="round"
-				stroke-width="2"
-				viewBox="0 0 24 24"
-				stroke="currentColor"><path d="M19 9l-7 7-7-7" /></svg>
+		<span
+			class=" ml-auto transition-all ease-in duration-200"
+			style={isOpen ? 'transform: rotate(180deg)' : ''}>
+			<Icon icon="down-caret" />
 		</span>
 	</div>
 	{#if isOpen}
