@@ -121,8 +121,8 @@
 		<div class="flex flex-col gap-10 items-center justify-items-center">
 			{#each why_choose_us as { image, title, body }}
 				<div
-					class="grid grid-cols-1 sm:grid-cols-2 gap-5 content-around items-center h-full headline-large">
-					<div class="flex flex-col">
+					class="grid grid-cols-1 md:grid-cols-2 gap-5 content-around items-center h-full headline-large bg-surface-dark rounded-lg">
+					<div class="flex flex-col px-6 py-6 gap-2">
 						<h1 class="text-primary-dark font-semibold">{title}</h1>
 						<h1 class="body-medium max-w-xl">
 							{body}
@@ -131,7 +131,7 @@
 					<img
 						src={image}
 						alt=""
-						class="object-fit sm:h-fit sm:w-fit w-full h-full object-center rounded-md" />
+						class="object-cover h-72 w-full md:h-full object-center rounded-md" />
 				</div>
 			{/each}
 		</div>
@@ -171,7 +171,7 @@
 </section>
 
 <!--Adventure Snippets-->
-<section class="section relative z-10">
+<section class="section relative z-10 bg-gradient-to-bl from-surface-dark to-surface-variant-dark">
 	<div class="max-w-7xl mx-auto text-left flex flex-col gap-y-8">
 		{#each adventures as { img_path, label, body, href }, i}
 			{#if i % 2 == 0}
