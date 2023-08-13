@@ -19,7 +19,7 @@ Upon arrival at Arusha (ARK) or Kilimanjaro International Airport (JRO), your Ba
 
 - **Destination:** Arusha city
 - **Accommodation:** Arusha Planet Lodge / A1 Hotel & Resort / Tulia Boutique Hotel & Spa
-- **Meal:** Bed & Breakfast
+- **Meal:** Breakfast
 
 ### DAY 2: ARUSHA TO TARANGIRE NATIONAL PARK
 

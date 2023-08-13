@@ -20,7 +20,7 @@ Arrive at Arusha (ARK) or Kilimanjaro International Airport (JRO). Meet your Bap
 
 - **Destination:** Arusha city
 - **Accommodation:** Mount Meru Hotel / Arusha Coffee Lodge / Gran Melia Arusha
-- **Meal:** Bed & Breakfast
+- **Meal:** Breakfast
 
 ### DAY 2: ARUSHA TO TARANGIRE NATIONAL PARK
 

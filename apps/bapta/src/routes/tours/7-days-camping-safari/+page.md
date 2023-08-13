@@ -19,7 +19,7 @@ Upon arrival at Arusha Airport (ARK) or Kilimanjaro International Airport (JRO),
 
 - **Destination:** Arusha city
 - **Accommodation:** Venus Premier Hotel / Venice Hotel
-- **Meal:** Bed & Breakfast
+- **Meal:** Breakfast
 
 ### DAY 2: ARUSHA TO TARANGIRE NATIONAL PARK
 
