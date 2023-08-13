@@ -9,13 +9,13 @@
 
 ## OVERVIEW
 
-Embark on an unforgettable 8-day luxury family safari across Tanzania's northern circuit. Explore the renowned Tarangire, Ngorongoro Crater, and Serengeti National Park, as well as the captivating Lake Manyara. Witness the awe-inspiring sights of diverse wildlife, from the iconic African elephants and ancient baobab trees in Tarangire to the endless plains and abundant wildlife of the Serengeti. Encounter the endangered black rhinos in Ngorongoro Crater and enjoy the unique beauty of Lake Manyara. Your journey is enriched with stays in luxury lodges featuring private showers.
+This 8-day Luxury family safari on the northern circuit of Tanzania takes you to the most famous and incredible parks. You will visit major parks, including Tarangire, Serengeti, and Ngorongoro. In Tarangire, you'll be amazed by the large African elephants and ancient baobab trees. The Ngorongoro Crater is a highlight, offering a chance to see endangered black rhinos. Serengeti National Park is home to millions of animals on its endless plains. You'll stay in luxury lodges with private showers.
 
 ## DETAILED ITINERARY
 
 ### DAY 1: ARRIVAL AT THE AIRPORT TO ARUSHA
 
-Upon arrival at Arusha (ARK) or Kilimanjaro International Airport (JRO), your Bapta African Safaris representative will warmly welcome you and provide a brief overview before transferring you to your Arusha lodgings for an overnight stay.
+Upon arrival at the airport in Arusha (ARK) or Kilimanjaro international airport (JRO), you will be met and welcomed by your representative from Bapta African Safaris. They will provide a brief before you drive to your lodgings in Arusha for overnight.
 
 - **Destination:** Arusha city
 - **Accommodation:** Mount Meru Hotel / Arusha Coffee Lodge / Gran Melia Arusha
@@ -23,7 +23,7 @@ Upon arrival at Arusha (ARK) or Kilimanjaro International Airport (JRO), your Ba
 
 ### DAY 2: ARUSHA TO TARANGIRE NATIONAL PARK
 
-After breakfast at your Arusha hotel (around 07:30 - 08:00), your personal driver guide will pick you up for a journey to Tarangire National Park. Explore this unique park renowned for its elephant herds and ancient baobab trees. Enjoy a picnic lunch and continue with your game drive. Later, drive to your luxury lodge in Tarangire for relaxation, dinner, and an overnight stay.
+Early morning after breakfast at your Arusha hotel, your personal driver guide will pick you up for a drive to Tarangire National Park. The drive is approximately 2.5 hours to the gate. Tarangire is known for its elephant herds and ancient baobab trees. You'll spot various animals and bird species.
 
 - **Destination:** Tarangire National Park
 - **Accommodation:** Nimali Tarangire / Oliver’s Camp / Tarangire Treetops
@@ -31,7 +31,7 @@ After breakfast at your Arusha hotel (around 07:30 - 08:00), your personal drive
 
 ### DAY 3: FULL DAY GAME DRIVE IN TARANGIRE NATIONAL PARK
 
-Embark on a full day of game viewing in Tarangire National Park. Enjoy a hot lunch during your exploration. Return to your accommodation for relaxation, dinner, and an overnight stay.
+After breakfast, enjoy a full day game drive in Tarangire National Park. You'll have hot lunch inside the park. Return to your accommodation for relaxation, dinner, and overnight.
 
 - **Destination:** Tarangire National Park
 - **Accommodation:** Nimali Tarangire / Oliver’s Camp / Tarangire Treetops
@@ -39,7 +39,7 @@ Embark on a full day of game viewing in Tarangire National Park. Enjoy a hot lun
 
 ### DAY 4: TARANGIRE TO LAKE MANYARA NATIONAL PARK
 
-Depart Tarangire after breakfast and drive to Lake Manyara National Park. Encounter diverse birdlife and witness the famous tree-climbing lions. After a day of exploration, head to your Karatu accommodation for relaxation, dinner, and an overnight stay.
+Drive to Lake Manyara National Park, known for its birdlife and tree-climbing lions. Explore the park's diverse wildlife and landscapes.
 
 - **Destination:** Lake Manyara National Park
 - **Accommodation:** Kitela Lodge / Neptune Ngorongoro / Gibb’s Farm
@@ -47,7 +47,7 @@ Depart Tarangire after breakfast and drive to Lake Manyara National Park. Encoun
 
 ### DAY 5: KARATU NGORONGORO CRATER
 
-Depart Karatu after breakfast for Ngorongoro Conservation Area. Descend into the Ngorongoro Crater, a world heritage site and home to diverse wildlife, including the endangered black rhinos. Enjoy a packed lunch at the hippo pool before ascending the crater and checking in to your accommodation on the crater rim.
+Drive to Ngorongoro Conservation Area and descend to the Ngorongoro Crater. Witness the unique ecosystem and wildlife of this world heritage site.
 
 - **Destination:** Ngorongoro Crater
 - **Accommodation:** Ngorongoro Serena Safari Lodge / Ngorongoro Lion’s Paw
@@ -55,7 +55,7 @@ Depart Karatu after breakfast for Ngorongoro Conservation Area. Descend into the
 
 ### DAY 6: NGORONGORO CONSERVATION AREA TO SERENGETI NATIONAL PARK
 
-Depart Ngorongoro after breakfast for Serengeti National Park, renowned for its vast wildlife population and the annual migration. Enjoy a game drive en-route to your Serengeti accommodation, where you will have dinner and an overnight stay.
+Drive to Serengeti National Park, famous for its wildlife population and the annual migration. Explore the vast plains and diverse ecosystems.
 
 - **Destination:** Serengeti National Park
 - **Accommodation:** Kubu Kubu Tented Lodge / Serengeti Serena Safari Lodge / Melia Serengeti
@@ -63,7 +63,7 @@ Depart Ngorongoro after breakfast for Serengeti National Park, renowned for its 
 
 ### DAY 7: FULL DAY GAME DRIVE IN SERENGETI NATIONAL PARK
 
-Embark on a full day of game viewing in Serengeti National Park, seeking out the "Big Five" and other remarkable wildlife. Enjoy lunch in the park and return to your lodge for relaxation, dinner, and an overnight stay.
+Embark on a full day game drive in Serengeti National Park, searching for the big cats and other wildlife. Return to your lodge for relaxation, dinner, and overnight.
 
 - **Destination:** Serengeti National Park
 - **Accommodation:** Kubu Kubu Tented Lodge / Serengeti Serena Safari Lodge / Melia Serengeti
@@ -71,7 +71,7 @@ Embark on a full day of game viewing in Serengeti National Park, seeking out the
 
 ### DAY 8: ONWARDS FLIGHT TO ZANZIBAR/ARUSHA
 
-After breakfast, transfer to Seronera airstrip for your flight to Arusha or Zanzibar. Meet a Bapta African Safaris representative upon arrival in Arusha, who will assist you with your onward journey.
+After breakfast, transfer to Seronera airstrip for your flight to Arusha or Zanzibar. Your journey concludes with a warm farewell from our staff.
 
 - **Meal:** (Breakfast & Lunch)
 
