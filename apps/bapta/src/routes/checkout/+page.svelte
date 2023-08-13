@@ -1,12 +1,14 @@
 <script lang="ts">
-	import CheckoutForm from '$lib/components/organisms/CheckoutForm.svelte';
-	import ContactForm from '$lib/components/organisms/ContactForm.svelte';
-	import Footer from '$lib/components/organisms/Footer.svelte';
-	import Header from '$lib/components/organisms/Header.svelte';
-	import { stringify } from 'postcss';
+	import { createClient } from '@supabase/supabase-js';
+	import type { Database } from '$lib/supabase.types';
 
-	export let tour: {
-		id: number;
+	// Create a Supabase client object
+	const supabase = createClient<Database>(
+		'https://ekushmqbxanusqyxyzkk.supabase.co',
+		'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVrdXNobXFieGFudXNxeXh5emtrIiwicm9sZSI6ImFub24iLCJpYXQiOjE2ODEzODQ1NzMsImV4cCI6MTk5Njk2MDU3M30.RTlWWjf6n2PCDkMdN43B0lBjsXe_aEIfTIs2bDCxfSE',
+	);
+
+  export let tour: {
 		img_path: string;
 		name: string;
 		tags: string[];
@@ -18,9 +20,19 @@
 		parks: 'Park One, Park Two, Park Three',
 		img_path: '',
 	};
-</script>
 
-<Header />
+  async function registerTour() {
+    console.log("inserting test data");
+    await supabase.from('bapta').insert([
+      {
+        "name": "test",
+        "contact": "WhatsApp | +12 345 678 9000",
+        "people": 9,
+        "choice": "test-zanzibar",
+      }
+    ]);
+  }
+</script>
 
 <section class="section py-32 h-screen">
 	<div class="grid grid-cols-1 md:grid-cols-2 gap-12">
@@ -82,10 +94,16 @@
 			</div>
 		</div>
 
+		<button
+			on:click={registerTour}
+			id="register"
+			class="p-5 shadow-lg rounded-lg text-center bg-secondary-light dark:bg-secondary-dark text-secondary-on-light dark:text-secondary-on-dark display-small">
+			Register
+		</button>
+
+
+
 		<div class="self-center">
-			<CheckoutForm />
 		</div>
 	</div>
 </section>
-
-<Footer />
