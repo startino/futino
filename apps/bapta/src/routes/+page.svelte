@@ -88,6 +88,7 @@
 	</div>
 </section>
 
+<!-- About Bapta Section-->
 <section class="section" id="choose_bapta">
 	<div class="inner-section grid grid-cols-1 lg:grid-cols-5 gap-12">
 		<div
@@ -99,8 +100,8 @@
 			<h1 class="font-extrabold display-small md:display-medium">Your Safari Experience</h1>
 			<h2 class="body-large max-w-2xl">
 				Embark on an extraordinary journey with a Bapta Safari, where you'll immerse yourself in the
-				unparalleled beauty of the wild. Traverse through awe-inspiring landscapes, each one more
-				breathtaking than the last, while being expertly led by seasoned professionals who are
+				beauty of the wild. Traverse through awe-inspiring landscapes, each one more breathtaking
+				than the last, while being expertly led by seasoned professionals, including myself, who are
 				passionate about sharing their deep knowledge of Tanzania's hidden gems. Encounter the most
 				remarkable and elusive wildlife, observing them in their natural habitats, and let every
 				moment etch into your heart, crafting indelible memories destined to be cherished for a
@@ -171,7 +172,7 @@
 </section>
 
 <!--Adventure Snippets-->
-<section class="section relative z-10">
+<section class="section relative">
 	<div class="inner-section text-left flex flex-col gap-y-8 items-start md:items-center">
 		<div class="flex flex-col md:text-center text-surface-on-dark">
 			<h1 class="display-small md:display-large font-bold">Extend Your Safari</h1>
@@ -258,10 +259,9 @@
 			<h1 class="p-2 font-bold title-small">Learn More</h1>
 		</OutlineButton>
 	</div>
-
-	<!-- CTA to book a tour -->
 </section>
 
+<!-- CTA to book a tour -->
 <section class="section relative z-10">
 	<div class="inner-section text-left grid grid-cols-1 md:grid-cols-2 place-items-center gap-8">
 		<div class="flex flex-col gap-y-3">

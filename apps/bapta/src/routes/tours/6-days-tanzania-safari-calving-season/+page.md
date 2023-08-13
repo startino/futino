@@ -1,4 +1,16 @@
+<script lang="ts">
+import AccommodationToggle from '../AccommodationToggle.svelte';
+
+const accommodationOptions = [
+  { label: 'Luxury', index: 0, for: 'luxury' },
+	{ label: 'Midrange', index: 1, for: 'midrange' },
+];
+
+</script>
+
 # 6 DAYS TANZANIA SAFARI CALVING SEASON
+
+<AccommodationToggle promotions={accommodationOptions}/>
 
 ## PARKS
 
@@ -9,55 +21,101 @@
 
 ## OVERVIEW
 
-This 6-day luxury safari on the northern circuit of Tanzania takes you to the most famous and incredible parks, including Tarangire, Serengeti, Lake Manyara, and Ngorongoro. In Tarangire, you will be astonished by the large African elephants as well as the huge and ancient baobab trees. Ngorongoro Crater will be the icing on the cake and the best place to visit the endangered black rhinos. Lake Manyara National Park is famous for the tree climbing lions and its diverse bird population. You will enjoy accommodations in luxury lodges with private showers.
+This 6-day luxury safari on the northern circuit of Tanzania takes you to the most famous and incredible parks, including Tarangire, Serengeti, Lake Manyara, and Ngorongoro. Experience the beauty of large African elephants, ancient baobab trees, endangered black rhinos, and tree-climbing lions. You will stay in luxury lodges with private showers.
 
 ## DETAILED ITINERARY
 
 ### DAY 1: ARRIVAL AT THE AIRPORT TO ARUSHA
 
-Upon arrival at the airport in Arusha (ARK) or Kilimanjaro International Airport (JRO), you will be met and welcomed by your representative from Bapta African Safaris who will give you a short briefing before driving you to your lodgings in Arusha for an overnight stay.
+Upon arrival at the airport in Arusha (ARK) or Kilimanjaro International Airport (JRO), you will be met and welcomed by your representative from Bapta African Safaris, who will give you a short briefing before you drive to your lodgings in Arusha for an overnight stay.
 
 - **Destination:** Arusha city
+
+#### Luxury
+
 - **Accommodation:** Mount Meru Hotel / Arusha Coffee Lodge / Gran Melia Arusha
+- **Meal:** Breakfast
+
+### Midrange
+
+- **Accommodation:** Arusha Planet Lodge / A1 Hotel & Resort / Tulia Boutique Hotel & Spa
 - **Meal:** Bed & Breakfast
 
 ### DAY 2: ARUSHA TO TARANGIRE NATIONAL PARK
 
-Early morning after having breakfast at your hotel in Arusha (around 07:30 - 08:00), your personal driver guide will pick you up and depart straight to Tarangire National Park, known for its elephant herds and ancient baobab trees. Enjoy a game drive, lunch at a picnic site, and proceed to your luxury lodge in Karatu for relaxation, dinner, and overnight.
+Early morning after having breakfast at your hotel in Arusha at around 0730hrs to 0800hrs, you will be picked up by your personal driver guide and depart straight to Tarangire National Park. The drive takes approximately 2.5 hours to the park gate. Tarangire National Park is located on the northern part of Tanzania and is known for its wide variety of animals and landscapes. It is home to the greatest concentration of African elephants and ancient baobab trees. You'll have the opportunity to spot animals like giraffes, zebras, buffalos, lions, leopards, impalas, gazelles, and more. The park also boasts over 500 bird species. After lunch at a picnic site, you will continue your game drive and then proceed to your lodge in Karatu for relaxation, dinner, and an overnight stay.
 
 - **Destination:** Tarangire National Park
+
+### Luxury
+
 - **Accommodation:** Kitela Lodge / Neptune Ngorongoro / Gibb’s Farm
+- **Meal:** Full Board (Breakfast, Lunch & Dinner)
+
+### Midrange
+
+- **Accommodation:** Marera Valley Lodge / Farm of Dreams Lodge / Bougainvillea Safari Lodge
 - **Meal:** Full Board (Breakfast, Lunch & Dinner)
 
 ### DAY 3: KARATU TO SOUTHERN SERENGETI NATIONAL PARK (NDUTU)
 
-After breakfast, drive to the southern Serengeti (Ndutu), renowned for its calving season where more than 250,000 calves are born. Experience game viewing, have lunch at your picnic site, and continue to your camp or lodge for dinner and an overnight stay.
+Early morning after breakfast, you will drive to the south of Serengeti known as Ndutu. This area is famous for the calving season, with more than 250,000 calves being born from late January to February. You might also spot predators like hyenas and lions during this time. After lunch, you'll continue game viewing and then head to your camp or lodge for dinner and an overnight stay.
 
 - **Destination:** South Serengeti National Park / Ndutu
+
+### Luxury
+
 - **Accommodation:** Lake Masek Tented Lodge
 - **Meal:** All-inclusive (Breakfast, Lunch & Dinner) + drinks
+  Accommodation: Serengeti Heritage Tented Camp
+  Meal: Full Board (Breakfast, Lunch & Dinner)
+
+### Midrange
+
+- **Accommodation:** Serengeti Heritage Tented Camp
+- **Meal:** Full Board (Breakfast, Lunch & Dinner)
 
 ### DAY 4: FULL DAY GAME DRIVE IN SOUTH SERENGETI NATIONAL PARK (NDUTU)
 
-Begin the day with an early morning game drive in southern Serengeti, observing the calving season. Lunch will be served, and you'll have a final game drive before returning to your accommodation for relaxation, dinner, and overnight.
+Another full day in the southern Serengeti, exploring and searching for wildlife. After breakfast, you'll continue your game drive, have lunch, and then a final game drive before returning to your accommodation for relaxation, dinner, and an overnight stay.
 
 - **Destination:** South Serengeti National Park / Ndutu
+
+### Luxury
+
 - **Accommodation:** Lake Masek Tented Lodge
 - **Meal:** All-inclusive (Breakfast, Lunch & Dinner) + drinks
+  ### Midrange
+- **Accommodation:** Serengeti Heritage Tented Camp
+- **Meal:** Full Board (Breakfast, Lunch & Dinner)
 
 ### DAY 5: SOUTH SERENGETI NATIONAL PARK TO NGORONGORO CRATER TO KARATU
 
-Drive to Ngorongoro Conservation Area and descend into the Ngorongoro Crater. Explore this world heritage site known for diverse wildlife, including the endangered black rhinos. Enjoy lunch at a picnic site and then ascend the crater, driving to your accommodation in Karatu for relaxation, dinner, and overnight.
+Early morning after breakfast, you will drive to the Ngorongoro Conservation Area. The drive takes approximately 3 hours to the floor of the Ngorongoro Crater. Enjoy the breathtaking views before descending into the crater. The Ngorongoro Crater is a world heritage site with a diverse range of wildlife. You may see animals like zebras, wildebeests, hyenas, lions, gazelles, impalas, kudus, waterbucks, buffalos, and more. The crater is also home to the endangered black rhinos. After your game drive and lunch at a picnic site, you will ascend the crater and head to your accommodation in Karatu for relaxation, dinner, and an overnight stay.
 
 - **Destination:** Ngorongoro Crater
+
+### Luxury
+
 - **Accommodation:** Kitela Lodge / Neptune Ngorongoro / Gibb’s Farm
+- **Meal:** Full Board (Breakfast, Lunch & Dinner)
+
+### Midrange
+
+- **Accommodation:** Marera Valley Lodge / Farm of Dreams Lodge / Bougainvillea Safari Lodge
 - **Meal:** Full Board (Breakfast, Lunch & Dinner)
 
 ### DAY 6: LAKE MANYARA NATIONAL PARK TO ARUSHA
 
-After breakfast in Karatu, drive to Lake Manyara National Park, known for its birdlife and tree-climbing lions. Enjoy game viewing and a picnic lunch before driving back to Arusha. Your Bapta African Safaris representative will bid you farewell, and you can either have an extra night in Arusha or catch your onward flight.
+Early morning after having breakfast at your lodge in Karatu, you will depart for Lake Manyara National Park. The drive takes approximately 1 hour to the park gate. Lake Manyara National Park is known for its birdlife and tree-climbing lions. The park features a shallow alkaline lake that attracts numerous bird species, including flamingos, pelicans, storks, herons, cranes, and more. You'll also encounter animals like lions, elephants, giraffes, zebras, warthogs, baboons, blue monkeys, and more. After lunch at a picnic site, you will drive back to Arusha where you will receive a special farewell from a representative of Bapta African Safaris. You can choose to have an extra night in Arusha or proceed to the airport for your onward flight.
+
+### Luxury
 
 - **Destination:** Lake Manyara National Park
+- **Meal:** Breakfast & Lunch
+
+### Midrange
+
 - **Meal:** Breakfast & Lunch
 
 ## INCLUSIONS
