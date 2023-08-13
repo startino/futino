@@ -18,10 +18,14 @@ This 8-day Luxury safari on the northern circuit of Tanzania takes you to the mo
 Upon arrival at the airport in Arusha (ARK) or Kilimanjaro International Airport (JRO), you'll be met and welcomed by your representative from Bapta African Safaris. A brief will be provided before driving to your lodgings in Arusha for an overnight stay.
 
 - **Destination:** Arusha city
+
 ### Luxury
+
 - **Accommodation:** Mount Meru Hotel / Arusha Coffee Lodge / Gran Melia Arusha
 - **Meal:** Breakfast
+
 ### Midrange
+
 - **Accommodation:** Arusha Planet Lodge / A1 Hotel & Resort / Tulia Boutique Hotel & Spa
 - **Meal:** Bed & Breakfast
 
@@ -30,10 +34,14 @@ Upon arrival at the airport in Arusha (ARK) or Kilimanjaro International Airport
 Early morning after breakfast at your Arusha hotel, your personal driver guide will pick you up for a drive to Tarangire National Park. The drive takes approximately 2.5 hours to the gate. Tarangire is known for its elephant herds and ancient baobab trees. You'll spot various animals and bird species.
 
 - **Destination:** Tarangire National Park
+
 ### Luxury
+
 - **Accommodation:** Kitela Lodge / Neptune Ngorongoro / Gibb’s Farm
 - **Meal:** Full Board (Breakfast, Lunch & Dinner)
+
 ### Midrange
+
 - **Accommodation:** Marera Valley Lodge / Farm of Dreams Lodge / Bougainvillea Safari Lodge
 - **Meal:** Full Board (Breakfast, Lunch & Dinner)
 
@@ -42,10 +50,14 @@ Early morning after breakfast at your Arusha hotel, your personal driver guide w
 Early morning after breakfast at your Karatu lodge, you will depart straight to Serengeti National Park passing through the Ngorongoro Conservation Area. Serengeti is famous for its abundant wildlife and the annual Great Migration. Explore the park's diverse ecosystems and wildlife populations.
 
 - **Destination:** Serengeti National Park
+
 ### Luxury
+
 - **Accommodation:** Kubu Kubu Tented Lodge / Serengeti Serena Safari Lodge / Melia Serengeti
 - **Meal:** Full Board (Breakfast, Lunch & Dinner)
+
 ### Midrange
+
 - **Accommodation:** Narudi Camp / Pamoja Serengeti Luxury Camp / Embalakai Authentic Camps
 - **Meal:** Full Board (Breakfast, Lunch & Dinner)
 
@@ -54,10 +66,14 @@ Early morning after breakfast at your Karatu lodge, you will depart straight to 
 Drive to the northern part of Serengeti, known as kogatende, following the Great Migration. Experience a game drive en-route and observe giraffes, buffalo herds, and elephants. Witness the annual migration phenomenon and enjoy lunch before reaching your partner tented camp for dinner and overnight.
 
 - **Destination:** Serengeti National Park
+
 ### Luxury
+
 - **Accommodation:** Mara Mara Tented Lodge / Mara Under Canvas
 - **Meal:** Full Board (Breakfast, Lunch & Dinner)
+
 ### Midrange
+
 - **Accommodation:** Mara Kati Kati Tented Camp / Serengeti Heritage Tented Camp
 - **Meal:** Full Board (Breakfast, Lunch & Dinner)
 
@@ -66,10 +82,14 @@ Drive to the northern part of Serengeti, known as kogatende, following the Great
 Start your day with an early morning game drive, following the Great Migration. Witness predators hunting their prey and the majestic river crossing. Enjoy a picnic lunch and continue your game drive until late evening, returning to your accommodation for dinner and an overnight stay.
 
 - **Destination:** Serengeti National Park
+
 ### Luxury
+
 - **Accommodation:** Mara Mara Tented Lodge / Mara Under Canvas
 - **Meal:** Full Board (Breakfast, Lunch & Dinner)
+
 ### Midrange
+
 **Accommodation:** Mara Kati Kati Tented Camp / Serengeti Heritage Tented Camp
 **Meal:** Full Board (Breakfast, Lunch & Dinner)
 
@@ -78,10 +98,14 @@ Start your day with an early morning game drive, following the Great Migration. 
 Embark on an early morning game drive en-route to the central Serengeti. Reach your accommodation for relaxation, dinner, and an overnight stay.
 
 - **Destination:** Serengeti National Park
+
 ### Luxury
+
 - **Accommodation:** Kubu Kubu Tented Lodge / Serengeti Serena Safari Lodge / Melia Serengeti
 - **Meal:** Full Board (Breakfast, Lunch & Dinner)
+
 ### Midrange
+
 - **Accommodation:** Narudi Camp / Pamoja Serengeti Luxury Camp / Embalakai Authentic Camps
 - **Meal:** Full Board (Breakfast, Lunch & Dinner)
 
@@ -90,10 +114,14 @@ Embark on an early morning game drive en-route to the central Serengeti. Reach y
 Early morning after breakfast at your Serengeti accommodation, drive to Ngorongoro Conservation Area. Descend to Ngorongoro Crater and witness its diverse wildlife. Enjoy lunch at the Ngoitoktok picnic site and drive to your Karatu accommodation for relaxation, dinner, and an overnight stay.
 
 - **Destination:** Ngorongoro Crater
+
 ### Luxury
+
 - **Accommodation:** Kitela Lodge / Neptune Ngorongoro / Gibb’s Farm
 - **Meal:** Full Board (Breakfast, Lunch & Dinner)
+
 ### Midrange
+
 - **Accommodation:** Marera Valley Lodge / Farm of Dreams Lodge / Bougainvillea Safari Lodge
 - **Meal:** Full Board (Breakfast, Lunch & Dinner)
 
@@ -102,8 +130,11 @@ Early morning after breakfast at your Serengeti accommodation, drive to Ngorongo
 Depart to Lake Manyara National Park, known for its birdlife and tree-climbing lions. Explore the park's unique features and landscapes. After lunch, drive to Arusha where you'll meet a representative from Bapta African Safaris for a special farewell. Optionally, you can extend your stay in Arusha or catch your onward flight.
 
 - **Destination:** Lake Manyara National Park
+
 ### Luxury
+
 - **Meal:** Breakfast & Lunch
+
 ### Midrange
 
 - **Meal:** Breakfast & Lunch
