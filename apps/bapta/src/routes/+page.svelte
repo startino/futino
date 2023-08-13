@@ -88,7 +88,7 @@
 	</div>
 </section>
 
-<section class="section">
+<section class="section" id="choose_bapta">
 	<div class="inner-section grid grid-cols-1 lg:grid-cols-5 gap-12">
 		<div
 			class="flex flex-col gap-y-2 lg:col-span-2 justify-items-center items-center lg:items-start lg:justify-items-start lg:text-left">
