@@ -1,4 +1,16 @@
+<script lang="ts">
+import AccommodationToggle from '../AccommodationToggle.svelte';
+
+const accommodationOptions = [
+  { label: 'Luxury', index: 0, for: 'luxury' },
+	{ label: 'Midrange', index: 1, for: 'midrange' },
+];
+
+</script>
+
 # 6 DAYS TANZANIA SAFARI CALVING SEASON
+
+<AccommodationToggle promotions={accommodationOptions}/>
 
 ## PARKS
 

@@ -27,7 +27,7 @@
 
 <div
 	class="flex flex-col max-w-xl m-2 border rounded-2xl border-secondary-light/20 dark:border-secondary-dark/20">
-	<ul class="relative flex flex-row p-2 items-center text-sm text-center">
+	<div class="relative flex flex-row p-2 items-center text-sm text-center">
 		<div
 			class="h-12 absolute border-2 left- mx-2 rounded-xl border-primary-light dark:border-primary-dark transition-all duration-700"
 			style="width: {button_widths[activeTabValue] - 4}px; {positionClass};" />
@@ -36,7 +36,7 @@
 			<!--{activeTabValue == promotion.index
 					? 'active border-2 rounded-xl border-primary-light dark:border-primary-dark'
 					: -->
-			<li
+			<div
 				class="py-1 md:py-3 rounded-xl transition-all duration-200 px-5 {activeTabValue == i
 					? ''
 					: 'outline outline-0 hover:outline-2 outline-white'}"
@@ -64,9 +64,9 @@
 						</div>
 					</Promotion>
 				</button>
-			</li>
+			</div>
 		{/each}
-	</ul>
+	</div>
 </div>
 
 <style>
