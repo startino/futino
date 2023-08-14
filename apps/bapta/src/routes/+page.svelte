@@ -230,7 +230,7 @@
 		<img
 			src="/images/safari/20.jpg"
 			alt="img"
-			class="object-cover object-center rounded-md w-full max-w-md" />
+			class="object-cover object-center rounded-md w-full" />
 	</div>
 </section>
 
@@ -273,7 +273,7 @@
 		<img
 			src="/images/safari/59.jpeg"
 			alt="img"
-			class="object-cover object-center rounded-md w-full max-w-md" />
+			class="object-cover object-center rounded-md w-full" />
 	</div>
 </section>
 
