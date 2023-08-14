@@ -16,7 +16,7 @@ const tours: Tour[] = [
 	},
 	{
 		id: 1,
-		thumbnail: '/images/safari/',
+		thumbnail: '/images/safari/1.jpeg',
 		name: '6 Days Tanzania Safari Calving Season',
 		tags: ['Safari'],
 		parks: 'Tarangire, South Serengeti, Ngorongoro Crater & Lake Manyara',
