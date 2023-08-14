@@ -12,28 +12,28 @@
 			difficulty: 'Easy',
 			duration: 1,
 			body: "The Machame Route, also known as the 'Whiskey Route', is a more challenging route with steeper inclines and longer duration, but offers more scenic views and better acclimatization.",
-			img_path: '/images/kilimanjaro/trail_1.jpg',
+			img_path: '/images/kilimanjaro/11.jpg',
 		},
 		{
 			label: 'Machame Route',
 			difficulty: 'Intermediate',
 			duration: 3,
 			body: "The Machame Route, also known as the 'Whiskey Route', is a more challenging route with steeper inclines and longer duration, but offers more scenic views and better acclimatization.",
-			img_path: '/images/kilimanjaro/trail_2.jpg',
+			img_path: '/images/kilimanjaro/12.jpg',
 		},
 		{
 			label: 'Machame Route',
 			difficulty: 'Easy',
 			duration: 3,
 			body: "The Machame Route, also known as the 'Whiskey Route', is a more challenging route with steeper inclines and longer duration, but offers more scenic views and better acclimatization.",
-			img_path: '/images/kilimanjaro/trail_2.jpg',
+			img_path: '/images/kilimanjaro/5.jpg',
 		},
 		{
 			label: 'Machame Route',
 			difficulty: 'Expert',
 			duration: 3,
 			body: "The Machame Route, also known as the 'Whiskey Route', the Machame Route, is a more challenging route with steeper inclines and longer duration, but offers more scenic views and better acclimatization.",
-			img_path: '/images/kilimanjaro/trail_2.jpg',
+			img_path: '/images/kilimanjaro/2.jpg',
 		},
 	];
 
@@ -61,6 +61,7 @@
 <MountPage
 	hero_header="Ascending the Peak of Mount Meru"
 	hero_subtitle="Embark on a Captivating Trek to Tanzania's Second Highest Summit"
+	hero="bg-meru"
 	{routes}
 	FAQs={mountMeruFaq}
 	{overview_topics} />

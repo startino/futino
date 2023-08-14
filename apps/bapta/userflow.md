@@ -43,11 +43,10 @@ end
 
 
 subgraph Complex
-landing_page([Landing Page]) --> clicks_find_tour[Clicks Find a Tour]
 
-clicks_find_tour --> tours[Tours Page]
 
-landing_page --> scrolls1[Scrolls Down]
+
+landing_page([Landing Page]) --> scrolls1[Scrolls Down]
 landing_page --> clicks_why_choose_us[Clicks Why Choose Us]
 scrolls1 --> reads_emmanuels_quote[Reads Emmanuels Quote]
 reads_emmanuels_quote --> scrolls2[Scrolls Down]
@@ -57,13 +56,28 @@ clicks_why_choose_us --> reads_emmanuels_quote
 testimonial_snippet --> scrolls3[Scrolls Down]
 scrolls3 --> top_tours[Top Rated Tours Section]
 top_tours --> clicks_more_tours[Clicks More Tours]
-clicks_more_tours --> tours
+clicks_more_tours --> clicks_a_tour
 
 
-top_tours & tours --> clicks_a_tour[Clicks on a Tour]
+top_tours --> clicks_a_tour[Clicks on a Tour]
 clicks_a_tour --> reads_more[Reads more about the tour]
 reads_more --> clicks_request[Clicks Requests Quote]
-clicks_request --> fills_form[Fills in the form]
+clicks_request --> reads_disclaimer["Reads that this is just a preset 
+and everything is fully customizable"]
+reads_disclaimer --> reads_summary[Reads and confirms tour package]
+reads_summary --> fills_form["Fills in the form
+Name
+Phone Number
+Accommodation Standard 
+Zanzibar Extension?
+Additional Notes/Requests/Questions
+"]
+fills_form --> submit["Submits the form"]
+submit --> thank_you_page["Thank the customer."]
+thank_you_page --> finish([Close tab])
+
+
+
 end
 
 subgraph Landing_Page
