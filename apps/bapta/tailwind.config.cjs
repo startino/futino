@@ -7,11 +7,12 @@ const config = {
 		extend: {
 			backgroundImage: {
 				// Image of zanzibar beach
-				zanzibar: "url('/images/zanzibar/zanzibar_beach.jpg')",
+				zanzibar: "url('/images/zanzibar/8.jpg')",
 				// Image of kilimanjaro mountains
-				kilimanjaro: "url('/images/kilimanjaro/kilimanjaro.jpg')",
+				kilimanjaro: "url('/images/kilimanjaro/3.jpg')",
+				meru: "url('/images/meru/1.jpg')",
 				// Image of a tree :)
-				about: "url('/images/safari/safari_img(28).jpeg')",
+				about: "url('/images/safari/50.jpeg')",
 				emmanuel: "url('/images/safari/safari_img(25).jpeg')",
 				landing_hero: "url('/images/serengeti_sunset.jpg')",
 			},
