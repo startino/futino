@@ -9,20 +9,20 @@
 	const testimonials = [
 		{
 			src: '#',
-			img_path: '/images/safari/safari_img(25).jpeg',
+			img_path: '/images/safari/21.jpg',
 			name: 'John Smith',
 			body: "Going on an African safari was for me, and the experience exceeded all my expectations! The wildlife was amazing, the landscapes were breathtaking, and the accommodations were comfortable and cozy. I couldn't have asked for a better trip. Thank you!",
 		},
 
 		{
 			src: '#',
-			img_path: '/images/safari/safari_img(26).jpeg',
+			img_path: '/images/safari/6.jpeg',
 			name: 'Jane Doe',
 			body: "I've always very important to me. But also walks the walk. The guides were knowledgeable and respectful of the animals and their habitats, and the accommodations were eco-friendly and responsible. I would highly recommend this company to anyone looking for an ethical and unforgettable safari experience.",
 		},
 		{
 			src: '#',
-			img_path: '/images/safari/safari_img(21).jpeg',
+			img_path: '/images/safari/64.jpg',
 			name: 'Tom Jones',
 			body: "As a photographer, I was blown away frican wildlife and landscapes. The company's guides were patient and accommodating, allowing me to take my time to capture the perfect shot. I came away from the safari with some of the best pictures of my life, and memories that will last forever. Thank you for an unforgettable adventure!",
 		},

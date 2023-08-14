@@ -13,7 +13,7 @@ const config = {
 				meru: "url('/images/meru/1.jpg')",
 				// Image of a tree :)
 				about: "url('/images/safari/50.jpeg')",
-				emmanuel: "url('/images/safari/safari_img(25).jpeg')",
+				emmanuel: "url('/images/safari/51.jpeg')",
 				landing_hero: "url('/images/serengeti_sunset.jpg')",
 			},
 
