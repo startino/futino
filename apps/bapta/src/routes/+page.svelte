@@ -9,20 +9,20 @@
 	const testimonials = [
 		{
 			src: '#',
-			img_path: '/images/safari/safari_img(25).jpeg',
+			img_path: '/images/safari/21.jpg',
 			name: 'John Smith',
 			body: "Going on an African safari was for me, and the experience exceeded all my expectations! The wildlife was amazing, the landscapes were breathtaking, and the accommodations were comfortable and cozy. I couldn't have asked for a better trip. Thank you!",
 		},
 
 		{
 			src: '#',
-			img_path: '/images/safari/safari_img(26).jpeg',
+			img_path: '/images/safari/6.jpeg',
 			name: 'Jane Doe',
 			body: "I've always very important to me. But also walks the walk. The guides were knowledgeable and respectful of the animals and their habitats, and the accommodations were eco-friendly and responsible. I would highly recommend this company to anyone looking for an ethical and unforgettable safari experience.",
 		},
 		{
 			src: '#',
-			img_path: '/images/safari/safari_img(21).jpeg',
+			img_path: '/images/safari/64.jpg',
 			name: 'Tom Jones',
 			body: "As a photographer, I was blown away frican wildlife and landscapes. The company's guides were patient and accommodating, allowing me to take my time to capture the perfect shot. I came away from the safari with some of the best pictures of my life, and memories that will last forever. Thank you for an unforgettable adventure!",
 		},
@@ -94,7 +94,7 @@
 		<div
 			class="flex flex-col gap-y-2 lg:col-span-2 justify-items-center items-center lg:items-start lg:justify-items-start lg:text-left">
 			<img
-				src="/images/safari/safari_img(29).jpeg"
+				src="/images/safari/51.jpeg"
 				alt=""
 				class="object-cover h-96 lg:h-[400px] xl:h-[500px] w-full object-center rounded-md" />
 			<h1 class="font-extrabold display-small md:display-medium">Your Safari Experience</h1>
@@ -116,22 +116,16 @@
 			</div>
 		</div>
 		<div
-			class="flex flex-col gap-10 lg:col-span-3 items-center justify-items-center lg:items-start h-fit lg:justify-items-start lg:text-left">
+			class="flex flex-col gap-10 lg:col-span-3 items-center justify-items-center lg:items-start lg:justify-between pb-32 lg:text-left">
 			{#each why_choose_us as { image, title, body }}
 				<div
-					class="grid grid-cols-1 lg:grid-cols-2 gap-y-5 gap-x-3 content-around items-center h-full rounded-lg bg-surface-dark">
-					<div class="flex flex-col items-center lg:items-start px-3 lg:pl-0 lg:pr-3 py-3 gap-2">
-						<h1 class="text-primary-dark headline-small font-semibold">
-							{title}
-						</h1>
-						<h1 class="body-medium max-w-xl">
-							{body}
-						</h1>
-					</div>
-					<img
-						src={image}
-						alt=""
-						class="object-cover w-full sm:h-64 md:h-72 lg:h-full object-center rounded-md lg:order-first" />
+					class=" bg-surface-dark rounded-lg flex flex-col items-center lg:items-start w-fit px-3 py-3 gap-2">
+					<h1 class="text-primary-dark headline-small font-semibold">
+						{title}
+					</h1>
+					<h1 class="body-medium max-w-xl">
+						{body}
+					</h1>
 				</div>
 			{/each}
 		</div>
@@ -234,9 +228,9 @@
 			</OutlineButton>
 		</div>
 		<img
-			src="/images/safari/safari_img(22).jpeg"
+			src="/images/safari/20.jpg"
 			alt="img"
-			class="object-cover object-center rounded-md w-full max-w-md" />
+			class="object-cover object-center rounded-md w-full" />
 	</div>
 </section>
 
@@ -277,9 +271,9 @@
 			</OutlineButton>
 		</div>
 		<img
-			src="/images/safari/safari_img(19).jpeg"
+			src="/images/safari/59.jpeg"
 			alt="img"
-			class="object-cover object-center rounded-md w-full max-w-md" />
+			class="object-cover object-center rounded-md w-full" />
 	</div>
 </section>
 

@@ -29,7 +29,7 @@
 
 <!--Hero-->
 <div
-	class="w-full h-screen shadow-lg shadow-background-dark card-shadow px-10 lg:px-20 xl:px-40 pt-60 place-items-center bg-kilimanjaro bg-cover object-contain bg-top">
+	class="w-full h-screen shadow-lg shadow-background-dark card-shadow px-10 lg:px-20 xl:px-40 pt-60 place-items-center {$$props.hero} bg-cover object-contain bg-top">
 	<div class="flex flex-col max-w-xl mx-auto mt-8 mb-64 space-y-2 items-center">
 		<h1 class="font-bold text-black display-medium">{hero_header}</h1>
 		<h1 class="pb-6 text-black body-large">
@@ -45,7 +45,7 @@
 <!-- Climbing Experience section -->
 <section class="section">
 	<div
-		class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-x-2 gap-y-6 py-12 items-center rounded-lg bg-cover bg-top bg-[url('/images/kilimanjaro/vertical_mountain.jpg')]">
+		class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-x-2 gap-y-6 py-12 items-center rounded-lg bg-cover bg-center bg-[url('/images/kilimanjaro/4.jpg')]">
 		{#each overview_topics as { label, body }}
 			<div class="card m-6 w-fit rounded-lg bg-surface-dark/75 justify-around">
 				<h2 class="font-bold headline-small text-primary-dark">{label}</h2>
@@ -87,7 +87,7 @@
 					<img
 						src={img_path}
 						alt="Marangu Route"
-						class="w-full object-cover object-center h-fit rounded-t-lg bg-gradient-to-b from-transparent to-surface-dark" />
+						class="w-full object-cover object-center h-1/2 rounded-t-lg bg-gradient-to-b from-transparent to-surface-dark" />
 
 					<!--Route Details-->
 					<div class="flex flex-col px-12 py-6 content-between h-full">

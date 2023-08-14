@@ -6,7 +6,7 @@
 
 <!--Hero-->
 <div
-	class="object-contain w-full h-screen grid-rows-2 px-10 bg-top bg-cover border-b shadow-lg shadow-background-dark lg:grid-cols-2 card-shadow lg:px-20 xl:px-40 pt-60 place-items-center border-secondary-light/40 dark:border-secondary-dark/40 bg-about">
+	class="object-contain w-full h-screen grid-rows-2 px-10 bg-center bg-cover border-b shadow-lg shadow-background-dark lg:grid-cols-2 card-shadow lg:px-20 xl:px-40 pt-60 place-items-center border-secondary-light/40 dark:border-secondary-dark/40 bg-about">
 	<div class="flex flex-col items-center max-w-2xl mx-auto mt-8 mb-64 space-y-2">
 		<h1 class="font-bold text-primary-dark display-medium">Discover Tanzania With Bapta</h1>
 		<h1 class="pb-6 text-white body-large">Experience the Adventure of a Lifetime</h1>
@@ -23,7 +23,7 @@
 		<div class="flex flex-col items-center w-full p-6 mx-auto rounded-xl">
 			<div class="grid items-center grid-cols-1 md:grid-cols-2 gap-y-3 md:flex-row gap-x-3">
 				<img
-					src="images\safari\safari_img(9).jpeg"
+					src="/images/safari/43.jpeg"
 					alt=""
 					class="object-cover object-center h-full rounded-md w-fit md:h-full" />
 				<div class="flex flex-col items-center self-center h-fit">
@@ -58,7 +58,7 @@
 				business.
 			</p>
 			<img
-				src="images\safari\safari_img(25).jpeg"
+				src="/images/safari/30.jpeg"
 				alt=""
 				class="object-cover h-64 my-8 w-fit sm:h-72 md:h-80 rounded-lg md:mb-0" />
 		</div>
@@ -68,7 +68,7 @@
 				<button
 					class="relative w-28 h-28 bg-black sm:w-36 sm:h-36 md:w-40 md:h-40 card-zoom rounded-sm group">
 					<div class="card-zoom-image">
-						<img src="/images/safari/safari_img(29).jpeg" alt="" class="" />
+						<img src="/images/safari/51.jpeg" alt="" class="" />
 					</div>
 					<h1 class="p-6 font-bold text-center title-medium sm:title-large card-zoom-text">
 						Emmanuel Baptister
