@@ -111,6 +111,9 @@ importers:
 
   apps/bapta:
     dependencies:
+      '@supabase/supabase-js':
+        specifier: ^2.31.0
+        version: 2.31.0
       tsconfig:
         specifier: workspace:*
         version: link:../../packages/tsconfig
