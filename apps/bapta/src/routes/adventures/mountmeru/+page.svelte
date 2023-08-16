@@ -57,6 +57,13 @@
 	];
 </script>
 
+<svelte:head>
+	<title>Bapta - Mount Meru</title>
+	<meta
+		name="description"
+		content="Embark on an unforgettable journey to Mount Meru: Tanzania's hidden gem. Majestic peaks, diverse wildlife, and challenging trails await adventurers." />
+</svelte:head>
+
 <Header />
 <MountPage
 	hero_header="Ascending the Peak of Mount Meru"

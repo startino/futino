@@ -57,6 +57,13 @@
 	];
 </script>
 
+<svelte:head>
+	<title>Bapta - Zanzibar Beach</title>
+	<meta
+		name="description"
+		content="Explore the breathtaking beauty of Zanzibar Beach: pristine sands, turquoise waters, and vibrant culture. Discover your tropical paradise today." />
+</svelte:head>
+
 <!--Hero-->
 <section
 	class="w-full h-screen shadow-lg shadow-background-dark card-shadow px-10 lg:px-20 xl:px-40 pt-60 place-items-center border-b border-secondary-light/40 dark:border-secondary-dark/40 bg-zanzibar bg-cover object-contain bg-center">

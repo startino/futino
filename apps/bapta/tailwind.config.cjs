@@ -14,7 +14,7 @@ const config = {
 				// Image of a tree :)
 				about: "url('/images/safari/50.webp')",
 				emmanuel: "url('/images/safari/51.webp')",
-				landing_hero: "url('/images/serengeti_sunset.webp')",
+				landing_hero: "url('/images/misc/serengeti_sunset.webp')",
 			},
 
 			fontFamily: {

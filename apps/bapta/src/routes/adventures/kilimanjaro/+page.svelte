@@ -57,6 +57,13 @@
 	];
 </script>
 
+<svelte:head>
+	<title>Bapta - Climbing Kilimanjaro</title>
+	<meta
+		name="description"
+		content="Reach new heights by climbing Africa's highest mountain. We offer fully customizable routes for all levels of difficulty." />
+</svelte:head>
+
 <Header />
 <MountPage
 	hero_header="Climb Africa's Highest Peak"

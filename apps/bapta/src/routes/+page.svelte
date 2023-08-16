@@ -105,7 +105,7 @@
 				lifetime.
 			</h2>
 			<div class="flex flex-row mx-auto lg:mx-0 lg:-ml-3">
-				<img src="images/logo/bapta_jeep.webp" alt="" class="w-24 h-24 p-4 rounded-full" />
+				<img src="images/logo/bapta_jeep.png" alt="" class="w-24 h-24 p-4 rounded-full" />
 				<div class="flex flex-col justify-center text-left">
 					<h3 class="font-semibold body-large">Emmanuel Baptister Kilas</h3>
 					<h3 class="font-light body-medium">Creator of Bapta Safari</h3>
