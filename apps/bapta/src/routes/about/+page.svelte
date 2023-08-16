@@ -56,7 +56,7 @@
 	<div class="grid grid-cols-1 text-center md:grid-cols-2 gap-y-5 inner-section">
 		<!--Our Team Passage and group photo. Left -->
 		<div class="flex flex-col items-center md:pr-12">
-			<h1 class="display-large text-surface-variant-on-dark">Our Team</h1>
+			<h1 class="display-large text-primary-dark font-bold">Our Team</h1>
 			<p class="py-3 body-medium text-surface-variant-on-dark">
 				Bapta, founder of Bapta Safaris, is passionate about wildlife conservation. Growing up in
 				Tanzania, he started his own safari business to share the beauty and biodiversity of his
