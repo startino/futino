@@ -56,7 +56,7 @@
 
 <!-- Hero Section-->
 <section
-	class="grid justify-center w-full h-screen grid-rows-2 px-10 bg-cover bg-center border-b shadow-lg shadow-background-dark lg:grid-cols-2 card-shadow xl:px-40 pt-60 place-items-center border-secondary-light/40 dark:border-secondary-dark/40 bg-landing_hero">
+	class="grid justify-center w-full h-screen grid-rows-2 px-10 bg-cover bg-bottom border-b shadow-lg shadow-background-dark lg:grid-cols-2 card-shadow xl:px-40 pt-60 place-items-center border-secondary-light/40 dark:border-secondary-dark/40 bg-landing_hero">
 	<div class="grid space-y-3 text-left justify-items-start">
 		<h1 class="font-bold text-primary-dark display-medium">
 			A Safari of a Lifetime,<br />
@@ -87,13 +87,13 @@
 
 <!-- About Bapta Section-->
 <section class="section" id="choose_bapta">
-	<div class="inner-section grid grid-cols-1 lg:grid-cols-5 gap-12">
+	<div class="inner-section grid grid-cols-1 lg:grid-cols-2 gap-12 place-items-center px-10">
 		<div
-			class="flex flex-col gap-y-2 lg:col-span-2 justify-items-center items-center lg:items-start lg:justify-items-start lg:text-left">
+			class="flex flex-col gap-y-2 lg:justify-self-end justify-items-center items-center lg:items-start lg:justify-items-start lg:text-left">
 			<img
 				src="/images/safari/51.webp"
 				alt=""
-				class="object-cover h-96 lg:h-[400px] xl:h-[500px] w-full object-center rounded-md" />
+				class="object-cover h-96 lg:h-[600px] xl:h-[600px] w-full object-center rounded-md" />
 			<h1 class="font-extrabold display-small md:display-medium">Your Safari Experience</h1>
 			<h2 class="body-large max-w-2xl">
 				Embark on an extraordinary journey with a Bapta Safari, where you'll immerse yourself in the
@@ -113,14 +113,14 @@
 			</div>
 		</div>
 		<div
-			class="flex flex-col gap-10 lg:col-span-3 items-center justify-items-center lg:items-start lg:justify-between pb-32 lg:text-left">
-			{#each why_choose_us as { image, title, body }}
+			class="flex flex-col gap-10 items-center h-full justify-items-center md:items-start lg:justify-between pb-32 lg:text-left">
+			{#each why_choose_us as { title, body }}
 				<div
-					class=" bg-surface-dark rounded-lg flex flex-col items-center lg:items-start w-fit px-3 py-3 gap-2">
+					class=" bg-surface-dark rounded-lg flex flex-col items-center lg:items-start w-fit px-3 py-3 gap-2 shadow-lg shadow-surface-dark">
 					<h1 class="text-primary-dark headline-small font-semibold">
 						{title}
 					</h1>
-					<h1 class="body-medium max-w-xl">
+					<h1 class="body-medium max-w-lg">
 						{body}
 					</h1>
 				</div>
@@ -138,7 +138,7 @@
 			{#each testimonials as testimonial}
 				<a
 					href={testimonial.src}
-					class="transition-all duration-300 rounded-lg p-6 flex flex-col h-full w-full max-w-md text-center items-center bg-surface-dark hover:scale-105 group">
+					class="transition-all duration-300 rounded-lg p-6 shadow-lg shadow-surface-dark flex flex-col h-full w-full max-w-md text-center items-center bg-surface-dark hover:scale-105 group">
 					<!--pfp-->
 					<img
 						class="w-32 h-32 p-1 m-2 border-2 rounded-full border-primary-dark"
