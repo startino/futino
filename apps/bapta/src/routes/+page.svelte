@@ -94,15 +94,14 @@
 				src="/images/safari/51.webp"
 				alt=""
 				class="object-cover h-96 lg:h-[600px] xl:h-[600px] w-full object-center rounded-md" />
-			<h1 class="font-extrabold display-small md:display-medium">Your Safari Experience</h1>
+			<h1 class="font-extrabold display-small md:display-medium">The Bapta Safari Experience</h1>
 			<h2 class="body-large max-w-2xl">
 				Embark on an extraordinary journey with a Bapta Safari, where you'll immerse yourself in the
 				beauty of the wild. Traverse through awe-inspiring landscapes, each one more breathtaking
-				than the last, while being expertly led by seasoned professionals, including myself, who are
+				than the last, while being led by seasoned professionals, including myself, who are
 				passionate about sharing their deep knowledge of Tanzania's hidden gems. Encounter the most
 				remarkable and elusive wildlife, observing them in their natural habitats, and let every
-				moment etch into your heart, crafting indelible memories destined to be cherished for a
-				lifetime.
+				moment stay in your heart.
 			</h2>
 			<div class="flex flex-row mx-auto lg:mx-0 lg:-ml-3">
 				<img src="favicon.webp" alt="" class="w-24 h-24 p-4 rounded-full" />
@@ -263,9 +262,10 @@
 		<div class="flex flex-col gap-y-3">
 			<h1 class="font-semibold headline-large text-primary-dark">Ready to find a Tour?</h1>
 			<h2 class="body-large max-w-xl">
-				Browse through our catalogue of tours to find just the one for you! But don't worry if you
-				don't find your dream tour, because each tour is fully customizable! Find a tour you love,
-				and request a quote!
+				Take your time to explore the variety of tours we offer, each crafted with care to suit
+				different tastes and preferences. Can't find exactly what you're looking for? No worries!
+				Our tours are flexible and can be customized to create your ideal adventure. Find a tour you
+				love, and let's start planning your unforgettable journey!
 			</h2>
 
 			<OutlineButton href="/tours" class="py-2">
