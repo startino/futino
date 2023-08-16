@@ -9,8 +9,8 @@ const config = {
 				// Image of zanzibar beach
 				zanzibar: "url('/images/zanzibar/8.webp')",
 				// Image of kilimanjaro mountains
-				kilimanjaro: "url('/images/kilimanjaro/7.webp')",
-				meru: "url('/images/meru/1.webp')",
+				kilimanjaro: "url('/images/kilimanjaro/hero.webp')",
+				meru: "url('/images/meru/hero.webp')",
 				// Image of a tree :)
 				about: "url('/images/safari/50.webp')",
 				emmanuel: "url('/images/safari/51.webp')",
