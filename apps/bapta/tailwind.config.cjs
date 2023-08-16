@@ -13,6 +13,7 @@ const config = {
 				meru: "url('/images/meru/hero.webp')",
 				// Image of a tree :)
 				about: "url('/images/safari/50.webp')",
+				contact: "url('/images/safari/69.webp')",
 				emmanuel: "url('/images/safari/51.webp')",
 				landing_hero: "url('/images/safari/68.webp')",
 			},
