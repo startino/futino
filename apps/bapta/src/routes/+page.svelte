@@ -105,7 +105,7 @@
 				lifetime.
 			</h2>
 			<div class="flex flex-row mx-auto lg:mx-0 lg:-ml-3">
-				<img src="images/logo/bapta_jeep.png" alt="" class="w-24 h-24 p-4 rounded-full" />
+				<img src="favicon.webp" alt="" class="w-24 h-24 p-4 rounded-full" />
 				<div class="flex flex-col justify-center text-left">
 					<h3 class="font-semibold body-large">Emmanuel Baptister Kilas</h3>
 					<h3 class="font-light body-medium">Creator of Bapta Safari</h3>
@@ -174,7 +174,12 @@
 		{#each adventures as { img_path, label, body, href }, i}
 			{#if i % 2 == 0}
 				<div class=" adventure-row">
-					<img src={img_path} alt="img" class="adventure-thumbnail md:order-last" />
+					<img
+						src={img_path}
+						alt="img"
+						height="720"
+						width="1280"
+						class="adventure-thumbnail md:order-last" />
 					<div class="flex flex-col md:items-end self-center gap-y-1 md:text-right md:order-first">
 						<h1 class="font-semibold headline-large text-primary-dark">
 							{label}
