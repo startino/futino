@@ -7,14 +7,14 @@ const config = {
 		extend: {
 			backgroundImage: {
 				// Image of zanzibar beach
-				zanzibar: "url('/images/zanzibar/8.jpg')",
+				zanzibar: "url('/images/zanzibar/8.webp')",
 				// Image of kilimanjaro mountains
-				kilimanjaro: "url('/images/kilimanjaro/3.jpg')",
-				meru: "url('/images/meru/1.jpg')",
+				kilimanjaro: "url('/images/kilimanjaro/7.webp')",
+				meru: "url('/images/meru/1.webp')",
 				// Image of a tree :)
-				about: "url('/images/safari/50.jpeg')",
-				emmanuel: "url('/images/safari/51.jpeg')",
-				landing_hero: "url('/images/serengeti_sunset.jpg')",
+				about: "url('/images/safari/50.webp')",
+				emmanuel: "url('/images/safari/51.webp')",
+				landing_hero: "url('/images/safari/68.webp')",
 			},
 
 			fontFamily: {

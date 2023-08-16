@@ -6,46 +6,13 @@
 	import Button from '$lib/components/atoms/Button.svelte';
 	import FAQ from '$lib/components/organisms/FAQSection.svelte';
 	import ContactForm from '$lib/components/organisms/ContactForm.svelte';
-
-	const FAQs = [
-		{
-			index: 0,
-			question: 'What is the best time of year to climb Kilimanjaro?',
-			answer:
-				'The best time to climb Kilimanjaro is during the dry season, which runs from June to October and January to March. However, it is possible to climb at other times of the year as well.',
-		},
-		{
-			index: 1,
-			question: 'What is altitude sickness, and how can I prevent it?',
-			answer:
-				'Altitude sickness is a condition that can occur when climbing to high altitudes. Symptoms can include headaches, nausea, and dizziness. To prevent altitude sickness, it is important to acclimatize properly and drink plenty of water.',
-		},
-		{
-			index: 2,
-			question: 'Is it safe to climb Kilimanjaro?',
-			answer:
-				'Yes, climbing Kilimanjaro is generally safe as long as you take the necessary precautions and follow the advice of your guides. Our team of experienced guides and porters will ensure your safety throughout the climb.',
-		},
-		{
-			index: 3,
-			question: 'What gear and equipment do I need for a Kilimanjaro climb?',
-			answer:
-				'You will need a range of gear and equipment for your Kilimanjaro climb, including warm clothing, hiking boots, and a sleeping bag. We provide a detailed gear list to all of our climbers to ensure that you have everything you need.',
-		},
-		{
-			index: 4,
-			question: 'What is the minimum age requirement for a Kilimanjaro climb?',
-			answer:
-				'The minimum age for a Kilimanjaro climb is 10 years old. However, we recommend that children be at least 12 years old to ensure that they are physically and mentally prepared for the challenge.',
-		},
-		{
-			index: 5,
-			question: 'What is your cancellation policy?',
-			answer:
-				'Our cancellation policy varies depending on the timing of the cancellation. We recommend that you review our policy before booking your climb, and we are happy to answer any questions you may have.',
-		},
-	];
+	import FaqSection from '$lib/components/organisms/FAQSection.svelte';
+	import safariFaq from '$lib/components/tsData/safariFaq';
 </script>
+
+<svelte:head>
+	<title>Bapta - Contact Us</title>
+</svelte:head>
 
 <Header />
 
@@ -75,7 +42,7 @@
 				class hac curabitur praesent sociosqu vulputate torquent sapien volutpat nostra vel curae
 				consectetur curabitur."
 			</h4>
-			<img src="images/safari/47.jpeg" alt="" class="object-cover w-full rounded-xl h-96" />
+			<img src="images/safari/47.webp" alt="" class="object-cover w-full rounded-xl h-96" />
 		</div>
 		<div class="w-full">
 			<ContactForm />
@@ -84,5 +51,5 @@
 </div>
 
 <div class="my-20">
-	<FAQ faqs={FAQs} />
+	<FaqSection faqs={safariFaq} />
 </div>

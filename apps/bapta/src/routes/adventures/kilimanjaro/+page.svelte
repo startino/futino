@@ -12,28 +12,28 @@
 			difficulty: 'Easy',
 			duration: 1,
 			body: "The Machame Route, also known as the 'Whiskey Route', is a more challenging route with steeper inclines and longer duration, but offers more scenic views and better acclimatization.",
-			img_path: '/images/kilimanjaro/2.jpg',
+			img_path: '/images/kilimanjaro/2.webp',
 		},
 		{
 			label: 'Machame Route',
 			difficulty: 'Intermediate',
 			duration: 3,
 			body: "The Machame Route, also known as the 'Whiskey Route', is a more challenging route with steeper inclines and longer duration, but offers more scenic views and better acclimatization.",
-			img_path: '/images/kilimanjaro/5.jpg',
+			img_path: '/images/kilimanjaro/5.webp',
 		},
 		{
 			label: 'Machame Route',
 			difficulty: 'Easy',
 			duration: 3,
 			body: "The Machame Route, also known as the 'Whiskey Route', is a more challenging route with steeper inclines and longer duration, but offers more scenic views and better acclimatization.",
-			img_path: '/images/kilimanjaro/12.jpg',
+			img_path: '/images/kilimanjaro/12.webp',
 		},
 		{
 			label: 'Machame Route',
 			difficulty: 'Expert',
 			duration: 3,
 			body: "The Machame Route, also known as the 'Whiskey Route', the Machame Route, is a more challenging route with steeper inclines and longer duration, but offers more scenic views and better acclimatization.",
-			img_path: '/images/kilimanjaro/11.jpg',
+			img_path: '/images/kilimanjaro/11.webp',
 		},
 	];
 
@@ -56,6 +56,13 @@
 		},
 	];
 </script>
+
+<svelte:head>
+	<title>Bapta - Climbing Kilimanjaro</title>
+	<meta
+		name="description"
+		content="Reach new heights by climbing Africa's highest mountain. We offer fully customizable routes for all levels of difficulty." />
+</svelte:head>
 
 <Header />
 <MountPage

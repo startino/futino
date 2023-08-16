@@ -4,6 +4,13 @@
 	import OutlineButton from '$lib/components/molecules/OutlineButton.svelte';
 </script>
 
+<svelte:head>
+	<title>Bapta - Contact Us</title>
+	<meta
+		name="description"
+		content="Connect with Bapta to learn about Tanzanian Safaris, Climbing Kilimanjaro, and FAQs relating to both." />
+</svelte:head>
+
 <!--Hero-->
 <div
 	class="object-contain w-full h-screen grid-rows-2 px-10 bg-center bg-cover border-b shadow-lg shadow-background-dark lg:grid-cols-2 card-shadow lg:px-20 xl:px-40 pt-60 place-items-center border-secondary-light/40 dark:border-secondary-dark/40 bg-about">
@@ -23,7 +30,7 @@
 		<div class="flex flex-col items-center w-full p-6 mx-auto rounded-xl">
 			<div class="grid items-center grid-cols-1 md:grid-cols-2 gap-y-3 md:flex-row gap-x-3">
 				<img
-					src="/images/safari/43.jpeg"
+					src="/images/safari/43.webp"
 					alt=""
 					class="object-cover object-center h-full rounded-md w-fit md:h-full" />
 				<div class="flex flex-col items-center self-center h-fit">
@@ -45,11 +52,11 @@
 </section>
 
 <!-- Our Team section -->
-<section class="bg-surface-dark section">
+<section class="section">
 	<div class="grid grid-cols-1 text-center md:grid-cols-2 gap-y-5 inner-section">
 		<!--Our Team Passage and group photo. Left -->
 		<div class="flex flex-col items-center md:pr-12">
-			<h1 class="display-large text-surface-variant-on-dark">Our Team</h1>
+			<h1 class="display-large text-primary-dark font-bold">Our Team</h1>
 			<p class="py-3 body-medium text-surface-variant-on-dark">
 				Bapta, founder of Bapta Safaris, is passionate about wildlife conservation. Growing up in
 				Tanzania, he started his own safari business to share the beauty and biodiversity of his
@@ -58,7 +65,7 @@
 				business.
 			</p>
 			<img
-				src="/images/safari/30.jpeg"
+				src="/images/safari/30.webp"
 				alt=""
 				class="object-cover h-64 my-8 w-fit sm:h-72 md:h-80 rounded-lg md:mb-0" />
 		</div>
@@ -68,7 +75,7 @@
 				<button
 					class="relative w-28 h-28 bg-black sm:w-36 sm:h-36 md:w-40 md:h-40 card-zoom rounded-sm group">
 					<div class="card-zoom-image">
-						<img src="/images/safari/51.jpeg" alt="" class="" />
+						<img src="/images/safari/51.webp" alt="" class="" />
 					</div>
 					<h1 class="p-6 font-bold text-center title-medium sm:title-large card-zoom-text">
 						Emmanuel Baptister

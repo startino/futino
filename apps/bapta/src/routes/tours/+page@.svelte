@@ -31,9 +31,16 @@
 	];
 </script>
 
+<svelte:head>
+	<title>Bapta - Tanzanian Safaris</title>
+	<meta
+		name="description"
+		content="Search for the safari of your dreams, our luxury and midrange safaris are fully customizable." />
+</svelte:head>
+
 <!--Hero-->
 <section
-	class="w-full h-screen shadow-lg shadow-background-dark lg:grid-cols-2 card-shadow grid-rows-2 px-10 lg:px-20 xl:px-40 pt-64 place-items-center border-b border-secondary-light/40 dark:border-secondary-dark/40 bg-[url('/images/safari/34.jpeg')] bg-cover object-contain bg-center">
+	class="w-full h-screen shadow-lg shadow-background-dark lg:grid-cols-2 card-shadow grid-rows-2 px-10 lg:px-20 xl:px-40 pt-64 place-items-center border-b border-secondary-light/40 dark:border-secondary-dark/40 bg-[url('/images/safari/34.webp')] bg-cover object-contain bg-center">
 	<div class="flex flex-col max-w-lg self-center items-center h-full inner-section">
 		<h1 class="font-bold text-black display-medium">Explore Safari Tours</h1>
 		<h1 class="pb-6 text-black body-large">Discover Thrilling Adventures in Africa's Wilderness</h1>
@@ -44,7 +51,7 @@
 </section>
 
 <!--Tours-->
-<section class="section text-left shadow-lg bg-surface-dark" id="tours">
+<section class="section text-left shadow-lg" id="tours">
 	<div class="flex flex-col gap-8 items-center inner-section">
 		<div class="text-center">
 			<h1 class="display-large">Safari Tour Packages</h1>

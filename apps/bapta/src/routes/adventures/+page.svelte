@@ -8,25 +8,25 @@
 			name: 'Kilimanjaro',
 			description:
 				"Climbing Kilimanjaro is a once-in-a-lifetime experience that requires careful preparation and planning. Our team of expert guides and porters will ensure that you have a safe and memorable climb to the top of Africa's highest peak.",
-			image: 'images/kilimanjaro/4.jpg',
+			image: 'images/kilimanjaro/4.webp',
 		},
 		{
 			name: 'Mount Meru',
 			description:
 				"Climbing Meru is a once-in-a-lifetime experience that requires careful preparation and planning. Our team of expert guides and porters will ensure that you have a safe and memorable climb to the top of Africa's highest peak.",
-			image: 'images/meru/1.jpg',
+			image: 'images/meru/1.webp',
 		},
 		{
 			name: 'Zanzibar',
 			description:
 				'Escape to a Tropical Paradise. Relax, unwind and make memories that last a lifetime with our bespoke beach holiday creator to a Tropical Paradise. Relax, unwind.',
-			image: 'images/zanzibar/9.jpg',
+			image: 'images/zanzibar/9.webp',
 		},
 	];
 </script>
 
 <div
-	class="flex flex-col w-full h-full shadow-lg shadow-background-dark lg:grid-cols-2 card-shadow grid-rows-2 px-10 lg:px-20 xl:px-40 py-40 justify-center place-items-center border-b border-secondary-light/40 dark:border-secondary-dark/40 bg-[url('/images/safari/18.jpeg')] bg-cover bg-left">
+	class="flex flex-col w-full h-full shadow-lg shadow-background-dark lg:grid-cols-2 card-shadow grid-rows-2 px-10 lg:px-20 xl:px-40 py-40 justify-center place-items-center border-b border-secondary-light/40 dark:border-secondary-dark/40 bg-[url('/images/safari/18.webp')] bg-cover bg-left">
 	<h1 class="font-bold text-primary-dark display-medium">Our Curated Adventures!</h1>
 
 	<hr class="w-40 py-4" />

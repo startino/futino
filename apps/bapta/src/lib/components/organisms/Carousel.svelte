@@ -12,7 +12,7 @@
 	{#each tours as { name, parks }}
 		<div
 			class="flex flex-col my-3 max-w-xl rounded-lg shadow-lg shadow-black bg-card-surface-on shrink-0 snap-center">
-			<div class="bg-[url('/images/safari/4.jpeg')] h-44 rounded-t bg-center bg-cover flex" />
+			<div class="bg-[url('/images/safari/4.webp')] h-44 rounded-t bg-center bg-cover flex" />
 			<!--Title and parks-->
 			<div class="rounded-b flex flex-col py-4 px-6">
 				<h1 class="headline-small">{name}</h1>
