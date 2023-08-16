@@ -16,14 +16,14 @@
 
 <!--Hero-->
 <div
-	class="w-full h-screen shadow-lg shadow-background-dark card-shadow px-10 lg:px-20 xl:px-40 pt-60 place-items-center border-b border-secondary-light/40 dark:border-secondary-dark/40 bg-contact bg-cover object-contain bg-center">
-	<div class="flex flex-col max-w-2xl mx-auto mt-44 mb-64 text-center space-y-2">
-		<h1 class="font-bold text-primary-dark display-medium">Get In Touch</h1>
-		<h1 class="pb-6 text-white body-large">Bapta at Your Service, to Provide the Best Service</h1>
+	class="w-full h-screen shadow-lg shadow-background-dark card-shadow px-10 lg:px-20 xl:px-40 pt-80 place-items-center border-b border-secondary-light/40 dark:border-secondary-dark/40 bg-contact bg-cover object-contain bg-center">
+	<div class="flex flex-col max-w-lg self-center items-center h-full inner-section">
+		<h1 class="font-bold text-primary-dark display-medium">Connect With Bapta</h1>
+		<h1 class="pb-4 body-large">Bapta at Your Service, to Provide the Best Service</h1>
 
 		<div class="mx-auto">
 			<OutlineButton>
-				<h1 class="p-4 title-medium">Contact Us</h1>
+				<h1 class="px-4 py-2 title-large">Contact Us</h1>
 			</OutlineButton>
 		</div>
 	</div>
