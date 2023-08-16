@@ -52,7 +52,7 @@
 </section>
 
 <!-- Our Team section -->
-<section class="bg-surface-dark section">
+<section class="section">
 	<div class="grid grid-cols-1 text-center md:grid-cols-2 gap-y-5 inner-section">
 		<!--Our Team Passage and group photo. Left -->
 		<div class="flex flex-col items-center md:pr-12">

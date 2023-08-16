@@ -45,8 +45,9 @@
 		<div class="flex items-center ml-auto gap-6">
 			<nav class="hidden md:flex gap-6 pb-0.5">
 				<a class="nav-item" href="/">Home </a>
-				<a class="nav-item" href="/tours"> Tours </a>
 
+				<a class="nav-item" href="/tours"> Tours </a>
+				<a class="nav-item" href="/contact"> Contact </a>
 				<div
 					class="relative group"
 					on:mouseover={mouseOver}

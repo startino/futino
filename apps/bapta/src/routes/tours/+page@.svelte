@@ -51,7 +51,7 @@
 </section>
 
 <!--Tours-->
-<section class="section text-left shadow-lg bg-surface-dark" id="tours">
+<section class="section text-left shadow-lg" id="tours">
 	<div class="flex flex-col gap-8 items-center inner-section">
 		<div class="text-center">
 			<h1 class="display-large">Safari Tour Packages</h1>
