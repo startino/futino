@@ -64,7 +64,6 @@
 		content="Embark on an unforgettable journey to Mount Meru: Tanzania's hidden gem. Majestic peaks, diverse wildlife, and challenging trails await adventurers." />
 </svelte:head>
 
-<Header />
 <MountPage
 	hero_header="Ascending the Peak of Mount Meru"
 	hero_subtitle="Embark on a Captivating Trek to Tanzania's Second Highest Summit"
@@ -72,5 +71,3 @@
 	{routes}
 	FAQs={mountMeruFaq}
 	{overview_topics} />
-
-<Footer />
