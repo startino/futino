@@ -64,7 +64,6 @@
 		content="Reach new heights by climbing Africa's highest mountain. We offer fully customizable routes for all levels of difficulty." />
 </svelte:head>
 
-<Header />
 <MountPage
 	hero_header="Climb Africa's Highest Peak"
 	hero_subtitle="Reach New Heights on Africa's Iconic Summit"
@@ -72,5 +71,3 @@
 	{routes}
 	FAQs={kilimanjaroFaq}
 	{overview_topics} />
-
-<Footer />
