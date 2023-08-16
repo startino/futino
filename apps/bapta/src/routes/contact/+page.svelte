@@ -75,7 +75,7 @@
 				class hac curabitur praesent sociosqu vulputate torquent sapien volutpat nostra vel curae
 				consectetur curabitur."
 			</h4>
-			<img src="images/safari/47.jpeg" alt="" class="object-cover w-full rounded-xl h-96" />
+			<img src="images/safari/47.webp" alt="" class="object-cover w-full rounded-xl h-96" />
 		</div>
 		<div class="w-full">
 			<ContactForm />

@@ -45,7 +45,7 @@
 <!-- Climbing Experience section -->
 <section class="section">
 	<div
-		class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-x-2 gap-y-6 py-12 items-center rounded-lg bg-cover bg-center bg-[url('/images/kilimanjaro/4.jpg')]">
+		class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-x-2 gap-y-6 py-12 items-center rounded-lg bg-cover bg-center bg-[url('/images/kilimanjaro/4.webp')]">
 		{#each overview_topics as { label, body }}
 			<div class="card m-6 w-fit rounded-lg bg-surface-dark/75 justify-around">
 				<h2 class="font-bold headline-small text-primary-dark">{label}</h2>
@@ -59,7 +59,7 @@
 	<!-- <div class="grid max-w-7xl mx-auto grid-cols-1 lg:grid-cols-2 gap-6">
 		<div class="h-full">
 			<img
-				src="/images/kilimanjaro/vertical_mountain.jpg"
+				src="/images/kilimanjaro/vertical_mountain.webp"
 				alt="Kilimanjaro"
 				class="object-cover object-center h-full w-fit rounded-lg shadow-lg" />
 		</div>

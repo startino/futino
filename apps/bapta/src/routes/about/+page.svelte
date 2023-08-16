@@ -23,7 +23,7 @@
 		<div class="flex flex-col items-center w-full p-6 mx-auto rounded-xl">
 			<div class="grid items-center grid-cols-1 md:grid-cols-2 gap-y-3 md:flex-row gap-x-3">
 				<img
-					src="/images/safari/43.jpeg"
+					src="/images/safari/43.webp"
 					alt=""
 					class="object-cover object-center h-full rounded-md w-fit md:h-full" />
 				<div class="flex flex-col items-center self-center h-fit">
@@ -58,7 +58,7 @@
 				business.
 			</p>
 			<img
-				src="/images/safari/30.jpeg"
+				src="/images/safari/30.webp"
 				alt=""
 				class="object-cover h-64 my-8 w-fit sm:h-72 md:h-80 rounded-lg md:mb-0" />
 		</div>
@@ -68,7 +68,7 @@
 				<button
 					class="relative w-28 h-28 bg-black sm:w-36 sm:h-36 md:w-40 md:h-40 card-zoom rounded-sm group">
 					<div class="card-zoom-image">
-						<img src="/images/safari/51.jpeg" alt="" class="" />
+						<img src="/images/safari/51.webp" alt="" class="" />
 					</div>
 					<h1 class="p-6 font-bold text-center title-medium sm:title-large card-zoom-text">
 						Emmanuel Baptister

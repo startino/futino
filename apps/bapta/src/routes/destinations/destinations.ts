@@ -8,7 +8,7 @@ type Destination = {
 
 export const destinations: Destination[] = [
 	{
-		thumbnail: '/images/serengeti/1.jpeg',
+		thumbnail: '/images/safari/1.webp',
 		tags: ['serengeti'],
 		header: 'Serengeti',
 		summary:

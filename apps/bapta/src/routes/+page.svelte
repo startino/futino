@@ -9,20 +9,20 @@
 	const testimonials = [
 		{
 			src: '#',
-			img_path: '/images/safari/21.jpg',
+			img_path: '/images/safari/21.webp',
 			name: 'John Smith',
 			body: "Going on an African safari was for me, and the experience exceeded all my expectations! The wildlife was amazing, the landscapes were breathtaking, and the accommodations were comfortable and cozy. I couldn't have asked for a better trip. Thank you!",
 		},
 
 		{
 			src: '#',
-			img_path: '/images/safari/6.jpeg',
+			img_path: '/images/safari/6.webp',
 			name: 'Jane Doe',
 			body: "I've always very important to me. But also walks the walk. The guides were knowledgeable and respectful of the animals and their habitats, and the accommodations were eco-friendly and responsible. I would highly recommend this company to anyone looking for an ethical and unforgettable safari experience.",
 		},
 		{
 			src: '#',
-			img_path: '/images/safari/64.jpg',
+			img_path: '/images/safari/64.webp',
 			name: 'Tom Jones',
 			body: "As a photographer, I was blown away frican wildlife and landscapes. The company's guides were patient and accommodating, allowing me to take my time to capture the perfect shot. I came away from the safari with some of the best pictures of my life, and memories that will last forever. Thank you for an unforgettable adventure!",
 		},
@@ -30,7 +30,6 @@
 
 	const why_choose_us = [
 		{
-			image: '/images/serengeti/4.jpeg',
 			title: 'Safe & Hassle-free Travel',
 			body: `Travel worry-free with us as your trusted companion. 
 			We prioritize your well-being, handling every detail seamlessly – from cozy accommodations to expert guides. 
@@ -38,7 +37,6 @@
 			Embark on an unforgettable safari experience with confidence.`,
 		},
 		{
-			image: '/images/serengeti/2.jpeg',
 			title: 'Excellent Customer Service',
 			body: `From the moment you inquire about your adventure to the final farewell,
 			 our dedicated team is here to cater to your every need. With prompt and attentive communication, 
@@ -46,7 +44,6 @@
 			  customer service is a testament to the exceptional journey you'll embark upon with us.`,
 		},
 		{
-			image: '/images/serengeti/1.jpeg',
 			title: 'Private, Tailormade Safaris',
 			body: `We believe in crafting experiences that reflect your individual interests and aspirations. 
 			Our dedicated team collaborates closely with you to design a bespoke itinerary that encompasses your 
@@ -94,7 +91,7 @@
 		<div
 			class="flex flex-col gap-y-2 lg:col-span-2 justify-items-center items-center lg:items-start lg:justify-items-start lg:text-left">
 			<img
-				src="/images/safari/51.jpeg"
+				src="/images/safari/51.webp"
 				alt=""
 				class="object-cover h-96 lg:h-[400px] xl:h-[500px] w-full object-center rounded-md" />
 			<h1 class="font-extrabold display-small md:display-medium">Your Safari Experience</h1>
@@ -108,7 +105,7 @@
 				lifetime.
 			</h2>
 			<div class="flex flex-row mx-auto lg:mx-0 lg:-ml-3">
-				<img src="images/logo/bapta_jeep.png" alt="" class="w-24 h-24 p-4 rounded-full" />
+				<img src="images/logo/bapta_jeep.webp" alt="" class="w-24 h-24 p-4 rounded-full" />
 				<div class="flex flex-col justify-center text-left">
 					<h3 class="font-semibold body-large">Emmanuel Baptister Kilas</h3>
 					<h3 class="font-light body-medium">Creator of Bapta Safari</h3>
@@ -228,7 +225,7 @@
 			</OutlineButton>
 		</div>
 		<img
-			src="/images/safari/20.jpg"
+			src="/images/safari/20.webp"
 			alt="img"
 			class="object-cover object-center rounded-md w-full" />
 	</div>
@@ -241,7 +238,7 @@
 	<div
 		class="card max-w-5xl p-10 space-y-6 border rounded-lg shadow-2xl border-primary-dark/50 bg-card-surface-on">
 		<h1 class="font-bold text-center display-small">Bapta Safaris</h1>
-		<img src="favicon.png" class="rounded-full h-44" alt="logo" />
+		<img src="favicon.webp" class="rounded-full h-44" alt="logo" />
 		<h1 class="text-center body-large max-w-3xl">
 			Bapta, founder of Bapta Safaris, is passionate about wildlife conservation. Growing up in
 			Tanzania, he started his own safari business to share the beauty and biodiversity of his
@@ -271,7 +268,7 @@
 			</OutlineButton>
 		</div>
 		<img
-			src="/images/safari/59.jpeg"
+			src="/images/safari/59.webp"
 			alt="img"
 			class="object-cover object-center rounded-md w-full" />
 	</div>
