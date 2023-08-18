@@ -18,36 +18,38 @@
 			src: '#',
 			img_path: '/images/safari/6.webp',
 			name: 'Jane Doe',
-			body: "I've always very important to me. But also walks the walk. The guides were knowledgeable and respectful of the animals and their habitats, and the accommodations were eco-friendly and responsible. I would highly recommend this company to anyone looking for an ethical and unforgettable safari experience.",
+			body: "I've always very important to me. But also walks the walk. The guides were knowledgeable and respectful of the animals and their habitats, and the accommodations were eco-friendly and responsible. I would highly recommend this company.",
 		},
 		{
 			src: '#',
 			img_path: '/images/safari/64.webp',
 			name: 'Tom Jones',
-			body: "As a photographer, I was blown away frican wildlife and landscapes. The company's guides were patient and accommodating, allowing me to take my time to capture the perfect shot. I came away from the safari with some of the best pictures of my life, and memories that will last forever. Thank you for an unforgettable adventure!",
+			body: "As a photographer, I was blown away frican wildlife and landscapes. The company's guides were patient and accommodating, allowing me to take my time to capture the perfect shot. I came away from the safari with some of the best pictures of my life. Thank you for an unforgettable adventure!",
 		},
 	];
 
 	const why_choose_us = [
 		{
 			title: 'Safe & Hassle-free Travel',
-			body: `Travel worry-free with us as your trusted companion. 
-			We prioritize your well-being, handling every detail seamlessly.
-			With our safety protocols, you're free to fully immerse yourself in Africa's wonders. 
+			body: `Discover worry-free safaris, meticulously planned for your safety and comfort. 
+			Expert guides navigate seamlessly, ensuring a hassle-free journey through wild landscapes
+			 and local customs. Our safety protocols provide peace of mind, allowing you to fully enjoy 
+			 Africa's wonders. Travel confidently with us for an effortless and secure safari adventure.
 			`,
 		},
 		{
 			title: 'Excellent Customer Service',
 			body: `From the moment you inquire about your adventure to the final farewell,
-			 our team is here to cater to your every need. With attentive communication, 
-		 and a genuine passion for creating unforgettable memories, our commitment to excellent 
-			  customer service is a testament to the exceptional Bapta journey.`,
+			 our dedicated team is here to cater to your every need. With prompt and attentive communication, 
+			  knowledgeable staff, and a genuine passion for creating unforgettable memories, our commitment to excellent 
+			  customer service is a testament to the exceptional journey you'll embark upon with us.`,
 		},
 		{
 			title: 'Private, Tailormade Safaris',
-			body: `Our dedicated team collaborates closely with you to design a bespoke itinerary that encompasses your 
-			preferred destinations, activities, and pace. Romantic escape,
-			  a family adventure, or a solo expedition - our tailor-made safaris ensure that every moment aligns perfectly with your 
+			body: `We believe in crafting experiences that reflect your individual interests and aspirations. 
+			Our dedicated team collaborates closely with you to design a bespoke itinerary that encompasses your 
+			preferred destinations, activities, and pace. Whether it's a romantic escape,
+			  a family adventure, or a solo expedition, our tailor-made safaris ensure that every moment aligns perfectly with your 
 			  vision.`,
 		},
 	];
@@ -84,46 +86,51 @@
 	</div>
 </section>
 
-<!-- About Bapta Section-->
-<section class="section" id="choose_bapta">
-	<div class="inner-section grid grid-cols-1 lg:grid-cols-2 gap-12 place-items-center px-10">
-		<div
-			class="flex flex-col gap-y-2 lg:justify-self-end justify-items-center items-center lg:items-start lg:justify-items-start lg:text-left">
-			<img
-				src="/images/safari/51.webp"
-				alt=""
-				class="object-cover h-96 lg:h-[600px] xl:h-[600px] w-full object-center rounded-md" />
-			<h1 class="font-extrabold display-small md:display-medium">The Bapta Safari Experience</h1>
-			<h2 class="body-large max-w-2xl">
-				Embark on an extraordinary journey with a Bapta Safari, where you'll immerse yourself in the
-				beauty of the wild. Traverse through awe-inspiring landscapes, each one more breathtaking
-				than the last, while being led by seasoned professionals, including myself, who are
-				passionate about sharing their deep knowledge of Tanzania's hidden gems. Encounter the most
-				remarkable and elusive wildlife, observing them in their natural habitats, and let every
-				moment stay in your heart.
-			</h2>
-			<div class="flex flex-row mx-auto lg:mx-0 lg:-ml-3">
-				<img src="favicon.webp" alt="" class="w-24 h-24 p-4 rounded-full" />
-				<div class="flex flex-col justify-center text-left">
-					<h3 class="font-semibold body-large">Emmanuel Baptister Kilas</h3>
-					<h3 class="font-light body-medium">Creator of Bapta Safari</h3>
-				</div>
+<!-- Introduction section-->
+<section class="flex flex-col items-center space-y-12 section">
+	<div class="flex flex-col space-y-4 inner-section place-items-center">
+		<svg
+			class="w-8 h-8 mb-4"
+			aria-hidden="true"
+			xmlns="http://www.w3.org/2000/svg"
+			fill="currentColor"
+			viewBox="0 0 18 14">
+			<path
+				d="M6 0H2a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3H2a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Zm10 0h-4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3h-1a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Z" />
+		</svg>
+		<h2 class="title-large max-w-3xl">
+			Embark on an extraordinary journey with a Bapta Safari, where you'll immerse yourself in the
+			unparalleled beauty of the wild. Traverse through awe-inspiring landscapes, each one more
+			breathtaking than the last, while being expertly led by seasoned professionals who are
+			passionate about sharing their deep knowledge of Tanzania's hidden gems. Encounter the most
+			remarkable and elusive wildlife, observing them in their natural habitats, and let every
+			moment etch into your heart, crafting indelible memories destined to be cherished for a
+			lifetime.
+		</h2>
+		<div class="flex flex-row mx-auto">
+			<img src="images/logo/bapta_jeep.png" alt="" class="w-24 h-24 p-4 rounded-full" />
+			<div class="flex flex-col justify-center text-left">
+				<h3 class="font-semibold body-large">Emmanuel Baptister Kilas</h3>
+				<h3 class="font-light body-medium">Creator of Bapta Safari</h3>
 			</div>
 		</div>
-		<div
-			class="flex flex-col gap-10 items-center h-full justify-items-center md:items-start lg:justify-between pb-32 lg:text-left">
-			{#each why_choose_us as { title, body }}
-				<div
-					class=" bg-surface-dark rounded-lg flex flex-col items-center lg:items-start w-fit px-3 py-3 gap-2 shadow-lg shadow-surface-dark">
-					<h1 class="text-primary-dark headline-small font-semibold">
-						{title}
-					</h1>
-					<h1 class="body-medium max-w-lg">
-						{body}
-					</h1>
-				</div>
-			{/each}
-		</div>
+	</div>
+</section>
+
+<!-- Why Choose Bapta Section-->
+<section class="section" id="choose_bapta">
+	<div class="inner-section grid grid-cols-1 md:grid-cols-3 gap-8 place-items-center">
+		{#each why_choose_us as { title, body }}
+			<div
+				class="h-full bg-surface-dark rounded-lg flex flex-col justify-items-center w-full px-3 py-3 gap-2 shadow-lg shadow-surface-dark">
+				<h1 class="text-primary-dark headline-large font-semibold justify-self-start">
+					{title}
+				</h1>
+				<h1 class="body-large max-w-md px-2 my-auto pb-2">
+					{body}
+				</h1>
+			</div>
+		{/each}
 	</div>
 </section>
 
@@ -143,7 +150,7 @@
 						src={testimonial.img_path}
 						alt={testimonial.name} />
 					<!--text body-->
-					<h1 class="py-1 text-center body-medium text-surface-on-dark">
+					<h1 class="my-auto text-center body-medium text-surface-on-dark">
 						{testimonial.body}
 					</h1>
 					<!--credentials-->
