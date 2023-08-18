@@ -53,6 +53,7 @@
 					on:mouseover={mouseOver}
 					on:mouseleave={mouseLeave}
 					on:focus={focus}>
+					<!-- svelte-ignore a11y-no-static-element-interactions -->
 					<a
 						class="flex flex-row items-center gap-x-1 hover:text-tertiary-light dark:hover:text-tertiary-dark"
 						href="/adventures">
@@ -100,6 +101,20 @@
 				</div>
 				<a href="/about" class="nav_item"> About</a>
 			</nav>
+			<div
+				class="gap-6 pl-6 flex md:border-l md:border-secondary-light/50 md:dark:border-primary-dark/50">
+				<button
+					class="flex md:hidden stroke-primary-light hover:stroke-tertiary-light dark:stroke-primary-dark dark:hover:stroke-tertiary-dark"
+					on:click={toggleMenu}>
+					<svg class="w-6 h-6" fill="none" viewBox="0 0 24 24">
+						<path
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							stroke-width="2"
+							d="M4 6h16M4 12h16m-7 6h7" />
+					</svg>
+				</button>
+			</div>
 		</div>
 	</div>
 </header>

@@ -163,12 +163,10 @@
 
 <!--Adventure Snippets-->
 <section class="section relative">
-	<div class="inner-section text-left flex flex-col gap-y-8 items-start md:items-center">
+	<div class="inner-section text-left flex flex-col gap-y-12 items-start md:items-center">
 		<div class="flex flex-col md:text-center text-surface-on-dark">
-			<h1 class="display-small md:display-large font-bold">Extend Your Safari</h1>
-			<h1 class="title-medium md:headline-small font-bold">
-				Add a beach stay or hiking adventure to your safari!
-			</h1>
+			<h1 class="display-large md:display-large pt-6">Extend Your Safari</h1>
+			<h1 class="headline-small pb-6">Add a beach stay or hiking adventure to your safari</h1>
 		</div>
 		{#each adventures as { img_path, label, body, href }, i}
 			{#if i % 2 == 0}
@@ -215,9 +213,9 @@
 
 <!-- CTA to book a tour -->
 <section class="section relative z-10">
-	<div class="inner-section text-left grid grid-cols-1 sm:grid-cols-2 place-items-center gap-8">
+	<div class="inner-section text-left grid grid-cols-1 md:grid-cols-2 place-items-center gap-8">
 		<div class="flex flex-col gap-y-3">
-			<h1 class="font-semibold headline-large text-primary-dark">Find a Tour Today!</h1>
+			<h1 class="font-semibold headline-large text-primary-dark">Let's find a Tour?</h1>
 			<h2 class="body-large max-w-xl">
 				Browse through our catalogue of tours to find just the one for you! But don't worry if you
 				don't find your dream tour, because each tour is fully customizable! Find a tour you love,
@@ -231,7 +229,7 @@
 		<img
 			src="/images/safari/20.webp"
 			alt="img"
-			class="object-cover object-center rounded-md w-full" />
+			class="object-cover object-center rounded-md w-full order-first md:order-last" />
 	</div>
 </section>
 
@@ -275,7 +273,7 @@
 		<img
 			src="/images/safari/59.webp"
 			alt="img"
-			class="object-cover object-center rounded-md w-full" />
+			class="object-cover object-center rounded-md w-full order-first md:order-last" />
 	</div>
 </section>
 
@@ -287,6 +285,6 @@
 		@apply object-cover object-center w-full h-full rounded-md;
 	}
 	.adventure-row {
-		@apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-x-5 gap-y-10;
+		@apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-x-5 gap-y-2;
 	}
 </style>
