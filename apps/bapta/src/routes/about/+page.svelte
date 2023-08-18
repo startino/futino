@@ -87,19 +87,4 @@
 </section>
 
 <style>
-	.card-zoom {
-		@apply relative flex items-center bg-surface-dark justify-center place-self-center m-2 overflow-hidden shadow-xl rounded-lg;
-	}
-	.card-zoom-image {
-		@apply absolute w-full h-full transition-all duration-700 scale-125 ease-in-out opacity-40 transform bg-center bg-cover;
-	}
-	.card-zoom-text {
-		@apply absolute transition-all duration-700 ease-in-out transform scale-100 opacity-70;
-	}
-	.card-zoom:hover .card-zoom-image {
-		@apply scale-100 opacity-90;
-	}
-	.card-zoom:hover .card-zoom-text {
-		@apply scale-110 opacity-100;
-	}
 </style>

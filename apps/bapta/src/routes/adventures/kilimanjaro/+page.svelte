@@ -9,31 +9,17 @@
 	const routes = [
 		{
 			label: 'Marangu Route',
-			difficulty: 'Easy',
+			difficulty: 'Intermediate',
 			duration: 1,
 			body: "The Machame Route, also known as the 'Whiskey Route', is a more challenging route with steeper inclines and longer duration, but offers more scenic views and better acclimatization.",
 			img_path: '/images/kilimanjaro/2.webp',
 		},
 		{
 			label: 'Machame Route',
-			difficulty: 'Intermediate',
+			difficulty: 'Hard',
 			duration: 3,
 			body: "The Machame Route, also known as the 'Whiskey Route', is a more challenging route with steeper inclines and longer duration, but offers more scenic views and better acclimatization.",
 			img_path: '/images/kilimanjaro/5.webp',
-		},
-		{
-			label: 'Machame Route',
-			difficulty: 'Easy',
-			duration: 3,
-			body: "The Machame Route, also known as the 'Whiskey Route', is a more challenging route with steeper inclines and longer duration, but offers more scenic views and better acclimatization.",
-			img_path: '/images/kilimanjaro/12.webp',
-		},
-		{
-			label: 'Machame Route',
-			difficulty: 'Expert',
-			duration: 3,
-			body: "The Machame Route, also known as the 'Whiskey Route', the Machame Route, is a more challenging route with steeper inclines and longer duration, but offers more scenic views and better acclimatization.",
-			img_path: '/images/kilimanjaro/11.webp',
 		},
 	];
 

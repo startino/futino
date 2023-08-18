@@ -8,32 +8,18 @@
 
 	const routes = [
 		{
-			label: 'Marangu Route',
-			difficulty: 'Easy',
-			duration: 1,
-			body: "The Machame Route, also known as the 'Whiskey Route', is a more challenging route with steeper inclines and longer duration, but offers more scenic views and better acclimatization.",
+			label: 'Momella Route',
+			difficulty: 'Intermediate',
+			duration: 4,
+			body: 'The Momella Route is a popular option for climbing Mount Meru. It offers a moderate level of difficulty and takes around 4 days to complete. This route provides diverse landscapes, including lush forests and alpine meadows.',
 			img_path: '/images/kilimanjaro/11.webp',
 		},
 		{
-			label: 'Machame Route',
-			difficulty: 'Intermediate',
+			label: 'Saddle Route',
+			difficulty: 'Difficult',
 			duration: 3,
-			body: "The Machame Route, also known as the 'Whiskey Route', is a more challenging route with steeper inclines and longer duration, but offers more scenic views and better acclimatization.",
+			body: 'The Saddle Route is a difficult and less-traveled option for Mount Meru. It takes about 3 days and involves steep ascents and descents. Hikers on this route will be treated to breathtaking views and a sense of remote wilderness.',
 			img_path: '/images/kilimanjaro/12.webp',
-		},
-		{
-			label: 'Machame Route',
-			difficulty: 'Easy',
-			duration: 3,
-			body: "The Machame Route, also known as the 'Whiskey Route', is a more challenging route with steeper inclines and longer duration, but offers more scenic views and better acclimatization.",
-			img_path: '/images/kilimanjaro/5.webp',
-		},
-		{
-			label: 'Machame Route',
-			difficulty: 'Expert',
-			duration: 3,
-			body: "The Machame Route, also known as the 'Whiskey Route', the Machame Route, is a more challenging route with steeper inclines and longer duration, but offers more scenic views and better acclimatization.",
-			img_path: '/images/kilimanjaro/2.webp',
 		},
 	];
 
@@ -58,7 +44,7 @@
 </script>
 
 <svelte:head>
-	<title>Bapta - Mount Meru</title>
+	<title>Bapta - Climb Mount Meru, Kilimanjaro's little brother</title>
 	<meta
 		name="description"
 		content="Embark on an unforgettable journey to Mount Meru: Tanzania's hidden gem. Majestic peaks, diverse wildlife, and challenging trails await adventurers." />

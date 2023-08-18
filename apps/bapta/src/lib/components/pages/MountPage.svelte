@@ -80,14 +80,13 @@
 <section class="section" id="routes">
 	<div class="flex flex-col">
 		<h2 class="mb-8 font-bold text-center display-large text-primary-dark">Routes</h2>
-		<div
-			class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 justify-items-center items-center">
+		<div class="grid grid-cols-1 md:grid-cols-2 gap-6 justify-items-center items-center">
 			{#each routes as { label, difficulty, duration, body, img_path }}
 				<div class="bg-surface-dark rounded-lg shadow-lg max-w-3xl flex flex-col h-full">
 					<img
 						src={img_path}
 						alt="Marangu Route"
-						class="w-full object-cover object-center h-1/2 rounded-t-lg bg-gradient-to-b from-transparent to-surface-dark" />
+						class="w-full object-cover object-center h-[400px] sm:h-[500px] md:h-[600px] lg:h-[700px] rounded-t-lg bg-gradient-to-b from-transparent to-surface-dark" />
 
 					<!--Route Details-->
 					<div class="flex flex-col px-12 py-6 content-between h-full">

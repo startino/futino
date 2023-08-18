@@ -40,10 +40,13 @@
 
 <!--Hero-->
 <section
-	class="w-full h-screen shadow-lg shadow-background-dark lg:grid-cols-2 card-shadow grid-rows-2 px-10 lg:px-20 xl:px-40 pt-64 place-items-center border-b border-secondary-light/40 dark:border-secondary-dark/40 bg-[url('/images/safari/34.webp')] bg-cover object-contain bg-center">
+	class="w-full h-screen shadow-lg shadow-background-dark lg:grid-cols-2 card-shadow grid-rows-2 px-10 lg:px-20 xl:px-40 pt-56 place-items-center border-b border-secondary-light/40 dark:border-secondary-dark/40 bg-[url('/images/safari/57.webp')] bg-cover object-contain bg-top">
 	<div class="flex flex-col max-w-lg self-center items-center h-full inner-section">
-		<h1 class="font-bold text-black display-medium">Explore Safari Tours</h1>
-		<h1 class="pb-6 text-black body-large">Discover Thrilling Adventures in Africa's Wilderness</h1>
+		<h1 class="font-bold text-primary-dark display-medium">Explore Our Safaris</h1>
+		<h1 class="pb-4 title-medium text-black">
+			Discover Thrilling Adventures in Africa's Wilderness
+		</h1>
+
 		<OutlineButton href="#tours">
 			<h1 class="px-4 py-1 title-large">See Tours</h1>
 		</OutlineButton>

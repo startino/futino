@@ -8,12 +8,13 @@
 
 <a
 	href="/tours/{tour_url}"
-	class="flex flex-col h-full w-full text-left transition-all hover:scale-105 place-items-start rounded-lg shadow-lg shadow-surface-dark bg-surface-dark">
-	<div class="flex shrink-0 h-80 w-full relative">
+	class="flex flex-col h-full w-full text-left transition-all group hover:scale-105 duration-300 place-items-start rounded-lg shadow-lg shadow-surface-dark bg-surface-dark">
+	<div class="flex shrink-0 h-80 w-full relative overflow-hidden bg-black rounded-md">
 		<img
 			src={tour.thumbnail}
 			alt="TOUR IMG"
-			class="object-cover object-bottom h-full w-full rounded-t" />
+			class="object-cover object-center h-full w-full rounded-t duration-500 ease-in-out group-hover:scale-105 md:opacity-70 group-hover:opacity-100 transition-all" />
+
 		{#if tour.tags.includes('Top Rated')}
 			<div
 				class="bg-yellow-500 text-white absolute rounded-2xl px-3 py-1 mt-3 mr-2 font-bold w-fit right-0 top-0">

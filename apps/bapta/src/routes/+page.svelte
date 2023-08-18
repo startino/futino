@@ -18,23 +18,24 @@
 			src: '#',
 			img_path: '/images/safari/6.webp',
 			name: 'Jane Doe',
-			body: "I've always very important to me. But also walks the walk. The guides were knowledgeable and respectful of the animals and their habitats, and the accommodations were eco-friendly and responsible. I would highly recommend this company to anyone looking for an ethical and unforgettable safari experience.",
+			body: "I've always very important to me. But also walks the walk. The guides were knowledgeable and respectful of the animals and their habitats, and the accommodations were eco-friendly and responsible. I would highly recommend this company.",
 		},
 		{
 			src: '#',
 			img_path: '/images/safari/64.webp',
 			name: 'Tom Jones',
-			body: "As a photographer, I was blown away frican wildlife and landscapes. The company's guides were patient and accommodating, allowing me to take my time to capture the perfect shot. I came away from the safari with some of the best pictures of my life, and memories that will last forever. Thank you for an unforgettable adventure!",
+			body: "As a photographer, I was blown away frican wildlife and landscapes. The company's guides were patient and accommodating, allowing me to take my time to capture the perfect shot. I came away from the safari with some of the best pictures of my life. Thank you for an unforgettable adventure!",
 		},
 	];
 
 	const why_choose_us = [
 		{
 			title: 'Safe & Hassle-free Travel',
-			body: `Travel worry-free with us as your trusted companion. 
-			We prioritize your well-being, handling every detail seamlessly – from cozy accommodations to expert guides. 
-			With our safety protocols, you're free to fully immerse yourself in Africa's wonders. 
-			Embark on an unforgettable safari experience with confidence.`,
+			body: `Discover worry-free safaris, meticulously planned for your safety and comfort. 
+			Expert guides navigate seamlessly, ensuring a hassle-free journey through wild landscapes
+			 and local customs. Our safety protocols provide peace of mind, allowing you to fully enjoy 
+			 Africa's wonders. Travel confidently with us for an effortless and secure safari adventure.
+			`,
 		},
 		{
 			title: 'Excellent Customer Service',
@@ -56,11 +57,11 @@
 
 <!-- Hero Section-->
 <section
-	class="grid justify-center w-full h-screen grid-rows-2 px-10 bg-cover bg-bottom border-b shadow-lg shadow-background-dark lg:grid-cols-2 card-shadow xl:px-40 pt-60 place-items-center border-secondary-light/40 dark:border-secondary-dark/40 bg-landing_hero">
+	class="grid justify-center w-full h-screen grid-rows-2 px-10 bg-cover bg-bottom border-b shadow-lg shadow-background-dark lg:grid-cols-2 card-shadow xl:px-40 pt-60 place-items-center justify-items-start border-secondary-light/40 dark:border-secondary-dark/40 bg-landing_hero">
 	<div class="grid space-y-3 text-left justify-items-start">
 		<h1 class="font-bold text-primary-dark display-medium">
-			A Safari of a Lifetime,<br />
-			Memories to Last Forever.
+			Safari of a Lifetime,<br />
+			Memories for Forever.
 		</h1>
 		<h1 class="pb-6 text-left body-large">
 			Unleash Your Adventurous Side with Our Unique Safari Experiences in Tanzania.
@@ -85,47 +86,51 @@
 	</div>
 </section>
 
-<!-- About Bapta Section-->
-<section class="section" id="choose_bapta">
-	<div class="inner-section grid grid-cols-1 lg:grid-cols-2 gap-12 place-items-center px-10">
-		<div
-			class="flex flex-col gap-y-2 lg:justify-self-end justify-items-center items-center lg:items-start lg:justify-items-start lg:text-left">
-			<img
-				src="/images/safari/51.webp"
-				alt=""
-				class="object-cover h-96 lg:h-[600px] xl:h-[600px] w-full object-center rounded-md" />
-			<h1 class="font-extrabold display-small md:display-medium">Your Safari Experience</h1>
-			<h2 class="body-large max-w-2xl">
-				Embark on an extraordinary journey with a Bapta Safari, where you'll immerse yourself in the
-				beauty of the wild. Traverse through awe-inspiring landscapes, each one more breathtaking
-				than the last, while being expertly led by seasoned professionals, including myself, who are
-				passionate about sharing their deep knowledge of Tanzania's hidden gems. Encounter the most
-				remarkable and elusive wildlife, observing them in their natural habitats, and let every
-				moment etch into your heart, crafting indelible memories destined to be cherished for a
-				lifetime.
-			</h2>
-			<div class="flex flex-row mx-auto lg:mx-0 lg:-ml-3">
-				<img src="favicon.webp" alt="" class="w-24 h-24 p-4 rounded-full" />
-				<div class="flex flex-col justify-center text-left">
-					<h3 class="font-semibold body-large">Emmanuel Baptister Kilas</h3>
-					<h3 class="font-light body-medium">Creator of Bapta Safari</h3>
-				</div>
+<!-- Introduction section-->
+<section class="flex flex-col items-center space-y-12 section">
+	<div class="flex flex-col space-y-4 inner-section place-items-center">
+		<svg
+			class="w-8 h-8 mb-4"
+			aria-hidden="true"
+			xmlns="http://www.w3.org/2000/svg"
+			fill="currentColor"
+			viewBox="0 0 18 14">
+			<path
+				d="M6 0H2a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3H2a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Zm10 0h-4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3h-1a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Z" />
+		</svg>
+		<h2 class="title-large max-w-3xl">
+			Embark on an extraordinary journey with a Bapta Safari, where you'll immerse yourself in the
+			unparalleled beauty of the wild. Traverse through awe-inspiring landscapes, each one more
+			breathtaking than the last, while being expertly led by seasoned professionals who are
+			passionate about sharing their deep knowledge of Tanzania's hidden gems. Encounter the most
+			remarkable and elusive wildlife, observing them in their natural habitats, and let every
+			moment etch into your heart, crafting indelible memories destined to be cherished for a
+			lifetime.
+		</h2>
+		<div class="flex flex-row mx-auto">
+			<img src="images/logo/bapta_jeep.png" alt="" class="w-24 h-24 p-4 rounded-full" />
+			<div class="flex flex-col justify-center text-left">
+				<h3 class="font-semibold body-large">Emmanuel Baptister Kilas</h3>
+				<h3 class="font-light body-medium">Creator of Bapta Safari</h3>
 			</div>
 		</div>
-		<div
-			class="flex flex-col gap-10 items-center h-full justify-items-center md:items-start lg:justify-between pb-32 lg:text-left">
-			{#each why_choose_us as { title, body }}
-				<div
-					class=" bg-surface-dark rounded-lg flex flex-col items-center lg:items-start w-fit px-3 py-3 gap-2 shadow-lg shadow-surface-dark">
-					<h1 class="text-primary-dark headline-small font-semibold">
-						{title}
-					</h1>
-					<h1 class="body-medium max-w-lg">
-						{body}
-					</h1>
-				</div>
-			{/each}
-		</div>
+	</div>
+</section>
+
+<!-- Why Choose Bapta Section-->
+<section class="section" id="choose_bapta">
+	<div class="inner-section grid grid-cols-1 md:grid-cols-3 gap-8 place-items-center">
+		{#each why_choose_us as { title, body }}
+			<div
+				class="h-full bg-surface-dark rounded-lg flex flex-col justify-items-center w-full px-3 py-3 gap-2 shadow-lg shadow-surface-dark">
+				<h1 class="text-primary-dark headline-large font-semibold justify-self-start">
+					{title}
+				</h1>
+				<h1 class="body-large max-w-md px-2 my-auto pb-2">
+					{body}
+				</h1>
+			</div>
+		{/each}
 	</div>
 </section>
 
@@ -145,7 +150,7 @@
 						src={testimonial.img_path}
 						alt={testimonial.name} />
 					<!--text body-->
-					<h1 class="py-1 text-center body-medium text-surface-on-dark">
+					<h1 class="my-auto text-center body-medium text-surface-on-dark">
 						{testimonial.body}
 					</h1>
 					<!--credentials-->
@@ -164,12 +169,10 @@
 
 <!--Adventure Snippets-->
 <section class="section relative">
-	<div class="inner-section text-left flex flex-col gap-y-8 items-start md:items-center">
+	<div class="inner-section text-left flex flex-col gap-y-12 items-start md:items-center">
 		<div class="flex flex-col md:text-center text-surface-on-dark">
-			<h1 class="display-small md:display-large font-bold">Extend Your Safari</h1>
-			<h1 class="title-medium md:headline-small font-bold">
-				Add a beach stay or hiking adventure to your safari!
-			</h1>
+			<h1 class="display-large md:display-large pt-6">Extend Your Safari</h1>
+			<h1 class="headline-small pb-6">Add a beach stay or hiking adventure to your safari</h1>
 		</div>
 		{#each adventures as { img_path, label, body, href }, i}
 			{#if i % 2 == 0}
@@ -215,54 +218,12 @@
 </section>
 
 <!-- CTA to book a tour -->
-<section class="section relative z-10">
-	<div class="inner-section text-left grid grid-cols-1 sm:grid-cols-2 place-items-center gap-8">
-		<div class="flex flex-col gap-y-3">
-			<h1 class="font-semibold headline-large text-primary-dark">Find a Tour Today!</h1>
-			<h2 class="body-large max-w-xl">
-				Browse through our catalogue of tours to find just the one for you! But don't worry if you
-				don't find your dream tour, because each tour is fully customizable! Find a tour you love,
-				and request a quote!
-			</h2>
 
-			<OutlineButton href="/tours" class="py-2">
-				<h1 class="font-bold title-small">Find a Tour</h1>
-			</OutlineButton>
-		</div>
-		<img
-			src="/images/safari/20.webp"
-			alt="img"
-			class="object-cover object-center rounded-md w-full" />
-	</div>
-</section>
-
-<FaqSection faqs={safariFaq} />
-
-<!--About Section-->
-<section class="flex flex-col items-center space-y-12 section">
-	<div
-		class="card max-w-5xl p-10 space-y-6 border rounded-lg shadow-2xl border-primary-dark/50 bg-card-surface-on">
-		<h1 class="font-bold text-center display-small">Bapta Safaris</h1>
-		<img src="favicon.webp" class="rounded-full h-44" alt="logo" />
-		<h1 class="text-center body-large max-w-3xl">
-			Bapta, founder of Bapta Safaris, is passionate about wildlife conservation. Growing up in
-			Tanzania, he started his own safari business to share the beauty and biodiversity of his
-			country while supporting local communities and the environment. Growing up in Tanzania, he
-			started his own safari business to share the beauty and biodiversity of his country while
-			supporting local communities and the environment.
-		</h1>
-		<OutlineButton href="/about">
-			<h1 class="p-2 font-bold title-small">Learn More</h1>
-		</OutlineButton>
-	</div>
-</section>
-
-<!-- CTA to book a tour -->
 <section class="section relative z-10">
 	<div class="inner-section text-left grid grid-cols-1 md:grid-cols-2 place-items-center gap-8">
-		<div class="flex flex-col gap-y-3">
-			<h1 class="font-semibold headline-large text-primary-dark">Ready to find a Tour?</h1>
-			<h2 class="body-large max-w-xl">
+		<div class="flex flex-col gap-y-3 justify-self-start md:justify-self-center">
+			<h1 class="font-semibold headline-large text-primary-dark">Let's choose a Safari</h1>
+			<h2 class="body-large max-w-md">
 				Browse through our catalogue of tours to find just the one for you! But don't worry if you
 				don't find your dream tour, because each tour is fully customizable! Find a tour you love,
 				and request a quote!
@@ -275,7 +236,51 @@
 		<img
 			src="/images/safari/59.webp"
 			alt="img"
-			class="object-cover object-center rounded-md w-full" />
+			class="object-cover object-center rounded-md w-full order-first md:order-last" />
+	</div>
+</section>
+
+<FaqSection faqs={safariFaq} />
+
+<!--About Section-->
+<section class="flex flex-col items-center space-y-12 section">
+	<div
+		class="card max-w-5xl p-10 space-y-6 border rounded-lg shadow-2xl border-primary-dark/50 bg-card-surface-on">
+		<h1 class="font-bold text-center display-small">Bapta Safaris</h1>
+		<img src="favicon.webp" class="rounded-full h-44" alt="logo" />
+		<h1 class="text-center body-large max-w-3xl">
+			Emmanuel Baptister Kilas, founder of Bapta Safaris, is passionate about wildlife conservation.
+			Growing up in Tanzania, he started his own safari business to share the beauty and
+			biodiversity of his country while supporting local communities and the environment.
+		</h1>
+		<OutlineButton href="/about">
+			<h1 class="p-2 font-bold title-small">Learn More</h1>
+		</OutlineButton>
+	</div>
+</section>
+
+<!-- CTA to book a tour -->
+<section class="section relative z-10">
+	<div class="inner-section text-left grid grid-cols-1 md:grid-cols-2 place-items-center gap-8">
+		<div class="flex flex-col gap-y-3 justify-self-start md:justify-self-center">
+			<h1 class="font-semibold headline-large text-primary-dark">
+				Now, are you ready to find a Safari?
+			</h1>
+			<h2 class="body-large max-w-md">
+				Take your time to explore the variety of tours we offer, each crafted with care to suit
+				different tastes and preferences. Can't find exactly what you're looking for? No worries!
+				Our tours are flexible and can be customized to create your ideal adventure. Find a tour you
+				love, and let's start planning your unforgettable journey!
+			</h2>
+
+			<OutlineButton href="/tours" class="py-2">
+				<h1 class="font-bold title-small">Find a Tour</h1>
+			</OutlineButton>
+		</div>
+		<img
+			src="/images/safari/59.webp"
+			alt="img"
+			class="object-cover object-center rounded-md w-full order-first md:order-last" />
 	</div>
 </section>
 
@@ -287,6 +292,6 @@
 		@apply object-cover object-center w-full h-full rounded-md;
 	}
 	.adventure-row {
-		@apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-x-5 gap-y-10;
+		@apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-x-5 gap-y-2;
 	}
 </style>

@@ -11,7 +11,9 @@ export const adventures = [
 		href: '/adventures/mountmeru',
 		img_path: 'images/meru/1.webp',
 		label: 'Mount Meru',
-		body: 'Embark on an exhilarating journey to conquer the majestic heights of Mount Meru in Tanzania. Immerse yourself in awe-inspiring landscapes, lush forests, and diverse wildlife as you ascend towards the summit. With experienced guides, comfortable accommodations, and a sense of accomplishment awaiting you at the peak, Mount Meru promises an unforgettable adventure of a lifetime.',
+		body: `Discover the majestic beauty of Mount Meru, Tanzania's hidden gem and the country's second-highest peak.
+		 Rising gracefully amidst lush landscapes, Mount Meru offers an exhilarating trekking experience for adventurers seeking a captivating challenge.
+		 The trek up Mount Meru is not only a physical accomplishment but a journey through ever-changing natural wonders.`,
 	},
 	{
 		index: 2,
