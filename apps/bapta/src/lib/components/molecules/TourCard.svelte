@@ -23,8 +23,16 @@
 		{/if}
 	</div>
 	<!--Title, Parks, and tags-->
-	<div class="rounded-b flex flex-col p-4 h-full">
+	<div class="rounded-b flex flex-col gap-2 p-4 h-full">
 		<h1 class="headline-small">{tour.name}</h1>
+		<div class="headline-small flex gap-6">
+			<h1>
+				{tour.days} &#9728;&#65039
+			</h1>
+			<h1>
+				{tour.days - 1} &#127769
+			</h1>
+		</div>
 		<div class="flex flex-row flex-wrap gap-3 py-1">
 			{#each tour.tags as tag}
 				<div class="[&>*]:rounded-xl body-medium [&>*]:px-2 [&>*]:py-0.5 font-bold">
@@ -46,12 +54,15 @@
 								{tag}
 							</h1>
 						</div>
+					{:else}
+						<div class="bg-gradient-to-bl from-green-900 to-yellow-900">
+							<h1 class="">
+								{tag}
+							</h1>
+						</div>
 					{/if}
 				</div>
 			{/each}
 		</div>
-		<h1 class="body-large my-auto">
-			{tour.parks}
-		</h1>
 	</div>
 </a>
