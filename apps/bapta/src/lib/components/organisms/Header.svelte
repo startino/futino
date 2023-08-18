@@ -27,7 +27,8 @@
 		},
 	];
 
-	let largeHeaderClass = 'fixed text-primary-dark py-8 md:bg-surface-dark/60 md:backdrop-blur';
+	let largeHeaderClass =
+		'fixed text-primary-dark py-8 md:bg-surface-dark/60 md:shadow-2xl md:backdrop-blur md:drop-shadow-2xl';
 	let activeheaderClass = largeHeaderClass;
 	let miniHeaderClass =
 		'fixed py-4 border-b text-primary-dark bg-surface-dark/60 bg-surface-dark/60 backdrop-blur';
@@ -87,10 +88,11 @@
 	class="{$$props.class} {activeheaderClass} {menuOpen
 		? 'opacity-0'
 		: 'opacity-100'}  border-secondary-dark/10 top-0 z-40 w-full transition-all duration-200">
-	<div class="flex relative items-center px-6 md:px-18 lg:max-w-5xl xl:max-w-6xl mx-auto">
+	<div
+		class="flex relative items-center px-6 md:px-18 lg:max-w-5xl xl:max-w-6xl mx-auto title-medium">
 		<a class="flex gap-3" href="/">
 			<Logo />
-			<p class="hidden sm:flex text-xl my-auto pb-1">Bapta Safaris</p>
+			<p class="hidden sm:flex my-auto pb-1">Bapta Safaris</p>
 		</a>
 		<div class="flex items-center ml-auto gap-6">
 			<nav class="hidden md:flex gap-6 pb-0.5">
