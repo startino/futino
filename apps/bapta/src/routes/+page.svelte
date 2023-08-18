@@ -32,23 +32,22 @@
 		{
 			title: 'Safe & Hassle-free Travel',
 			body: `Travel worry-free with us as your trusted companion. 
-			We prioritize your well-being, handling every detail seamlessly – from cozy accommodations to expert guides. 
+			We prioritize your well-being, handling every detail seamlessly.
 			With our safety protocols, you're free to fully immerse yourself in Africa's wonders. 
-			Embark on an unforgettable safari experience with confidence.`,
+			`,
 		},
 		{
 			title: 'Excellent Customer Service',
 			body: `From the moment you inquire about your adventure to the final farewell,
-			 our dedicated team is here to cater to your every need. With prompt and attentive communication, 
-			  knowledgeable staff, and a genuine passion for creating unforgettable memories, our commitment to excellent 
-			  customer service is a testament to the exceptional journey you'll embark upon with us.`,
+			 our team is here to cater to your every need. With attentive communication, 
+		 and a genuine passion for creating unforgettable memories, our commitment to excellent 
+			  customer service is a testament to the exceptional Bapta journey.`,
 		},
 		{
 			title: 'Private, Tailormade Safaris',
-			body: `We believe in crafting experiences that reflect your individual interests and aspirations. 
-			Our dedicated team collaborates closely with you to design a bespoke itinerary that encompasses your 
-			preferred destinations, activities, and pace. Whether it's a romantic escape,
-			  a family adventure, or a solo expedition, our tailor-made safaris ensure that every moment aligns perfectly with your 
+			body: `Our dedicated team collaborates closely with you to design a bespoke itinerary that encompasses your 
+			preferred destinations, activities, and pace. Romantic escape,
+			  a family adventure, or a solo expedition - our tailor-made safaris ensure that every moment aligns perfectly with your 
 			  vision.`,
 		},
 	];
