@@ -69,7 +69,7 @@ const tours: Tour[] = [
 		thumbnail: '/images/safari/27.webp',
 		name: 'Family Tanzania Safari & Beach',
 		days: 9,
-		href: '9-days-family-tanzania-safari-beach',
+		href: '9-days-family-tanzania-safari-&-beach',
 		tags: ['Safari', 'Zanzibar', 'Tarangire', 'Serengeti', 'Ngorongoro Crater'],
 	  },
 	  {
@@ -77,7 +77,7 @@ const tours: Tour[] = [
 		thumbnail: '/images/safari/65.webp',
 		name: 'Honeymoon Safari & Beach',
 		days: 9,
-		href: '9-days-honeymoon-safari-beach',
+		href: '9-days-honeymoon-safari-&-beach',
 		tags: ['Safari', 'Zanzibar', 'Top Rated', 'Tarangire', 'Serengeti', 'Ngorongoro Crater'],
 	  },
 	  {
@@ -85,7 +85,7 @@ const tours: Tour[] = [
 		thumbnail: '/images/safari/66.webp',
 		name: 'Honeymoon Safari & Beach',
 		days: 12,
-		href: '12-days-honeymoon-safari-beach',
+		href: '12-days-honeymoon-safari-&-beach',
 		tags: ['Safari', 'Zanzibar', 'Tarangire', 'Serengeti', 'Manyara', 'Ngorongoro Crater'],
 	  },
 	  {
