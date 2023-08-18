@@ -9,10 +9,16 @@
 	let adventuresOpen = false;
 	function mouseOver() {
 		adventuresOpen = true;
+		console.log('entered');
+	}
+	function overover() {
+		adventuresOpen = true;
+		console.log('overover');
 	}
 
 	function mouseLeave() {
 		adventuresOpen = false;
+		console.log('leaved');
 	}
 	function focus() {
 		//isHovered = true;
@@ -48,12 +54,7 @@
 
 				<a class="nav-item" href="/tours"> Tours </a>
 				<a class="nav-item" href="/contact"> Contact </a>
-				<div
-					class="relative group"
-					on:mouseover={mouseOver}
-					on:mouseleave={mouseLeave}
-					on:focus={focus}>
-					<!-- svelte-ignore a11y-no-static-element-interactions -->
+				<div class="relative group">
 					<a
 						class="flex flex-row items-center gap-x-1 hover:text-tertiary-light dark:hover:text-tertiary-dark"
 						href="/adventures">
@@ -68,11 +69,10 @@
 						</span>
 					</a>
 
-					{#if adventuresOpen}
+					<div class="mt-2 overflow-hidden h-fit">
+						<div class=" absolute top-0 w-full h-8" />
 						<ul
-							in:slide
-							out:slide={{ delay: 200, duration: 300 }}
-							class="absolute flex flex-col text-left py-2 body-small bg-surface-dark/50 outline outline-1 mt-2 rounded-lg gap-y-2 [&>*]:px-2">
+							class="absolute invisible group-hover:visible -translate-y-12 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 hover:visible transition-all duration-500 flex flex-col text-left py-2 body-small bg-surface-dark/50 outline outline-1 pt-2 rounded-lg gap-y-2 [&>*]:px-2">
 							<li>
 								<a
 									class="inline hover:text-tertiary-light dark:hover:text-tertiary-dark"
@@ -95,9 +95,7 @@
 								</a>
 							</li>
 						</ul>
-					{:else}
-						<ul class="" />
-					{/if}
+					</div>
 				</div>
 				<a href="/about" class="nav_item"> About</a>
 			</nav>
