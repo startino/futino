@@ -56,7 +56,7 @@
 
 <!-- Hero Section-->
 <section
-	class="grid justify-center w-full h-screen grid-rows-2 px-10 bg-cover bg-bottom border-b shadow-lg shadow-background-dark lg:grid-cols-2 card-shadow xl:px-40 pt-60 place-items-center border-secondary-light/40 dark:border-secondary-dark/40 bg-landing_hero">
+	class="grid justify-center w-full h-screen grid-rows-2 px-10 bg-cover bg-bottom border-b shadow-lg shadow-background-dark lg:grid-cols-2 card-shadow xl:px-40 pt-60 place-items-center justify-items-start border-secondary-light/40 dark:border-secondary-dark/40 bg-landing_hero">
 	<div class="grid space-y-3 text-left justify-items-start">
 		<h1 class="font-bold text-primary-dark display-medium">
 			A Safari of a Lifetime,<br />
@@ -212,11 +212,12 @@
 </section>
 
 <!-- CTA to book a tour -->
+
 <section class="section relative z-10">
 	<div class="inner-section text-left grid grid-cols-1 md:grid-cols-2 place-items-center gap-8">
-		<div class="flex flex-col gap-y-3">
-			<h1 class="font-semibold headline-large text-primary-dark">Let's find a Tour?</h1>
-			<h2 class="body-large max-w-xl">
+		<div class="flex flex-col gap-y-3 justify-self-start md:justify-self-center">
+			<h1 class="font-semibold headline-large text-primary-dark">Let's choose a Safari</h1>
+			<h2 class="body-large max-w-md">
 				Browse through our catalogue of tours to find just the one for you! But don't worry if you
 				don't find your dream tour, because each tour is fully customizable! Find a tour you love,
 				and request a quote!
@@ -227,7 +228,7 @@
 			</OutlineButton>
 		</div>
 		<img
-			src="/images/safari/20.webp"
+			src="/images/safari/59.webp"
 			alt="img"
 			class="object-cover object-center rounded-md w-full order-first md:order-last" />
 	</div>
@@ -242,11 +243,9 @@
 		<h1 class="font-bold text-center display-small">Bapta Safaris</h1>
 		<img src="favicon.webp" class="rounded-full h-44" alt="logo" />
 		<h1 class="text-center body-large max-w-3xl">
-			Bapta, founder of Bapta Safaris, is passionate about wildlife conservation. Growing up in
-			Tanzania, he started his own safari business to share the beauty and biodiversity of his
-			country while supporting local communities and the environment. Growing up in Tanzania, he
-			started his own safari business to share the beauty and biodiversity of his country while
-			supporting local communities and the environment.
+			Emmanuel Baptister Kilas, founder of Bapta Safaris, is passionate about wildlife conservation.
+			Growing up in Tanzania, he started his own safari business to share the beauty and
+			biodiversity of his country while supporting local communities and the environment.
 		</h1>
 		<OutlineButton href="/about">
 			<h1 class="p-2 font-bold title-small">Learn More</h1>
@@ -257,9 +256,11 @@
 <!-- CTA to book a tour -->
 <section class="section relative z-10">
 	<div class="inner-section text-left grid grid-cols-1 md:grid-cols-2 place-items-center gap-8">
-		<div class="flex flex-col gap-y-3">
-			<h1 class="font-semibold headline-large text-primary-dark">Ready to find a Tour?</h1>
-			<h2 class="body-large max-w-xl">
+		<div class="flex flex-col gap-y-3 justify-self-start md:justify-self-center">
+			<h1 class="font-semibold headline-large text-primary-dark">
+				Now, are you ready to find a Safari?
+			</h1>
+			<h2 class="body-large max-w-md">
 				Take your time to explore the variety of tours we offer, each crafted with care to suit
 				different tastes and preferences. Can't find exactly what you're looking for? No worries!
 				Our tours are flexible and can be customized to create your ideal adventure. Find a tour you
