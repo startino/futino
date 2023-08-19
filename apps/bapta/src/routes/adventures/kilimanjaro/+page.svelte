@@ -16,7 +16,7 @@
 		},
 		{
 			label: 'Machame Route',
-			difficulty: 'Hard',
+			difficulty: 'Expert',
 			duration: 3,
 			body: "The Machame Route, also known as the 'Whiskey Route', is a more challenging route with steeper inclines and longer duration, but offers more scenic views and better acclimatization.",
 			img_path: '/images/kilimanjaro/5.webp',
