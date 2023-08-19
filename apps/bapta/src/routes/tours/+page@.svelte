@@ -59,6 +59,9 @@
 		<div class="text-center">
 			<h1 class="display-large">Safari Tour Packages</h1>
 			<h1 class="headline-small">Click on a tour to learn more!</h1>
+			<h1 class="body-medium">
+				* Each Package here is only a template and is fully customizeable after requesting the tour.
+			</h1>
 		</div>
 		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 			{#each tours as tour}

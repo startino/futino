@@ -14,7 +14,7 @@ const tours: Tour[] = [
 		name: 'Western Corridor Migration',
 		days: 6,
 		href: '6-days-western-corridor-migration',
-		tags: [ 'Top Rated', 'Tarangire', 'Western Serengeti', 'Ngorongoro Crater', 'Lake Manyara'],
+		tags: [ 'Top Rated', 'Tarangire', 'Serengeti', 'Ngorongoro Crater', 'Lake Manyara'],
 	  },
 	  {
 		id: 1,
@@ -22,7 +22,7 @@ const tours: Tour[] = [
 		name: 'Tanzania Safari Calving Season',
 		days: 6,
 		href: '6-days-tanzania-safari-calving-season',
-		tags: [ 'Tarangire', 'South Serengeti', 'Ngorongoro Crater', 'Lake Manyara'],
+		tags: [ 'Tarangire', 'Serengeti', 'Ngorongoro Crater', 'Lake Manyara'],
 	  },
 	  {
 		id: 2,
@@ -86,7 +86,7 @@ const tours: Tour[] = [
 		name: 'Honeymoon Safari & Beach',
 		days: 12,
 		href: '12-days-honeymoon-safari-&-beach',
-		tags: [ 'Zanzibar', 'Tarangire', 'Serengeti', 'Manyara', 'Ngorongoro Crater'],
+		tags: [ 'Zanzibar', 'Tarangire', 'Serengeti', 'Lake Manyara', 'Ngorongoro Crater'],
 	  },
 	  {
 		id: 10,

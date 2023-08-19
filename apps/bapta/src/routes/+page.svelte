@@ -134,7 +134,12 @@
 	</div>
 </section>
 
-<ToursSnippet {tours} title="Top Rated Tours" buttonText="See More" tag="Top Rated" />
+<ToursSnippet
+	{tours}
+	title="Top Rated Tours"
+	subtitle="Click on a tour to learn more!"
+	buttonText="See All"
+	tag="Top Rated" />
 
 <!-- Testimonial Section -->
 <section class="section">

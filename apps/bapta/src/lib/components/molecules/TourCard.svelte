@@ -39,13 +39,37 @@
 				{#if tag != 'Top Rated'}
 					<div class="[&>*]:rounded-xl body-medium [&>*]:px-2 [&>*]:py-0.5 font-bold">
 						{#if tag == 'Zanzibar'}
-							<div class="bg-gradient-to-tr from-blue-800 to-teal-500">
+							<div class="bg-gradient-to-tr from-blue-700 to-teal-600">
 								<h1 class="">
 									{tag}
 								</h1>
 							</div>
 						{:else if tag == 'Kilimanjaro'}
 							<div class="bg-gradient-to-tl from-green-900 via-teal-900 to-zinc-500">
+								<h1 class="">
+									{tag}
+								</h1>
+							</div>
+						{:else if tag == 'Tarangire'}
+							<div class="bg-yellow-900">
+								<h1 class="">
+									{tag}
+								</h1>
+							</div>
+						{:else if tag == 'Serengeti'}
+							<div class="bg-amber-900">
+								<h1 class="">
+									{tag}
+								</h1>
+							</div>
+						{:else if tag == 'Ngorongoro Crater'}
+							<div class="bg-gray-800">
+								<h1 class="">
+									{tag}
+								</h1>
+							</div>
+						{:else if tag == 'Lake Manyara'}
+							<div class="bg-indigo-950">
 								<h1 class="">
 									{tag}
 								</h1>
