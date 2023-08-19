@@ -14,13 +14,6 @@
 			body: 'The Momella Route is a popular option for climbing Mount Meru. It offers a moderate level of difficulty and takes around 4 days to complete. This route provides diverse landscapes, including lush forests and alpine meadows.',
 			img_path: '/images/kilimanjaro/11.webp',
 		},
-		{
-			label: 'Saddle Route',
-			difficulty: 'Difficult',
-			duration: 3,
-			body: 'The Saddle Route is a difficult and less-traveled option for Mount Meru. It takes about 3 days and involves steep ascents and descents. Hikers on this route will be treated to breathtaking views and a sense of remote wilderness.',
-			img_path: '/images/kilimanjaro/12.webp',
-		},
 	];
 
 	const overview_topics = [
@@ -54,6 +47,58 @@
 	hero_header="Ascending the Peak of Mount Meru"
 	hero_subtitle="Embark on a Captivating Trek to Tanzania's Second Highest Summit"
 	hero="bg-meru"
-	{routes}
 	FAQs={mountMeruFaq}
-	{overview_topics} />
+	{overview_topics}>
+	<div class="grid grid-cols-1 justify-items-center items-center">
+		{#each routes as { label, difficulty, duration, body, img_path }}
+			<div class="bg-surface-dark rounded-lg shadow-lg max-w-3xl flex flex-col h-full">
+				<img
+					src={img_path}
+					alt="Marangu Route"
+					class="w-full object-cover object-center h-[400px] sm:h-[500px] md:h-[600px] lg:h-[700px] rounded-t-lg bg-gradient-to-b from-transparent to-surface-dark" />
+
+				<!--Route Details-->
+				<div class="flex flex-col px-12 py-6 content-between h-fit">
+					<h3 class="mb-2 font-bold headline-medium text-primary-dark">{label}</h3>
+					<div class="flex flex-col items-center gap-y-1 my-3">
+						<h1 class="title-large text-primary-dark">Difficulty</h1>
+						<div
+							class=" rounded-md [&>*]:py-2 [&>*]:px-3 [&>*]:w-fit [&>*]:rounded-md [&>*]:text-white">
+							{#if difficulty == 'Easy'}
+								<h1 class=" bg-green-800 label-large">NOVICE LEVEL</h1>
+							{:else if difficulty == 'Intermediate'}
+								<h1 class=" bg-orange-500 label-large">INTERMEDIATE LEVEL</h1>
+							{:else if difficulty == 'Expert'}
+								<h1 class=" bg-red-700 label-large">EXPERT LEVEL</h1>
+							{/if}
+						</div>
+					</div>
+					<!--Duration-->
+					<div class="flex flex-col py-3 items-center">
+						<h1 class="title-large text-primary-dark">Duration</h1>
+						<div class="flex flex-row flex-nowrap items-center py-2 gap-x-2">
+							{#each { length: duration } as i}
+								<div class="w-8 h-3 bg-primary-dark rounded-sm">
+									<!--This block represents one day :)-->
+								</div>
+							{/each}
+							<h1 class="title-large text-primary-dark">
+								{#if duration > 1}
+									{duration} Days
+								{:else}
+									{duration} Day
+								{/if}
+							</h1>
+						</div>
+					</div>
+
+					<p class="text-secondary-dark body-large">{body}</p>
+					<div class="mt-auto pt-6 pb-2 mx-auto self-end">
+						<OutlineButton>
+							<h1 class="p-3 title-medium">Request Now</h1>
+						</OutlineButton>
+					</div>
+				</div>
+			</div>
+		{/each}
+	</div></MountPage>
