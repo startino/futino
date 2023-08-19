@@ -91,20 +91,21 @@
 	const options = { rootMargin, threshold: 0.5 };
 
 	const handleIntersect = (entry: IntersectionObserverEntry[]) => {
-		console.log('handle');
 		if (entry[0].isIntersecting) {
 			inView = true;
 		} else {
-			if (finalizedOptions.once == true && inView) {
+			if (finalizedOptions.once && inView) {
 				observer.unobserve(element);
+			} else if (!finalizedOptions.once && inView) {
+				inView = false;
 			}
-			inView = false;
 		}
 	};
 
 	onMount(() => {
 		observer = new IntersectionObserver(handleIntersect, options);
 		observer.observe(element);
+		console.log(finalizedOptions);
 	});
 	onDestroy(() => {});
 </script>
@@ -113,7 +114,6 @@
 	bind:this={element}
 	id="visible"
 	class:fade-in={!inView}
-	class:slide-in={!inView}
 	class="{$$props.class} transition-all duration-500 delay-200 overflow-hidden"
 	style={!inView
 		? `transform: translate(${finalizedOptions.fly?.x}px, ${finalizedOptions.fly?.y}px)`

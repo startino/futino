@@ -5,6 +5,7 @@ export const chapters = [
 		chapterNumber: 1,
 		inView: false,
 		title: 'Design',
+		images: ['/artwork/design_illustration.png','/artwork/design_illustration.png'],
 		id: 'design',
 		content: [
 			{
@@ -21,6 +22,7 @@ export const chapters = [
 		chapterNumber: 2,
 		inView: false,
 		title: 'Develop',
+		images: ['/artwork/develop_illustration.png'],
 		id: 'develop',
 		content: [
 			{
@@ -36,6 +38,7 @@ export const chapters = [
 	{
 		chapterNumber: 3,
 		inView: false,
+		images: ['/artwork/hosting_illustration_2.png'],
 		title: 'Host',
 		id: 'host',
 		content: [
@@ -49,6 +52,7 @@ export const chapters = [
 		chapterNumber: 4,
 		inView: false,
 		title: 'Marketing',
+		images: ['/artwork/hosting_illustration_2.png'],
 		id: 'marketing',
 		content: [
 			{

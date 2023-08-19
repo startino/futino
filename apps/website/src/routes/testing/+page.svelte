@@ -29,7 +29,7 @@
 
 <div class="h-screen w-full bg-green-900" />
 <div class="h-screen w-full bg-green-900" />
-<TransitionElement fly={{ x: 0, y: 0 }} class=" ">
+<TransitionElement bottom={-100} class="">
 	<div class="bg-pink-100 w-64 h-64 text-black">This is some text to explain.</div>
 </TransitionElement>
 <div class="h-screen w-full bg-green-900" />
