@@ -35,33 +35,30 @@
 		</div>
 		<div class="flex flex-row flex-wrap gap-3 py-1">
 			{#each tour.tags as tag}
-				<div class="[&>*]:rounded-xl body-medium [&>*]:px-2 [&>*]:py-0.5 font-bold">
-					{#if tag == 'Safari'}
-						<div class="bg-gradient-to-tr from-yellow-700 to-orange-900">
-							<h1 class="">
-								{tag}
-							</h1>
-						</div>
-					{:else if tag == 'Zanzibar'}
-						<div class="bg-gradient-to-tr from-blue-800 to-teal-500">
-							<h1 class="">
-								{tag}
-							</h1>
-						</div>
-					{:else if tag == 'Kilimanjaro'}
-						<div class="bg-gradient-to-tl from-green-900 via-teal-900 to-zinc-500">
-							<h1 class="">
-								{tag}
-							</h1>
-						</div>
-					{:else}
-						<div class="bg-gradient-to-bl from-green-900 to-yellow-900">
-							<h1 class="">
-								{tag}
-							</h1>
-						</div>
-					{/if}
-				</div>
+				<!-- Ignores top rated tag since it is at the top-->
+				{#if tag != 'Top Rated'}
+					<div class="[&>*]:rounded-xl body-medium [&>*]:px-2 [&>*]:py-0.5 font-bold">
+						{#if tag == 'Zanzibar'}
+							<div class="bg-gradient-to-tr from-blue-800 to-teal-500">
+								<h1 class="">
+									{tag}
+								</h1>
+							</div>
+						{:else if tag == 'Kilimanjaro'}
+							<div class="bg-gradient-to-tl from-green-900 via-teal-900 to-zinc-500">
+								<h1 class="">
+									{tag}
+								</h1>
+							</div>
+						{:else}
+							<div class="bg-gradient-to-tr from-yellow-700 to-orange-900">
+								<h1 class="">
+									{tag}
+								</h1>
+							</div>
+						{/if}
+					</div>
+				{/if}
 			{/each}
 		</div>
 	</div>

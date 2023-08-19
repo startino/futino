@@ -14,7 +14,7 @@ const tours: Tour[] = [
 		name: 'Western Corridor Migration',
 		days: 6,
 		href: '6-days-western-corridor-migration',
-		tags: ['Safari', 'Top Rated', 'Tarangire', 'Western Serengeti', 'Ngorongoro Crater', 'Lake Manyara'],
+		tags: [ 'Top Rated', 'Tarangire', 'Western Serengeti', 'Ngorongoro Crater', 'Lake Manyara'],
 	  },
 	  {
 		id: 1,
@@ -22,7 +22,7 @@ const tours: Tour[] = [
 		name: 'Tanzania Safari Calving Season',
 		days: 6,
 		href: '6-days-tanzania-safari-calving-season',
-		tags: ['Safari', 'Tarangire', 'South Serengeti', 'Ngorongoro Crater', 'Lake Manyara'],
+		tags: [ 'Tarangire', 'South Serengeti', 'Ngorongoro Crater', 'Lake Manyara'],
 	  },
 	  {
 		id: 2,
@@ -30,7 +30,7 @@ const tours: Tour[] = [
 		name: 'Tanzania Safari',
 		days: 7,
 		href: '7-days-tanzania-safari',
-		tags: ['Safari', 'Tarangire', 'Serengeti', 'Ngorongoro Crater', 'Lake Manyara'],
+		tags: [ 'Tarangire', 'Serengeti', 'Ngorongoro Crater', 'Lake Manyara'],
 	  },
 	  {
 		id: 3,
@@ -38,7 +38,7 @@ const tours: Tour[] = [
 		name: 'North Migration Safari',
 		days: 7,
 		href: '7-days-north-migration-safari',
-		tags: ['Safari', 'Tarangire', 'Serengeti', 'Ngorongoro Crater'],
+		tags: [ 'Tarangire', 'Serengeti', 'Ngorongoro Crater'],
 	  },
 	  {
 		id: 4,
@@ -46,7 +46,7 @@ const tours: Tour[] = [
 		name: 'Camping Safari',
 		days: 7,
 		href: '7-days-camping-safari',
-		tags: ['Safari', 'Tarangire', 'Ngorongoro Crater', 'Serengeti', 'Lake Manyara'],
+		tags: [ 'Tarangire', 'Ngorongoro Crater', 'Serengeti', 'Lake Manyara'],
 	  },
 	  {
 		id: 5,
@@ -54,7 +54,7 @@ const tours: Tour[] = [
 		name: 'North Migration Safari',
 		days: 8,
 		href: '8-days-north-migration-safari',
-		tags: ['Safari', 'Top Rated', 'Tarangire', 'Serengeti', 'Manyara', 'Ngorongoro Crater'],
+		tags: [ 'Top Rated', 'Tarangire', 'Serengeti', 'Lake Manyara', 'Ngorongoro Crater'],
 	  },
 	  {
 		id: 6,
@@ -62,7 +62,7 @@ const tours: Tour[] = [
 		name: 'Family Safari',
 		days: 8,
 		href: '8-days-family-safari',
-		tags: ['Safari', 'Tarangire', 'Serengeti', 'Manyara', 'Ngorongoro Crater'],
+		tags: [ 'Tarangire', 'Serengeti', 'Lake Manyara', 'Ngorongoro Crater'],
 	  },
 	  {
 		id: 7,
@@ -70,7 +70,7 @@ const tours: Tour[] = [
 		name: 'Family Tanzania Safari & Beach',
 		days: 9,
 		href: '9-days-family-tanzania-safari-&-beach',
-		tags: ['Safari', 'Zanzibar', 'Tarangire', 'Serengeti', 'Ngorongoro Crater'],
+		tags: [ 'Zanzibar', 'Tarangire', 'Serengeti', 'Ngorongoro Crater'],
 	  },
 	  {
 		id: 8,
@@ -78,7 +78,7 @@ const tours: Tour[] = [
 		name: 'Honeymoon Safari & Beach',
 		days: 9,
 		href: '9-days-honeymoon-safari-&-beach',
-		tags: ['Safari', 'Zanzibar', 'Top Rated', 'Tarangire', 'Serengeti', 'Ngorongoro Crater'],
+		tags: [ 'Zanzibar', 'Top Rated', 'Tarangire', 'Serengeti', 'Ngorongoro Crater'],
 	  },
 	  {
 		id: 9,
@@ -86,7 +86,7 @@ const tours: Tour[] = [
 		name: 'Honeymoon Safari & Beach',
 		days: 12,
 		href: '12-days-honeymoon-safari-&-beach',
-		tags: ['Safari', 'Zanzibar', 'Tarangire', 'Serengeti', 'Manyara', 'Ngorongoro Crater'],
+		tags: [ 'Zanzibar', 'Tarangire', 'Serengeti', 'Manyara', 'Ngorongoro Crater'],
 	  },
 	  {
 		id: 10,
@@ -94,7 +94,7 @@ const tours: Tour[] = [
 		name: 'Ngorongoro Crater Day Trip',
 		days: 1,
 		href: 'ngorongoro-crater-day-trip',
-		tags: ['Safari', 'Day Trip', 'Ngorongoro Crater'],
+		tags: [ 'Ngorongoro Crater'],
 	  },
 	  {
 		id: 11,
@@ -102,7 +102,7 @@ const tours: Tour[] = [
 		name: 'Tarangire National Park Day Trip',
 		days: 1,
 		href: 'tarangire-national-park-day-trip',
-		tags: ['Safari', 'Day Trip', 'Tarangire National Park'],
+		tags: [ 'Tarangire'],
 	  },
 	  {
 		id: 12,
@@ -110,7 +110,7 @@ const tours: Tour[] = [
 		name: 'Lake Manyara National Park Day Trip',
 		days: 1,
 		href: 'lake-manyara-national-park-day-trip',
-		tags: ['Safari', 'Day Trip', 'Lake Manyara National Park'],
+		tags: [ 'Lake Manyara'],
 	  },
 ];
 export default tours;
