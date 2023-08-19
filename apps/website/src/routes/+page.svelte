@@ -7,9 +7,7 @@
 	import ChapterMenu from '$lib/components/organisms/ChapterMenu.svelte';
 	import { chapters } from './chapters';
 	import { onMount } from 'svelte';
-	import { tsParticles } from 'tsparticles-engine';
-	import { loadCustom } from './tsparticles-custom-import'; // correct path format?
-	import { tsparticlesOptions } from './tsparticles-options';
+
 	import { inview } from 'svelte-inview';
 	import type { Options } from 'svelte-inview';
 	import { fade, slide } from 'svelte/transition';
@@ -82,12 +80,7 @@
 		},
 	];
 
-	onMount(() => {
-		const options = tsparticlesOptions;
-		loadCustom(tsParticles);
-		tsParticles.load('tsparticles-hero', options);
-		tsParticles.load('tsparticles-client-carousel', options);
-	});
+	onMount(() => {});
 </script>
 
 <svelte:window bind:scrollY />
