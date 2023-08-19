@@ -21,7 +21,7 @@
 
 <!--Hero-->
 <div
-	class="w-full h-screen shadow-lg shadow-background-dark card-shadow px-10 lg:px-20 xl:px-40 pt-60 place-items-center {$$props.hero} bg-cover object-contain bg-top">
+	class="w-full h-screen shadow-lg shadow-background-dark card-shadow px-10 lg:px-20 xl:px-40 pt-60 place-items-center {$$props.hero} bg-cover object-contain bg-center">
 	<div class="flex flex-col max-w-xl mx-auto mt-8 mb-64 space-y-2 items-center">
 		<h1 class="font-bold text-black display-medium">{hero_header}</h1>
 		<h1 class="pb-6 text-black body-large">
