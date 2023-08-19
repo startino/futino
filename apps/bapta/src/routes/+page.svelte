@@ -57,9 +57,10 @@
 
 <!-- Hero Section-->
 <section
-	class="grid justify-center w-full h-screen grid-rows-2 px-10 bg-cover bg-bottom border-b shadow-lg shadow-background-dark lg:grid-cols-2 card-shadow xl:px-40 pt-60 place-items-center justify-items-start border-secondary-light/40 dark:border-secondary-dark/40 bg-landing_hero">
-	<div class="grid space-y-3 text-left justify-items-start">
-		<h1 class="font-bold text-primary-dark display-medium">
+	class="grid justify-center w-full h-screen grid-rows-2 px-10 bg-cover bg-bottom border-b shadow-lg shadow-background-dark lg:grid-cols-5 card-shadow xl:px-32 pt-60 place-items-center justify-items-start border-secondary-light/40 dark:border-secondary-dark/40 bg-landing_hero">
+	<div
+		class="grid space-y-3 col-span-3 text-left justify-items-start bg-surface-dark/90 shadow-2xl drop-shadow-2xl rounded-lg pl-4 pr-8 py-10 md:py-12 md:pl-10 md:pr-14">
+		<h1 class="font-bold text-primary-dark display-small md:display-medium">
 			Safari of a Lifetime,<br />
 			Memories for Forever.
 		</h1>
@@ -134,7 +135,12 @@
 	</div>
 </section>
 
-<ToursSnippet {tours} title="Top Rated Tours" buttonText="See More" tag="Top Rated" />
+<ToursSnippet
+	{tours}
+	title="Top Rated Tours"
+	subtitle="Click on a tour to learn more!"
+	buttonText="See All"
+	tag="Top Rated" />
 
 <!-- Testimonial Section -->
 <section class="section">

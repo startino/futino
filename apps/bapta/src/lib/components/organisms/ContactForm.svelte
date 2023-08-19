@@ -2,7 +2,7 @@
 	import OutlineButton from '../molecules/OutlineButton.svelte';
 </script>
 
-<form class="space-y-6 py-6">
+<form class="flex flex-col gap-y-6 py-6">
 	<div>
 		<label class="label" for="name">Name</label>
 		<input class="input" id="name" type="text" placeholder="Bob John" />
@@ -43,6 +43,6 @@
 		@apply block pt-4 pb-2 font-bold text-left text-primary-dark;
 	}
 	.input {
-		@apply w-full h-full px-3 py-2 leading-tight text-secondary-dark bg-surface-dark border border-primary-dark rounded-r appearance-none;
+		@apply w-fit h-fit px-3 py-2 leading-tight text-secondary-dark bg-surface-dark border border-primary-dark rounded-r appearance-none;
 	}
 </style>

@@ -41,11 +41,10 @@
 <!--Hero-->
 <section
 	class="w-full h-screen shadow-lg shadow-background-dark lg:grid-cols-2 card-shadow grid-rows-2 px-10 lg:px-20 xl:px-40 pt-56 place-items-center border-b border-secondary-light/40 dark:border-secondary-dark/40 bg-[url('/images/safari/57.webp')] bg-cover object-contain bg-top">
-	<div class="flex flex-col max-w-lg self-center items-center h-full inner-section">
+	<div
+		class="flex flex-col max-w-xl self-center items-center h-fit inner-section bg-surface-dark/90 shadow-2xl drop-shadow-2xl rounded-lg py-12 pl-10 pr-14">
 		<h1 class="font-bold text-primary-dark display-medium">Explore Our Safaris</h1>
-		<h1 class="pb-4 title-medium text-black">
-			Discover Thrilling Adventures in Africa's Wilderness
-		</h1>
+		<h1 class="pb-4 title-medium">Discover Thrilling Adventures in Africa's Wilderness</h1>
 
 		<OutlineButton href="#tours">
 			<h1 class="px-4 py-1 title-large">See Tours</h1>
@@ -59,6 +58,9 @@
 		<div class="text-center">
 			<h1 class="display-large">Safari Tour Packages</h1>
 			<h1 class="headline-small">Click on a tour to learn more!</h1>
+			<h1 class="body-medium">
+				* Each Package here is only a template and is fully customizeable after requesting the tour.
+			</h1>
 		</div>
 		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 			{#each tours as tour}

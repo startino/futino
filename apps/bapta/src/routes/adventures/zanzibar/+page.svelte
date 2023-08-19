@@ -5,6 +5,7 @@
 	import Button from '$lib/components/atoms/Button.svelte';
 	import OutlineButton from '$lib/components/molecules/OutlineButton.svelte';
 	import ToursSnippet from '$lib/components/organisms/ToursSnippet.svelte';
+	import ZanzibarPackageCard from './ZanzibarPackageCard.svelte';
 
 	const accomodations = [
 		{
@@ -85,8 +86,8 @@
 <section class="section">
 	<div class="inner-section">
 		<div class="">
-			<h2 class="display-large font-extrabold text-primary-dark">Activities</h2>
-			<p class="headline-small text-primary-dark">
+			<h2 class="headline-large font-extrabold text-primary-dark">Activities</h2>
+			<p class="title-medium text-primary-dark">
 				Explore a range of activities during your beach holiday in Zanzibar
 			</p>
 		</div>
@@ -115,13 +116,43 @@
 	</div>
 </section>
 
-<ToursSnippet title="Top Tours in Zanzibar" buttonText="See More" tag="Zanzibar" />
+<ToursSnippet
+	title="Top Safaris with Zanzibar"
+	subtitle="Choose a Safari with a beach extension!"
+	buttonText="See All"
+	tag="Zanzibar" />
+
+<!--Standalone Zanzibar Packages-->
+<section class="section">
+	<div class="inner-section text-left">
+		<h2 class="headline-large font-extrabold text-primary-dark">
+			Simply looking for a beach holiday? <br /> Bapta has just that.
+		</h2>
+		<p class="max-w-2xl mt-4 title-small">
+			Specific Activities and Accommodations are completely up to you. Request a Package and we'll
+			get a knowledgable guide to help customize your trip.
+		</p>
+
+		<div class="grid grid-cols-2 gap-6 py-4">
+			<ZanzibarPackageCard
+				href="/checkout"
+				thumbnail="/images/zanzibar/2.webp"
+				title="Family Beach Holiday"
+				days="7" />
+			<ZanzibarPackageCard
+				href="/checkout"
+				thumbnail="/images/zanzibar/1.webp"
+				title="Honeymoon Beach Escape"
+				days="5" />
+		</div>
+	</div>
+</section>
 
 <!--Accomodations Section-->
 <section class="section">
 	<div class="inner-section">
-		<h2 class="text-3xl font-extrabold text-primary-dark">Accomodation</h2>
-		<p class="max-w-2xl mx-auto mt-4 text-xl text-primary-dark">
+		<h2 class="headline-large font-semibold text-primary-dark">Accomodation</h2>
+		<p class="max-w-2xl mx-auto mt-4 title-medium text-primary-dark">
 			Explore a range of accomodations during your beach holiday in Zanzibar
 		</p>
 		<div class="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-3 mt-8">
