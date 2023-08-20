@@ -19,6 +19,7 @@
 	import InViewSlide from '$lib/components/organisms/InViewSlide.svelte';
 	import Inview from '$lib/components/organisms/Inview.svelte';
 	import { recentWork } from './recentWork';
+	import { benefits } from './benefits';
 
 	let scrollY: number;
 	// Index of the current chapter that is in the viewport, used by chapter menu.
@@ -110,11 +111,11 @@
 		class="h-screen place-items-center">
 		<div id="tsparticles-hero" class="absolute w-full h-full -z-10" />
 		<div class="grid gap-12 justify-items-center inner-section">
-			<h1 class="display-medium font-extrabold tracking-tight">
+			<h1 class="font-extrabold tracking-tight display-medium">
 				Designing Dreams, Developing Destinations
 			</h1>
 
-			<h3 class="title-large max-w-md md:max-w-xl">
+			<h3 class="max-w-md title-large md:max-w-xl">
 				Growing startups and companies with Creative <span
 					class="text-primary-light dark:text-primary-dark">Design</span
 				>, Efficient <span class="text-primary-light dark:text-primary-dark">Development</span>, and
@@ -147,7 +148,7 @@
 		id="journey"
 		use:inview={chapterInViewOptions}
 		on:inview_enter={handleChapterInView(1)}
-		class=" shadow-lg border-secondary-light/20 dark:border-secondary-dark/20 justify-items-center">
+		class="shadow-lg border-secondary-light/20 dark:border-secondary-dark/20 justify-items-center">
 		<!--Absolute screen center ruler element heh
 		<div class="absolute z-50 w-1 h-6 -translate-x-1/2 bg-red-500 left-1/2 top-1/2" />
 -->
@@ -155,11 +156,11 @@
 			<h1 class="pb-12 display-medium">Areas of Expertise</h1>
 			{#each servicesChapters as { chapterNumber, inView, title, image, body }}
 				<div
-					class="relative grid w-full grid-cols-1 gap-14 sm:grid-cols-2 place-items-center overflow-y-hidden py-16">
+					class="relative grid w-full grid-cols-1 py-16 overflow-y-hidden gap-14 sm:grid-cols-2 place-items-center">
 					<!--Center line and Chapter checkmark-->
 
 					<div
-						class="absolute hidden sm:flex flex-col items-center h-full text-center sm:-translate-x-1/2 sm:left-1/2 top-12">
+						class="absolute flex-col items-center hidden h-full text-center sm:flex sm:-translate-x-1/2 sm:left-1/2 top-12">
 						<!--Circle-->
 						<div
 							class="absolute z-20 flex items-center w-10 h-10 text-center rounded-full bg-surface-dark -top-5">
@@ -182,10 +183,10 @@
 							class="relative hidden w-6 sm:h-[350px] md:h-[400px] mx-auto sm:flex">
 							<!--Glow Line-->
 							<div
-								class="absolute z-0 h-full bottom-2 bg-gradient-to-b from-primary-light to-secondary-light dark:from-primary-dark dark:to-secondary-dark -translate-x-1/2 w-2 blur-sm left-1/2" />
+								class="absolute z-0 w-2 h-full -translate-x-1/2 bottom-2 bg-gradient-to-b from-primary-light to-secondary-light dark:from-primary-dark dark:to-secondary-dark blur-sm left-1/2" />
 							<!--Line-->
 							<div
-								class="absolute z-10 h-full bottom-4 -translate-x-1/2 bg-surface-light dark:bg-surface-dark rounded-lg w-1 left-1/2" />
+								class="absolute z-10 w-1 h-full -translate-x-1/2 rounded-lg bottom-4 bg-surface-light dark:bg-surface-dark left-1/2" />
 						</InViewSlide>
 					</div>
 
@@ -195,9 +196,9 @@
 						alt=""
 						class="order-last object-cover object-center w-1/2 mx-auto bg-no-repeat sm:w-full sm:order-first" />
 					<div
-						class="flex flex-col max-w-md gap-2 text-left overflow-hidden justify-self-start p-1">
-						<div class="flex flex-row gap-3 pt-1 pl-1 sm:p-0 items-center">
-							<div class="relative w-12 h-12 flex place-items-center sm:hidden">
+						class="flex flex-col max-w-md gap-2 p-1 overflow-hidden text-left justify-self-start">
+						<div class="flex flex-row items-center gap-3 pt-1 pl-1 sm:p-0">
+							<div class="relative flex w-12 h-12 place-items-center sm:hidden">
 								<!--Circle-->
 								<div
 									class="z-20 flex items-center w-10 h-10 text-center rounded-full bg-surface-dark">
@@ -210,12 +211,12 @@
 									once={true}
 									class="absolute z-0 text-center rounded-full w-11 h-11 bg-gradient-to-t from-primary-light to-secondary-light dark:from-primary-dark dark:to-secondary-dark blur-sm" />
 							</div>
-							<h1 class="display-small font-bold">
+							<h1 class="font-bold display-small">
 								{title}
 							</h1>
 						</div>
 						<InView fly={{ x: -100, y: 0 }} class="sm:hidden">
-							<div class=" border-t border-primary-light dark:border-primary-dark w-1/4 h-1" />
+							<div class="w-1/4 h-1 border-t border-primary-light dark:border-primary-dark" />
 						</InView>
 
 						<p class="body-medium">
@@ -268,6 +269,40 @@
 						duration={700} />%
 				</h2>
 				<h2 class="font-light body-medium">Pure Waffle</h2>
+			</div>
+		</div>
+	</section>
+
+	<!--Member Benefits Section-->
+	<section
+		id="benefits"
+		use:inview={chapterInViewOptions}
+		on:inview_enter={handleChapterInView(2)}
+		class="items-center shadow-lg border-secondary-light/20 dark:border-secondary-dark/20 justify-items-center">
+		<div class="flex flex-col items-center gap-6 inner-section justify-items-center">
+			<div class="max-w-xl py-6 w-fit">
+				<h1 class="display-medium">Membership Benefits</h1>
+				<h2 class="body-medium">
+					Perks that are simply too good to look anywhere else for your website needs. Seriously.
+				</h2>
+			</div>
+			<div class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
+				{#each benefits as { title, body, image }, i}
+					<div
+						class="relative grid grid-cols-5 px-6 pt-16 pb-6 overflow-hidden text-left border rounded-lg shadow-2xl justify-items-center from-primary-container-light/90 via-secondary-container/60 to-container-light/10 bg-gradient-to-tr dark:to-container-dark/10 dark:via-secondary-container-dark/60 dark:from-primary-container-dark/90 border-outline-variant-light dark:border-outline-variant-dark">
+						<div class="col-span-3 flex flex-col w-full gap-2 z-10">
+							<h1
+								class=" headline-large border-outline-light leading-tight dark:border-outline-dark">
+								{title}
+							</h1>
+							<hr />
+							<h3 class="body-large">{body}</h3>
+						</div>
+						<div class="absolute top-3 right-3 z-0 flex w-fit h-fit">
+							<img src={image} alt="" class="object-cover object-center mx-auto w-44 h-44" />
+						</div>
+					</div>
+				{/each}
 			</div>
 		</div>
 	</section>
