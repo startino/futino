@@ -1,6 +1,13 @@
 // All this text is performance heavy for some reason...
 // Not sure if it's because we're importing it into the page or what. makes it go from 95->69
-export const chapters = [
+export const servicesChapters: {
+	chapterNumber: number;
+	inView: boolean;
+	title: string;
+	image: string;
+	id: string;
+	body: string;
+}[] = [
 	{
 		chapterNumber: 1,
 		inView: false,

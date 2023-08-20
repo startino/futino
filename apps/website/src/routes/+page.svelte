@@ -5,7 +5,7 @@
 	import Button from '$lib/components/atoms/Button.svelte';
 	import ClientCarousel from '$lib/components/organisms/ClientCarousel.svelte';
 	import ChapterMenu from '$lib/components/organisms/ChapterMenu.svelte';
-	import { chapters } from './chapters';
+	import { servicesChapters } from './serviceChapters';
 	import { onMount } from 'svelte';
 
 	import { inview } from 'svelte-inview';
@@ -18,10 +18,13 @@
 	import AnimatedCounter from './AnimatedCounter.svelte';
 	import InViewSlide from '$lib/components/organisms/InViewSlide.svelte';
 	import Inview from '$lib/components/organisms/Inview.svelte';
+	import { recentWork } from './recentWork';
 
 	let scrollY: number;
+	// Index of the current chapter that is in the viewport, used by chapter menu.
+	let chapterInView: number;
 
-	const inviewOptions: Options = {
+	const chapterInViewOptions: Options = {
 		rootMargin: '-10%',
 		unobserveOnEnter: false,
 	};
@@ -45,76 +48,48 @@
 		},
 	};
 
-	const clientCards = [
-		{
-			index: 0,
-			img_path: 'fav_icon.png',
-			name: 'John Mackadoo',
-			company: 'Flyers Go Crazy',
-			body: "I know there's a way i can type loris paragraphs in vscode but I forgot the shortcut, if you could lmk, would be appreciated.",
-			vid_path: 'client_websites/ggsoccer_whole_dark.webm',
-		},
-		{
-			index: 1,
-			img_path: 'fav_icon.png',
-			name: 'John Mackadoo',
-			company: 'Flyers Go Crazy',
-			body: "I know there's a way i can type loris paragraphs in vscode but I forgot the shortcut, if you could lmk, would be appreciated.",
-			vid_path: 'client_websites/ggsoccer_whole_dark.webm',
-		},
-		{
-			index: 2,
-			img_path: 'fav_icon.png',
-			name: 'John Mackadoo',
-			company: 'Flyers Go Crazy',
-			body: "I know there's a way i can type loris paragraphs in vscode but I forgot the shortcut, if you could lmk, would be appreciated.",
-			vid_path: 'client_websites/ggsoccer_whole_dark.webm',
-		},
-		{
-			index: 3,
-			img_path: 'fav_icon.png',
-			name: 'John Mackadoo',
-			company: 'Flyers Go Crazy',
-			body: "I know there's a way i can type loris paragraphs in vscode but I forgot the shortcut, if you could lmk, would be appreciated.",
-			vid_path: 'client_websites/ggsoccer_whole_dark.webm',
-		},
-	];
+	const handleChapterInView =
+		(inViewChapter: number) =>
+		({ detail }: CustomEvent<ObserverEventDetails>) => {
+			console.log('handling change for chapter inview.');
+
+			chapterInView = inViewChapter;
+		};
 
 	const landingPageChapters: {
-		index: number;
 		chapterNumber: number;
 		title: string;
 		href: string;
 	}[] = [
 		{
-			index: 0,
-			chapterNumber: 1,
+			chapterNumber: 0,
 			title: 'Hero',
 			href: '#hero',
 		},
 		{
-			index: 1,
-			chapterNumber: 2,
+			chapterNumber: 1,
 			title: 'Services',
 			href: '#journey',
 		},
 		{
-			index: 2,
+			chapterNumber: 2,
+			title: 'Benefits',
+			href: '#benefits',
+		},
+		{
 			chapterNumber: 3,
 			title: 'Recent Work',
 			href: '#clients',
 		},
 		{
-			index: 3,
 			chapterNumber: 4,
 			title: 'Pricing',
 			href: '#pricing',
 		},
 		{
-			index: 4,
 			chapterNumber: 5,
-			title: 'FAQs',
-			href: '#faqs',
+			title: 'Contact',
+			href: '#contact',
 		},
 	];
 
@@ -124,11 +99,15 @@
 <svelte:window bind:scrollY />
 
 <Header />
-<ChapterMenu chapters={landingPageChapters} />
+<ChapterMenu bind:chapterInView chapters={landingPageChapters} />
 
 <main class="text-center">
 	<!--Hero-->
-	<section id="hero" class="h-screen place-items-center">
+	<section
+		id="hero"
+		use:inview={chapterInViewOptions}
+		on:inview_enter={handleChapterInView(0)}
+		class="h-screen place-items-center">
 		<div id="tsparticles-hero" class="absolute w-full h-full -z-10" />
 		<div class="grid gap-12 justify-items-center inner-section">
 			<h1 class="display-medium font-extrabold tracking-tight">
@@ -166,13 +145,15 @@
 	<!--Journey Section-->
 	<section
 		id="journey"
+		use:inview={chapterInViewOptions}
+		on:inview_enter={handleChapterInView(1)}
 		class=" shadow-lg border-secondary-light/20 dark:border-secondary-dark/20 justify-items-center">
 		<!--Absolute screen center ruler element heh
 		<div class="absolute z-50 w-1 h-6 -translate-x-1/2 bg-red-500 left-1/2 top-1/2" />
 -->
 		<div class="flex flex-col max-w-4xl inner-section">
 			<h1 class="pb-12 display-medium">Areas of Expertise</h1>
-			{#each chapters as { chapterNumber, inView, title, image, body }}
+			{#each servicesChapters as { chapterNumber, inView, title, image, body }}
 				<div
 					class="relative grid w-full grid-cols-1 gap-14 sm:grid-cols-2 place-items-center overflow-y-hidden py-16">
 					<!--Center line and Chapter checkmark-->
@@ -294,22 +275,86 @@
 	<!--Clients Section-->
 	<section
 		id="clients"
+		use:inview={chapterInViewOptions}
+		on:inview_enter={handleChapterInView(3)}
 		class="shadow-lg border-secondary-light/20 dark:border-secondary-dark/20 justify-items-center">
 		<div class="inner-section">
 			<InView transition="fade" duration={500}>
 				<h1 class="py-12 display-large">Our Clients</h1>
 				<div
 					class="flex flex-wrap items-center gap-12 justify-items-center max-w-7xl overflow-clip">
-					{#each clientCards as { index, name, company, body, vid_path }}
+					{#each recentWork as { index, name, company, body, vid_path }}
 						<ClientCard {name} {company} {body} {vid_path} />{/each}
 				</div>
 			</InView>
 		</div>
 	</section>
 
+	<!--About Section-->
+	<section
+		id="about"
+		class="grid px-4 py-24 space-y-12 shadow-lg grow sm:py-28 md:py-32 sm:px-6 md:px-8 border-secondary-light/20 dark:border-secondary-dark/20 justify-items-center">
+		<InView transition="fade" duration={500} class="">
+			<div class="flex flex-col mx-auto space-y-6 max-w-7xl place-items-center">
+				<h1 class="py-12 display-large">Meet The Founders</h1>
+				<div class="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-4">
+					<!--Jorge's Card-->
+					<div
+						class="flex flex-col p-6 rounded-lg shadow-lg bg-surface-variant-light/20 dark:bg-surface-variant-dark/20">
+						<img src="" alt="Not found" class="self-center w-24 h-24 bg-black rounded-full" />
+						<h2 class="pt-2 display-small">Jorge Lewis</h2>
+						<h3 class="pb-4 text-gray-400 title-small">COO & Co-founder of Futino</h3>
+						<h2 class="body-large">
+							I noticed that making a website was either too expensive or too time consuming for
+							everyone, including individuals, startups, even large businesses. I wanted to create a
+							solution to these problems.
+						</h2>
+					</div>
+					<!--Jonas' Card-->
+					<div
+						class="flex flex-col p-6 rounded-lg shadow-lg bg-surface-variant-light/20 dark:bg-surface-variant-dark/20">
+						<img src="" alt="Not found" class="self-center w-24 h-24 bg-black rounded-full" />
+						<h2 class="pt-2 display-small">Jonas Lindberg</h2>
+						<h3 class="pb-4 text-gray-400 title-small">CTO & Co-founder of Futino</h3>
+						<h2 class="body-large">
+							I noticed that making a website was either too expensive or too time consuming for
+							everyone, including individuals, startups, even large businesses. I wanted to create a
+							solution to these problems.
+						</h2>
+					</div>
+				</div>
+				<Button>
+					<h1 class="p-2">Learn More</h1>
+				</Button>
+			</div>
+		</InView>
+	</section>
+	<!--How we work section-->
+	<section
+		id="calltoaction"
+		class="grid px-4 py-24 space-y-12 shadow-lg grow sm:py-28 md:py-32 sm:px-6 md:px-8 border-secondary-light/20 dark:border-secondary-dark/20 justify-items-center">
+		<InView transition="fade" duration={300}>
+			<div class="flex flex-col space-y-12">
+				<h1 class="display-large">Let's Get Started</h1>
+				<div class="grid grid-cols-2 gap-y-4 gap-x-4 sm::grid-cols-2">
+					<a href="{base}/about">
+						<Button class="w-full h-full">
+							<p class="p-2 title-medium">Check Out Pricing!</p>
+						</Button>
+					</a>
+					<a href="{base}/contact">
+						<Button class="w-full h-full">
+							<p class="p-2 title-medium">Contact Us!</p>
+						</Button>
+					</a>
+				</div>
+			</div></InView>
+	</section>
 	<!--Contact Section-->
 	<section
 		id="contact"
+		use:inview={chapterInViewOptions}
+		on:inview_enter={handleChapterInView(5)}
 		class="grid px-4 py-32 space-y-12 shadow-lg grow sm:py-34 md:py-44 sm:px-6 md:px-8 border-secondary-light/20 dark:border-secondary-dark/20 justify-items-center">
 		<InView transition="fade" duration={500}>
 			<h1 class="py-12 display-large">We'd Love to Hear From You</h1>
@@ -398,66 +443,6 @@
 				</div>
 			</div>
 		</InView>
-	</section>
-
-	<section
-		id="about"
-		class="grid px-4 py-24 space-y-12 shadow-lg grow sm:py-28 md:py-32 sm:px-6 md:px-8 border-secondary-light/20 dark:border-secondary-dark/20 justify-items-center">
-		<InView transition="fade" duration={500} class="">
-			<div class="flex flex-col mx-auto space-y-6 max-w-7xl place-items-center">
-				<h1 class="py-12 display-large">Meet The Founders</h1>
-				<div class="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-4">
-					<!--Jorge's Card-->
-					<div
-						class="flex flex-col p-6 rounded-lg shadow-lg bg-surface-variant-light/20 dark:bg-surface-variant-dark/20">
-						<img src="" alt="Not found" class="self-center w-24 h-24 bg-black rounded-full" />
-						<h2 class="pt-2 display-small">Jorge Lewis</h2>
-						<h3 class="pb-4 text-gray-400 title-small">COO & Co-founder of Futino</h3>
-						<h2 class="body-large">
-							I noticed that making a website was either too expensive or too time consuming for
-							everyone, including individuals, startups, even large businesses. I wanted to create a
-							solution to these problems.
-						</h2>
-					</div>
-					<!--Jonas' Card-->
-					<div
-						class="flex flex-col p-6 rounded-lg shadow-lg bg-surface-variant-light/20 dark:bg-surface-variant-dark/20">
-						<img src="" alt="Not found" class="self-center w-24 h-24 bg-black rounded-full" />
-						<h2 class="pt-2 display-small">Jonas Lindberg</h2>
-						<h3 class="pb-4 text-gray-400 title-small">CTO & Co-founder of Futino</h3>
-						<h2 class="body-large">
-							I noticed that making a website was either too expensive or too time consuming for
-							everyone, including individuals, startups, even large businesses. I wanted to create a
-							solution to these problems.
-						</h2>
-					</div>
-				</div>
-				<Button>
-					<h1 class="p-2">Learn More</h1>
-				</Button>
-			</div>
-		</InView>
-	</section>
-
-	<section
-		id="calltoaction"
-		class="grid px-4 py-24 space-y-12 shadow-lg grow sm:py-28 md:py-32 sm:px-6 md:px-8 border-secondary-light/20 dark:border-secondary-dark/20 justify-items-center">
-		<InView transition="fade" duration={300}>
-			<div class="flex flex-col space-y-12">
-				<h1 class="display-large">Let's Get Started</h1>
-				<div class="grid grid-cols-2 gap-y-4 gap-x-4 sm::grid-cols-2">
-					<a href="{base}/about">
-						<Button class="w-full h-full">
-							<p class="p-2 title-medium">Check Out Pricing!</p>
-						</Button>
-					</a>
-					<a href="{base}/contact">
-						<Button class="w-full h-full">
-							<p class="p-2 title-medium">Contact Us!</p>
-						</Button>
-					</a>
-				</div>
-			</div></InView>
 	</section>
 </main>
 

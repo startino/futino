@@ -105,7 +105,6 @@
 	onMount(() => {
 		observer = new IntersectionObserver(handleIntersect, options);
 		observer.observe(element);
-		console.log(finalizedOptions);
 	});
 	onDestroy(() => {});
 </script>

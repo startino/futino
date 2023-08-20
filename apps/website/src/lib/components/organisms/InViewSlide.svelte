@@ -18,8 +18,6 @@
 	};
 
 	const handleChange = ({ detail }: CustomEvent<ObserverEventDetails>) => {
-		console.log('handling change for inview slide.');
-
 		inView = detail.inView;
 		scrollDirection = detail.scrollDirection.vertical;
 	};
