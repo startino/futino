@@ -135,7 +135,7 @@
 				Designing Dreams, Developing Destinations
 			</h1>
 
-			<h3 class="title-medium max-w-md md:max-w-xl">
+			<h3 class="title-large max-w-md md:max-w-xl">
 				Growing startups and companies with Creative <span
 					class="text-primary-light dark:text-primary-dark">Design</span
 				>, Efficient <span class="text-primary-light dark:text-primary-dark">Development</span>, and

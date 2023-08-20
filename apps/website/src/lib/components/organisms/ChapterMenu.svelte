@@ -33,7 +33,7 @@
 <div class="fixed z-40 flex w-full bottom-0 p-6">
 	<button
 		on:click={handleExpandClick}
-		class="flex flex-row md:hidden gap-6 max-w-xs bg-surface-light dark:bg-surface-dark rounded-xl p-4 text-left items-center w-52 transition-all">
+		class="flex flex-row md:hidden gap-6 max-w-xs bg-surface-light dark:bg-surface-dark rounded-xl p-4 text-left items-center w-52">
 		<Logo class="self-end" />
 
 		<div class="flex flex-col transition-all duration-1000">
