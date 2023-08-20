@@ -45,6 +45,9 @@
 		@apply text-primary-on-light;
 		@apply dark:text-primary-on-dark;
 	}
+	.inner-section {
+		@apply px-4 sm:px-6 md:px-8 max-w-7xl py-12 sm:py-32 md:py-44;
+	}
 
 	/* Material Design */
 	.display-large {
@@ -370,5 +373,8 @@
 		--md-sys-typescale-title-small-font-size: 14px;
 		--md-sys-typescale-title-small-line-height: 20px;
 		--md-sys-typescale-title-small-letter-spacing: 0.1px;
+	}
+	section {
+		@apply grid relative w-full;
 	}
 }
