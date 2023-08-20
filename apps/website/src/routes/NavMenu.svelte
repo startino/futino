@@ -37,7 +37,7 @@
 	class="flex bg-surface-light dark:bg-surface-dark border rounded-2xl border-secondary-light/20 dark:border-secondary-dark/20">
 	<div class="relative flex flex-row gap-1 items-center text-center mx-1 my-1">
 		<div
-			class="h-12 absolute border-2 rounded-2xl border-primary-light bg-primary-container-dark dark:border-primary-dark transition-all duration-700"
+			class="h-12 absolute border-2 rounded-2xl border-primary-light bg-primary-container-dark dark:border-primary-dark transition-all delay-75 ease-in-out duration-500"
 			style="width: {button_widths[
 				currentHighlightedChapter
 			]}px; {positionClass}; height: {rowHeight}px" />
@@ -47,7 +47,7 @@
 					? 'active border-2 rounded-xl border-primary-light dark:border-primary-dark'
 					: -->
 			<div
-				class="py-1 my-2 md:py-2 rounded-2xl px-4 {currentHighlightedChapter == i
+				class="py-1 my-2 md:py-2 rounded-2xl px-8 {currentHighlightedChapter == i
 					? ''
 					: 'outline outline-0 hover:outline-1 outline-white'}"
 				bind:clientWidth={button_widths[i]}

@@ -89,6 +89,11 @@
 		},
 		{
 			chapterNumber: 5,
+			title: "Here's How",
+			href: '#hereshow',
+		},
+		{
+			chapterNumber: 6,
 			title: 'Contact',
 			href: '#contact',
 		},
@@ -325,7 +330,7 @@
 		</div>
 	</section>
 
-	<!--About Section-->
+	<!--About Section-thinking about removing from landing-->
 	<section
 		id="about"
 		class="grid px-4 py-24 space-y-12 shadow-lg grow sm:py-28 md:py-32 sm:px-6 md:px-8 border-secondary-light/20 dark:border-secondary-dark/20 justify-items-center">
@@ -364,12 +369,22 @@
 			</div>
 		</InView>
 	</section>
+	<!--Pricing Section-->
+	<section
+		id="pricing"
+		use:inview={chapterInViewOptions}
+		on:inview_enter={handleChapterInView(4)}
+		class="border-secondary-light/20 dark:border-secondary-dark/20">
+		<div class="inner-section">pricing section</div>
+	</section>
 	<!--How we work section-->
 	<section
-		id="calltoaction"
-		class="grid px-4 py-24 space-y-12 shadow-lg grow sm:py-28 md:py-32 sm:px-6 md:px-8 border-secondary-light/20 dark:border-secondary-dark/20 justify-items-center">
+		id="hereshow"
+		use:inview={chapterInViewOptions}
+		on:inview_enter={handleChapterInView(5)}
+		class="shadow-lg border-secondary-light/20 dark:border-secondary-dark/20">
 		<InView transition="fade" duration={300}>
-			<div class="flex flex-col space-y-12">
+			<div class="flex flex-col space-y-12 inner-section items-center">
 				<h1 class="display-large">Let's Get Started</h1>
 				<div class="grid grid-cols-2 gap-y-4 gap-x-4 sm::grid-cols-2">
 					<a href="{base}/about">
@@ -389,7 +404,7 @@
 	<section
 		id="contact"
 		use:inview={chapterInViewOptions}
-		on:inview_enter={handleChapterInView(5)}
+		on:inview_enter={handleChapterInView(6)}
 		class="grid px-4 py-32 space-y-12 shadow-lg grow sm:py-34 md:py-44 sm:px-6 md:px-8 border-secondary-light/20 dark:border-secondary-dark/20 justify-items-center">
 		<InView transition="fade" duration={500}>
 			<h1 class="py-12 display-large">We'd Love to Hear From You</h1>
