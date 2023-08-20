@@ -2,6 +2,8 @@
 	import { cubicOut } from 'svelte/easing';
 	import { fade, slide } from 'svelte/transition';
 	import { circOut, circInOut } from 'svelte/easing';
+	import NavMenu from '../../../routes/NavMenu.svelte';
+	import Logo from '../atoms/Logo.svelte';
 
 	let handleExpandClick = () => (isExpanded = !isExpanded);
 
@@ -21,17 +23,18 @@
 	let selectedChapter = 1;
 
 	export let chapters: {
+		index: number;
 		chapterNumber: number;
 		title: string;
 		href: string;
 	}[]; // Was erroring if I didn't give type. is it somethingwrong with my vscode?
 </script>
 
-<div class="fixed z-40 flex-none w-full bottom-0 p-6">
+<div class="fixed z-40 flex w-full bottom-0 p-6">
 	<button
 		on:click={handleExpandClick}
-		class="flex flex-row md:hidden gap-6 max-w-xs bg-surface-variant-light dark:bg-black/70 rounded-xl p-4 text-left items-center w-52">
-		<div class="h-10 w-8 bg-white/50 self-end divide-black/30 dark:divide-white" />
+		class="flex flex-row md:hidden gap-6 max-w-xs bg-surface-light dark:bg-surface-dark rounded-xl p-4 text-left items-center w-52 transition-all">
+		<Logo class="self-end" />
 
 		<div class="flex flex-col transition-all duration-1000">
 			<ul class="divide-y-1 divide-black/10 dark:divide-white/10 space-y-4">
@@ -76,17 +79,9 @@
 			</ul>
 		</div>
 	</button>
-	<div class="hidden md:flex max-w-md mx-auto rounded-xl">
+	<div class="hidden md:flex max-w-3xl mx-auto left- rounded-xl">
 		<div class="flex flex-row gap-5">
-			{#each chapters as { chapterNumber, title, href }}
-				<li class="">
-					<a on:click={() => (selectedChapter = chapterNumber)} href="#{href}">
-						<!--Non-selected Chapters-->
-						<h1 class="body-small text-left">0{chapterNumber}</h1>
-						<h1 class="body-large text-left font-bold">{title}</h1>
-					</a>
-				</li>
-			{/each}
+			<NavMenu {chapters} />
 		</div>
 	</div>
 </div>

@@ -81,31 +81,37 @@
 	];
 
 	const landingPageChapters: {
+		index: number;
 		chapterNumber: number;
 		title: string;
 		href: string;
 	}[] = [
 		{
+			index: 0,
 			chapterNumber: 1,
 			title: 'Hero',
 			href: '#hero',
 		},
 		{
+			index: 1,
 			chapterNumber: 2,
 			title: 'Services',
 			href: '#journey',
 		},
 		{
+			index: 2,
 			chapterNumber: 3,
 			title: 'Recent Work',
-			href: '#journey',
+			href: '#clients',
 		},
 		{
+			index: 3,
 			chapterNumber: 4,
 			title: 'Pricing',
 			href: '#pricing',
 		},
 		{
+			index: 4,
 			chapterNumber: 5,
 			title: 'FAQs',
 			href: '#faqs',
