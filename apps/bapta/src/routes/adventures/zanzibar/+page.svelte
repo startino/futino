@@ -131,10 +131,14 @@
 			get a knowledgable guide to help customize your trip.
 		</p>
 
+		<h1 class="body-medium max-w-xl pt-4">
+			* This is only a starting point and is fully customizeable after requesting the Journey.
+		</h1>
+
 		<!-- svelte-ignore a11y-no-static-element-interactions -->
 		<!-- svelte-ignore a11y-click-events-have-key-events -->
 		<div
-			class="w-fit py-4"
+			class="w-fit"
 			on:click={() => {
 				addChosenJourney('zanzibar');
 			}}>

@@ -19,6 +19,10 @@
 				<h1 class="display-large">{$$props.title}</h1>
 			</div>
 			<h1 class="headline-small">{$$props.subtitle}</h1>
+			<h3 class="body-large max-w-xl pt-4 mx-auto">
+				* Each Journey here is only a starting point and is fully customizeable after requesting the
+				tour.
+			</h3>
 		</div>
 
 		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 grid-rows-1 gap-6 px-6 py-6">
@@ -29,7 +33,7 @@
 			{/each}
 		</div>
 		<OutlineButton href="/tours" class="flex pt-6">
-			<h1 class="headline-large text-center">{$$props.buttonText}</h1>
+			<h1 class="headline-large text-center px-3 py-1">{$$props.buttonText}</h1>
 		</OutlineButton>
 	</div>
 </section>

@@ -17,7 +17,6 @@
 		let formData = new FormData(e.target);
 
 		let data = {
-			fullName: '',
 			firstName: '',
 			lastName: '',
 			contact: '',
@@ -29,13 +28,15 @@
 			data[key] = value;
 		}
 
-		data.fullName = data.firstName + ' ' + data.lastName;
+		// Supabase only has one name property
+		let fullName = data.firstName + ' ' + data.lastName;
+		let journeys = $journeysStore.toString().replaceAll('-', ' ');
 		await supabase.from('bapta').insert([
 			{
-				name: data.fullName,
+				name: fullName,
 				contact: data.contact,
 				people: data.people,
-				choice: $journeysStore.toString(),
+				choice: journeys,
 			},
 		]);
 		journeysStore.reset();
@@ -47,10 +48,14 @@
 	<h1 class="font-bold text-primary-dark display-medium">Request Your Tour</h1>
 
 	<hr class="w-40 py-4" />
-	<div class="grid grid-cols-1 md:grid-cols-2 place-items-center gap-5">
+	<div class="grid grid-cols-1 md:grid-cols-5 place-items-center gap-5">
 		<div
-			class="rounded-lg shadow-lg shadow-black bg-surface-dark/70 h-full p-5 title-large sm:headline-medium lg:display-small justify-items-center">
+			class="rounded-lg shadow-lg col-span-3 shadow-black bg-surface-dark/70 h-full p-5 title-large sm:headline-medium lg:display-small justify-items-center">
 			<h2>Your Selection:</h2>
+			<h3 class="body-large max-w-xl">
+				* Each Journey here is only a starting point and is fully customizeable after requesting the
+				Journey.
+			</h3>
 			<div class="text-left flex flex-col gap-4 pt-2">
 				{#each $journeysStore as journeyId}
 					<JourneyCard {journeyId} />
@@ -59,7 +64,7 @@
 		</div>
 
 		<div
-			class="p-5 rounded-lg shadow-lg w-full max-w-lg shadow-black bg-surface-dark/70 prose prose-sm sm:prose-base md:prose-lg lg:prose-xl xl:prose-2xl dark:prose-invert prose-main justify-items-center mx-auto">
+			class="p-5 rounded-lg shadow-lg w-full max-w-lg col-span-2 shadow-black bg-surface-dark/70 prose prose-sm sm:prose-base md:prose-lg lg:prose-xl xl:prose-2xl dark:prose-invert prose-main justify-items-center mx-auto">
 			<form class="flex flex-col gap-5" on:submit|preventDefault={registerTour}>
 				<input
 					class="dark:bg-surface-dark/70 border-black"

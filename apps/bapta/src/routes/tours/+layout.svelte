@@ -23,7 +23,7 @@
 			<h1 class="display-small">Request Quote</h1>
 		</button> -->
 		<div
-			class="backdrop-blur-xl w-fit mx-auto p-5"
+			class="backdrop-blur-xl w-fit mx-auto rounded-lg"
 			on:click={() => {
 				console.log('on click');
 				addChosenJourney(journeyId);

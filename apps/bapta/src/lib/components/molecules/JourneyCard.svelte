@@ -15,7 +15,7 @@
 		<img
 			src={thumbnail}
 			alt="TOUR IMG"
-			class="object-cover object-center w-full h-32 sm:h-44 md:h-full flex rounded-l transition-all" />
+			class="object-cover object-center w-full h-32 sm:h-44 md:h-64 flex rounded-l lg:rounded-l lg:rounded-r-none md:rounded-t md:rounded-b-none transition-all" />
 
 		{#if tags.includes('Top Rated')}
 			<div
@@ -27,7 +27,7 @@
 	<!--Title, Parks, and tags-->
 	<div
 		class="rounded-b flex flex-col gap-2 w-full my-auto md:place-items-start md:px-2 md:pr-2 lg:pr-4 lg:pl-0 pr-4 justify-items-center">
-		<h1 class="title-small sm:headline-small pt-4">{name}</h1>
+		<h1 class="title-small sm:headline-small pt-4 md:pt-0">{name}</h1>
 		<div class="title-small sm:headline-small flex gap-6">
 			<h1>
 				{days} &#9728;&#65039
