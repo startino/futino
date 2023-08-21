@@ -9,6 +9,7 @@
 		let journeyid = $page.url.pathname.slice($page.url.pathname.lastIndexOf('/') + 1);
 		if (!$journeysStore.includes(journeyid)) {
 			// Saves it to local storage and store.
+			console.log('adding to store');
 			$journeysStore = [...$journeysStore, journeyid];
 		} else {
 		}
@@ -31,8 +32,8 @@
 			class="bg-surface-dark rounded-lg w-72 md:w-96 text-primary-dark">
 			<h1 class="display-small">Request Quote</h1>
 		</button> -->
-		<div class="backdrop-blur-xl w-fit mx-auto">
-			<OutlineButton href="/checkout" on:click={addChosenJourney}>
+		<div class="backdrop-blur-xl w-fit mx-auto" on:click={addChosenJourney}>
+			<OutlineButton href="/checkout">
 				<h1 class="display-small md:display-medium">Request Quote</h1>
 			</OutlineButton>
 		</div>

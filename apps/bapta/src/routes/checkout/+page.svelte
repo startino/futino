@@ -4,6 +4,7 @@
 	import journeys from '$lib/journeys';
 	import { journeysStore } from '$lib/journeysStore';
 	import { onMount } from 'svelte';
+	import JourneyCard from '$lib/components/molecules/JourneyCard.svelte';
 
 	// Create a Supabase client object
 	const supabase = createClient<Database>(
@@ -47,13 +48,13 @@
 	<hr class="w-40 py-4" />
 	<div class="grid grid-cols-1 md:grid-cols-2 place-items-center gap-5">
 		<div
-			class="p-5 rounded-lg shadow-lg shadow-black bg-surface-dark/70 h-fullp-5 prose prose-sm sm:prose-base md:prose-lg lg:prose-xl xl:prose-2xl dark:prose-invert prose-main justify-items-center mx-auto">
+			class="rounded-lg shadow-lg shadow-black bg-surface-dark/70 h-full p-5 title-large sm:headline-medium lg:display-small justify-items-center">
 			<h2>Your Selection:</h2>
-			<ul class="text-left">
-				{#each $journeysStore as journey}
-					<li>{journey} {journeys[journey].duration}</li>
+			<div class="text-left flex flex-col gap-4">
+				{#each $journeysStore as journeyId}
+					<JourneyCard {journeyId} />
 				{/each}
-			</ul>
+			</div>
 		</div>
 
 		<div
