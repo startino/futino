@@ -28,12 +28,11 @@ export type Journeys = {
 
 
 
-
 const journeys: Journeys = {
 	'zanzibar': new Journey({
 		name: 'Zanzibar Beach',
 		days: 3,
-		thumbnail: '',
+		thumbnail: '/images/zanzibar/2.webp',
 	}),
 	'ngorongoro-crater': new Journey({
 		thumbnail: '/images/safari/64.webp',

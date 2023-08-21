@@ -13,20 +13,12 @@ export function createStore() {
 	function reset() {
 		isBrowser && (localStorage.storable = JSON.stringify(emptyStore));
 		set(emptyStore);
-		store.update((state) => {
+		store.update(() => {
 			return emptyStore;
 		});
 	}
 
 	
- function addChosenJourney(id: string) {
-	// Validate for no duplicates
-	if (!get(store).includes(id)) {
-		// Saves it to local storage and store.
-		let journeysStore = [...get(store), id];
-		set(journeysStore);
-	}
-}
 
 
 	isBrowser && localStorage.storable && set(JSON.parse(localStorage.storable));
@@ -34,8 +26,8 @@ export function createStore() {
 	return {
 		subscribe,
 		reset,
-		addChosenJourney,
 		set: (storedValue: string[]) => {
+			console.log("set:" , storedValue);
 			isBrowser && (localStorage.storable = JSON.stringify(storedValue));
 			set(storedValue);
 		},
@@ -44,4 +36,16 @@ export function createStore() {
 
 export let journeysStore = createStore();
 
+export function addChosenJourney(id: string) {
+	
+    let currentList: string[] = get(journeysStore);
+	// Validate for no duplicates
+	if (!currentList.includes(id)) {
+		console.log("addiung");
+		// Saves it to local storage and store.
+		currentList.push(id);
+		journeysStore.set(currentList);
+		
+	}
+}
 

@@ -38,6 +38,7 @@
 				choice: $journeysStore.toString(),
 			},
 		]);
+		journeysStore.reset();
 	}
 </script>
 

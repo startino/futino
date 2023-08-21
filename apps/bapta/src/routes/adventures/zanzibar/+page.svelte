@@ -6,6 +6,7 @@
 	import OutlineButton from '$lib/components/molecules/OutlineButton.svelte';
 	import ToursSnippet from '$lib/components/organisms/ToursSnippet.svelte';
 	import ZanzibarPackageCard from './ZanzibarPackageCard.svelte';
+	import { addChosenJourney, journeysStore } from '$lib/journeysStore';
 
 	const accomodations = [
 		{
@@ -124,26 +125,25 @@
 
 <!--Standalone Zanzibar Packages-->
 <section class="section">
-	<div class="inner-section text-left">
+	<div class="inner-section flex flex-col text-left gap-4">
 		<h2 class="headline-large font-extrabold text-primary-dark">
 			Simply looking for a beach holiday? <br /> Bapta has just that.
 		</h2>
-		<p class="max-w-2xl mt-4 title-small">
+		<p class="max-w-2xl title-small">
 			Specific Activities and Accommodations are completely up to you. Request a Package and we'll
 			get a knowledgable guide to help customize your trip.
 		</p>
 
-		<div class="grid grid-cols-2 gap-6 py-4">
-			<ZanzibarPackageCard
-				href="/checkout"
-				thumbnail="/images/zanzibar/2.webp"
-				title="Family Beach Holiday"
-				days="7" />
-			<ZanzibarPackageCard
-				href="/checkout"
-				thumbnail="/images/zanzibar/1.webp"
-				title="Honeymoon Beach Escape"
-				days="5" />
+		<!-- svelte-ignore a11y-no-static-element-interactions -->
+		<!-- svelte-ignore a11y-click-events-have-key-events -->
+		<div
+			class="w-fit py-4"
+			on:click={() => {
+				addChosenJourney('zanzibar');
+			}}>
+			<OutlineButton href="/checkout">
+				<h1 class="display-small md:display-medium">Request Journey</h1>
+			</OutlineButton>
 		</div>
 	</div>
 </section>

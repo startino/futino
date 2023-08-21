@@ -1,7 +1,7 @@
 <script lang="ts">
 	import OutlineButton from '$lib/components/molecules/OutlineButton.svelte';
 	import { page } from '$app/stores';
-	import { journeysStore } from '$lib/journeysStore';
+	import { journeysStore, addChosenJourney } from '$lib/journeysStore';
 	import journeys from '$lib/journeys';
 
 	// Get id from url path.
@@ -23,9 +23,10 @@
 			<h1 class="display-small">Request Quote</h1>
 		</button> -->
 		<div
-			class="backdrop-blur-xl w-fit mx-auto"
+			class="backdrop-blur-xl w-fit mx-auto p-5"
 			on:click={() => {
-				journeysStore.addChosenJourney(journeyId);
+				console.log('on click');
+				addChosenJourney(journeyId);
 			}}>
 			<OutlineButton href="/checkout">
 				<h1 class="display-small md:display-medium">Request Quote</h1>
