@@ -2,6 +2,8 @@
 	import { cubicOut } from 'svelte/easing';
 	import { fade, slide } from 'svelte/transition';
 	import { circOut, circInOut } from 'svelte/easing';
+	import NavMenu from '../../../routes/NavMenu.svelte';
+	import Logo from '../atoms/Logo.svelte';
 
 	let handleExpandClick = () => (isExpanded = !isExpanded);
 
@@ -18,35 +20,28 @@
 	};
 
 	let isExpanded: boolean = false;
-	let selectedChapter = 1;
+	export let chapterInView: number = 0;
 
-	export let chapters: any; // Was erroring if I didn't give type. is it somethingwrong with my vscode?
+	export let chapters: {
+		chapterNumber: number;
+		title: string;
+		href: string;
+	}[] = [];
 </script>
 
-<div class="fixed z-40 flex-none w-full bottom-0 p-6">
+<div class="fixed z-40 flex w-full bottom-0 p-6">
 	<button
 		on:click={handleExpandClick}
-		class="flex flex-row gap-6 max-w-xs bg-surface-variant-light dark:bg-black/70 rounded-xl p-4 text-left items-center w-52">
-		<div class="h-10 w-8 bg-white/50 self-end divide-black/30 dark:divide-white" />
+		class="flex flex-row md:hidden gap-6 max-w-xs bg-surface-light dark:bg-surface-dark rounded-xl p-4 text-left items-center w-52">
+		<Logo class="self-end" />
 
 		<div class="flex flex-col transition-all duration-1000">
 			<ul class="divide-y-1 divide-black/10 dark:divide-white/10 space-y-4">
 				{#if isExpanded}
-					{#each chapters as { chapterNumber, title, id }}
-						<li
-							class=""
-							in:slide={{
-								delay: chapterNumber * 70 + animateIn.delay,
-								duration: 500,
-								easing: circOut,
-							}}
-							out:slide={{
-								delay: chapterNumber * 70 + animateOut.delay,
-								duration: 300,
-								easing: circOut,
-							}}>
-							<a on:click={() => (selectedChapter = chapterNumber)} href="#{id}">
-								{#if chapterNumber === selectedChapter}
+					{#each chapters as { chapterNumber, title, href }}
+						<li class="">
+							<a on:click={() => (chapterInView = chapterNumber)} href="#{href}">
+								{#if chapterNumber === chapterInView}
 									<!--The Selected Chapter-->
 									<h1 class="body-small text-left text-primary-light dark:text-primary-dark">
 										Chapter 0{chapterNumber}
@@ -64,12 +59,18 @@
 					<!--Selected chapter when not collapsed-->
 					<div class="flex flex-col">
 						<h1 class="title-small text-primary-light dark:text-primary-dark">
-							Chapter 0{chapters[selectedChapter - 1].chapterNumber}
+							Chapter 0{chapters[chapterInView].chapterNumber}
 						</h1>
-						<h1 class="title-medium font-bold">{chapters[selectedChapter - 1].title}</h1>
+						<h1 class="title-medium font-bold">{chapters[chapterInView].title}</h1>
 					</div>
 				{/if}
 			</ul>
 		</div>
 	</button>
+	<!--Chapter Menu for md+-->
+	<div class="hidden md:flex max-w-7xl mx-auto rounded-xl">
+		<div class="flex flex-row gap-5">
+			<NavMenu bind:currentHighlightedChapter={chapterInView} {chapters} />
+		</div>
+	</div>
 </div>
