@@ -107,9 +107,6 @@
 						<p class="body-large my-auto">
 							{body}
 						</p>
-						<OutlineButton class="self-center mt-auto pt-6">
-							<h1 class="title-medium p-2">Book Now</h1>
-						</OutlineButton>
 					</div>
 				</div>
 			{/each}
@@ -130,7 +127,7 @@
 			Simply looking for a beach holiday? <br /> Bapta has just that.
 		</h2>
 		<p class="max-w-2xl title-small">
-			Specific Activities and Accommodations are completely up to you. Request a Package and we'll
+			Specific activities and accommodations are completely up to you. Request a journey and we'll
 			get a knowledgable guide to help customize your trip.
 		</p>
 
@@ -142,7 +139,7 @@
 				addChosenJourney('zanzibar');
 			}}>
 			<OutlineButton href="/checkout">
-				<h1 class="display-small md:display-medium">Request Journey</h1>
+				<h1 class="headline-medium">Request Journey</h1>
 			</OutlineButton>
 		</div>
 	</div>
@@ -172,9 +169,6 @@
 						<p class=" body-large">
 							{accomodation.body}
 						</p>
-						<OutlineButton class="self-center pt-6">
-							<h1 class="title-medium p-2">Book Now</h1>
-						</OutlineButton>
 					</div>
 				</div>
 			{/each}

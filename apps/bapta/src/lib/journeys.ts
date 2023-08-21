@@ -34,6 +34,28 @@ const journeys: Journeys = {
 		days: 3,
 		thumbnail: '/images/zanzibar/2.webp',
 	}),
+	'marangu-route': new Journey({
+		name: 'Kilimanjaro Marangu Route',
+		days: 5,
+		thumbnail: '/images/kilimanjaro/2.webp',
+	}),
+	'machame-route': new Journey({
+		name: 'Kilimanjaro Machame Route',
+		days: 6,
+		thumbnail: '/images/kilimanjaro/5.webp',
+	}),
+	'lemosho-route': new Journey({
+		name: 'Kilimanjaro Lemosho Route',
+		days: 7,
+		thumbnail: '/images/kilimanjaro/11.webp',
+	}),
+	'momella-route': new Journey({
+		name: 'Mt Meru Momella Route',
+		days: 7,
+		thumbnail: '/images/kilimanjaro/11.webp',
+	}),
+	
+
 	'ngorongoro-crater': new Journey({
 		thumbnail: '/images/safari/64.webp',
 		name: 'Ngorongoro Crater Day Trip',

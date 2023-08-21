@@ -5,21 +5,32 @@
 	import FAQ from '$lib/components/organisms/FAQSection.svelte';
 	import MountPage from '$lib/components/pages/MountPage.svelte';
 	import kilimanjaroFaq from '$lib/components/tsData/kilimanjaroFaq';
+	import { addChosenJourney } from '$lib/journeysStore';
 
 	const routes = [
 		{
+			id: 'marangu-route',
 			label: 'Marangu Route',
 			difficulty: 'Intermediate',
-			duration: 1,
+			days: 5,
 			body: "The Machame Route, also known as the 'Whiskey Route', is a more challenging route with steeper inclines and longer duration, but offers more scenic views and better acclimatization.",
 			img_path: '/images/kilimanjaro/2.webp',
 		},
 		{
+			id: 'machame-route',
 			label: 'Machame Route',
 			difficulty: 'Expert',
-			duration: 3,
+			days: 6,
 			body: "The Machame Route, also known as the 'Whiskey Route', is a more challenging route with steeper inclines and longer duration, but offers more scenic views and better acclimatization.",
 			img_path: '/images/kilimanjaro/5.webp',
+		},
+		{
+			id: 'lemosho route',
+			label: 'Lemosho',
+			difficulty: 'Easy',
+			days: 7,
+			body: `The Lemosho Route departs from the west side of the mountain, offering plenty of spectacular views of the dramatic gorges of the western side of Kilimanjaro. The route starts by taking you through the remote rainforest, before joining the Machame Route. `,
+			img_path: '/images/kilimanjaro/11.webp',
 		},
 	];
 
@@ -57,13 +68,15 @@
 	FAQs={kilimanjaroFaq}
 	{overview_topics}>
 	<div class="grid grid-cols-1 md:grid-cols-2 gap-6 justify-items-center items-center">
-		{#each routes as { label, difficulty, duration, body, img_path }}
+		{#each routes as { label, difficulty, days, body, img_path, id }}
 			<div class="bg-surface-dark rounded-lg shadow-lg max-w-3xl flex flex-col h-full w-full">
 				<img
 					src={img_path}
 					alt="Marangu Route"
 					class="w-full object-cover object-center h-[400px] sm:h-[500px] md:h-[600px] lg:h-[700px] rounded-t-lg bg-gradient-to-b from-transparent to-surface-dark" />
 
+				<!-- svelte-ignore a11y-click-events-have-key-events -->
+				<!-- svelte-ignore a11y-no-static-element-interactions -->
 				<!--Route Details-->
 				<div class="flex flex-col px-12 py-6 content-between h-fit">
 					<h3 class="mb-2 font-bold headline-medium text-primary-dark">{label}</h3>
@@ -84,25 +97,29 @@
 					<div class="flex flex-col py-3 items-center">
 						<h1 class="title-large text-primary-dark">Duration</h1>
 						<div class="flex flex-row flex-nowrap items-center py-2 gap-x-2">
-							{#each { length: duration } as i}
+							{#each { length: days } as i}
 								<div class="w-8 h-3 bg-primary-dark rounded-sm">
 									<!--This block represents one day :)-->
 								</div>
 							{/each}
 							<h1 class="title-large text-primary-dark">
-								{#if duration > 1}
-									{duration} Days
+								{#if days > 1}
+									{days} Days
 								{:else}
-									{duration} Day
+									{days} Day
 								{/if}
 							</h1>
 						</div>
 					</div>
 
 					<p class="text-secondary-dark body-large">{body}</p>
-					<div class="mt-auto pt-6 pb-2 mx-auto self-end">
-						<OutlineButton>
-							<h1 class="p-3 title-medium">Learn More</h1>
+					<div
+						class="mt-auto pt-6 pb-2 mx-auto self-end"
+						on:click={() => {
+							addChosenJourney(id);
+						}}>
+						<OutlineButton href="/checkout">
+							<h1 class="p-3 title-medium">Request Journey</h1>
 						</OutlineButton>
 					</div>
 				</div>
