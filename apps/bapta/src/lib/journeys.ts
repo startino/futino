@@ -1,4 +1,5 @@
 import {writable, derived } from 'svelte/store';
+import { journeysStore } from './journeysStore';
 
 type JourneyProps = {
 	name: string;
@@ -24,6 +25,9 @@ export class Journey {
 export type Journeys = {
 	[key: string]: Journey;
 };
+
+
+
 
 const journeys: Journeys = {
 	'zanzibar': new Journey({

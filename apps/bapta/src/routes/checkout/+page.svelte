@@ -50,7 +50,7 @@
 		<div
 			class="rounded-lg shadow-lg shadow-black bg-surface-dark/70 h-full p-5 title-large sm:headline-medium lg:display-small justify-items-center">
 			<h2>Your Selection:</h2>
-			<div class="text-left flex flex-col gap-4">
+			<div class="text-left flex flex-col gap-4 pt-2">
 				{#each $journeysStore as journeyId}
 					<JourneyCard {journeyId} />
 				{/each}
@@ -58,7 +58,7 @@
 		</div>
 
 		<div
-			class="p-5 rounded-lg shadow-lg shadow-black bg-surface-dark/70 h-fullp-5 prose prose-sm sm:prose-base md:prose-lg lg:prose-xl xl:prose-2xl dark:prose-invert prose-main justify-items-center mx-auto">
+			class="p-5 rounded-lg shadow-lg w-full max-w-lg shadow-black bg-surface-dark/70 prose prose-sm sm:prose-base md:prose-lg lg:prose-xl xl:prose-2xl dark:prose-invert prose-main justify-items-center mx-auto">
 			<form class="flex flex-col gap-5" on:submit|preventDefault={registerTour}>
 				<input
 					class="dark:bg-surface-dark/70 border-black"

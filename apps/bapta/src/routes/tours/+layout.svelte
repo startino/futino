@@ -1,21 +1,11 @@
-<script>
+<script lang="ts">
 	import OutlineButton from '$lib/components/molecules/OutlineButton.svelte';
 	import { page } from '$app/stores';
 	import { journeysStore } from '$lib/journeysStore';
 	import journeys from '$lib/journeys';
 
-	function addChosenJourney() {
-		// Get id from url path.
-		let journeyid = $page.url.pathname.slice($page.url.pathname.lastIndexOf('/') + 1);
-		if (!$journeysStore.includes(journeyid)) {
-			// Saves it to local storage and store.
-			console.log('adding to store');
-			$journeysStore = [...$journeysStore, journeyid];
-		} else {
-		}
-
-		console.log($journeysStore);
-	}
+	// Get id from url path.
+	let journeyId = $page.url.pathname.slice($page.url.pathname.lastIndexOf('/') + 1);
 </script>
 
 <main
@@ -32,7 +22,11 @@
 			class="bg-surface-dark rounded-lg w-72 md:w-96 text-primary-dark">
 			<h1 class="display-small">Request Quote</h1>
 		</button> -->
-		<div class="backdrop-blur-xl w-fit mx-auto" on:click={addChosenJourney}>
+		<div
+			class="backdrop-blur-xl w-fit mx-auto"
+			on:click={() => {
+				journeysStore.addChosenJourney(journeyId);
+			}}>
 			<OutlineButton href="/checkout">
 				<h1 class="display-small md:display-medium">Request Quote</h1>
 			</OutlineButton>

@@ -1,4 +1,4 @@
-import { writable } from 'svelte/store';
+import { writable , get} from 'svelte/store';
 
 export function createStore() {
 	// No chosen journeys
@@ -18,12 +18,23 @@ export function createStore() {
 		});
 	}
 
+	
+ function addChosenJourney(id: string) {
+	// Validate for no duplicates
+	if (!get(store).includes(id)) {
+		// Saves it to local storage and store.
+		let journeysStore = [...get(store), id];
+		set(journeysStore);
+	}
+}
+
 
 	isBrowser && localStorage.storable && set(JSON.parse(localStorage.storable));
 
 	return {
 		subscribe,
 		reset,
+		addChosenJourney,
 		set: (storedValue: string[]) => {
 			isBrowser && (localStorage.storable = JSON.stringify(storedValue));
 			set(storedValue);
@@ -32,3 +43,5 @@ export function createStore() {
 }
 
 export let journeysStore = createStore();
+
+

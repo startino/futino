@@ -10,12 +10,12 @@
 </script>
 
 <div
-	class="grid grid-cols-2 h-fit w-full text-left transition-all group hover:scale-105 duration-300 place-items-center rounded-lg shadow-lg shadow-surface-dark bg-surface-dark gap-4">
+	class="grid grid-cols-2 md:grid-cols-1 lg:grid-cols-2 h-fit w-full text-left transition-all place-items-center rounded-lg shadow-lg shadow-surface-dark bg-surface-dark gap-4">
 	<div class="flex h-full w-full relative rounded-md">
 		<img
 			src={thumbnail}
 			alt="TOUR IMG"
-			class="object-cover object-center w-fit h-full flex rounded-l transition-all" />
+			class="object-cover object-center w-full h-32 sm:h-44 md:h-full flex rounded-l transition-all" />
 
 		{#if tags.includes('Top Rated')}
 			<div
@@ -25,8 +25,9 @@
 		{/if}
 	</div>
 	<!--Title, Parks, and tags-->
-	<div class="rounded-b flex flex-col gap-2 w-full my-auto pr-4">
-		<h1 class="title-small sm:headline-small">{name}</h1>
+	<div
+		class="rounded-b flex flex-col gap-2 w-full my-auto md:place-items-start md:px-2 md:pr-2 lg:pr-4 lg:pl-0 pr-4 justify-items-center">
+		<h1 class="title-small sm:headline-small pt-4">{name}</h1>
 		<div class="title-small sm:headline-small flex gap-6">
 			<h1>
 				{days} &#9728;&#65039
