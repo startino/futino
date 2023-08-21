@@ -1,7 +1,20 @@
 <script>
 	import OutlineButton from '$lib/components/molecules/OutlineButton.svelte';
+	import { page } from '$app/stores';
+	import { journeysStore } from '$lib/journeysStore';
+	import journeys from '$lib/journeys';
 
-	function handleOnRequestClick() {}
+	function addChosenJourney() {
+		// Get id from url path.
+		let journeyid = $page.url.pathname.slice($page.url.pathname.lastIndexOf('/') + 1);
+		if (!$journeysStore.includes(journeyid)) {
+			// Saves it to local storage and store.
+			$journeysStore = [...$journeysStore, journeyid];
+		} else {
+		}
+
+		console.log($journeysStore);
+	}
 </script>
 
 <main
@@ -11,13 +24,15 @@
 		<slot />
 	</article>
 	<div class="fixed bottom-0 w-full left-1/2 -translate-y-1/2 -translate-x-1/2">
+		<!-- svelte-ignore a11y-no-static-element-interactions -->
+		<!-- svelte-ignore a11y-click-events-have-key-events -->
 		<!-- <button
 			on:click={handleOnRequestClick}
 			class="bg-surface-dark rounded-lg w-72 md:w-96 text-primary-dark">
 			<h1 class="display-small">Request Quote</h1>
 		</button> -->
 		<div class="backdrop-blur-xl w-fit mx-auto">
-			<OutlineButton class=" ">
+			<OutlineButton href="/checkout" on:click={addChosenJourney}>
 				<h1 class="display-small md:display-medium">Request Quote</h1>
 			</OutlineButton>
 		</div>
