@@ -2,7 +2,9 @@
 	export let activeTabValue = 0;
 </script>
 
-<label for={$$props.for} class="{$$props.class} flex flex-col md:flex-row rounded cursor-pointer">
+<label
+	for={$$props.for}
+	class="{$$props.class} flex flex-row rounded title-medium tracking-wide gap-2">
 	{$$props.text}
 	<slot />
 </label>

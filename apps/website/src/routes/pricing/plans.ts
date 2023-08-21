@@ -7,64 +7,44 @@ export type Plan = {
 	features: string[];
 	index: number;
 };
-export const hosting_plans: Plan[] = [
-	{
-		label: 'Basic',
-		prefix: '$',
-		cost: 239,
-		note: '/mo',
-		subtext: '',
-		features: ['Hosting', 'Customer Support'],
-		index: 0,
-	},
-	{
-		label: 'Standard',
-		prefix: '$',
-		cost: 699,
-		note: '/mo',
-		subtext: '',
-		features: ['Hosting', 'Priority Customer Suport', '2 Hours Maintenance Work'],
-		index: 1,
-	},
-	{
-		label: 'Business',
-		prefix: '$',
-		cost: 2100,
-		note: '/mo',
-		subtext: '',
-		features: [
-			'Hosting',
-			'Priority Customer Suport',
-			'4 Hours Maintenance Work',
-			'2 Hours Developement Work',
-		],
-		index: 2,
-	},
-	{
-		label: 'Enterprise',
-		prefix: '$',
-		cost: 6200,
-		note: '/mo',
-		subtext: '',
-		features: [
-			'Hosting',
-			'Priority Customer Suport',
-			'8 Hours Maintenance Work',
-			'8 Hours Developement Work',
-		],
-		index: 3,
-	},
-];
 
-export const marketing_plans: Plan[] = [
+export type NorpTier = {
+	index: number,
+	name: string;
+	cost: number;
+	features: {
+		workCapacity: number,
+		requestsAndRevisions: string,
+	};
+}
+
+export const norp_tiers: NorpTier[] = [
 	{
-		label: '',
-		prefix: '',
-		cost: 'Personalized',
-		note: '',
-		subtext: 'Contact us - Standard plans not yet available',
-		features: [],
 		index: 0,
+		name: 'Cruising',
+		cost: 179,
+		features: {
+			workCapacity: 2,
+			requestsAndRevisions: 'Unlimited'
+		},
+	},
+	{
+		index: 1,
+		name: 'Expansion',
+		cost: 1920,
+		features: {
+			workCapacity: 11,
+			requestsAndRevisions: 'Unlimited'
+		},
+	},
+	{
+		index: 2,
+		name: 'Blazing',
+		cost: 2799,
+		features: {
+			workCapacity: 33,
+			requestsAndRevisions: 'Unlimited'
+		},
 	},
 ];
 
@@ -99,6 +79,5 @@ export const partnership_plans: Plan[] = [
 
 export const promotions: { label: string; index: number; for: string; discount: string }[] = [
 	{ label: 'Monthly', index: 0, for: 'monthly', discount: '' },
-	{ label: 'Biannually', index: 1, for: 'biennially', discount: '1 Month Free' },
-	{ label: 'Yearly', index: 2, for: 'annuallyy', discount: '3 Months Free' },
+	{ label: 'Anually', index: 1, for: 'anually', discount: '2 Months free' },
 ];

@@ -1,8 +1,6 @@
 import {
 	commission_plans,
-	hosting_plans,
 	marketing_plans,
-	partnership_plans,
 	promotions,
 	type Plan,
 } from './plans';
@@ -16,13 +14,7 @@ export type Tab = {
 };
 
 export const tabs: Tab[] = [
-	{
-		label: 'Hosting Plans',
-		index: 0,
-		plans: hosting_plans,
-		promotions: promotions,
-		subtitle: 'Experience Lightning-Fast Website Hosting with Our Reliable and Secure Services.',
-	},
+	
 	{
 		label: 'Marketing Plans',
 		index: 1,
@@ -37,11 +29,5 @@ export const tabs: Tab[] = [
 		promotions: null,
 		subtitle: "Need some work done? We'll do it.",
 	},
-	{
-		label: 'Partnership',
-		index: 3,
-		plans: partnership_plans,
-		promotions: null,
-		subtitle: "Shooting for the stars? You'll reach the stars with us.",
-	},
+	
 ];
