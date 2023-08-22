@@ -89,22 +89,8 @@
 		<div class="inner-section w-full flex flex-row justify-around items-center">
 			<div class="flex flex-col gap-4">
 				<div class="flex flex-row">
-					<InViewSlide
-						once={true}
-						duration={1000}
-						axis={'y'}
-						delay={300}
-						bottom="-30%"
-						class="relative hidden w-6 sm:h-[350px] md:h-full mx-auto sm:flex">
-						<!--Glow Line-->
-						<div
-							class="absolute z-0 w-2 h-full -translate-x-1/2 bg-gradient-to-b from-primary-light to-secondary-light dark:from-primary-dark dark:to-secondary-dark blur-sm left-1/2" />
-						<!--Line-->
-						<div
-							class="absolute z-10 w-1 h-full -translate-x-1/2 rounded-lg bg-surface-light dark:bg-surface-dark left-1/2" />
-					</InViewSlide>
 					<div
-						class=" flex flex-col md:-space-y-4 title-large pl-6 border-primary-dark md:display-large tracking-wider font-extrabold">
+						class=" flex flex-col md:-space-y-4 title-large pl-6 border-l-4 border-primary-dark md:display-large tracking-wider font-extrabold">
 						<h1 class="uppercase">Not convinced?</h1>
 						<h1 class="uppercase">Got questions?</h1>
 					</div>
@@ -113,9 +99,8 @@
 
 			<div
 				class="flex flex-col rounded-md bg-surface place-items-center h-full gap-4 py-8 text-center px-8 max-w-sm">
-				<h3 class="title-medium pt-4 px-4">
-					Learn more about how Futino works and how it can help your business grow by booking a 15
-					minute intro.
+				<h3 class="title-large pt-4">
+					Learn more about how Futino works and how it can help your business grow.
 				</h3>
 				<Button class=" flex w-fit mx-auto mt-6">
 					<h1 class="uppercase title-medium md:headline-medium">BOOK A CALL</h1>

@@ -9,7 +9,7 @@ export type Plan = {
 };
 
 export type Features = {
-	'Work Capacity': string;
+	'Monthly Work Capacity': string;
 	'Requests & Revisions': string;
 	'Yearly Meetings': string;
 	'UI Maintenance': string;
