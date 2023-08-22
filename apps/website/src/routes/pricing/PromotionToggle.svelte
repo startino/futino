@@ -1,70 +1,71 @@
 <script lang="ts">
 	import Promotion from './Promotion.svelte';
 	import OfferText from './OfferText.svelte';
+	import Icon from '$lib/components/atoms/Icon.svelte';
 
 	export let promotions: { label: string; index: number; for: string; discount: string }[];
 	export let activeTabValue = 0;
 
 	let positionClass: string = 'left: 0px';
+	let rowHeight: number = 0;
 
-	let button_widths: number[] = [68, 419, 70421];
+	// Offset from gap. Needs to be same as gap-x of flex-row. Unit is px.
+	let rowGap: number = 4;
 
-	const handleClick = (tabValue: number) => () => {
+	// Widths of individual toggle elements (includes padding of element)
+	let button_widths: number[] = [0, 0, 0, 0, 0];
+
+	function handleClick(tabValue: number) {
 		console.log(tabValue);
 		let left = 0;
 		button_widths.forEach((value, index) => {
-			console.log('Loop');
 			if (index < tabValue) {
-				left += value;
-				console.log('Adding to left: ', left);
+				left += value + rowGap;
 			}
 		});
+
 		let newString = 'left: ' + left.toString() + 'px';
 		positionClass = 'left: ' + left.toString() + 'px';
-		console.log(positionClass);
-	};
+		activeTabValue = tabValue;
+
+		cycle = tabValue == 0 ? 'montlhy' : 'yearly';
+	}
+	export let cycle: string = 'monthly';
 </script>
 
 <div
-	class="flex flex-col max-w-xl m-2 border rounded-2xl border-secondary-light/20 dark:border-secondary-dark/20">
-	<div class="relative flex flex-row p-2 items-center text-sm text-center">
+	class="flex bg-surface-light dark:bg-surface-dark border rounded-lg border-secondary-light/20 dark:border-secondary-dark/20">
+	<div class="relative flex flex-row gap-1 items-center text-center mx-1 my-2">
 		<div
-			class="h-12 absolute border-2 left- mx-2 rounded-xl border-primary-light dark:border-primary-dark transition-all duration-700"
-			style="width: {button_widths[activeTabValue] - 4}px; {positionClass};" />
+			class="absolute border-2 rounded-lg border-primary-light dark:border-primary-dark transition-all delay-75 ease-in-out duration-500"
+			style="width: {button_widths[activeTabValue]}px; {positionClass}; height: {rowHeight}px" />
 
-		{#each promotions as promotion, i}
+		{#each promotions as { label, discount, index }, i}
 			<!--{activeTabValue == promotion.index
 					? 'active border-2 rounded-xl border-primary-light dark:border-primary-dark'
 					: -->
-			<div
-				class="py-1 md:py-3 rounded-xl transition-all duration-200 px-5 {activeTabValue == i
+			<button
+				class="py-4 rounded-lg px-4 sm:px-5 md:px-8 {activeTabValue == i
 					? ''
-					: 'outline outline-0 hover:outline-2 outline-white'}"
-				bind:clientWidth={button_widths[i]}>
-				<button on:click={handleClick(promotion.index)}>
-					<Promotion
-						name="billing"
-						for={promotion.for}
-						text={promotion.label}
-						value={promotion.index}
-						bind:activeTabValue>
-						<div class="">
-							<!--ChoiceButton Probably shouldn't be inside of another button but idk how to pass onclick listener so...-->
-							{#if promotion.discount == ''}
-								<h1 class="body-large">
-									{promotion.discount}
-								</h1>
-							{:else}
-								<OfferText class="">
-									<h1 class="body-small">
-										{promotion.discount}
-									</h1>
-								</OfferText>
-							{/if}
+					: 'outline outline-0 hover:outline-1 outline-white'}"
+				bind:clientWidth={button_widths[i]}
+				bind:clientHeight={rowHeight}
+				on:click={() => handleClick(index)}>
+				<div class="flex flex-row gap-2">
+					<h1 class="title-medium tracking-wide uppercase">{label}</h1>
+
+					{#if discount}
+						<div
+							class="flex flex-row items-center gap-1 text-tertiary-light dark:text-tertiary-dark fill-tertiary-light stroke-tertiary-light dark:fill-tertiary-dark dark:stroke-tertiary-dark">
+							<Icon icon="discount" height="16" width="16" />
+
+							<h2 class="body-medium uppercase">
+								{discount}
+							</h2>
 						</div>
-					</Promotion>
-				</button>
-			</div>
+					{/if}
+				</div>
+			</button>
 		{/each}
 	</div>
 </div>

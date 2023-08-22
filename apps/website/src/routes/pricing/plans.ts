@@ -7,64 +7,66 @@ export type Plan = {
 	features: string[];
 	index: number;
 };
-export const hosting_plans: Plan[] = [
-	{
-		label: 'Basic',
-		prefix: '$',
-		cost: 239,
-		note: '/mo',
-		subtext: '',
-		features: ['Hosting', 'Customer Support'],
-		index: 0,
-	},
-	{
-		label: 'Standard',
-		prefix: '$',
-		cost: 699,
-		note: '/mo',
-		subtext: '',
-		features: ['Hosting', 'Priority Customer Suport', '2 Hours Maintenance Work'],
-		index: 1,
-	},
-	{
-		label: 'Business',
-		prefix: '$',
-		cost: 2100,
-		note: '/mo',
-		subtext: '',
-		features: [
-			'Hosting',
-			'Priority Customer Suport',
-			'4 Hours Maintenance Work',
-			'2 Hours Developement Work',
-		],
-		index: 2,
-	},
-	{
-		label: 'Enterprise',
-		prefix: '$',
-		cost: 6200,
-		note: '/mo',
-		subtext: '',
-		features: [
-			'Hosting',
-			'Priority Customer Suport',
-			'8 Hours Maintenance Work',
-			'8 Hours Developement Work',
-		],
-		index: 3,
-	},
+
+export type Features = {
+	'Monthly Work Capacity': string;
+	'Requests & Revisions': string;
+	'Yearly Meetings': string;
+	'UI Maintenance': string;
+};
+
+// Probably better object oriented way to do this, but sometimes fast is better.
+export const features = [
+	'Monthly Work Capacity',
+	'Requests & Revisions',
+	'Yearly Meetings',
+	'UI Maintenance',
 ];
 
-export const marketing_plans: Plan[] = [
+export type NorpTier = {
+	index: number;
+	name: string;
+	subtitle: string;
+	cost: string;
+	features: Features;
+};
+
+export const norpTiers: NorpTier[] = [
 	{
-		label: '',
-		prefix: '',
-		cost: 'Personalized',
-		note: '',
-		subtext: 'Contact us - Standard plans not yet available',
-		features: [],
 		index: 0,
+		name: 'Cruising',
+		subtitle: 'Tier to chill & relax with slow, exponential',
+		cost: '179',
+		features: {
+			'Monthly Work Capacity': '2hrs',
+			'Requests & Revisions': 'ထ',
+			'Yearly Meetings': '1',
+			'UI Maintenance': '✔️',
+		},
+	},
+	{
+		index: 1,
+		name: 'Expansion',
+		subtitle: 'Tier to expand and grow, really darn fast',
+		cost: '1 920',
+		features: {
+			'Monthly Work Capacity': '12hrs',
+			'Requests & Revisions': 'ထ',
+			'Yearly Meetings': 'Up to 12',
+			'UI Maintenance': '✔️',
+		},
+	},
+	{
+		index: 2,
+		name: 'Blazing',
+		subtitle: "If you're paying this, we care about you a lot",
+		cost: '2 799',
+		features: {
+			'Monthly Work Capacity': '36hrs',
+			'Requests & Revisions': 'ထ',
+			'Yearly Meetings': 'Up to 24',
+			'UI Maintenance': '✔️',
+		},
 	},
 ];
 
@@ -99,6 +101,5 @@ export const partnership_plans: Plan[] = [
 
 export const promotions: { label: string; index: number; for: string; discount: string }[] = [
 	{ label: 'Monthly', index: 0, for: 'monthly', discount: '' },
-	{ label: 'Biannually', index: 1, for: 'biennially', discount: '1 Month Free' },
-	{ label: 'Yearly', index: 2, for: 'annuallyy', discount: '3 Months Free' },
+	{ label: 'Anually', index: 1, for: 'anually', discount: '2 Months free' },
 ];

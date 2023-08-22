@@ -1,5 +1,5 @@
 <script lang="ts">
-	import PlanCard from './PlanCard.svelte';
+	import PlanCard from './TierCard.svelte';
 	import PromotionToggle from './PromotionToggle.svelte';
 	import { promotions } from './plans';
 	import type { Plan } from './plans';
