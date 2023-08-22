@@ -35,7 +35,7 @@
 
 <div
 	class="flex bg-surface-light dark:bg-surface-dark border rounded-lg border-secondary-light/20 dark:border-secondary-dark/20">
-	<div class="relative flex flex-row gap-1 items-center text-center mx-1 my-1">
+	<div class="relative flex flex-row gap-1 items-center text-center mx-1 my-2">
 		<div
 			class="absolute border-2 rounded-lg border-primary-light dark:border-primary-dark transition-all delay-75 ease-in-out duration-500"
 			style="width: {button_widths[activeTabValue]}px; {positionClass}; height: {rowHeight}px" />
@@ -45,21 +45,21 @@
 					? 'active border-2 rounded-xl border-primary-light dark:border-primary-dark'
 					: -->
 			<button
-				class="py-2 rounded-lg px-4 sm:px-5 md:px-8 {activeTabValue == i
+				class="py-4 rounded-lg px-4 sm:px-5 md:px-8 {activeTabValue == i
 					? ''
 					: 'outline outline-0 hover:outline-1 outline-white'}"
 				bind:clientWidth={button_widths[i]}
 				bind:clientHeight={rowHeight}
 				on:click={() => handleClick(index)}>
 				<div class="flex flex-row gap-2">
-					<h1 class="title-medium tracking-wide">{label}</h1>
+					<h1 class="title-medium tracking-wide uppercase">{label}</h1>
 
 					{#if discount}
 						<div
 							class="flex flex-row items-center gap-1 text-tertiary-light dark:text-tertiary-dark fill-tertiary-light stroke-tertiary-light dark:fill-tertiary-dark dark:stroke-tertiary-dark">
 							<Icon icon="discount" height="16" width="16" />
 
-							<h2 class="body-medium">
+							<h2 class="body-medium uppercase">
 								{discount}
 							</h2>
 						</div>

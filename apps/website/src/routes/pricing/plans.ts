@@ -17,7 +17,7 @@ export type Features = {
 
 // Probably better object oriented way to do this, but sometimes fast is better.
 export const features = [
-	'Work Capacity',
+	'Monthly Work Capacity',
 	'Requests & Revisions',
 	'Yearly Meetings',
 	'UI Maintenance',
@@ -38,7 +38,7 @@ export const norpTiers: NorpTier[] = [
 		subtitle: 'Tier to chill & relax with slow, exponential',
 		cost: '179',
 		features: {
-			'Work Capacity': '2hrs',
+			'Monthly Work Capacity': '2hrs',
 			'Requests & Revisions': 'ထ',
 			'Yearly Meetings': '1',
 			'UI Maintenance': '✔️',
@@ -50,7 +50,7 @@ export const norpTiers: NorpTier[] = [
 		subtitle: 'Tier to expand and grow, really darn fast',
 		cost: '1 920',
 		features: {
-			'Work Capacity': '11hrs',
+			'Monthly Work Capacity': '12hrs',
 			'Requests & Revisions': 'ထ',
 			'Yearly Meetings': 'Up to 12',
 			'UI Maintenance': '✔️',
@@ -62,7 +62,7 @@ export const norpTiers: NorpTier[] = [
 		subtitle: "If you're paying this, we care about you a lot",
 		cost: '2 799',
 		features: {
-			'Work Capacity': '33hrs',
+			'Monthly Work Capacity': '36hrs',
 			'Requests & Revisions': 'ထ',
 			'Yearly Meetings': 'Up to 24',
 			'UI Maintenance': '✔️',

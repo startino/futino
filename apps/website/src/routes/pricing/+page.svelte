@@ -21,9 +21,13 @@
 
 <main class="border-b shadow-2xl border-primary-light/40 dark:border-primary-dark/40 text-left">
 	<section class="border-b border-primary-light/40 dark:border-primary-dark/40">
-		<div class="flex flex-col items-center gap-8 inner-section">
-			<h1 class="headline-large lg:display-large">Adopt an online presence the way you want to.</h1>
-
+		<div class="flex flex-col justify-items-center items-center gap-8 inner-section">
+			<div class="flex flex-col gap-4 items-center">
+				<h1 class="headline-large lg:display-large">Pay for exaclty what you get.</h1>
+				<h2 class="title-large">
+					No contracts, pause or cancel anytime, and upscale or downscale as you wish.
+				</h2>
+			</div>
 			<PromotionToggle bind:cycle {promotions} />
 
 			<div class="flex flex-col gap-12 place-items-start md:hidden">
@@ -81,17 +85,42 @@
 		</div>
 	</section>
 
-	<section class="-my-24">
-		<div class="inner-section flex flex-row w-full items-center justify-between max-w-4xl">
-			<div
-				class=" flex flex-col -space-y-4 headline-small border-l-4 pl-6 my-4 border-primary-dark md:display-large tracking-widest font-extrabold">
-				<h1 class="uppercase">Not convinced?</h1>
-				<h1 class="uppercase">Not custom enough?</h1>
-				<h1 class="uppercase">Got questions?</h1>
+	<section class="my-0 md:-my-24">
+		<div class="inner-section w-full flex flex-row justify-around items-center">
+			<div class="flex flex-col gap-4">
+				<div class="flex flex-row">
+					<InViewSlide
+						once={true}
+						duration={1000}
+						axis={'y'}
+						delay={300}
+						bottom="-30%"
+						class="relative hidden w-6 sm:h-[350px] md:h-full mx-auto sm:flex">
+						<!--Glow Line-->
+						<div
+							class="absolute z-0 w-2 h-full -translate-x-1/2 bg-gradient-to-b from-primary-light to-secondary-light dark:from-primary-dark dark:to-secondary-dark blur-sm left-1/2" />
+						<!--Line-->
+						<div
+							class="absolute z-10 w-1 h-full -translate-x-1/2 rounded-lg bg-surface-light dark:bg-surface-dark left-1/2" />
+					</InViewSlide>
+					<div
+						class=" flex flex-col md:-space-y-4 title-large pl-6 border-primary-dark md:display-large tracking-wider font-extrabold">
+						<h1 class="uppercase">Not convinced?</h1>
+						<h1 class="uppercase">Got questions?</h1>
+					</div>
+				</div>
 			</div>
-			<Button class="h-fit w-fit">
-				<h1 class="uppercase title-small md:headline-medium">BOOK A CALL</h1>
-			</Button>
+
+			<div
+				class="flex flex-col rounded-md bg-surface place-items-center h-full gap-4 py-8 text-center px-8 max-w-sm">
+				<h3 class="title-medium pt-4 px-4">
+					Learn more about how Futino works and how it can help your business grow by booking a 15
+					minute intro.
+				</h3>
+				<Button class=" flex w-fit mx-auto mt-6">
+					<h1 class="uppercase title-medium md:headline-medium">BOOK A CALL</h1>
+				</Button>
+			</div>
 		</div>
 	</section>
 </main>
