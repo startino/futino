@@ -129,16 +129,13 @@
 			</h3>
 
 			<div class="grid grid-cols-2 gap-y-4 gap-x-4 sm::grid-cols-2">
-				<a href="{base}/about">
-					<Button class="w-full h-full">
-						<p class="p-2 title-medium">See Pricing</p>
-					</Button>
-				</a>
-				<a href="{base}/contact">
-					<Button class="w-full h-full">
-						<p class="p-2 title-medium">Contact Us</p>
-					</Button>
-				</a>
+				<Button class="">
+					<p class="p-2 title-medium">See Pricing</p>
+				</Button>
+
+				<Button class="" secondary={true}>
+					<p class="px-6 title-medium">Contact Us</p>
+				</Button>
 			</div>
 		</div>
 	</section>
