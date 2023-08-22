@@ -8,42 +8,64 @@ export type Plan = {
 	index: number;
 };
 
-export type NorpTier = {
-	index: number,
-	name: string;
-	cost: number;
-	features: {
-		workCapacity: number,
-		requestsAndRevisions: string,
-	};
-}
+export type Features = {
+	'Work Capacity': string;
+	'Requests & Revisions': string;
+	'Yearly Meetings': string;
+	'UI Maintenance': string;
+};
 
-export const norp_tiers: NorpTier[] = [
+// Probably better object oriented way to do this, but sometimes fast is better.
+export const features = [
+	'Work Capacity',
+	'Requests & Revisions',
+	'Yearly Meetings',
+	'UI Maintenance',
+];
+
+export type NorpTier = {
+	index: number;
+	name: string;
+	subtitle: string;
+	cost: string;
+	features: Features;
+};
+
+export const norpTiers: NorpTier[] = [
 	{
 		index: 0,
 		name: 'Cruising',
-		cost: 179,
+		subtitle: 'Tier to chill & relax with slow, exponential',
+		cost: '179',
 		features: {
-			workCapacity: 2,
-			requestsAndRevisions: 'Unlimited'
+			'Work Capacity': '2hrs',
+			'Requests & Revisions': 'ထ',
+			'Yearly Meetings': '1',
+			'UI Maintenance': '✔️',
 		},
 	},
 	{
 		index: 1,
 		name: 'Expansion',
-		cost: 1920,
+		subtitle: 'Tier to expand and grow, really darn fast',
+		cost: '1 920',
 		features: {
-			workCapacity: 11,
-			requestsAndRevisions: 'Unlimited'
+			'Work Capacity': '11hrs',
+			'Requests & Revisions': 'ထ',
+			'Yearly Meetings': 'Up to 12',
+			'UI Maintenance': '✔️',
 		},
 	},
 	{
 		index: 2,
 		name: 'Blazing',
-		cost: 2799,
+		subtitle: "If you're paying this, we care about you a lot",
+		cost: '2 799',
 		features: {
-			workCapacity: 33,
-			requestsAndRevisions: 'Unlimited'
+			'Work Capacity': '33hrs',
+			'Requests & Revisions': 'ထ',
+			'Yearly Meetings': 'Up to 24',
+			'UI Maintenance': '✔️',
 		},
 	},
 ];

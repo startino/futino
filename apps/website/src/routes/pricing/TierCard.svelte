@@ -13,7 +13,6 @@
 			<h1 class="display-medium">
 				${tier.cost}
 			</h1>
-			<p class="body-large pt-8">/mo</p>
 		</div>
 		<p class="label-large italic">/ per month, billed annually</p>
 	</div>

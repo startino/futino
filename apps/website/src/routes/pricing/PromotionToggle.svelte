@@ -27,7 +27,10 @@
 		let newString = 'left: ' + left.toString() + 'px';
 		positionClass = 'left: ' + left.toString() + 'px';
 		activeTabValue = tabValue;
+
+		cycle = tabValue == 0 ? 'montlhy' : 'yearly';
 	}
+	export let cycle: string = 'monthly';
 </script>
 
 <div
@@ -42,7 +45,7 @@
 					? 'active border-2 rounded-xl border-primary-light dark:border-primary-dark'
 					: -->
 			<button
-				class="py-2 rounded-lg px-8 {activeTabValue == i
+				class="py-2 rounded-lg px-4 sm:px-5 md:px-8 {activeTabValue == i
 					? ''
 					: 'outline outline-0 hover:outline-1 outline-white'}"
 				bind:clientWidth={button_widths[i]}
@@ -56,7 +59,7 @@
 							class="flex flex-row items-center gap-1 text-tertiary-light dark:text-tertiary-dark fill-tertiary-light stroke-tertiary-light dark:fill-tertiary-dark dark:stroke-tertiary-dark">
 							<Icon icon="discount" height="16" width="16" />
 
-							<h2 class="">
+							<h2 class="body-medium">
 								{discount}
 							</h2>
 						</div>
