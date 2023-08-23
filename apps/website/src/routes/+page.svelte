@@ -30,19 +30,19 @@
 		unobserveOnEnter: false,
 	};
 
-	const leftSlidePreset: TransitionOptions = {
-		delay: 100,
+	const leftFlyPreset: TransitionOptions = {
+		delay: 700,
 		duration: 300,
-		once: true,
+		once: false,
 		fly: {
 			x: -200,
 			y: 0,
 		},
 	};
-	const rightSlidePreset: TransitionOptions = {
-		delay: 100,
+	const rightFlyPreset: TransitionOptions = {
+		delay: 700,
 		duration: 300,
-		once: true,
+		once: false,
 		fly: {
 			x: 200,
 			y: 0,
@@ -156,7 +156,7 @@
 			<h1 class="pb-12 display-medium">Areas of Expertise</h1>
 			{#each servicesChapters as { chapterNumber, inView, title, image, body }}
 				<div
-					class="relative grid w-full grid-cols-1 py-16 overflow-y-hidden gap-14 sm:grid-cols-2 place-items-center">
+					class="relative grid w-full grid-cols-1 py-16 overflow-y-hidden gap-y-14 gap-x-0 sm:grid-cols-2 place-items-center">
 					<!--Center line and Chapter checkmark-->
 
 					<div
@@ -170,17 +170,18 @@
 						</div>
 						<!--Glow circle-->
 						<InView
-							once={true}
+							once={false}
+							duration={800}
 							bottom={-200}
-							class="absolute z-0 items-center text-center rounded-full w-11 h-11 bg-gradient-to-t animate-spin from-primary-light to-secondary-light dark:from-primary-dark dark:to-secondary-dark blur-md -top-5" />
+							class="absolute z-0 items-center text-center rounded-full w-11 h-11 bg-gradient-to-t animate-spin from-primary-light to-secondary-light dark:from-primary-dark dark:to-secondary-dark blur-sm -top-5" />
 
 						<InViewSlide
-							once={true}
-							duration={1000}
+							once={false}
+							duration={800}
 							axis={'y'}
-							delay={300}
+							delay={100}
 							bottom="-30%"
-							class="relative hidden w-6 sm:h-[350px] md:h-[400px] mx-auto sm:flex">
+							class="relative hidden w-5 sm:h-[350px] md:h-[400px] mx-auto sm:flex">
 							<!--Glow Line-->
 							<div
 								class="absolute z-0 w-2 h-full -translate-x-1/2 bottom-2 bg-gradient-to-b from-primary-light to-secondary-light dark:from-primary-dark dark:to-secondary-dark blur-sm left-1/2" />
@@ -191,10 +192,14 @@
 					</div>
 
 					<!--Content of Chapter-->
-					<img
-						src={image}
-						alt=""
-						class="order-last object-cover object-center w-1/2 mx-auto bg-no-repeat sm:w-full sm:order-first" />
+
+					<InView presetOptions={rightFlyPreset} class="sm:pr-7">
+						<img
+							src={image}
+							alt=""
+							class="order-last object-cover object-center w-1/2 mx-auto bg-no-repeat sm:w-full sm:order-first" />
+					</InView>
+
 					<div
 						class="flex flex-col max-w-md gap-2 p-1 overflow-hidden text-left justify-self-start">
 						<div class="flex flex-row items-center gap-3 pt-1 pl-1 sm:p-0">
@@ -211,17 +216,24 @@
 									once={true}
 									class="absolute z-0 text-center rounded-full w-11 h-11 bg-gradient-to-t from-primary-light to-secondary-light dark:from-primary-dark dark:to-secondary-dark blur-sm" />
 							</div>
-							<h1 class="font-bold display-small">
+							<h1 class="font-bold display-small sm:hidden">
 								{title}
 							</h1>
 						</div>
 						<InView fly={{ x: -100, y: 0 }} class="sm:hidden">
 							<div class="w-1/4 h-1 border-t border-primary-light dark:border-primary-dark" />
 						</InView>
-
-						<p class="body-medium">
-							{body}
-						</p>
+						<InView presetOptions={leftFlyPreset} class="sm:pl-7">
+							<h1 class="font-bold display-small hidden sm:flex">
+								{title}
+							</h1>
+							<p class="body-medium">
+								{body}
+							</p>
+							<Button class="w-fit mt-6" secondary={true}>
+								<h1 class="title-medium uppercase">Learn More</h1>
+							</Button>
+						</InView>
 					</div>
 				</div>
 			{/each}
@@ -393,13 +405,14 @@
 		use:inview={chapterInViewOptions}
 		on:inview_enter={handleChapterInView(6)}
 		class="grid px-4 py-32 space-y-12 shadow-lg grow sm:py-34 md:py-44 sm:px-6 md:px-8 border-secondary-light/20 dark:border-secondary-dark/20 justify-items-center">
-		<InView transition="fade" duration={500}>
-			<h1 class="py-12 display-large">We'd Love to Hear From You</h1>
+		<h1 class="py-12 display-large">We'd Love to Hear From You</h1>
 
-			<div
-				class="grid items-center grid-cols-1 gap-6 mx-auto lg:grid-cols-2 max-w-7xl justify-items-center">
+		<div
+			class="grid items-center grid-cols-1 gap-6 mx-auto lg:grid-cols-2 max-w-7xl justify-items-center">
+			<InView duration={250} fly={{ x: -500, y: 0 }} class="z-10">
 				<!--PM Option-->
-				<div class="flex flex-col w-full h-full p-8 space-y-12 shadow-lg shadow-black/40">
+				<div
+					class="flex flex-col w-full h-full p-8 space-y-12 shadow-lg shadow-black/40 bg-surface-dark border-1 border-primary-dark rounded-md">
 					<div class="space-y-10 text-left">
 						<h2 class="font-extrabold display-medium">Give us a PM</h2>
 						<p class="max-w-3xl title-medium">
@@ -448,8 +461,11 @@
 						</div>
 					</div>
 				</div>
+			</InView>
+			<InView duration={350} fly={{ x: -700, y: 0 }} delay={300} class="z-0 overflow-visible">
 				<!--Contact form Option-->
-				<div class="flex flex-col w-full h-full p-8 space-y-12 shadow-lg shadow-black/40">
+				<div
+					class="flex flex-col w-full h-full p-8 space-y-12 shadow-lg shadow-black/40 bg-surface-dark border-1 border-primary-dark rounded-md">
 					<div class="space-y-10 text-left">
 						<h2 class="font-extrabold display-medium">Contact Us</h2>
 						<p class="title-medium">
@@ -478,8 +494,8 @@
 						<Button><input type="button" value="Send Email" /></Button>
 					</form>
 				</div>
-			</div>
-		</InView>
+			</InView>
+		</div>
 	</section>
 </main>
 
