@@ -373,10 +373,10 @@
 		id="pricing"
 		use:inview={chapterInViewOptions}
 		on:inview_enter={handleChapterInView(4)}
-		class="border-secondary-light/20 dark:border-secondary-dark/20">
+		class="shadow-lg border-secondary-light/20 dark:border-secondary-dark/20">
 		<div class="inner-section">pricing section</div>
 	</section>
-	<!--How we work section-->
+	<!--CTA section-->
 	<section
 		id="hereshow"
 		use:inview={chapterInViewOptions}
@@ -388,12 +388,12 @@
 				<div class="grid grid-cols-2 gap-y-4 gap-x-4 sm::grid-cols-2">
 					<a href="{base}/about">
 						<Button class="w-full h-full">
-							<p class="p-2 title-medium">Check Out Pricing!</p>
+							<p class="p-2 title-medium uppercase">See Pricing</p>
 						</Button>
 					</a>
 					<a href="{base}/contact">
 						<Button class="w-full h-full">
-							<p class="p-2 title-medium">Contact Us!</p>
+							<p class="p-2 title-medium uppercase">Book a call</p>
 						</Button>
 					</a>
 				</div>
@@ -404,97 +404,101 @@
 		id="contact"
 		use:inview={chapterInViewOptions}
 		on:inview_enter={handleChapterInView(6)}
-		class="grid px-4 py-32 space-y-12 shadow-lg grow sm:py-34 md:py-44 sm:px-6 md:px-8 border-secondary-light/20 dark:border-secondary-dark/20 justify-items-center">
-		<h1 class="py-12 display-large">We'd Love to Hear From You</h1>
-
+		class="shadow-lg border-secondary-light/20 dark:border-secondary-dark/20 justify-items-center">
 		<div
-			class="grid items-center grid-cols-1 gap-6 mx-auto lg:grid-cols-2 max-w-7xl justify-items-center">
-			<InView duration={250} fly={{ x: -500, y: 0 }} class="z-10">
-				<!--PM Option-->
-				<div
-					class="flex flex-col w-full h-full p-8 space-y-12 shadow-lg shadow-black/40 bg-surface-dark border-1 border-primary-dark rounded-md">
-					<div class="space-y-10 text-left">
-						<h2 class="font-extrabold display-medium">Give us a PM</h2>
-						<p class="max-w-3xl title-medium">
-							Send us message on one of these platforms. We'll get back to you within a couple
-							hours.
-						</p>
-						<div class="flex flex-col flex-1 space-y-5">
-							<div class="grid grid-cols-4 grid-rows-3 gap-4">
-								<!--Phone number-->
-								<div
-									class="col-span-1 p-5 rounded-full bg-surface-variant-light w-min h-min justify-self-end">
-									<Icon icon="phone" height="32px" width="32px" />
-								</div>
+			class="inner-section flex flex-col gap-y-12
+		">
+			<h1 class="display-large">We'd Love to Hear From You</h1>
 
-								<a class="flex items-center col-span-3" href="tel:9133600394">
-									<h1 class="pl-2 title-small sm:title-large">+852 9747 3013</h1>
-								</a>
-								<!--WhatsApp-->
-								<div
-									class="col-span-1 p-5 rounded-full bg-surface-variant-light w-min h-min justify-self-end">
-									<Icon icon="email" height="32px" width="32px" fillColor="black" />
-								</div>
+			<div
+				class="grid items-center grid-cols-1 gap-6 mx-auto lg:grid-cols-2 max-w-7xl justify-items-center">
+				<InView duration={250} fly={{ x: -500, y: 0 }} class="z-10">
+					<!--PM Option-->
+					<div
+						class="flex flex-col w-full h-full p-8 space-y-12 shadow-lg shadow-black/40 bg-surface-dark border-1 border-primary-dark rounded-md">
+						<div class="space-y-10 text-left">
+							<h2 class="font-extrabold display-medium">Give us a PM</h2>
+							<p class="max-w-3xl title-medium">
+								Send us message on one of these platforms. We'll get back to you within a couple
+								hours.
+							</p>
+							<div class="flex flex-col flex-1 space-y-5">
+								<div class="grid grid-cols-4 grid-rows-3 gap-4">
+									<!--Phone number-->
+									<div
+										class="col-span-1 p-5 rounded-full bg-surface-variant-light w-min h-min justify-self-end">
+										<Icon icon="phone" height="32px" width="32px" />
+									</div>
 
-								<a class="flex items-center col-span-3" href="mailto:contact@futi.no">
-									<h1 class="pl-2 title-small sm:title-large">Futino Whatsapp</h1>
-								</a>
-								<!--Email-->
-								<div
-									class="col-span-1 p-5 rounded-full bg-surface-variant-light w-min h-min justify-self-end">
-									<Icon icon="instagram" height="32px" width="32px" fillColor="black" />
-								</div>
+									<a class="flex items-center col-span-3" href="tel:9133600394">
+										<h1 class="pl-2 title-small sm:title-large">+852 9747 3013</h1>
+									</a>
+									<!--WhatsApp-->
+									<div
+										class="col-span-1 p-5 rounded-full bg-surface-variant-light w-min h-min justify-self-end">
+										<Icon icon="email" height="32px" width="32px" fillColor="black" />
+									</div>
 
-								<a class="flex items-center col-span-3" href="mailto:ggsoccercamps@gmail.com">
-									<h1 class="pl-2 title-small sm:title-large">@Futino</h1>
-								</a>
-								<!--Email-->
-								<div
-									class="col-span-1 p-5 rounded-full bg-surface-variant-light w-min h-min justify-self-end">
-									<Icon icon="email" height="32px" width="32px" fillColor="black" />
-								</div>
+									<a class="flex items-center col-span-3" href="mailto:contact@futi.no">
+										<h1 class="pl-2 title-small sm:title-large">Futino Whatsapp</h1>
+									</a>
+									<!--Email-->
+									<div
+										class="col-span-1 p-5 rounded-full bg-surface-variant-light w-min h-min justify-self-end">
+										<Icon icon="instagram" height="32px" width="32px" fillColor="black" />
+									</div>
 
-								<a class="flex items-center col-span-3" href="mailto:contact@futi.no">
-									<h1 class="pl-2 title-small sm:title-large">contact@futi.no</h1>
-								</a>
+									<a class="flex items-center col-span-3" href="mailto:ggsoccercamps@gmail.com">
+										<h1 class="pl-2 title-small sm:title-large">@Futino</h1>
+									</a>
+									<!--Email-->
+									<div
+										class="col-span-1 p-5 rounded-full bg-surface-variant-light w-min h-min justify-self-end">
+										<Icon icon="email" height="32px" width="32px" fillColor="black" />
+									</div>
+
+									<a class="flex items-center col-span-3" href="mailto:contact@futi.no">
+										<h1 class="pl-2 title-small sm:title-large">contact@futi.no</h1>
+									</a>
+								</div>
 							</div>
 						</div>
 					</div>
-				</div>
-			</InView>
-			<InView duration={350} fly={{ x: -700, y: 0 }} delay={300} class="z-0 overflow-visible">
-				<!--Contact form Option-->
-				<div
-					class="flex flex-col w-full h-full p-8 space-y-12 shadow-lg shadow-black/40 bg-surface-dark border-1 border-primary-dark rounded-md">
-					<div class="space-y-10 text-left">
-						<h2 class="font-extrabold display-medium">Contact Us</h2>
-						<p class="title-medium">
-							Feel free to us an email for any requests or questions. We'll get back to you within a
-							couple hours.
-						</p>
+				</InView>
+				<InView duration={350} fly={{ x: -700, y: 0 }} delay={300} class="z-0 overflow-visible">
+					<!--Contact form Option-->
+					<div
+						class="flex flex-col w-full h-full p-8 space-y-12 shadow-lg shadow-black/40 bg-surface-dark border-1 border-primary-dark rounded-md">
+						<div class="space-y-10 text-left">
+							<h2 class="font-extrabold display-medium">Contact Us</h2>
+							<p class="title-medium">
+								Feel free to us an email for any requests or questions. We'll get back to you within
+								a couple hours.
+							</p>
+						</div>
+						<form method="post" class="flex flex-col flex-1 h-64 space-y-5">
+							<input
+								class="p-1 border border-black/50 dark:border-white/50 dark:bg-black/5"
+								type="text"
+								name="name"
+								id="name"
+								placeholder="Name" />
+							<input
+								class="p-1 border border-black/50 dark:border-white/50 dark:bg-surface-dark/5"
+								type="text"
+								name="email"
+								id="email"
+								placeholder="E-Mail" />
+							<textarea
+								class="flex-1 p-1 border border-black/50 dark:border-white/50 dark:bg-black/5"
+								name="message"
+								id="message"
+								placeholder="Message" />
+							<Button><input type="button" value="Send Email" /></Button>
+						</form>
 					</div>
-					<form method="post" class="flex flex-col flex-1 h-64 space-y-5">
-						<input
-							class="p-1 border border-black/50 dark:border-white/50 dark:bg-black/5"
-							type="text"
-							name="name"
-							id="name"
-							placeholder="Name" />
-						<input
-							class="p-1 border border-black/50 dark:border-white/50 dark:bg-surface-dark/5"
-							type="text"
-							name="email"
-							id="email"
-							placeholder="E-Mail" />
-						<textarea
-							class="flex-1 p-1 border border-black/50 dark:border-white/50 dark:bg-black/5"
-							name="message"
-							id="message"
-							placeholder="Message" />
-						<Button><input type="button" value="Send Email" /></Button>
-					</form>
-				</div>
-			</InView>
+				</InView>
+			</div>
 		</div>
 	</section>
 </main>
