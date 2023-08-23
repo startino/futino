@@ -128,22 +128,20 @@
 				pricing model.
 			</h3>
 
-			<div class="grid grid-cols-2 gap-y-4 gap-x-4 sm::grid-cols-2">
+			<div class="grid grid-cols-2 gap-x-4">
 				<Button class="">
-					<p class="p-2 title-medium">See Pricing</p>
+					<p class="px-3 sm:px-5 md:px-6 title-medium">See Pricing</p>
 				</Button>
 
 				<Button class="" secondary={true}>
-					<p class="px-6 title-medium">Contact Us</p>
+					<p class="px-3 sm:px-5 md:px-6 title-medium">Contact Us</p>
 				</Button>
 			</div>
 		</div>
 	</section>
 
 	<!--Big-Clients Slideshow-->
-	<section id="slideshow" class="z-10 grid self-end">
-		<ClientCarousel />
-	</section>
+	<ClientCarousel />
 
 	<!--Journey Section-->
 	<section
@@ -233,44 +231,36 @@
 	<!--Analytics Snippet-->
 	<section
 		id="analytics"
-		class="grid px-4 grow sm:px-6 md:px-8 border-secondary-light/20 dark:border-secondary-dark/20 bg-primary-light/20 dark:bg-primary-dark/10">
-		<div class="flex flex-wrap justify-around px-4 text-center md:flex-row">
-			<div class="flex flex-col p-4">
-				<AnimatedCounter class="font-extrabold headline-large" finalValue={50} duration={700} />
-				<h2 class="font-light body-medium">Sites Made</h2>
+		class="border-secondary-light/20 dark:border-secondary-dark/20 bg-primary-light/20 dark:bg-primary-dark/10">
+		<div
+			class="flex flex-wrap w-full justify-around md:px-4 text-center md:flex-row font-extrabold headline-small sm:display-small md:display-medium">
+			<div class="flex flex-col sm:p-2 p-1 items-center">
+				<AnimatedCounter class="" finalValue={50} duration={700} />
+				<h2 class="font-light body-small">Sites Made</h2>
 			</div>
 			<div class="my-4 border-r border-white/20" />
-			<div class="flex flex-col p-4 justify-self-end">
-				<h2 class="inline font-extrabold headline-large">
-					<AnimatedCounter
-						class="inline font-extrabold headline-large"
-						finalValue={21}
-						duration={700} />
+			<div class="flex flex-col sm:p-2 p-1 justify-self-end items-center">
+				<h2 class="inline">
+					<AnimatedCounter class="inline" finalValue={21} duration={700} />
 					K
 				</h2>
-				<h2 class="font-light body-medium">Hours Used</h2>
+				<h2 class="font-light body-small">Hours Used</h2>
 			</div>
 			<div class="my-4 border-r border-white/20" />
-			<div class="flex flex-col p-4">
-				<h2 class="inline font-extrabold headline-large">
+			<div class="flex flex-col sm:p-2 p-1 items-center">
+				<h2 class="inline">
 					<span class="-mr-1">$</span>
-					<AnimatedCounter
-						class="inline font-extrabold headline-large"
-						finalValue={200}
-						duration={700} />
+					<AnimatedCounter class="inline " finalValue={200} duration={700} />
 					K
 				</h2>
-				<h2 class="font-light body-medium">Transacted</h2>
+				<h2 class="font-light body-small">Transacted</h2>
 			</div>
 			<div class="my-4 border-r border-white/20" />
-			<div class="flex flex-col p-4">
-				<h2 class="inline font-extrabold headline-large">
-					<AnimatedCounter
-						class="inline font-extrabold headline-large"
-						finalValue={99.9}
-						duration={700} />%
+			<div class="flex flex-col sm:p-2 p-1 items-center">
+				<h2 class="inline">
+					<AnimatedCounter class="inline" finalValue={99.9} duration={700} />%
 				</h2>
-				<h2 class="font-light body-medium">Pure Waffle</h2>
+				<h2 class="font-light body-small">Pure Waffle</h2>
 			</div>
 		</div>
 	</section>
