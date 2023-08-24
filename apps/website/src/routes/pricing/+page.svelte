@@ -8,7 +8,6 @@
 	import TierFeatures from './TierFeatures.svelte';
 	import Button from '$lib/components/atoms/Button.svelte';
 	import InViewSlide from '$lib/components/organisms/InViewSlide.svelte';
-	import { selectTier } from './tierStore';
 
 	export let activeTabValue = 0;
 
@@ -28,16 +27,13 @@
 					No contracts, pause or cancel anytime, and upscale or downscale as you wish.
 				</h2>
 			</div>
-
 			<PromotionToggle bind:cycle {promotions} />
 
-			<!--Mobile-->
 			<div class="flex flex-col gap-12 place-items-start md:hidden">
 				{#each norpTiers as tier}
 					<TierListing {tier} />
 				{/each}
 			</div>
-			<!--md+-->
 			<div class="hidden grid-cols-4 mt-20 md:grid place-items-center">
 				<!--Top Row-->
 				<div class="flex pb-0 grid-item">
@@ -77,9 +73,9 @@
 					{/each}
 				{/each}
 				<div class="border-none grid-item" />
-				{#each norpTiers as tier}
+				{#each norpTiers as _}
 					<div class="border-none grid-item mt-14">
-						<Button class="w-full" onClick={() => selectTier(tier.index.toString())}>
+						<Button class="w-full">
 							<h1 class="uppercase headline-medium">Get Started</h1>
 						</Button>
 					</div>

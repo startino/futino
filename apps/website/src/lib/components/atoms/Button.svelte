@@ -1,5 +1,5 @@
 <button
-	on:click={$$props.onClick}
+	on:click={$$props.click}
 	class="{$$props.class} flex overflow-hidden relative bg-surface-dark justify-center items-center py-3 px-6 font-bold rounded-md shadow-2xl group border-primary-dark {$$props.secondary
 		? 'border-2 text-primary-dark'
 		: 'text-primary-on-dark hover:text-secondary-dark'}">
