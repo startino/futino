@@ -4,7 +4,6 @@
 
 	import PromotionToggle from './PromotionToggle.svelte';
 	import { promotions, norpTiers, type NorpTier, features } from './plans';
-	import PlanCard from './TierCard.svelte';
 	import TierListing from './TierListing.svelte';
 	import TierFeatures from './TierFeatures.svelte';
 	import Button from '$lib/components/atoms/Button.svelte';

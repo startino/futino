@@ -8,7 +8,7 @@ export const benefits: {
 		body: 'No hidden or crazy upfront costs.',
 		image: '/artwork/temp_illustration.png',
 	},
-    {
+	{
 		title: 'Scalable & Flexible',
 		body: 'Scale up or down as needed, and pause or cancel at anytime.',
 		image: '/artwork/temp_illustration.png',
@@ -18,7 +18,7 @@ export const benefits: {
 		body: 'Gauranteed our attentive responses in all our work.',
 		image: '/artwork/temp_illustration.png',
 	},
-	
+
 	{
 		title: 'Uniquely Yours',
 		body: 'Each of your requests are made just for you and is 100% yours.',
@@ -29,7 +29,7 @@ export const benefits: {
 		body: 'Experience the pinnacle of quality in every aspect of our services.',
 		image: '/artwork/temp_illustration.png',
 	},
-    {
+	{
 		title: 'Live Communication',
 		body: 'Your always-on design and development team.',
 		image: '/artwork/temp_illustration.png',

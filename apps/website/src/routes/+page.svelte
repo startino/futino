@@ -368,6 +368,7 @@
 			</div>
 		</InView>
 	</section>
+
 	<!--CTA section-->
 	<section id="hereshow" class="shadow-lg border-secondary-light/20 dark:border-secondary-dark/20">
 		<InView transition="fade" duration={300}>
