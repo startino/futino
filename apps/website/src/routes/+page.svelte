@@ -84,16 +84,11 @@
 		},
 		{
 			chapterNumber: 4,
-			title: 'Pricing',
-			href: '#pricing',
-		},
-		{
-			chapterNumber: 5,
 			title: "Here's How",
 			href: '#hereshow',
 		},
 		{
-			chapterNumber: 6,
+			chapterNumber: 5,
 			title: 'Contact',
 			href: '#contact',
 		},
@@ -392,7 +387,7 @@
 	<section
 		id="contact"
 		use:inview={chapterInViewOptions}
-		on:inview_enter={handleChapterInView(6)}
+		on:inview_enter={handleChapterInView(5)}
 		class="shadow-lg border-secondary-light/20 dark:border-secondary-dark/20 justify-items-center">
 		<div
 			class="inner-section flex flex-col gap-y-12
