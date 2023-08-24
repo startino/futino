@@ -1,9 +1,4 @@
-import {
-	commission_plans,
-	marketing_plans,
-	promotions,
-	type Plan,
-} from './plans';
+import { commission_plans, marketing_plans, promotions, type Plan } from './plans';
 
 export type Tab = {
 	index: number;
@@ -14,7 +9,6 @@ export type Tab = {
 };
 
 export const tabs: Tab[] = [
-	
 	{
 		label: 'Marketing Plans',
 		index: 1,
@@ -29,5 +23,4 @@ export const tabs: Tab[] = [
 		promotions: null,
 		subtitle: "Need some work done? We'll do it.",
 	},
-	
 ];

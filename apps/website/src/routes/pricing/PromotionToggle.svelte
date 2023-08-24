@@ -1,6 +1,4 @@
 <script lang="ts">
-	import Promotion from './Promotion.svelte';
-	import OfferText from './OfferText.svelte';
 	import Icon from '$lib/components/atoms/Icon.svelte';
 
 	export let promotions: { label: string; index: number; for: string; discount: string }[];
