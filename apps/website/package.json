@@ -15,6 +15,7 @@
 		"format": "prettier --plugin-search-dir . --write ."
 	},
 	"dependencies": {
+		"stripe": "^13.2.0",
 		"tsconfig": "workspace:*",
 		"tsparticles-updater-angle": "^2.9.3"
 	},

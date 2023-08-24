@@ -2,6 +2,7 @@
 	import Button from '$lib/components/atoms/Button.svelte';
 	import TierFeatures from './TierFeatures.svelte';
 	import type { NorpTier } from './plans';
+	import { selectTier, selectedTier } from './tierStore';
 
 	export let tier: NorpTier;
 </script>
@@ -30,7 +31,7 @@
 		<TierFeatures features={tier.features} />
 	</div>
 
-	<Button class="w-full">
+	<Button class="w-full" on:click={() => selectTier(tier.index.toString())}>
 		<h1 class="title-medium">GET STARTED</h1>
 	</Button>
 </div>
