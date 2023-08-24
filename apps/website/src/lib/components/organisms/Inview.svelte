@@ -46,7 +46,7 @@
 	export let axis: 'x' | 'y' | undefined = undefined;
 
 	let defaultOptions: TransitionOptions = {
-		once: false, // Later on this should be true, but for testing it's easier to have it as false.
+		once: true, // Later on this should be true, but for testing it's easier to have it as false.
 		animation: 'fade',
 		top: 0,
 		bottom: 0,

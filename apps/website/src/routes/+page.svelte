@@ -368,20 +368,8 @@
 			</div>
 		</InView>
 	</section>
-	<!--Pricing Section-->
-	<section
-		id="pricing"
-		use:inview={chapterInViewOptions}
-		on:inview_enter={handleChapterInView(4)}
-		class="shadow-lg border-secondary-light/20 dark:border-secondary-dark/20">
-		<div class="inner-section">pricing section</div>
-	</section>
 	<!--CTA section-->
-	<section
-		id="hereshow"
-		use:inview={chapterInViewOptions}
-		on:inview_enter={handleChapterInView(5)}
-		class="shadow-lg border-secondary-light/20 dark:border-secondary-dark/20">
+	<section id="hereshow" class="shadow-lg border-secondary-light/20 dark:border-secondary-dark/20">
 		<InView transition="fade" duration={300}>
 			<div class="flex flex-col space-y-12 inner-section items-center">
 				<h1 class="display-large">Let's Get Started</h1>
