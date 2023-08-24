@@ -38,12 +38,11 @@ export const POST: RequestHandler = async ({request}) => {
         cancel_url: `${domain}/cancel`,
     });
 
-    console.log(session);
     return new Response(
         JSON.stringify({ url: session.url }), // frontend will get this url to redirect
         {
             status: 200,
-            headers: { 'Content-type': 'application/json'}
+            headers: { 'content-type': 'application/json'}
         }
     )
 }

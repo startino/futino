@@ -5,7 +5,7 @@
 	import { products } from '../api/stripeCheckout/products';
 
 	async function checkout() {
-		await fetch('/api/stripeCheckout', {
+		await fetch('api/stripeCheckout', {
 			// http://localhost:5173/api/stripeCheckout
 			method: 'POST',
 			headers: {
