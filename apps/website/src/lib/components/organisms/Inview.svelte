@@ -30,6 +30,7 @@
 
 	// Individual Options.
 	export let animation: Animation | undefined = undefined;
+	export let dontFade: boolean = false;
 	export let once: boolean | undefined = undefined;
 	export let top: number | undefined = undefined;
 	export let bottom: number | undefined = undefined;
@@ -45,7 +46,7 @@
 	export let axis: 'x' | 'y' | undefined = undefined;
 
 	let defaultOptions: TransitionOptions = {
-		once: false, // Later on this should be true, but for testing it's easier to have it as false.
+		once: true, // Later on this should be true, but for testing it's easier to have it as false.
 		animation: 'fade',
 		top: 0,
 		bottom: 0,
@@ -112,12 +113,16 @@
 <div
 	bind:this={element}
 	id="visible"
-	class:fade-in={!inView}
-	class="{$$props.class} transition-all duration-500 delay-200 overflow-hidden"
-	style={!inView
-		? `transform: translate(${finalizedOptions.fly?.x}px, ${finalizedOptions.fly?.y}px)`
-		: ''}>
-	<slot />
+	class:fade-in={!inView && !dontFade}
+	class="{$$props.class} transition-all delay-200 overflow-hidden"
+	style="transition-duration: {finalizedOptions.duration}ms; transition-delay: {finalizedOptions.delay}ms;">
+	<div
+		class="transition-all duration-500"
+		style="transition-duration: {finalizedOptions.duration}ms; transition-delay: {finalizedOptions.delay}ms; {!inView
+			? `transform: translate(${finalizedOptions.fly?.x}px, ${finalizedOptions.fly?.y}px)`
+			: ''}">
+		<slot />
+	</div>
 </div>
 
 <style>

@@ -30,19 +30,19 @@
 		unobserveOnEnter: false,
 	};
 
-	const leftSlidePreset: TransitionOptions = {
-		delay: 100,
+	const leftFlyPreset: TransitionOptions = {
+		delay: 700,
 		duration: 300,
-		once: true,
+		once: false,
 		fly: {
 			x: -200,
 			y: 0,
 		},
 	};
-	const rightSlidePreset: TransitionOptions = {
-		delay: 100,
+	const rightFlyPreset: TransitionOptions = {
+		delay: 700,
 		duration: 300,
-		once: true,
+		once: false,
 		fly: {
 			x: 200,
 			y: 0,
@@ -128,25 +128,20 @@
 				pricing model.
 			</h3>
 
-			<div class="grid grid-cols-2 gap-y-4 gap-x-4 sm::grid-cols-2">
-				<a href="{base}/about">
-					<Button class="w-full h-full">
-						<p class="p-2 title-medium">See Pricing</p>
-					</Button>
-				</a>
-				<a href="{base}/contact">
-					<Button class="w-full h-full">
-						<p class="p-2 title-medium">Contact Us</p>
-					</Button>
-				</a>
+			<div class="grid grid-cols-2 gap-x-4">
+				<Button class="">
+					<p class="px-3 sm:px-5 md:px-6 title-medium">See Pricing</p>
+				</Button>
+
+				<Button class="" secondary={true}>
+					<p class="px-3 sm:px-5 md:px-6 title-medium">Contact Us</p>
+				</Button>
 			</div>
 		</div>
 	</section>
 
 	<!--Big-Clients Slideshow-->
-	<section id="slideshow" class="z-10 grid self-end">
-		<ClientCarousel />
-	</section>
+	<ClientCarousel />
 
 	<!--Journey Section-->
 	<section
@@ -161,7 +156,7 @@
 			<h1 class="pb-12 display-medium">Areas of Expertise</h1>
 			{#each servicesChapters as { chapterNumber, inView, title, image, body }}
 				<div
-					class="relative grid w-full grid-cols-1 py-16 overflow-y-hidden gap-14 sm:grid-cols-2 place-items-center">
+					class="relative grid w-full grid-cols-1 py-16 overflow-y-hidden gap-y-14 gap-x-0 sm:grid-cols-2 place-items-center">
 					<!--Center line and Chapter checkmark-->
 
 					<div
@@ -175,17 +170,18 @@
 						</div>
 						<!--Glow circle-->
 						<InView
-							once={true}
+							once={false}
+							duration={800}
 							bottom={-200}
-							class="absolute z-0 items-center text-center rounded-full w-11 h-11 bg-gradient-to-t animate-spin from-primary-light to-secondary-light dark:from-primary-dark dark:to-secondary-dark blur-md -top-5" />
+							class="absolute z-0 items-center text-center rounded-full w-11 h-11 bg-gradient-to-t animate-spin from-primary-light to-secondary-light dark:from-primary-dark dark:to-secondary-dark blur-sm -top-5" />
 
 						<InViewSlide
-							once={true}
-							duration={1000}
+							once={false}
+							duration={800}
 							axis={'y'}
-							delay={300}
+							delay={100}
 							bottom="-30%"
-							class="relative hidden w-6 sm:h-[350px] md:h-[400px] mx-auto sm:flex">
+							class="relative hidden w-5 sm:h-[350px] md:h-[400px] mx-auto sm:flex">
 							<!--Glow Line-->
 							<div
 								class="absolute z-0 w-2 h-full -translate-x-1/2 bottom-2 bg-gradient-to-b from-primary-light to-secondary-light dark:from-primary-dark dark:to-secondary-dark blur-sm left-1/2" />
@@ -196,10 +192,14 @@
 					</div>
 
 					<!--Content of Chapter-->
-					<img
-						src={image}
-						alt=""
-						class="order-last object-cover object-center w-1/2 mx-auto bg-no-repeat sm:w-full sm:order-first" />
+
+					<InView presetOptions={rightFlyPreset} class="sm:pr-7">
+						<img
+							src={image}
+							alt=""
+							class="order-last object-cover object-center w-1/2 mx-auto bg-no-repeat sm:w-full sm:order-first" />
+					</InView>
+
 					<div
 						class="flex flex-col max-w-md gap-2 p-1 overflow-hidden text-left justify-self-start">
 						<div class="flex flex-row items-center gap-3 pt-1 pl-1 sm:p-0">
@@ -216,17 +216,24 @@
 									once={true}
 									class="absolute z-0 text-center rounded-full w-11 h-11 bg-gradient-to-t from-primary-light to-secondary-light dark:from-primary-dark dark:to-secondary-dark blur-sm" />
 							</div>
-							<h1 class="font-bold display-small">
+							<h1 class="font-bold display-small sm:hidden">
 								{title}
 							</h1>
 						</div>
 						<InView fly={{ x: -100, y: 0 }} class="sm:hidden">
 							<div class="w-1/4 h-1 border-t border-primary-light dark:border-primary-dark" />
 						</InView>
-
-						<p class="body-medium">
-							{body}
-						</p>
+						<InView presetOptions={leftFlyPreset} class="sm:pl-7">
+							<h1 class="font-bold display-small hidden sm:flex">
+								{title}
+							</h1>
+							<p class="body-medium">
+								{body}
+							</p>
+							<Button class="w-fit mt-6" secondary={true}>
+								<h1 class="title-medium uppercase">Learn More</h1>
+							</Button>
+						</InView>
 					</div>
 				</div>
 			{/each}
@@ -236,44 +243,36 @@
 	<!--Analytics Snippet-->
 	<section
 		id="analytics"
-		class="grid px-4 grow sm:px-6 md:px-8 border-secondary-light/20 dark:border-secondary-dark/20 bg-primary-light/20 dark:bg-primary-dark/10">
-		<div class="flex flex-wrap justify-around px-4 text-center md:flex-row">
-			<div class="flex flex-col p-4">
-				<AnimatedCounter class="font-extrabold headline-large" finalValue={50} duration={700} />
-				<h2 class="font-light body-medium">Sites Made</h2>
+		class="border-secondary-light/20 dark:border-secondary-dark/20 bg-primary-light/20 dark:bg-primary-dark/10">
+		<div
+			class="flex flex-wrap w-full justify-around md:px-4 text-center md:flex-row font-extrabold headline-small sm:display-small md:display-medium">
+			<div class="flex flex-col sm:p-2 p-1 items-center">
+				<AnimatedCounter class="" finalValue={50} duration={700} />
+				<h2 class="font-light body-small">Sites Made</h2>
 			</div>
 			<div class="my-4 border-r border-white/20" />
-			<div class="flex flex-col p-4 justify-self-end">
-				<h2 class="inline font-extrabold headline-large">
-					<AnimatedCounter
-						class="inline font-extrabold headline-large"
-						finalValue={21}
-						duration={700} />
+			<div class="flex flex-col sm:p-2 p-1 justify-self-end items-center">
+				<h2 class="inline">
+					<AnimatedCounter class="inline" finalValue={21} duration={700} />
 					K
 				</h2>
-				<h2 class="font-light body-medium">Hours Used</h2>
+				<h2 class="font-light body-small">Hours Used</h2>
 			</div>
 			<div class="my-4 border-r border-white/20" />
-			<div class="flex flex-col p-4">
-				<h2 class="inline font-extrabold headline-large">
+			<div class="flex flex-col sm:p-2 p-1 items-center">
+				<h2 class="inline">
 					<span class="-mr-1">$</span>
-					<AnimatedCounter
-						class="inline font-extrabold headline-large"
-						finalValue={200}
-						duration={700} />
+					<AnimatedCounter class="inline " finalValue={200} duration={700} />
 					K
 				</h2>
-				<h2 class="font-light body-medium">Transacted</h2>
+				<h2 class="font-light body-small">Transacted</h2>
 			</div>
 			<div class="my-4 border-r border-white/20" />
-			<div class="flex flex-col p-4">
-				<h2 class="inline font-extrabold headline-large">
-					<AnimatedCounter
-						class="inline font-extrabold headline-large"
-						finalValue={99.9}
-						duration={700} />%
+			<div class="flex flex-col sm:p-2 p-1 items-center">
+				<h2 class="inline">
+					<AnimatedCounter class="inline" finalValue={99.9} duration={700} />%
 				</h2>
-				<h2 class="font-light body-medium">Pure Waffle</h2>
+				<h2 class="font-light body-small">Pure Waffle</h2>
 			</div>
 		</div>
 	</section>
@@ -369,32 +368,20 @@
 			</div>
 		</InView>
 	</section>
-	<!--Pricing Section-->
-	<section
-		id="pricing"
-		use:inview={chapterInViewOptions}
-		on:inview_enter={handleChapterInView(4)}
-		class="border-secondary-light/20 dark:border-secondary-dark/20">
-		<div class="inner-section">pricing section</div>
-	</section>
-	<!--How we work section-->
-	<section
-		id="hereshow"
-		use:inview={chapterInViewOptions}
-		on:inview_enter={handleChapterInView(5)}
-		class="shadow-lg border-secondary-light/20 dark:border-secondary-dark/20">
+	<!--CTA section-->
+	<section id="hereshow" class="shadow-lg border-secondary-light/20 dark:border-secondary-dark/20">
 		<InView transition="fade" duration={300}>
 			<div class="flex flex-col space-y-12 inner-section items-center">
 				<h1 class="display-large">Let's Get Started</h1>
 				<div class="grid grid-cols-2 gap-y-4 gap-x-4 sm::grid-cols-2">
 					<a href="{base}/about">
 						<Button class="w-full h-full">
-							<p class="p-2 title-medium">Check Out Pricing!</p>
+							<p class="p-2 title-medium uppercase">See Pricing</p>
 						</Button>
 					</a>
 					<a href="{base}/contact">
 						<Button class="w-full h-full">
-							<p class="p-2 title-medium">Contact Us!</p>
+							<p class="p-2 title-medium uppercase">Book a call</p>
 						</Button>
 					</a>
 				</div>
@@ -405,94 +392,102 @@
 		id="contact"
 		use:inview={chapterInViewOptions}
 		on:inview_enter={handleChapterInView(6)}
-		class="grid px-4 py-32 space-y-12 shadow-lg grow sm:py-34 md:py-44 sm:px-6 md:px-8 border-secondary-light/20 dark:border-secondary-dark/20 justify-items-center">
-		<InView transition="fade" duration={500}>
-			<h1 class="py-12 display-large">We'd Love to Hear From You</h1>
+		class="shadow-lg border-secondary-light/20 dark:border-secondary-dark/20 justify-items-center">
+		<div
+			class="inner-section flex flex-col gap-y-12
+		">
+			<h1 class="display-large">We'd Love to Hear From You</h1>
 
 			<div
 				class="grid items-center grid-cols-1 gap-6 mx-auto lg:grid-cols-2 max-w-7xl justify-items-center">
-				<!--PM Option-->
-				<div class="flex flex-col w-full h-full p-8 space-y-12 shadow-lg shadow-black/40">
-					<div class="space-y-10 text-left">
-						<h2 class="font-extrabold display-medium">Give us a PM</h2>
-						<p class="max-w-3xl title-medium">
-							Send us message on one of these platforms. We'll get back to you within a couple
-							hours.
-						</p>
-						<div class="flex flex-col flex-1 space-y-5">
-							<div class="grid grid-cols-4 grid-rows-3 gap-4">
-								<!--Phone number-->
-								<div
-									class="col-span-1 p-5 rounded-full bg-surface-variant-light w-min h-min justify-self-end">
-									<Icon icon="phone" height="32px" width="32px" />
-								</div>
+				<InView duration={250} fly={{ x: -500, y: 0 }} class="z-10">
+					<!--PM Option-->
+					<div
+						class="flex flex-col w-full h-full p-8 space-y-12 shadow-lg shadow-black/40 bg-surface-dark border-1 border-primary-dark rounded-md">
+						<div class="space-y-10 text-left">
+							<h2 class="font-extrabold display-medium">Give us a PM</h2>
+							<p class="max-w-3xl title-medium">
+								Send us message on one of these platforms. We'll get back to you within a couple
+								hours.
+							</p>
+							<div class="flex flex-col flex-1 space-y-5">
+								<div class="grid grid-cols-4 grid-rows-3 gap-4">
+									<!--Phone number-->
+									<div
+										class="col-span-1 p-5 rounded-full bg-surface-variant-light w-min h-min justify-self-end">
+										<Icon icon="phone" height="32px" width="32px" />
+									</div>
 
-								<a class="flex items-center col-span-3" href="tel:9133600394">
-									<h1 class="pl-2 title-small sm:title-large">+852 9747 3013</h1>
-								</a>
-								<!--WhatsApp-->
-								<div
-									class="col-span-1 p-5 rounded-full bg-surface-variant-light w-min h-min justify-self-end">
-									<Icon icon="email" height="32px" width="32px" fillColor="black" />
-								</div>
+									<a class="flex items-center col-span-3" href="tel:9133600394">
+										<h1 class="pl-2 title-small sm:title-large">+852 9747 3013</h1>
+									</a>
+									<!--WhatsApp-->
+									<div
+										class="col-span-1 p-5 rounded-full bg-surface-variant-light w-min h-min justify-self-end">
+										<Icon icon="email" height="32px" width="32px" fillColor="black" />
+									</div>
 
-								<a class="flex items-center col-span-3" href="mailto:contact@futi.no">
-									<h1 class="pl-2 title-small sm:title-large">Futino Whatsapp</h1>
-								</a>
-								<!--Email-->
-								<div
-									class="col-span-1 p-5 rounded-full bg-surface-variant-light w-min h-min justify-self-end">
-									<Icon icon="instagram" height="32px" width="32px" fillColor="black" />
-								</div>
+									<a class="flex items-center col-span-3" href="mailto:contact@futi.no">
+										<h1 class="pl-2 title-small sm:title-large">Futino Whatsapp</h1>
+									</a>
+									<!--Email-->
+									<div
+										class="col-span-1 p-5 rounded-full bg-surface-variant-light w-min h-min justify-self-end">
+										<Icon icon="instagram" height="32px" width="32px" fillColor="black" />
+									</div>
 
-								<a class="flex items-center col-span-3" href="mailto:ggsoccercamps@gmail.com">
-									<h1 class="pl-2 title-small sm:title-large">@Futino</h1>
-								</a>
-								<!--Email-->
-								<div
-									class="col-span-1 p-5 rounded-full bg-surface-variant-light w-min h-min justify-self-end">
-									<Icon icon="email" height="32px" width="32px" fillColor="black" />
-								</div>
+									<a class="flex items-center col-span-3" href="mailto:ggsoccercamps@gmail.com">
+										<h1 class="pl-2 title-small sm:title-large">@Futino</h1>
+									</a>
+									<!--Email-->
+									<div
+										class="col-span-1 p-5 rounded-full bg-surface-variant-light w-min h-min justify-self-end">
+										<Icon icon="email" height="32px" width="32px" fillColor="black" />
+									</div>
 
-								<a class="flex items-center col-span-3" href="mailto:contact@futi.no">
-									<h1 class="pl-2 title-small sm:title-large">contact@futi.no</h1>
-								</a>
+									<a class="flex items-center col-span-3" href="mailto:contact@futi.no">
+										<h1 class="pl-2 title-small sm:title-large">contact@futi.no</h1>
+									</a>
+								</div>
 							</div>
 						</div>
 					</div>
-				</div>
-				<!--Contact form Option-->
-				<div class="flex flex-col w-full h-full p-8 space-y-12 shadow-lg shadow-black/40">
-					<div class="space-y-10 text-left">
-						<h2 class="font-extrabold display-medium">Contact Us</h2>
-						<p class="title-medium">
-							Feel free to us an email for any requests or questions. We'll get back to you within a
-							couple hours.
-						</p>
+				</InView>
+				<InView duration={350} fly={{ x: -700, y: 0 }} delay={300} class="z-0 overflow-visible">
+					<!--Contact form Option-->
+					<div
+						class="flex flex-col w-full h-full p-8 space-y-12 shadow-lg shadow-black/40 bg-surface-dark border-1 border-primary-dark rounded-md">
+						<div class="space-y-10 text-left">
+							<h2 class="font-extrabold display-medium">Contact Us</h2>
+							<p class="title-medium">
+								Feel free to us an email for any requests or questions. We'll get back to you within
+								a couple hours.
+							</p>
+						</div>
+						<form method="post" class="flex flex-col flex-1 h-64 space-y-5">
+							<input
+								class="p-1 border border-black/50 dark:border-white/50 dark:bg-black/5"
+								type="text"
+								name="name"
+								id="name"
+								placeholder="Name" />
+							<input
+								class="p-1 border border-black/50 dark:border-white/50 dark:bg-surface-dark/5"
+								type="text"
+								name="email"
+								id="email"
+								placeholder="E-Mail" />
+							<textarea
+								class="flex-1 p-1 border border-black/50 dark:border-white/50 dark:bg-black/5"
+								name="message"
+								id="message"
+								placeholder="Message" />
+							<Button><input type="button" value="Send Email" /></Button>
+						</form>
 					</div>
-					<form method="post" class="flex flex-col flex-1 h-64 space-y-5">
-						<input
-							class="p-1 border border-black/50 dark:border-white/50 dark:bg-black/5"
-							type="text"
-							name="name"
-							id="name"
-							placeholder="Name" />
-						<input
-							class="p-1 border border-black/50 dark:border-white/50 dark:bg-surface-dark/5"
-							type="text"
-							name="email"
-							id="email"
-							placeholder="E-Mail" />
-						<textarea
-							class="flex-1 p-1 border border-black/50 dark:border-white/50 dark:bg-black/5"
-							name="message"
-							id="message"
-							placeholder="Message" />
-						<Button><input type="button" value="Send Email" /></Button>
-					</form>
-				</div>
+				</InView>
 			</div>
-		</InView>
+		</div>
 	</section>
 </main>
 
