@@ -18,10 +18,10 @@
 
 <Header />
 
-<main class="border-b shadow-2xl border-primary-light/40 dark:border-primary-dark/40 text-left">
+<main class="text-left border-b shadow-2xl border-primary-light/40 dark:border-primary-dark/40">
 	<section class="border-b border-primary-light/40 dark:border-primary-dark/40">
-		<div class="flex flex-col justify-items-center items-center gap-8 inner-section">
-			<div class="flex flex-col gap-4 items-center">
+		<div class="flex flex-col items-center gap-8 justify-items-center inner-section">
+			<div class="flex flex-col items-center gap-4">
 				<h1 class="headline-large lg:display-large">Pay for exaclty what you get.</h1>
 				<h2 class="title-large">
 					No contracts, pause or cancel anytime, and upscale or downscale as you wish.
@@ -34,13 +34,13 @@
 					<TierListing {tier} />
 				{/each}
 			</div>
-			<div class="hidden md:grid grid-cols-4 place-items-center mt-20">
+			<div class="hidden grid-cols-4 mt-20 md:grid place-items-center">
 				<!--Top Row-->
-				<div class="flex grid-item pb-0">
+				<div class="flex pb-0 grid-item">
 					<h1 class="mt-auto uppercase title-medium text-outline-dark place-self-end">Features</h1>
 				</div>
 				{#each norpTiers as { name, subtitle, cost }}
-					<div class="flex grid-item flex-col max-w-md gap-2 text-left place-items-start">
+					<div class="flex flex-col max-w-md gap-2 text-left grid-item place-items-start">
 						<img
 							src="/artwork/design_illustration.png"
 							alt=""
@@ -54,7 +54,7 @@
 							</h3>
 						</div>
 						<div class="pb-10">
-							<h1 class="font-extrabold display-large tracking-tighter">
+							<h1 class="font-extrabold tracking-tighter display-large">
 								${cost}
 							</h1>
 							<h3 class="body-medium text-outline-dark">/ per month, billed {cycle}</h3>
@@ -67,14 +67,14 @@
 						{feature}
 					</h2>
 					{#each norpTiers as { features }}
-						<h2 class=" my-auto title-medium grid-item">
+						<h2 class="my-auto title-medium grid-item">
 							{features[feature]}
 						</h2>
 					{/each}
 				{/each}
-				<div class="grid-item border-none" />
+				<div class="border-none grid-item" />
 				{#each norpTiers as _}
-					<div class="grid-item border-none mt-14">
+					<div class="border-none grid-item mt-14">
 						<Button class="w-full">
 							<h1 class="uppercase headline-medium">Get Started</h1>
 						</Button>
@@ -84,12 +84,12 @@
 		</div>
 	</section>
 
-	<section class="my-0 md:-my-24">
-		<div class="inner-section w-full flex flex-row justify-around items-center">
+	<section class="sm:-my-12 md:-my-24">
+		<div class="flex flex-col items-center justify-around w-full inner-section md:flex-row gap-y-6">
 			<div class="flex flex-col gap-4">
 				<div class="flex flex-row">
 					<div
-						class=" flex flex-col md:-space-y-4 title-large pl-6 border-l-4 border-primary-dark md:display-large tracking-wider font-extrabold">
+						class="flex flex-col gap-2 pb-4 font-extrabold tracking-wider text-center border-b-4 md:-space-y-4 headline-large sm:display-small md:text-left md:pl-4 md:border-b-0 md:border-l-4 md:pb-0 border-primary-dark md:display-medium lg:display-large">
 						<h1 class="uppercase">Not convinced?</h1>
 						<h1 class="uppercase">Got questions?</h1>
 					</div>
@@ -97,11 +97,11 @@
 			</div>
 
 			<div
-				class="flex flex-col rounded-md bg-surface place-items-center h-full gap-4 py-8 text-center px-8 max-w-sm">
-				<h3 class="title-large pt-4">
+				class="flex flex-col h-full max-w-sm gap-4 px-8 py-8 text-center rounded-md bg-surface place-items-center">
+				<h3 class="pt-4 title-medium sm:title-large">
 					Learn more about how Futino works and how it can help your business grow.
 				</h3>
-				<Button class=" flex w-fit mx-auto mt-6">
+				<Button class="flex mx-auto mt-6  w-fit">
 					<h1 class="uppercase title-medium md:headline-medium">BOOK A CALL</h1>
 				</Button>
 			</div>
