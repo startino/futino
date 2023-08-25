@@ -14,7 +14,6 @@
 	let button_widths: number[] = [0, 0, 0, 0, 0];
 
 	function handleClick(tabValue: number) {
-		console.log(tabValue);
 		let left = 0;
 		button_widths.forEach((value, index) => {
 			if (index < tabValue) {
@@ -29,7 +28,6 @@
 
 	$: {
 		handleClick(currentHighlightedChapter);
-		console.log('Nav menu state changed');
 	}
 </script>
 

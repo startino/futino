@@ -79,18 +79,18 @@
 		},
 		{
 			chapterNumber: 3,
-			title: 'Recent Work',
-			href: '#clients',
-		},
-		{
-			chapterNumber: 4,
 			title: "Here's How",
 			href: '#hereshow',
 		},
 		{
-			chapterNumber: 5,
+			chapterNumber: 4,
 			title: 'Contact',
 			href: '#contact',
+		},
+		{
+			chapterNumber: 5,
+			title: 'Founders',
+			href: '#founders',
 		},
 	];
 
@@ -235,43 +235,6 @@
 		</div>
 	</section>
 
-	<!--Analytics Snippet-->
-	<section
-		id="analytics"
-		class="border-secondary-light/20 dark:border-secondary-dark/20 bg-primary-light/20 dark:bg-primary-dark/10">
-		<div
-			class="flex flex-wrap w-full justify-around md:px-4 text-center md:flex-row font-extrabold headline-small sm:display-small md:display-medium">
-			<div class="flex flex-col sm:p-2 p-1 items-center">
-				<AnimatedCounter class="" finalValue={50} duration={700} />
-				<h2 class="font-light body-small">Sites Made</h2>
-			</div>
-			<div class="my-4 border-r border-white/20" />
-			<div class="flex flex-col sm:p-2 p-1 justify-self-end items-center">
-				<h2 class="inline">
-					<AnimatedCounter class="inline" finalValue={21} duration={700} />
-					K
-				</h2>
-				<h2 class="font-light body-small">Hours Used</h2>
-			</div>
-			<div class="my-4 border-r border-white/20" />
-			<div class="flex flex-col sm:p-2 p-1 items-center">
-				<h2 class="inline">
-					<span class="-mr-1">$</span>
-					<AnimatedCounter class="inline " finalValue={200} duration={700} />
-					K
-				</h2>
-				<h2 class="font-light body-small">Transacted</h2>
-			</div>
-			<div class="my-4 border-r border-white/20" />
-			<div class="flex flex-col sm:p-2 p-1 items-center">
-				<h2 class="inline">
-					<AnimatedCounter class="inline" finalValue={99.9} duration={700} />%
-				</h2>
-				<h2 class="font-light body-small">Pure Waffle</h2>
-			</div>
-		</div>
-	</section>
-
 	<!--Member Benefits Section-->
 	<section
 		id="benefits"
@@ -306,82 +269,22 @@
 		</div>
 	</section>
 
-	<!--Clients Section-->
-	<section
-		id="clients"
-		use:inview={chapterInViewOptions}
-		on:inview_enter={handleChapterInView(3)}
-		class="shadow-lg border-secondary-light/20 dark:border-secondary-dark/20 justify-items-center">
-		<div class="inner-section">
-			<InView transition="fade" duration={500}>
-				<h1 class="py-12 display-large">Our Clients</h1>
-				<div
-					class="flex flex-wrap items-center gap-12 justify-items-center max-w-7xl overflow-clip">
-					{#each recentWork as { index, name, company, body, vid_path }}
-						<ClientCard {name} {company} {body} {vid_path} />{/each}
-				</div>
-			</InView>
-		</div>
-	</section>
-
-	<!--About Section-thinking about removing from landing-->
-	<section
-		id="about"
-		class="grid px-4 py-24 space-y-12 shadow-lg grow sm:py-28 md:py-32 sm:px-6 md:px-8 border-secondary-light/20 dark:border-secondary-dark/20 justify-items-center">
-		<InView transition="fade" duration={500} class="">
-			<div class="flex flex-col mx-auto space-y-6 max-w-7xl place-items-center">
-				<h1 class="py-12 display-large">Meet The Founders</h1>
-				<div class="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-4">
-					<!--Jorge's Card-->
-					<div
-						class="flex flex-col p-6 rounded-lg shadow-lg bg-surface-variant-light/20 dark:bg-surface-variant-dark/20">
-						<img src="" alt="Not found" class="self-center w-24 h-24 bg-black rounded-full" />
-						<h2 class="pt-2 display-small">Jorge Lewis</h2>
-						<h3 class="pb-4 text-gray-400 title-small">COO & Co-founder of Futino</h3>
-						<h2 class="body-large">
-							I noticed that making a website was either too expensive or too time consuming for
-							everyone, including individuals, startups, even large businesses. I wanted to create a
-							solution to these problems.
-						</h2>
-					</div>
-					<!--Jonas' Card-->
-					<div
-						class="flex flex-col p-6 rounded-lg shadow-lg bg-surface-variant-light/20 dark:bg-surface-variant-dark/20">
-						<img src="" alt="Not found" class="self-center w-24 h-24 bg-black rounded-full" />
-						<h2 class="pt-2 display-small">Jonas Lindberg</h2>
-						<h3 class="pb-4 text-gray-400 title-small">CTO & Co-founder of Futino</h3>
-						<h2 class="body-large">
-							I noticed that making a website was either too expensive or too time consuming for
-							everyone, including individuals, startups, even large businesses. I wanted to create a
-							solution to these problems.
-						</h2>
-					</div>
-				</div>
-				<Button>
-					<h1 class="p-2">Learn More</h1>
-				</Button>
-			</div>
-		</InView>
-	</section>
-
 	<!--CTA section-->
 	<section id="hereshow" class="shadow-lg border-secondary-light/20 dark:border-secondary-dark/20">
 		<InView transition="fade" duration={300}>
 			<div class="flex flex-col space-y-12 inner-section items-center">
 				<h1 class="display-large">Let's Get Started</h1>
-				<div class="grid grid-cols-2 gap-y-4 gap-x-4 sm::grid-cols-2">
-					<a href="{base}/about">
-						<Button class="w-full h-full">
-							<p class="p-2 title-medium uppercase">See Pricing</p>
-						</Button>
-					</a>
-					<a href="{base}/contact">
-						<Button class="w-full h-full">
-							<p class="p-2 title-medium uppercase">Book a call</p>
-						</Button>
-					</a>
+				<div class="grid grid-cols-2 gap-x-4">
+					<Button class="" href="/pricing">
+						<p class="px-3 sm:px-5 md:px-6 title-medium">See Pricing</p>
+					</Button>
+
+					<Button class="" secondary={true} href="/contact">
+						<p class="px-3 sm:px-5 md:px-6 title-medium">Book an intro call</p>
+					</Button>
 				</div>
-			</div></InView>
+			</div>
+		</InView>
 	</section>
 	<!--Contact Section-->
 	<section
@@ -485,6 +388,51 @@
 			</div>
 		</div>
 	</section>
+
+	<!--Founders Section-->
+	<section
+		use:inview={chapterInViewOptions}
+		on:inview_enter={handleChapterInView(5)}
+		id="founders"
+		class=" shadow-lg border-secondary-light/20 dark:border-secondary-dark/20 justify-items-center">
+		<InView transition="fade" duration={500} class="">
+			<div class="flex flex-col mx-auto gap-y-12 place-items-center inner-section">
+				<div class="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-4">
+					<!--Jorge's Card-->
+					<div class="founder-card">
+						<img src="" alt="Not found" class="self-center w-24 h-24 bg-black rounded-full" />
+						<h2 class="pt-2 display-small">Jorge Lewis</h2>
+						<h3 class="pb-4 text-gray-400 title-small">COO & Co-founder of Futino</h3>
+						<h2 class="body-large max-w-2xl">
+							I noticed that making a website was either too expensive or too time consuming for
+							everyone, including individuals, startups, even large businesses. I wanted to create a
+							solution to these problems.
+						</h2>
+					</div>
+					<!--Jonas' Card-->
+					<div class="founder-card">
+						<img src="" alt="Not found" class="self-center w-24 h-24 bg-black rounded-full" />
+						<h2 class="pt-2 display-small">Jonas Lindberg</h2>
+						<h3 class="pb-4 text-gray-400 title-small">CTO & Co-founder of Futino</h3>
+						<h2 class="body-large">
+							I noticed that making a website was either too expensive or too time consuming for
+							everyone, including individuals, startups, even large businesses. I wanted to create a
+							solution to these problems.
+						</h2>
+					</div>
+				</div>
+				<Button href="/about">
+					<h1 class="p-2">Learn More</h1>
+				</Button>
+			</div>
+		</InView>
+	</section>
 </main>
 
 <Footer />
+
+<style>
+	.founder-card {
+		@apply flex flex-col max-w-xl p-6 rounded-lg shadow-lg bg-surface-variant-light/20 dark:bg-surface-variant-dark/20;
+	}
+</style>
