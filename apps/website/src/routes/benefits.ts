@@ -1,36 +1,43 @@
 export const benefits: {
-	title: string;
+	titleFirst: string;
+	titleSecond: string;
 	body: string;
 	image: string;
 }[] = [
 	{
-		title: 'Fixed Monthly Rate',
+		titleFirst: 'Fixed',
+		titleSecond: 'Monthly Rate',
 		body: 'No hidden or crazy upfront costs.',
 		image: '/artwork/temp_illustration.png',
 	},
 	{
-		title: 'Scalable & Flexible',
+		titleFirst: 'Scalable',
+		titleSecond: ' & Flexible',
 		body: 'Scale up or down as needed, and pause or cancel at anytime.',
 		image: '/artwork/temp_illustration.png',
 	},
 	{
-		title: 'Easy & Speedy Delivery',
-		body: 'Gauranteed our attentive responses in all our work.',
+		titleFirst: 'Peak',
+		titleSecond: 'Performance',
+		body: 'Gauranteed our upmost effort in the effeciency of all our work.',
 		image: '/artwork/temp_illustration.png',
 	},
 
 	{
-		title: 'Uniquely Yours',
-		body: 'Each of your requests are made just for you and is 100% yours.',
+		titleFirst: 'Uniquely',
+		titleSecond: ' Your Designs',
+		body: 'Each of your designs are made just for you and is 100% yours.',
 		image: '/artwork/temp_illustration.png',
 	},
 	{
-		title: 'Top Notch Quality',
+		titleFirst: "Top",
+		titleSecond: 'Notch Quality',
 		body: 'Experience the pinnacle of quality in every aspect of our services.',
 		image: '/artwork/temp_illustration.png',
 	},
 	{
-		title: 'Live Communication',
+		titleFirst: 'Live',
+		titleSecond: 'Communication',
 		body: 'Your always-on design and development team.',
 		image: '/artwork/temp_illustration.png',
 	},

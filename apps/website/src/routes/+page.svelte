@@ -249,13 +249,14 @@
 				</h2>
 			</div>
 			<div class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
-				{#each benefits as { title, body, image }, i}
+				{#each benefits as { titleFirst, titleSecond, body, image }, i}
 					<div
-						class="relative grid grid-cols-5 px-6 pt-16 pb-6 overflow-hidden text-left border rounded-lg shadow-2xl justify-items-center from-primary-container-light/90 via-secondary-container/60 to-container-light/10 bg-gradient-to-tr dark:to-container-dark/10 dark:via-secondary-container-dark/60 dark:from-primary-container-dark/90 border-outline-variant-light dark:border-outline-variant-dark">
+						class="relative grid grid-cols-5 px-6 pt-16 pb-6 overflow-hidden text-left border-2 rounded-lg shadow-glow shadow-secondary-dark/50 justify-items-center border-primary-dark/50 bg-surface-dark">
 						<div class="col-span-3 flex flex-col w-full gap-2 z-10">
 							<h1
 								class=" headline-large border-outline-light leading-tight dark:border-outline-dark">
-								{title}
+								{titleFirst} <br />
+								{titleSecond}
 							</h1>
 							<hr />
 							<h3 class="body-large">{body}</h3>
