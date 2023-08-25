@@ -33,7 +33,7 @@
 	const leftFlyPreset: TransitionOptions = {
 		delay: 700,
 		duration: 300,
-		once: false,
+		once: true,
 		fly: {
 			x: -200,
 			y: 0,
@@ -42,7 +42,7 @@
 	const rightFlyPreset: TransitionOptions = {
 		delay: 700,
 		duration: 300,
-		once: false,
+		once: true,
 		fly: {
 			x: 200,
 			y: 0,
@@ -52,8 +52,6 @@
 	const handleChapterInView =
 		(inViewChapter: number) =>
 		({ detail }: CustomEvent<ObserverEventDetails>) => {
-			console.log('handling change for chapter inview.');
-
 			chapterInView = inViewChapter;
 		};
 
@@ -165,17 +163,17 @@
 						</div>
 						<!--Glow circle-->
 						<InView
-							once={false}
+							once={true}
 							duration={800}
 							bottom={-200}
 							class="absolute z-0 items-center text-center rounded-full w-11 h-11 bg-gradient-to-t animate-spin from-primary-light to-secondary-light dark:from-primary-dark dark:to-secondary-dark blur-sm -top-5" />
 
 						<InViewSlide
-							once={false}
+							once={true}
 							duration={800}
 							axis={'y'}
 							delay={100}
-							bottom="-30%"
+							bottom="-20%"
 							class="relative hidden w-5 sm:h-[350px] md:h-[400px] mx-auto sm:flex">
 							<!--Glow Line-->
 							<div
@@ -251,7 +249,7 @@
 			<div class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
 				{#each benefits as { titleFirst, titleSecond, body, image }, i}
 					<div
-						class="relative grid grid-cols-5 px-6 pt-16 pb-6 overflow-hidden text-left border-2 rounded-lg shadow-glow shadow-secondary-dark/50 justify-items-center border-primary-dark/50 bg-surface-dark">
+						class="relative grid grid-cols-5 px-6 pt-16 pb-6 overflow-hidden text-left rounded-lg shadow-glow shadow-secondary-dark/30 justify-items-center bg-surface-dark">
 						<div class="col-span-3 flex flex-col w-full gap-2 z-10">
 							<h1
 								class=" headline-large border-outline-light leading-tight dark:border-outline-dark">
@@ -398,33 +396,25 @@
 		class=" shadow-lg border-secondary-light/20 dark:border-secondary-dark/20 justify-items-center">
 		<InView transition="fade" duration={500} class="">
 			<div class="flex flex-col mx-auto gap-y-12 place-items-center inner-section">
-				<div class="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-4">
+				<div class="grid grid-cols-1 gap-x-4 gap-y-4">
 					<!--Jorge's Card-->
 					<div class="founder-card">
-						<img src="" alt="Not found" class="self-center w-24 h-24 bg-black rounded-full" />
+						<img
+							src="/people/jorge_6.jpg"
+							alt="Not found"
+							class="self-center object-cover object-center w-24 h-24 bg-black rounded-full" />
 						<h2 class="pt-2 display-small">Jorge Lewis</h2>
-						<h3 class="pb-4 text-gray-400 title-small">COO & Co-founder of Futino</h3>
+						<h3 class="pb-4 text-gray-400 title-small">CEO & Founder of Futino</h3>
 						<h2 class="body-large max-w-2xl">
-							I noticed that making a website was either too expensive or too time consuming for
-							everyone, including individuals, startups, even large businesses. I wanted to create a
-							solution to these problems.
+							I noticed that making a website was either too expensive (hiring someone) or too time
+							consuming (websitebuilder) for everyone - individuals, startups, especially large
+							businesses. I wanted to create a solution to these problems.
 						</h2>
-					</div>
-					<!--Jonas' Card-->
-					<div class="founder-card">
-						<img src="" alt="Not found" class="self-center w-24 h-24 bg-black rounded-full" />
-						<h2 class="pt-2 display-small">Jonas Lindberg</h2>
-						<h3 class="pb-4 text-gray-400 title-small">CTO & Co-founder of Futino</h3>
-						<h2 class="body-large">
-							I noticed that making a website was either too expensive or too time consuming for
-							everyone, including individuals, startups, even large businesses. I wanted to create a
-							solution to these problems.
-						</h2>
+						<Button href="/about" class=" my-4" secondary={true}>
+							<h1 class="p-2">Learn More</h1>
+						</Button>
 					</div>
 				</div>
-				<Button href="/about">
-					<h1 class="p-2">Learn More</h1>
-				</Button>
 			</div>
 		</InView>
 	</section>
@@ -434,6 +424,6 @@
 
 <style>
 	.founder-card {
-		@apply flex flex-col max-w-xl p-6 rounded-lg shadow-lg bg-surface-variant-light/20 dark:bg-surface-variant-dark/20;
+		@apply flex flex-col max-w-xl p-6 rounded-lg bg-surface-dark shadow-glow shadow-secondary-dark/30 border-primary-dark;
 	}
 </style>

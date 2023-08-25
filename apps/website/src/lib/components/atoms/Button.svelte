@@ -1,5 +1,10 @@
-<button
+<script lang="ts">
+	export const href: string = '#';
+</script>
+
+<a
 	on:click={$$props.click}
+	{href}
 	class="{$$props.class} flex overflow-hidden relative bg-surface-dark justify-center items-center py-3 px-6 font-bold rounded-md shadow-2xl group border-primary-dark {$$props.secondary
 		? 'border-2 text-primary-dark'
 		: 'text-primary-on-dark hover:text-secondary-dark'}">
@@ -11,4 +16,4 @@
 	{/if}
 	<span class="relative z-0">
 		<slot />
-	</span></button>
+	</span></a>
