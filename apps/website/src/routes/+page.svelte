@@ -142,9 +142,8 @@
 		use:inview={chapterInViewOptions}
 		on:inview_enter={handleChapterInView(1)}
 		class="shadow-lg border-secondary-light/20 dark:border-secondary-dark/20 justify-items-center">
-		<!--Absolute screen center ruler element heh
 		<div class="absolute z-50 w-1 h-6 -translate-x-1/2 bg-red-500 left-1/2 top-1/2" />
--->
+
 		<div class="flex flex-col max-w-4xl inner-section">
 			<h1 class="pb-12 display-medium">Areas of Expertise</h1>
 			{#each servicesChapters as { chapterNumber, inView, title, image, body }}
@@ -153,20 +152,14 @@
 					<!--Center line and Chapter checkmark-->
 
 					<div
-						class="absolute flex-col items-center hidden h-full text-center sm:flex sm:-translate-x-1/2 sm:left-1/2 top-12">
+						class="absolute flex-col items-center hidden h-fit text-center sm:flex -translate-x-1/2 left-1/2 top-8">
 						<!--Circle-->
 						<div
-							class="absolute z-20 flex items-center w-10 h-10 text-center rounded-full bg-surface-dark -top-5">
-							<h1 class="mx-auto display-small">
+							class="flex items-center w-11 h-11 text-center rounded-full bg-surface-dark circle-shadow">
+							<h1 class="mx-auto display-small z-20">
 								{chapterNumber}
 							</h1>
 						</div>
-						<!--Glow circle-->
-						<InView
-							once={true}
-							duration={800}
-							bottom={-200}
-							class="absolute z-0 items-center text-center rounded-full w-11 h-11 bg-gradient-to-t animate-spin from-primary-light to-secondary-light dark:from-primary-dark dark:to-secondary-dark blur-sm -top-5" />
 
 						<InViewSlide
 							once={true}
@@ -174,13 +167,10 @@
 							axis={'y'}
 							delay={100}
 							bottom="-20%"
-							class="relative hidden w-5 sm:h-[350px] md:h-[400px] mx-auto sm:flex">
-							<!--Glow Line-->
-							<div
-								class="absolute z-0 w-2 h-full -translate-x-1/2 bottom-2 bg-gradient-to-b from-primary-light to-secondary-light dark:from-primary-dark dark:to-secondary-dark blur-sm left-1/2" />
+							class="flex items-center h-[400px] sm:flex w-1">
 							<!--Line-->
 							<div
-								class="absolute z-10 w-1 h-full -translate-x-1/2 rounded-lg bottom-4 bg-surface-light dark:bg-surface-dark left-1/2" />
+								class=" flex w-1 h-full rounded-xl bottom-2 bg-surface-light dark:bg-surface-dark line-shadow" />
 						</InViewSlide>
 					</div>
 
@@ -425,5 +415,19 @@
 <style>
 	.founder-card {
 		@apply flex flex-col max-w-xl p-6 rounded-lg bg-surface-dark shadow-glow shadow-secondary-dark/30 border-primary-dark;
+	}
+	.circle-shadow {
+		@apply relative;
+	}
+
+	.circle-shadow:before {
+		@apply absolute left-0 right-0 bottom-0 top-0 -z-10 rounded-full shadow-glow shadow-primary-dark/80 content-[''];
+	}
+	.line-shadow {
+		@apply relative;
+	}
+
+	.line-shadow::before {
+		@apply absolute left-0 right-0 bottom-0 top-0 rounded-full -z-10  shadow-glow shadow-primary-dark/80 content-[''];
 	}
 </style>
