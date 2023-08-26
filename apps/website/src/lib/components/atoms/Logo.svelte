@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { base } from '$app/paths';
 </script>
 
-<img src="{base}/favicon.png" class="h-9 rounded-full {$$props.class}" alt="Logo" />
+<img src="/favicon.png" class="h-9 rounded-full {$$props.class}" alt="Logo" />

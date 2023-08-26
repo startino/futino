@@ -8,8 +8,7 @@
 	},
 	"dependencies": {
 		"svelte-inview": "^4.0.0",
-		"svelte-markdown": "^0.3.0",
-		"svelte-particles": "^2.12.0"
+		"svelte-markdown": "^0.3.0"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^2.1.0",

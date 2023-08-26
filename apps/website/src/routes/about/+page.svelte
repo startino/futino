@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { base } from '$app/paths';
 	import Header from '$lib/components/organisms/Header.svelte';
 	import Footer from '$lib/components/organisms/Footer.svelte';
 	import Button from '$lib/components/atoms/Button.svelte';
@@ -76,7 +75,7 @@
 				</h3>
 			</div>
 
-			<a href="{base}/contact">
+			<a href="/contact">
 				<Button class="w-full h-full">
 					<p class="title-medium p-1">Let's talk growth</p>
 				</Button>

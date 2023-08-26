@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { base } from '$app/paths';
 	import ThemeButton from '$lib/components/atoms/ThemeButton.svelte';
 	import Logo from '$lib/components/atoms/Logo.svelte';
 	import { slide } from 'svelte/transition';
@@ -56,7 +55,7 @@
 	class="{$$props.class} {activeheaderClass} border-b border-transparent fixed top-0 z-40 flex-none w-full transition-all duration-400">
 	<div class="py-2 mx-5">
 		<div class="flex relative items-center md:px-10 lg:px-20 xl:px-40 px-auto md:px-auto">
-			<a class="flex overflow-hidden px-3 gap-3 justify-center" href="{base}/">
+			<a class="flex overflow-hidden px-3 gap-3 justify-center" href="/">
 				<Logo />
 				<p class="invisible pt-0.5 text-lg font-bold sm:visible">Futino</p>
 			</a>
@@ -64,23 +63,21 @@
 				<nav class="body-large font-semibold tracking-wide">
 					<ul class="flex m-auto space-x-8">
 						<li>
-							<a
-								class="inline hover:text-tertiary-light dark:hover:text-tertiary-dark"
-								href="{base}/">
+							<a class="inline hover:text-tertiary-light dark:hover:text-tertiary-dark" href="/">
 								Home
 							</a>
 						</li>
 						<li>
 							<a
 								class="inline hover:text-tertiary-light dark:hover:text-tertiary-dark"
-								href="{base}/contact">
+								href="/contact">
 								Contact
 							</a>
 						</li>
 						<li>
 							<a
 								class="inline hover:text-tertiary-light dark:hover:text-tertiary-dark"
-								href="{base}/about">
+								href="/about">
 								About
 							</a>
 						</li>
@@ -88,7 +85,7 @@
 						<li>
 							<a
 								class="inline hover:text-tertiary-light dark:hover:text-tertiary-dark"
-								href="{base}/pricing">
+								href="/pricing">
 								Pricing
 							</a>
 						</li>

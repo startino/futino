@@ -14,11 +14,7 @@ export const servicesChapters: {
 		title: 'AI-Powered Design',
 		image: '/artwork/design_illustration.png',
 		id: 'design',
-		body: `Futino merges AI innovation with human creativity to deliver captivating web 
-		experiences. By optimizing workflows and harnessing AI-driven design tools, we create 
-		stunning websites with speed and beauty. Our skilled team collaborates closely with 
-		clients, fusing creativity and technical expertise to craft engaging designs and intuitive
-		 interfaces that are beautiful, unique, and practical.`,
+		body: `Futino merges AI innovation with human creativity to deliver captivating web experiences. By optimizing workflows and harnessing AI-driven tools, we create stunning websites in a fraction of the time.`,
 	},
 	{
 		chapterNumber: 2,
@@ -26,13 +22,7 @@ export const servicesChapters: {
 		title: 'Coding with Intuition',
 		image: '/artwork/develop_illustration.png',
 		id: 'develop',
-
-		body: `We merged cutting-edge frameworks, modern languages, and AI to create
-		 unmatched systems. Our approach embodies efficiency and precision, 
-		 where our skilled team harnesses the power of frameworks like Svelte and 
-		 TailwindCSS, along with proficiency in modern programming languages 
-		 such as TypeScript, Rust, and Python. This fusion allows us to develop 
-		 websites that seamlessly blend functionality with creative aesthetics.`,
+		body: `We blend cutting-edge frameworks, modern languages, and AI for unparalleled systems. Our efficient, precise approach allows us to craft highly functional yet creative websites.`,
 	},
 	{
 		chapterNumber: 3,
@@ -40,6 +30,6 @@ export const servicesChapters: {
 		image: '/artwork/hosting_illustration_3.png',
 		title: 'Modern Hosting',
 		id: 'host',
-		body: `Experience Futino's sleek web hosting process that effortlessly manages all technical aspects. This enables you to prioritize your core business while relishing the assurance that your website rests in expert care.`,
+		body: `Experience Futino's sleek web hosting process that effortlessly manages all technical aspects. This enables you to prioritize your core business knowing that your website rests in capable hands.`,
 	},
 ];

@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { base } from '$app/paths';
 	import Header from '$lib/components/organisms/Header.svelte';
 	import Footer from '$lib/components/organisms/Footer.svelte';
 	import Button from '$lib/components/atoms/Button.svelte';
@@ -10,15 +9,9 @@
 
 	import { inview } from 'svelte-inview';
 	import type { Options } from 'svelte-inview';
-	import { fade, slide } from 'svelte/transition';
 	import InView, { type TransitionOptions } from '$lib/components/organisms/Inview.svelte';
 	import Icon from '$lib/components/atoms/Icon.svelte';
-	import ClientCard from './ClientCard.svelte';
-	import { tooltip } from '$lib/components/organisms/tooltip/tooltip';
-	import AnimatedCounter from './AnimatedCounter.svelte';
 	import InViewSlide from '$lib/components/organisms/InViewSlide.svelte';
-	import Inview from '$lib/components/organisms/Inview.svelte';
-	import { recentWork } from './recentWork';
 	import { benefits } from './benefits';
 
 	let scrollY: number;
@@ -109,15 +102,13 @@
 		class="h-screen place-items-center">
 		<div id="tsparticles-hero" class="absolute w-full h-full -z-10" />
 		<div class="grid gap-12 justify-items-center inner-section">
-			<h1 class="font-extrabold tracking-tight display-medium">
-				Designing Dreams, Developing Destinations
-			</h1>
+			<h1 class="font-extrabold tracking-tight display-medium">Website Design and Development</h1>
 
 			<h3 class="max-w-md title-large md:max-w-xl">
 				Growing startups and companies with Creative <span
-					class="text-primary-light dark:text-primary-dark">Design</span
-				>, Efficient <span class="text-primary-light dark:text-primary-dark">Development</span>, and
-				Strategic <span class="text-primary-light dark:text-primary-dark">Hosting</span> with a hellofa
+					class="text-primary-light dark:text-primary-dark">Web Design</span
+				>, Efficient <span class="text-primary-light dark:text-primary-dark">Web Development</span>,
+				and Strategic <span class="text-primary-light dark:text-primary-dark">Hosting</span> with a unique
 				pricing model.
 			</h3>
 
@@ -142,7 +133,9 @@
 		use:inview={chapterInViewOptions}
 		on:inview_enter={handleChapterInView(1)}
 		class="shadow-lg border-secondary-light/20 dark:border-secondary-dark/20 justify-items-center">
+		<!--Absolute center line
 		<div class="absolute z-50 w-1 h-6 -translate-x-1/2 bg-red-500 left-1/2 top-1/2" />
+		-->
 
 		<div class="flex flex-col max-w-4xl inner-section">
 			<h1 class="pb-12 display-medium">Areas of Expertise</h1>
@@ -167,10 +160,10 @@
 							axis={'y'}
 							delay={100}
 							bottom="-20%"
-							class="flex items-center h-[400px] sm:flex w-1">
+							class="flex items-center h-[350px] md:h-[400px] sm:flex w-1">
 							<!--Line-->
 							<div
-								class=" flex w-1 h-full rounded-xl bottom-2 bg-surface-light dark:bg-surface-dark line-shadow" />
+								class=" flex w-1 h-full rounded-full bg-surface-light dark:bg-surface-dark line-shadow" />
 						</InViewSlide>
 					</div>
 
@@ -210,7 +203,7 @@
 							<h1 class="font-bold display-small hidden sm:flex">
 								{title}
 							</h1>
-							<p class="body-medium">
+							<p class="title-medium">
 								{body}
 							</p>
 							<Button class="w-fit mt-6" secondary={true}>
