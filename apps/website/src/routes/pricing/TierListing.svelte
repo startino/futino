@@ -30,7 +30,7 @@
 		<TierFeatures features={tier.features} />
 	</div>
 
-	<Button class="w-full">
+	<Button class="w-full" href="/checkout">
 		<h1 class="title-medium">GET STARTED</h1>
 	</Button>
 </div>

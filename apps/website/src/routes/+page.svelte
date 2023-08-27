@@ -113,11 +113,11 @@
 			</h3>
 
 			<div class="grid grid-cols-2 gap-x-4">
-				<Button class="">
+				<Button class="" href="/pricing">
 					<p class="px-3 sm:px-5 md:px-6 title-medium">See Pricing</p>
 				</Button>
 
-				<Button class="" secondary={true}>
+				<Button class="" href="/contact" secondary={true}>
 					<p class="px-3 sm:px-5 md:px-6 title-medium">Contact Us</p>
 				</Button>
 			</div>
@@ -206,7 +206,7 @@
 							<p class="title-medium">
 								{body}
 							</p>
-							<Button class="w-fit mt-6" secondary={true}>
+							<Button class="w-fit mt-6" secondary={true} href="/about">
 								<h1 class="title-medium uppercase">Learn More</h1>
 							</Button>
 						</InView>
@@ -393,7 +393,7 @@
 							consuming (websitebuilder) for everyone - individuals, startups, especially large
 							businesses. I wanted to create a solution to these problems.
 						</h2>
-						<Button href="/about" class=" my-4" secondary={true}>
+						<Button href="/about#team" class=" my-4" secondary={true}>
 							<h1 class="p-2">Learn More</h1>
 						</Button>
 					</div>

@@ -1,5 +1,5 @@
 <script lang="ts">
-	export const href: string = '#';
+	export let href: string = '#';
 </script>
 
 <a

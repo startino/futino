@@ -75,7 +75,7 @@
 				<div class="border-none grid-item" />
 				{#each norpTiers as _}
 					<div class="border-none grid-item mt-14">
-						<Button class="w-full">
+						<Button class="w-full" href="/checkout">
 							<h1 class="uppercase headline-medium">Get Started</h1>
 						</Button>
 					</div>
@@ -101,7 +101,7 @@
 				<h3 class="pt-4 title-medium sm:title-large">
 					Learn more about how Futino works and how it can help your business grow.
 				</h3>
-				<Button class="flex mx-auto mt-6  w-fit">
+				<Button class="flex mx-auto mt-6 w-fit" href="/booking">
 					<h1 class="uppercase title-medium md:headline-medium">BOOK A CALL</h1>
 				</Button>
 			</div>

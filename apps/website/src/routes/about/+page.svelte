@@ -28,29 +28,8 @@
 		},
 		{
 			index: 1,
-			name: 'Jonas Lindberg',
-			position: 'Chief Technology Officer, Lead Developer',
-			body: 'Some words that you believe in and a short about',
-			imgPath: './favicon.png',
-		},
-		{
-			index: 2,
 			name: 'Alexey Skachkov',
 			position: 'Chief Marketing Officer',
-			body: 'Some words that you believe in and a short about',
-			imgPath: './favicon.png',
-		},
-		{
-			index: 3,
-			name: 'Stephen Anzelmo',
-			position: 'Chief Financial Officer, Developer',
-			body: 'Some words that you believe in and a short about',
-			imgPath: './favicon.png',
-		},
-		{
-			index: 4,
-			name: 'Kale Bishop',
-			position: 'Chief Human Resources Officer, Developer',
 			body: 'Some words that you believe in and a short about',
 			imgPath: './favicon.png',
 		},
@@ -61,9 +40,7 @@
 
 <main
 	class="text-center border-b w border-primary-light/40 dark:border-primary-dark/40 flex flex-col items-stretch">
-	<section
-		id="hero"
-		class="grow py-32 sm:py-34 h-screen md:py-44 px-4 sm:px-6 md:px-8 grid justify-items-center space-y-12 shadow-lg">
+	<section id="hero" class="grow h-screen grid justify-items-center space-y-12 shadow-lg">
 		<div class="grid justify-items-center space-y-12 h-fit w-full mx-auto self-center">
 			<div class="w-fit">
 				<h1 class="display-large">Let's Turn Potential into Growth</h1>
@@ -71,15 +48,19 @@
 
 			<div class="w-fit">
 				<h3 class="title-small md:headline-small">
-					Your business problems demand to be seen through an entirely new lens.
+					We aren't just giving you an amazing website, we're giving you a solution.
 				</h3>
 			</div>
 
-			<a href="/contact">
-				<Button class="w-full h-full">
-					<p class="title-medium p-1">Let's talk growth</p>
+			<div class="grid grid-cols-2 gap-x-4">
+				<Button class="" href="#team">
+					<p class="px-3 sm:px-5 md:px-6 title-medium">The Team</p>
 				</Button>
-			</a>
+
+				<Button class="" href="/contact" secondary={true}>
+					<p class="px-3 sm:px-5 md:px-6 title-medium">Contact Us</p>
+				</Button>
+			</div>
 		</div>
 	</section>
 
@@ -104,8 +85,8 @@
 					frameworks, libraries, and tools, we ensure flexibility, security, and cost-effectiveness for
 					our clients.
 				</p>
-				<Button class="w-fit">
-					<h1 class="title-small">Don't believe us? Ask us.</h1>
+				<Button class="w-fit" href="/contact" secondary={true}>
+					<h1 class="title-small">Contact Us</h1>
 				</Button>
 			</div>
 		</section>
@@ -113,7 +94,7 @@
 
 	<TransitionElement>
 		<section
-			id="about-people"
+			id="team"
 			class="grow py-32 shadow-2xl sm:py-34 md:py-32 px-6 md:px-8 grid justify-items-center space-y-12 border-b border-primary-light/20 dark:border-primary-dark/20">
 			<div class="flex flex-col text-left w-full md:pl-12 max-w-7xl space-y-8">
 				<!--Any sort of glass effect would be good here-->
@@ -149,8 +130,8 @@
 						{/each}
 					</div>
 				</TransitionElement>
-				<Button class="w-fit">
-					<h1 class="title-small">Meet the Team</h1>
+				<Button class="w-fit" href="/booking">
+					<h1 class="title-small">Book a Call</h1>
 				</Button>
 			</div>
 		</section>
