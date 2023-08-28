@@ -12,7 +12,7 @@
 			type="text"
 			id="website-admin"
 			class="input rounded-l-none"
-			placeholder="Email or WhatsApp Number" />
+			placeholder="Email or WhatsApp" />
 	</div>
 
 	<div class="">
