@@ -277,8 +277,6 @@
 		<div
 			class="inner-section flex flex-col gap-y-12 w-full
 		">
-			<h1 class="display-large">We'd Love to Hear From You</h1>
-
 			<div class="grid grid-cols-1 gap-6 lg:grid-cols-2 text-left">
 				<InView duration={250} fly={{ x: -500, y: 0 }} class="z-10 w-full h-full">
 					<!--PM Option-->
