@@ -86,7 +86,6 @@
 
 <svelte:window bind:scrollY />
 
-<Header />
 <ChapterMenu bind:chapterInView chapters={landingPageChapters} />
 
 <main class="text-center">
@@ -382,8 +381,6 @@
 		</InView>
 	</section>
 </main>
-
-<Footer />
 
 <style>
 	.pm-text {

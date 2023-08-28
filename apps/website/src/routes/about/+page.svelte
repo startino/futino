@@ -40,8 +40,6 @@
 	];
 </script>
 
-<Header />
-
 <main
 	class="text-center border-b w border-primary-light/40 dark:border-primary-dark/40 flex flex-col items-stretch">
 	<section id="hero" class="grow h-screen grid justify-items-center space-y-12 shadow-lg">
@@ -145,5 +143,3 @@
 		</div>
 	</section>
 </main>
-
-<Footer />

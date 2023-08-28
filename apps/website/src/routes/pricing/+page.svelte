@@ -16,8 +16,6 @@
 	const handleClick = (tabValue: number) => () => (activeTabValue = tabValue);
 </script>
 
-<Header />
-
 <main class="text-left border-b shadow-2xl border-primary-light/40 dark:border-primary-dark/40">
 	<section class="border-b border-primary-light/40 dark:border-primary-dark/40">
 		<div class="flex flex-col items-center gap-8 justify-items-center inner-section">
@@ -108,8 +106,6 @@
 		</div>
 	</section>
 </main>
-
-<Footer />
 
 <style>
 	.grid-item {

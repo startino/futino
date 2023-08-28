@@ -14,7 +14,6 @@
 	];
 </script>
 
-<Header />
 <main>
 	<!--Hero-->
 	<section
@@ -65,4 +64,3 @@
 		</div>
 	</section>
 </main>
-<Footer />
