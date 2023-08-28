@@ -88,8 +88,8 @@
 				<div class="flex flex-row">
 					<div
 						class="flex flex-col gap-2 pb-4 font-extrabold tracking-wider text-center border-b-4 md:-space-y-4 headline-large sm:display-small md:text-left md:pl-4 md:border-b-0 md:border-l-4 md:pb-0 border-primary-dark md:display-medium lg:display-large">
-						<h1 class="uppercase">Not convinced?</h1>
 						<h1 class="uppercase">Got questions?</h1>
+						<h1 class="uppercase">Not convinced?</h1>
 					</div>
 				</div>
 			</div>

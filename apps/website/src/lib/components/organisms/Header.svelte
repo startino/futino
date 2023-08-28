@@ -2,6 +2,7 @@
 	import ThemeButton from '$lib/components/atoms/ThemeButton.svelte';
 	import Logo from '$lib/components/atoms/Logo.svelte';
 	import { onMount } from 'svelte';
+	import { fade, slide } from 'svelte/transition';
 
 	export const elements = [
 		{
@@ -40,14 +41,19 @@
 </script>
 
 {#if menuOpen}
+	<!-- svelte-ignore a11y-no-static-element-interactions -->
+	<!-- svelte-ignore a11y-click-events-have-key-events -->
 	<!-- Background Blurr -->
-	<div class="z-50 fixed inset-0 bg-black/20 backdrop-blur-sm">
+	<div transition:fade class="fixed z-10 inset-0">
+		<div on:click={toggleMenu} class="bg-black/50 absolute w-screen h-screen backdrop-blur-sm" />
 		<!-- Menu Card -->
 		<div
-			class="absolute top-6 right-6 p-6 w-full max-w-xs bg-primary-container-light dark:bg-primary-container-dark rounded-lg shadow-lg">
+			in:slide={{ delay: 200, duration: 300 }}
+			out:slide
+			class="absolute z-50 p-6 w-full mx-auto pb-8 my-auto top-0 bottom-0 flex flex-col items-center gap-4 left-0 right-0 h-fit max-w-xs md:max-w-xl lg:max-w-2xl bg-surface-dark rounded-lg shadow-lg">
 			<!-- Close Menu Button -->
 			<button
-				class="absolute top-6 right-6 w-7 h-7 flex items-center justify-center stroke-primary-light hover:stroke-tertiary-light dark:stroke-primary-dark dark:hover:stroke-tertiary-dark"
+				class="w-7 h-7 my-4 flex items-center hover:scale-150 transition-all duration-200 justify-center stroke-primary-dark hover:stroke-tertiary-dark"
 				on:click={toggleMenu}>
 				<svg viewBox="0 0 10 10" class="w-3 h-3 overflow-visible"
 					><path
@@ -58,10 +64,10 @@
 			</button>
 
 			<!-- Nav Elements -->
-			<nav class="text-left flex flex-col gap-6 text-lg">
+			<nav class="text-center flex flex-col gap-6 headline-medium">
 				{#each elements as element}
 					<a
-						class="text-primary-container-on-light dark:text-primary-container-on-dark hover:text-tertiary-light dark:hover:text-tertiary-dark"
+						class="text-primary-container-on-dark hover:text-tertiary-dark hover:scale-105 transition-all duration-200"
 						href={element.href}
 						on:click={toggleMenu}>
 						{element.name}
