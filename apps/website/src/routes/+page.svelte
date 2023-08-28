@@ -108,11 +108,11 @@
 			</h1>
 
 			<h3 class=" headline-small lg:headline-medium max-w-3xl">
-				Growing startups and companies with Creative <span class="text-tertiary-dark"
+				Growing startups and companies with Creative <span class="text-primary-dark"
 					>Web Design</span
 				>, Efficient
-				<span class="text-tertiary-dark">Web Development</span>, and Strategic
-				<span class="text-tertiary-dark">Hosting</span> with a unique pricing model.
+				<span class="text-primary-dark">Web Development</span>, and Strategic
+				<span class="text-primary-dark">Hosting</span> with a unique pricing model.
 			</h3>
 
 			<div class="grid grid-cols-2 gap-x-4">
