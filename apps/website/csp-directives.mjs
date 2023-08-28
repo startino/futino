@@ -6,7 +6,6 @@ const cspDirectives = {
 		'strict-dynamic',
 		'sha256-5YL4/7jQ2wHbIW+/6gQCDXi0r4rVPpoJKFeviOAmwEs=', // Theme loading hash in app.html
 	],
-	'require-trusted-types-for': ['script'],
 	'worker-src': ['self'],
 };
 
