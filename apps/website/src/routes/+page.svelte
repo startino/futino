@@ -13,6 +13,7 @@
 	import Icon from '$lib/components/atoms/Icon.svelte';
 	import InViewSlide from '$lib/components/organisms/InViewSlide.svelte';
 	import { benefits } from './benefits';
+	import ContactForm from '$lib/components/organisms/ContactForm.svelte';
 
 	let scrollY: number;
 	// Index of the current chapter that is in the viewport, used by chapter menu.
@@ -275,96 +276,82 @@
 		on:inview_enter={handleChapterInView(5)}
 		class="shadow-lg border-secondary-light/20 dark:border-secondary-dark/20 justify-items-center">
 		<div
-			class="inner-section flex flex-col gap-y-12
+			class="inner-section flex flex-col gap-y-12 w-full
 		">
 			<h1 class="display-large">We'd Love to Hear From You</h1>
 
-			<div
-				class="grid items-center grid-cols-1 gap-6 mx-auto lg:grid-cols-2 max-w-7xl justify-items-center">
-				<InView duration={250} fly={{ x: -500, y: 0 }} class="z-10">
+			<div class="grid grid-cols-1 gap-6 lg:grid-cols-2 text-left">
+				<InView duration={250} fly={{ x: -500, y: 0 }} class="z-10 w-full h-full">
 					<!--PM Option-->
 					<div
-						class="flex flex-col w-full h-full p-8 space-y-12 shadow-lg shadow-black/40 bg-surface-dark border-1 border-primary-dark rounded-md">
-						<div class="space-y-10 text-left">
+						class="flex flex-col h-full p-8 gap-y-12 shadow-lg shadow-black/40 bg-surface-dark border-1 border-primary-dark rounded-md">
+						<div class="flex flex-col">
 							<h2 class="font-extrabold display-medium">Give us a PM</h2>
 							<p class="max-w-3xl title-medium">
-								Send us message on one of these platforms. We'll get back to you within a couple
-								hours.
+								Send us message on one of these platforms. <br />
+								We'll get back to you within a couple hours.
 							</p>
-							<div class="flex flex-col flex-1 space-y-5">
-								<div class="grid grid-cols-4 grid-rows-3 gap-4">
-									<!--Phone number-->
-									<div
-										class="col-span-1 p-5 rounded-full bg-surface-variant-light w-min h-min justify-self-end">
-										<Icon icon="phone" height="32px" width="32px" />
-									</div>
-
-									<a class="flex items-center col-span-3" href="tel:9133600394">
-										<h1 class="pl-2 title-small sm:title-large">+852 9747 3013</h1>
-									</a>
-									<!--WhatsApp-->
-									<div
-										class="col-span-1 p-5 rounded-full bg-surface-variant-light w-min h-min justify-self-end">
-										<Icon icon="email" height="32px" width="32px" fillColor="black" />
-									</div>
-
-									<a class="flex items-center col-span-3" href="mailto:contact@futi.no">
-										<h1 class="pl-2 title-small sm:title-large">Futino Whatsapp</h1>
-									</a>
-									<!--Email-->
-									<div
-										class="col-span-1 p-5 rounded-full bg-surface-variant-light w-min h-min justify-self-end">
-										<Icon icon="instagram" height="32px" width="32px" fillColor="black" />
-									</div>
-
-									<a class="flex items-center col-span-3" href="mailto:ggsoccercamps@gmail.com">
-										<h1 class="pl-2 title-small sm:title-large">@Futino</h1>
-									</a>
-									<!--Email-->
-									<div
-										class="col-span-1 p-5 rounded-full bg-surface-variant-light w-min h-min justify-self-end">
-										<Icon icon="email" height="32px" width="32px" fillColor="black" />
-									</div>
-
-									<a class="flex items-center col-span-3" href="mailto:contact@futi.no">
-										<h1 class="pl-2 title-small sm:title-large">contact@futi.no</h1>
-									</a>
+						</div>
+						<div class="flex flex-col h-full flex-1 space-y-5">
+							<div class="grid grid-cols-4 grid-rows-3 gap-4">
+								<!--Phone number-->
+								<div
+									class="col-span-1 p-5 rounded-full bg-surface-variant-light w-min h-min justify-self-end">
+									<Icon icon="phone" height="32px" width="32px" />
 								</div>
+
+								<a class="flex items-center col-span-3" href="tel:9133600394">
+									<h1 class="pl-2 title-small sm:title-large">+852 9747 3013</h1>
+								</a>
+								<!--WhatsApp-->
+								<div
+									class="col-span-1 p-5 rounded-full bg-surface-variant-light w-min h-min justify-self-end">
+									<Icon icon="whatsapp" height="32px" width="32px" fillColor="black" />
+								</div>
+
+								<a class="flex items-center col-span-3" href="mailto:contact@futi.no">
+									<h1 class="pl-2 title-small sm:title-large">+852 9747 3013</h1>
+								</a>
+								<!--Email-->
+								<div
+									class="col-span-1 p-5 rounded-full bg-surface-variant-light w-min h-min justify-self-end">
+									<Icon icon="instagram" height="32px" width="32px" fill="transparent" />
+								</div>
+
+								<a class="flex items-center col-span-3" href="mailto:ggsoccercamps@gmail.com">
+									<h1 class="pl-2 title-small sm:title-large">@Futino</h1>
+								</a>
+								<!--Email-->
+								<div
+									class="col-span-1 p-5 rounded-full bg-surface-variant-light w-min h-min justify-self-end">
+									<Icon icon="email" height="32px" width="32px" fillColor="black" />
+								</div>
+
+								<a class="flex items-center col-span-3" href="mailto:contact@futi.no">
+									<h1 class="pl-2 title-small sm:title-large">contact@futi.no</h1>
+								</a>
 							</div>
 						</div>
 					</div>
 				</InView>
-				<InView duration={350} fly={{ x: -700, y: 0 }} delay={300} class="z-0 overflow-visible">
+
+				<InView
+					duration={350}
+					fly={{ x: -700, y: 0 }}
+					delay={300}
+					class="z-0 overflow-visible h-full w-full">
 					<!--Contact form Option-->
 					<div
-						class="flex flex-col w-full h-full p-8 space-y-12 shadow-lg shadow-black/40 bg-surface-dark border-1 border-primary-dark rounded-md">
-						<div class="space-y-10 text-left">
+						class="flex flex-col p-8 gap-y-8 text-left shadow-lg shadow-black/40 bg-surface-dark border-1 border-primary-dark rounded-md">
+						<div class="flex flex-col">
 							<h2 class="font-extrabold display-medium">Contact Us</h2>
 							<p class="title-medium">
-								Feel free to us an email for any requests or questions. We'll get back to you within
-								a couple hours.
+								Feel free to send us an email for any requests or questions. <br />
+								We'll get back to you within a couple hours.
 							</p>
 						</div>
-						<form method="post" class="flex flex-col flex-1 h-64 space-y-5">
-							<input
-								class="p-1 border border-black/50 dark:border-white/50 dark:bg-black/5"
-								type="text"
-								name="name"
-								id="name"
-								placeholder="Name" />
-							<input
-								class="p-1 border border-black/50 dark:border-white/50 dark:bg-surface-dark/5"
-								type="text"
-								name="email"
-								id="email"
-								placeholder="E-Mail" />
-							<textarea
-								class="flex-1 p-1 border border-black/50 dark:border-white/50 dark:bg-black/5"
-								name="message"
-								id="message"
-								placeholder="Message" />
-							<Button><input type="button" value="Send Email" /></Button>
-						</form>
+
+						<ContactForm />
 					</div>
 				</InView>
 			</div>

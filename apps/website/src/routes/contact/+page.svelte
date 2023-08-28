@@ -53,12 +53,13 @@
 				class="bg-surface-dark flex flex-col rounded-xl dark:bg-surface-dark py-10 px-10 space-y-4 max-w-xl self-start">
 				<h3 class="font-extrabold headline-large">Get in touch.</h3>
 				<h4 class="title-medium my-auto max-w-md">
-					Need assistance or have ideas to discuss? Reach out to us! We're ready for your questions,
+					Need help or have ideas to discuss? Reach out to us! We're ready for your questions,
 					understand your needs, and collaborate to bring your digital aspirations to life. Contact
 					us today and let's start shaping your online presence.
 				</h4>
 			</div>
-			<div class="w-full">
+			<div class="flex flex-col w-full">
+				<h2 class="display-medium font-extrabold">Send us a Message</h2>
 				<ContactForm />
 			</div>
 		</div>
