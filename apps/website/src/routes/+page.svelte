@@ -71,16 +71,11 @@
 		},
 		{
 			chapterNumber: 3,
-			title: "Here's How",
-			href: '#hereshow',
-		},
-		{
-			chapterNumber: 4,
 			title: 'Contact',
 			href: '#contact',
 		},
 		{
-			chapterNumber: 5,
+			chapterNumber: 4,
 			title: 'Founders',
 			href: '#founders',
 		},
@@ -277,7 +272,7 @@
 	<section
 		id="contact"
 		use:inview={chapterInViewOptions}
-		on:inview_enter={handleChapterInView(5)}
+		on:inview_enter={handleChapterInView(3)}
 		class="shadow-lg border-secondary-light/20 dark:border-secondary-dark/20 justify-items-center">
 		<div
 			class="inner-section flex flex-col gap-y-12 w-full
@@ -361,7 +356,7 @@
 	<!--Founders Section-->
 	<section
 		use:inview={chapterInViewOptions}
-		on:inview_enter={handleChapterInView(5)}
+		on:inview_enter={handleChapterInView(4)}
 		id="founders"
 		class=" shadow-lg border-secondary-light/20 dark:border-secondary-dark/20 justify-items-center">
 		<InView transition="fade" duration={500} class="">
