@@ -5,7 +5,10 @@
 		"dev": "turbo run dev",
 		"lint": "turbo run lint",
 		"format": "prettier --write .",
-		"svelte-check": "svelte-check"
+		"test": "playwright test",
+		"check": "svelte-kit sync && svelte-check",
+		"check:watch": "svelte-kit sync && svelte-check --watch",
+		"test:unit": "vitest"
 	},
 	"dependencies": {
 		"svelte-inview": "^4.0.0",
