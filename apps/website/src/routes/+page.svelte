@@ -103,14 +103,16 @@
 		class="h-screen place-items-center">
 		<div id="tsparticles-hero" class="absolute w-full h-full -z-10" />
 		<div class="grid gap-12 justify-items-center inner-section">
-			<h1 class="font-extrabold tracking-tight display-medium">Website Design and Development</h1>
+			<h1 class="font-extrabold tracking-tight display-medium lg:display-large">
+				Website Design and Development
+			</h1>
 
-			<h3 class="max-w-md title-large md:max-w-xl">
-				Growing startups and companies with Creative <span
-					class="text-primary-light dark:text-primary-dark">Web Design</span
-				>, Efficient <span class="text-primary-light dark:text-primary-dark">Web Development</span>,
-				and Strategic <span class="text-primary-light dark:text-primary-dark">Hosting</span> with a unique
-				pricing model.
+			<h3 class=" headline-small lg:headline-medium max-w-3xl">
+				Growing startups and companies with Creative <span class="text-tertiary-dark"
+					>Web Design</span
+				>, Efficient
+				<span class="text-tertiary-dark">Web Development</span>, and Strategic
+				<span class="text-tertiary-dark">Hosting</span> with a unique pricing model.
 			</h3>
 
 			<div class="grid grid-cols-2 gap-x-4">
@@ -155,17 +157,19 @@
 							</h1>
 						</div>
 
-						<InViewSlide
-							once={true}
+						<InView
+							once={false}
 							duration={800}
+							dontFade={true}
+							fly={{ x: 0, y: -500 }}
 							axis={'y'}
 							delay={100}
-							bottom="-20%"
-							class="flex items-center h-[350px] md:h-[400px] sm:flex w-1">
+							bottom={200}
+							class="flex justify-items-center h-[350px] md:h-[400px] sm:flex w-full pb-2  ">
 							<!--Line-->
 							<div
-								class=" flex w-1 h-full rounded-full bg-surface-light dark:bg-surface-dark line-shadow" />
-						</InViewSlide>
+								class=" -mt-1 flex w-1 mx-auto h-full rounded-full bg-surface-light dark:bg-surface-dark line-shadow" />
+						</InView>
 					</div>
 
 					<!--Content of Chapter-->
@@ -201,10 +205,10 @@
 							<div class="w-1/4 h-1 border-t border-primary-light dark:border-primary-dark" />
 						</InView>
 						<InView presetOptions={leftFlyPreset} class="sm:pl-7">
-							<h1 class="font-bold display-small hidden sm:flex">
+							<h1 class="font-bold display-medium hidden sm:flex pb-4">
 								{title}
 							</h1>
-							<p class="title-medium">
+							<p class="title-large">
 								{body}
 							</p>
 							<Button class="w-fit mt-6" secondary={true} href="/about">
