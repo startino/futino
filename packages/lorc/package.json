@@ -24,6 +24,9 @@
 		"!dist/**/*.test.*",
 		"!dist/**/*.spec.*"
 	],
+	"dependencies": {
+		"tsconfig": "workspace:*"
+	},
 	"peerDependencies": {
 		"svelte": "^4.0.0"
 	},
