@@ -46,7 +46,7 @@ export const norpTiers: NorpTier[] = [
 	},
 	{
 		index: 1,
-		name: 'Expansion',
+		name: 'Expanding',
 		subtitle: 'Tier to expand and grow, really darn fast',
 		cost: '1450',
 		features: {
