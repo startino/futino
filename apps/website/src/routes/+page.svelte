@@ -292,42 +292,38 @@
 								We'll get back to you within a couple hours.
 							</p>
 						</div>
-						<div class="flex flex-col h-full flex-1 space-y-5">
-							<div class="grid grid-cols-4 grid-rows-3 gap-4">
+						<div class="flex flex-col h-full flex-1 gap-y-5">
+							<div class="grid grid-cols-4 grid-rows-4 gap-6 text-tertiary-dark">
 								<!--Phone number-->
-								<div
-									class="col-span-1 p-5 rounded-full bg-surface-variant-light w-min h-min justify-self-end">
+								<div class="pm-icon">
 									<Icon icon="phone" height="32px" width="32px" />
 								</div>
 
-								<a class="flex items-center col-span-3" href="tel:9133600394">
+								<a class="pm-text" href="tel:9133600394">
 									<h1 class="pl-2 title-small sm:title-large">+852 9747 3013</h1>
 								</a>
 								<!--WhatsApp-->
-								<div
-									class="col-span-1 p-5 rounded-full bg-surface-variant-light w-min h-min justify-self-end">
-									<Icon icon="whatsapp" height="32px" width="32px" fillColor="black" />
+								<div class="pm-icon">
+									<Icon icon="whatsapp" height="32px" width="32px" />
 								</div>
 
-								<a class="flex items-center col-span-3" href="mailto:contact@futi.no">
+								<a class="pm-text" href="mailto:contact@futi.no">
 									<h1 class="pl-2 title-small sm:title-large">+852 9747 3013</h1>
 								</a>
 								<!--Email-->
-								<div
-									class="col-span-1 p-5 rounded-full bg-surface-variant-light w-min h-min justify-self-end">
-									<Icon icon="instagram" height="32px" width="32px" fill="transparent" />
+								<div class="pm-icon">
+									<Icon icon="instagram" height="32px" width="32px" />
 								</div>
 
-								<a class="flex items-center col-span-3" href="mailto:ggsoccercamps@gmail.com">
+								<a class="pm-text" href="mailto:ggsoccercamps@gmail.com">
 									<h1 class="pl-2 title-small sm:title-large">@Futino</h1>
 								</a>
 								<!--Email-->
-								<div
-									class="col-span-1 p-5 rounded-full bg-surface-variant-light w-min h-min justify-self-end">
-									<Icon icon="email" height="32px" width="32px" fillColor="black" />
+								<div class="pm-icon">
+									<Icon icon="email" height="32px" width="32px" />
 								</div>
 
-								<a class="flex items-center col-span-3" href="mailto:contact@futi.no">
+								<a class="pm-text" href="mailto:contact@futi.no">
 									<h1 class="pl-2 title-small sm:title-large">contact@futi.no</h1>
 								</a>
 							</div>
@@ -393,6 +389,12 @@
 <Footer />
 
 <style>
+	.pm-text {
+		@apply flex items-center col-span-3 text-surface-on-dark justify-self-start;
+	}
+	.pm-icon {
+		@apply col-span-1 p-5 rounded-full bg-surface-dark text-surface-on-dark border w-min h-min justify-self-end;
+	}
 	.founder-card {
 		@apply flex flex-col max-w-xl p-6 rounded-lg bg-surface-dark shadow-glow shadow-secondary-dark/30 border-primary-dark;
 	}
