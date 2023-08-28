@@ -158,13 +158,13 @@
 						</div>
 
 						<InView
-							once={false}
+							once={true}
 							duration={800}
 							dontFade={true}
 							fly={{ x: 0, y: -500 }}
 							axis={'y'}
 							delay={100}
-							bottom={200}
+							bottom={300}
 							class="flex justify-items-center h-[350px] md:h-[400px] sm:flex w-full pb-2  ">
 							<!--Line-->
 							<div
