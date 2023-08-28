@@ -5,15 +5,9 @@
 <a
 	on:click={$$props.click}
 	{href}
-	class="{$$props.class} flex relative bg-surface-dark justify-center items-center py-3 px-6 font-bold rounded-md shadow-2xl group hover:text-secondary-container-on-dark transition-all duration-300 {$$props.secondary
-		? 'outline-4 hover:outline-0 outline-primary-dark text-primary-dark '
-		: 'text-primary-on-dark tracking-wide'}">
-	{#if !$$props.secondary}
-		<span
-			class="absolute inset-0 w-full h-full bg-primary-dark rounded-md opacity-100 transition-all duration-300 ease-in-out group-hover:opacity-0" />
-	{/if}
-	<span
-		class="absolute inset-0 w-full h-full bg-secondary-container-dark/50 border-2 border-secondary-dark rounded-md opacity-0 transition-all duration-300 ease-in-out group-hover:opacity-100" />
+	class="{$$props.class} flex relative border-2 border-primary-dark justify-center tracking-wide items-center py-3 my-1 px-6 font-bold rounded-md shadow-2xl group hover:text-primary-container-on-dark hover:bg-primary-container-dark/60 transition-all duration-300 hover:scale-[103%] {$$props.secondary
+		? ' text-primary-dark bg-surface-dark'
+		: 'text-primary-on-dark bg-primary-dark'}">
 	<span class="relative z-0">
 		<slot />
 	</span></a>
