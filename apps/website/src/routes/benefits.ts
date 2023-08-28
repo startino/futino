@@ -22,5 +22,4 @@ export const benefits: {
 		body: 'Each of your designs are made just for you.',
 		image: '/artwork/temp_illustration.png',
 	},
-	
 ];

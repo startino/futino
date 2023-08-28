@@ -10,10 +10,10 @@
 		: 'text-primary-on-dark tracking-wide'}">
 	{#if !$$props.secondary}
 		<span
-			class="absolute inset-0 w-full h-full bg-primary-dark rounded-md opacity-100 transition duration-300 ease-in-out group-hover:opacity-0" />
+			class="absolute inset-0 w-full h-full bg-primary-dark rounded-md opacity-100 transition-all duration-300 ease-in-out group-hover:opacity-0" />
 	{/if}
 	<span
-		class="absolute inset-0 w-full h-full bg-secondary-container-dark/50 border-2 border-secondary-dark rounded-md opacity-0 transition duration-300 ease-in-out group-hover:opacity-100" />
+		class="absolute inset-0 w-full h-full bg-secondary-container-dark/50 border-2 border-secondary-dark rounded-md opacity-0 transition-all duration-300 ease-in-out group-hover:opacity-100" />
 	<span class="relative z-0">
 		<slot />
 	</span></a>
