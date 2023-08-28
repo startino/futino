@@ -35,7 +35,7 @@ export const norpTiers: NorpTier[] = [
 	{
 		index: 0,
 		name: 'Cruising',
-		subtitle: 'Tier to chill & relax with slow, exponential',
+		subtitle: "Let's Keep it going.",
 		cost: '179',
 		features: {
 			'Monthly Work Capacity': '2hrs',
@@ -47,8 +47,8 @@ export const norpTiers: NorpTier[] = [
 	{
 		index: 1,
 		name: 'Expanding',
-		subtitle: 'Tier to expand and grow, really darn fast',
-		cost: '1450',
+		subtitle: "Let's even the playing field.",
+		cost: '1 450',
 		features: {
 			'Monthly Work Capacity': '8hrs',
 			'Requests & Revisions': 'ထ',
@@ -59,7 +59,7 @@ export const norpTiers: NorpTier[] = [
 	{
 		index: 2,
 		name: 'Blazing',
-		subtitle: "If you're paying this, we care about you a lot",
+		subtitle: "Let's make it unfair.",
 		cost: '5 600',
 		features: {
 			'Monthly Work Capacity': '33hrs',

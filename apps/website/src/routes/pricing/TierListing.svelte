@@ -16,7 +16,7 @@
 		<h2 class="display-small font-extrabold">
 			{tier.name}
 		</h2>
-		<h3 class="title-medium text-outline-dark text-outline pb-6">
+		<h3 class="title-medium max-w-xs text-outline-dark text-outline pb-6">
 			{tier.subtitle}
 		</h3>
 	</div>

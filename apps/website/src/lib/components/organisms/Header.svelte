@@ -44,7 +44,7 @@
 	<!-- svelte-ignore a11y-no-static-element-interactions -->
 	<!-- svelte-ignore a11y-click-events-have-key-events -->
 	<!-- Background Blurr -->
-	<div transition:fade class="fixed z-10 inset-0">
+	<div transition:fade class="fixed z-50 inset-0">
 		<div on:click={toggleMenu} class="bg-black/50 absolute w-screen h-screen backdrop-blur-sm" />
 		<!-- Menu Card -->
 		<div
@@ -86,7 +86,7 @@
 			<Logo />
 			<p class="hidden sm:flex headline-small my-auto pb-1">Futino</p>
 		</a>
-		<div class="flex items-center ml-auto gap-8 title-large">
+		<div class="flex items-center ml-auto gap-8 font-extrabold title-large">
 			<nav class="hidden md:flex gap-6 lg:gap-8 pb-0.5">
 				{#each elements as element, i}
 					<a class="hover:text-tertiary-light dark:hover:text-tertiary-dark" href={element.href}>
