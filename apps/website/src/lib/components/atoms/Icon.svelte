@@ -123,7 +123,7 @@
 	{:else if $$props.icon.toLowerCase() == 'home'}
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
-			fill={$$props.fill}
+			fill="currentColor"
 			viewBox="0 0 50 50"
 			width={$$props.width}
 			height={$$props.height}>
