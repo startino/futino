@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { base } from '$app/paths';
 	import Logo from '$lib/components/atoms/Logo.svelte';
 </script>
 
@@ -13,21 +12,21 @@
 			<li>
 				<a
 					class="inline text-secondary-light dark:text-secondary-dark hover:text-tertiary-light dark:hover:text-tertiary-dark"
-					href={base}>
+					href="">
 					Privacy Policy
 				</a>
 			</li>
 			<li>
 				<a
 					class="inline text-secondary-light dark:text-secondary-dark hover:text-tertiary-light dark:hover:text-tertiary-dark"
-					href={base}>
+					href="">
 					Licensing
 				</a>
 			</li>
 			<li>
 				<a
 					class="inline text-secondary-light dark:text-secondary-dark hover:text-tertiary-light dark:hover:text-tertiary-dark"
-					href={base}>
+					href="">
 					Pricing
 				</a>
 			</li>
@@ -37,7 +36,7 @@
 	<span class="block text-sm sm:text-center text-background-on-light dark:text-background-on-dark">
 		Unpublished © 2023
 		<a
-			href="{base}/"
+			href="/"
 			class="text-tertiary-light dark:text-tertiary-dark hover:underline hover:text-tertiary-light dark:hover:text-tertiary-light">
 			Futino™
 		</a>

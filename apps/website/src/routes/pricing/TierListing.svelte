@@ -4,6 +4,7 @@
 	import type { NorpTier } from './plans';
 
 	export let tier: NorpTier;
+	export let cycle: string = 'monthly';
 </script>
 
 <div class="flex flex-col place-items-start gap-2 text-left">
@@ -23,14 +24,14 @@
 		<h1 class="display-small font-extrabold">
 			${tier.cost}
 		</h1>
-		<h3 class="body-medium text-outline-dark">/ per month</h3>
+		<h3 class="body-medium text-outline-dark">/ per month, billed {cycle}</h3>
 	</div>
 
 	<div class="py-4 w-full">
 		<TierFeatures features={tier.features} />
 	</div>
 
-	<Button class="w-full">
+	<Button class="w-full" href="/checkout">
 		<h1 class="title-medium">GET STARTED</h1>
 	</Button>
 </div>

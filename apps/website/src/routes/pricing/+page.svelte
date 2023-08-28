@@ -16,8 +16,6 @@
 	const handleClick = (tabValue: number) => () => (activeTabValue = tabValue);
 </script>
 
-<Header />
-
 <main class="text-left border-b shadow-2xl border-primary-light/40 dark:border-primary-dark/40">
 	<section class="border-b border-primary-light/40 dark:border-primary-dark/40">
 		<div class="flex flex-col items-center gap-8 justify-items-center inner-section">
@@ -31,7 +29,7 @@
 
 			<div class="flex flex-col gap-12 place-items-start md:hidden">
 				{#each norpTiers as tier}
-					<TierListing {tier} />
+					<TierListing {tier} {cycle} />
 				{/each}
 			</div>
 			<div class="hidden grid-cols-4 mt-20 md:grid place-items-center">
@@ -75,7 +73,7 @@
 				<div class="border-none grid-item" />
 				{#each norpTiers as _}
 					<div class="border-none grid-item mt-14">
-						<Button class="w-full">
+						<Button class="w-full" href="/checkout">
 							<h1 class="uppercase headline-medium">Get Started</h1>
 						</Button>
 					</div>
@@ -90,8 +88,8 @@
 				<div class="flex flex-row">
 					<div
 						class="flex flex-col gap-2 pb-4 font-extrabold tracking-wider text-center border-b-4 md:-space-y-4 headline-large sm:display-small md:text-left md:pl-4 md:border-b-0 md:border-l-4 md:pb-0 border-primary-dark md:display-medium lg:display-large">
-						<h1 class="uppercase">Not convinced?</h1>
 						<h1 class="uppercase">Got questions?</h1>
+						<h1 class="uppercase">Not convinced?</h1>
 					</div>
 				</div>
 			</div>
@@ -101,15 +99,13 @@
 				<h3 class="pt-4 title-medium sm:title-large">
 					Learn more about how Futino works and how it can help your business grow.
 				</h3>
-				<Button class="flex mx-auto mt-6  w-fit">
+				<Button class="flex mx-auto mt-6 w-fit" href="/booking">
 					<h1 class="uppercase title-medium md:headline-medium">BOOK A CALL</h1>
 				</Button>
 			</div>
 		</div>
 	</section>
 </main>
-
-<Footer />
 
 <style>
 	.grid-item {

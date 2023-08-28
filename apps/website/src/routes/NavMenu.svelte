@@ -14,7 +14,6 @@
 	let button_widths: number[] = [0, 0, 0, 0, 0];
 
 	function handleClick(tabValue: number) {
-		console.log(tabValue);
 		let left = 0;
 		button_widths.forEach((value, index) => {
 			if (index < tabValue) {
@@ -29,7 +28,6 @@
 
 	$: {
 		handleClick(currentHighlightedChapter);
-		console.log('Nav menu state changed');
 	}
 </script>
 
@@ -37,7 +35,7 @@
 	class="flex bg-surface-light dark:bg-surface-dark border rounded-2xl border-secondary-light/20 dark:border-secondary-dark/20">
 	<div class="relative flex flex-row gap-1 items-center text-center mx-1 my-1">
 		<div
-			class="h-12 absolute border-2 rounded-2xl border-primary-light bg-primary-container-dark dark:border-primary-dark transition-all delay-75 ease-in-out duration-500"
+			class="h-12 absolute border-2 rounded-2xl bg-primary-container-dark/30 border-primary-dark transition-all delay-75 ease-in-out duration-500"
 			style="width: {button_widths[
 				currentHighlightedChapter
 			]}px; {positionClass}; height: {rowHeight}px" />
@@ -55,9 +53,9 @@
 				<a on:click={() => handleClick(chapterNumber)} {href} class="">
 					<div class="flex flex-col">
 						{#if chapterNumber == 0}
-							<Icon icon="home" fill="white" height="24" width="24" />
+							<Icon icon="home" class="text-primary-dark" height="24" width="24" />
 						{:else}
-							<h1 class="body-small">0{chapterNumber}</h1>
+							<h1 class="body-small font-extrabold text-tertiary-dark">0{chapterNumber}</h1>
 							<h1 class="body-large font-bold">{title}</h1>
 						{/if}
 					</div>
