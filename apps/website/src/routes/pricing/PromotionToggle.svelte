@@ -26,7 +26,7 @@
 		positionClass = 'left: ' + left.toString() + 'px';
 		activeTabValue = tabValue;
 
-		cycle = tabValue == 0 ? 'montlhy' : 'yearly';
+		cycle = tabValue == 0 ? 'monthly' : 'yearly';
 	}
 	export let cycle: string = 'monthly';
 </script>

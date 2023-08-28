@@ -31,7 +31,7 @@
 
 			<div class="flex flex-col gap-12 place-items-start md:hidden">
 				{#each norpTiers as tier}
-					<TierListing {tier} />
+					<TierListing {tier} {cycle} />
 				{/each}
 			</div>
 			<div class="hidden grid-cols-4 mt-20 md:grid place-items-center">
