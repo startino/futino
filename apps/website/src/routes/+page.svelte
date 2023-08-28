@@ -232,8 +232,8 @@
 			<div class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
 				{#each benefits as { titleFirst, titleSecond, body, image }, i}
 					<div
-						class="relative grid grid-cols-5 px-6 pt-16 pb-6 overflow-hidden text-left rounded-lg shadow-glow shadow-secondary-dark/30 justify-items-center bg-surface-dark">
-						<div class="col-span-3 flex flex-col w-full gap-2 z-10">
+						class="relative grid grid-cols-5 px-6 pt-12 pb-6 overflow-hidden text-left rounded-lg shadow-glow shadow-secondary-dark/30 justify-items-center bg-surface-dark">
+						<div class="col-span-4 flex flex-col w-full gap-3 z-10">
 							<h1
 								class=" headline-large border-outline-light leading-tight dark:border-outline-dark">
 								{titleFirst} <br />
@@ -243,7 +243,7 @@
 							<h3 class="body-large">{body}</h3>
 						</div>
 						<div class="absolute top-3 right-3 z-0 flex w-fit h-fit">
-							<img src={image} alt="" class="object-cover object-center mx-auto w-44 h-44" />
+							<img src={image} alt="" class="object-cover object-center mx-auto w-36 h-36" />
 						</div>
 					</div>
 				{/each}
@@ -261,7 +261,7 @@
 						<p class="px-3 sm:px-5 md:px-6 title-medium">See Pricing</p>
 					</Button>
 
-					<Button class="" secondary={true} href="/contact">
+					<Button class="" secondary={true} href="/booking">
 						<p class="px-3 sm:px-5 md:px-6 title-medium">Book an intro call</p>
 					</Button>
 				</div>
