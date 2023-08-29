@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Button from '../atoms/Button.svelte';
 	import { createClient } from '@supabase/supabase-js';
-	import type { Database } from '$lib/supabase';
+	import type { Database } from '$lib/supabase.types';
 
 	// Create a Supabase client object
 	const supabase = createClient<Database>(
@@ -52,7 +52,7 @@
 			placeholder="Name" />
 	</div>
 
-	<div class="py-4">
+	<div class="">
 		<label for="email" class="label">Email</label>
 		<input
 			type="email"

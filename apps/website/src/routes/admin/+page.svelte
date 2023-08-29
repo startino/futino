@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { createClient } from '@supabase/supabase-js';
 	import Authenticate from '$lib/components/atoms/Authenticate.svelte';
-	import type { Database } from '$lib/supabase';
+	import type { Database } from '$lib/supabase.types';
 
 	// Create a Supabase client object
 	const supabase = createClient<Database>(
