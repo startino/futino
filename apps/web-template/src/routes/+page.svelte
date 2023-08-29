@@ -1,5 +1,5 @@
 <script>
-	import Header from 'lorc/Header.svelte';
+	import { Header } from 'lorc';
 </script>
 
 <Header />
