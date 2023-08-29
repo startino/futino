@@ -151,6 +151,9 @@ importers:
 
   apps/website:
     dependencies:
+      '@supabase/supabase-js':
+        specifier: ^2.31.0
+        version: 2.31.0
       svelte-particles:
         specifier: ^2.12.0
         version: 2.12.0(svelte@4.0.1)

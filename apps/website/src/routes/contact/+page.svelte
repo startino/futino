@@ -58,7 +58,6 @@
 				</h4>
 			</div>
 			<div class="flex flex-col w-full">
-				<h2 class="display-medium font-extrabold">Send us a Message</h2>
 				<ContactForm />
 			</div>
 		</div>
