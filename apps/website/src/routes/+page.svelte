@@ -179,17 +179,12 @@
 						class="flex flex-col max-w-md gap-2 p-1 overflow-hidden text-left justify-self-start">
 						<div class="flex flex-row items-center gap-3 pt-1 pl-1 sm:p-0">
 							<div class="relative flex w-12 h-12 place-items-center sm:hidden">
-								<!--Circle-->
 								<div
-									class="z-20 flex items-center w-10 h-10 text-center rounded-full bg-surface-dark">
-									<h1 class="mx-auto display-small">
+									class="flex items-center w-11 h-11 text-center rounded-full bg-surface-dark circle-shadow shadow-primary-dark">
+									<h1 class="mx-auto display-small z-20">
 										{chapterNumber}
 									</h1>
 								</div>
-								<!--Glow circle-->
-								<InView
-									once={true}
-									class="absolute z-0 text-center rounded-full w-11 h-11 bg-gradient-to-t from-primary-light to-secondary-light dark:from-primary-dark dark:to-secondary-dark blur-sm" />
 							</div>
 							<h1 class="font-bold display-small sm:hidden">
 								{title}
@@ -397,7 +392,7 @@
 	}
 
 	.circle-shadow:before {
-		@apply absolute left-0 right-0 bottom-0 top-0 -z-10 rounded-full shadow-glow shadow-primary-dark/80 content-[''];
+		@apply absolute left-0 right-0 bottom-0 top-0 z-0 rounded-full shadow-glow shadow-primary-dark/80 content-[''];
 	}
 	.line-shadow {
 		@apply relative;
