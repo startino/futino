@@ -1,10 +1,13 @@
-<button
+<script lang="ts">
+	export let href: string = '#';
+</script>
+
+<a
 	on:click={$$props.click}
-	class="{$$props.class} flex overflow-hidden relative justify-center items-center py-3 px-6 font-bold rounded-md shadow-2xl group text-primary-on-light dark:text-primary-on-dark hover:text-secondary-light dark:hover:text-secondary-dark">
-	<span
-		class="absolute inset-0 w-full h-full bg-gradient-to-br from-primary-light to-secondary-light dark:from-primary-dark dark:to-secondary-dark opacity-100 transition duration-300 ease-out group-hover:opacity-0" />
-	<span
-		class="absolute inset-0 w-full h-full bg-gradient-to-br from-secondary-light to-primary-light opacity-0 transition duration-300 ease-out group-hover:opacity-100" />
-	<span class="relative">
+	{href}
+	class="{$$props.class} flex relative border-2 border-primary-dark justify-center tracking-wide items-center py-3 my-1 px-6 font-bold rounded-md shadow-2xl group hover:text-primary-container-on-dark hover:bg-primary-container-dark/60 transition-all duration-300 hover:scale-[103%] {$$props.secondary
+		? ' text-primary-dark bg-surface-dark'
+		: 'text-primary-on-dark bg-primary-dark'}">
+	<span class="relative z-0">
 		<slot />
-	</span></button>
+	</span></a>

@@ -14,9 +14,6 @@ importers:
       svelte-markdown:
         specifier: ^0.3.0
         version: 0.3.0(svelte@4.0.1)
-      svelte-particles:
-        specifier: ^2.12.0
-        version: 2.12.0(svelte@4.0.1)
     devDependencies:
       '@sveltejs/adapter-auto':
         specifier: ^2.1.0
@@ -154,12 +151,12 @@ importers:
 
   apps/website:
     dependencies:
+      svelte-particles:
+        specifier: ^2.12.0
+        version: 2.12.0(svelte@4.0.1)
       tsconfig:
         specifier: workspace:*
         version: link:../../packages/tsconfig
-      tsparticles-updater-angle:
-        specifier: ^2.9.3
-        version: 2.9.3
 
   packages/eslint-config-custom:
     dependencies:
@@ -2916,12 +2913,6 @@ packages:
   /tsparticles-engine@2.12.0:
     resolution: {integrity: sha512-ZjDIYex6jBJ4iMc9+z0uPe7SgBnmb6l+EJm83MPIsOny9lPpetMsnw/8YJ3xdxn8hV+S3myTpTN1CkOVmFv0QQ==}
     requiresBuild: true
-    dev: false
-
-  /tsparticles-updater-angle@2.9.3:
-    resolution: {integrity: sha512-Z8VLOw2UUxrvV3YH44My5kmeBUcJUHTSCMRUIqFvgvxDs0Q/g2eVWkr1L+Crpw6PE5FJMdDGWRjWwxMwNdVfuQ==}
-    dependencies:
-      tsparticles-engine: 2.12.0
     dev: false
 
   /tsutils@3.21.0(typescript@5.1.6):

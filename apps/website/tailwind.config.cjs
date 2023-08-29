@@ -9,7 +9,9 @@ const config = {
 				bilbo: ['Bilbo Swash Caps'],
 				ubuntu: ['Ubuntu'],
 			},
-
+			boxShadow: {
+				glow: '0 0 4px 4px current;',
+			},
 			spacing: {
 				110: '27.5rem',
 				600: '600px',
@@ -35,7 +37,7 @@ const config = {
 				ripple: 'ripple 0.7s ',
 				fadeIn: 'fadeIn 2s ',
 				fadeOut: 'fadeOut 2s',
-				glow: 'glow 3s infinite'
+				glow: 'glow 3s infinite',
 			},
 
 			keyframes: {
@@ -85,7 +87,7 @@ const config = {
 				glow: {
 					'0%, 100%': { transform: 'rotate3d(0)' },
 					'50%': { transform: 'rotate3d(0,1,0,90deg)' },
-				}
+				},
 			},
 
 			colors: {
