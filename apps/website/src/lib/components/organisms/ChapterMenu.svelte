@@ -2,7 +2,7 @@
 	import { cubicOut } from 'svelte/easing';
 	import { fade, slide } from 'svelte/transition';
 	import { circOut, circInOut } from 'svelte/easing';
-	import NavMenu from '../../../routes/NavMenu.svelte';
+	import NavMenu from './NavMenu.svelte';
 	import Logo from '../atoms/Logo.svelte';
 
 	let handleExpandClick = () => (isExpanded = !isExpanded);
@@ -29,7 +29,7 @@
 	}[] = [];
 </script>
 
-<div class="fixed z-40 flex w-full bottom-0 p-6">
+<div class="fixed z-40 flex w-fit left-1/2 -translate-x-1/2 bottom-0 p-6">
 	<button
 		on:click={handleExpandClick}
 		class="flex flex-row md:hidden gap-6 max-w-xs bg-surface-light dark:bg-surface-dark rounded-xl p-4 text-left items-center w-52">
