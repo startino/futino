@@ -1,5 +1,5 @@
 <script>
-	import Header from '$lib/molecules/Header.svelte';
+	import Header from 'lorc/Header.svelte';
 </script>
 
 <Header />

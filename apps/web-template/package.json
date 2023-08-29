@@ -15,7 +15,8 @@
 		"format": "prettier --plugin-search-dir . --write ."
 	},
 	"dependencies": {
-		"tsconfig": "workspace:*"
+		"tsconfig": "workspace:*",
+		"lorc": "workspace:*"
 	},
 	"type": "module",
 	"packageManager": "pnpm@8.6.12"

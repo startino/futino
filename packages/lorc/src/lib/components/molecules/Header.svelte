@@ -1,9 +1,9 @@
 <script lang="ts">
-	import ThemeButton from '$lib/atoms/ThemeButton.svelte';
-	import Logo from '$lib/atoms/Logo.svelte';
+	import ThemeButton from '$lib/components/atoms/ThemeButton.svelte';
+	import Logo from '$lib/components/atoms/Logo.svelte';
 	import { onMount } from 'svelte';
 
-	export const elements = [
+	export const elements: {name: string, href: string}[] = [
 		{
 			name: 'Home',
 			href: '/',
