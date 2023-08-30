@@ -1,0 +1,9 @@
+{
+    "deno.enable": false,
+    "deno.enablePaths": [
+        "./worker",
+        "supabase/functions"
+    ],
+    "deno.lint": true,
+    "deno.unstable": true
+}

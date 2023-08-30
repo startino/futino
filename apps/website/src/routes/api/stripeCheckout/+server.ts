@@ -9,6 +9,7 @@ const stripe = new Stripe(test_api_key, {
 const domain: string = "http://localhost:3000";
 
 export const POST: RequestHandler = async ({request}) => {
+    console.log("post");
     // items: [ { id: "1", quantity: 6 }, { id: "2", quantity: 3 } ]
     const data = await request.json();
     const items: [] = data.items;
