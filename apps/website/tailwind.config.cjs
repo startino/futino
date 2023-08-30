@@ -9,7 +9,9 @@ const config = {
 				bilbo: ['Bilbo Swash Caps'],
 				ubuntu: ['Ubuntu'],
 			},
-
+			boxShadow: {
+				glow: '0 0 4px 4px current;',
+			},
 			spacing: {
 				110: '27.5rem',
 				600: '600px',

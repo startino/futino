@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { base } from '$app/paths';
 	import Header from '$lib/components/organisms/Header.svelte';
 	import Footer from '$lib/components/organisms/Footer.svelte';
 	import Button from '$lib/components/atoms/Button.svelte';
@@ -10,16 +9,11 @@
 
 	import { inview } from 'svelte-inview';
 	import type { Options } from 'svelte-inview';
-	import { fade, slide } from 'svelte/transition';
 	import InView, { type TransitionOptions } from '$lib/components/organisms/Inview.svelte';
 	import Icon from '$lib/components/atoms/Icon.svelte';
-	import ClientCard from './ClientCard.svelte';
-	import { tooltip } from '$lib/components/organisms/tooltip/tooltip';
-	import AnimatedCounter from './AnimatedCounter.svelte';
 	import InViewSlide from '$lib/components/organisms/InViewSlide.svelte';
-	import Inview from '$lib/components/organisms/Inview.svelte';
-	import { recentWork } from './recentWork';
 	import { benefits } from './benefits';
+	import ContactForm from '$lib/components/organisms/ContactForm.svelte';
 
 	let scrollY: number;
 	// Index of the current chapter that is in the viewport, used by chapter menu.
@@ -33,7 +27,7 @@
 	const leftFlyPreset: TransitionOptions = {
 		delay: 700,
 		duration: 300,
-		once: false,
+		once: true,
 		fly: {
 			x: -200,
 			y: 0,
@@ -42,7 +36,7 @@
 	const rightFlyPreset: TransitionOptions = {
 		delay: 700,
 		duration: 300,
-		once: false,
+		once: true,
 		fly: {
 			x: 200,
 			y: 0,
@@ -52,8 +46,6 @@
 	const handleChapterInView =
 		(inViewChapter: number) =>
 		({ detail }: CustomEvent<ObserverEventDetails>) => {
-			console.log('handling change for chapter inview.');
-
 			chapterInView = inViewChapter;
 		};
 
@@ -79,23 +71,13 @@
 		},
 		{
 			chapterNumber: 3,
-			title: 'Recent Work',
-			href: '#clients',
+			title: 'Contact',
+			href: '#contact',
 		},
 		{
 			chapterNumber: 4,
-			title: 'Pricing',
-			href: '#pricing',
-		},
-		{
-			chapterNumber: 5,
-			title: "Here's How",
-			href: '#hereshow',
-		},
-		{
-			chapterNumber: 6,
-			title: 'Contact',
-			href: '#contact',
+			title: 'Founders',
+			href: '#founders',
 		},
 	];
 
@@ -104,7 +86,6 @@
 
 <svelte:window bind:scrollY />
 
-<Header />
 <ChapterMenu bind:chapterInView chapters={landingPageChapters} />
 
 <main class="text-center">
@@ -116,24 +97,24 @@
 		class="h-screen place-items-center">
 		<div id="tsparticles-hero" class="absolute w-full h-full -z-10" />
 		<div class="grid gap-12 justify-items-center inner-section">
-			<h1 class="font-extrabold tracking-tight display-medium">
-				Designing Dreams, Developing Destinations
+			<h1 class="font-extrabold tracking-tight display-medium lg:display-large">
+				Website Design and Development
 			</h1>
 
-			<h3 class="max-w-md title-large md:max-w-xl">
-				Growing startups and companies with Creative <span
-					class="text-primary-light dark:text-primary-dark">Design</span
-				>, Efficient <span class="text-primary-light dark:text-primary-dark">Development</span>, and
-				Strategic <span class="text-primary-light dark:text-primary-dark">Hosting</span> with a hellofa
-				pricing model.
+			<h3 class=" headline-small lg:headline-medium max-w-3xl">
+				Growing startups and companies with Creative <span class="text-primary-dark"
+					>Web Design</span
+				>, Efficient
+				<span class="text-primary-dark">Web Development</span>, and Strategic
+				<span class="text-primary-dark">Hosting</span> with a unique pricing model.
 			</h3>
 
 			<div class="grid grid-cols-2 gap-x-4">
-				<Button class="">
+				<Button class="" href="/pricing">
 					<p class="px-3 sm:px-5 md:px-6 title-medium">See Pricing</p>
 				</Button>
 
-				<Button class="" secondary={true}>
+				<Button class="" href="/contact" secondary={true}>
 					<p class="px-3 sm:px-5 md:px-6 title-medium">Contact Us</p>
 				</Button>
 			</div>
@@ -149,9 +130,10 @@
 		use:inview={chapterInViewOptions}
 		on:inview_enter={handleChapterInView(1)}
 		class="shadow-lg border-secondary-light/20 dark:border-secondary-dark/20 justify-items-center">
-		<!--Absolute screen center ruler element heh
+		<!--Absolute center line
 		<div class="absolute z-50 w-1 h-6 -translate-x-1/2 bg-red-500 left-1/2 top-1/2" />
--->
+		-->
+
 		<div class="flex flex-col max-w-4xl inner-section">
 			<h1 class="pb-12 display-medium">Areas of Expertise</h1>
 			{#each servicesChapters as { chapterNumber, inView, title, image, body }}
@@ -160,35 +142,28 @@
 					<!--Center line and Chapter checkmark-->
 
 					<div
-						class="absolute flex-col items-center hidden h-full text-center sm:flex sm:-translate-x-1/2 sm:left-1/2 top-12">
+						class="absolute flex-col items-center hidden h-fit text-center sm:flex -translate-x-1/2 left-1/2 top-8">
 						<!--Circle-->
 						<div
-							class="absolute z-20 flex items-center w-10 h-10 text-center rounded-full bg-surface-dark -top-5">
-							<h1 class="mx-auto display-small">
+							class="flex items-center w-11 h-11 text-center rounded-full bg-surface-dark circle-shadow">
+							<h1 class="mx-auto display-small z-20">
 								{chapterNumber}
 							</h1>
 						</div>
-						<!--Glow circle-->
-						<InView
-							once={false}
-							duration={800}
-							bottom={-200}
-							class="absolute z-0 items-center text-center rounded-full w-11 h-11 bg-gradient-to-t animate-spin from-primary-light to-secondary-light dark:from-primary-dark dark:to-secondary-dark blur-sm -top-5" />
 
-						<InViewSlide
-							once={false}
+						<InView
+							once={true}
 							duration={800}
+							dontFade={true}
+							fly={{ x: 0, y: -500 }}
 							axis={'y'}
 							delay={100}
-							bottom="-30%"
-							class="relative hidden w-5 sm:h-[350px] md:h-[400px] mx-auto sm:flex">
-							<!--Glow Line-->
-							<div
-								class="absolute z-0 w-2 h-full -translate-x-1/2 bottom-2 bg-gradient-to-b from-primary-light to-secondary-light dark:from-primary-dark dark:to-secondary-dark blur-sm left-1/2" />
+							bottom={300}
+							class="flex justify-items-center h-[350px] md:h-[400px] sm:flex w-full pb-2  ">
 							<!--Line-->
 							<div
-								class="absolute z-10 w-1 h-full -translate-x-1/2 rounded-lg bottom-4 bg-surface-light dark:bg-surface-dark left-1/2" />
-						</InViewSlide>
+								class=" -mt-1 flex w-1 mx-auto h-full rounded-full bg-surface-light dark:bg-surface-dark line-shadow" />
+						</InView>
 					</div>
 
 					<!--Content of Chapter-->
@@ -204,17 +179,12 @@
 						class="flex flex-col max-w-md gap-2 p-1 overflow-hidden text-left justify-self-start">
 						<div class="flex flex-row items-center gap-3 pt-1 pl-1 sm:p-0">
 							<div class="relative flex w-12 h-12 place-items-center sm:hidden">
-								<!--Circle-->
 								<div
-									class="z-20 flex items-center w-10 h-10 text-center rounded-full bg-surface-dark">
-									<h1 class="mx-auto display-small">
+									class="flex items-center w-11 h-11 text-center rounded-full bg-surface-dark circle-shadow shadow-primary-dark">
+									<h1 class="mx-auto display-small z-20">
 										{chapterNumber}
 									</h1>
 								</div>
-								<!--Glow circle-->
-								<InView
-									once={true}
-									class="absolute z-0 text-center rounded-full w-11 h-11 bg-gradient-to-t from-primary-light to-secondary-light dark:from-primary-dark dark:to-secondary-dark blur-sm" />
 							</div>
 							<h1 class="font-bold display-small sm:hidden">
 								{title}
@@ -224,56 +194,19 @@
 							<div class="w-1/4 h-1 border-t border-primary-light dark:border-primary-dark" />
 						</InView>
 						<InView presetOptions={leftFlyPreset} class="sm:pl-7">
-							<h1 class="font-bold display-small hidden sm:flex">
+							<h1 class="font-bold display-medium hidden sm:flex pb-4">
 								{title}
 							</h1>
-							<p class="body-medium">
+							<p class="title-large">
 								{body}
 							</p>
-							<Button class="w-fit mt-6" secondary={true}>
+							<Button class="w-fit mt-6" secondary={true} href="/about">
 								<h1 class="title-medium uppercase">Learn More</h1>
 							</Button>
 						</InView>
 					</div>
 				</div>
 			{/each}
-		</div>
-	</section>
-
-	<!--Analytics Snippet-->
-	<section
-		id="analytics"
-		class="border-secondary-light/20 dark:border-secondary-dark/20 bg-primary-light/20 dark:bg-primary-dark/10">
-		<div
-			class="flex flex-wrap w-full justify-around md:px-4 text-center md:flex-row font-extrabold headline-small sm:display-small md:display-medium">
-			<div class="flex flex-col sm:p-2 p-1 items-center">
-				<AnimatedCounter class="" finalValue={50} duration={700} />
-				<h2 class="font-light body-small">Sites Made</h2>
-			</div>
-			<div class="my-4 border-r border-white/20" />
-			<div class="flex flex-col sm:p-2 p-1 justify-self-end items-center">
-				<h2 class="inline">
-					<AnimatedCounter class="inline" finalValue={21} duration={700} />
-					K
-				</h2>
-				<h2 class="font-light body-small">Hours Used</h2>
-			</div>
-			<div class="my-4 border-r border-white/20" />
-			<div class="flex flex-col sm:p-2 p-1 items-center">
-				<h2 class="inline">
-					<span class="-mr-1">$</span>
-					<AnimatedCounter class="inline " finalValue={200} duration={700} />
-					K
-				</h2>
-				<h2 class="font-light body-small">Transacted</h2>
-			</div>
-			<div class="my-4 border-r border-white/20" />
-			<div class="flex flex-col sm:p-2 p-1 items-center">
-				<h2 class="inline">
-					<AnimatedCounter class="inline" finalValue={99.9} duration={700} />%
-				</h2>
-				<h2 class="font-light body-small">Pure Waffle</h2>
-			</div>
 		</div>
 	</section>
 
@@ -291,19 +224,20 @@
 				</h2>
 			</div>
 			<div class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
-				{#each benefits as { title, body, image }, i}
+				{#each benefits as { titleFirst, titleSecond, body, image }, i}
 					<div
-						class="relative grid grid-cols-5 px-6 pt-16 pb-6 overflow-hidden text-left border rounded-lg shadow-2xl justify-items-center from-primary-container-light/90 via-secondary-container/60 to-container-light/10 bg-gradient-to-tr dark:to-container-dark/10 dark:via-secondary-container-dark/60 dark:from-primary-container-dark/90 border-outline-variant-light dark:border-outline-variant-dark">
-						<div class="col-span-3 flex flex-col w-full gap-2 z-10">
+						class="relative grid grid-cols-5 px-6 pt-12 pb-6 overflow-hidden text-left rounded-lg shadow-glow shadow-secondary-dark/30 justify-items-center bg-surface-dark">
+						<div class="col-span-4 flex flex-col w-full gap-3 z-10">
 							<h1
 								class=" headline-large border-outline-light leading-tight dark:border-outline-dark">
-								{title}
+								{titleFirst} <br />
+								{titleSecond}
 							</h1>
 							<hr />
 							<h3 class="body-large">{body}</h3>
 						</div>
 						<div class="absolute top-3 right-3 z-0 flex w-fit h-fit">
-							<img src={image} alt="" class="object-cover object-center mx-auto w-44 h-44" />
+							<img src={image} alt="" class="object-cover object-center mx-auto w-36 h-36" />
 						</div>
 					</div>
 				{/each}
@@ -311,185 +245,160 @@
 		</div>
 	</section>
 
-	<!--Clients Section-->
-	<section
-		id="clients"
-		use:inview={chapterInViewOptions}
-		on:inview_enter={handleChapterInView(3)}
-		class="shadow-lg border-secondary-light/20 dark:border-secondary-dark/20 justify-items-center">
-		<div class="inner-section">
-			<InView transition="fade" duration={500}>
-				<h1 class="py-12 display-large">Our Clients</h1>
-				<div
-					class="flex flex-wrap items-center gap-12 justify-items-center max-w-7xl overflow-clip">
-					{#each recentWork as { index, name, company, body, vid_path }}
-						<ClientCard {name} {company} {body} {vid_path} />{/each}
-				</div>
-			</InView>
-		</div>
-	</section>
-
-	<!--About Section-thinking about removing from landing-->
-	<section
-		id="about"
-		class="grid px-4 py-24 space-y-12 shadow-lg grow sm:py-28 md:py-32 sm:px-6 md:px-8 border-secondary-light/20 dark:border-secondary-dark/20 justify-items-center">
-		<InView transition="fade" duration={500} class="">
-			<div class="flex flex-col mx-auto space-y-6 max-w-7xl place-items-center">
-				<h1 class="py-12 display-large">Meet The Founders</h1>
-				<div class="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-4">
-					<!--Jorge's Card-->
-					<div
-						class="flex flex-col p-6 rounded-lg shadow-lg bg-surface-variant-light/20 dark:bg-surface-variant-dark/20">
-						<img src="" alt="Not found" class="self-center w-24 h-24 bg-black rounded-full" />
-						<h2 class="pt-2 display-small">Jorge Lewis</h2>
-						<h3 class="pb-4 text-gray-400 title-small">COO & Co-founder of Futino</h3>
-						<h2 class="body-large">
-							I noticed that making a website was either too expensive or too time consuming for
-							everyone, including individuals, startups, even large businesses. I wanted to create a
-							solution to these problems.
-						</h2>
-					</div>
-					<!--Jonas' Card-->
-					<div
-						class="flex flex-col p-6 rounded-lg shadow-lg bg-surface-variant-light/20 dark:bg-surface-variant-dark/20">
-						<img src="" alt="Not found" class="self-center w-24 h-24 bg-black rounded-full" />
-						<h2 class="pt-2 display-small">Jonas Lindberg</h2>
-						<h3 class="pb-4 text-gray-400 title-small">CTO & Co-founder of Futino</h3>
-						<h2 class="body-large">
-							I noticed that making a website was either too expensive or too time consuming for
-							everyone, including individuals, startups, even large businesses. I wanted to create a
-							solution to these problems.
-						</h2>
-					</div>
-				</div>
-				<Button>
-					<h1 class="p-2">Learn More</h1>
-				</Button>
-			</div>
-		</InView>
-	</section>
-
 	<!--CTA section-->
 	<section id="hereshow" class="shadow-lg border-secondary-light/20 dark:border-secondary-dark/20">
 		<InView transition="fade" duration={300}>
 			<div class="flex flex-col space-y-12 inner-section items-center">
 				<h1 class="display-large">Let's Get Started</h1>
-				<div class="grid grid-cols-2 gap-y-4 gap-x-4 sm::grid-cols-2">
-					<a href="{base}/about">
-						<Button class="w-full h-full">
-							<p class="p-2 title-medium uppercase">See Pricing</p>
-						</Button>
-					</a>
-					<a href="{base}/contact">
-						<Button class="w-full h-full">
-							<p class="p-2 title-medium uppercase">Book a call</p>
-						</Button>
-					</a>
+				<div class="grid grid-cols-2 gap-x-4">
+					<Button class="" href="/pricing">
+						<p class="px-3 sm:px-5 md:px-6 title-medium">See Pricing</p>
+					</Button>
+
+					<Button class="" secondary={true} href="/booking">
+						<p class="px-3 sm:px-5 md:px-6 title-medium">Book an intro call</p>
+					</Button>
 				</div>
-			</div></InView>
+			</div>
+		</InView>
 	</section>
 	<!--Contact Section-->
 	<section
 		id="contact"
 		use:inview={chapterInViewOptions}
-		on:inview_enter={handleChapterInView(6)}
+		on:inview_enter={handleChapterInView(3)}
 		class="shadow-lg border-secondary-light/20 dark:border-secondary-dark/20 justify-items-center">
 		<div
-			class="inner-section flex flex-col gap-y-12
+			class="inner-section flex flex-col gap-y-12 w-full
 		">
-			<h1 class="display-large">We'd Love to Hear From You</h1>
-
-			<div
-				class="grid items-center grid-cols-1 gap-6 mx-auto lg:grid-cols-2 max-w-7xl justify-items-center">
-				<InView duration={250} fly={{ x: -500, y: 0 }} class="z-10">
+			<div class="grid grid-cols-1 gap-6 lg:grid-cols-2 text-left">
+				<InView duration={250} fly={{ x: -500, y: 0 }} class="z-10 w-full h-full">
 					<!--PM Option-->
 					<div
-						class="flex flex-col w-full h-full p-8 space-y-12 shadow-lg shadow-black/40 bg-surface-dark border-1 border-primary-dark rounded-md">
-						<div class="space-y-10 text-left">
+						class="flex flex-col h-full p-8 gap-y-12 shadow-lg shadow-black/40 bg-surface-dark border-1 border-primary-dark rounded-md">
+						<div class="flex flex-col">
 							<h2 class="font-extrabold display-medium">Give us a PM</h2>
 							<p class="max-w-3xl title-medium">
-								Send us message on one of these platforms. We'll get back to you within a couple
-								hours.
+								Send us message on one of these platforms. <br />
+								We'll get back to you within a couple hours.
 							</p>
-							<div class="flex flex-col flex-1 space-y-5">
-								<div class="grid grid-cols-4 grid-rows-3 gap-4">
-									<!--Phone number-->
-									<div
-										class="col-span-1 p-5 rounded-full bg-surface-variant-light w-min h-min justify-self-end">
-										<Icon icon="phone" height="32px" width="32px" />
-									</div>
-
-									<a class="flex items-center col-span-3" href="tel:9133600394">
-										<h1 class="pl-2 title-small sm:title-large">+852 9747 3013</h1>
-									</a>
-									<!--WhatsApp-->
-									<div
-										class="col-span-1 p-5 rounded-full bg-surface-variant-light w-min h-min justify-self-end">
-										<Icon icon="email" height="32px" width="32px" fillColor="black" />
-									</div>
-
-									<a class="flex items-center col-span-3" href="mailto:contact@futi.no">
-										<h1 class="pl-2 title-small sm:title-large">Futino Whatsapp</h1>
-									</a>
-									<!--Email-->
-									<div
-										class="col-span-1 p-5 rounded-full bg-surface-variant-light w-min h-min justify-self-end">
-										<Icon icon="instagram" height="32px" width="32px" fillColor="black" />
-									</div>
-
-									<a class="flex items-center col-span-3" href="mailto:ggsoccercamps@gmail.com">
-										<h1 class="pl-2 title-small sm:title-large">@Futino</h1>
-									</a>
-									<!--Email-->
-									<div
-										class="col-span-1 p-5 rounded-full bg-surface-variant-light w-min h-min justify-self-end">
-										<Icon icon="email" height="32px" width="32px" fillColor="black" />
-									</div>
-
-									<a class="flex items-center col-span-3" href="mailto:contact@futi.no">
-										<h1 class="pl-2 title-small sm:title-large">contact@futi.no</h1>
-									</a>
+						</div>
+						<div class="flex flex-col h-full flex-1 gap-y-5">
+							<div class="grid grid-cols-4 grid-rows-4 gap-6 text-tertiary-dark">
+								<!--Phone number-->
+								<div class="pm-icon">
+									<Icon icon="phone" height="32px" width="32px" />
 								</div>
+
+								<a class="pm-text" href="tel:9133600394">
+									<h1 class="pl-2 title-small sm:title-large">+852 9747 3013</h1>
+								</a>
+								<!--WhatsApp-->
+								<div class="pm-icon">
+									<Icon icon="whatsapp" height="32px" width="32px" />
+								</div>
+
+								<a class="pm-text" href="mailto:contact@futi.no">
+									<h1 class="pl-2 title-small sm:title-large">+852 9747 3013</h1>
+								</a>
+								<!--Email-->
+								<div class="pm-icon">
+									<Icon icon="instagram" height="32px" width="32px" />
+								</div>
+
+								<a class="pm-text" href="mailto:ggsoccercamps@gmail.com">
+									<h1 class="pl-2 title-small sm:title-large">@Futino</h1>
+								</a>
+								<!--Email-->
+								<div class="pm-icon">
+									<Icon icon="email" height="32px" width="32px" />
+								</div>
+
+								<a class="pm-text" href="mailto:contact@futi.no">
+									<h1 class="pl-2 title-small sm:title-large">contact@futi.no</h1>
+								</a>
 							</div>
 						</div>
 					</div>
 				</InView>
-				<InView duration={350} fly={{ x: -700, y: 0 }} delay={300} class="z-0 overflow-visible">
+
+				<InView
+					duration={350}
+					fly={{ x: -700, y: 0 }}
+					delay={300}
+					class="z-0 overflow-visible h-full w-full">
 					<!--Contact form Option-->
 					<div
-						class="flex flex-col w-full h-full p-8 space-y-12 shadow-lg shadow-black/40 bg-surface-dark border-1 border-primary-dark rounded-md">
-						<div class="space-y-10 text-left">
+						class="flex flex-col p-8 gap-y-8 text-left shadow-lg shadow-black/40 bg-surface-dark border-1 border-primary-dark rounded-md">
+						<div class="flex flex-col">
 							<h2 class="font-extrabold display-medium">Contact Us</h2>
 							<p class="title-medium">
-								Feel free to us an email for any requests or questions. We'll get back to you within
-								a couple hours.
+								Feel free to send us an email for any requests or questions. <br />
+								We'll get back to you within a couple hours.
 							</p>
 						</div>
-						<form method="post" class="flex flex-col flex-1 h-64 space-y-5">
-							<input
-								class="p-1 border border-black/50 dark:border-white/50 dark:bg-black/5"
-								type="text"
-								name="name"
-								id="name"
-								placeholder="Name" />
-							<input
-								class="p-1 border border-black/50 dark:border-white/50 dark:bg-surface-dark/5"
-								type="text"
-								name="email"
-								id="email"
-								placeholder="E-Mail" />
-							<textarea
-								class="flex-1 p-1 border border-black/50 dark:border-white/50 dark:bg-black/5"
-								name="message"
-								id="message"
-								placeholder="Message" />
-							<Button><input type="button" value="Send Email" /></Button>
-						</form>
+
+						<ContactForm />
 					</div>
 				</InView>
 			</div>
 		</div>
 	</section>
+
+	<!--Founders Section-->
+	<section
+		use:inview={chapterInViewOptions}
+		on:inview_enter={handleChapterInView(4)}
+		id="founders"
+		class=" shadow-lg border-secondary-light/20 dark:border-secondary-dark/20 justify-items-center">
+		<InView transition="fade" duration={500} class="">
+			<div class="flex flex-col mx-auto gap-y-12 place-items-center inner-section">
+				<div class="grid grid-cols-1 gap-x-4 gap-y-4">
+					<!--Jorge's Card-->
+					<div class="founder-card">
+						<img
+							src="/people/jorge_6.jpg"
+							alt="Not found"
+							class="self-center object-cover object-center w-24 h-24 bg-black rounded-full" />
+						<h2 class="pt-2 display-small">Jorge Lewis</h2>
+						<h3 class="pb-4 text-gray-400 title-small">CEO & Founder of Futino</h3>
+						<h2 class="body-large max-w-2xl">
+							I noticed that making a website was either too expensive (hiring someone) or too time
+							consuming (websitebuilder) for everyone - individuals, startups, especially large
+							businesses. I wanted to create a solution to these problems.
+						</h2>
+						<Button href="/about#team" class=" my-4" secondary={true}>
+							<h1 class="p-2">Learn More</h1>
+						</Button>
+					</div>
+				</div>
+			</div>
+		</InView>
+	</section>
 </main>
 
-<Footer />
+<style>
+	.pm-text {
+		@apply flex items-center col-span-3 text-surface-on-dark justify-self-start;
+	}
+	.pm-icon {
+		@apply col-span-1 p-5 rounded-full bg-surface-dark text-surface-on-dark border w-min h-min justify-self-end;
+	}
+	.founder-card {
+		@apply flex flex-col max-w-xl p-6 rounded-lg bg-surface-dark shadow-glow shadow-secondary-dark/30 border-primary-dark;
+	}
+	.circle-shadow {
+		@apply relative;
+	}
+
+	.circle-shadow:before {
+		@apply absolute left-0 right-0 bottom-0 top-0 z-0 rounded-full shadow-glow shadow-primary-dark/80 content-[''];
+	}
+	.line-shadow {
+		@apply relative;
+	}
+
+	.line-shadow::before {
+		@apply absolute left-0 right-0 bottom-0 top-0 rounded-full -z-10  shadow-glow shadow-primary-dark/80 content-[''];
+	}
+</style>

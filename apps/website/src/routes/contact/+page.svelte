@@ -14,7 +14,6 @@
 	];
 </script>
 
-<Header />
 <main>
 	<!--Hero-->
 	<section
@@ -31,33 +30,36 @@
 				</h3>
 			</div>
 
-			<a href="#contact_form">
-				<Button class="w-full h-full">
-					<p class="title-medium p-1">Reach Out</p>
+			<div class="grid grid-cols-2 gap-x-4">
+				<Button class="" href="/booking">
+					<p class="px-3 sm:px-5 md:px-6 title-medium">Book a Call</p>
 				</Button>
-			</a>
+
+				<Button class="" href="#contact-form" secondary={true}>
+					<p class="px-3 sm:px-5 md:px-6 title-medium">Send a Message</p>
+				</Button>
+			</div>
 		</div>
 	</section>
 
 	<section
-		id="contact_form"
-		class="py-20 px-10 border-b shadow-2xl border-primary-light/40 dark:border-primary-dark/40">
+		id="contact-form"
+		class="border-b shadow-2xl border-primary-light/40 dark:border-primary-dark/40">
 		<!--Contact Section-->
 		<div
-			class="grid grid-cols-1 md:grid-cols-2 lg:mx-32 md:mx-20 sm:mx-10 xs:mx-4 gap-x-8 items-center justify-items-center">
+			class="grid grid-cols-1 md:grid-cols-2 inner-section text-center md:text-left gap-6 items-center justify-items-center">
 			<div
-				class="bg-surface-dark flex flex-col rounded-xl dark:bg-surface-dark py-10 px-10 space-y-6 max-w-xl self-start">
-				<h3 class="font-bold text-left headline-medium text-primary-dark">Get in touch.</h3>
-				<h4 class=" text-lg font-thin text-left text-secondary-dark my-auto">
-					"Lorem ipsum dolor sit amet enim amet ad eleifend consequat elit per morbi nullam metus
-					nam class hac curabitur praesent sociosqu vulputate torquent sapien volutpat nostra vel
-					curae consectetur curabitur."
+				class="bg-surface-dark flex flex-col rounded-xl dark:bg-surface-dark py-10 px-10 space-y-4 max-w-xl self-start">
+				<h3 class="font-extrabold headline-large">Get in touch.</h3>
+				<h4 class="title-medium my-auto max-w-md">
+					Need help or have ideas to discuss? Reach out to us! We're ready for your questions,
+					understand your needs, and collaborate to bring your digital aspirations to life. Contact
+					us today and let's start shaping your online presence.
 				</h4>
 			</div>
-			<div class="w-full">
+			<div class="flex flex-col w-full">
 				<ContactForm />
 			</div>
 		</div>
 	</section>
 </main>
-<Footer />

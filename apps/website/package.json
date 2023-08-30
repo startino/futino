@@ -15,9 +15,9 @@
 		"format": "prettier --plugin-search-dir . --write ."
 	},
 	"dependencies": {
-		"stripe": "^13.2.0",
-		"tsconfig": "workspace:*",
-		"tsparticles-updater-angle": "^2.9.3"
+		"@supabase/supabase-js": "^2.31.0",
+		"svelte-particles": "^2.12.0",
+		"tsconfig": "workspace:*"
 	},
 	"type": "module",
 	"packageManager": "pnpm@8.6.12"

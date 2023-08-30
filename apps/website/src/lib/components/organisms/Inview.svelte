@@ -112,12 +112,11 @@
 
 <div
 	bind:this={element}
-	id="visible"
 	class:fade-in={!inView && !dontFade}
 	class="{$$props.class} transition-all delay-200 overflow-hidden"
 	style="transition-duration: {finalizedOptions.duration}ms; transition-delay: {finalizedOptions.delay}ms;">
 	<div
-		class="transition-all duration-500"
+		class="transition-all duration-500 h-full w-full"
 		style="transition-duration: {finalizedOptions.duration}ms; transition-delay: {finalizedOptions.delay}ms; {!inView
 			? `transform: translate(${finalizedOptions.fly?.x}px, ${finalizedOptions.fly?.y}px)`
 			: ''}">
