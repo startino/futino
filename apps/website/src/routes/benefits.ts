@@ -11,7 +11,6 @@ export const benefits: {
 		image: '/artwork/temp_illustration.png',
 	},
 	{
-
 		titleFirst: 'Scalable',
 		titleSecond: ' & Flexible',
 
@@ -19,7 +18,6 @@ export const benefits: {
 		image: '/artwork/temp_illustration.png',
 	},
 	{
-
 		titleFirst: 'Your',
 		titleSecond: 'Unique Designs',
 		body: 'Each of your designs are made just for you.',

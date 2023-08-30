@@ -24,6 +24,8 @@ export const features = [
 ];
 
 export type NorpTier = {
+	stripeId: string;
+
 	index: number;
 	name: string;
 	subtitle: string;
@@ -33,6 +35,7 @@ export type NorpTier = {
 
 export const norpTiers: NorpTier[] = [
 	{
+		stripeId: 'price_1NibECD09EWpqQ4YRbal1at9',
 		index: 0,
 		name: 'Cruising',
 		subtitle: 'Keep it going.',
@@ -45,6 +48,7 @@ export const norpTiers: NorpTier[] = [
 		},
 	},
 	{
+		stripeId: 'price_1NibETD09EWpqQ4Y0Nh7Oyad',
 		index: 1,
 		name: 'Expanding',
 		subtitle: 'Even the playing field.',
@@ -57,6 +61,7 @@ export const norpTiers: NorpTier[] = [
 		},
 	},
 	{
+		stripeId: 'price_1NkkCHD09EWpqQ4Yf9lj4X8f',
 		index: 2,
 		name: 'Blazing',
 		subtitle: 'Make it unfair.',
