@@ -10,8 +10,7 @@ const supabase = createClient<Database>(
 );
 
 export async function handleCheckout(tierId: string) {
-
-	const dev: boolean = window.location.hostname.includes("localhost");
+	const dev: boolean = window.location.hostname.includes('localhost');
 	const domain = dev ? 'http://localhost:3000' : 'https://futi.no';
 	const { data, error } = await supabase.functions.invoke('stripe-checkout', {
 		body: JSON.stringify({
