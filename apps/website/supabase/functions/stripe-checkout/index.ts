@@ -11,7 +11,7 @@ const supabase = createClient(
 	Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!,
 );
 
-const domain: string = 'http://localhost:3000';
+
 
 serve(async (req) => {
 	if (req.method === 'OPTIONS') {
@@ -23,7 +23,7 @@ serve(async (req) => {
 		});
 	}
 
-	const { tierId } = await req.json();
+	const { domain, tierId } = await req.json();
 
 	const session = await stripe.checkout.sessions.create({
 		line_items: [

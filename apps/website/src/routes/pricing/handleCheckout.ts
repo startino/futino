@@ -1,3 +1,4 @@
+import { base } from '$app/paths';
 import type { Database } from '$lib/supabase.types';
 import { loadStripe } from '@stripe/stripe-js';
 import { createClient } from '@supabase/supabase-js';
@@ -9,9 +10,12 @@ const supabase = createClient<Database>(
 );
 
 export async function handleCheckout(tierId: string) {
-	console.log('handling checkout');
+
+	const dev: boolean = window.location.hostname.includes("localhost");
+	const domain = dev ? 'http://localhost:3000' : 'https://futi.no';
 	const { data, error } = await supabase.functions.invoke('stripe-checkout', {
 		body: JSON.stringify({
+			domain,
 			tierId,
 		}),
 	});

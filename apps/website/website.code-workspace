@@ -6,6 +6,7 @@
 		}
 	],
 	"settings": {
+		"deno.enable": false,
 		"deno.enablePaths": ["./supabase/functions"],
 		"deno.importMap": "./supabase/functions/import_map.json",
 		"files.exclude": {
