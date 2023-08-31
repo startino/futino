@@ -135,7 +135,7 @@
 		<div class="absolute z-50 w-1 h-6 -translate-x-1/2 bg-red-500 left-1/2 top-1/2" />
 		-->
 
-		<div class="flex flex-col max-w-4xl inner-section">
+		<div class="flex flex-col inner-section">
 			<h1 class="pb-12 display-medium">Areas of Expertise</h1>
 			{#each servicesChapters as { chapterNumber, inView, title, image, body }}
 				<div
@@ -143,7 +143,7 @@
 					<!--Center line and Chapter checkmark-->
 
 					<div
-						class="absolute flex-col items-center hidden h-fit text-center sm:flex -translate-x-1/2 left-1/2 top-8">
+						class="absolute flex-col items-center hidden h-full text-center sm:flex -translate-x-1/2 left-1/2 top-8">
 						<!--Circle-->
 						<div
 							class="flex items-center w-11 h-11 text-center rounded-full bg-surface-dark circle-shadow">
@@ -160,10 +160,10 @@
 							axis={'y'}
 							delay={100}
 							bottom={300}
-							class="flex justify-items-center h-[350px] md:h-[400px] sm:flex w-full pb-2  ">
+							class="flex justify-items-center h-full sm:flex w-full pb-2 mb-2">
 							<!--Line-->
 							<div
-								class=" -mt-1 flex w-1 mx-auto h-full rounded-full bg-surface-light dark:bg-surface-dark line-shadow" />
+								class=" -mt-6 flex w-1 mx-auto h-full rounded-full bg-surface-light dark:bg-surface-dark line-shadow" />
 						</InView>
 					</div>
 
@@ -177,7 +177,7 @@
 					</InView>
 
 					<div
-						class="flex flex-col max-w-md gap-2 p-1 overflow-hidden text-left justify-self-start">
+						class="flex flex-col max-w-xl gap-2 p-1 overflow-hidden text-left justify-self-start">
 						<div class="flex flex-row items-center gap-3 pt-1 pl-1 sm:p-0">
 							<div class="relative flex w-12 h-12 place-items-center sm:hidden">
 								<div
@@ -187,15 +187,15 @@
 									</h1>
 								</div>
 							</div>
-							<h1 class="font-bold display-small sm:hidden">
+							<h1 class="font-bold headline-medium sm:hidden">
 								{title}
 							</h1>
 						</div>
 						<InView fly={{ x: -100, y: 0 }} class="sm:hidden">
-							<div class="w-1/4 h-1 border-t border-primary-light dark:border-primary-dark" />
+							<div class="w-1/4 h-0.5 mt-3 border-t border-outline-dark" />
 						</InView>
 						<InView presetOptions={leftFlyPreset} class="sm:pl-7">
-							<h1 class="font-bold display-medium hidden sm:flex pb-4">
+							<h1 class="font-bold display-small lg:display-medium hidden sm:flex pb-4">
 								{title}
 							</h1>
 							<p class="title-large">
