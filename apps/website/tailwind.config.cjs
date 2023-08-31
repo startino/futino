@@ -11,6 +11,8 @@ const config = {
 			},
 			boxShadow: {
 				glow: '0 0 4px 4px current;',
+				button: '0 2px 6px 4px current',
+				'button-hover': '0 0 2px 2px current',
 			},
 			dropShadow: {
 				// Light

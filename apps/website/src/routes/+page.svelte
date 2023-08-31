@@ -94,7 +94,7 @@
 		id="hero"
 		use:inview={chapterInViewOptions}
 		on:inview_enter={handleChapterInView(0)}
-		class="h-screen place-items-center bg-[url('/glow_bg.png')] bg-no-repeat bg-fit bg-top">
+		class="h-screen place-items-center bg-[url('/glow_bg_2.png')] bg-no-repeat bg-fit bg-top">
 		<div id="tsparticles-hero" class="absolute w-full h-full -z-10" />
 
 		<div class="relative grid gap-12 justify-items-center inner-section">
@@ -201,9 +201,6 @@
 							<p class="title-large">
 								{body}
 							</p>
-							<Button class="w-fit mt-6" secondary={true} href="/about">
-								<h1 class="title-medium uppercase">Learn More</h1>
-							</Button>
 						</InView>
 					</div>
 				</div>
@@ -356,7 +353,7 @@
 				<div class="grid grid-cols-1 gap-x-4 gap-y-4">
 					<!--Jorge's Card-->
 					<div
-						class="drop-shadow-glow-xl-dark border-1 flex flex-col max-w-xl p-6 rounded-lg bg-surface-dark border-primary-dark">
+						class="drop-shadow-glow-lg-dark border-1 flex flex-col max-w-xl p-6 rounded-lg bg-surface-dark border-primary-dark">
 						<img
 							src="/people/jorge_6.jpg"
 							alt="Not found"
