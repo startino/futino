@@ -13,9 +13,8 @@ export const benefits: {
 	{
 		titleFirst: 'Scalable',
 		titleSecond: ' & Flexible',
-
 		body: 'Scale up or down as needed, and pause or cancel at anytime.',
-		image: '/artwork/temp_illustration.png',
+		image: '/artwork/tree_1.png',
 	},
 	{
 		titleFirst: 'Your',

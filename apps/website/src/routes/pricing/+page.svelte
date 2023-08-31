@@ -44,12 +44,9 @@
 				<div class="flex pb-0 grid-item">
 					<h1 class="mt-auto uppercase title-medium text-outline-dark place-self-end">Features</h1>
 				</div>
-				{#each norpTiers as { name, subtitle, cost }}
+				{#each norpTiers as { name, subtitle, cost, thumbnail }}
 					<div class="flex flex-col max-w-md gap-2 text-left grid-item place-items-start">
-						<img
-							src="/artwork/design_illustration.png"
-							alt=""
-							class="object-cover object-center w-1/2 -mb-5 h-fit" />
+						<img src={thumbnail} alt="" class="object-cover object-bottom w-2/3 -mb-3 h-fit" />
 						<div class="">
 							<h2 class=" headline-large uppercase text-primary-dark">
 								{name}

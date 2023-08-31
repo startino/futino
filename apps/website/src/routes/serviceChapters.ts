@@ -12,7 +12,7 @@ export const servicesChapters: {
 		chapterNumber: 1,
 		inView: false,
 		title: 'AI-Powered Design',
-		image: '/artwork/design_illustration.png',
+		image: '/artwork/sdxl_1.png',
 		id: 'design',
 		body: `Futino merges AI innovation with human creativity to deliver captivating web experiences. By optimizing workflows and harnessing AI-driven tools, we create stunning websites in a fraction of the time.`,
 	},

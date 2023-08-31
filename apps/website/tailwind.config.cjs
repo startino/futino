@@ -12,6 +12,20 @@ const config = {
 			boxShadow: {
 				glow: '0 0 4px 4px current;',
 			},
+			dropShadow: {
+				// Light
+				'glow-sm-light': '0 0 5px rgb(var(--md-sys-color-primary-container-light) / 0.5)',
+				'glow-md-light': '0 0 10px rgb(var(--md-sys-color-primary-container-light) / 0.5)',
+				'glow-lg-light': '0 0 15px rgb(var(--md-sys-color-primary-container-light) / 0.5)',
+				'glow-xl-light': '0 0 20px rgb(var(--md-sys-color-primary-container-light) / 0.5)',
+				'glow-2xl-light': '0 0 25px rgb(var(--md-sys-color-primary-container-light) / 0.5)',
+				// Dark
+				'glow-sm-dark': '0 0 5px rgb(var(--md-sys-color-primary-container-dark) / 0.5)',
+				'glow-md-dark': '0 0 10px rgb(var(--md-sys-color-primary-container-dark) / 0.5)',
+				'glow-lg-dark': '0 0 15px rgb(var(--md-sys-color-primary-container-dark) / 0.5)',
+				'glow-xl-dark': '0 0 20px rgb(var(--md-sys-color-primary-container-dark) / 0.5)',
+				'glow-2xl-dark': '0 0 25px rgb(var(--md-sys-color-primary-container-dark) / 0.5)',
+			},
 			spacing: {
 				110: '27.5rem',
 				600: '600px',

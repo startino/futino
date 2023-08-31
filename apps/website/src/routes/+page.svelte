@@ -94,9 +94,10 @@
 		id="hero"
 		use:inview={chapterInViewOptions}
 		on:inview_enter={handleChapterInView(0)}
-		class="h-screen place-items-center">
+		class="h-screen place-items-center bg-[url('/glow_bg.png')] bg-no-repeat bg-fit bg-top">
 		<div id="tsparticles-hero" class="absolute w-full h-full -z-10" />
-		<div class="grid gap-12 justify-items-center inner-section">
+
+		<div class="relative grid gap-12 justify-items-center inner-section">
 			<h1 class="font-extrabold tracking-tight display-medium lg:display-large">
 				Website Design and Development
 			</h1>
@@ -223,13 +224,12 @@
 					Perks that are simply too good to look anywhere else for your website needs. Seriously.
 				</h2>
 			</div>
-			<div class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
+			<div class="grid grid-cols-1 gap-10 md:grid-cols-3">
 				{#each benefits as { titleFirst, titleSecond, body, image }, i}
 					<div
-						class="relative grid grid-cols-5 px-6 pt-12 pb-6 overflow-hidden text-left rounded-lg shadow-glow shadow-secondary-dark/30 justify-items-center bg-surface-dark">
+						class="relative grid grid-cols-5 px-6 pt-12 pb-6 overflow-hidden text-left rounded-md drop-shadow-glow-md-dark border-1 border-primary-dark justify-items-center bg-surface-dark">
 						<div class="col-span-4 flex flex-col w-full gap-3 z-10">
-							<h1
-								class=" headline-large border-outline-light leading-tight dark:border-outline-dark">
+							<h1 class=" headline-large leading-tight border-outline-dark">
 								{titleFirst} <br />
 								{titleSecond}
 							</h1>
@@ -355,13 +355,14 @@
 			<div class="flex flex-col mx-auto gap-y-12 place-items-center inner-section">
 				<div class="grid grid-cols-1 gap-x-4 gap-y-4">
 					<!--Jorge's Card-->
-					<div class="founder-card">
+					<div
+						class="drop-shadow-glow-xl-dark border-1 flex flex-col max-w-xl p-6 rounded-lg bg-surface-dark border-primary-dark">
 						<img
 							src="/people/jorge_6.jpg"
 							alt="Not found"
 							class="self-center object-cover object-center w-24 h-24 bg-black rounded-full" />
 						<h2 class="pt-2 display-small">Jorge Lewis</h2>
-						<h3 class="pb-4 text-gray-400 title-small">CEO & Founder of Futino</h3>
+						<h3 class="pb-4 text-tertiary-dark title-small">CEO & Founder of Futino</h3>
 						<h2 class="body-large max-w-2xl">
 							I noticed that making a website was either too expensive (hiring someone) or too time
 							consuming (websitebuilder) for everyone - individuals, startups, especially large
@@ -383,9 +384,6 @@
 	}
 	.pm-icon {
 		@apply col-span-1 p-5 rounded-full bg-surface-dark text-surface-on-dark border w-min h-min justify-self-end;
-	}
-	.founder-card {
-		@apply flex flex-col max-w-xl p-6 rounded-lg bg-surface-dark shadow-glow shadow-secondary-dark/30 border-primary-dark;
 	}
 	.circle-shadow {
 		@apply relative;
