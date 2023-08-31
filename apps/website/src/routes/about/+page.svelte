@@ -4,17 +4,18 @@
 	import Button from '$lib/components/atoms/Button.svelte';
 	import Icon from '$lib/components/atoms/Icon.svelte';
 	import TransitionElement from '$lib/components/organisms/Inview.svelte';
-	import { slide } from 'svelte/transition';
+	import { fade, slide } from 'svelte/transition';
+	import { goto } from '$app/navigation';
 
 	let activeMember: number;
 
 	const handleClick = (newActiveMember: number) => () => {
 		if (activeMember == newActiveMember) {
-			activeMember = -1;
+			activeMember = -1; // Deselects all members
 		} else {
 			activeMember = newActiveMember;
+			goto(`#${activeMember}-img`);
 		}
-
 		return;
 	};
 
@@ -27,6 +28,11 @@
 					consuming (websitebuilder) for everyone - individuals, startups, especially large
 					businesses. I wanted to create a solution to these problems.`,
 			imgPath: 'people/jorge_1.jpg',
+			socialLinks: {
+				instagram: 'https://www.instagram.com/horhey_jorge',
+				linkedin: 'https://www.linkedin.com/in/jorge-lewis-0b4848144/',
+				github: 'https://github.com/antopiahk',
+			},
 		},
 		{
 			index: 1,
@@ -35,7 +41,10 @@
 			body: `I noticed that making a website was either too expensive (hiring someone) or too time
 					consuming (websitebuilder) for everyone - individuals, startups, especially large
 					businesses. I wanted to create a solution to these problems.`,
-			imgPath: './favicon.png',
+			imgPath: 'people/alexey_1.jpg',
+			socialLinks: {
+				facebook: 'https://www.facebook.com/alexey.skachkov.54',
+			},
 		},
 	];
 </script>
@@ -103,36 +112,78 @@
 				<h1 class="display-large pb-4">[Y]our People</h1>
 
 				<div class="flex flex-col divide-y title-medium border-y">
-					{#each team as { index, name, position, body, imgPath }}
+					{#each team as { index, name, position, body, imgPath, socialLinks }}
 						<!-- svelte-ignore a11y-click-events-have-key-events -->
-						<button class="flex flex-col" on:click={handleClick(index)}>
+						<button class="flex flex-col group" on:click={handleClick(index)}>
 							<div
-								class="grid grid-rows-2 grid-cols-3 md:grid-cols-7 md:grid-rows-1 place-content-between items-center my-3 group hover:text-primary-light dark:hover:text-primary-dark">
-								<h1 class="col-span-2 md:col-span-3 font-bold tracking-wide">{name}</h1>
-								<h1 class="col-span-2 md:col-span-3">{position}</h1>
+								class="grid grid-cols-3 grid-rows-2 group-hover:text-tertiary-dark md:grid-rows-1 md:grid-cols-7 place-content-between text-left md:text-center my-3 group hover:text-primary-dark">
+								<h1 class="col-span-2 row-start-1 md:col-span-3 font-bold tracking-wide">
+									{name}
+								</h1>
+								<h1 class="col-span-2 row-start-2 md:row-start-1 md:col-span-3">
+									{position}
+								</h1>
+
 								<Icon
-									class="row-span-2 row-start-1 col-start-3 col-span-1 md:col-start-7 group-hover:translate-y-1 transition-transform justify-self-end pr-1"
-									fillColor="white"
+									class="row-span-2 text-primary-dark group-hover:text-tertiary-dark row-start-1 flex place-items-center col-start-7 col-span-1 md:col-start-7 transition-all justify-self-end px-1 {index ==
+									activeMember
+										? 'rotate-180 group-hover:-translate-y-1'
+										: 'group-hover:translate-y-1'} "
 									icon="down-arrow"
 									height="24"
 									width="24" />
 							</div>
 							{#if index == activeMember}
 								<div
-									class="my-3 grid grid-rows-2 grid-cols-3 md:grid-cols-7 md:grid-rows-1 place-content-between items-center"
+									class="flex flex-row gap-4 md:grid md:grid-rows-1 md:grid-cols-7 my-4"
 									in:slide
 									out:slide>
-									<div class="col-span-2 md:col-span-3 flex mx-auto">
+									<div
+										class="col-span-1 flex md:col-span-3 self-start md:justify-self-center"
+										in:fade
+										out:fade>
 										<img
 											src={imgPath}
+											id="{index}-img"
 											alt="no img"
-											class=" object-center object-cover rounded-xl w-32 h-32" />
+											class=" object-center object-cover rounded-xl w-44 h-52 md:w-48 md:h-48" />
 									</div>
 									<div
-										class="flex flex-row gap-4 w-full justify-items-center place-items-center col-span-2 md:col-span-3">
-										<div class="bg-purple-500 w-12 h-12 rounded-full" />
-										<div class="bg-blue-500 w-12 h-12 rounded-full" />
-										<div class="bg-blue-900 w-12 h-12 rounded-full" />
+										in:fade
+										out:fade
+										class="flex flex-col text-tertiary-dark md:flex-row justify-self-start py-1 md:h-fit justify-between md:w-fit md:gap-6 md:mx-auto md:self-center md:col-start-4 md:col-span-3">
+										{#if socialLinks['instagram']}
+											<a href={socialLinks['instagram']} class="">
+												<Icon
+													icon="instagram"
+													class="text-[#833AB4] hover:scale-105 transition-all"
+													height="48"
+													width="48" />
+											</a>
+										{/if}
+										{#if socialLinks['facebook']}
+											<a href={socialLinks['facebook']} class="">
+												<Icon
+													icon="facebook"
+													class="text-[#1877F2]hover:scale-105 transition-all"
+													height="48"
+													width="48" />
+											</a>
+										{/if}
+										{#if socialLinks['linkedin']}
+											<Icon
+												icon="linkedin"
+												class="text-[#0077B5] hover:scale-105 transition-all"
+												height="48"
+												width="48" />
+										{/if}
+										{#if socialLinks['github']}
+											<Icon
+												icon="github"
+												class="text-white hover:scale-105 transition-all"
+												height="48"
+												width="48" />
+										{/if}
 									</div>
 								</div>
 							{/if}
