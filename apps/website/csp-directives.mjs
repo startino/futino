@@ -1,7 +1,7 @@
 const cspDirectives = {
 	'base-uri': ['self'],
 	'child-src': ['self'],
-	'frame-src': ['self', 'https://cal.com/'],
+	'frame-src': ['self', 'https://cal.com/', 'https://js.stripe.com/'],
 	'object-src': ['none'],
 	'script-src': [
 		'strict-dynamic',

@@ -3,17 +3,21 @@
 	import Footer from '$lib/components/organisms/Footer.svelte';
 
 	import PromotionToggle from './PromotionToggle.svelte';
-	import { promotions, norpTiers, type NorpTier, features } from './plans';
+	import { promotions, norpTiers, features } from './plans';
 	import TierListing from './TierListing.svelte';
-	import TierFeatures from './TierFeatures.svelte';
 	import Button from '$lib/components/atoms/Button.svelte';
 	import InViewSlide from '$lib/components/organisms/InViewSlide.svelte';
+	import { createClient } from '@supabase/supabase-js';
+	import type { Database } from '$lib/supabase.types';
+	import { loadStripe } from '@stripe/stripe-js';
+
+	import { handleCheckout } from './handleCheckout';
 
 	export let activeTabValue = 0;
 
 	let cycle: string = 'monthly';
 
-	const handleClick = (tabValue: number) => () => (activeTabValue = tabValue);
+	const handlePromotionToggle = (tabValue: number) => () => (activeTabValue = tabValue);
 </script>
 
 <main class="text-left border-b shadow-2xl border-primary-light/40 dark:border-primary-dark/40">
@@ -74,9 +78,9 @@
 					{/each}
 				{/each}
 				<div class="border-none grid-item" />
-				{#each norpTiers as _}
+				{#each norpTiers as { stripeId }}
 					<div class="border-none grid-item mt-14">
-						<Button class="w-full" href="/checkout">
+						<Button class="w-full" onClick={() => handleCheckout(stripeId)}>
 							<h1 class="uppercase title-large">Get Started</h1>
 						</Button>
 					</div>

@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Button from '$lib/components/atoms/Button.svelte';
 	import TierFeatures from './TierFeatures.svelte';
+	import { handleCheckout } from './handleCheckout';
 	import type { NorpTier } from './plans';
 
 	export let tier: NorpTier;
@@ -31,7 +32,7 @@
 		<TierFeatures features={tier.features} />
 	</div>
 
-	<Button class="w-full" href="/checkout">
+	<Button class="w-full" onClick={() => handleCheckout(tier.stripeId)}>
 		<h1 class="title-medium">GET STARTED</h1>
 	</Button>
 </div>
