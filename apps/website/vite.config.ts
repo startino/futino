@@ -7,6 +7,6 @@ export default defineConfig({
 		include: ['src/**/*.{test,spec}.{js,ts}'],
 	},
 	ssr: {
-        noExternal: ["tsparticles", "tsparticles-slim", "tsparticles-engine", "svelte-particles"], // add all tsparticles libraries here, they're not made for SSR, they're client only
-    },
+		noExternal: ['tsparticles', 'tsparticles-slim', 'tsparticles-engine', 'svelte-particles'], // add all tsparticles libraries here, they're not made for SSR, they're client only
+	},
 });
