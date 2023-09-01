@@ -373,7 +373,7 @@
 							time consuming (website builder) for everyone - individuals, startups, especially
 							large businesses. I wanted to create the solution to these problems.
 						</h2>
-						<Button href="/about#team" class=" my-4" secondary={true}>
+						<Button href="/about#team" class="my-6" secondary={true}>
 							<h1 class="p-2">Learn More</h1>
 						</Button>
 					</div>
@@ -389,13 +389,13 @@
 	}
 
 	.circle-shadow:before {
-		@apply absolute left-0 right-0 bottom-0 top-0 z-0 rounded-full shadow-glow shadow-primary-dark/80 content-[''];
+		@apply absolute left-0 right-0 bottom-0 top-0 z-0 rounded-full shadow-glow shadow-primary-dark content-[''];
 	}
 	.line-shadow {
 		@apply relative;
 	}
 
 	.line-shadow::before {
-		@apply absolute left-0 right-0 bottom-0 top-0 rounded-full -z-10  shadow-glow shadow-primary-dark/80 content-[''];
+		@apply absolute left-0 right-0 bottom-0 top-0 rounded-full -z-10  shadow-glow shadow-primary-dark content-[''];
 	}
 </style>
