@@ -14,6 +14,7 @@
 	import InViewSlide from '$lib/components/organisms/InViewSlide.svelte';
 	import { benefits } from './benefits';
 	import ContactForm from '$lib/components/organisms/ContactForm.svelte';
+	import ContactMethod from '$lib/components/molecules/ContactMethod.svelte';
 
 	let scrollY: number;
 	// Index of the current chapter that is in the viewport, used by chapter menu.
@@ -96,8 +97,9 @@
 		on:inview_enter={handleChapterInView(0)}
 		class="h-screen place-items-center bg-[url('/glow_bg_2.png')] bg-no-repeat bg-fit bg-top">
 		<div id="tsparticles-hero" class="absolute w-full h-full -z-10" />
+		<div class="bg-black/30 w-full h-full absolute" />
 
-		<div class="relative grid gap-12 justify-items-center inner-section">
+		<div class="relative grid gap-12 z-10 justify-items-center inner-section">
 			<h1 class="font-extrabold tracking-tight display-medium lg:display-large">
 				Website Design and Development
 			</h1>
@@ -239,26 +241,13 @@
 					</div>
 				{/each}
 			</div>
+
+			<Button class="" href="/pricing">
+				<p class="px-3 sm:px-5 md:px-6 headline-medium uppercase">Pricing</p>
+			</Button>
 		</div>
 	</section>
 
-	<!--CTA section-->
-	<section id="hereshow" class="shadow-lg border-secondary-light/20 dark:border-secondary-dark/20">
-		<InView transition="fade" duration={300}>
-			<div class="flex flex-col space-y-12 inner-section items-center">
-				<h1 class="display-large">Let's Get Started</h1>
-				<div class="grid grid-cols-2 gap-x-4">
-					<Button class="" href="/pricing">
-						<p class="px-3 sm:px-5 md:px-6 title-medium">See Pricing</p>
-					</Button>
-
-					<Button class="" secondary={true} href="/booking">
-						<p class="px-3 sm:px-5 md:px-6 title-medium">Book an intro call</p>
-					</Button>
-				</div>
-			</div>
-		</InView>
-	</section>
 	<!--Contact Section-->
 	<section
 		id="contact"
@@ -266,68 +255,57 @@
 		on:inview_enter={handleChapterInView(3)}
 		class="shadow-lg border-secondary-light/20 dark:border-secondary-dark/20 justify-items-center">
 		<div
-			class="inner-section flex flex-col gap-y-12 w-full
+			class="inner-section flex flex-col w-full gap-12
 		">
-			<div class="grid grid-cols-1 gap-6 lg:grid-cols-2 text-left">
-				<InView duration={250} fly={{ x: -500, y: 0 }} class="z-10 w-full h-full">
+			<div class="grid grid-cols-1 md:grid-cols-5 w-full gap-12">
+				<InView
+					duration={250}
+					fly={{ x: -500, y: 0 }}
+					class="z-10 w-full h-full overflow-visible md:col-span-1 justify-self-center md:justify-self-end">
 					<!--PM Option-->
+
 					<div
-						class="flex flex-col h-full p-8 gap-y-12 shadow-lg shadow-black/40 bg-surface-dark border-1 border-primary-dark rounded-md">
-						<div class="flex flex-col">
-							<h2 class="font-extrabold display-medium">Give us a PM</h2>
-							<p class="max-w-3xl title-medium">
-								Send us message on one of these platforms. <br />
-								We'll get back to you within a couple hours.
-							</p>
-						</div>
-						<div class="flex flex-col h-full flex-1 gap-y-5">
-							<div class="grid grid-cols-4 grid-rows-4 gap-6 text-tertiary-dark">
-								<!--Phone number-->
-								<div class="pm-icon">
-									<Icon icon="phone" height="32px" width="32px" />
-								</div>
+						class="flex flex-row md:flex-col h-full md:items-end justify-around w-full place-content-between text-surface-on-dark font-extrabold title-large">
+						<!--Phone-->
+						<ContactMethod
+							img="artwork/call_logo_2.png"
+							href="tel:9133600394"
+							label="+852 9747 3013"
+							class="hover:text-violet-400"
+							imgClass="drop-shadow-phone group-hover:drop-shadow-phone-hover " />
+						<!--WhatsApp-->
+						<ContactMethod
+							img="artwork/whatsapp_logo_6.png"
+							href="https://wa.me/+85297473013"
+							label="Futino Whatsapp"
+							class="hover:text-lime-400"
+							imgClass="drop-shadow-whatsapp group-hover:drop-shadow-whatsapp-hover" />
+						<!--Instagram-->
+						<ContactMethod
+							img="artwork/instagram_logo_1.png"
+							href=""
+							label="@Futino"
+							class="hover:text-fuchsia-400"
+							imgClass="drop-shadow-instagram group-hover:drop-shadow-instagram-hover" />
 
-								<a class="pm-text" href="tel:9133600394">
-									<h1 class="pl-2 title-small sm:title-large">+852 9747 3013</h1>
-								</a>
-								<!--WhatsApp-->
-								<div class="pm-icon">
-									<Icon icon="whatsapp" height="32px" width="32px" />
-								</div>
-
-								<a class="pm-text" href="mailto:contact@futi.no">
-									<h1 class="pl-2 title-small sm:title-large">+852 9747 3013</h1>
-								</a>
-								<!--Email-->
-								<div class="pm-icon">
-									<Icon icon="instagram" height="32px" width="32px" />
-								</div>
-
-								<a class="pm-text" href="mailto:ggsoccercamps@gmail.com">
-									<h1 class="pl-2 title-small sm:title-large">@Futino</h1>
-								</a>
-								<!--Email-->
-								<div class="pm-icon">
-									<Icon icon="email" height="32px" width="32px" />
-								</div>
-
-								<a class="pm-text" href="mailto:contact@futi.no">
-									<h1 class="pl-2 title-small sm:title-large">contact@futi.no</h1>
-								</a>
-							</div>
-						</div>
+						<!--Email-->
+						<ContactMethod
+							img="artwork/email_1.png"
+							href="mailto:contact@futi.no"
+							label="contact@futi.no"
+							class="hover:text-blue-400"
+							imgClass="drop-shadow-email group-hover:drop-shadow-email-hover" />
 					</div>
 				</InView>
-
 				<InView
 					duration={350}
 					fly={{ x: -700, y: 0 }}
 					delay={300}
-					class="z-0 overflow-visible h-full w-full">
+					class="z-0 overflow-visible h-full md:col-span-4 max-w-4xl">
 					<!--Contact form Option-->
 					<div
-						class="flex flex-col p-8 gap-y-8 text-left shadow-lg shadow-black/40 bg-surface-dark border-1 border-primary-dark rounded-md">
-						<div class="flex flex-col">
+						class="flex flex-col p-8 gap-y-8 text-left shadow-xl shadow-black bg-surface-dark border-1 border-primary-dark rounded-md">
+						<div class="flex flex-col ml-2">
 							<h2 class="font-extrabold display-medium">Contact Us</h2>
 							<p class="title-medium">
 								Feel free to send us an email for any requests or questions. <br />
@@ -360,10 +338,10 @@
 							class="self-center object-cover object-center w-24 h-24 bg-black rounded-full" />
 						<h2 class="pt-2 display-small">Jorge Lewis</h2>
 						<h3 class="pb-4 text-tertiary-dark title-small">CEO & Founder of Futino</h3>
-						<h2 class="body-large max-w-2xl">
-							I noticed that making a website was either too expensive (hiring someone) or too time
-							consuming (websitebuilder) for everyone - individuals, startups, especially large
-							businesses. I wanted to create a solution to these problems.
+						<h2 class="title-medium max-w-2xl">
+							I noticed that making a website was either too expensive (hiring an agency) or too
+							time consuming (website builder) for everyone - individuals, startups, especially
+							large businesses. I wanted to create the solution to these problems.
 						</h2>
 						<Button href="/about#team" class=" my-4" secondary={true}>
 							<h1 class="p-2">Learn More</h1>
@@ -376,12 +354,6 @@
 </main>
 
 <style>
-	.pm-text {
-		@apply flex items-center col-span-3 text-surface-on-dark justify-self-start;
-	}
-	.pm-icon {
-		@apply col-span-1 p-5 rounded-full bg-surface-dark text-surface-on-dark border w-min h-min justify-self-end;
-	}
 	.circle-shadow {
 		@apply relative;
 	}

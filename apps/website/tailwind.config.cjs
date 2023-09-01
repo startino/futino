@@ -15,6 +15,30 @@ const config = {
 				'button-hover': '0 0 2px 2px current',
 			},
 			dropShadow: {
+				whatsapp: [
+					'-5px 2px 7px #064A16BB','5px -2px 7px #064A16BB'
+				],
+				'whatsapp-hover': [
+					'-5px 2px 10px #064A16FF','5px -2px 10px #064A16FF'
+				],
+				instagram: [
+					'-5px 2px 7px #04417FBB','5px -2px 7px #700053BB'
+				],
+				'instagram-hover': [
+					'-5px 2px 10px #04417FFF','5px -2px 10px #700053FF'
+				],
+				phone: [
+					'-5px 2px 7px #5C0C9DBB','5px -2px 7px #1A24A4BB'
+				],
+				'phone-hover': [
+					'-5px 2px 10px #5C0C9DFF','5px -2px 10px #1A24A4FF'
+				],
+				email: [
+					'-5px 2px 7px #400B8DBB','5px -2px 7px #000069BB'
+				],
+				'email-hover': [
+					'-5px 2px 10px #400B8DFF','5px -2px 10px #000069FF'
+				],
 				// Light
 				'glow-sm-light': '0 0 5px rgb(var(--md-sys-color-primary-container-light) / 0.5)',
 				'glow-md-light': '0 0 10px rgb(var(--md-sys-color-primary-container-light) / 0.5)',
