@@ -15,6 +15,9 @@
 	import { benefits } from './benefits';
 	import ContactForm from '$lib/components/organisms/ContactForm.svelte';
 	import ContactMethod from '$lib/components/molecules/ContactMethod.svelte';
+	import Particles from 'svelte-particles';
+	import { loadSlim } from 'tsparticles-slim';
+	import { particlesConfig } from './particlesConfig';
 
 	let scrollY: number;
 	// Index of the current chapter that is in the viewport, used by chapter menu.
@@ -42,6 +45,21 @@
 			x: 200,
 			y: 0,
 		},
+	};
+
+	let onParticlesLoaded = (event) => {
+		const particlesContainer = event.detail.particles;
+
+		// you can use particlesContainer to call all the Container class
+		// (from the core library) methods like play, pause, refresh, start, stop
+	};
+
+	let particlesInit = async (engine) => {
+		// you can use main to customize the tsParticles instance adding presets or custom shapes
+		// this loads the tsparticles package bundle, it's the easiest method for getting everything ready
+		// starting from v2 you can add only the features you need reducing the bundle size
+		//await loadFull(engine);
+		await loadSlim(engine);
 	};
 
 	const handleChapterInView =
@@ -95,11 +113,17 @@
 		id="hero"
 		use:inview={chapterInViewOptions}
 		on:inview_enter={handleChapterInView(0)}
-		class="h-screen place-items-center bg-[url('/glow_bg_2.png')] bg-no-repeat bg-fit bg-top">
-		<div id="tsparticles-hero" class="absolute w-full h-full -z-10" />
-		<div class="bg-black/30 w-full h-full absolute" />
+		class="relative h-screen place-items-center bg-[url('/glow_bg_2.png')] bg-no-repeat bg-fit bg-top">
+		<div class="bg-gradient-to-b from-transparent to-black from-80% w-full h-full absolute z-10" />
+		<Particles
+			id="tsparticles"
+			class="w-full h-full absolute "
+			options={particlesConfig}
+			on:particlesLoaded={onParticlesLoaded}
+			{particlesInit} />
+		<div class="bg-black/40 w-full h-full absolute" />
 
-		<div class="relative grid gap-12 z-10 justify-items-center inner-section">
+		<div class="relative grid gap-12 z-20 justify-items-center inner-section">
 			<h1 class="font-extrabold tracking-tight display-medium lg:display-large">
 				Website Design and Development
 			</h1>
@@ -124,15 +148,16 @@
 		</div>
 	</section>
 
-	<!--Big-Clients Slideshow-->
-	<ClientCarousel />
-
+	<div class="bg-gradient-to-b from-black to-black/30">
+		<!--Big-Clients Slideshow-->
+		<ClientCarousel />
+	</div>
 	<!--Journey Section-->
 	<section
 		id="journey"
 		use:inview={chapterInViewOptions}
 		on:inview_enter={handleChapterInView(1)}
-		class="shadow-lg border-secondary-light/20 dark:border-secondary-dark/20 justify-items-center">
+		class="shadow-lg border-secondary-light/20 dark:border-secondary-dark/20 bg-gradient-to-b from-black/30 to-5% to-transparent justify-items-center">
 		<!--Absolute center line
 		<div class="absolute z-50 w-1 h-6 -translate-x-1/2 bg-red-500 left-1/2 top-1/2" />
 		-->
