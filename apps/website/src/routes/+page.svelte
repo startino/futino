@@ -196,7 +196,7 @@
 
 					<!--Content of Chapter-->
 
-					<InView presetOptions={rightFlyPreset} class="sm:pr-7">
+					<InView presetOptions={rightFlyPreset} class="sm:pr-7 md:pr-12">
 						<img
 							src={image}
 							alt=""
@@ -221,7 +221,7 @@
 						<InView fly={{ x: -100, y: 0 }} class="sm:hidden">
 							<div class="w-1/4 h-0.5 mt-3 border-t border-outline-dark" />
 						</InView>
-						<InView presetOptions={leftFlyPreset} class="sm:pl-7">
+						<InView presetOptions={leftFlyPreset} class="sm:pl-7 md:pr-12">
 							<h1 class="font-bold display-small lg:display-medium hidden sm:flex pb-4">
 								{title}
 							</h1>
