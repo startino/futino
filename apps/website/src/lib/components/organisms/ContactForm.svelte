@@ -2,6 +2,7 @@
 	import Button from '../atoms/Button.svelte';
 	import { createClient } from '@supabase/supabase-js';
 	import type { Database } from '$lib/supabase.types';
+	import TextField from '../atoms/TextField.svelte';
 
 	// Create a Supabase client object
 	const supabase = createClient<Database>(
@@ -47,64 +48,15 @@
 	id="contactform"
 	class="flex flex-col gap-8 text-left overflow-x-clip"
 	on:submit|preventDefault={submitForm}>
-	<div class="relative mt-2 h-fit group overflow-visible mx-1.5">
-		<label
-			for="name"
-			class=" {nameInput
-				? 'font-bold text-primary-dark -top-1/2 -translate-y-2 left-0'
-				: 'font-normal left-3'} block group-hover:font-bold text-outline-dark group-hover:text-primary-dark absolute top-1/2 -translate-y-1/2 group-hover:-top-1/2 group-hover:-translate-y-2 transition-all"
-			>Name</label>
-		<h1 class="placeholder">
-			{#if !nameInput}
-				Bob John
-			{/if}
-		</h1>
-		<input
-			class="input"
-			id="name"
-			name="name"
-			type="text"
-			bind:value={nameInput}
-			form="contactform"
-			required />
-	</div>
+	<TextField bind:value={nameInput} label="Name" placeholder="Elon Gates" required={true} />
 
-	<div class="relative mt-2 h-fit group overflow-visible mx-1.5">
-		<label
-			for="email"
-			class=" {emailInput
-				? 'font-bold text-primary-dark -top-1/2 -translate-y-2 left-0'
-				: 'font-normal left-3'} block group-hover:font-bold text-outline-dark group-hover:text-primary-dark absolute top-1/2 -translate-y-1/2 group-hover:-top-1/2 group-hover:-translate-y-2 transition-all"
-			>Email</label>
-		<h1 class="placeholder">
-			{#if !emailInput}
-				bob.john123@gmail.com
-			{/if}
-		</h1>
-		<input type="email" required id="email" name="email" bind:value={emailInput} class="input" />
-	</div>
-
-	<div class="relative mt-2 h-fit group overflow-visible mx-1.5">
-		<label
-			for="message"
-			class="{messageInput
-				? 'font-bold text-primary-dark -top-2 -translate-y-full left-0'
-				: 'font-normal left-3 top-2.5'} block group-hover:font-bold text-outline-dark group-hover:text-primary-dark absolute group-hover:-top-2 group-hover:-translate-y-full transition-all"
-			>Your message</label>
-		<h1
-			class="absolute pointer-events-none -left-1/2 invisible group-hover:visible group-hover:left-3 group-hover:right-auto text-left top-2.5 transition-all font-light text-outline-dark">
-			{#if !messageInput}
-				I want to ask about...
-			{/if}
-		</h1>
-		<textarea
-			id="message"
-			required
-			rows="4"
-			name="message"
-			bind:value={messageInput}
-			class="input" />
-	</div>
+	<TextField bind:value={emailInput} label="Email" placeholder="j.lewis@futi.no" required={true} />
+	<TextField
+		bind:value={messageInput}
+		label="Your Message"
+		placeholder="I want to ask about"
+		required={true}
+		textArea={true} />
 
 	<button
 		type="submit"
