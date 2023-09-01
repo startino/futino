@@ -5,17 +5,17 @@
 		class="h-full z-10 bg-gradient-to-l from-surface-dark/50 to-transparent w-20 -right-6 absolute" /> -->
 
 	{#each Array(3) as repeated_so_that_it_can_cycle}
-		<div class="flex flex-row py-3 animate-carouselSlide">
+		<div class="flex flex-row py-3 animate-[carouselSlide_25s_infinite_linear] transition-all">
 			<div class="box">
 				<img src="favicon.png" alt="" class="h-32 w-32 mx-auto" />
 			</div>
-			<div class="box border-1 border-white/20 shadow-lg">
+			<div class="box">
 				<img src="favicon.png" alt="" class="h-32 w-32 mx-auto" />
 			</div>
-			<div class="box border-1 border-white/20 shadow-lg">
+			<div class="box">
 				<img src="favicon.png" alt="" class="h-32 w-32 mx-auto" />
 			</div>
-			<div class="box border-1 border-white/20 shadow-lg">
+			<div class="box">
 				<img src="favicon.png" alt="" class="h-32 w-32 mx-auto" />
 			</div>
 		</div>
