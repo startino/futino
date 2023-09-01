@@ -1,6 +1,4 @@
 <script lang="ts">
-	import Header from '$lib/components/organisms/Header.svelte';
-	import Footer from '$lib/components/organisms/Footer.svelte';
 	import Button from '$lib/components/atoms/Button.svelte';
 	import ClientCarousel from '$lib/components/organisms/ClientCarousel.svelte';
 	import ChapterMenu from '$lib/components/organisms/ChapterMenu.svelte';
@@ -10,14 +8,15 @@
 	import { inview } from 'svelte-inview';
 	import type { Options } from 'svelte-inview';
 	import InView, { type TransitionOptions } from '$lib/components/organisms/Inview.svelte';
-	import Icon from '$lib/components/atoms/Icon.svelte';
-	import InViewSlide from '$lib/components/organisms/InViewSlide.svelte';
+
 	import { benefits } from './benefits';
 	import ContactForm from '$lib/components/organisms/ContactForm.svelte';
 	import ContactMethod from '$lib/components/molecules/ContactMethod.svelte';
 	import Particles from 'svelte-particles';
 	import { loadSlim } from 'tsparticles-slim';
+	import type { Engine } from 'tsparticles-engine';
 	import { particlesConfig } from './particlesConfig';
+	import Inview from '$lib/components/organisms/Inview.svelte';
 
 	let scrollY: number;
 	// Index of the current chapter that is in the viewport, used by chapter menu.
@@ -47,14 +46,14 @@
 		},
 	};
 
-	let onParticlesLoaded = (event) => {
+	let onParticlesLoaded = (event: any) => {
 		const particlesContainer = event.detail.particles;
 
 		// you can use particlesContainer to call all the Container class
 		// (from the core library) methods like play, pause, refresh, start, stop
 	};
 
-	let particlesInit = async (engine) => {
+	let particlesInit = async (engine: Engine) => {
 		// you can use main to customize the tsParticles instance adding presets or custom shapes
 		// this loads the tsparticles package bundle, it's the easiest method for getting everything ready
 		// starting from v2 you can add only the features you need reducing the bundle size
@@ -114,14 +113,15 @@
 		use:inview={chapterInViewOptions}
 		on:inview_enter={handleChapterInView(0)}
 		class="relative h-screen place-items-center bg-[url('/glow_bg_2.png')] bg-no-repeat bg-fit bg-top">
-		<div class="bg-gradient-to-b from-transparent to-black from-80% w-full h-full absolute z-10" />
+		<div
+			class="pointer-events-none bg-gradient-to-b from-transparent to-black from-70% w-full h-full absolute z-10" />
 		<Particles
 			id="tsparticles"
-			class="w-full h-full absolute "
+			class="w-full h-full absolute z-0"
 			options={particlesConfig}
 			on:particlesLoaded={onParticlesLoaded}
 			{particlesInit} />
-		<div class="bg-black/40 w-full h-full absolute" />
+		<div class="bg-black/40 w-full h-full absolute pointer-events-none" />
 
 		<div class="relative grid gap-12 z-20 justify-items-center inner-section">
 			<h1 class="font-extrabold tracking-tight display-medium lg:display-large">
@@ -148,7 +148,7 @@
 		</div>
 	</section>
 
-	<div class="bg-gradient-to-b from-black to-black/30">
+	<div class="bg-gradient-to-b from-black to-black/40">
 		<!--Big-Clients Slideshow-->
 		<ClientCarousel />
 	</div>
@@ -157,7 +157,7 @@
 		id="journey"
 		use:inview={chapterInViewOptions}
 		on:inview_enter={handleChapterInView(1)}
-		class="shadow-lg border-secondary-light/20 dark:border-secondary-dark/20 bg-gradient-to-b from-black/30 to-5% to-transparent justify-items-center">
+		class="shadow-lg border-secondary-light/20 dark:border-secondary-dark/20 bg-gradient-to-b from-black/40 to-10% to-transparent justify-items-center">
 		<!--Absolute center line
 		<div class="absolute z-50 w-1 h-6 -translate-x-1/2 bg-red-500 left-1/2 top-1/2" />
 		-->
@@ -251,7 +251,7 @@
 			<div class="grid grid-cols-1 gap-10 md:grid-cols-3">
 				{#each benefits as { titleFirst, titleSecond, body, image }, i}
 					<div
-						class="relative grid grid-cols-5 px-6 pt-12 pb-6 overflow-hidden text-left rounded-md drop-shadow-glow-md-dark border-1 border-primary-dark justify-items-center bg-surface-dark">
+						class="relative grid grid-cols-5 px-6 pt-12 pb-6 text-left rounded-md drop-shadow-glow-md-dark border-1 border-primary-dark justify-items-center bg-surface-dark">
 						<div class="col-span-4 flex flex-col w-full gap-3 z-10">
 							<h1 class=" headline-large leading-tight border-outline-dark">
 								{titleFirst} <br />
@@ -267,8 +267,8 @@
 				{/each}
 			</div>
 
-			<Button class="" href="/pricing">
-				<p class="px-3 sm:px-5 md:px-6 headline-medium uppercase">Pricing</p>
+			<Button class="my-4" href="/pricing">
+				<p class="px-6 sm:px-10 md:px-14 headline-medium uppercase">Tiers</p>
 			</Button>
 		</div>
 	</section>
@@ -284,49 +284,10 @@
 		">
 			<div class="grid grid-cols-1 md:grid-cols-5 w-full gap-12">
 				<InView
-					duration={250}
-					fly={{ x: -500, y: 0 }}
-					class="z-10 w-full h-full overflow-visible md:col-span-1 justify-self-center md:justify-self-end">
-					<!--PM Option-->
-
-					<div
-						class="flex flex-row md:flex-col h-full md:items-end justify-around w-full place-content-between text-surface-on-dark font-extrabold title-large">
-						<!--Phone-->
-						<ContactMethod
-							img="artwork/call_logo_2.png"
-							href="tel:9133600394"
-							label="+852 9747 3013"
-							class="hover:text-violet-400"
-							imgClass="drop-shadow-phone group-hover:drop-shadow-phone-hover " />
-						<!--WhatsApp-->
-						<ContactMethod
-							img="artwork/whatsapp_logo_6.png"
-							href="https://wa.me/+85297473013"
-							label="Futino Whatsapp"
-							class="hover:text-lime-400"
-							imgClass="drop-shadow-whatsapp group-hover:drop-shadow-whatsapp-hover" />
-						<!--Instagram-->
-						<ContactMethod
-							img="artwork/instagram_logo_1.png"
-							href=""
-							label="@Futino"
-							class="hover:text-fuchsia-400"
-							imgClass="drop-shadow-instagram group-hover:drop-shadow-instagram-hover" />
-
-						<!--Email-->
-						<ContactMethod
-							img="artwork/email_1.png"
-							href="mailto:contact@futi.no"
-							label="contact@futi.no"
-							class="hover:text-blue-400"
-							imgClass="drop-shadow-email group-hover:drop-shadow-email-hover" />
-					</div>
-				</InView>
-				<InView
 					duration={350}
 					fly={{ x: -700, y: 0 }}
-					delay={300}
-					class="z-0 overflow-visible h-full md:col-span-4 max-w-4xl">
+					delay={0}
+					class="z-0 h-full md:col-span-4 max-w-4xl overflow-visible">
 					<!--Contact form Option-->
 					<div
 						class="flex flex-col p-8 gap-y-8 text-left shadow-xl shadow-black bg-surface-dark border-1 border-primary-dark rounded-md">
@@ -341,6 +302,50 @@
 						<ContactForm />
 					</div>
 				</InView>
+				<div
+					class="z-10 w-full h-full md:order-first overflow-visible md:col-span-1 justify-self-center md:justify-self-end">
+					<!--PM Option-->
+
+					<div
+						class="flex flex-row md:flex-col h-full md:items-end justify-around w-full place-content-between text-surface-on-dark font-extrabold title-large">
+						<InView duration={300} fly={{ x: -200, y: 0 }} delay={250} class="overflow-visible">
+							<!--Phone-->
+							<ContactMethod
+								img="artwork/call_logo_2.png"
+								href="tel:9133600394"
+								label="+852 9747 3013"
+								class="hover:text-violet-400"
+								imgClass="drop-shadow-phone group-hover:drop-shadow-phone-hover " />
+						</InView>
+						<InView duration={300} fly={{ x: -200, y: 0 }} delay={325} class="overflow-visible">
+							<!--WhatsApp-->
+							<ContactMethod
+								img="artwork/whatsapp_logo_6.png"
+								href="https://wa.me/+85297473013"
+								label="Futino Whatsapp"
+								class="hover:text-lime-400"
+								imgClass="drop-shadow-whatsapp group-hover:drop-shadow-whatsapp-hover" />
+						</InView>
+						<InView duration={300} fly={{ x: -200, y: 0 }} delay={500} class="overflow-visible">
+							<!--Instagram-->
+							<ContactMethod
+								img="artwork/instagram_logo_1.png"
+								href=""
+								label="@Futino"
+								class="hover:text-fuchsia-400"
+								imgClass="drop-shadow-instagram group-hover:drop-shadow-instagram-hover" />
+						</InView>
+						<InView duration={300} fly={{ x: -200, y: 0 }} delay={775} class="overflow-visible">
+							<!--Email-->
+							<ContactMethod
+								img="artwork/email_1.png"
+								href="mailto:contact@futi.no"
+								label="contact@futi.no"
+								class="hover:text-blue-400"
+								imgClass="drop-shadow-email group-hover:drop-shadow-email-hover" />
+						</InView>
+					</div>
+				</div>
 			</div>
 		</div>
 	</section>
