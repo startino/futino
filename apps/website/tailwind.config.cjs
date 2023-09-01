@@ -11,10 +11,10 @@ const config = {
 			},
 			boxShadow: {
 				glow: '0 0 4px 4px current;',
-				button: '0 2px 6px 4px current',
-				'button-hover': '0 0 2px 2px current',
+				
 			},
 			dropShadow: {
+				
 				whatsapp: [
 					'-5px 2px 7px #064A16BB','5px -2px 7px #064A16BB'
 				],
