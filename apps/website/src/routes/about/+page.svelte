@@ -6,6 +6,8 @@
 	import TransitionElement from '$lib/components/organisms/Inview.svelte';
 	import { fade, slide } from 'svelte/transition';
 	import { goto } from '$app/navigation';
+	import BigCard from './BigCard.svelte';
+	import SmallCard from './SmallCard.svelte';
 
 	let activeMember: number;
 
@@ -78,27 +80,53 @@
 	<section
 		id="about-transparency"
 		class=" shadow-2xl grid justify-items-center border-b border-primary-light/20 dark:border-primary-dark/20">
-		<div class="inner-section grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-			<div class="lg:col-span-2 bg-surface-dark rounded-md flex flex-col gap-6 py-6 px-3 w-full">
-				<img src="/artwork/book_1.png" alt="book" class="w-6 h-6 object-center object-cover" />
-				<div class="flex flex-col gap-2 text-left">
-					<h1 class="headline-large">Open Source Code</h1>
-					<p class="body-large max-w-md">
-						We're committed to open-source principles, allowing our clients and the community to see
-						and understand the tools and software we use. No secrets, just transparency.
-					</p>
-				</div>
-				<div class="flex flex-col justify-self-end gap-2">
-					<a href="https://youtube.com/Futino" class="flex flex-row items-center gap-2">
-						<Icon icon="github" height="24" width="24" />
-						<h3 class="body-medium">View our code</h3>
-					</a>
-					<a href="https://github.com/Futino" class="flex flex-row items-center gap-2">
-						<Icon icon="github" height="24" width="24" />
-						<h3 class="body-medium">Check out our streams</h3>
-					</a>
-				</div>
-			</div>
+		<div class="inner-section grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+			<BigCard
+				topIcon="artwork/book_1.jpg"
+				title="Open Source Code"
+				body={`
+				We're committed to open-source principles, 
+				allowing our clients and the community to see and understand 
+				the tools and software we use. No secrets, just transparency.`}>
+				<!-- Bottom items -->
+				<a href="https://youtube.com/Futino" class="flex flex-row items-center gap-2">
+					<Icon icon="github" height="32" width="32" />
+					<h3 class="body-medium">View our code</h3>
+				</a>
+				<a href="https://github.com/Futino" class="flex flex-row items-center gap-2">
+					<Icon icon="github" height="32" width="32" />
+					<h3 class="body-medium">Check out our streams</h3>
+				</a>
+			</BigCard>
+			<SmallCard
+				topIcon="artwork/book_1.jpg"
+				title="Not Locked In"
+				body={`
+				We don't believe in tying our clients to 
+				proprietary software or services. No contract.`} />
+			<SmallCard
+				topIcon="artwork/book_1.jpg"
+				title="No Licensing"
+				body={`
+				Say goodbye to costly licenses. 
+				Our subscriptions include everything you need.`} />
+			<BigCard
+				topIcon="artwork/book_1.jpg"
+				title="Transparent Pricing"
+				body={`
+				Our subscription model is straightforward. 
+				Pay for what you need and get what you pay for.
+				 Cancel or change tier anytime.`}>
+				<!-- Bottom items -->
+				<a href="https://youtube.com/Futino" class="flex flex-row items-center gap-2">
+					<Icon icon="github" height="32" width="32" />
+					<h3 class="body-medium">No Minimum Contract</h3>
+				</a>
+				<a href="https://github.com/Futino" class="flex flex-row items-center gap-2">
+					<Icon icon="github" height="32" width="32" />
+					<h3 class="body-medium">Pay as you go</h3>
+				</a>
+			</BigCard>
 		</div>
 	</section>
 
