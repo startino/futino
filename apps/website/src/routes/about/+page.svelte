@@ -78,28 +78,27 @@
 	<section
 		id="about-transparency"
 		class=" shadow-2xl grid justify-items-center border-b border-primary-light/20 dark:border-primary-dark/20">
-		<div class="flex flex-col text-left w-full md:pl-24 space-y-8 inner-section">
-			<TransitionElement transition="slide" delay={200} duration={1000}>
-				<!--Any sort of glass effect would be good here-->
-				<h1 class="display-large text-left pb-4">Glass like Transparency.</h1>
-				<p class="title-medium max-w-2xl py-2">
-					We believe that transparency builds trust and fosters strong, long-lasting relationships
-					with our clients. When it comes to pricing, we believe in fair and
-					<span class="text-primary-light dark:text-primary-dark font-bold">upfront pricing</span>
-					, without any hidden fees or surprises.
-				</p>
-				<p class="title-medium max-w-2xl py-2">
-					Additionally, we embrace the use of
-					<span class="text-primary-light dark:text-primary-dark font-bold"
-						>open-source software</span>
-					, leveraging the power of community-driven innovation and collaboration. By utilizing open-source
-					frameworks, libraries, and tools, we ensure flexibility, security, and cost-effectiveness for
-					our clients.
-				</p>
-				<Button class="w-fit my-6" href="/contact" secondary={true}>
-					<h1 class="title-small">Contact Us</h1>
-				</Button>
-			</TransitionElement>
+		<div class="inner-section grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+			<div class="lg:col-span-2 bg-surface-dark rounded-md flex flex-col gap-6 py-6 px-3 w-full">
+				<img src="/artwork/book_1.png" alt="book" class="w-6 h-6 object-center object-cover" />
+				<div class="flex flex-col gap-2 text-left">
+					<h1 class="headline-large">Open Source Code</h1>
+					<p class="body-large max-w-md">
+						We're committed to open-source principles, allowing our clients and the community to see
+						and understand the tools and software we use. No secrets, just transparency.
+					</p>
+				</div>
+				<div class="flex flex-col justify-self-end gap-2">
+					<a href="https://youtube.com/Futino" class="flex flex-row items-center gap-2">
+						<Icon icon="github" height="24" width="24" />
+						<h3 class="body-medium">View our code</h3>
+					</a>
+					<a href="https://github.com/Futino" class="flex flex-row items-center gap-2">
+						<Icon icon="github" height="24" width="24" />
+						<h3 class="body-medium">Check out our streams</h3>
+					</a>
+				</div>
+			</div>
 		</div>
 	</section>
 

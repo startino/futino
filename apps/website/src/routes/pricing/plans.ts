@@ -47,7 +47,7 @@ export const norpTiers: NorpTier[] = [
 			'Yearly Meetings': '1',
 			'UI Maintenance': '✔️',
 		},
-		thumbnail: '/artwork/wheel_6.png',
+		thumbnail: '/artwork/wheel_12.png',
 	},
 	{
 		stripeId: 'price_1NibETD09EWpqQ4Y0Nh7Oyad',
@@ -61,7 +61,7 @@ export const norpTiers: NorpTier[] = [
 			'Yearly Meetings': 'Up to 12',
 			'UI Maintenance': '✔️',
 		},
-		thumbnail: '/artwork/wheel_1.png',
+		thumbnail: '/artwork/heli_1.png',
 	},
 	{
 		stripeId: 'price_1NkkCHD09EWpqQ4Yf9lj4X8f',
@@ -75,7 +75,7 @@ export const norpTiers: NorpTier[] = [
 			'Yearly Meetings': 'Up to 24',
 			'UI Maintenance': '✔️',
 		},
-		thumbnail: '/artwork/wheel_2.png',
+		thumbnail: '/artwork/rocket_6.png',
 	},
 ];
 

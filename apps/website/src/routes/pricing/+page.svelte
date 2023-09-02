@@ -46,7 +46,10 @@
 				</div>
 				{#each norpTiers as { name, subtitle, cost, thumbnail }}
 					<div class="flex flex-col max-w-md gap-2 text-left grid-item place-items-start">
-						<img src={thumbnail} alt="" class="object-cover object-bottom w-2/3 -mb-3 h-fit" />
+						<img
+							src={thumbnail}
+							alt=""
+							class="object-fit object-center drop-shadow-object h-1/2 w-1/2" />
 						<div class="">
 							<h2 class=" headline-large uppercase text-primary-dark">
 								{name}
