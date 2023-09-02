@@ -61,7 +61,7 @@ export const norpTiers: NorpTier[] = [
 			'Yearly Meetings': 'Up to 12',
 			'UI Maintenance': '✔️',
 		},
-		thumbnail: '/artwork/heli_1.png',
+		thumbnail: '/artwork/plane_1.png',
 	},
 	{
 		stripeId: 'price_1NkkCHD09EWpqQ4Yf9lj4X8f',
