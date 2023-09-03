@@ -45,7 +45,6 @@
 	},
 	"devDependencies": {
 		"@sveltejs/package": "^2.2.2",
-		"postcss-import": "^15.1.0",
 		"publint": "^0.1.16"
 	},
 	"type": "module"

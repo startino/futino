@@ -151,10 +151,6 @@ importers:
       tsconfig:
         specifier: workspace:*
         version: link:../../packages/tsconfig
-    devDependencies:
-      postcss-import:
-        specifier: ^15.1.0
-        version: 15.1.0(postcss@8.4.29)
 
   apps/website:
     dependencies:
@@ -195,9 +191,6 @@ importers:
       '@sveltejs/package':
         specifier: ^2.2.2
         version: 2.2.2(svelte@4.2.0)(typescript@5.2.2)
-      postcss-import:
-        specifier: ^15.1.0
-        version: 15.1.0(postcss@8.4.29)
       publint:
         specifier: ^0.1.16
         version: 0.1.16
