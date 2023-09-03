@@ -20,7 +20,4 @@
 	},
 	"type": "module",
 	"packageManager": "pnpm@8.6.12",
-	"devDependencies": {
-		"postcss-import": "^15.1.0"
-	}
 }
