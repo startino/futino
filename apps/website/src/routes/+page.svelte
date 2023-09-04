@@ -17,6 +17,9 @@
 	import type { Engine } from 'tsparticles-engine';
 	import { particlesConfig } from './particlesConfig';
 	import Inview from '$lib/components/organisms/Inview.svelte';
+	import BigCard from './BigCard.svelte';
+	import SmallCard from './SmallCard.svelte';
+	import Icon from '$lib/components/atoms/Icon.svelte';
 
 	let scrollY: number;
 	// Index of the current chapter that is in the viewport, used by chapter menu.
@@ -235,41 +238,64 @@
 		</div>
 	</section>
 
-	<!--Member Benefits Section-->
+	<!-- Membership Benefits Section -->
 	<section
 		id="benefits"
 		use:inview={chapterInViewOptions}
 		on:inview_enter={handleChapterInView(2)}
-		class="items-center shadow-lg border-secondary-light/20 dark:border-secondary-dark/20 justify-items-center">
-		<div class="flex flex-col items-center gap-6 inner-section justify-items-center">
+		class=" shadow-2xl grid justify-items-center border-b border-primary-light/20 dark:border-primary-dark/20">
+		<div class="inner-section flex flex-col gap-6 items-center">
 			<div class="max-w-xl py-6 w-fit">
 				<h1 class="display-medium">Membership Benefits</h1>
-				<h2 class="body-medium">
+				<h2 class="body-large">
 					Perks that are simply too good to look anywhere else for your website needs. Seriously.
 				</h2>
 			</div>
-			<div class="grid grid-cols-1 gap-10 md:grid-cols-3">
-				{#each benefits as { titleFirst, titleSecond, body, image }, i}
-					<div
-						class="relative grid grid-cols-5 px-6 pt-12 pb-6 text-left rounded-md drop-shadow-glow-md-dark border-1 border-primary-dark justify-items-center bg-surface-dark">
-						<div class="col-span-4 flex flex-col w-full gap-3 z-10">
-							<h1 class=" headline-large leading-tight border-outline-dark">
-								{titleFirst} <br />
-								{titleSecond}
-							</h1>
-							<hr />
-							<h3 class="body-large">{body}</h3>
-						</div>
-						<div class="absolute top-3 right-3 z-0 flex w-fit h-fit">
-							<img src={image} alt="" class="object-cover object-center mx-auto w-36 h-36" />
-						</div>
-					</div>
-				{/each}
+			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+				<BigCard
+					topIcon="artwork/book_1.jpg"
+					title="Open Source Code"
+					body={`
+				We're committed to open-source principles, 
+				allowing our clients and the community to see the tools we use. We don't use restricting and costly licenses, allowing our clients to come and go as you please.`}>
+					<!-- Bottom items -->
+					<a href="https://youtube.com/Futino" class="flex flex-row items-center gap-3">
+						<Icon icon="github" height="28" width="28" />
+						<h3 class="body-large">View our code</h3>
+					</a>
+					<a href="https://youtube/futino" class="flex flex-row items-center gap-3">
+						<Icon icon="youtube" height="28" width="28" />
+						<h3 class="body-large">Check out our streams</h3>
+					</a>
+				</BigCard>
+				<SmallCard
+					topIcon="artwork/book_1.jpg"
+					title="Not Locked In"
+					body={`
+				 Our projects are built on technologies that can be used outside of Futino, giving our clients the flexibilty of swapping us out later (we're that sure you won't ) .`} />
+				<SmallCard
+					topIcon="artwork/book_1.jpg"
+					title="Scalable Tiers"
+					body={`
+				 Our tiers ensure that you only pay for what you need. With the freedom to adjust your plan at any time, our pricing model provides the agility you need. `} />
+				<BigCard
+					topIcon="artwork/book_1.jpg"
+					title="Transparent Pricing"
+					body={`
+				Our subscription model is straightforward. 
+				Pay for what you need and get what you pay for without having to worry about exadurated upfront costs.
+				 Cancel or change tier anytime.`}>
+					<!-- Bottom items -->
+					<a href="https://youtube.com/Futino" class="flex flex-row items-center gap-2">
+						<Icon icon="checkmark" height="32" width="32" class="-ml-0.5 text-secondary-dark" />
+						<h3 class="body-large">No minimum contracts</h3>
+					</a>
+					<a href="https://github.com/Futino" class="flex flex-row items-center gap-2">
+						<Icon icon="checkmark" height="32" width="32" class="-ml-0.5 text-secondary-dark" />
+						<h3 class="body-large">No overpriced upfront payments</h3>
+					</a>
+				</BigCard>
 			</div>
-
-			<Button class="my-4" href="/pricing">
-				<p class="px-6 sm:px-10 md:px-14 headline-medium uppercase">Tiers</p>
-			</Button>
 		</div>
 	</section>
 
@@ -348,38 +374,6 @@
 				</div>
 			</div>
 		</div>
-	</section>
-
-	<!--Founders Section-->
-	<section
-		use:inview={chapterInViewOptions}
-		on:inview_enter={handleChapterInView(4)}
-		id="founders"
-		class=" shadow-lg border-secondary-light/20 dark:border-secondary-dark/20 justify-items-center">
-		<InView transition="fade" duration={500} class="">
-			<div class="flex flex-col mx-auto gap-y-12 place-items-center inner-section">
-				<div class="grid grid-cols-1 gap-x-4 gap-y-4">
-					<!--Jorge's Card-->
-					<div
-						class="drop-shadow-glow-lg-dark border-1 flex flex-col max-w-xl p-6 rounded-lg bg-surface-dark border-primary-dark">
-						<img
-							src="/people/jorge_6.jpg"
-							alt="Not found"
-							class="self-center object-cover object-center w-24 h-24 bg-black rounded-full" />
-						<h2 class="pt-2 display-small">Jorge Lewis</h2>
-						<h3 class="pb-4 text-tertiary-dark title-small">CEO & Founder of Futino</h3>
-						<h2 class="title-medium max-w-2xl">
-							I noticed that making a website was either too expensive (hiring an agency) or too
-							time consuming (website builder) for everyone - individuals, startups, especially
-							large businesses. I wanted to create the solution to these problems.
-						</h2>
-						<Button href="/about#team" class="my-6" secondary={true}>
-							<h1 class="p-2">Learn More</h1>
-						</Button>
-					</div>
-				</div>
-			</div>
-		</InView>
 	</section>
 </main>
 

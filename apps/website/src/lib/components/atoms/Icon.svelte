@@ -165,7 +165,12 @@
 			><path
 				d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" /></svg>
 	{:else if $$props.icon.toLowerCase() == 'github'}
-		<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 98 98"
+		<svg
+			fill="currentColor"
+			width={$$props.width}
+			height={$$props.height}
+			xmlns="http://www.w3.org/2000/svg"
+			viewBox="0 0 98 98"
 			><path
 				fill-rule="evenodd"
 				clip-rule="evenodd"
@@ -176,11 +181,27 @@
 			fill="none"
 			width={$$props.width}
 			height={$$props.height}
+			viewBox="0 0 24 25"
 			><path
 				fill="currentColor"
 				fill-rule="evenodd"
 				d="M12 21.212a9 9 0 1 0 0-18 9 9 0 0 0 0 18Zm-.708-6.414 4.463-4.463-.707-.708-4.11 4.11-1.986-1.986-.707.707 2.34 2.34h.707Z"
-				clip-rule="evenodd" /></svg>
+				clip-rule="evenodd" />
+		</svg>
+	{:else if $$props.icon.toLowerCase() == 'youtube'}
+		<svg
+			xmlns="http://www.w3.org/2000/svg"
+			width={$$props.width}
+			height={$$props.height}
+			style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+			viewBox="0 0 14000 9864">
+			<g>
+				<path
+					fill="#F61C0D"
+					d="M13706 1542c-161,-606 -635,-1084 -1238,-1246 -1092,-294 -5470,-294 -5470,-294 0,0 -4378,0 -5470,294 -602,162 -1077,640 -1238,1246 -293,1099 -293,3392 -293,3392 0,0 0,2293 293,3392 161,606 635,1084 1238,1246 1092,294 5470,294 5470,294 0,0 4378,0 5470,-294 602,-162 1077,-640 1238,-1246 293,-1099 293,-3392 293,-3392 0,0 0,-2293 -293,-3392z" />
+				<polygon fill="#FFF" points="5566,7016 9225,4934 5566,2852 " />
+			</g>
+		</svg>
 	{:else}
 		'icon' not given...
 	{/if}
