@@ -1,4 +1,5 @@
 <script lang="ts">
+	import Icon from '$lib/components/atoms/Icon.svelte';
 	import type { Features } from './plans';
 
 	export let features: Features;
@@ -11,7 +12,11 @@
 				{name}
 			</h2>
 			<h2 class="">
-				{value}
+				{#if value == 'checkmark'}
+					<Icon icon="checkmark" height="24" width="24" />
+				{:else}
+					{value}
+				{/if}
 			</h2>
 		</div>
 	{/each}

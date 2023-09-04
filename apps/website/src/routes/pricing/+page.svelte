@@ -12,6 +12,7 @@
 	import { loadStripe } from '@stripe/stripe-js';
 
 	import { handleCheckout } from './handleCheckout';
+	import Icon from '$lib/components/atoms/Icon.svelte';
 
 	export let activeTabValue = 0;
 
@@ -51,7 +52,7 @@
 							alt=""
 							class="object-fit object-center drop-shadow-object h-1/2 w-1/2" />
 						<div class="">
-							<h2 class=" headline-large uppercase text-primary-dark">
+							<h2 class=" headline-large uppercase text-primary-dark font-extrabold">
 								{name}
 							</h2>
 							<h3 class="pb-6 title-medium text-outline-dark text-outline">
@@ -73,7 +74,11 @@
 					</h2>
 					{#each norpTiers as { features }}
 						<h2 class="my-auto title-medium grid-item text-left">
-							{features[feature]}
+							{#if features[feature] == 'checkmark'}
+								<Icon icon="checkmark" height="24" width="24" class="-ml-0.5 text-secondary-dark" />
+							{:else}
+								{features[feature]}
+							{/if}
 						</h2>
 					{/each}
 				{/each}
