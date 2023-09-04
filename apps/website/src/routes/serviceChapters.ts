@@ -27,7 +27,7 @@ export const servicesChapters: {
 	{
 		chapterNumber: 3,
 		inView: false,
-		image: '/artwork/hosting_illustration_3.png',
+		image: '/artwork/server_3.png',
 		title: 'Modern Hosting',
 		id: 'host',
 		body: `Experience Futino's sleek web hosting process that effortlessly manages all technical aspects. This enables you to prioritize your core business knowing that your website rests in capable hands.`,

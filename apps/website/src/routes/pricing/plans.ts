@@ -47,7 +47,7 @@ export const norpTiers: NorpTier[] = [
 			'Yearly Meetings': '1',
 			'UI Maintenance': 'checkmark',
 		},
-		thumbnail: '/artwork/wheel_12.png',
+		thumbnail: '/artwork/sailboat_2.png',
 	},
 	{
 		stripeId: 'price_1NibETD09EWpqQ4Y0Nh7Oyad',
@@ -61,7 +61,7 @@ export const norpTiers: NorpTier[] = [
 			'Yearly Meetings': 'Up to 12',
 			'UI Maintenance': 'checkmark',
 		},
-		thumbnail: '/artwork/plane_1.png',
+		thumbnail: '/artwork/plane_3.png',
 	},
 	{
 		stripeId: 'price_1NkkCHD09EWpqQ4Yf9lj4X8f',

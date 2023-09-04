@@ -6,8 +6,6 @@
 	import TransitionElement from '$lib/components/organisms/Inview.svelte';
 	import { fade, slide } from 'svelte/transition';
 	import { goto } from '$app/navigation';
-	import BigCard from '../BigCard.svelte';
-	import SmallCard from './SmallCard.svelte';
 
 	let activeMember: number;
 
