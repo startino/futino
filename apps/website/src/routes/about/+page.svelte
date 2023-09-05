@@ -6,6 +6,7 @@
 	import TransitionElement from '$lib/components/organisms/Inview.svelte';
 	import { fade, slide } from 'svelte/transition';
 	import { goto } from '$app/navigation';
+	import TextSection from './TextSection.svelte';
 
 	let activeMember: number;
 
@@ -76,12 +77,54 @@
 	</section>
 
 	<section
+		class="shadow-2xl grid justify-items-center border-b border-primary-light/20 dark:border-primary-dark/20">
+		<div class="flex w-full flex-col text-center inner-section gap-44 items-center">
+			<div class="flex flex-col gap-4 items-center">
+				<h1 class="title-medium md:title-large uppercase text-primary-dark md:uppercase">
+					Our mission
+				</h1>
+				<h3 class="headline-small sm:headline-medium md:display-small lg:display-medium max-w-3xl">
+					Leverage the power of modern technologies to
+					<span class="text-tertiary-dark"> design & develop websites </span>
+					in a more cost efficient manner for startups and small businesses.
+				</h3>
+			</div>
+			<div class="grid grid-cols-1 lg:grid-cols-3">
+				<div class="flex flex-col lg:col-span-2 gap-24 w-full">
+					<TextSection title="What we do">
+						At Futino, we specialize in web design, development, & hosting. We understand the
+						challenges faced by startups and small businesses in establishing their online presence
+						and staying competitive.
+					</TextSection>
+
+					<TextSection title="Why we do it">
+						We were inspired to create Futino when we observed that traditional web development is
+						almost always too expensive and time-consuming, often leaving smaller businesses at a
+						disadvantage. We wanted the possibilty for companies with less upfront resources or
+						companies with less possibility for risk to have access to efficient, top-quality web
+						solutions that wouldn't break the bank and require any risk analysis.
+					</TextSection>
+					<TextSection title="How we do it">
+						Our secret sauce lies in harnessing the power of AI and mixing it the most modern
+						technologies out there. We infuse AI technology into our design and development
+						processes to streamline workflows and enhance overall efficiency. By doing so, we not
+						only deliver visually stunning websites but also significantly reduce the time and cost
+						associated with web projects.
+					</TextSection>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section
 		id="team"
 		class=" shadow-2xl grid justify-items-center border-b border-primary-light/20 dark:border-primary-dark/20">
-		<div class="flex w-full flex-col text-left md:pl-24 inner-section gap-12">
+		<div class="flex w-full flex-col text-left inner-section gap-12">
 			<TransitionElement transition="slide" delay={200} duration={1000}>
 				<!--Any sort of glass effect would be good here-->
-				<h1 class="display-large pb-4">[Y]our People</h1>
+				<h1 class="display-medium pb-4">
+					<span class="text-primary-dark">[Y]</span>our People
+				</h1>
 
 				<div class="flex flex-col divide-y title-medium border-y">
 					{#each team as { index, name, position, body, imgPath, socialLinks }}
@@ -89,7 +132,8 @@
 						<button class="flex flex-col group" on:click={handleClick(index)}>
 							<div
 								class="grid grid-cols-3 grid-rows-2 group-hover:text-tertiary-dark md:grid-rows-1 md:grid-cols-7 place-content-between text-left md:text-center my-3 group hover:text-primary-dark">
-								<h1 class="col-span-2 row-start-1 md:col-span-3 font-bold tracking-wide">
+								<h1
+									class="col-span-2 row-start-1 md:col-span-3 font-bold tracking-wide title-large">
 									{name}
 								</h1>
 								<h1 class="col-span-2 row-start-2 md:row-start-1 md:col-span-3">

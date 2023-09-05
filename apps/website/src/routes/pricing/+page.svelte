@@ -26,7 +26,7 @@
 		<div
 			class="flex flex-col items-center gap-8 justify-items-center pt-48 text-center inner-section">
 			<div class="flex flex-col items-center gap-4">
-				<h1 class="display-small lg:display-large">Pay for exaclty what you get.</h1>
+				<h1 class="display-small lg:display-large">Pay exaclty for what you get.</h1>
 				<h2 class="title-large">
 					No contracts, pause or cancel anytime, and upscale or downscale as you wish.
 				</h2>

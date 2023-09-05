@@ -14,7 +14,7 @@ export const servicesChapters: {
 		title: 'AI-Powered Design',
 		image: '/artwork/design_2.png',
 		id: 'design',
-		body: `Futino merges AI innovation with human creativity to deliver captivating web experiences. By optimizing workflows and harnessing AI-driven tools, we create stunning websites in a fraction of the time.`,
+		body: `By optimizing workflows and harnessing AI-driven tools, we create stunning websites in a fraction of the time.`,
 	},
 	{
 		chapterNumber: 2,
@@ -22,7 +22,7 @@ export const servicesChapters: {
 		title: 'Coding with Intuition',
 		image: '/artwork/develop_1.png',
 		id: 'develop',
-		body: `We blend cutting-edge frameworks, modern languages, and AI for unparalleled systems. Our efficient, precise approach allows us to craft highly functional yet creative websites.`,
+		body: `We blend cutting-edge frameworks, modern languages, and AI to craft highly functional yet creative websites.`,
 	},
 	{
 		chapterNumber: 3,
@@ -30,6 +30,6 @@ export const servicesChapters: {
 		image: '/artwork/server_4.png',
 		title: 'Modern Hosting',
 		id: 'host',
-		body: `Experience Futino's sleek web hosting process that effortlessly manages all technical aspects. This enables you to prioritize your core business knowing that your website rests in capable hands.`,
+		body: `Our sleek web hosting process effortlessly manages all technical aspects, enabling you to prioritize your core business.`,
 	},
 ];

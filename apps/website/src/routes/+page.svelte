@@ -17,9 +17,10 @@
 	import type { Engine } from 'tsparticles-engine';
 	import { particlesConfig } from './particlesConfig';
 	import Inview from '$lib/components/organisms/Inview.svelte';
-	import BigCard from './BigCard.svelte';
-	import SmallCard from './SmallCard.svelte';
+	import BigCard from './BigBenefitCard.svelte';
+	import SmallBenefitCard from './SmallBenefitCard.svelte';
 	import Icon from '$lib/components/atoms/Icon.svelte';
+	import BigBenefitCard from './BigBenefitCard.svelte';
 
 	let scrollY: number;
 	// Index of the current chapter that is in the viewport, used by chapter menu.
@@ -208,8 +209,9 @@
 
 					<div
 						class="flex flex-col max-w-xl gap-2 p-1 overflow-hidden text-left justify-self-start">
-						<div class="flex flex-row items-center gap-3 pt-1 pl-1 sm:p-0">
-							<div class="relative flex w-12 h-12 place-items-center sm:hidden">
+						<!-- Mobile text content -->
+						<div class="flex flex-row items-center gap-3 pt-1 pl-1 sm:p-0 sm:hidden">
+							<div class="relative flex w-12 h-12 place-items-center">
 								<div
 									class="flex items-center w-11 h-11 text-center rounded-full bg-surface-dark circle-shadow shadow-primary-dark">
 									<h1 class="mx-auto display-small z-20">
@@ -217,18 +219,21 @@
 									</h1>
 								</div>
 							</div>
-							<h1 class="font-bold headline-medium sm:hidden">
+							<!-- Mobile title -->
+							<h1 class="headline-large uppercase text-primary-dark">
 								{title}
 							</h1>
 						</div>
 						<InView fly={{ x: -100, y: 0 }} class="sm:hidden">
 							<div class="w-1/4 h-0.5 mt-3 border-t border-outline-dark" />
 						</InView>
-						<InView presetOptions={leftFlyPreset} class="sm:pl-7 md:pr-12">
-							<h1 class="font-bold display-small lg:display-medium hidden sm:flex pb-4">
+						<InView presetOptions={leftFlyPreset} class="sm:pl-7 ">
+							<!-- sm+ title -->
+							<h1
+								class="sm:headline-large md:title-large uppercase md:uppercase sm:text-primary-dark hidden sm:flex pb-4">
 								{title}
 							</h1>
-							<p class="title-large">
+							<p class="title-large md:headline-large lg:display-small sm:max-w-xs md:max-w-md">
 								{body}
 							</p>
 						</InView>
@@ -252,8 +257,8 @@
 				</h2>
 			</div>
 			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-				<BigCard
-					topIcon="artwork/book_1.jpg"
+				<BigBenefitCard
+					topIcon="artwork/book_1.png"
 					title="Open Source Code"
 					body={`
 				We're committed to open-source principles, 
@@ -267,19 +272,19 @@
 						<Icon icon="youtube" height="28" width="28" />
 						<h3 class="body-large">Check out our streams</h3>
 					</a>
-				</BigCard>
-				<SmallCard
-					topIcon="artwork/book_1.jpg"
+				</BigBenefitCard>
+				<SmallBenefitCard
+					topIcon="artwork/unlocked_3.png"
 					title="Not Locked In"
 					body={`
 				 Our projects are built on technologies that can be used outside of Futino, giving our clients the flexibilty of swapping us out later (we're that sure you won't ) .`} />
-				<SmallCard
-					topIcon="artwork/book_1.jpg"
+				<SmallBenefitCard
+					topIcon="artwork/scalable_1.png"
 					title="Scalable Tiers"
 					body={`
 				 Our tiers ensure that you only pay for what you need. With the freedom to adjust your plan at any time, our pricing model provides the agility you need. `} />
-				<BigCard
-					topIcon="artwork/book_1.jpg"
+				<BigBenefitCard
+					topIcon="artwork/mag_scope_1.png"
 					title="Transparent Pricing"
 					body={`
 				Our subscription model is straightforward. 
@@ -294,7 +299,7 @@
 						<Icon icon="checkmark" height="32" width="32" class="-ml-0.5 text-secondary-dark" />
 						<h3 class="body-large">No overpriced upfront payments</h3>
 					</a>
-				</BigCard>
+				</BigBenefitCard>
 			</div>
 		</div>
 	</section>
