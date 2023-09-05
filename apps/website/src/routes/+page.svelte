@@ -203,7 +203,7 @@
 						<img
 							src={image}
 							alt=""
-							class="order-last object-cover object-center w-1/2 mx-auto bg-no-repeat sm:w-full sm:order-first drop-shadow-glow-2xl-dark" />
+							class="order-last object-cover object-center w-1/2 mx-auto bg-no-repeat sm:w-full sm:order-first drop-shadow-service-art" />
 					</InView>
 
 					<div

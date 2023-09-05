@@ -50,7 +50,7 @@
 						<img
 							src={thumbnail}
 							alt=""
-							class="object-fit object-center drop-shadow-object h-1/2 w-1/2" />
+							class="object-fit object-center drop-shadow-pricing-art h-1/2 w-1/2" />
 						<div class="">
 							<h2 class=" headline-large uppercase text-primary-dark font-extrabold">
 								{name}

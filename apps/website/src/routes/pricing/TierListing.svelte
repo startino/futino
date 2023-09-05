@@ -9,7 +9,10 @@
 </script>
 
 <div class="flex flex-col place-items-start gap-2 text-left">
-	<img src={tier.thumbnail} alt="" class="object-cover object-center w-1/2 h-fit -mb-5" />
+	<img
+		src={tier.thumbnail}
+		alt=""
+		class="object-cover object-center w-1/2 h-fit -mb-5 drop-shadow-pricing-art" />
 	<div class="">
 		<h2 class="display-small font-extrabold">
 			{tier.name}
