@@ -11,7 +11,7 @@
 
 	import { benefits } from './benefits';
 	import ContactForm from '$lib/components/organisms/ContactForm.svelte';
-	import ContactMethod from '$lib/components/molecules/ContactMethod.svelte';
+	import ContactIconButton from '$lib/components/molecules/ContactIconButton.svelte';
 	import Particles from 'svelte-particles';
 	import { loadSlim } from 'tsparticles-slim';
 	import type { Engine } from 'tsparticles-engine';
@@ -341,7 +341,7 @@
 						class="flex flex-row md:flex-col h-full md:items-end justify-around w-full place-content-between text-surface-on-dark font-extrabold title-large">
 						<InView duration={300} fly={{ x: -200, y: 0 }} delay={250} class="overflow-visible">
 							<!--Phone-->
-							<ContactMethod
+							<ContactIconButton
 								img="artwork/call_logo_2.png"
 								href="tel:9133600394"
 								label="+852 9747 3013"
@@ -350,7 +350,7 @@
 						</InView>
 						<InView duration={300} fly={{ x: -200, y: 0 }} delay={325} class="overflow-visible">
 							<!--WhatsApp-->
-							<ContactMethod
+							<ContactIconButton
 								img="artwork/whatsapp_logo_6.png"
 								href="https://wa.me/+85297473013"
 								label="Futino Whatsapp"
@@ -359,7 +359,7 @@
 						</InView>
 						<InView duration={300} fly={{ x: -200, y: 0 }} delay={500} class="overflow-visible">
 							<!--Instagram-->
-							<ContactMethod
+							<ContactIconButton
 								img="artwork/instagram_logo_1.png"
 								href=""
 								label="@Futino"
@@ -368,7 +368,7 @@
 						</InView>
 						<InView duration={300} fly={{ x: -200, y: 0 }} delay={775} class="overflow-visible">
 							<!--Email-->
-							<ContactMethod
+							<ContactIconButton
 								img="artwork/email_1.png"
 								href="mailto:contact@futi.no"
 								label="contact@futi.no"
