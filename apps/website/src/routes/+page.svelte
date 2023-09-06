@@ -9,7 +9,6 @@
 	import type { Options } from 'svelte-inview';
 	import InView, { type TransitionOptions } from '$lib/components/organisms/Inview.svelte';
 
-	import { benefits } from './benefits';
 	import ContactForm from '$lib/components/organisms/ContactForm.svelte';
 	import ContactIconButton from '$lib/components/molecules/ContactIconButton.svelte';
 	import Particles from 'svelte-particles';
@@ -95,11 +94,6 @@
 			chapterNumber: 3,
 			title: 'Contact',
 			href: '#contact',
-		},
-		{
-			chapterNumber: 4,
-			title: 'Founders',
-			href: '#founders',
 		},
 	];
 
@@ -259,10 +253,10 @@
 			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 				<BigBenefitCard
 					topIcon="artwork/book_1.png"
-					title="Open Source Code"
+					title="Open Source Software"
 					body={`
-				We're committed to open-source principles, 
-				allowing our clients and the community to see the tools we use. We don't use restricting and costly licenses, allowing our clients to come and go as you please.`}>
+				We resort to using open-source tools, which
+				translates directly into saving costs without compromising on quality.`}>
 					<!-- Bottom items -->
 					<a href="https://youtube.com/Futino" class="flex flex-row items-center gap-3">
 						<Icon icon="github" height="28" width="28" />
@@ -273,23 +267,19 @@
 						<h3 class="body-large">Check out our streams</h3>
 					</a>
 				</BigBenefitCard>
-				<SmallBenefitCard
-					topIcon="artwork/unlocked_3.png"
-					title="Not Locked In"
-					body={`
-				 Our projects are built on technologies that can be used outside of Futino, giving our clients the flexibilty of swapping us out later (we're that sure you won't ) .`} />
-				<SmallBenefitCard
-					topIcon="artwork/scalable_1.png"
-					title="Scalable Tiers"
-					body={`
-				 Our tiers ensure that you only pay for what you need. With the freedom to adjust your plan at any time, our pricing model provides the agility you need. `} />
+				<SmallBenefitCard topIcon="artwork/unlocked_3.png" title="Not Locked In">
+					You're projects use nonproprietary tech, meaning you can swap us out later on. <span
+						class="inline-block">(You won't &#128521;)</span>
+				</SmallBenefitCard>
+				<SmallBenefitCard topIcon="artwork/scalable_1.png" title="Scalable Tiers">
+					Start with what you need and scale up or down as your business grows.
+				</SmallBenefitCard>
 				<BigBenefitCard
 					topIcon="artwork/mag_scope_1.png"
 					title="Transparent Pricing"
 					body={`
-				Our subscription model is straightforward. 
-				Pay for what you need and get what you pay for without having to worry about exadurated upfront costs.
-				 Cancel or change tier anytime.`}>
+					Our simple and transparent subscription model fosters trust, gaurantees predictable prices, and provides peace of mind.
+			`}>
 					<!-- Bottom items -->
 					<a href="https://youtube.com/Futino" class="flex flex-row items-center gap-2">
 						<Icon icon="checkmark" height="32" width="32" class="-ml-0.5 text-secondary-dark" />

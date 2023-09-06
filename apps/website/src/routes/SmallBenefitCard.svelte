@@ -7,11 +7,10 @@
 	<div class="bg-background-dark rounded-md p-3">
 		<img src={$$props.topIcon} alt="book" class="w-7 h-7 object-center object-cover" />
 	</div>
-	<div class="flex flex-col gap-2 text-center">
+	<div class="flex flex-col gap-2 text-center h-full">
 		<h1 class="headline-large">{$$props.title}</h1>
 		<p class="body-large max-w-md">
-			{$$props.body}
+			<slot />
 		</p>
 	</div>
-	<slot />
 </div>
