@@ -254,6 +254,7 @@
 				<BigBenefitCard
 					topIcon="artwork/book_1.png"
 					title="Open Source Software"
+					artwork="artwork/github_outline_6.png"
 					body={`
 				We resort to using open-source tools, which
 				translates directly into saving costs without compromising on quality.`}>
@@ -267,7 +268,10 @@
 						<h3 class="body-large">Check out our streams</h3>
 					</a>
 				</BigBenefitCard>
-				<SmallBenefitCard topIcon="artwork/unlocked_3.png" title="Not Locked In">
+				<SmallBenefitCard
+					topIcon="artwork/unlocked_3.png"
+					title="Not Locked In"
+					artwork="artwork/staircase_1.png">
 					You're projects use nonproprietary tech, meaning you can swap us out later on. <span
 						class="inline-block">(You won't &#128521;)</span>
 				</SmallBenefitCard>
