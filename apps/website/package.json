@@ -25,6 +25,8 @@
 	"type": "module",
 	"packageManager": "pnpm@8.6.12",
 	"devDependencies": {
+		"@tailwindcss/typography": "^0.5.10",
+		"mdsvex": "^0.11.0",
 		"supabase": "^1.88.0"
 	}
 }
