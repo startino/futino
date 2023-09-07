@@ -271,16 +271,20 @@
 				<SmallBenefitCard
 					topIcon="artwork/unlocked_3.png"
 					title="Not Locked In"
-					artwork="artwork/staircase_1.png">
+					artwork="artwork/gate_1.png">
 					You're projects use nonproprietary tech, meaning you can swap us out later on. <span
 						class="inline-block">(You won't &#128521;)</span>
 				</SmallBenefitCard>
-				<SmallBenefitCard topIcon="artwork/scalable_1.png" title="Scalable Tiers">
+				<SmallBenefitCard
+					topIcon="artwork/scalable_1.png"
+					title="Scalable Tiers"
+					artwork="artwork/staircase_1.png">
 					Start with what you need and scale up or down as your business grows.
 				</SmallBenefitCard>
 				<BigBenefitCard
 					topIcon="artwork/mag_scope_1.png"
 					title="Transparent Pricing"
+					artwork="artwork/window_1.png"
 					body={`
 					Our simple and transparent subscription model fosters trust, gaurantees predictable prices, and provides peace of mind.
 			`}>
