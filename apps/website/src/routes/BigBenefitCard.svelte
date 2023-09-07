@@ -17,7 +17,7 @@
 		<slot />
 	</div>
 	<div
-		class="flex h-full z-0 aspect-square lg:w-3/5 lg:h-fit lg:absolute mx-auto lg:-right-5 lg:translate-x-0 lg:mx-0 lg:translate-y-0 lg:-bottom-12 lg:my-auto">
+		class="flex h-full z-0 aspect-square lg:w-3/5 -mb-5 lg:h-fit lg:absolute mx-auto lg:-right-5 lg:translate-x-0 lg:mx-0 lg:translate-y-0 lg:-bottom-12 lg:my-auto">
 		<img src={$$props.artwork} class="object-center object-contain" alt="artwork" />
 	</div>
 </div>

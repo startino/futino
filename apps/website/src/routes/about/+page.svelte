@@ -170,35 +170,35 @@
 										class="flex flex-col text-tertiary-dark md:flex-row justify-self-start py-1 md:h-fit justify-between md:w-fit md:gap-6 md:mx-auto md:self-center md:col-start-4 md:col-span-3">
 										{#if socialLinks['instagram']}
 											<a href={socialLinks['instagram']} class="">
-												<Icon
-													icon="instagram"
-													class="text-[#833AB4] hover:scale-105 transition-all"
-													height="48"
-													width="48" />
+												<img
+													src="artwork/instagram_logo_1.png"
+													alt="instagram"
+													class="drop-shadow-instagram-sm hover:drop-shadow-instagram-sm-hover h-12 w-12 transition-all" />
 											</a>
 										{/if}
 										{#if socialLinks['facebook']}
 											<a href={socialLinks['facebook']} class="">
-												<Icon
-													icon="facebook"
-													class="text-[#1877F2]hover:scale-105 transition-all"
-													height="48"
-													width="48" />
+												<img
+													src="artwork/facebook_1.png"
+													alt="instagram"
+													class="drop-shadow-facebook hover:drop-shadow-facebook-hover h-12 w-12 transition-all" />
 											</a>
 										{/if}
 										{#if socialLinks['linkedin']}
-											<Icon
-												icon="linkedin"
-												class="text-[#0077B5] hover:scale-105 transition-all"
-												height="48"
-												width="48" />
+											<a href={socialLinks['linkedin']} class="">
+												<img
+													src="artwork/linkedin_1.png"
+													alt="instagram"
+													class="drop-shadow-linkedin hover:drop-shadow-linkedin-hover h-12 w-12 transition-all" />
+											</a>
 										{/if}
 										{#if socialLinks['github']}
-											<Icon
-												icon="github"
-												class="text-white hover:scale-105 transition-all"
-												height="48"
-												width="48" />
+											<a href={socialLinks['github']} class="">
+												<img
+													src="artwork/github_outline_7.png"
+													alt="instagram"
+													class="drop-shadow-github hover:drop-shadow-github-hover h-12 w-12 transition-all" />
+											</a>
 										{/if}
 									</div>
 								</div>

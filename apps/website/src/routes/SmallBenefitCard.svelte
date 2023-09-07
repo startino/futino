@@ -13,7 +13,7 @@
 			<slot />
 		</p>
 	</div>
-	<div class="flex z-0 mx-auto">
+	<div class="flex z-0 -mx-10 -mb-16">
 		<img src={$$props.artwork} class="object-center w-full h-full" alt="artwork" />
 	</div>
 </div>

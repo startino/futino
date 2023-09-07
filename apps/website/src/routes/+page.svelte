@@ -263,14 +263,14 @@
 						<img
 							src="artwork/github_outline_7.png"
 							alt="youtube"
-							class="object-center object-cover drop-shadow-github hover:drop-shadow-github-hover w-7 h-7" />
+							class="object-center object-cover drop-shadow-github hover:drop-shadow-github-hover w-8 h-8" />
 						<h3 class="body-large">View our code</h3>
 					</a>
 					<a href="https://youtube/futino" class="flex flex-row items-center gap-3">
 						<img
 							src="artwork/yt_2.png"
 							alt="youtube"
-							class="object-center object-cover drop-shadow-youtube hover:drop-shadow-youtube-hover w-7 h-7" />
+							class="object-center object-cover drop-shadow-youtube hover:drop-shadow-youtube-hover w-8 h-8" />
 						<h3 class="body-large">Check out our streams</h3>
 					</a>
 				</BigBenefitCard>
@@ -284,8 +284,8 @@
 				<SmallBenefitCard
 					topIcon="artwork/scalable_1.png"
 					title="Scalable Tiers"
-					artwork="artwork/staircase_1.png">
-					Start with what you need and scale up or down as your business grows.
+					artwork="artwork/staircase_2.png">
+					Start with what you need and scale up or down as your business changes.
 				</SmallBenefitCard>
 				<BigBenefitCard
 					topIcon="artwork/mag_scope_1.png"
@@ -297,11 +297,11 @@
 					<!-- Bottom items -->
 					<a href="https://youtube.com/Futino" class="flex flex-row items-center gap-2">
 						<Icon icon="checkmark" height="32" width="32" class="-ml-0.5 text-secondary-dark" />
-						<h3 class="body-large">No minimum contracts</h3>
+						<h3 class="body-large">No hidden fees</h3>
 					</a>
 					<a href="https://github.com/Futino" class="flex flex-row items-center gap-2">
 						<Icon icon="checkmark" height="32" width="32" class="-ml-0.5 text-secondary-dark" />
-						<h3 class="body-large">No overpriced upfront payments</h3>
+						<h3 class="body-large">No upfront costs</h3>
 					</a>
 				</BigBenefitCard>
 			</div>
