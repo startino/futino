@@ -126,17 +126,18 @@
 					<span class="text-primary-dark">[Y]</span>our People
 				</h1>
 
-				<div class="flex flex-col divide-y title-medium border-y">
+				<div
+					class="flex flex-col divide-y title-medium border-y border-primary-dark divide-primary-dark shadow-glow">
 					{#each team as { index, name, position, body, imgPath, socialLinks }}
 						<!-- svelte-ignore a11y-click-events-have-key-events -->
 						<button class="flex flex-col group" on:click={handleClick(index)}>
 							<div
-								class="grid grid-cols-3 grid-rows-2 group-hover:text-tertiary-dark md:grid-rows-1 md:grid-cols-7 place-content-between text-left md:text-center my-3 group hover:text-primary-dark">
-								<h1
-									class="col-span-2 row-start-1 md:col-span-3 font-bold tracking-wide title-large">
+								class="grid grid-cols-3 grid-rows-2 group-hover:text-tertiary-dark md:grid-rows-1 md:grid-cols-7 place-content-between text-left md:text-center my-6 group hover:text-primary-dark">
+								<h1 class="col-span-2 row-start-1 my-auto md:col-span-3 tracking-wide title-large">
 									{name}
 								</h1>
-								<h1 class="col-span-2 row-start-2 md:row-start-1 md:col-span-3">
+								<h1
+									class="col-span-2 row-start-2 md:row-start-1 my-auto md:col-span-3 text-outline-dark">
 									{position}
 								</h1>
 
@@ -151,7 +152,7 @@
 							</div>
 							{#if index == activeMember}
 								<div
-									class="flex flex-row gap-4 md:grid md:grid-rows-1 md:grid-cols-7 my-4"
+									class="flex flex-row gap-4 md:grid md:grid-rows-1 md:grid-cols-7 my-4 mb-8"
 									in:slide
 									out:slide>
 									<div
