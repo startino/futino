@@ -260,11 +260,17 @@
 				translates directly into saving costs without compromising on quality.`}>
 					<!-- Bottom items -->
 					<a href="https://youtube.com/Futino" class="flex flex-row items-center gap-3">
-						<Icon icon="github" height="28" width="28" />
+						<img
+							src="artwork/github_outline_7.png"
+							alt="youtube"
+							class="object-center object-cover drop-shadow-github hover:drop-shadow-github-hover w-7 h-7" />
 						<h3 class="body-large">View our code</h3>
 					</a>
 					<a href="https://youtube/futino" class="flex flex-row items-center gap-3">
-						<Icon icon="youtube" height="28" width="28" />
+						<img
+							src="artwork/yt_2.png"
+							alt="youtube"
+							class="object-center object-cover drop-shadow-youtube hover:drop-shadow-youtube-hover w-7 h-7" />
 						<h3 class="body-large">Check out our streams</h3>
 					</a>
 				</BigBenefitCard>
@@ -367,7 +373,7 @@
 						<InView duration={300} fly={{ x: -200, y: 0 }} delay={775} class="overflow-visible">
 							<!--Email-->
 							<ContactIconButton
-								img="artwork/email_1.png"
+								img="artwork/email_2.png"
 								href="mailto:contact@futi.no"
 								label="contact@futi.no"
 								class="hover:text-blue-400"
