@@ -24,49 +24,58 @@ export const features = [
 ];
 
 export type NorpTier = {
+	stripeId: string;
+
 	index: number;
 	name: string;
 	subtitle: string;
 	cost: string;
 	features: Features;
+	thumbnail: string;
 };
 
 export const norpTiers: NorpTier[] = [
 	{
+		stripeId: 'price_1NibECD09EWpqQ4YRbal1at9',
 		index: 0,
 		name: 'Cruising',
-		subtitle: "Keep it going.",
+		subtitle: 'Keep it going.',
 		cost: '179',
 		features: {
 			'Monthly Work Capacity': '2hrs',
 			'Requests & Revisions': 'ထ',
 			'Yearly Meetings': '1',
-			'UI Maintenance': '✔️',
+			'UI Maintenance': 'checkmark',
 		},
+		thumbnail: '/artwork/sailboat_2.png',
 	},
 	{
+		stripeId: 'price_1NibETD09EWpqQ4Y0Nh7Oyad',
 		index: 1,
 		name: 'Expanding',
-		subtitle: "Even the playing field.",
+		subtitle: 'Even the playing field.',
 		cost: '1 450',
 		features: {
 			'Monthly Work Capacity': '8hrs',
 			'Requests & Revisions': 'ထ',
 			'Yearly Meetings': 'Up to 12',
-			'UI Maintenance': '✔️',
+			'UI Maintenance': 'checkmark',
 		},
+		thumbnail: '/artwork/plane_3.png',
 	},
 	{
+		stripeId: 'price_1NkkCHD09EWpqQ4Yf9lj4X8f',
 		index: 2,
 		name: 'Blazing',
-		subtitle: "Make it unfair.",
+		subtitle: 'Make it unfair.',
 		cost: '5 600',
 		features: {
 			'Monthly Work Capacity': '33hrs',
 			'Requests & Revisions': 'ထ',
 			'Yearly Meetings': 'Up to 24',
-			'UI Maintenance': '✔️',
+			'UI Maintenance': 'checkmark',
 		},
+		thumbnail: '/artwork/rocket_6.png',
 	},
 ];
 

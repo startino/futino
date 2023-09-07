@@ -3,17 +3,22 @@
 	import Footer from '$lib/components/organisms/Footer.svelte';
 
 	import PromotionToggle from './PromotionToggle.svelte';
-	import { promotions, norpTiers, type NorpTier, features } from './plans';
+	import { promotions, norpTiers, features } from './plans';
 	import TierListing from './TierListing.svelte';
-	import TierFeatures from './TierFeatures.svelte';
 	import Button from '$lib/components/atoms/Button.svelte';
 	import InViewSlide from '$lib/components/organisms/InViewSlide.svelte';
+	import { createClient } from '@supabase/supabase-js';
+	import type { Database } from '$lib/supabase.types';
+	import { loadStripe } from '@stripe/stripe-js';
+
+	import { handleCheckout } from './handleCheckout';
+	import Icon from '$lib/components/atoms/Icon.svelte';
 
 	export let activeTabValue = 0;
 
 	let cycle: string = 'monthly';
 
-	const handleClick = (tabValue: number) => () => (activeTabValue = tabValue);
+	const handlePromotionToggle = (tabValue: number) => () => (activeTabValue = tabValue);
 </script>
 
 <main class="text-left border-b shadow-2xl border-primary-light/40 dark:border-primary-dark/40">
@@ -21,7 +26,7 @@
 		<div
 			class="flex flex-col items-center gap-8 justify-items-center pt-48 text-center inner-section">
 			<div class="flex flex-col items-center gap-4">
-				<h1 class="display-small lg:display-large">Pay for exaclty what you get.</h1>
+				<h1 class="display-small lg:display-large">Pay exaclty for what you get.</h1>
 				<h2 class="title-large">
 					No contracts, pause or cancel anytime, and upscale or downscale as you wish.
 				</h2>
@@ -40,14 +45,14 @@
 				<div class="flex pb-0 grid-item">
 					<h1 class="mt-auto uppercase title-medium text-outline-dark place-self-end">Features</h1>
 				</div>
-				{#each norpTiers as { name, subtitle, cost }}
+				{#each norpTiers as { name, subtitle, cost, thumbnail }}
 					<div class="flex flex-col max-w-md gap-2 text-left grid-item place-items-start">
 						<img
-							src="/artwork/design_illustration.png"
+							src={thumbnail}
 							alt=""
-							class="object-cover object-center w-1/2 -mb-5 h-fit" />
+							class="object-fit object-center drop-shadow-pricing-art h-1/2 w-1/2" />
 						<div class="">
-							<h2 class=" headline-large uppercase text-primary-dark">
+							<h2 class=" headline-large uppercase text-primary-dark font-extrabold">
 								{name}
 							</h2>
 							<h3 class="pb-6 title-medium text-outline-dark text-outline">
@@ -69,14 +74,18 @@
 					</h2>
 					{#each norpTiers as { features }}
 						<h2 class="my-auto title-medium grid-item text-left">
-							{features[feature]}
+							{#if features[feature] == 'checkmark'}
+								<Icon icon="checkmark" height="24" width="24" class="-ml-0.5 text-secondary-dark" />
+							{:else}
+								{features[feature]}
+							{/if}
 						</h2>
 					{/each}
 				{/each}
 				<div class="border-none grid-item" />
-				{#each norpTiers as _}
+				{#each norpTiers as { stripeId }}
 					<div class="border-none grid-item mt-14">
-						<Button class="w-full" href="/checkout">
+						<Button class="w-full" onClick={() => handleCheckout(stripeId)}>
 							<h1 class="uppercase title-large">Get Started</h1>
 						</Button>
 					</div>

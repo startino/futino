@@ -1,44 +1,42 @@
 <script lang="ts">
 	import Logo from '$lib/components/atoms/Logo.svelte';
+
+	export const elements = [
+		{
+			name: 'Home',
+			href: '/',
+		},
+		{
+			name: 'Pricing',
+			href: '/pricing',
+		},
+		{
+			name: 'Terms of Service',
+			href: '/legal/terms',
+		},
+		{
+			name: 'Privacy Policy',
+			href: '/legal/privacy',
+		},
+	];
 </script>
 
 <footer
-	class="{$$props.class} pt-20 p-6 border-t border-secondary-light/10 dark:border-secondary-dark/10">
+	id="header"
+	class="{$$props.class} py-16 mb-32 border-b text-primary-light dark:text-primary-dark border-secondary-dark/10 top-0 z-40 w-full transition-all duration-400">
 	<div
-		class="sm:flex sm:justify-between sm:items-center md:px-10 lg:px-20 xl:px-40 px-auto md:px-auto">
-		<Logo />
-		<ul
-			class="flex flex-wrap items-center mb-6 space-x-6 text-sm sm:mb-0 text-background-on-light dark:text-background-on-dark">
-			<li>
-				<a
-					class="inline text-secondary-light dark:text-secondary-dark hover:text-tertiary-light dark:hover:text-tertiary-dark"
-					href="">
-					Privacy Policy
-				</a>
-			</li>
-			<li>
-				<a
-					class="inline text-secondary-light dark:text-secondary-dark hover:text-tertiary-light dark:hover:text-tertiary-dark"
-					href="">
-					Licensing
-				</a>
-			</li>
-			<li>
-				<a
-					class="inline text-secondary-light dark:text-secondary-dark hover:text-tertiary-light dark:hover:text-tertiary-dark"
-					href="">
-					Pricing
-				</a>
-			</li>
-		</ul>
-	</div>
-	<hr class="my-6 sm:mx-auto lg:my-8 border-secondary-light/10 dark:border-secondary-dark/10" />
-	<span class="block text-sm sm:text-center text-background-on-light dark:text-background-on-dark">
-		Unpublished © 2023
-		<a
-			href="/"
-			class="text-tertiary-light dark:text-tertiary-dark hover:underline hover:text-tertiary-light dark:hover:text-tertiary-light">
-			Futino™
+		class="flex flex-col sm:flex-row gap-y-3 relative items-center px-6 md:px-18 lg:max-w-5xl xl:max-w-6xl mx-auto">
+		<a class="flex w-fit mr-auto gap-3" href="/">
+			<Logo />
 		</a>
-	</span>
+		<div class="flex items-center mr-auto sm:mr-0 sm:ml-auto gap-8 title-medium font-light">
+			<nav class="flex gap-6 lg:gap-8 pb-0.5">
+				{#each elements as element, i}
+					<a class="hhover:text-tertiary-dark" href={element.href}>
+						{element.name}
+					</a>
+				{/each}
+			</nav>
+		</div>
+	</div>
 </footer>

@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Button from '$lib/components/atoms/Button.svelte';
 	import TierFeatures from './TierFeatures.svelte';
+	import { handleCheckout } from './handleCheckout';
 	import type { NorpTier } from './plans';
 
 	export let tier: NorpTier;
@@ -9,9 +10,9 @@
 
 <div class="flex flex-col place-items-start gap-2 text-left">
 	<img
-		src="/artwork/design_illustration.png"
+		src={tier.thumbnail}
 		alt=""
-		class="object-cover object-center w-1/2 h-fit -mb-5" />
+		class="object-cover object-center w-1/2 h-fit -mb-5 drop-shadow-pricing-art" />
 	<div class="">
 		<h2 class="display-small font-extrabold">
 			{tier.name}
@@ -31,7 +32,7 @@
 		<TierFeatures features={tier.features} />
 	</div>
 
-	<Button class="w-full" href="/checkout">
+	<Button class="w-full" onClick={() => handleCheckout(tier.stripeId)}>
 		<h1 class="title-medium">GET STARTED</h1>
 	</Button>
 </div>
