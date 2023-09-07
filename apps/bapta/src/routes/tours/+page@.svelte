@@ -63,7 +63,8 @@
 				Journey.
 			</h1>
 		</div>
-		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+		<div
+			class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 xl:grid-cols-3 xl:-mx-8 2xl:-mx-4">
 			{#each tours as tour}
 				<TourCard {tour} />
 			{/each}
