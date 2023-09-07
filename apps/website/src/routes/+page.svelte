@@ -1,6 +1,4 @@
 <script lang="ts">
-	import Header from '$lib/components/organisms/Header.svelte';
-	import Footer from '$lib/components/organisms/Footer.svelte';
 	import Button from '$lib/components/atoms/Button.svelte';
 	import ClientCarousel from '$lib/components/organisms/ClientCarousel.svelte';
 	import ChapterMenu from '$lib/components/organisms/ChapterMenu.svelte';
@@ -10,10 +8,18 @@
 	import { inview } from 'svelte-inview';
 	import type { Options } from 'svelte-inview';
 	import InView, { type TransitionOptions } from '$lib/components/organisms/Inview.svelte';
-	import Icon from '$lib/components/atoms/Icon.svelte';
-	import InViewSlide from '$lib/components/organisms/InViewSlide.svelte';
-	import { benefits } from './benefits';
+
 	import ContactForm from '$lib/components/organisms/ContactForm.svelte';
+	import ContactIconButton from '$lib/components/molecules/ContactIconButton.svelte';
+	import Particles from 'svelte-particles';
+	import { loadSlim } from 'tsparticles-slim';
+	import type { Engine } from 'tsparticles-engine';
+	import { particlesConfig } from './particlesConfig';
+	import Inview from '$lib/components/organisms/Inview.svelte';
+	import BigCard from './BigBenefitCard.svelte';
+	import SmallBenefitCard from './SmallBenefitCard.svelte';
+	import Icon from '$lib/components/atoms/Icon.svelte';
+	import BigBenefitCard from './BigBenefitCard.svelte';
 
 	let scrollY: number;
 	// Index of the current chapter that is in the viewport, used by chapter menu.
@@ -41,6 +47,21 @@
 			x: 200,
 			y: 0,
 		},
+	};
+
+	let onParticlesLoaded = (event: any) => {
+		const particlesContainer = event.detail.particles;
+
+		// you can use particlesContainer to call all the Container class
+		// (from the core library) methods like play, pause, refresh, start, stop
+	};
+
+	let particlesInit = async (engine: Engine) => {
+		// you can use main to customize the tsParticles instance adding presets or custom shapes
+		// this loads the tsparticles package bundle, it's the easiest method for getting everything ready
+		// starting from v2 you can add only the features you need reducing the bundle size
+		//await loadFull(engine);
+		await loadSlim(engine);
 	};
 
 	const handleChapterInView =
@@ -74,11 +95,6 @@
 			title: 'Contact',
 			href: '#contact',
 		},
-		{
-			chapterNumber: 4,
-			title: 'Founders',
-			href: '#founders',
-		},
 	];
 
 	onMount(() => {});
@@ -94,9 +110,18 @@
 		id="hero"
 		use:inview={chapterInViewOptions}
 		on:inview_enter={handleChapterInView(0)}
-		class="h-screen place-items-center">
-		<div id="tsparticles-hero" class="absolute w-full h-full -z-10" />
-		<div class="grid gap-12 justify-items-center inner-section">
+		class="relative h-screen place-items-center bg-[url('/glow_bg_2.png')] bg-no-repeat bg-fit bg-top">
+		<div
+			class="pointer-events-none bg-gradient-to-b from-transparent to-black from-70% w-full h-full absolute z-10" />
+		<Particles
+			id="tsparticles"
+			class="w-full h-full absolute z-0"
+			options={particlesConfig}
+			on:particlesLoaded={onParticlesLoaded}
+			{particlesInit} />
+		<div class="bg-black/40 w-full h-full absolute pointer-events-none" />
+
+		<div class="relative grid gap-12 z-20 justify-items-center inner-section">
 			<h1 class="font-extrabold tracking-tight display-medium lg:display-large">
 				Website Design and Development
 			</h1>
@@ -121,20 +146,21 @@
 		</div>
 	</section>
 
-	<!--Big-Clients Slideshow-->
-	<ClientCarousel />
-
+	<div class="bg-gradient-to-b from-black to-black/40">
+		<!--Big-Clients Slideshow-->
+		<ClientCarousel />
+	</div>
 	<!--Journey Section-->
 	<section
 		id="journey"
 		use:inview={chapterInViewOptions}
 		on:inview_enter={handleChapterInView(1)}
-		class="shadow-lg border-secondary-light/20 dark:border-secondary-dark/20 justify-items-center">
+		class="shadow-lg border-secondary-light/20 dark:border-secondary-dark/20 bg-gradient-to-b from-black/40 to-10% to-transparent justify-items-center">
 		<!--Absolute center line
 		<div class="absolute z-50 w-1 h-6 -translate-x-1/2 bg-red-500 left-1/2 top-1/2" />
 		-->
 
-		<div class="flex flex-col max-w-4xl inner-section">
+		<div class="flex flex-col inner-section">
 			<h1 class="pb-12 display-medium">Areas of Expertise</h1>
 			{#each servicesChapters as { chapterNumber, inView, title, image, body }}
 				<div
@@ -142,7 +168,7 @@
 					<!--Center line and Chapter checkmark-->
 
 					<div
-						class="absolute flex-col items-center hidden h-fit text-center sm:flex -translate-x-1/2 left-1/2 top-8">
+						class="absolute flex-col items-center hidden h-full text-center sm:flex -translate-x-1/2 left-1/2 top-8">
 						<!--Circle-->
 						<div
 							class="flex items-center w-11 h-11 text-center rounded-full bg-surface-dark circle-shadow">
@@ -159,26 +185,27 @@
 							axis={'y'}
 							delay={100}
 							bottom={300}
-							class="flex justify-items-center h-[350px] md:h-[400px] sm:flex w-full pb-2  ">
+							class="flex justify-items-center h-full sm:flex w-full pb-2 mb-2">
 							<!--Line-->
 							<div
-								class=" -mt-1 flex w-1 mx-auto h-full rounded-full bg-surface-light dark:bg-surface-dark line-shadow" />
+								class=" -mt-6 flex w-1 mx-auto h-full rounded-full bg-surface-light dark:bg-surface-dark line-shadow" />
 						</InView>
 					</div>
 
 					<!--Content of Chapter-->
 
-					<InView presetOptions={rightFlyPreset} class="sm:pr-7">
+					<InView presetOptions={rightFlyPreset} class="sm:pr-7 md:pr-12">
 						<img
 							src={image}
 							alt=""
-							class="order-last object-cover object-center w-1/2 mx-auto bg-no-repeat sm:w-full sm:order-first" />
+							class="order-last object-cover object-center w-1/2 mx-auto bg-no-repeat sm:w-full sm:order-first drop-shadow-service-art" />
 					</InView>
 
 					<div
-						class="flex flex-col max-w-md gap-2 p-1 overflow-hidden text-left justify-self-start">
-						<div class="flex flex-row items-center gap-3 pt-1 pl-1 sm:p-0">
-							<div class="relative flex w-12 h-12 place-items-center sm:hidden">
+						class="flex flex-col max-w-xl gap-2 p-1 overflow-hidden text-left justify-self-start">
+						<!-- Mobile text content -->
+						<div class="flex flex-row items-center gap-3 pt-1 pl-1 sm:p-0 sm:hidden">
+							<div class="relative flex w-12 h-12 place-items-center">
 								<div
 									class="flex items-center w-11 h-11 text-center rounded-full bg-surface-dark circle-shadow shadow-primary-dark">
 									<h1 class="mx-auto display-small z-20">
@@ -186,23 +213,23 @@
 									</h1>
 								</div>
 							</div>
-							<h1 class="font-bold display-small sm:hidden">
+							<!-- Mobile title -->
+							<h1 class="headline-large uppercase text-primary-dark">
 								{title}
 							</h1>
 						</div>
 						<InView fly={{ x: -100, y: 0 }} class="sm:hidden">
-							<div class="w-1/4 h-1 border-t border-primary-light dark:border-primary-dark" />
+							<div class="w-1/4 h-0.5 mt-3 border-t border-outline-dark" />
 						</InView>
-						<InView presetOptions={leftFlyPreset} class="sm:pl-7">
-							<h1 class="font-bold display-medium hidden sm:flex pb-4">
+						<InView presetOptions={leftFlyPreset} class="sm:pl-7 ">
+							<!-- sm+ title -->
+							<h1
+								class="sm:headline-large md:title-large uppercase md:uppercase sm:text-primary-dark hidden sm:flex pb-4">
 								{title}
 							</h1>
-							<p class="title-large">
+							<p class="title-large md:headline-large lg:display-small sm:max-w-xs md:max-w-md">
 								{body}
 							</p>
-							<Button class="w-fit mt-6" secondary={true} href="/about">
-								<h1 class="title-medium uppercase">Learn More</h1>
-							</Button>
 						</InView>
 					</div>
 				</div>
@@ -210,58 +237,77 @@
 		</div>
 	</section>
 
-	<!--Member Benefits Section-->
+	<!-- Membership Benefits Section -->
 	<section
 		id="benefits"
 		use:inview={chapterInViewOptions}
 		on:inview_enter={handleChapterInView(2)}
-		class="items-center shadow-lg border-secondary-light/20 dark:border-secondary-dark/20 justify-items-center">
-		<div class="flex flex-col items-center gap-6 inner-section justify-items-center">
+		class=" shadow-2xl grid justify-items-center border-b border-primary-light/20 dark:border-primary-dark/20">
+		<div class="inner-section flex flex-col gap-6 items-center">
 			<div class="max-w-xl py-6 w-fit">
 				<h1 class="display-medium">Membership Benefits</h1>
-				<h2 class="body-medium">
+				<h2 class="body-large">
 					Perks that are simply too good to look anywhere else for your website needs. Seriously.
 				</h2>
 			</div>
-			<div class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
-				{#each benefits as { titleFirst, titleSecond, body, image }, i}
-					<div
-						class="relative grid grid-cols-5 px-6 pt-12 pb-6 overflow-hidden text-left rounded-lg shadow-glow shadow-secondary-dark/30 justify-items-center bg-surface-dark">
-						<div class="col-span-4 flex flex-col w-full gap-3 z-10">
-							<h1
-								class=" headline-large border-outline-light leading-tight dark:border-outline-dark">
-								{titleFirst} <br />
-								{titleSecond}
-							</h1>
-							<hr />
-							<h3 class="body-large">{body}</h3>
-						</div>
-						<div class="absolute top-3 right-3 z-0 flex w-fit h-fit">
-							<img src={image} alt="" class="object-cover object-center mx-auto w-36 h-36" />
-						</div>
-					</div>
-				{/each}
+			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+				<BigBenefitCard
+					topIcon="artwork/book_1.png"
+					title="Open Source Software"
+					artwork="artwork/github_outline_6.png"
+					body={`
+				We resort to using open-source tools, which
+				translates directly into saving costs without compromising on quality.`}>
+					<!-- Bottom items -->
+					<a href="https://youtube.com/Futino" class="flex flex-row items-center gap-3">
+						<img
+							src="artwork/github_outline_7.png"
+							alt="youtube"
+							class="object-center object-cover drop-shadow-github hover:drop-shadow-github-hover w-8 h-8" />
+						<h3 class="body-large">View our code</h3>
+					</a>
+					<a href="https://youtube/futino" class="flex flex-row items-center gap-3">
+						<img
+							src="artwork/yt_2.png"
+							alt="youtube"
+							class="object-center object-cover drop-shadow-youtube hover:drop-shadow-youtube-hover w-8 h-8" />
+						<h3 class="body-large">Check out our streams</h3>
+					</a>
+				</BigBenefitCard>
+				<SmallBenefitCard
+					topIcon="artwork/unlocked_3.png"
+					title="Not Locked In"
+					artwork="artwork/gate_1.png">
+					You're projects use nonproprietary tech, meaning you can swap us out later on. <span
+						class="inline-block">(You won't &#128521;)</span>
+				</SmallBenefitCard>
+				<SmallBenefitCard
+					topIcon="artwork/scalable_1.png"
+					title="Scalable Tiers"
+					artwork="artwork/staircase_2.png">
+					Start with what you need and scale up or down as your business changes.
+				</SmallBenefitCard>
+				<BigBenefitCard
+					topIcon="artwork/mag_scope_1.png"
+					title="Transparent Pricing"
+					artwork="artwork/window_1.png"
+					body={`
+					Our simple and transparent subscription model fosters trust, gaurantees predictable prices, and provides peace of mind.
+			`}>
+					<!-- Bottom items -->
+					<a href="https://youtube.com/Futino" class="flex flex-row items-center gap-2">
+						<Icon icon="checkmark" height="32" width="32" class="-ml-0.5 text-secondary-dark" />
+						<h3 class="body-large">No hidden fees</h3>
+					</a>
+					<a href="https://github.com/Futino" class="flex flex-row items-center gap-2">
+						<Icon icon="checkmark" height="32" width="32" class="-ml-0.5 text-secondary-dark" />
+						<h3 class="body-large">No upfront costs</h3>
+					</a>
+				</BigBenefitCard>
 			</div>
 		</div>
 	</section>
 
-	<!--CTA section-->
-	<section id="hereshow" class="shadow-lg border-secondary-light/20 dark:border-secondary-dark/20">
-		<InView transition="fade" duration={300}>
-			<div class="flex flex-col space-y-12 inner-section items-center">
-				<h1 class="display-large">Let's Get Started</h1>
-				<div class="grid grid-cols-2 gap-x-4">
-					<Button class="" href="/pricing">
-						<p class="px-3 sm:px-5 md:px-6 title-medium">See Pricing</p>
-					</Button>
-
-					<Button class="" secondary={true} href="/booking">
-						<p class="px-3 sm:px-5 md:px-6 title-medium">Book an intro call</p>
-					</Button>
-				</div>
-			</div>
-		</InView>
-	</section>
 	<!--Contact Section-->
 	<section
 		id="contact"
@@ -269,68 +315,18 @@
 		on:inview_enter={handleChapterInView(3)}
 		class="shadow-lg border-secondary-light/20 dark:border-secondary-dark/20 justify-items-center">
 		<div
-			class="inner-section flex flex-col gap-y-12 w-full
+			class="inner-section flex flex-col w-full gap-12
 		">
-			<div class="grid grid-cols-1 gap-6 lg:grid-cols-2 text-left">
-				<InView duration={250} fly={{ x: -500, y: 0 }} class="z-10 w-full h-full">
-					<!--PM Option-->
-					<div
-						class="flex flex-col h-full p-8 gap-y-12 shadow-lg shadow-black/40 bg-surface-dark border-1 border-primary-dark rounded-md">
-						<div class="flex flex-col">
-							<h2 class="font-extrabold display-medium">Give us a PM</h2>
-							<p class="max-w-3xl title-medium">
-								Send us message on one of these platforms. <br />
-								We'll get back to you within a couple hours.
-							</p>
-						</div>
-						<div class="flex flex-col h-full flex-1 gap-y-5">
-							<div class="grid grid-cols-4 grid-rows-4 gap-6 text-tertiary-dark">
-								<!--Phone number-->
-								<div class="pm-icon">
-									<Icon icon="phone" height="32px" width="32px" />
-								</div>
-
-								<a class="pm-text" href="tel:9133600394">
-									<h1 class="pl-2 title-small sm:title-large">+852 9747 3013</h1>
-								</a>
-								<!--WhatsApp-->
-								<div class="pm-icon">
-									<Icon icon="whatsapp" height="32px" width="32px" />
-								</div>
-
-								<a class="pm-text" href="mailto:contact@futi.no">
-									<h1 class="pl-2 title-small sm:title-large">+852 9747 3013</h1>
-								</a>
-								<!--Email-->
-								<div class="pm-icon">
-									<Icon icon="instagram" height="32px" width="32px" />
-								</div>
-
-								<a class="pm-text" href="mailto:ggsoccercamps@gmail.com">
-									<h1 class="pl-2 title-small sm:title-large">@Futino</h1>
-								</a>
-								<!--Email-->
-								<div class="pm-icon">
-									<Icon icon="email" height="32px" width="32px" />
-								</div>
-
-								<a class="pm-text" href="mailto:contact@futi.no">
-									<h1 class="pl-2 title-small sm:title-large">contact@futi.no</h1>
-								</a>
-							</div>
-						</div>
-					</div>
-				</InView>
-
+			<div class="grid grid-cols-1 md:grid-cols-5 w-full gap-12">
 				<InView
 					duration={350}
 					fly={{ x: -700, y: 0 }}
-					delay={300}
-					class="z-0 overflow-visible h-full w-full">
+					delay={0}
+					class="z-0 h-full md:col-span-4 max-w-4xl overflow-visible">
 					<!--Contact form Option-->
 					<div
-						class="flex flex-col p-8 gap-y-8 text-left shadow-lg shadow-black/40 bg-surface-dark border-1 border-primary-dark rounded-md">
-						<div class="flex flex-col">
+						class="flex flex-col p-8 gap-y-8 text-left shadow-xl shadow-black drop-shadow-glow-lg-dark bg-surface-dark border-1 border-primary-dark rounded-md">
+						<div class="flex flex-col ml-2">
 							<h2 class="font-extrabold display-medium">Contact Us</h2>
 							<p class="title-medium">
 								Feel free to send us an email for any requests or questions. <br />
@@ -341,64 +337,68 @@
 						<ContactForm />
 					</div>
 				</InView>
-			</div>
-		</div>
-	</section>
+				<div
+					class="z-10 w-full h-full md:order-first overflow-visible md:col-span-1 justify-self-center md:justify-self-end">
+					<!--PM Option-->
 
-	<!--Founders Section-->
-	<section
-		use:inview={chapterInViewOptions}
-		on:inview_enter={handleChapterInView(4)}
-		id="founders"
-		class=" shadow-lg border-secondary-light/20 dark:border-secondary-dark/20 justify-items-center">
-		<InView transition="fade" duration={500} class="">
-			<div class="flex flex-col mx-auto gap-y-12 place-items-center inner-section">
-				<div class="grid grid-cols-1 gap-x-4 gap-y-4">
-					<!--Jorge's Card-->
-					<div class="founder-card">
-						<img
-							src="/people/jorge_6.jpg"
-							alt="Not found"
-							class="self-center object-cover object-center w-24 h-24 bg-black rounded-full" />
-						<h2 class="pt-2 display-small">Jorge Lewis</h2>
-						<h3 class="pb-4 text-gray-400 title-small">CEO & Founder of Futino</h3>
-						<h2 class="body-large max-w-2xl">
-							I noticed that making a website was either too expensive (hiring someone) or too time
-							consuming (websitebuilder) for everyone - individuals, startups, especially large
-							businesses. I wanted to create a solution to these problems.
-						</h2>
-						<Button href="/about#team" class=" my-4" secondary={true}>
-							<h1 class="p-2">Learn More</h1>
-						</Button>
+					<div
+						class="flex flex-row md:flex-col h-full md:items-end justify-around w-full place-content-between text-surface-on-dark font-extrabold title-large">
+						<InView duration={300} fly={{ x: -200, y: 0 }} delay={250} class="overflow-visible">
+							<!--Phone-->
+							<ContactIconButton
+								img="artwork/call_logo_2.png"
+								href="tel:9133600394"
+								label="+852 9747 3013"
+								class="hover:text-violet-400"
+								imgClass="drop-shadow-phone group-hover:drop-shadow-phone-hover " />
+						</InView>
+						<InView duration={300} fly={{ x: -200, y: 0 }} delay={325} class="overflow-visible">
+							<!--WhatsApp-->
+							<ContactIconButton
+								img="artwork/whatsapp_logo_6.png"
+								href="https://wa.me/+85297473013"
+								label="Futino Whatsapp"
+								class="hover:text-lime-400"
+								imgClass="drop-shadow-whatsapp group-hover:drop-shadow-whatsapp-hover" />
+						</InView>
+						<InView duration={300} fly={{ x: -200, y: 0 }} delay={500} class="overflow-visible">
+							<!--Instagram-->
+							<ContactIconButton
+								img="artwork/instagram_logo_1.png"
+								href=""
+								label="@Futino"
+								class="hover:text-fuchsia-400"
+								imgClass="drop-shadow-instagram group-hover:drop-shadow-instagram-hover" />
+						</InView>
+						<InView duration={300} fly={{ x: -200, y: 0 }} delay={775} class="overflow-visible">
+							<!--Email-->
+							<ContactIconButton
+								img="artwork/email_2.png"
+								href="mailto:contact@futi.no"
+								label="contact@futi.no"
+								class="hover:text-blue-400"
+								imgClass="drop-shadow-email group-hover:drop-shadow-email-hover" />
+						</InView>
 					</div>
 				</div>
 			</div>
-		</InView>
+		</div>
 	</section>
 </main>
 
 <style>
-	.pm-text {
-		@apply flex items-center col-span-3 text-surface-on-dark justify-self-start;
-	}
-	.pm-icon {
-		@apply col-span-1 p-5 rounded-full bg-surface-dark text-surface-on-dark border w-min h-min justify-self-end;
-	}
-	.founder-card {
-		@apply flex flex-col max-w-xl p-6 rounded-lg bg-surface-dark shadow-glow shadow-secondary-dark/30 border-primary-dark;
-	}
 	.circle-shadow {
 		@apply relative;
 	}
 
 	.circle-shadow:before {
-		@apply absolute left-0 right-0 bottom-0 top-0 z-0 rounded-full shadow-glow shadow-primary-dark/80 content-[''];
+		@apply absolute left-0 right-0 bottom-0 top-0 z-0 rounded-full shadow-glow shadow-primary-dark content-[''];
 	}
 	.line-shadow {
 		@apply relative;
 	}
 
 	.line-shadow::before {
-		@apply absolute left-0 right-0 bottom-0 top-0 rounded-full -z-10  shadow-glow shadow-primary-dark/80 content-[''];
+		@apply absolute left-0 right-0 bottom-0 top-0 rounded-full -z-10  shadow-glow shadow-primary-dark content-[''];
 	}
 </style>

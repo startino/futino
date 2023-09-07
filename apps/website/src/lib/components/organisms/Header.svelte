@@ -86,7 +86,7 @@
 			<Logo />
 			<p class="hidden sm:flex headline-small my-auto pb-1">Futino</p>
 		</a>
-		<div class="flex items-center ml-auto gap-8 font-extrabold title-large">
+		<div class="flex items-center ml-auto gap-8 title-large">
 			<nav class="hidden md:flex gap-6 lg:gap-8 pb-0.5">
 				{#each elements as element, i}
 					<a class="hover:text-tertiary-light dark:hover:text-tertiary-dark" href={element.href}>

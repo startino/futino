@@ -31,6 +31,7 @@ export type NorpTier = {
 	subtitle: string;
 	cost: string;
 	features: Features;
+	thumbnail: string;
 };
 
 export const norpTiers: NorpTier[] = [
@@ -44,8 +45,9 @@ export const norpTiers: NorpTier[] = [
 			'Monthly Work Capacity': '2hrs',
 			'Requests & Revisions': 'ထ',
 			'Yearly Meetings': '1',
-			'UI Maintenance': '✔️',
+			'UI Maintenance': 'checkmark',
 		},
+		thumbnail: '/artwork/sailboat_2.png',
 	},
 	{
 		stripeId: 'price_1NibETD09EWpqQ4Y0Nh7Oyad',
@@ -57,8 +59,9 @@ export const norpTiers: NorpTier[] = [
 			'Monthly Work Capacity': '8hrs',
 			'Requests & Revisions': 'ထ',
 			'Yearly Meetings': 'Up to 12',
-			'UI Maintenance': '✔️',
+			'UI Maintenance': 'checkmark',
 		},
+		thumbnail: '/artwork/plane_3.png',
 	},
 	{
 		stripeId: 'price_1NkkCHD09EWpqQ4Yf9lj4X8f',
@@ -70,8 +73,9 @@ export const norpTiers: NorpTier[] = [
 			'Monthly Work Capacity': '33hrs',
 			'Requests & Revisions': 'ထ',
 			'Yearly Meetings': 'Up to 24',
-			'UI Maintenance': '✔️',
+			'UI Maintenance': 'checkmark',
 		},
+		thumbnail: '/artwork/rocket_6.png',
 	},
 ];
 

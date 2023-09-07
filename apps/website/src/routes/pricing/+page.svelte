@@ -12,6 +12,7 @@
 	import { loadStripe } from '@stripe/stripe-js';
 
 	import { handleCheckout } from './handleCheckout';
+	import Icon from '$lib/components/atoms/Icon.svelte';
 
 	export let activeTabValue = 0;
 
@@ -25,7 +26,7 @@
 		<div
 			class="flex flex-col items-center gap-8 justify-items-center pt-48 text-center inner-section">
 			<div class="flex flex-col items-center gap-4">
-				<h1 class="display-small lg:display-large">Pay for exaclty what you get.</h1>
+				<h1 class="display-small lg:display-large">Pay exaclty for what you get.</h1>
 				<h2 class="title-large">
 					No contracts, pause or cancel anytime, and upscale or downscale as you wish.
 				</h2>
@@ -44,14 +45,14 @@
 				<div class="flex pb-0 grid-item">
 					<h1 class="mt-auto uppercase title-medium text-outline-dark place-self-end">Features</h1>
 				</div>
-				{#each norpTiers as { name, subtitle, cost }}
+				{#each norpTiers as { name, subtitle, cost, thumbnail }}
 					<div class="flex flex-col max-w-md gap-2 text-left grid-item place-items-start">
 						<img
-							src="/artwork/design_illustration.png"
+							src={thumbnail}
 							alt=""
-							class="object-cover object-center w-1/2 -mb-5 h-fit" />
+							class="object-fit object-center drop-shadow-pricing-art h-1/2 w-1/2" />
 						<div class="">
-							<h2 class=" headline-large uppercase text-primary-dark">
+							<h2 class=" headline-large uppercase text-primary-dark font-extrabold">
 								{name}
 							</h2>
 							<h3 class="pb-6 title-medium text-outline-dark text-outline">
@@ -73,7 +74,11 @@
 					</h2>
 					{#each norpTiers as { features }}
 						<h2 class="my-auto title-medium grid-item text-left">
-							{features[feature]}
+							{#if features[feature] == 'checkmark'}
+								<Icon icon="checkmark" height="24" width="24" class="-ml-0.5 text-secondary-dark" />
+							{:else}
+								{features[feature]}
+							{/if}
 						</h2>
 					{/each}
 				{/each}
