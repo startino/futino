@@ -1,14 +1,23 @@
 <script lang="ts">
 	import { base } from '$app/paths';
 	import type { Tour } from '../tsData/tours';
+	import { formatter } from '$lib/utils';
 
 	export let tour: Tour;
 	const tour_url = tour.href;
+	let formattedMidrange: string[] = [
+		formatter.format(tour.journey.midrange[0] * tour.days),
+		formatter.format(tour.journey.midrange[1] * tour.days),
+	];
+	let formattedLuxury: string[] = [
+		formatter.format(tour.journey.luxury[0] * tour.days),
+		formatter.format(tour.journey.luxury[1] * tour.days),
+	];
 </script>
 
 <a
 	href="/tours/{tour_url}"
-	class="flex flex-col h-full w-full text-left transition-all group hover:scale-105 duration-300 place-items-start rounded-lg shadow-lg shadow-surface-dark bg-surface-dark">
+	class="flex flex-col h-full w-full text-left transition-all group hover:scale-[102%] duration-300 place-items-start rounded-lg shadow-lg shadow-surface-dark bg-surface-dark">
 	<div class="flex shrink-0 h-80 w-full relative overflow-hidden bg-black rounded-md">
 		<img
 			src={tour.thumbnail}
@@ -24,7 +33,7 @@
 	</div>
 	<!--Title, Parks, and tags-->
 	<div class="rounded-b flex flex-col gap-2 p-4 h-full">
-		<h1 class="headline-small">{tour.name}</h1>
+		<h1 class="headline-medium">{tour.name}</h1>
 		<div class="headline-small flex gap-6">
 			<h1>
 				{tour.days} &#9728;&#65039
@@ -33,6 +42,33 @@
 				{tour.days - 1} &#127769
 			</h1>
 		</div>
+		{#if tour.days == 1}
+			<div class="flex flex-col py-4 mt-4 w-fit pr-12">
+				<h1 class="title-large">Standard</h1>
+				<h1 class="headline-large font-bold inline-block">
+					<span class="text-primary-dark"> {formattedMidrange[0]} </span>
+					<span class="title-large text-outline-dark font-extralight">/person</span>
+				</h1>
+			</div>
+		{:else}
+			<div class="flex flex-col py-4 mt-4 border-b border-outline-dark w-fit pr-12">
+				<h1 class="title-large">Midrange</h1>
+				<h1 class="headline-large font-bold inline-block">
+					<span class="text-primary-dark"> {formattedMidrange[0]} </span> -
+					<span class="text-primary-dark"> {formattedMidrange[1]} </span>
+					<span class="title-large text-outline-dark font-extralight">/person</span>
+				</h1>
+			</div>
+			<div class="flex flex-col mb-4 py-4">
+				<h1 class="title-large">Luxury</h1>
+				<h1 class="headline-large font-bold inline-block">
+					<span class="text-primary-dark"> {formattedLuxury[0]}</span> -
+					<span class="text-primary-dark"> {formattedLuxury[1]} </span>
+					<span class="title-large text-outline-dark font-extralight">/person</span>
+				</h1>
+			</div>
+		{/if}
+
 		<div class="flex flex-row flex-wrap gap-3 py-1">
 			{#each tour.tags as tag}
 				<!-- Ignores top rated tag since it is at the top-->

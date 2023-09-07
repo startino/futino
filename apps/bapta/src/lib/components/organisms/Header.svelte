@@ -49,7 +49,7 @@
 	<!-- svelte-ignore a11y-no-static-element-interactions -->
 	<!-- svelte-ignore a11y-click-events-have-key-events -->
 	<!-- Background Blurr -->
-	<div transition:fade class="fixed inset-0">
+	<div transition:fade class="fixed inset-0 z-50">
 		<div on:click={toggleMenu} class="bg-black/50 absolute w-screen h-screen backdrop-blur-sm" />
 		<!-- Menu Card -->
 		<div
