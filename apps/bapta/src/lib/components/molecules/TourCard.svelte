@@ -54,17 +54,25 @@
 			<div class="flex flex-col py-2 border-b border-outline-dark w-fit pr-12">
 				<h1 class="title-medium">Midrange</h1>
 				<h1 class="title-large md: font-bold inline-block">
-					<span class="text-primary-dark"> {formattedMidrange[0]} </span> -
-					<span class="text-primary-dark"> {formattedMidrange[1]} </span>
-					<span class="title-medium text-outline-dark font-extralight">/person</span>
+					{#if tour.journey.midrange[0] == 0}
+						-
+					{:else}
+						<span class="text-primary-dark"> {formattedMidrange[0]} </span> -
+						<span class="text-primary-dark"> {formattedMidrange[1]} </span>
+						<span class="title-medium text-outline-dark font-extralight">/person</span>
+					{/if}
 				</h1>
 			</div>
 			<div class="flex flex-col py-2">
 				<h1 class="title-medium">Luxury</h1>
 				<h1 class="headline-small font-bold inline-block">
-					<span class="text-primary-dark"> {formattedLuxury[0]} </span> -
-					<span class="text-primary-dark"> {formattedLuxury[1]} </span>
-					<span class="title-medium text-outline-dark font-extralight">/person</span>
+					{#if tour.journey.luxury[0] == 0}
+						-
+					{:else}
+						<span class="text-primary-dark"> {formattedLuxury[0]} </span> -
+						<span class="text-primary-dark"> {formattedLuxury[1]} </span>
+						<span class="title-medium text-outline-dark font-extralight">/person</span>
+					{/if}
 				</h1>
 			</div>
 		{/if}
