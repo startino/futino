@@ -45,7 +45,7 @@ const tours: Tour[] = [
 		days: 7,
 		href: '7-days-north-migration-safari',
 		journey: journeys['7-days-north-migration-safari'],
-		tags: ['Tarangire', 'Serengeti', 'Ngorongoro'],
+		tags: ['Tarangire', 'Serengeti', 'Ngorongoro', 'xlSpacer'],
 	  },
 	  {
 		id: 4,
@@ -90,7 +90,7 @@ const tours: Tour[] = [
 		days: 9,
 		href: '9-days-honeymoon-safari-&-beach',
 		journey: journeys['9-days-honeymoon-safari-&-beach'],
-		tags: ['Zanzibar', 'Top Rated', 'Tarangire', 'Serengeti', 'Ngorongoro'],
+		tags: ['Zanzibar', 'Top Rated', 'Tarangire', 'Serengeti', 'Ngorongoro', 'lgSpacer'],
 	  },
 	  {
 		id: 9,

@@ -118,20 +118,15 @@
 									{tag}
 								</h1>
 							</div>
-						{:else}
-							<div class="bg-gradient-to-tr from-yellow-700 to-orange-900">
-								<h1 class="">
-									{tag}
-								</h1>
-							</div>
+						{:else if tag == 'xlSpacer'}
+							<div class="invisible">spacing to br</div>
+						{:else if tag == 'lgSpacer'}
+							<div class="invisible xl:hidden">spacing to br</div>
+						{:else if tag == 'mdSpacer'}
+							<div class="invisible">spacing to br</div>
 						{/if}
 					</div>
 				{/if}
 			{/each}
-			<div class="invisible [&>*]:rounded-xl body-medium [&>*]:px-2 [&>*]:py-0.5 font-bold">
-				<div class="bg-gradient-to-tr from-blue-700 to-teal-600">
-					<h1 class="">empty</h1>
-				</div>
-			</div>
 		</div>
 	</div></a>
