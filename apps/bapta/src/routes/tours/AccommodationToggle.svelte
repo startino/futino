@@ -9,18 +9,15 @@
 	let button_widths: number[] = [68, 70421];
 
 	const handleClick = (tabValue: number) => () => {
-		console.log(tabValue);
 		let left = 0;
 		button_widths.forEach((value, index) => {
 			console.log('Loop');
 			if (index < tabValue) {
 				left += value + 8;
-				console.log('Adding to left: ', left);
 			}
 		});
 		let newString = 'left: ' + left.toString() + 'px';
 		positionClass = 'left: ' + left.toString() + 'px';
-		console.log(positionClass);
 	};
 </script>
 
@@ -40,7 +37,7 @@
 					? ''
 					: 'outline outline-0 hover:outline-2 outline-white'}"
 				bind:clientWidth={button_widths[i]}>
-				<button on:click={handleClick(promotion.index)}>
+				<button type="button" on:click={handleClick(promotion.index)}>
 					<AccommodationOption
 						name="billing"
 						for={promotion.for}

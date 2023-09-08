@@ -28,7 +28,7 @@
 				console.log('on click');
 				addChosenJourney(journeyId);
 			}}>
-			<OutlineButton href="/checkout">
+			<OutlineButton href="/request-tour">
 				<h2 class="display-small md:display-medium">Request Quote</h2>
 			</OutlineButton>
 		</div>

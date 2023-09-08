@@ -6,6 +6,7 @@
 	import { onMount } from 'svelte';
 	import JourneyCard from '$lib/components/molecules/JourneyCard.svelte';
 	import AccommodationToggle from '../tours/AccommodationToggle.svelte';
+	import { goto } from '$app/navigation';
 
 	// Create a Supabase client object
 	const supabase = createClient<Database>(
@@ -19,7 +20,7 @@
 
 	let standard: number = 0; // 0 is midrange, 1 is Luxury
 
-	async function registerTour(e) {
+	async function requestTour(e) {
 		console.log('inserting test data');
 		let formData = new FormData(e.target);
 
@@ -34,6 +35,8 @@
 			const [key, value]: [string, FormDataEntryValue] = field;
 			data[key] = value;
 		}
+
+		goto('/thank-you');
 
 		// Supabase only has one name property
 		let fullName = data.firstName + ' ' + data.lastName;
@@ -72,7 +75,7 @@
 
 		<div
 			class="p-5 rounded-lg self-start shadow-lg w-full max-w-xl col-span-2 shadow-black bg-surface-dark/70 prose prose-sm sm:prose-base md:prose-lg lg:prose-xl xl:prose-2xl dark:prose-invert prose-main justify-items-center mx-auto">
-			<form class="flex flex-col gap-5" on:submit|preventDefault={registerTour}>
+			<form class="flex flex-col gap-5" on:submit|preventDefault={requestTour}>
 				<input
 					class="dark:bg-surface-dark/70 border-black"
 					type="text"
@@ -112,7 +115,7 @@
 				</div>
 				<button
 					type="submit"
-					id="register"
+					id="request"
 					class="py-2 shadow-lg rounded-lg text-center bg-secondary-light dark:bg-secondary-dark text-secondary-on-light dark:text-secondary-on-dark display-small">
 					Request Quote
 				</button>

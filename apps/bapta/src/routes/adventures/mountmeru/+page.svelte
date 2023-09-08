@@ -102,7 +102,7 @@
 						on:click={() => {
 							addChosenJourney(id);
 						}}>
-						<OutlineButton href="/checkout">
+						<OutlineButton href="/request-tour">
 							<h1 class="p-3 title-medium">Request Now</h1>
 						</OutlineButton>
 					</div>
