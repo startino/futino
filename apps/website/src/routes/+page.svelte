@@ -123,15 +123,14 @@
 
 		<div class="relative grid gap-12 z-20 justify-items-center inner-section">
 			<h1 class="font-extrabold tracking-tight display-medium lg:display-large">
-				Website Design and Development
+				Launch Your Tailor-made Website
 			</h1>
 
 			<h3 class=" headline-small lg:headline-medium max-w-3xl">
-				Growing startups and companies with Creative <span class="text-primary-dark"
-					>Web Design</span
-				>, Efficient
-				<span class="text-primary-dark">Web Development</span>, and Strategic
-				<span class="text-primary-dark">Hosting</span> with a unique pricing model.
+				Growing startups and companies with <span class="text-primary-dark">AI Design</span>,
+				<span class="text-primary-dark">Optimized Development</span>, and
+				<span class="text-primary-dark">Strategic Hosting</span>. Each without the downsides of an
+				agency.
 			</h3>
 
 			<div class="grid grid-cols-2 gap-x-4">
@@ -221,7 +220,7 @@
 						<InView fly={{ x: -100, y: 0 }} class="sm:hidden">
 							<div class="w-1/4 h-0.5 mt-3 border-t border-outline-dark" />
 						</InView>
-						<InView presetOptions={leftFlyPreset} class="sm:pl-7 ">
+						<InView presetOptions={leftFlyPreset} class="sm:pl-7 md:pl-12">
 							<!-- sm+ title -->
 							<h1
 								class="sm:headline-large md:title-large uppercase md:uppercase sm:text-primary-dark hidden sm:flex pb-4">
