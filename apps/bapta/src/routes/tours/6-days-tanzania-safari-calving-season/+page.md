@@ -1,12 +1,8 @@
 <script lang="ts">
-import AccommodationToggle from '../AccommodationToggle.svelte';
-
-
+  import AccommodationToggle from '../AccommodationToggle.svelte';
 </script>
 
 # 6 DAYS TANZANIA SAFARI CALVING SEASON
-
-
 
 ## PARKS
 
