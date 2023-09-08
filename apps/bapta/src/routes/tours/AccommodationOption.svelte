@@ -4,7 +4,7 @@
 
 <label
 	for={$$props.for}
-	class="{$$props.class} flex flex-col md:flex-row rounded headline-medium md:display-medium cursor-pointer">
+	class="{$$props.class} flex flex-col md:flex-row rounded headline-small cursor-pointer">
 	{$$props.text}
 	<slot />
 </label>

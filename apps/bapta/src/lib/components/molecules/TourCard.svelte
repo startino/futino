@@ -47,29 +47,29 @@
 				<h1 class="title-large">Standard</h1>
 				<h1 class="headline-large font-bold inline-block">
 					<span class="text-primary-dark"> {formattedMidrange[0]} </span>
-					<span class="title-large text-outline-dark font-extralight">/person</span>
+					<span class="title-small text-outline-dark font-extralight">/person</span>
 				</h1>
 			</div>
 		{:else}
 			<div class="flex flex-col py-4 mt-4 border-b border-outline-dark w-fit pr-12">
-				<h1 class="title-large">Midrange</h1>
-				<h1 class="headline-large font-bold inline-block">
+				<h1 class="title-medium">Midrange</h1>
+				<h1 class="headline-medium font-bold inline-block">
 					<span class="text-primary-dark"> {formattedMidrange[0]} </span> -
 					<span class="text-primary-dark"> {formattedMidrange[1]} </span>
-					<span class="title-large text-outline-dark font-extralight">/person</span>
+					<span class="title-medium text-outline-dark font-extralight">/person</span>
 				</h1>
 			</div>
 			<div class="flex flex-col mb-4 py-4">
-				<h1 class="title-large">Luxury</h1>
-				<h1 class="headline-large font-bold inline-block">
+				<h1 class="title-medium">Luxury</h1>
+				<h1 class="headline-medium font-bold inline-block">
 					<span class="text-primary-dark"> {formattedLuxury[0]}</span> -
 					<span class="text-primary-dark"> {formattedLuxury[1]} </span>
-					<span class="title-large text-outline-dark font-extralight">/person</span>
+					<span class="title-medium text-outline-dark font-extralight">/person</span>
 				</h1>
 			</div>
 		{/if}
 
-		<div class="flex flex-row flex-wrap gap-3 py-1">
+		<div class="flex flex-row flex-wrap gap-3 py-1 mt-auto pb-2 md:pb-4 xl:pb-6">
 			{#each tour.tags as tag}
 				<!-- Ignores top rated tag since it is at the top-->
 				{#if tag != 'Top Rated'}

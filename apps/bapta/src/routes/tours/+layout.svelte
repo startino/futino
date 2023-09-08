@@ -29,8 +29,11 @@
 				addChosenJourney(journeyId);
 			}}>
 			<OutlineButton href="/checkout">
-				<h1 class="display-small md:display-medium">Request Quote</h1>
+				<h2 class="display-small md:display-medium">Request Quote</h2>
 			</OutlineButton>
 		</div>
 	</div>
 </main>
+
+<style>
+</style>
