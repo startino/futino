@@ -20,6 +20,7 @@ const tours: Tour[] = [
 		journey: journeys['6-days-western-corridor-migration'],
 		tags: ['Top Rated', 'Tarangire', 'Serengeti', 'Ngorongoro', 'Lake Manyara'],
 	},
+
 	{
 		id: 1,
 		thumbnail: '/images/safari/1.webp',
@@ -27,6 +28,7 @@ const tours: Tour[] = [
 		days: 6,
 		href: '6-days-tanzania-safari-calving-season',
 		journey: journeys['6-days-tanzania-safari-calving-season'],
+
 		tags: ['Top Rated', 'Tarangire', 'Serengeti', 'Ngorongoro', 'Lake Manyara'],
 	},
 	{
@@ -36,8 +38,10 @@ const tours: Tour[] = [
 		days: 7,
 		href: '7-days-tanzania-safari',
 		journey: journeys['7-days-tanzania-safari'],
+
 		tags: ['Tarangire', 'Serengeti', 'Ngorongoro', 'Lake Manyara'],
 	},
+
 	{
 		id: 3,
 		thumbnail: '/images/safari/15.webp',
@@ -45,6 +49,7 @@ const tours: Tour[] = [
 		days: 7,
 		href: '7-days-north-migration-safari',
 		journey: journeys['7-days-north-migration-safari'],
+
 		tags: ['Tarangire', 'Serengeti', 'Ngorongoro', 'xlSpacer'],
 	},
 	{
@@ -54,6 +59,7 @@ const tours: Tour[] = [
 		days: 7,
 		href: '7-days-camping-safari',
 		journey: journeys['7-days-camping-safari'],
+
 		tags: ['Tarangire', 'Ngorongoro', 'Serengeti', 'Lake Manyara'],
 	},
 	{
@@ -63,6 +69,7 @@ const tours: Tour[] = [
 		days: 8,
 		href: '8-days-north-migration-safari',
 		journey: journeys['8-days-north-migration-safari'],
+
 		tags: ['Top Rated', 'Tarangire', 'Serengeti', 'Lake Manyara', 'Ngorongoro'],
 	},
 	{
@@ -72,6 +79,7 @@ const tours: Tour[] = [
 		days: 8,
 		href: '8-days-family-safari',
 		journey: journeys['8-days-family-safari'],
+
 		tags: ['Tarangire', 'Serengeti', 'Lake Manyara', 'Ngorongoro'],
 	},
 	{
@@ -81,6 +89,7 @@ const tours: Tour[] = [
 		days: 9,
 		href: '9-days-family-tanzania-safari-&-beach',
 		journey: journeys['9-days-family-tanzania-safari-&-beach'],
+
 		tags: ['Zanzibar', 'Tarangire', 'Serengeti', 'Ngorongoro'],
 	},
 	{
@@ -90,6 +99,7 @@ const tours: Tour[] = [
 		days: 9,
 		href: '9-days-honeymoon-safari-&-beach',
 		journey: journeys['9-days-honeymoon-safari-&-beach'],
+
 		tags: ['Zanzibar', 'Top Rated', 'Tarangire', 'Serengeti', 'Ngorongoro', 'lgSpacer'],
 	},
 	{

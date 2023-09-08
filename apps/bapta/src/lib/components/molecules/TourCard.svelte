@@ -32,6 +32,7 @@
 		{/if}
 	</div>
 	<!--Title, Parks, and tags-->
+
 	<div class="rounded-b flex flex-col justify-items-end gap-2 p-4 h-full">
 		<h1 class="headline-medium">{tour.name}</h1>
 		<div class="headline-small flex gap-6 mt-auto pt-3">

@@ -2,10 +2,12 @@
 	import { base } from '$app/paths';
 	import journeys, { Journey } from '$lib/journeys';
 	import { formatter } from '$lib/utils';
+
 	import type { Tour } from '../tsData/tours';
 
 	export let journeyId: string = '';
 	const journey: Journey = journeys[journeyId];
+
 	let { name, duration, days, thumbnail, midrange, luxury } = journey;
 	let tags: string[] = [];
 
@@ -20,7 +22,7 @@
 </script>
 
 <div
-	class="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 h-fit w-full text-left transition-all place-items-center rounded-lg shadow-lg shadow-surface-dark bg-surface-dark gap-4">
+	class="grid grid-cols-2 md:grid-cols-1 lg:grid-cols-2 h-fit w-full text-left transition-all place-items-center rounded-lg shadow-lg shadow-surface-dark bg-surface-dark gap-4">
 	<div class="flex h-full w-full relative rounded-md">
 		<img
 			src={thumbnail}
@@ -38,6 +40,7 @@
 	<div
 		class="rounded-b flex flex-col gap-2 w-full my-auto md:place-items-start py-1 px-2 sm:px-4 md:px-2 md:pr-2 lg:pr-4 lg:pl-0 pr-4 justify-items-center">
 		<h1 class="title-large sm:headline-small pt-4 md:pt-0">{name}</h1>
+
 		<div class="title-small sm:headline-small flex gap-6">
 			<h1>
 				{days} &#9728;&#65039
