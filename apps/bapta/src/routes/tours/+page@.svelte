@@ -59,12 +59,12 @@
 			<h1 class="display-large">Safari Tour Packages</h1>
 			<h1 class="headline-small">Click on a tour to learn more!</h1>
 			<h1 class="body-medium text-outline-dark pt-4 max-w-xl">
-				* Each Journey here is only a starting point and is fully customizeable after requesting the
-				Journey.
+				* Each Journey is only a starting point and is fully customizeable. <br />
+				* Prices displayed are estimations and may vary.
 			</h1>
 		</div>
 		<div
-			class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 xl:grid-cols-3 xl:-mx-8 2xl:-mx-4">
+			class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-x-6 gap-y-10 xl:grid-cols-3 xl:-mx-8 2xl:-mx-4">
 			{#each tours as tour}
 				<TourCard {tour} />
 			{/each}

@@ -5,7 +5,7 @@
 	import FAQ from '$lib/components/organisms/FAQSection.svelte';
 	import MountPage from '$lib/components/pages/MountPage.svelte';
 	import kilimanjaroFaq from '$lib/components/tsData/kilimanjaroFaq';
-	import { addChosenJourney } from '$lib/journeysStore';
+	import { addChosenJourney, journeysStore } from '$lib/journeysStore';
 
 	const routes = [
 		{
@@ -118,7 +118,7 @@
 						on:click={() => {
 							addChosenJourney(id);
 						}}>
-						<OutlineButton href="/checkout">
+						<OutlineButton href="/request-tour">
 							<h1 class="p-3 title-medium">Request Journey</h1>
 						</OutlineButton>
 					</div>

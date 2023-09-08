@@ -120,14 +120,14 @@
 
 <!-- Why Choose Bapta Section-->
 <section class="section" id="choose_bapta">
-	<div class="inner-section grid grid-cols-1 md:grid-cols-3 gap-8 place-items-center">
+	<div class="inner-section grid grid-cols-1 lg:grid-cols-3 gap-8 place-items-center">
 		{#each why_choose_us as { title, body }}
 			<div
-				class="h-full bg-surface-dark rounded-lg flex flex-col justify-items-center w-full px-3 py-3 gap-2 shadow-lg shadow-surface-dark">
-				<h1 class="text-primary-dark headline-large font-semibold justify-self-start">
+				class="h-full bg-surface-dark rounded-lg flex flex-col justify-items-center w-fit px-4 py-6 gap-2 shadow-lg shadow-surface-dark">
+				<h1 class="text-primary-dark headline-small md:headline-large justify-self-start">
 					{title}
 				</h1>
-				<h1 class="body-large max-w-md px-2 my-auto pb-2">
+				<h1 class="body-medium md:body-large max-w-md px-2 my-auto pb-2 mx-auto">
 					{body}
 				</h1>
 			</div>

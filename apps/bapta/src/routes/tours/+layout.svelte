@@ -11,10 +11,10 @@
 <main
 	class="py-40 px-4 border-b shadow-2xl sm:px-6 md:px-8 border-primary-light/40 dark:border-primary-dark/40">
 	<article
-		class="text-left prose prose-sm sm:prose-base md:prose-lg lg:prose-xl xl:prose-2xl dark:prose-invert prose-main justify-items-center space-y-8 mx-auto">
+		class="text-left prose prose-sm md:prose-base lg:prose-lg xl:prose-xl dark:prose-invert prose-main justify-items-center space-y-8 mx-auto">
 		<slot />
 	</article>
-	<div class="fixed bottom-0 w-full left-1/2 -translate-y-1/2 -translate-x-1/2">
+	<div class="fixed bottom-6 lg:bottom-10 w-full left-1/2 -translate-x-1/2">
 		<!-- svelte-ignore a11y-no-static-element-interactions -->
 		<!-- svelte-ignore a11y-click-events-have-key-events -->
 		<!-- <button
@@ -28,9 +28,12 @@
 				console.log('on click');
 				addChosenJourney(journeyId);
 			}}>
-			<OutlineButton href="/checkout">
-				<h1 class="display-small md:display-medium">Request Quote</h1>
+			<OutlineButton href="/request-tour">
+				<h2 class="display-small md:display-medium">Request Quote</h2>
 			</OutlineButton>
 		</div>
 	</div>
 </main>
+
+<style>
+</style>
