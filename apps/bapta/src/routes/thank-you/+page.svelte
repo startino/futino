@@ -9,7 +9,7 @@
 			Your journey has been sent to our tour operators. We'll get back to you via Email within a few
 			days. From there we can plan in more detail your journey!
 		</p>
-		<OutlineButton class="py-4">
+		<OutlineButton class="py-4" href="/tours">
 			<h1 class="title-large">Continue browsing</h1>
 		</OutlineButton>
 	</div>
