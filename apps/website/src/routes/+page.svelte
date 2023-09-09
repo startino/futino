@@ -31,20 +31,20 @@
 	};
 
 	const leftFlyPreset: TransitionOptions = {
-		delay: 700,
+		delay: 500,
 		duration: 300,
 		once: true,
 		fly: {
-			x: -200,
+			x: -300,
 			y: 0,
 		},
 	};
 	const rightFlyPreset: TransitionOptions = {
-		delay: 700,
+		delay: 500,
 		duration: 300,
 		once: true,
 		fly: {
-			x: 200,
+			x: 300,
 			y: 0,
 		},
 	};
@@ -251,6 +251,7 @@
 			</div>
 			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 				<BigBenefitCard
+					class="z-10"
 					topIcon="artwork/book_1.png"
 					title="Open Source Software"
 					artwork="artwork/github_outline_6.png"
@@ -258,14 +259,14 @@
 				We resort to using open-source tools, which
 				translates directly into saving costs without compromising on quality.`}>
 					<!-- Bottom items -->
-					<a href="https://youtube.com/Futino" class="flex flex-row items-center gap-3">
+					<a href="https://github.com/Futino" class="flex flex-row items-center gap-3">
 						<img
 							src="artwork/github_outline_7.png"
 							alt="youtube"
 							class="object-center object-cover drop-shadow-github hover:drop-shadow-github-hover w-8 h-8" />
 						<h3 class="body-large">View our code</h3>
 					</a>
-					<a href="https://youtube/futino" class="flex flex-row items-center gap-3">
+					<a href="https://www.youtube.com/@TryFutino" class="flex flex-row items-center gap-3">
 						<img
 							src="artwork/yt_2.png"
 							alt="youtube"
@@ -273,19 +274,23 @@
 						<h3 class="body-large">Check out our streams</h3>
 					</a>
 				</BigBenefitCard>
-				<SmallBenefitCard
-					topIcon="artwork/unlocked_3.png"
-					title="Not Locked In"
-					artwork="artwork/gate_1.png">
-					You're projects use nonproprietary tech, meaning you can swap us out later on. <span
-						class="inline-block">(You won't &#128521;)</span>
-				</SmallBenefitCard>
-				<SmallBenefitCard
-					topIcon="artwork/scalable_1.png"
-					title="Scalable Tiers"
-					artwork="artwork/staircase_2.png">
-					Start with what you need and scale up or down as your business changes.
-				</SmallBenefitCard>
+				<InView fly={{ x: -300, y: 0 }} duration={300} class="overflow-visible z-0">
+					<SmallBenefitCard
+						topIcon="artwork/unlocked_3.png"
+						title="Not Locked In"
+						artwork="artwork/gate_1.png">
+						You're projects use nonproprietary tech, meaning you can swap us out later on. <span
+							class="inline-block">(You won't &#128521;)</span>
+					</SmallBenefitCard>
+				</InView>
+				<InView fly={{ x: 300, y: 0 }} duration={300} class="overflow-visible z-0">
+					<SmallBenefitCard
+						topIcon="artwork/scalable_1.png"
+						title="Scalable Tiers"
+						artwork="artwork/staircase_2.png">
+						Start with what you need and scale with your business.
+					</SmallBenefitCard>
+				</InView>
 				<BigBenefitCard
 					topIcon="artwork/mag_scope_1.png"
 					title="Transparent Pricing"
@@ -342,7 +347,12 @@
 
 					<div
 						class="flex flex-row md:flex-col h-full md:items-end justify-around w-full place-content-between text-surface-on-dark font-extrabold title-large">
-						<InView duration={300} fly={{ x: -200, y: 0 }} delay={250} class="overflow-visible">
+						<InView
+							duration={300}
+							fly={{ x: -200, y: 0 }}
+							delay={250}
+							bottom={450}
+							class="overflow-visible">
 							<!--Phone-->
 							<ContactIconButton
 								img="artwork/call_logo_2.png"
@@ -351,7 +361,13 @@
 								class="hover:text-violet-400"
 								imgClass="drop-shadow-phone group-hover:drop-shadow-phone-hover " />
 						</InView>
-						<InView duration={300} fly={{ x: -200, y: 0 }} delay={325} class="overflow-visible">
+						<InView
+							duration={300}
+							top={150}
+							bottom={300}
+							fly={{ x: -200, y: 0 }}
+							delay={350}
+							class="overflow-visible">
 							<!--WhatsApp-->
 							<ContactIconButton
 								img="artwork/whatsapp_logo_6.png"
@@ -360,7 +376,13 @@
 								class="hover:text-lime-400"
 								imgClass="drop-shadow-whatsapp group-hover:drop-shadow-whatsapp-hover" />
 						</InView>
-						<InView duration={300} fly={{ x: -200, y: 0 }} delay={500} class="overflow-visible">
+						<InView
+							duration={300}
+							top={300}
+							bottom={150}
+							fly={{ x: -200, y: 0 }}
+							delay={450}
+							class="overflow-visible">
 							<!--Instagram-->
 							<ContactIconButton
 								img="artwork/instagram_logo_1.png"
@@ -369,7 +391,13 @@
 								class="hover:text-fuchsia-400"
 								imgClass="drop-shadow-instagram group-hover:drop-shadow-instagram-hover" />
 						</InView>
-						<InView duration={300} fly={{ x: -200, y: 0 }} delay={775} class="overflow-visible">
+						<InView
+							duration={300}
+							top={450}
+							bottom={0}
+							fly={{ x: -200, y: 0 }}
+							delay={550}
+							class="overflow-visible">
 							<!--Email-->
 							<ContactIconButton
 								img="artwork/email_2.png"

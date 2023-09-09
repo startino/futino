@@ -7,16 +7,16 @@
 	{#each Array(3) as repeated_so_that_it_can_cycle}
 		<div class="flex flex-row py-3 animate-[carouselSlide_25s_infinite_linear] transition-all">
 			<div class="box">
-				<img src="favicon.png" alt="" class="h-32 w-32 mx-auto" />
+				<img src="favicon.png" alt="" class="h-24 my-2 w-24 mx-auto" />
 			</div>
 			<div class="box">
-				<img src="favicon.png" alt="" class="h-32 w-32 mx-auto" />
+				<img src="favicon.png" alt="" class="h-24 my-2 w-24 mx-auto" />
 			</div>
 			<div class="box">
-				<img src="favicon.png" alt="" class="h-32 w-32 mx-auto" />
+				<img src="favicon.png" alt="" class="h-24 my-2 w-24 mx-auto" />
 			</div>
 			<div class="box">
-				<img src="favicon.png" alt="" class="h-32 w-32 mx-auto" />
+				<img src="favicon.png" alt="" class="h-24 my-2 w-24 mx-auto" />
 			</div>
 		</div>
 	{/each}

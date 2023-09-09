@@ -9,7 +9,7 @@
 	</div>
 	<div class="flex flex-col gap-2 text-center h-full z-10">
 		<h1 class="headline-large">{$$props.title}</h1>
-		<p class="body-large max-w-sm">
+		<p class="body-large max-w-sm px-2">
 			<slot />
 		</p>
 	</div>
