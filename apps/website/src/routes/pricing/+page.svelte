@@ -84,9 +84,9 @@
 					{/each}
 				{/each}
 				<div class="border-none grid-item" />
-				{#each norpTiers as { stripeId }}
+				{#each norpTiers as { stripeIds }}
 					<div class="w-full mt-10 self-start md:pr-4 lg:pr-10">
-						<Button class="w-full" onClick={() => handleCheckout(stripeId)}>
+						<Button class="w-full" onClick={() => handleCheckout(stripeIds[cycle])}>
 							<h1 class="uppercase title-medium lg:title-large">Get Started</h1>
 						</Button>
 					</div>

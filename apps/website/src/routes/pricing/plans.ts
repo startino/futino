@@ -24,7 +24,10 @@ export const features = [
 ];
 
 export type NorpTier = {
-	stripeId: string;
+	stripeIds: {
+		monthly: string;
+		yearly: string;
+	};
 
 	index: number;
 	name: string;
@@ -36,7 +39,11 @@ export type NorpTier = {
 
 export const norpTiers: NorpTier[] = [
 	{
-		stripeId: 'price_1NibECD09EWpqQ4YRbal1at9',
+		stripeIds: 
+		{
+			monthly: 'price_1NoN1nD09EWpqQ4YyjtILNRI',
+			yearly: 'price_1NoN1nD09EWpqQ4YUqInAOrP',
+		},
 		index: 0,
 		name: 'Cruising',
 		subtitle: 'Keep it going.',
@@ -50,7 +57,11 @@ export const norpTiers: NorpTier[] = [
 		thumbnail: '/artwork/sailboat_2.png',
 	},
 	{
-		stripeId: 'price_1NibETD09EWpqQ4Y0Nh7Oyad',
+		stripeIds: 
+		{
+			monthly: 'price_1NoN66D09EWpqQ4YOSJyrCzK',
+			yearly: 'price_1NoN66D09EWpqQ4YMqt6lYEe',
+		},
 		index: 1,
 		name: 'Expanding',
 		subtitle: 'Even the playing field.',
@@ -64,7 +75,11 @@ export const norpTiers: NorpTier[] = [
 		thumbnail: '/artwork/plane_2.png',
 	},
 	{
-		stripeId: 'price_1NkkCHD09EWpqQ4Yf9lj4X8f',
+		stripeIds: 
+		{
+			monthly: 'price_1NoNACD09EWpqQ4YJZn1InAc',
+			yearly: 'price_1NoNACD09EWpqQ4YINnuTYRw',
+		},
 		index: 2,
 		name: 'Blazing',
 		subtitle: 'Make it unfair.',
