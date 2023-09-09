@@ -82,8 +82,7 @@
 		</div>
 	</section>
 
-	<section
-		class="shadow-2xl grid justify-items-center border-b border-primary-light/20 dark:border-primary-dark/20">
+	<section class="shadow-2xl grid justify-items-center">
 		<div class="flex w-full flex-col text-center inner-section gap-44 items-center">
 			<div class="flex flex-col gap-4 items-center">
 				<h1 class="title-medium md:title-large uppercase text-primary-dark md:uppercase">
@@ -98,8 +97,7 @@
 		</div>
 	</section>
 
-	<section
-		class="shadow-2xl grid justify-items-center border-b border-primary-light/20 dark:border-primary-dark/20 relative">
+	<section class="shadow-2xl grid justify-items-center relative">
 		<div class="flex w-full flex-col text-center inner-section gap-44 items-center">
 			<div class="grid grid-cols-1 lg:grid-cols-3">
 				<div class="flex flex-col lg:col-span-2 gap-24 w-full z-10">
@@ -137,9 +135,7 @@
 			</div>
 		</div>
 	</section>
-	<section
-		id="team"
-		class=" shadow-2xl grid justify-items-center border-b border-primary-light/20 dark:border-primary-dark/20">
+	<section id="team" class=" shadow-2xl grid justify-items-center">
 		<div class="flex w-full flex-col text-left inner-section gap-12">
 			<TransitionElement transition="slide" delay={200} duration={1000}>
 				<!--Any sort of glass effect would be good here-->

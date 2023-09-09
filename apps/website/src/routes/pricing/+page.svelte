@@ -23,7 +23,7 @@
 </script>
 
 <main class="text-left border-b shadow-2xl border-primary-light/40 dark:border-primary-dark/40">
-	<section class="border-b border-primary-light/40 dark:border-primary-dark/40">
+	<section class="shadow-2xl">
 		<div
 			class="flex flex-col items-center gap-8 justify-items-center pt-48 text-center inner-section">
 			<div class="flex flex-col items-center gap-4">
@@ -47,7 +47,7 @@
 					<h1 class="mt-auto uppercase title-medium text-outline-dark place-self-end">Features</h1>
 				</div>
 				{#each norpTiers as { name, subtitle, cost, thumbnail }}
-					<div class="flex flex-col max-w-md gap-2 text-left grid-item place-items-start">
+					<div class=" flex flex-col max-w-md gap-2 text-left grid-item place-items-start">
 						<img
 							src={thumbnail}
 							alt=""
@@ -95,7 +95,7 @@
 		</div>
 	</section>
 
-	<section class="sm:-my-12 md:-my-24">
+	<section class="sm:-my-12 md:-my-20">
 		<div class="flex flex-col items-center w-full inner-section md:flex-row gap-y-6">
 			<div class="flex flex-col gap-4">
 				<div class="flex flex-row">

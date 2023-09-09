@@ -105,7 +105,7 @@
 
 <ChapterMenu bind:chapterInView chapters={landingPageChapters} />
 
-<main class="text-center">
+<main class="text-center border-b shadow-2xl border-primary-light/40 dark:border-primary-dark/40">
 	<!--Hero-->
 	<section
 		id="hero"
@@ -156,7 +156,7 @@
 		id="benefits"
 		use:inview={chapterInViewOptions}
 		on:inview_enter={handleChapterInView(1)}
-		class=" shadow-2xl grid justify-items-center border-b border-primary-light/20 dark:border-primary-dark/20 bg-gradient-to-b from-black/40 to-10% to-transparent">
+		class=" shadow-2xl grid justify-items-center bg-gradient-to-b from-black/40 to-10% to-transparent">
 		<div class="inner-section flex flex-col gap-6 items-center">
 			<div class="max-w-xl py-6 w-fit">
 				<h1 class="display-medium">Membership Benefits</h1>
@@ -231,7 +231,7 @@
 		id="journey"
 		use:inview={chapterInViewOptions}
 		on:inview_enter={handleChapterInView(2)}
-		class="shadow-lg border-secondary-light/20 dark:border-secondary-dark/20 justify-items-center">
+		class="shadow-lg justify-items-center">
 		<!--Absolute center line
 		<div class="absolute z-50 w-1 h-6 -translate-x-1/2 bg-red-500 left-1/2 top-1/2" />
 		-->
@@ -330,7 +330,7 @@
 					class="z-0 h-full md:col-span-4 max-w-4xl overflow-visible">
 					<!--Contact form Option-->
 					<div
-						class="flex flex-col p-8 gap-y-8 text-left shadow-xl shadow-black drop-shadow-glow-lg-dark bg-surface-dark border-1 border-primary-dark rounded-md">
+						class="flex flex-col p-8 gap-y-8 text-left shadow-xl shadow-black drop-shadow-glow-md-dark bg-surface-dark border-1 border-primary-dark rounded-md">
 						<div class="flex flex-col ml-2">
 							<h2 class="font-extrabold display-medium">Contact Us</h2>
 							<p class="title-medium">
