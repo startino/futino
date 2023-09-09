@@ -15,6 +15,8 @@ const config = {
 			dropShadow: {
 				'service-art': ['0 0 2px rgb(var(--md-sys-color-tertiary-container-dark))','0 0 5px rgb(var(--md-sys-color-tertiary-container-dark) / 0.7)'],
 				'pricing-art': ['0 0 3px rgb(var(--md-sys-color-tertiary-container-dark) / 0.7)','0 0 3px rgb(var(--md-sys-color-tertiary-container-dark) / 0.7)'],
+				'benefit-art': '0 0 1px rgb(var(--md-sys-color-primary-container-dark) / 1)',
+				'benefit-art-hover': '0 0 4px rgb(var(--md-sys-color-primary-container-dark) / 0.9)',
 				'star': ['0 0 7px rgb(var(--md-sys-color-tertiary-container-dark))','0 0 7px rgb(var(--md-sys-color-tertiary-container-dark))'],
 				whatsapp: ['-5px 2px 7px #064A16BB', '5px -2px 7px #064A16BB'],
 				'whatsapp-hover': ['-5px 2px 10px #064A16FF', '5px -2px 10px #064A16FF'],
