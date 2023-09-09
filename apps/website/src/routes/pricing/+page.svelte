@@ -32,6 +32,7 @@
 					No contracts, pause or cancel anytime, and upscale or downscale as you wish.
 				</h2>
 			</div>
+
 			<PromotionToggle bind:cycle {promotions} />
 
 			<!-- Mobile view -->
@@ -85,12 +86,17 @@
 				{/each}
 				<div class="border-none grid-item" />
 				{#each norpTiers as { stripeIds }}
-					<div class="w-full mt-10 self-start md:pr-4 lg:pr-10">
+					<div class="w-full mt-10 -ml-2 self-start md:pr-4 lg:pr-10">
 						<Button class="w-full" onClick={() => handleCheckout(stripeIds[cycle])}>
 							<h1 class="uppercase title-medium lg:title-large">Get Started</h1>
 						</Button>
 					</div>
 				{/each}
+				<div class="border-none grid-item" />
+				<div
+					class="w-full col-span-3 ml-4 mt-8 md:mr-4 lg:mr-10 bg-tertiary-dark text-tertiary-on-dark px-6 py-3 my-2 rounded-md drop-shadow-service-art border-1 border-tertiary-dark">
+					<h2 class=" headline-small">CODE: HUNT for 50% off first year!</h2>
+				</div>
 			</div>
 		</div>
 	</section>
