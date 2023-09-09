@@ -95,7 +95,7 @@
 	</section>
 
 	<section class="sm:-my-12 md:-my-24">
-		<div class="flex flex-col items-center justify-around w-full inner-section md:flex-row gap-y-6">
+		<div class="flex flex-col items-center w-full inner-section md:flex-row gap-y-6">
 			<div class="flex flex-col gap-4">
 				<div class="flex flex-row">
 					<div
@@ -107,7 +107,7 @@
 			</div>
 
 			<div
-				class="flex flex-col h-full max-w-sm gap-4 px-8 py-8 text-center rounded-md bg-surface place-items-center">
+				class="flex ml-auto flex-col h-full max-w-sm gap-4 px-8 py-8 text-center rounded-md bg-surface place-items-center">
 				<h3 class="pt-4 title-medium sm:title-large">
 					Learn more about how Futino works and how it can help your business grow.
 				</h3>

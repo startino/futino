@@ -49,12 +49,11 @@
 		<div
 			class="grid grid-cols-1 md:grid-cols-2 inner-section text-center md:text-left gap-6 items-center justify-items-center">
 			<div
-				class="bg-surface-dark flex flex-col rounded-xl dark:bg-surface-dark py-10 px-10 space-y-4 max-w-xl self-start">
+				class="bg-surface-dark flex flex-col border-1 border-primary-dark drop-shadow-glow-sm-dark rounded-xl dark:bg-surface-dark py-10 px-10 space-y-4 max-w-xl self-start">
 				<h3 class="font-extrabold headline-large">Get in touch.</h3>
 				<h4 class="title-medium my-auto max-w-md">
-					Need help or have ideas to discuss? Reach out to us! We're ready for your questions,
-					understand your needs, and collaborate to bring your digital aspirations to life. Contact
-					us today and let's start shaping your online presence.
+					Need help or have ideas to discuss? Reach out to us! We're ready for your questions, and
+					to understand your needs. Let's get this website up and going shall we?
 				</h4>
 			</div>
 			<div class="flex flex-col w-full">
