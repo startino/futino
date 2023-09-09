@@ -84,9 +84,9 @@
 				{/each}
 				<div class="border-none grid-item" />
 				{#each norpTiers as { stripeId }}
-					<div class="border-none grid-item mt-14">
+					<div class="w-full mt-10 self-start md:pr-4 lg:pr-10">
 						<Button class="w-full" onClick={() => handleCheckout(stripeId)}>
-							<h1 class="uppercase title-large">Get Started</h1>
+							<h1 class="uppercase title-medium lg:title-large">Get Started</h1>
 						</Button>
 					</div>
 				{/each}
