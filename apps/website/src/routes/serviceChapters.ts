@@ -12,7 +12,7 @@ export const servicesChapters: {
 		chapterNumber: 1,
 		inView: false,
 		title: 'AI-Powered Design',
-		image: '/artwork/design_4.png',
+		image: '/artwork/eye_1.png',
 		id: 'design',
 		body: `By optimizing workflows and harnessing AI-driven tools, we create stunning websites in a fraction of the time.`,
 	},
@@ -27,7 +27,7 @@ export const servicesChapters: {
 	{
 		chapterNumber: 3,
 		inView: false,
-		image: '/artwork/server_5.png',
+		image: '/artwork/kubernetes_1.png',
 		title: 'Modern Hosting',
 		id: 'host',
 		body: `Our sleek web hosting process effortlessly manages all technical aspects, enabling you to prioritize your core business.`,

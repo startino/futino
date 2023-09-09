@@ -13,7 +13,7 @@
 			</h2>
 			<h2 class="">
 				{#if value == 'checkmark'}
-					<Icon icon="checkmark" height="24" width="24" />
+					<Icon icon="checkmark" height="24" width="24" class="text-secondary-dark" />
 				{:else}
 					{value}
 				{/if}

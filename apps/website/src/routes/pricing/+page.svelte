@@ -13,6 +13,7 @@
 
 	import { handleCheckout } from './handleCheckout';
 	import Icon from '$lib/components/atoms/Icon.svelte';
+	import InView from '$lib/components/organisms/Inview.svelte';
 
 	export let activeTabValue = 0;
 
@@ -22,7 +23,7 @@
 </script>
 
 <main class="text-left border-b shadow-2xl border-primary-light/40 dark:border-primary-dark/40">
-	<section class="border-b border-primary-light/40 dark:border-primary-dark/40">
+	<section class="shadow-2xl">
 		<div
 			class="flex flex-col items-center gap-8 justify-items-center pt-48 text-center inner-section">
 			<div class="flex flex-col items-center gap-4">
@@ -46,7 +47,7 @@
 					<h1 class="mt-auto uppercase title-medium text-outline-dark place-self-end">Features</h1>
 				</div>
 				{#each norpTiers as { name, subtitle, cost, thumbnail }}
-					<div class="flex flex-col max-w-md gap-2 text-left grid-item place-items-start">
+					<div class=" flex flex-col max-w-md gap-2 text-left grid-item place-items-start">
 						<img
 							src={thumbnail}
 							alt=""
@@ -84,9 +85,9 @@
 				{/each}
 				<div class="border-none grid-item" />
 				{#each norpTiers as { stripeId }}
-					<div class="border-none grid-item mt-14">
+					<div class="w-full mt-10 self-start md:pr-4 lg:pr-10">
 						<Button class="w-full" onClick={() => handleCheckout(stripeId)}>
-							<h1 class="uppercase title-large">Get Started</h1>
+							<h1 class="uppercase title-medium lg:title-large">Get Started</h1>
 						</Button>
 					</div>
 				{/each}
@@ -94,20 +95,31 @@
 		</div>
 	</section>
 
-	<section class="sm:-my-12 md:-my-24">
-		<div class="flex flex-col items-center justify-around w-full inner-section md:flex-row gap-y-6">
+	<section class="sm:-my-12 md:-my-20">
+		<div class="flex flex-col items-center w-full inner-section md:flex-row gap-y-6">
 			<div class="flex flex-col gap-4">
 				<div class="flex flex-row">
+					<!-- Mobile text -->
 					<div
-						class="flex flex-col gap-2 pb-4 font-extrabold tracking-wider text-center border-b-4 md:-space-y-4 headline-large sm:display-small md:text-left md:pl-4 md:border-b-0 md:border-l-4 md:pb-0 border-primary-dark md:display-medium lg:display-large">
+						class="flex md:hidden flex-col gap-2 pb-4 font-extrabold tracking-wider text-center border-b-4 md:-space-y-4 headline-large sm:display-small md:text-left md:pl-4 md:border-b-0 md:border-l-4 md:pb-0 border-primary-dark md:display-medium lg:display-large">
 						<h1 class="uppercase">Got questions?</h1>
 						<h1 class="uppercase">Not convinced?</h1>
+					</div>
+					<!-- md+ text-->
+					<div
+						class="hidden md:flex flex-col gap-2 pb-4 font-extrabold tracking-wider text-center border-b-4 md:-space-y-4 headline-large sm:display-small md:text-left md:pl-4 md:border-b-0 md:border-l-4 md:pb-0 border-primary-dark md:display-medium lg:display-large">
+						<InView fly={{ x: -200, y: 0 }} duration={250} class="">
+							<h1 class="uppercase">Got questions?</h1>
+						</InView>
+						<InView fly={{ x: -200, y: 0 }} top={120} delay={200} duration={250} class="">
+							<h1 class="uppercase">Not convinced?</h1>
+						</InView>
 					</div>
 				</div>
 			</div>
 
 			<div
-				class="flex flex-col h-full max-w-sm gap-4 px-8 py-8 text-center rounded-md bg-surface place-items-center">
+				class="flex ml-auto flex-col h-full max-w-sm gap-4 px-8 py-8 text-center rounded-md bg-surface place-items-center">
 				<h3 class="pt-4 title-medium sm:title-large">
 					Learn more about how Futino works and how it can help your business grow.
 				</h3>

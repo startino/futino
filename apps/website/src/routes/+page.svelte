@@ -31,20 +31,20 @@
 	};
 
 	const leftFlyPreset: TransitionOptions = {
-		delay: 700,
+		delay: 500,
 		duration: 300,
 		once: true,
 		fly: {
-			x: -200,
+			x: -300,
 			y: 0,
 		},
 	};
 	const rightFlyPreset: TransitionOptions = {
-		delay: 700,
+		delay: 500,
 		duration: 300,
 		once: true,
 		fly: {
-			x: 200,
+			x: 300,
 			y: 0,
 		},
 	};
@@ -82,14 +82,15 @@
 		},
 		{
 			chapterNumber: 1,
-			title: 'Services',
-			href: '#journey',
-		},
-		{
-			chapterNumber: 2,
 			title: 'Benefits',
 			href: '#benefits',
 		},
+		{
+			chapterNumber: 2,
+			title: 'Services',
+			href: '#journey',
+		},
+
 		{
 			chapterNumber: 3,
 			title: 'Contact',
@@ -104,7 +105,7 @@
 
 <ChapterMenu bind:chapterInView chapters={landingPageChapters} />
 
-<main class="text-center">
+<main class="text-center border-b shadow-2xl border-primary-light/40 dark:border-primary-dark/40">
 	<!--Hero-->
 	<section
 		id="hero"
@@ -123,15 +124,14 @@
 
 		<div class="relative grid gap-12 z-20 justify-items-center inner-section">
 			<h1 class="font-extrabold tracking-tight display-medium lg:display-large">
-				Website Design and Development
+				Launch Your Tailor-made Website
 			</h1>
 
 			<h3 class=" headline-small lg:headline-medium max-w-3xl">
-				Growing startups and companies with Creative <span class="text-primary-dark"
-					>Web Design</span
-				>, Efficient
-				<span class="text-primary-dark">Web Development</span>, and Strategic
-				<span class="text-primary-dark">Hosting</span> with a unique pricing model.
+				Growing startups and companies with <span class="text-primary-dark">AI Design</span>,
+				<span class="text-primary-dark">Optimized Development</span>, and
+				<span class="text-primary-dark">Strategic Hosting</span>.
+				<span class="inline-block"> And we aren't an agency 👊.</span>
 			</h3>
 
 			<div class="grid grid-cols-2 gap-x-4">
@@ -150,12 +150,88 @@
 		<!--Big-Clients Slideshow-->
 		<ClientCarousel />
 	</div>
+
+	<!-- Membership Benefits Section -->
+	<section
+		id="benefits"
+		use:inview={chapterInViewOptions}
+		on:inview_enter={handleChapterInView(1)}
+		class=" shadow-2xl grid justify-items-center bg-gradient-to-b from-black/40 to-10% to-transparent">
+		<div class="inner-section flex flex-col gap-6 items-center">
+			<div class="max-w-xl py-6 w-fit">
+				<h1 class="display-medium">Membership Benefits</h1>
+				<h2 class="body-large">
+					Perks that are simply too good to look anywhere else for your website needs. Seriously.
+				</h2>
+			</div>
+			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+				<BigBenefitCard
+					class="z-10"
+					topIcon="artwork/book_1.png"
+					title="Open Source Software"
+					artwork="artwork/github_outline_6.png"
+					body={`
+				We resort to using open-source tools, which
+				translates directly into saving costs without compromising on quality.`}>
+					<!-- Bottom items -->
+					<a href="https://github.com/Futino" class="flex flex-row items-center gap-3">
+						<img
+							src="artwork/github_outline_7.png"
+							alt="youtube"
+							class="object-center object-cover drop-shadow-github hover:drop-shadow-github-hover w-8 h-8" />
+						<h3 class="body-large">View our code</h3>
+					</a>
+					<a href="https://www.youtube.com/@TryFutino" class="flex flex-row items-center gap-3">
+						<img
+							src="artwork/yt_2.png"
+							alt="youtube"
+							class="object-center object-cover drop-shadow-youtube hover:drop-shadow-youtube-hover w-8 h-8" />
+						<h3 class="body-large">Check out our streams</h3>
+					</a>
+				</BigBenefitCard>
+
+				<SmallBenefitCard
+					topIcon="artwork/unlocked_3.png"
+					title="Not Locked In"
+					artwork="artwork/gate_1.png">
+					You're projects use nonproprietary tech, meaning you can swap us out later on. <span
+						class="inline-block">(You won't &#128521;)</span>
+				</SmallBenefitCard>
+
+				<SmallBenefitCard
+					topIcon="artwork/scalable_1.png"
+					title="Scalable Tiers"
+					artwork="artwork/staircase_2.png">
+					Start with what you need and scale with your business.
+				</SmallBenefitCard>
+
+				<BigBenefitCard
+					topIcon="artwork/mag_scope_1.png"
+					title="Transparent Pricing"
+					artwork="artwork/window_1.png"
+					body={`
+					Our simple and transparent subscription model fosters trust, gaurantees predictable prices, and provides peace of mind.
+			`}>
+					<!-- Bottom items -->
+					<a href="https://youtube.com/Futino" class="flex flex-row items-center gap-2">
+						<Icon icon="checkmark" height="32" width="32" class="-ml-0.5 text-secondary-dark" />
+						<h3 class="body-large">No hidden fees</h3>
+					</a>
+					<a href="https://github.com/Futino" class="flex flex-row items-center gap-2">
+						<Icon icon="checkmark" height="32" width="32" class="-ml-0.5 text-secondary-dark" />
+						<h3 class="body-large">No upfront costs</h3>
+					</a>
+				</BigBenefitCard>
+			</div>
+		</div>
+	</section>
+
 	<!--Journey Section-->
 	<section
 		id="journey"
 		use:inview={chapterInViewOptions}
-		on:inview_enter={handleChapterInView(1)}
-		class="shadow-lg border-secondary-light/20 dark:border-secondary-dark/20 bg-gradient-to-b from-black/40 to-10% to-transparent justify-items-center">
+		on:inview_enter={handleChapterInView(2)}
+		class="shadow-lg justify-items-center">
 		<!--Absolute center line
 		<div class="absolute z-50 w-1 h-6 -translate-x-1/2 bg-red-500 left-1/2 top-1/2" />
 		-->
@@ -221,7 +297,7 @@
 						<InView fly={{ x: -100, y: 0 }} class="sm:hidden">
 							<div class="w-1/4 h-0.5 mt-3 border-t border-outline-dark" />
 						</InView>
-						<InView presetOptions={leftFlyPreset} class="sm:pl-7 ">
+						<InView presetOptions={leftFlyPreset} class="sm:pl-7 md:pl-12">
 							<!-- sm+ title -->
 							<h1
 								class="sm:headline-large md:title-large uppercase md:uppercase sm:text-primary-dark hidden sm:flex pb-4">
@@ -234,77 +310,6 @@
 					</div>
 				</div>
 			{/each}
-		</div>
-	</section>
-
-	<!-- Membership Benefits Section -->
-	<section
-		id="benefits"
-		use:inview={chapterInViewOptions}
-		on:inview_enter={handleChapterInView(2)}
-		class=" shadow-2xl grid justify-items-center border-b border-primary-light/20 dark:border-primary-dark/20">
-		<div class="inner-section flex flex-col gap-6 items-center">
-			<div class="max-w-xl py-6 w-fit">
-				<h1 class="display-medium">Membership Benefits</h1>
-				<h2 class="body-large">
-					Perks that are simply too good to look anywhere else for your website needs. Seriously.
-				</h2>
-			</div>
-			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-				<BigBenefitCard
-					topIcon="artwork/book_1.png"
-					title="Open Source Software"
-					artwork="artwork/github_outline_6.png"
-					body={`
-				We resort to using open-source tools, which
-				translates directly into saving costs without compromising on quality.`}>
-					<!-- Bottom items -->
-					<a href="https://youtube.com/Futino" class="flex flex-row items-center gap-3">
-						<img
-							src="artwork/github_outline_7.png"
-							alt="youtube"
-							class="object-center object-cover drop-shadow-github hover:drop-shadow-github-hover w-8 h-8" />
-						<h3 class="body-large">View our code</h3>
-					</a>
-					<a href="https://youtube/futino" class="flex flex-row items-center gap-3">
-						<img
-							src="artwork/yt_2.png"
-							alt="youtube"
-							class="object-center object-cover drop-shadow-youtube hover:drop-shadow-youtube-hover w-8 h-8" />
-						<h3 class="body-large">Check out our streams</h3>
-					</a>
-				</BigBenefitCard>
-				<SmallBenefitCard
-					topIcon="artwork/unlocked_3.png"
-					title="Not Locked In"
-					artwork="artwork/gate_1.png">
-					You're projects use nonproprietary tech, meaning you can swap us out later on. <span
-						class="inline-block">(You won't &#128521;)</span>
-				</SmallBenefitCard>
-				<SmallBenefitCard
-					topIcon="artwork/scalable_1.png"
-					title="Scalable Tiers"
-					artwork="artwork/staircase_2.png">
-					Start with what you need and scale up or down as your business changes.
-				</SmallBenefitCard>
-				<BigBenefitCard
-					topIcon="artwork/mag_scope_1.png"
-					title="Transparent Pricing"
-					artwork="artwork/window_1.png"
-					body={`
-					Our simple and transparent subscription model fosters trust, gaurantees predictable prices, and provides peace of mind.
-			`}>
-					<!-- Bottom items -->
-					<a href="https://youtube.com/Futino" class="flex flex-row items-center gap-2">
-						<Icon icon="checkmark" height="32" width="32" class="-ml-0.5 text-secondary-dark" />
-						<h3 class="body-large">No hidden fees</h3>
-					</a>
-					<a href="https://github.com/Futino" class="flex flex-row items-center gap-2">
-						<Icon icon="checkmark" height="32" width="32" class="-ml-0.5 text-secondary-dark" />
-						<h3 class="body-large">No upfront costs</h3>
-					</a>
-				</BigBenefitCard>
-			</div>
 		</div>
 	</section>
 
@@ -325,7 +330,7 @@
 					class="z-0 h-full md:col-span-4 max-w-4xl overflow-visible">
 					<!--Contact form Option-->
 					<div
-						class="flex flex-col p-8 gap-y-8 text-left shadow-xl shadow-black drop-shadow-glow-lg-dark bg-surface-dark border-1 border-primary-dark rounded-md">
+						class="flex flex-col p-8 gap-y-8 text-left shadow-xl shadow-black drop-shadow-glow-md-dark bg-surface-dark border-1 border-primary-dark rounded-md">
 						<div class="flex flex-col ml-2">
 							<h2 class="font-extrabold display-medium">Contact Us</h2>
 							<p class="title-medium">
@@ -343,7 +348,12 @@
 
 					<div
 						class="flex flex-row md:flex-col h-full md:items-end justify-around w-full place-content-between text-surface-on-dark font-extrabold title-large">
-						<InView duration={300} fly={{ x: -200, y: 0 }} delay={250} class="overflow-visible">
+						<InView
+							duration={300}
+							fly={{ x: -200, y: 0 }}
+							delay={250}
+							bottom={450}
+							class="overflow-visible">
 							<!--Phone-->
 							<ContactIconButton
 								img="artwork/call_logo_2.png"
@@ -352,7 +362,13 @@
 								class="hover:text-violet-400"
 								imgClass="drop-shadow-phone group-hover:drop-shadow-phone-hover " />
 						</InView>
-						<InView duration={300} fly={{ x: -200, y: 0 }} delay={325} class="overflow-visible">
+						<InView
+							duration={300}
+							top={150}
+							bottom={300}
+							fly={{ x: -200, y: 0 }}
+							delay={350}
+							class="overflow-visible">
 							<!--WhatsApp-->
 							<ContactIconButton
 								img="artwork/whatsapp_logo_6.png"
@@ -361,7 +377,13 @@
 								class="hover:text-lime-400"
 								imgClass="drop-shadow-whatsapp group-hover:drop-shadow-whatsapp-hover" />
 						</InView>
-						<InView duration={300} fly={{ x: -200, y: 0 }} delay={500} class="overflow-visible">
+						<InView
+							duration={300}
+							top={300}
+							bottom={150}
+							fly={{ x: -200, y: 0 }}
+							delay={450}
+							class="overflow-visible">
 							<!--Instagram-->
 							<ContactIconButton
 								img="artwork/instagram_logo_1.png"
@@ -370,7 +392,13 @@
 								class="hover:text-fuchsia-400"
 								imgClass="drop-shadow-instagram group-hover:drop-shadow-instagram-hover" />
 						</InView>
-						<InView duration={300} fly={{ x: -200, y: 0 }} delay={775} class="overflow-visible">
+						<InView
+							duration={300}
+							top={450}
+							bottom={0}
+							fly={{ x: -200, y: 0 }}
+							delay={550}
+							class="overflow-visible">
 							<!--Email-->
 							<ContactIconButton
 								img="artwork/email_2.png"

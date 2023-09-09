@@ -57,7 +57,7 @@
 </svelte:head>
 
 <main
-	class="text-center border-b w border-primary-light/40 dark:border-primary-dark/40 flex flex-col items-stretch">
+	class="text-center border-b border-primary-light/40 dark:border-primary-dark/40 flex flex-col items-stretch">
 	<section id="hero" class="grow h-screen grid justify-items-center space-y-12 shadow-lg">
 		<div class="grid justify-items-center space-y-12 h-fit w-full mx-auto self-center">
 			<div class="w-fit">
@@ -82,8 +82,7 @@
 		</div>
 	</section>
 
-	<section
-		class="shadow-2xl grid justify-items-center border-b border-primary-light/20 dark:border-primary-dark/20">
+	<section class="shadow-2xl grid justify-items-center">
 		<div class="flex w-full flex-col text-center inner-section gap-44 items-center">
 			<div class="flex flex-col gap-4 items-center">
 				<h1 class="title-medium md:title-large uppercase text-primary-dark md:uppercase">
@@ -95,8 +94,13 @@
 					in a more cost efficient manner for startups and small businesses.
 				</h3>
 			</div>
+		</div>
+	</section>
+
+	<section class="shadow-2xl grid justify-items-center relative">
+		<div class="flex w-full flex-col text-center inner-section gap-44 items-center">
 			<div class="grid grid-cols-1 lg:grid-cols-3">
-				<div class="flex flex-col lg:col-span-2 gap-24 w-full">
+				<div class="flex flex-col lg:col-span-2 gap-24 w-full z-10">
 					<TextSection title="What we do">
 						At Futino, we specialize in web design, development, & hosting. We understand the
 						challenges faced by startups and small businesses in establishing their online presence
@@ -104,27 +108,34 @@
 					</TextSection>
 
 					<TextSection title="Why we do it">
-						We were inspired to create Futino when we observed that traditional web development is
-						almost always too expensive and time-consuming, often leaving smaller businesses at a
-						disadvantage. We wanted the possibilty for companies with less upfront resources or
-						companies with less possibility for risk to have access to efficient, top-quality web
-						solutions that wouldn't break the bank and require any risk analysis.
+						We were inspired to create Futino when we observed that traditional web design &
+						development was almost always too expensive and time-consuming, often leaving smaller
+						businesses at a disadvantage. We wanted the possibilty for companies with less upfront
+						resources or companies with less possibility for risk to have access to efficient,
+						top-quality web solutions that wouldn't break the bank and require any risk analysis.
 					</TextSection>
 					<TextSection title="How we do it">
-						Our secret sauce lies in harnessing the power of AI and mixing it the most modern
+						Our secret sauce lies in harnessing the power of AI and mixing it with the most modern
 						technologies out there. We infuse AI technology into our design and development
 						processes to streamline workflows and enhance overall efficiency. By doing so, we not
 						only deliver visually stunning websites but also significantly reduce the time and cost
 						associated with web projects.
+						<br /> <br />
+						Our unique pricing model is also what differs us from the other design and development companies.
+						Instead of paying highly unpredictable & highly inflated billable hours (also totally determined
+						by the other party), you pay a flat monthly price for a fixed amount of work from us. It
+						is by far a more preferred and just better model for startups and smaller companies.
 					</TextSection>
 				</div>
+
+				<img
+					src="artwork/star_3.png"
+					alt=""
+					class="h-full drop-shadow-star hidden lg:flex z-0 aspect-square right-0 absolute" />
 			</div>
 		</div>
 	</section>
-
-	<section
-		id="team"
-		class=" shadow-2xl grid justify-items-center border-b border-primary-light/20 dark:border-primary-dark/20">
+	<section id="team" class=" shadow-2xl grid justify-items-center">
 		<div class="flex w-full flex-col text-left inner-section gap-12">
 			<TransitionElement transition="slide" delay={200} duration={1000}>
 				<!--Any sort of glass effect would be good here-->
