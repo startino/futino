@@ -1,14 +1,8 @@
 <script lang="ts">
-	import Header from '$lib/components/organisms/Header.svelte';
-	import Footer from '$lib/components/organisms/Footer.svelte';
-
 	import PromotionToggle from './PromotionToggle.svelte';
 	import { promotions, norpTiers, features } from './plans';
 	import TierListing from './TierListing.svelte';
 	import Button from '$lib/components/atoms/Button.svelte';
-	import InViewSlide from '$lib/components/organisms/InViewSlide.svelte';
-	import { createClient } from '@supabase/supabase-js';
-	import type { Database } from '$lib/supabase.types';
 	import { loadStripe } from '@stripe/stripe-js';
 
 	import { handleCheckout } from './handleCheckout';
@@ -38,7 +32,7 @@
 			<PromotionToggle class="my-4" bind:cycle {promotions} />
 
 			<!-- Mobile view -->
-			<div class="flex flex-col gap-12 place-items-start lg:hidden">
+			<div class="flex flex-col w-full gap-12 place-items-start lg:hidden">
 				{#each norpTiers as tier}
 					<TierListing {tier} {cycle} />
 				{/each}
@@ -67,7 +61,7 @@
 								<div class="flex flex-row place-items-center">
 									<h1
 										class="font-extrabold text-primary-dark tracking-tighter display-large leading-none">
-										{formatter.format(cost)}
+										{formatter.format(cost / 2)}
 									</h1>
 								</div>
 								<div
@@ -92,7 +86,7 @@
 					<!-- Features Rows-->
 					{#each Object.entries(catagoryFeatures) as [featureName, featureAbout]}
 						<div class="flex flex-row grid-item place-items-center gap-3">
-							<h2 class="my-auto title-medium text-left">
+							<h2 class="my-auto title-medium text-left py-2">
 								{featureName}
 							</h2>
 							<Tooltip content={featureAbout} direction="left">
@@ -100,7 +94,7 @@
 							</Tooltip>
 						</div>
 						{#each norpTiers as tier}
-							<h2 class="my-auto title-medium grid-item text-left">
+							<div class="grid-item self-center items-center flex">
 								{#if tier.features[catagoryName][featureName] == true}
 									<Icon
 										icon="checkmark"
@@ -108,9 +102,11 @@
 										width="24"
 										class="-ml-0.5 text-secondary-dark" />
 								{:else}
-									{tier.features[catagoryName][featureName]}
+									<h2 class=" title-medium text-left">
+										{tier.features[catagoryName][featureName]}
+									</h2>
 								{/if}
-							</h2>
+							</div>
 						{/each}
 					{/each}
 				{/each}

@@ -78,7 +78,7 @@ export const norpTiers: NorpTier[] = [
 		cost: 179,
 		features: {
 			Output: {
-				'Monthly Work Capacity': '2 hrs',
+				'Monthly Work Capacity': '2 hours',
 				'Requests & Revisions': 'ထ',
 				'Avg. Turnaround Time': '3 days',
 			},
@@ -115,7 +115,7 @@ export const norpTiers: NorpTier[] = [
 		cost: 1450,
 		features: {
 			Output: {
-				'Monthly Work Capacity': '9 hrs',
+				'Monthly Work Capacity': '9 hours',
 				'Requests & Revisions': 'ထ',
 				'Avg. Turnaround Time': '2 days',
 			},
@@ -152,7 +152,7 @@ export const norpTiers: NorpTier[] = [
 		cost: 5600,
 		features: {
 			Output: {
-				'Monthly Work Capacity': '36 hrs',
+				'Monthly Work Capacity': '36 hours',
 				'Requests & Revisions': 'ထ',
 				'Avg. Turnaround Time': '2 days',
 			},

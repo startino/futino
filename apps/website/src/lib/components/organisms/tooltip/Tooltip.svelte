@@ -17,15 +17,15 @@
 			directionStyling = 'top-full';
 	}
 
-	function mouseOver(event) {
+	function mouseOver(event: any): any {
 		isHovered = true;
 	}
 
-	function mouseLeave(event) {
+	function mouseLeave(event: any) {
 		isHovered = false;
 	}
-	function focus(event) {
-		//isHovered = true;
+	function focus(event: any) {
+		isHovered = true;
 	}
 </script>
 
@@ -36,7 +36,7 @@
 	on:mouseover={mouseOver}
 	on:mouseleave={mouseLeave}
 	on:focus={focus}
-	class="relative {$$props.class} flex justify-items-center">
+	class="relative {$$props.class} flex justify-items-center w-fit h-fit">
 	{#if isHovered}
 		<div
 			transition:fade={{ duration: 150 }}
