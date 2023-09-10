@@ -30,6 +30,11 @@ serve(async (req) => {
 				quantity: 1,
 			},
 		],
+		discounts: [
+			{
+				coupon: 'KAdmHiIp',
+			},
+		],
 		mode: 'subscription',
 		success_url: `${domain}/success`, // Needs to be set to base url
 		cancel_url: `${domain}/cancel`,

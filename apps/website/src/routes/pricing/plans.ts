@@ -1,27 +1,38 @@
-export type Plan = {
-	label: string;
-	prefix: string;
-	cost: number | string;
-	note: string;
-	subtext: string;
-	features: string[];
-	index: number;
-};
-
 export type Features = {
-	'Monthly Work Capacity': string;
-	'Requests & Revisions': string;
-	'Yearly Meetings': string;
-	'UI Maintenance': string;
+	Output: {
+		'Monthly Work Capacity': string;
+		'Requests & Revisions': string;
+		'Avg. Turnaround Time': string;
+	};
+	Design: {
+		'AI Assisted Design': boolean;
+		'UI/UX design': boolean;
+		'Graphic design': boolean;
+		'3D design': boolean;
+	};
+	Development: {
+		Database: boolean;
+		'Responsive Design': boolean;
+	};
+	Hosting: {
+		'Live Server': boolean;
+		'Dedicated Storage': string;
+		Uptime: string;
+	};
+	Integration: {
+		'Yearly Meetings': string; // "Up to ..."
+		'LORC Maintenance': boolean;
+	};
 };
 
 // Probably better object oriented way to do this, but sometimes fast is better.
-export const features = [
-	'Monthly Work Capacity',
-	'Requests & Revisions',
-	'Yearly Meetings',
-	'UI Maintenance',
-];
+export const features = {
+	Output: ['Monthly Work Capacity', 'Requests & Revisions'],
+	Design: ['AI Assisted Design', 'UI/UX design', 'Graphic design', '3D design'],
+	Development: ['Database', 'Responsive Design'],
+	Hosting: ['Live Server', 'Dedicated Storage', 'Uptime'],
+	Integration: ['Yearly Meetings', 'LORC Maintenance'],
+};
 
 export type NorpTier = {
 	stripeIds: {
@@ -32,94 +43,122 @@ export type NorpTier = {
 	index: number;
 	name: string;
 	subtitle: string;
-	cost: string;
+	cost: number;
 	features: Features;
 	thumbnail: string;
 };
 
 export const norpTiers: NorpTier[] = [
 	{
-		stripeIds: 
-		{
+		stripeIds: {
 			monthly: 'price_1NoN1nD09EWpqQ4YyjtILNRI',
 			yearly: 'price_1NoN1nD09EWpqQ4YUqInAOrP',
 		},
 		index: 0,
 		name: 'Cruising',
 		subtitle: 'Keep it going.',
-		cost: '179',
+		cost: 179,
 		features: {
-			'Monthly Work Capacity': '2hrs',
-			'Requests & Revisions': 'ထ',
-			'Yearly Meetings': '1',
-			'UI Maintenance': 'checkmark',
+			Output: {
+				'Monthly Work Capacity': '2 hrs',
+				'Requests & Revisions': 'ထ',
+				'Avg. Turnaround Time': '3 days',
+			},
+			Design: {
+				'AI Assisted Design': true,
+				'UI/UX design': true,
+				'Graphic design': true,
+				'3D design': true,
+			},
+			Development: {
+				Database: true,
+				'Responsive Design': true,
+			},
+			Hosting: {
+				'Live Server': true,
+				'Dedicated Storage': '10 GB',
+				Uptime: '99.5%',
+			},
+			Integration: {
+				'Yearly Meetings': '1',
+				'LORC Maintenance': true,
+			},
 		},
 		thumbnail: '/artwork/sailboat_2.png',
 	},
 	{
-		stripeIds: 
-		{
+		stripeIds: {
 			monthly: 'price_1NoN66D09EWpqQ4YOSJyrCzK',
 			yearly: 'price_1NoN66D09EWpqQ4YMqt6lYEe',
 		},
 		index: 1,
 		name: 'Expanding',
 		subtitle: 'Even the playing field.',
-		cost: '1 450',
+		cost: 1450,
 		features: {
-			'Monthly Work Capacity': '8hrs',
-			'Requests & Revisions': 'ထ',
-			'Yearly Meetings': 'Up to 12',
-			'UI Maintenance': 'checkmark',
+			Output: {
+				'Monthly Work Capacity': '9 hrs',
+				'Requests & Revisions': 'ထ',
+				'Avg. Turnaround Time': '2 days',
+			},
+			Design: {
+				'AI Assisted Design': true,
+				'UI/UX design': true,
+				'Graphic design': true,
+				'3D design': true,
+			},
+			Development: {
+				Database: true,
+				'Responsive Design': true,
+			},
+			Hosting: {
+				'Live Server': true,
+				'Dedicated Storage': '20 GB',
+				Uptime: '99.8%',
+			},
+			Integration: {
+				'Yearly Meetings': 'Up to 12',
+				'LORC Maintenance': true,
+			},
 		},
 		thumbnail: '/artwork/plane_2.png',
 	},
 	{
-		stripeIds: 
-		{
+		stripeIds: {
 			monthly: 'price_1NoNACD09EWpqQ4YJZn1InAc',
 			yearly: 'price_1NoNACD09EWpqQ4YINnuTYRw',
 		},
 		index: 2,
 		name: 'Blazing',
 		subtitle: 'Make it unfair.',
-		cost: '5 600',
+		cost: 5600,
 		features: {
-			'Monthly Work Capacity': '33hrs',
-			'Requests & Revisions': 'ထ',
-			'Yearly Meetings': 'Up to 24',
-			'UI Maintenance': 'checkmark',
+			Output: {
+				'Monthly Work Capacity': '36 hrs',
+				'Requests & Revisions': 'ထ',
+				'Avg. Turnaround Time': '2 days',
+			},
+			Design: {
+				'AI Assisted Design': true,
+				'UI/UX design': true,
+				'Graphic design': true,
+				'3D design': true,
+			},
+			Development: {
+				Database: true,
+				'Responsive Design': true,
+			},
+			Hosting: {
+				'Live Server': true,
+				'Dedicated Storage': '30 GB',
+				Uptime: '99.9%',
+			},
+			Integration: {
+				'Yearly Meetings': 'Up to 24',
+				'LORC Maintenance': true,
+			},
 		},
 		thumbnail: '/artwork/rocket_6.png',
-	},
-];
-
-export const commission_plans: Plan[] = [
-	{
-		label: 'Commision',
-		prefix: '$',
-		cost: 45,
-		note: '/hour',
-		subtext: '',
-		features: [],
-		index: 0,
-	},
-];
-
-export const partnership_plans: Plan[] = [
-	{
-		label: 'Partnership',
-		prefix: '',
-		cost: '%',
-		note: 'of gross revenue (negotiable)',
-		subtext: '',
-		features: [
-			'50% off Hosting Plans',
-			'50% off Marketing Plans',
-			'90% off Initial Website Developement',
-			'50% off Commissions',
-		],
-		index: 0,
 	},
 ];
 
