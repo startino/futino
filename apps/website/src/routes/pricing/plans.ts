@@ -27,11 +27,29 @@ export type Features = {
 
 // Probably better object oriented way to do this, but sometimes fast is better.
 export const features = {
-	Output: ['Monthly Work Capacity', 'Requests & Revisions'],
-	Design: ['AI Assisted Design', 'UI/UX design', 'Graphic design', '3D design'],
-	Development: ['Database', 'Responsive Design'],
-	Hosting: ['Live Server', 'Dedicated Storage', 'Uptime'],
-	Integration: ['Yearly Meetings', 'LORC Maintenance'],
+	Output: {
+		'Monthly Work Capacity': 'this is content to be written',
+		'Requests & Revisions': 'this is content for requests and revisions',
+	},
+	Design: {
+		'AI Assisted Design': 'this is content to be written',
+		'UI/UX design': 'this is content to be written',
+		'Graphic design': 'this is content to be written',
+		'3D design': 'this is content to be written',
+	},
+	Development: {
+		Database: 'this is content to be written',
+		'Responsive Design': 'this is content to be written',
+	},
+	Hosting: {
+		'Live Server': 'this is content to be written',
+		'Dedicated Storage': 'this is content to be written',
+		Uptime: 'this is content to be written',
+	},
+	Integration: {
+		'Yearly Meetings': 'this is content to be written',
+		'LORC Maintenance': 'this is content to be written',
+	},
 };
 
 export type NorpTier = {

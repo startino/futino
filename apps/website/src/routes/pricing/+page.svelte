@@ -90,25 +90,25 @@
 						</h1>
 					</div>
 					<!-- Features Rows-->
-					{#each catagoryFeatures as tierFeature}
+					{#each Object.entries(catagoryFeatures) as [featureName, featureAbout]}
 						<div class="flex flex-row grid-item place-items-center gap-3">
 							<h2 class="my-auto title-medium text-left">
-								{tierFeature}
+								{featureName}
 							</h2>
-							<Tooltip content="this is content" direction="right">
+							<Tooltip content={featureAbout} direction="left">
 								<Icon icon="info" width="14" height="14" class="text-outline-dark" />
 							</Tooltip>
 						</div>
 						{#each norpTiers as tier}
 							<h2 class="my-auto title-medium grid-item text-left">
-								{#if tier.features[catagoryName][tierFeature] == true}
+								{#if tier.features[catagoryName][featureName] == true}
 									<Icon
 										icon="checkmark"
 										height="24"
 										width="24"
 										class="-ml-0.5 text-secondary-dark" />
 								{:else}
-									{tier.features[catagoryName][tierFeature]}
+									{tier.features[catagoryName][featureName]}
 								{/if}
 							</h2>
 						{/each}
