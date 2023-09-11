@@ -46,7 +46,7 @@ const config = {
 				'facebook-hover': ['0px 0px 7px #1877F2FF'],
 				linkedin: ['0px 0px 5px #0077B5BB'],
 				'linkedin-hover': ['0px 0px 7px #0077B5FF'],
-
+				'glow-line': ['0 0 2.5px rgb(var(--md-sys-color-primary-dark))','0 0 2.5px rgb(var(--md-sys-color-primary-dark))','0 0 2.5px rgb(var(--md-sys-color-primary-dark))',],
 				'glow-sm-dark': '0 0 5px rgb(var(--md-sys-color-primary-container-dark) / 0.5)',
 				'glow-md-dark': '0 0 10px rgb(var(--md-sys-color-primary-container-dark) / 0.5)',
 				'glow-lg-dark': '0 0 15px rgb(var(--md-sys-color-primary-container-dark) / 0.5)',

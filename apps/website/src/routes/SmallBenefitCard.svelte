@@ -3,7 +3,7 @@
 </script>
 
 <div
-	class="lg:col-span-1 group bg-surface-dark rounded-md overflow-hidden items-center flex flex-col gap-4 py-10 pb-5 px-8 w-full drop-shadow-glow-sm-dark border-1 border-primary-dark">
+	class="lg:col-span-1 group bg-surface-dark max-w-lg lg:max-w-none rounded-md overflow-hidden items-center flex flex-col gap-4 py-10 pb-5 px-8 w-full drop-shadow-glow-sm-dark border-1 border-primary-dark">
 	<div class="bg-background-dark rounded-md p-3">
 		<img src={$$props.topIcon} alt="book" class="w-7 h-7 object-center object-cover" />
 	</div>

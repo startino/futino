@@ -41,7 +41,7 @@
 	<div class="flex flex-col gap-4 md:col-span-3 self-start w-full">
 		<div class="lex flex-col gap-4 items-start">
 			<SearchBox class="w-full mb-4 md:mb-6" bind:searchInput on:input={searchPhotos} />
-			<div class="flex flex-col gap-4 overflow-scroll w-full max-h-[505px]">
+			<div class="flex flex-col gap-4 overflow-y-scroll w-full max-h-[505px]">
 				{#if searchInput && filteredFaqs.length === 0}
 					<div class="w-full py-12 headline-medium inline">
 						<h1 class="">Sorry, we couldn't find your question.</h1>

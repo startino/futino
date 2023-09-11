@@ -30,7 +30,7 @@
 
 	const chapterInViewOptions: Options = {
 		rootMargin: '-20%',
-		threshold: 0.3,
+		threshold: 0.1,
 		unobserveOnEnter: false,
 	};
 
@@ -116,6 +116,21 @@
 		},
 	];
 
+	const steps = [
+		{
+			title: 'Plan',
+			body: 'Gather information and outline project goals to determine the best line of ascent.',
+		},
+		{
+			title: 'Create',
+			body: 'Dive into design & development, where we refine through unlimited revisions until perfection.',
+		},
+		{
+			title: 'Launch',
+			body: `Finalize your website's design and content. Grab some popcorn, kick back, relax, and enjoy the show. 🍿`,
+		},
+	];
+
 	onMount(() => {});
 </script>
 
@@ -173,15 +188,13 @@
 	<!--Differences Section-->
 	<section
 		id="differences"
-		use:inview={chapterInViewOptions}
-		on:inview_enter={handleChapterInView('differences')}
-		class="shadow-lg justify-items-center bg-gradient-to-b from-black/40 to-10% to-transparent">
-		<div class="inner-section grid grid-cols-1 md:grid-cols-2 items-center gap-x-6">
+		class="justify-items-center bg-gradient-to-b from-black/40 to-20% to-transparent">
+		<div class="inner-section grid grid-cols-1 sm:grid-cols-2 items-center gap-x-6">
 			<img
 				src="artwork/astronaut_1.png"
 				alt=""
-				class="object-center object-cover w-64 h-64 md:h-fit md:w-auto aspect-square place-self-center drop-shadow-service-art" />
-			<div class="flex flex-col text-left gap-6 relative w-fit">
+				class="object-center object-cover w-64 h-64 sm:h-fit sm:w-auto aspect-square justify-self-start md:place-self-center drop-shadow-service-art" />
+			<div class="flex flex-col text-center sm:text-left gap-6 relative w-fit">
 				<!--Main text content-->
 				<div class="relative">
 					<!-- New annotations-->
@@ -222,7 +235,7 @@
 		id="benefits"
 		use:inview={chapterInViewOptions}
 		on:inview_enter={handleChapterInView('benefits')}
-		class=" shadow-2xl grid justify-items-center">
+		class="justify-items-center">
 		<div class="inner-section flex flex-col gap-6 items-center">
 			<div class="max-w-xl py-6 w-fit">
 				<h1 class="display-medium">Membership Benefits</h1>
@@ -230,7 +243,7 @@
 					Perks that are simply too good to look anywhere else for your website needs. Seriously.
 				</h2>
 			</div>
-			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
 				<BigBenefitCard
 					class="z-10"
 					topIcon="artwork/book_1.png"
@@ -297,12 +310,18 @@
 		id="services"
 		use:inview={chapterInViewOptions}
 		on:inview_enter={handleChapterInView('services')}
-		class="shadow-lg justify-items-center">
+		class="justify-items-center">
 		<!--Absolute center line
 		<div class="absolute z-50 w-1 h-6 -translate-x-1/2 bg-red-500 left-1/2 top-1/2" />
 		-->
 
 		<div class="flex flex-col inner-section">
+			<div class="max-w-xl py-6 w-fit mx-auto">
+				<h1 class="display-medium">Areas of Expertise</h1>
+				<h2 class="body-large">
+					From start to finish, we've got it all covered. Don't mention it.
+				</h2>
+			</div>
 			{#each servicesChapters as { chapterNumber, inView, title, image, body }}
 				<div
 					class="relative grid w-full grid-cols-1 py-16 overflow-y-hidden gap-y-14 gap-x-0 sm:grid-cols-2 place-items-center">
@@ -321,7 +340,7 @@
 							once={true}
 							duration={800}
 							dontFade={true}
-							fly={{ x: 0, y: -500 }}
+							fly={{ x: 0, y: -620 }}
 							axis={'y'}
 							delay={100}
 							bottom={300}
@@ -382,37 +401,94 @@
 		id="process"
 		use:inview={chapterInViewOptions}
 		on:inview_enter={handleChapterInView('process')}
-		class=" shadow-2xl grid justify-items-center">
-		<div class="inner-section grid grid-cols-1 md:grid-cols-3 place-items-center">
-			{#each Array(3) as step, i}
-				<div
-					class="flex flex-col px-4 gap-4 relative max-w-md bg-surface-dark border-1 border-primary-dark rounded-md">
-					<!--Center line and Chapter checkmark-->
-					<div
-						class="absolute flex-row place-items-center hidden h-full w-full text-center md:flex bottom-full">
-						<!--Circle-->
+		class="justify-items-center">
+		<div class="inner-section flex flex-col md:gap-24">
+			<div class="w-full hidden">
+				<video
+					id="campain_video"
+					preload="auto"
+					controls
+					class="w-full transition-transform aspect-[16/9]">
+					<source title="Video" type="video/mp4" src="client_websites/ggsoccer_whole_dark.mp4" />
+					Your Browser does not support our video types
+					<track kind="captions" />
+				</video>
+			</div>
+			<div class="max-w-xl py-6 w-fit mx-auto">
+				<h1 class="display-medium">Here's How We Roll</h1>
+				<h2 class="body-large">The lifecycle of your website in three simple steps.</h2>
+			</div>
+			<div class="grid grid-cols-1 md:grid-cols-3 place-items-center gap-y-6">
+				{#each steps as { title, body }, i}
+					<div class="flex relative w-full h-full">
+						<!--md+ Journey line and Chapter checkmark-->
 						<div
-							class="flex items-center w-11 h-11 text-center rounded-full bg-surface-dark circle-shadow">
-							<h1 class="mx-auto display-small z-20">{i + 1}</h1>
-						</div>
+							class="absolute flex-row place-items-center hidden h-full w-full text-center md:flex top-0 -translate-y-1/2">
+							<!--Circle-->
+							<div
+								class="flex items-center w-11 h-11 text-center rounded-full bg-surface-dark circle-shadow">
+								<h1 class="mx-auto display-small z-20">{i + 1}</h1>
+							</div>
 
+							<InView
+								once={true}
+								duration={500}
+								dontFade={true}
+								fly={{ x: -350, y: 0 }}
+								axis={'y'}
+								delay={100 + 500 * i}
+								bottom={300}
+								class="flex justify-items-center pr-16 w-full items-center">
+								<!--Line-->
+								<div
+									class="flex h-1 w-full my-2 bg-surface-dark line-shadow shadow-tertiary-dark" />
+							</InView>
+						</div>
+						<!-- Mobile Journey line and Chapter checkmark-->
+						<div class="absolute flex-col items-center flex h-full text-center md:hidden top-8">
+							<!--Circle-->
+							<div
+								class="flex items-center w-11 h-11 text-center rounded-full bg-surface-dark circle-shadow">
+								<h1 class="mx-auto display-small z-20">
+									{i}
+								</h1>
+							</div>
+
+							<InView
+								once={true}
+								duration={600}
+								dontFade={true}
+								fly={{ x: 0, y: -320 }}
+								axis={'y'}
+								delay={100 + 600 * i}
+								bottom={300}
+								class="flex justify-items-center h-full sm:flex w-full pb-2 mb-2">
+								<!--Line-->
+								<div
+									class=" -mt-6 flex w-1 mx-auto h-full rounded-full bg-surface-dark line-shadow" />
+							</InView>
+						</div>
 						<InView
 							once={true}
-							duration={800}
-							dontFade={true}
-							fly={{ x: -300, y: 0 }}
+							duration={500}
+							fly={{ x: -400, y: 0 }}
 							axis={'y'}
-							delay={100}
-							bottom={300}
-							class="flex justify-items-center h-fit w-full items-center">
-							<!--Line-->
-							<div class="flex h-1 w-full mr-2 my-2 bg-surface-dark drop-shadow-service-art" />
+							delay={100 + 500 * i}
+							bottom={300}>
+							<div
+								class="mt-14 ml-12 pl-1 pr-8 md:ml-0 flex flex-col py-4 my-2 w-full text-left md:mr-2">
+								<h1
+									class="headline-large uppercase text-primary-dark md:title-large md:uppercase sm:text-primary-dark">
+									{title}
+								</h1>
+								<p class="title-medium md:headline-large max-w-xs">
+									{body}
+								</p>
+							</div>
 						</InView>
 					</div>
-					<h1 class="headline-medium">PLAN</h1>
-					<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ab, aut.</p>
-				</div>
-			{/each}
+				{/each}
+			</div>
 		</div>
 	</section>
 	<!--Contact Section-->
@@ -420,7 +496,7 @@
 		id="contact"
 		use:inview={chapterInViewOptions}
 		on:inview_enter={handleChapterInView('contact')}
-		class="shadow-lg border-secondary-light/20 dark:border-secondary-dark/20 justify-items-center">
+		class="justify-items-center">
 		<div
 			class="inner-section flex flex-col w-full gap-12
 		">
@@ -537,6 +613,6 @@
 	}
 
 	.line-shadow::before {
-		@apply absolute left-0 right-0 bottom-0 top-0 rounded-full -z-10  shadow-glow shadow-primary-dark content-[''];
+		@apply absolute left-0 right-0 bottom-0 top-0 rounded-full z-0  shadow-glow shadow-primary-dark content-[''];
 	}
 </style>
