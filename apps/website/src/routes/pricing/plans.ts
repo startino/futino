@@ -32,40 +32,46 @@ export type Features = {
 // Probably better object oriented way to do this, but sometimes fast is better.
 export const features = {
 	Output: {
-		'Monthly Work Capacity': `Our Monthly Work Capacity represents the guaranteed number of work hours available to you each month. 
-		You can submit Requests within this limit. 
-		If your usage exceeds this limit, 
-		any remaining Requests will be carried over to the following month.`,
-		'Requests & Revisions': `You have the flexibility to submit an unlimited number of
-		 Requests and Revisions. As long as your Requests and Revisions stay within the 
-		 Monthly Work Capacity, there are no set quantity limits.`,
+		'Monthly Work Capacity': `The guaranteed number of work hours available to you each month. 
+		If your usage exceeds this limit, any remaining Requests will be carried over to the following month.`,
+		'Requests & Revisions': `A Request is a task to create something (an illustration, a page, etc.). A Revision is a task to update something already existing.`,
 		'Avg. Turnaround Time': `The Average Turnaround Time reflects the typical duration
 		 between the submission and completion of a Request. Please note that this time may 
 		 vary depending on Request complexity and current workload.`,
 	},
 	Design: {
-		'AI Assisted Design': 'Our inhouse AI Assisted Design workflow and cutting-edge technologies empower our design team to create outstanding visuals and concepts.',
-		'UI/UX Design': 'Crafting seamless and aesthetically pleasing user experiences that enhance the overall appeal and functionality of your website.',
-		'Graphic Design': 'Creating eye-catching visual elements, logos, and graphics that make your website stand out.',
-		'3D Design': 'Incorporate stunning three-dimensional elements into your projects, adding depth and sophistication.',
-		
+		'AI Assisted Design':
+			'Our inhouse AI Assisted Design workflow and cutting-edge technologies empower our design team to create outstanding visuals and concepts.',
+		'UI/UX Design':
+			'Crafting seamless and aesthetically pleasing user experiences that enhance the overall appeal and functionality of your website.',
+		'Graphic Design':
+			'Creating eye-catching visual elements, logos, and graphics that make your website stand out.',
+		'3D Design':
+			'Incorporate stunning three-dimensional elements into your projects, adding depth and sophistication.',
 	},
 	Development: {
 		Database: 'Data management, retrievals, and submissions for your website or application.',
-		'Responsive Design': 'Ensures your website looks and functions flawlessly across various devices and screen sizes.',
-		'Admin Page': 'A password protected page that allows you to easily update content and monitor performance.',
-		'Online Payment': 'Integrate a payment gateway on your website and configure it for your business.'
+		'Responsive Design':
+			'Ensures your website looks and functions flawlessly across various devices and screen sizes.',
+		'Admin Page':
+			'A password protected page that allows you to easily update content and monitor performance.',
+		'Online Payment':
+			'Integrate a payment gateway on your website and configure it for your business.',
 	},
 	Hosting: {
 		'Live Server': 'Your website is hosted on a server with live updates.',
-		'Server Maintenance': 'We handle routine server updates, security patches, and performance optimization to keep your site running smoothly.',
-		'Dedicated Storage': 'Dedicated storage on the server to accommodate your data and content, ensuring fast loading times and smooth performance.',
+		'Server Maintenance':
+			'We handle routine server updates, security patches, and performance optimization to keep your site running smoothly.',
+		'Dedicated Storage':
+			'Dedicated storage on the server to accommodate your data and content, ensuring fast loading times and smooth performance.',
 		Uptime: 'Percentage of time that your website is live and accessible to users.',
 	},
 	Integration: {
-		'Yearly Meetings': 'Yearly meetings to discuss your evolving needs, goals, and strategies for improvement.',
-		'LORC Maintenance': 'Our Library of Reusable Components to speed up development and ensure consistency.',
-		'Project Board': `Software to easily submit Requests or Revisions and where you can view the team's progress on your project.`
+		'Yearly Meetings':
+			'Yearly meetings to discuss your evolving needs, goals, and strategies for improvement.',
+		'LORC Maintenance':
+			'Our Library of Reusable Components to speed up development and ensure consistency.',
+		'Project Board': `Software to easily submit Requests or Revisions and where you can view the team's progress on your project.`,
 	},
 };
 
@@ -115,7 +121,7 @@ export const norpTiers: NorpTier[] = [
 				'Live Server': true,
 				'Dedicated Storage': '10 GB',
 				Uptime: '99.5%',
-				'Server Maintenance': 'Monthly'
+				'Server Maintenance': 'Monthly',
 			},
 			Integration: {
 				'Yearly Meetings': 'Up to 1',
@@ -156,7 +162,7 @@ export const norpTiers: NorpTier[] = [
 				'Live Server': true,
 				'Dedicated Storage': '20 GB',
 				Uptime: '99.8%',
-				'Server Maintenance': 'Biweekly'
+				'Server Maintenance': 'Biweekly',
 			},
 			Integration: {
 				'Yearly Meetings': 'Up to 12',
@@ -197,7 +203,7 @@ export const norpTiers: NorpTier[] = [
 				'Live Server': true,
 				'Dedicated Storage': '30 GB',
 				Uptime: '99.9%',
-				'Server Maintenance': 'Weekly'
+				'Server Maintenance': 'Weekly',
 			},
 			Integration: {
 				'Yearly Meetings': 'Up to 24',
