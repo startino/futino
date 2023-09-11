@@ -22,13 +22,15 @@
 	import BigBenefitCard from './BigBenefitCard.svelte';
 	import FaqSection from '$lib/components/organisms/FAQSection.svelte';
 	import { faqs } from '$lib/faqs';
+	import { stringify } from 'postcss';
 
 	let scrollY: number;
 	// Index of the current chapter that is in the viewport, used by chapter menu.
 	let chapterInView: number;
 
 	const chapterInViewOptions: Options = {
-		rootMargin: '-10%',
+		rootMargin: '-20%',
+		threshold: 0.3,
 		unobserveOnEnter: false,
 	};
 
@@ -67,9 +69,14 @@
 	};
 
 	const handleChapterInView =
-		(inViewChapter: number) =>
+		(inViewChapterId: string) =>
 		({ detail }: CustomEvent<ObserverEventDetails>) => {
-			chapterInView = inViewChapter;
+			landingPageChapters.forEach((chapter) => {
+				if (chapter.href.replace('#', '') == inViewChapterId) {
+					chapterInView = chapter.chapterNumber;
+					return;
+				}
+			});
 		};
 
 	const landingPageChapters: {
@@ -90,13 +97,17 @@
 		{
 			chapterNumber: 2,
 			title: 'Services',
-			href: '#journey',
+			href: '#services',
 		},
-
 		{
 			chapterNumber: 3,
 			title: 'Contact',
 			href: '#contact',
+		},
+		{
+			chapterNumber: 4,
+			title: 'FAQs',
+			href: '#faqs',
 		},
 	];
 
@@ -112,7 +123,7 @@
 	<section
 		id="hero"
 		use:inview={chapterInViewOptions}
-		on:inview_enter={handleChapterInView(0)}
+		on:inview_enter={handleChapterInView('hero')}
 		class="relative h-screen place-items-center bg-[url('/glow_bg_2.png')] bg-no-repeat bg-fit bg-top">
 		<div
 			class="pointer-events-none bg-gradient-to-b from-transparent to-black from-70% w-full h-full absolute z-10" />
@@ -158,7 +169,7 @@
 	<section
 		id="benefits"
 		use:inview={chapterInViewOptions}
-		on:inview_enter={handleChapterInView(1)}
+		on:inview_enter={handleChapterInView('benefits')}
 		class=" shadow-2xl grid justify-items-center bg-gradient-to-b from-black/40 to-10% to-transparent">
 		<div class="inner-section flex flex-col gap-6 items-center">
 			<div class="max-w-xl py-6 w-fit">
@@ -231,9 +242,9 @@
 
 	<!--Journey Section-->
 	<section
-		id="journey"
+		id="services"
 		use:inview={chapterInViewOptions}
-		on:inview_enter={handleChapterInView(2)}
+		on:inview_enter={handleChapterInView('services')}
 		class="shadow-lg justify-items-center">
 		<!--Absolute center line
 		<div class="absolute z-50 w-1 h-6 -translate-x-1/2 bg-red-500 left-1/2 top-1/2" />
@@ -320,7 +331,7 @@
 	<section
 		id="contact"
 		use:inview={chapterInViewOptions}
-		on:inview_enter={handleChapterInView(3)}
+		on:inview_enter={handleChapterInView('contact')}
 		class="shadow-lg border-secondary-light/20 dark:border-secondary-dark/20 justify-items-center">
 		<div
 			class="inner-section flex flex-col w-full gap-12
@@ -415,7 +426,14 @@
 			</div>
 		</div>
 	</section>
-	<FaqSection {faqs} />
+	<section
+		id="faqs"
+		use:inview={chapterInViewOptions}
+		on:inview_enter={handleChapterInView('faqs')}>
+		<div class="inner-section">
+			<FaqSection {faqs} />
+		</div>
+	</section>
 </main>
 
 <style>
