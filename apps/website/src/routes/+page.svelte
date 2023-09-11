@@ -188,7 +188,7 @@
 	<!--Differences Section-->
 	<section
 		id="differences"
-		class="justify-items-center bg-gradient-to-b from-black/40 to-20% to-transparent">
+		class="justify-items-center bg-gradient-to-b from-black/40 to-30% to-transparent">
 		<div class="inner-section grid grid-cols-1 sm:grid-cols-2 items-center gap-x-6">
 			<img
 				src="artwork/astronaut_1.png"

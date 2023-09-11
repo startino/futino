@@ -32,11 +32,20 @@
 	<div
 		class="col-span-2 h-fit flex flex-col gap-y-4 items-center self-start md:items-start md:text-left text-surface-on-dark">
 		<h1 class="font-semibold headline-medium md:display-medium leading-tight">
-			Your Questions, <br /> Answered
+			Your Questions, <br class="hidden md:flex" /> Answered
 		</h1>
 		<h1 class="title-medium hidden md:flex">
-			Find Clarity and Confidence <br /> through some frequently asked questions.
+			Find clarity and confidence <br /> through some frequently asked questions. If you can't find your
+			answer there, we're open to answer any questions.
 		</h1>
+		<div class="flex flex-row md:flex-col lg:flex-row gap-y-4 -ml-2 my-2 mb-6">
+			<Button href="/contact">
+				<h2 class="title-medium">Book a call</h2>
+			</Button>
+			<Button href="/contact" secondary={true}>
+				<h2 class="title-medium">Contact</h2>
+			</Button>
+		</div>
 	</div>
 	<div class="flex flex-col gap-4 md:col-span-3 self-start w-full">
 		<div class="lex flex-col gap-4 items-start">
