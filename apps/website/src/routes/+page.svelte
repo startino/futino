@@ -20,6 +20,8 @@
 	import SmallBenefitCard from './SmallBenefitCard.svelte';
 	import Icon from '$lib/components/atoms/Icon.svelte';
 	import BigBenefitCard from './BigBenefitCard.svelte';
+	import FaqSection from '$lib/components/organisms/FAQSection.svelte';
+	import { faqs } from '$lib/faqs';
 
 	let scrollY: number;
 	// Index of the current chapter that is in the viewport, used by chapter menu.
@@ -413,6 +415,7 @@
 			</div>
 		</div>
 	</section>
+	<FaqSection {faqs} />
 </main>
 
 <style>
