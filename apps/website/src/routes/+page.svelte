@@ -101,11 +101,16 @@
 		},
 		{
 			chapterNumber: 3,
+			title: 'Process',
+			href: '#process',
+		},
+		{
+			chapterNumber: 4,
 			title: 'Contact',
 			href: '#contact',
 		},
 		{
-			chapterNumber: 4,
+			chapterNumber: 5,
 			title: 'FAQs',
 			href: '#faqs',
 		},
@@ -217,7 +222,7 @@
 		id="benefits"
 		use:inview={chapterInViewOptions}
 		on:inview_enter={handleChapterInView('benefits')}
-		class=" shadow-2xl grid justify-items-center ">
+		class=" shadow-2xl grid justify-items-center">
 		<div class="inner-section flex flex-col gap-6 items-center">
 			<div class="max-w-xl py-6 w-fit">
 				<h1 class="display-medium">Membership Benefits</h1>
@@ -302,7 +307,6 @@
 				<div
 					class="relative grid w-full grid-cols-1 py-16 overflow-y-hidden gap-y-14 gap-x-0 sm:grid-cols-2 place-items-center">
 					<!--Center line and Chapter checkmark-->
-
 					<div
 						class="absolute flex-col items-center hidden h-full text-center sm:flex -translate-x-1/2 left-1/2 top-8">
 						<!--Circle-->
@@ -373,6 +377,44 @@
 		</div>
 	</section>
 
+	<!-- Process Section -->
+	<section
+		id="process"
+		use:inview={chapterInViewOptions}
+		on:inview_enter={handleChapterInView('process')}
+		class=" shadow-2xl grid justify-items-center">
+		<div class="inner-section grid grid-cols-1 md:grid-cols-3 place-items-center">
+			{#each Array(3) as step, i}
+				<div
+					class="flex flex-col px-4 gap-4 relative max-w-md bg-surface-dark border-1 border-primary-dark rounded-md">
+					<!--Center line and Chapter checkmark-->
+					<div
+						class="absolute flex-row place-items-center hidden h-full w-full text-center md:flex bottom-full">
+						<!--Circle-->
+						<div
+							class="flex items-center w-11 h-11 text-center rounded-full bg-surface-dark circle-shadow">
+							<h1 class="mx-auto display-small z-20">{i + 1}</h1>
+						</div>
+
+						<InView
+							once={true}
+							duration={800}
+							dontFade={true}
+							fly={{ x: -300, y: 0 }}
+							axis={'y'}
+							delay={100}
+							bottom={300}
+							class="flex justify-items-center h-fit w-full items-center">
+							<!--Line-->
+							<div class="flex h-1 w-full mr-2 my-2 bg-surface-dark drop-shadow-service-art" />
+						</InView>
+					</div>
+					<h1 class="headline-medium">PLAN</h1>
+					<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ab, aut.</p>
+				</div>
+			{/each}
+		</div>
+	</section>
 	<!--Contact Section-->
 	<section
 		id="contact"
