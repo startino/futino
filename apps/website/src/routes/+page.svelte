@@ -128,8 +128,9 @@
 			</h1>
 
 			<h3 class=" headline-small lg:headline-medium max-w-3xl">
-				Growing startups and companies with <span class="text-primary-dark">AI Design</span>,
-				<span class="text-primary-dark">Optimized Development</span>, and
+				Growing startups and companies with <span class="text-primary-dark"
+					>AI Design, Optimized Development,</span>
+				and
 				<span class="text-primary-dark">Modern Hosting</span>
 				<span class="inline-block"> for a flat monthly fee.</span>
 			</h3>
@@ -194,7 +195,7 @@
 					topIcon="artwork/unlocked_3.png"
 					title="Not Locked In"
 					artwork="artwork/gate_1.png">
-					You're projects use nonproprietary tech, meaning you can swap us out later on. <span
+					Your projects use nonproprietary tech, meaning you can swap us out later on. <span
 						class="inline-block">(You won't &#128521;)</span>
 				</SmallBenefitCard>
 

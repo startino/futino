@@ -94,9 +94,7 @@
 					</a>
 				{/each}
 			</nav>
-			<div
-				class="gap-6 pl-6 flex md:border-l md:border-secondary-light/50 md:dark:border-primary-dark/50">
-				<ThemeButton />
+			<div class="gap-6 flex md:border-secondary-light/50 md:dark:border-primary-dark/50">
 				<button
 					class="flex md:hidden stroke-primary-light hover:stroke-tertiary-light dark:stroke-primary-dark dark:hover:stroke-tertiary-dark"
 					on:click={toggleMenu}>
