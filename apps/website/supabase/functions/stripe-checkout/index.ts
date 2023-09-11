@@ -2,7 +2,7 @@ import { serve } from 'https://deno.land/std@0.131.0/http/server.ts';
 import Stripe from 'https://esm.sh/stripe?target=deno';
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@1.35.5';
 
-const stripe = Stripe(Deno.env.get('STRIPE_KEY')!, {
+const stripe = Stripe(Deno.env.get('STRIPE_LIVE_KEY')!, {
 	httpClient: Stripe.createFetchHttpClient(),
 });
 
@@ -28,6 +28,11 @@ serve(async (req) => {
 			{
 				price: tierId,
 				quantity: 1,
+			},
+		],
+		discounts: [
+			{
+				coupon: 'KAdmHiIp',
 			},
 		],
 		mode: 'subscription',

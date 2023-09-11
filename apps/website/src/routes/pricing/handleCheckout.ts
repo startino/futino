@@ -26,7 +26,7 @@ export async function handleCheckout(tierId: string) {
 	console.log('data: ', data);
 	const parsedData = JSON.parse(data);
 	const stripe = await loadStripe(
-		'pk_test_51MsleND09EWpqQ4YqUb6Qn0oYpjnZGuZkoJ917PsSerhH5TXBRuirEwuJZY1tQg2Jttw3zQF3BVzteMYpiWpxwyX00qLkW9gd2',
+		'pk_live_51MsleND09EWpqQ4Y3sNQoIa1ehx2AT27OLissakJ3duaI6zg5qZxbB9tiaqclpb02H90hFnkKwV7Tof8EPKN4xOT00dGnLw8NC',
 	);
 
 	await stripe?.redirectToCheckout({ sessionId: parsedData?.sessionId });

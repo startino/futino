@@ -32,7 +32,7 @@
 </script>
 
 <div
-	class="flex bg-surface-light dark:bg-surface-dark border rounded-lg border-secondary-light/20 dark:border-secondary-dark/20">
+	class="{$$props.class} flex bg-surface-light dark:bg-surface-dark border rounded-lg border-secondary-light/20 dark:border-secondary-dark/20">
 	<div class="relative flex flex-row gap-1 items-center text-center mx-1 my-2">
 		<div
 			class="absolute border-2 rounded-lg border-primary-light dark:border-primary-dark transition-all delay-75 ease-in-out duration-500"

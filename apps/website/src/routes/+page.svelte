@@ -130,8 +130,8 @@
 			<h3 class=" headline-small lg:headline-medium max-w-3xl">
 				Growing startups and companies with <span class="text-primary-dark">AI Design</span>,
 				<span class="text-primary-dark">Optimized Development</span>, and
-				<span class="text-primary-dark">Strategic Hosting</span>.
-				<span class="inline-block"> And we aren't an agency 👊.</span>
+				<span class="text-primary-dark">Modern Hosting</span>
+				<span class="inline-block"> for a flat monthly fee.</span>
 			</h3>
 
 			<div class="grid grid-cols-2 gap-x-4">
