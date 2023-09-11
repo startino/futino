@@ -6,49 +6,66 @@ export type Features = {
 	};
 	Design: {
 		'AI Assisted Design': boolean;
-		'UI/UX design': boolean;
-		'Graphic design': boolean;
-		'3D design': boolean;
+		'UI/UX Design': boolean;
+		'Graphic Design': boolean;
+		'3D Design': boolean;
 	};
 	Development: {
 		Database: boolean;
 		'Responsive Design': boolean;
+		'Admin Page': boolean;
+		'Online Payment': boolean;
 	};
 	Hosting: {
 		'Live Server': boolean;
+		'Server Maintenance': string;
 		'Dedicated Storage': string;
 		Uptime: string;
 	};
 	Integration: {
 		'Yearly Meetings': string; // "Up to ..."
 		'LORC Maintenance': boolean;
+		'Project Board': boolean;
 	};
 };
 
 // Probably better object oriented way to do this, but sometimes fast is better.
 export const features = {
 	Output: {
-		'Monthly Work Capacity': 'this is content to be written',
-		'Requests & Revisions': 'this is content for requests and revisions',
+		'Monthly Work Capacity': `Our Monthly Work Capacity represents the guaranteed number of work hours available to you each month. 
+		You can submit Requests within this limit. 
+		If your usage exceeds this limit, 
+		any remaining Requests will be carried over to the following month.`,
+		'Requests & Revisions': `You have the flexibility to submit an unlimited number of
+		 Requests and Revisions. As long as your Requests and Revisions stay within the 
+		 Monthly Work Capacity, there are no set quantity limits.`,
+		'Avg. Turnaround Time': `The Average Turnaround Time reflects the typical duration
+		 between the submission and completion of a Request. Please note that this time may 
+		 vary depending on Request complexity and current workload.`,
 	},
 	Design: {
-		'AI Assisted Design': 'this is content to be written',
-		'UI/UX design': 'this is content to be written',
-		'Graphic design': 'this is content to be written',
-		'3D design': 'this is content to be written',
+		'AI Assisted Design': 'Our inhouse AI Assisted Design workflow and cutting-edge technologies empower our design team to create outstanding visuals and concepts.',
+		'UI/UX Design': 'Crafting seamless and aesthetically pleasing user experiences that enhance the overall appeal and functionality of your website.',
+		'Graphic Design': 'Creating eye-catching visual elements, logos, and graphics that make your website stand out.',
+		'3D Design': 'Incorporate stunning three-dimensional elements into your projects, adding depth and sophistication.',
+		
 	},
 	Development: {
-		Database: 'this is content to be written',
-		'Responsive Design': 'this is content to be written',
+		Database: 'Data management, retrievals, and submissions for your website or application.',
+		'Responsive Design': 'Ensures your website looks and functions flawlessly across various devices and screen sizes.',
+		'Admin Page': 'A password protected page that allows you to easily update content and monitor performance.',
+		'Online Payment': 'Integrate a payment gateway on your website and configure it for your business.'
 	},
 	Hosting: {
-		'Live Server': 'this is content to be written',
-		'Dedicated Storage': 'this is content to be written',
-		Uptime: 'this is content to be written',
+		'Live Server': 'Your website is hosted on a server with live updates.',
+		'Server Maintenance': 'We handle routine server updates, security patches, and performance optimization to keep your site running smoothly.',
+		'Dedicated Storage': 'Dedicated storage on the server to accommodate your data and content, ensuring fast loading times and smooth performance.',
+		Uptime: 'Percentage of time that your website is live and accessible to users.',
 	},
 	Integration: {
-		'Yearly Meetings': 'this is content to be written',
-		'LORC Maintenance': 'this is content to be written',
+		'Yearly Meetings': 'Yearly meetings to discuss your evolving needs, goals, and strategies for improvement.',
+		'LORC Maintenance': 'Our Library of Reusable Components to speed up development and ensure consistency.',
+		'Project Board': `Software to easily submit Requests or Revisions and where you can view the team's progress on your project.`
 	},
 };
 
@@ -84,22 +101,26 @@ export const norpTiers: NorpTier[] = [
 			},
 			Design: {
 				'AI Assisted Design': true,
-				'UI/UX design': true,
-				'Graphic design': true,
-				'3D design': true,
+				'UI/UX Design': true,
+				'Graphic Design': true,
+				'3D Design': true,
 			},
 			Development: {
 				Database: true,
 				'Responsive Design': true,
+				'Admin Page': true,
+				'Online Payment': true,
 			},
 			Hosting: {
 				'Live Server': true,
 				'Dedicated Storage': '10 GB',
 				Uptime: '99.5%',
+				'Server Maintenance': 'Monthly'
 			},
 			Integration: {
-				'Yearly Meetings': '1',
+				'Yearly Meetings': 'Up to 1',
 				'LORC Maintenance': true,
+				'Project Board': true,
 			},
 		},
 		thumbnail: '/artwork/sailboat_2.png',
@@ -121,22 +142,26 @@ export const norpTiers: NorpTier[] = [
 			},
 			Design: {
 				'AI Assisted Design': true,
-				'UI/UX design': true,
-				'Graphic design': true,
-				'3D design': true,
+				'UI/UX Design': true,
+				'Graphic Design': true,
+				'3D Design': true,
 			},
 			Development: {
 				Database: true,
 				'Responsive Design': true,
+				'Admin Page': true,
+				'Online Payment': true,
 			},
 			Hosting: {
 				'Live Server': true,
 				'Dedicated Storage': '20 GB',
 				Uptime: '99.8%',
+				'Server Maintenance': 'Biweekly'
 			},
 			Integration: {
 				'Yearly Meetings': 'Up to 12',
 				'LORC Maintenance': true,
+				'Project Board': true,
 			},
 		},
 		thumbnail: '/artwork/plane_2.png',
@@ -158,22 +183,26 @@ export const norpTiers: NorpTier[] = [
 			},
 			Design: {
 				'AI Assisted Design': true,
-				'UI/UX design': true,
-				'Graphic design': true,
-				'3D design': true,
+				'UI/UX Design': true,
+				'Graphic Design': true,
+				'3D Design': true,
 			},
 			Development: {
 				Database: true,
 				'Responsive Design': true,
+				'Admin Page': true,
+				'Online Payment': true,
 			},
 			Hosting: {
 				'Live Server': true,
 				'Dedicated Storage': '30 GB',
 				Uptime: '99.9%',
+				'Server Maintenance': 'Weekly'
 			},
 			Integration: {
 				'Yearly Meetings': 'Up to 24',
 				'LORC Maintenance': true,
+				'Project Board': true,
 			},
 		},
 		thumbnail: '/artwork/rocket_6.png',
