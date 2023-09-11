@@ -73,6 +73,14 @@
 									</h1>
 								</div>
 							</div>
+							<div class="flex flex-row place-items-center text-center gap-2 my-2">
+								<h2 class="my-auto title-medium text-left">for first year</h2>
+								<Tooltip
+									content={`To celebrate our recent launch and to build lasting relationships, we're offering this special first-year discount. 🎉`}
+									direction="left">
+									<Icon icon="info" width="16" height="16" class="text-outline-dark my-auto" />
+								</Tooltip>
+							</div>
 							<h3 class="body-medium text-outline-dark">per month, billed {cycle}</h3>
 						</div>
 					</div>
