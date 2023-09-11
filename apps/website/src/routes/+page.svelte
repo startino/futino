@@ -240,6 +240,53 @@
 		</div>
 	</section>
 
+	<!--Differences Section-->
+	<section
+		id="differences"
+		use:inview={chapterInViewOptions}
+		on:inview_enter={handleChapterInView('differences')}
+		class="shadow-lg justify-items-center">
+		<div class="inner-section grid grid-cols-1 md:grid-cols-2 items-center gap-x-6">
+			<img
+				src="artwork/astronaut_1.png"
+				alt=""
+				class="object-center object-cover w-64 h-64 md:h-fit md:w-auto aspect-square place-self-center drop-shadow-service-art" />
+			<div class="flex flex-col text-left gap-6 relative w-fit">
+				<!--Main text content-->
+				<div class="relative">
+					<!-- New annotations-->
+					<img
+						src="artwork/arrow_1.png"
+						alt=""
+						class="hidden xl:flex object-cover object-center h-12 translate-y-4 -translate-x-8 w-12 rotate-45 absolute right-0 bottom-full" />
+					<h2
+						class="hidden xl:flex absolute left-full title-large -rotate-45 bottom-full uppercase -translate-x-10 -translate-y-10">
+						Futino
+					</h2>
+					<!-- Old annotations-->
+					<img
+						src="artwork/arrow_1.png"
+						alt=""
+						class="hidden xl:flex object-cover object-center h-12 translate-y-6 translate-x-1 w-12 rotate-[110deg] absolute right-0 bottom-0" />
+					<h2
+						class="hidden xl:flex absolute left-full w-fit whitespace-nowrap title-large bottom-0 translate-y-6 translate-x-3 uppercase">
+						Boring Agencies
+					</h2>
+					<h1 class="display-medium lg:display-large leading-tight">
+						<span class="text-primary-dark font-extrabold"> In </span> with the new, <br />
+						<span class="text-primary-dark font-extrabold"> Out </span> with the old
+					</h1>
+				</div>
+
+				<body class="title-large max-w-md">
+					Futino replaces the traditional path of unreliable freelancers and expensive agencies with
+					our web-services for one flat monthly cost. We include everything you'd ever need for a
+					web project.
+				</body>
+			</div>
+		</div>
+	</section>
+
 	<!--Journey Section-->
 	<section
 		id="services"
@@ -251,7 +298,6 @@
 		-->
 
 		<div class="flex flex-col inner-section">
-			<h1 class="pb-12 display-medium">Areas of Expertise</h1>
 			{#each servicesChapters as { chapterNumber, inView, title, image, body }}
 				<div
 					class="relative grid w-full grid-cols-1 py-16 overflow-y-hidden gap-y-14 gap-x-0 sm:grid-cols-2 place-items-center">
