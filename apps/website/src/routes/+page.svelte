@@ -194,38 +194,37 @@
 				src="artwork/astronaut_1.png"
 				alt=""
 				class="object-center object-cover w-64 h-64 sm:h-fit sm:w-auto aspect-square justify-self-start md:place-self-center drop-shadow-service-art" />
-			<div class="flex flex-col text-center sm:text-left gap-6 relative w-fit">
+			<div class="flex flex-col text-center sm:text-left lg:gap-14 gap-8 relative w-fit">
 				<!--Main text content-->
-				<div class="relative">
+				<div class="relative w-fit mx-auto sm:mx-0">
 					<!-- New annotations-->
 					<img
 						src="artwork/arrow_1.png"
 						alt=""
-						class="hidden xl:flex object-cover object-center h-12 translate-y-4 -translate-x-8 w-12 rotate-45 absolute right-0 bottom-full" />
-					<h2
-						class="hidden xl:flex absolute left-full title-large -rotate-45 bottom-full uppercase -translate-x-10 -translate-y-10">
+						class="hidden xl:flex object-cover object-center h-12 w-12 rotate-45 absolute -right-8 -top-3" />
+					<h2 class="hidden xl:flex absolute title-large -rotate-45 -top-12 uppercase -right-20">
 						Futino
 					</h2>
 					<!-- Old annotations-->
 					<img
 						src="artwork/arrow_1.png"
 						alt=""
-						class="hidden xl:flex object-cover object-center h-12 translate-y-6 translate-x-1 w-12 rotate-[110deg] absolute right-0 bottom-0" />
+						class="hidden xl:flex object-cover object-center h-12 w-12 rotate-[110deg] absolute -right-14 -bottom-2" />
 					<h2
-						class="hidden xl:flex absolute left-full w-fit whitespace-nowrap title-large bottom-0 translate-y-6 translate-x-3 uppercase">
+						class="hidden xl:flex absolute whitespace-nowrap title-large -bottom-9 rotate-[20deg] -right-52 uppercase">
 						Boring Agencies
 					</h2>
-					<h1 class="display-medium lg:display-large leading-tight">
+					<h1 class="display-medium text-center sm:text-left lg:display-large">
 						<span class="text-primary-dark font-extrabold"> In </span> with the new, <br />
 						<span class="text-primary-dark font-extrabold"> Out </span> with the old
 					</h1>
 				</div>
 
-				<body class="title-large max-w-md">
+				<p class="title-large max-w-lg">
 					Futino replaces the traditional path of unreliable freelancers and expensive agencies with
 					our web-services for one flat monthly cost. We include everything you'd ever need for a
 					web project.
-				</body>
+				</p>
 			</div>
 		</div>
 	</section>
