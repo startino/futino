@@ -5,7 +5,7 @@
 	export let currentHighlightedChapter = 0;
 
 	let positionClass: string = 'left: 0px';
-	let rowHeight: number = 0;
+	let rowHeight: number = 64;
 
 	// Offset from gap. Needs to be same as gap-x of flex-row. Unit is px.
 	let rowGap: number = 4;
@@ -31,8 +31,7 @@
 	}
 </script>
 
-<div
-	class="flex bg-surface-light dark:bg-surface-dark border rounded-2xl border-secondary-light/20 dark:border-secondary-dark/20">
+<div class="flex bg-surface-light dark:bg-surface-dark border rounded-2xl border-secondary-dark/40">
 	<div class="relative flex flex-row gap-1 items-center text-center mx-1 my-1">
 		<div
 			class="h-12 absolute border-2 rounded-2xl bg-primary-container-dark/30 border-primary-dark transition-all delay-75 ease-in-out duration-500"
@@ -53,7 +52,9 @@
 				<a on:click={() => handleClick(chapterNumber)} {href} class="">
 					<div class="flex flex-col">
 						{#if chapterNumber == 0}
-							<Icon icon="home" class="text-primary-dark" height="24" width="24" />
+							<div class="h-full w-fit">
+								<Icon icon="home" class="text-primary-dark h-full" height="24" width="24" />
+							</div>
 						{:else}
 							<h1 class="body-small font-extrabold text-tertiary-dark">0{chapterNumber}</h1>
 							<h1 class="body-large font-bold">{title}</h1>

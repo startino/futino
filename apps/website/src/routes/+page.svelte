@@ -331,7 +331,7 @@
 					class="z-0 h-full md:col-span-4 max-w-4xl overflow-visible">
 					<!--Contact form Option-->
 					<div
-						class="flex flex-col p-8 gap-y-8 text-left shadow-xl shadow-black drop-shadow-glow-md-dark bg-surface-dark border-1 border-primary-dark rounded-md">
+						class="flex flex-col p-4 md:p-8 gap-y-8 text-left shadow-xl shadow-black drop-shadow-glow-md-dark bg-surface-dark border-1 border-primary-dark rounded-md">
 						<div class="flex flex-col ml-2">
 							<h2 class="font-extrabold display-medium">Contact Us</h2>
 							<p class="title-medium">
