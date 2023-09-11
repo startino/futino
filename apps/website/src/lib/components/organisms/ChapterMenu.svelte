@@ -45,7 +45,9 @@
 							{#if chapterNumber === chapterInView}
 								<!--The Selected Chapter-->
 								<h1 class="title-small font-bold text-tertiary-dark">0{chapterNumber}</h1>
-								<h1 class="title-medium font-bold text-primary-dark">{title}</h1>
+								<h1 class="title-medium font-bold text-primary-dark">
+									{title == 'Hero' ? 'Home' : title}
+								</h1>
 							{:else}
 								<!--Non-selected Chapters-->
 								<h1 class="title-small font-bold text-tertiary-dark">0{chapterNumber}</h1>
@@ -60,7 +62,9 @@
 					<h1 class="title-small font-bold text-tertiary-dark">
 						0{chapters[chapterInView].chapterNumber}
 					</h1>
-					<h1 class="title-medium font-bold">{chapters[chapterInView].title}</h1>
+					<h1 class="title-medium font-bold">
+						{chapters[chapterInView].title == 'Hero' ? 'Home' : chapters[chapterInView].title}
+					</h1>
 				</div>
 			{/if}
 		</div>
