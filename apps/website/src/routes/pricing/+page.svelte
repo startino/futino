@@ -61,7 +61,9 @@
 								<div class="flex flex-row place-items-center">
 									<h1
 										class="font-extrabold text-primary-dark tracking-tighter display-large leading-none">
-										{formatter.format(cost / 2)}
+										{cycle == 'yearly'
+											? formatter.format((cost * 0.833) / 2)
+											: formatter.format(cost / 2)}
 									</h1>
 								</div>
 								<div
@@ -69,7 +71,7 @@
 									<span
 										class="absolute right-0 w-full top-1/2 content-[''] border-t-2 border-outline-dark rotate-45" />
 									<h1 class="font-extrabold tracking-tighter leading-none headline-medium">
-										{formatter.format(cost)}
+										{cycle == 'yearly' ? formatter.format(cost * 0.833) : formatter.format(cost)}
 									</h1>
 								</div>
 							</div>
