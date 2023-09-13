@@ -55,7 +55,7 @@
 
 <main>
 	<section>
-		<div class="inner-section w-full h-fit">
+		<div class="inner-section w-full h-fit mt-20">
 			<!-- Cal inline embed code begins -->
 			<div style="width:100%;height:100%;overflow:scroll" id="my-cal-inline" />
 			<!-- Cal inline embed code ends -->

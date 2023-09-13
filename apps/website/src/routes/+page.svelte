@@ -127,7 +127,7 @@
 		},
 		{
 			title: 'Launch',
-			body: `Finalize your website's design and content. Grab some popcorn, kick back, relax, and enjoy the show. 🍿`,
+			body: `Finalize your website's design and content. Kick back, relax, and enjoy the show. 🍿`,
 		},
 	];
 

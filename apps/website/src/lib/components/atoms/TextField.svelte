@@ -6,7 +6,7 @@
 	export let required: boolean = false;
 </script>
 
-<div class="relative mt-2 h-fit group overflow-visible mx-1.5">
+<div class="relative mt-2 h-fit w-full group overflow-visible mx-1.5">
 	{#if !textArea}
 		<label
 			for={label.toLowerCase()}
