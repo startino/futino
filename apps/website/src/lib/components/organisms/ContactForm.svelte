@@ -14,6 +14,8 @@
 	let emailInput: string = '';
 	let messageInput: string = '';
 
+	let formSubmitted = false;
+
 	async function submitForm(event: any) {
 		let rawData = new FormData(event.target);
 		console.log(rawData);
@@ -27,6 +29,9 @@
 			email: 'na',
 			message: 'na',
 		};
+
+		event.target.reset();
+		formSubmitted = true;
 
 		// Assign data values from input elements.
 		for (let field of rawData) {
@@ -46,7 +51,7 @@
 
 <form
 	id="contactform"
-	class="flex flex-col gap-8 text-left overflow-x-clip"
+	class="flex flex-col gap-8 text-left items-center overflow-x-clip"
 	on:submit|preventDefault={submitForm}>
 	<TextField bind:value={nameInput} label="Name" placeholder="Elon Gates" required={true} />
 
@@ -61,9 +66,13 @@
 	<button
 		type="submit"
 		id="submit"
-		class="flex w-full relative border-2 border-primary-dark justify-center tracking-wide items-center py-3 my-1 px-6 font-bold rounded-md shadow-2xl group hover:text-primary-container-on-dark hover:bg-primary-container-dark/60 transition-all duration-300 hover:scale-[97%] text-primary-on-dark bg-primary-dark">
+		class="flex w-full mx-1.5 relative border-2 border-primary-dark justify-center tracking-wide items-center py-3 my-1 px-6 font-bold rounded-md shadow-2xl group hover:text-primary-container-on-dark hover:bg-primary-container-dark/60 transition-all duration-300 hover:scale-[98%] text-primary-on-dark bg-primary-dark">
 		<h1 class="title-large">Submit</h1>
 	</button>
+
+	<div class:hidden={!formSubmitted} class="mx-1.5 text-left self-start">
+		<h2 class="title-medium">Your message has been sent. Thank you for contacting us!</h2>
+	</div>
 </form>
 
 <style>
