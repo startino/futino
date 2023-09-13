@@ -100,7 +100,7 @@ const journeys: Journeys = {
 		thumbnail: '/images/safari/44.webp',
 		name: 'Camping Safari',
 		days: 7,
-		midrange: [0, 0], // Missing from doc
+		midrange: [228, 517],
 		luxury: [0, 0], // Missing from doc
 	}),
 	'7-days-north-migration-safari': new Journey({
@@ -114,8 +114,8 @@ const journeys: Journeys = {
 		thumbnail: '/images/safari/11.webp',
 		name: 'Tanzania Safari',
 		days: 7,
-		midrange: [0, 0], // Missing from doc
-		luxury: [0, 0], // Missing from doc
+		midrange: [414, 776],
+		luxury: [943, 1314],
 	}),
 	'8-days-family-safari': new Journey({
 		thumbnail: '/images/safari/25.webp',
@@ -135,14 +135,14 @@ const journeys: Journeys = {
 		thumbnail: '/images/safari/27.webp',
 		name: 'Family Tanzania Safari & Beach',
 		days: 9,
-		midrange: [0, 0], // Missing from doc
+		midrange: [403, 646], // Missing from doc
 		luxury: [0, 0], // Missing from doc
 	}),
 	'9-days-honeymoon-safari-&-beach': new Journey({
 		thumbnail: '/images/safari/65.webp',
 		name: 'Honeymoon Safari & Beach',
 		days: 9,
-		midrange: [0, 0], // Missing from doc
+		midrange: [451, 451], // Missing from doc
 		luxury: [0, 0], // Missing from doc
 	}),
 	'12-days-honeymoon-safari-&-beach': new Journey({
@@ -150,7 +150,7 @@ const journeys: Journeys = {
 		name: 'Honeymoon Safari & Beach',
 		days: 12,
 		midrange: [0, 0], // Missing from doc
-		luxury: [0, 0], // Missing from doc
+		luxury: [1029, 1029], // Missing from doc
 	}),
 	'lake-manyara-national-park-day-trip': new Journey({
 		thumbnail: '/images/safari/6.webp',
