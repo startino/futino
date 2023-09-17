@@ -1,13 +1,4 @@
 <script lang="ts">
-	// Slots
-	/**
-	 * @slot sidebarLeft - Hidden when empty. Allows you to set fixed left sidebar content.
-	 * @slot sidebarRight - Hidden when empty. Allows you to set fixed right sidebar content.
-	 * @slot pageHeader - Insert content that resides above your page content. Great for global alerts.
-	 * @slot pageFooter - Insert content that resides below your page content. Recommended for most layouts.
-	 * @slot footer - Insert fixed footer content. Not recommended for most layouts.
-	 */
-
 	// Props
 	/** Set `scrollbar-gutter` style. */
 	export let scrollbarGutter = 'auto';
@@ -16,19 +7,19 @@
 	/** Apply arbitrary classes to the entire `#page` region. */
 	export let regionPage: string = '';
 	/** Apply arbitrary classes to the `header` slot container element */
-	export let slotHeader: string = 'z-10';
+	export let headerClass: string = 'z-10';
 	/** Apply arbitrary classes to the `sidebarLeft` slot container element */
-	export let slotSidebarLeft: string = 'w-auto';
+	export let sidebarLeftClass: string = 'w-auto';
 	/** Apply arbitrary classes to the `sidebarRight` slot container element */
-	export let slotSidebarRight: string = 'w-auto';
+	export let sidebarRightClass: string = 'w-auto';
 	/** Apply arbitrary classes to the `pageHeader` slot container element */
-	export let slotPageHeader: string = '';
+	export let pageHeaderClass: string = '';
 	/** Apply arbitrary classes to the `pageContent` slot container element */
-	export let slotPageContent: string = '';
+	export let pageContentClass: string = '';
 	/** Apply arbitrary classes to the `pageFooter` slot container element */
-	export let slotPageFooter: string = '';
+	export let pageFooterClass: string = '';
 	/** Apply arbitrary classes to the `footer` slot container element */
-	export let slotFooter: string = '';
+	export let footerClass: string = '';
 
 	// Base Classes
 	const cBaseAppShell = 'w-full h-full flex flex-col overflow-hidden';
@@ -39,16 +30,16 @@
 
 	// Reactive Classes
 	$: classesBase = `${cBaseAppShell} ${$$props.class ?? ''}`;
-	$: classesHeader = `${slotHeader}`;
-	$: classesSidebarLeft = `${cSidebarLeft} ${slotSidebarLeft}`;
-	$: classesSidebarRight = `${cSidebarRight} ${slotSidebarRight}`;
-	$: classesPageHeader = `${slotPageHeader}`;
-	$: classesPageContent = `${slotPageContent}`;
-	$: classesPageFooter = `${slotPageFooter}`;
-	$: classesFooter = `${slotFooter}`;
+	$: classesHeader = `${headerClass}`;
+	$: classesSidebarLeft = `${cSidebarLeft} ${sidebarLeftClass}`;
+	$: classesSidebarRight = `${cSidebarRight} ${sidebarRightClass}`;
+	$: classesPageHeader = `${pageHeaderClass}`;
+	$: classesPageContent = `${pageContentClass}`;
+	$: classesPageFooter = `${pageFooterClass}`;
+	$: classesFooter = `${footerClass}`;
 </script>
 
-<div id="appShell" class={classesBase} data-testid="app-shell">
+<div id="shell" class={classesBase}>
 	<!-- Slot: Header -->
 	{#if $$slots.header}
 		<header id="shell-header" class="flex-none {classesHeader}"><slot name="header" /></header>
