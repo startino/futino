@@ -23,7 +23,7 @@
 
 <footer
 	id="header"
-	class="{$$props.class} py-16 mb-32 border-b text-primary-light dark:text-primary-dark border-secondary-dark/10 top-0 z-40 w-full transition-all duration-400">
+	class="{$$props.class} py-16 mb-32 border-b text-primary-dark border-secondary-dark/10 top-0 z-40 w-full transition-all duration-400">
 	<div
 		class="flex flex-col sm:flex-row gap-y-3 relative items-center px-6 md:px-18 lg:max-w-5xl xl:max-w-6xl mx-auto">
 		<a class="flex w-fit mr-auto gap-3" href="/">

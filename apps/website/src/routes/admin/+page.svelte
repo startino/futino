@@ -24,7 +24,7 @@
 							{#each bapta.data as { name, message, email, created_at }}
 								<div class="rounded-lg shadow-lg bg-surface-dark h-full">
 									<div
-										class="p-8 text-left text-surface-variant-on-dark prose prose-sm sm:prose-base md:prose-lg lg:prose-xl xl:prose-2xl dark:prose-invert prose-main">
+										class="p-8 text-left text-surface-variant-on-dark prose prose-sm sm:prose-base md:prose-lg lg:prose-xl xl:prose-2xl prose-invert prose-main">
 										<p>Name: {name}</p>
 										<p>Message: {message}</p>
 										<p>Email: {email}</p>

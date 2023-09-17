@@ -138,7 +138,7 @@
 
 <ChapterMenu bind:chapterInView chapters={landingPageChapters} />
 
-<main class="text-center border-b shadow-2xl border-primary-light/40 dark:border-primary-dark/40">
+<main class="text-center border-b shadow-2xl border-primary-dark/40">
 	<!--Hero-->
 	<section
 		id="hero"
@@ -346,7 +346,7 @@
 							class="flex justify-items-center h-full sm:flex w-full pb-2 mb-2">
 							<!--Line-->
 							<div
-								class=" -mt-6 flex w-1 mx-auto h-full rounded-full bg-surface-light dark:bg-surface-dark line-shadow" />
+								class=" -mt-6 flex w-1 mx-auto h-full rounded-full bg-surface-dark line-shadow" />
 						</InView>
 					</div>
 

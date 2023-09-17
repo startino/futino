@@ -25,8 +25,7 @@
 
 	let largeHeaderClass = 'fixed py-12';
 	let activeheaderClass = largeHeaderClass;
-	let miniHeaderClass =
-		'fixed py-3 border-b bg-surface-light/60 dark:bg-surface-dark/60 backdrop-blur';
+	let miniHeaderClass = 'fixed py-3 border-b bg-surface-dark/60 backdrop-blur';
 
 	let menuOpen = false;
 	function toggleMenu() {
@@ -80,7 +79,7 @@
 
 <header
 	id="header"
-	class="{$$props.class} {activeheaderClass} text-primary-light dark:text-primary-dark border-secondary-light/10 dark:border-secondary-dark/10 top-0 z-40 w-full transition-all duration-400">
+	class="{$$props.class} {activeheaderClass} text-primary-dark border-secondary-dark/10 top-0 z-40 w-full transition-all duration-400">
 	<div class="flex relative items-center px-6 md:px-18 lg:max-w-5xl xl:max-w-6xl mx-auto">
 		<a class="flex gap-3" href="/">
 			<Logo />
@@ -89,14 +88,14 @@
 		<div class="flex items-center ml-auto gap-8 title-large">
 			<nav class="hidden md:flex gap-6 lg:gap-8 pb-0.5">
 				{#each elements as element, i}
-					<a class="hover:text-tertiary-light dark:hover:text-tertiary-dark" href={element.href}>
+					<a class=" hover:text-tertiary-dark" href={element.href}>
 						{element.name}
 					</a>
 				{/each}
 			</nav>
-			<div class="gap-6 flex md:border-secondary-light/50 md:dark:border-primary-dark/50">
+			<div class="gap-6 flex md:border-primary-dark/50">
 				<button
-					class="flex md:hidden stroke-primary-light hover:stroke-tertiary-light dark:stroke-primary-dark dark:hover:stroke-tertiary-dark"
+					class="flex md:hidden stroke-primary-dark hover:stroke-tertiary-dark"
 					on:click={toggleMenu}>
 					<svg class="w-6 h-6" fill="none" viewBox="0 0 24 24">
 						<path
