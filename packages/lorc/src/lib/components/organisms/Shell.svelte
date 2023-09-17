@@ -1,8 +1,4 @@
 <script lang="ts">
-	// Props
-	/** Set `scrollbar-gutter` style. */
-	export let scrollbarGutter = 'auto';
-
 	// Props (regions)
 	/** Apply arbitrary classes to the entire `#page` region. */
 	export let regionPage: string = '';
@@ -21,39 +17,32 @@
 	/** Apply arbitrary classes to the `footer` slot container element */
 	export let footerClass: string = '';
 
-	// Base Classes
-	const cBaseAppShell = 'w-full h-full flex flex-col overflow-hidden';
-	const cContentArea = 'w-full h-full flex overflow-hidden';
-	const cPage = 'flex-1 overflow-x-hidden flex flex-col';
-	const cSidebarLeft = 'flex-none overflow-x-hidden overflow-y-auto';
-	const cSidebarRight = 'flex-none overflow-x-hidden overflow-y-auto';
-
 	// Reactive Classes
-	$: classesBase = `${cBaseAppShell} ${$$props.class ?? ''}`;
+	$: classesBase = `$ ${$$props.class ?? ''}`;
 	$: classesHeader = `${headerClass}`;
-	$: classesSidebarLeft = `${cSidebarLeft} ${sidebarLeftClass}`;
-	$: classesSidebarRight = `${cSidebarRight} ${sidebarRightClass}`;
+	$: classesSidebarLeft = `flex-none overflow-x-hidden overflow-y-auto ${sidebarLeftClass}`;
+	$: classesSidebarRight = `flex-none overflow-x-hidden overflow-y-auto ${sidebarRightClass}`;
 	$: classesPageHeader = `${pageHeaderClass}`;
 	$: classesPageContent = `${pageContentClass}`;
 	$: classesPageFooter = `${pageFooterClass}`;
 	$: classesFooter = `${footerClass}`;
 </script>
 
-<div id="shell" class={classesBase}>
+<div id="shell" class="w-full h-full flex flex-col overflow-hidden {classesBase}">
 	<!-- Slot: Header -->
 	{#if $$slots.header}
 		<header id="shell-header" class="flex-none {classesHeader}"><slot name="header" /></header>
 	{/if}
 
 	<!-- Content Area -->
-	<div class="flex-auto {cContentArea}">
+	<div class="flex-auto w-full h-full flex overflow-hidden">
 		<!-- Slot: Sidebar (left) -->
 		{#if $$slots.sidebarLeft}
 			<aside id="sidebar-left" class={classesSidebarLeft}><slot name="sidebarLeft" /></aside>
 		{/if}
 
 		<!-- Page -->
-		<div id="page" class="{regionPage} {cPage}" style:scrollbarGutter on:scroll>
+		<div id="page" class="{regionPage} flex-1 overflow-x-hidden flex flex-col" on:scroll>
 			<!-- Slot: Page Header -->
 			{#if $$slots.pageHeader}
 				<header id="page-header" class="flex-none {classesPageHeader}">

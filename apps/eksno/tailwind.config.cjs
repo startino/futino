@@ -4,12 +4,7 @@ import fColors from '../../futino-colors.cjs';
 const alpha = '<alpha-value>';
 
 const config = {
-	content: [
-		'./src/**/*.{html,js,svelte,ts}',
-		join(require.resolve('lorc'),
-			'../**/*.{html,js,svelte,ts}',
-		),
-	],
+	
 
 	darkMode: 'class',
 
