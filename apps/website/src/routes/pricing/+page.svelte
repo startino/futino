@@ -18,7 +18,7 @@
 	const handlePromotionToggle = (tabValue: number) => () => (activeTabValue = tabValue);
 </script>
 
-<main class="text-left border-b shadow-2xl border-primary-light/40 dark:border-primary-dark/40">
+<main class="text-left border-b shadow-2xl border-primary-dark/40">
 	<section class="shadow-2xl">
 		<div
 			class="flex flex-col items-center gap-8 justify-items-center pt-48 text-center inner-section">

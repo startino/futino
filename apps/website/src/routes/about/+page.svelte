@@ -56,8 +56,7 @@
 	{/each}
 </svelte:head>
 
-<main
-	class="text-center border-b border-primary-light/40 dark:border-primary-dark/40 flex flex-col items-stretch">
+<main class="text-center border-b border-primary-dark/40 flex flex-col items-stretch">
 	<section id="hero" class="grow h-screen grid justify-items-center space-y-12 shadow-lg">
 		<div class="grid justify-items-center space-y-12 h-fit w-full mx-auto self-center">
 			<div class="w-fit">

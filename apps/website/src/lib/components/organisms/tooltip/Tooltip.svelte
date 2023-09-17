@@ -40,7 +40,7 @@
 	{#if isHovered}
 		<div
 			transition:fade={{ duration: 150 }}
-			class="bg-surface-light dark:bg-surface-dark p-4 max-w-md w-max rounded-lg absolute bottom-full -translate-x-1/2 -translate-y-3">
+			class=" bg-surface-dark p-4 max-w-md w-max rounded-lg absolute bottom-full -translate-x-1/2 -translate-y-3">
 			<h1 class="body-medium">
 				{content}
 			</h1>

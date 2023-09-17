@@ -21,7 +21,7 @@
 
 <div
 	bind:this={card}
-	class="bg-surface-variant-light/20 shadow-lg dark:bg-surface-variant-dark/20 rounded-lg h-fit w-72 md:w-80 xl:w-110 group overflow-hidden flex flex-col flex-grow hover:flex-grow-[10] transition-all duration-1000">
+	class=" shadow-lg bg-surface-variant-dark/20 rounded-lg h-fit w-72 md:w-80 xl:w-110 group overflow-hidden flex flex-col flex-grow hover:flex-grow-[10] transition-all duration-1000">
 	<div
 		class="
 	flex flex-col items-center p-6">

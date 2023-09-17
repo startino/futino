@@ -42,14 +42,12 @@
 		</div>
 	</section>
 
-	<section
-		id="contact-form"
-		class="border-b shadow-2xl border-primary-light/40 dark:border-primary-dark/40">
+	<section id="contact-form" class="border-b shadow-2xl border-primary-dark/40">
 		<!--Contact Section-->
 		<div
 			class="grid grid-cols-1 md:grid-cols-2 inner-section text-center md:text-left gap-6 items-center justify-items-center">
 			<div
-				class="bg-surface-dark flex flex-col border-1 border-primary-dark drop-shadow-glow-sm-dark rounded-xl dark:bg-surface-dark py-10 px-10 space-y-4 max-w-xl self-start">
+				class=" flex flex-col border-1 border-primary-dark drop-shadow-glow-sm-dark rounded-xl bg-surface-dark py-10 px-10 space-y-4 max-w-xl self-start">
 				<h3 class="font-extrabold headline-large">Get in touch.</h3>
 				<h4 class="title-medium my-auto max-w-md">
 					Need help or have ideas to discuss? Reach out to us! We're ready for your questions, and

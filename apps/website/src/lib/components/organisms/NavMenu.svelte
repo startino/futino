@@ -31,7 +31,7 @@
 	}
 </script>
 
-<div class="flex bg-surface-light dark:bg-surface-dark border rounded-2xl border-secondary-dark/40">
+<div class="flex bg-surface-dark border rounded-2xl border-secondary-dark/40">
 	<div class="relative flex flex-row gap-1 items-center text-center mx-1 my-1">
 		<div
 			class="h-12 absolute border-2 rounded-2xl bg-primary-container-dark/30 border-primary-dark transition-all delay-75 ease-in-out duration-500"
@@ -41,7 +41,7 @@
 
 		{#each chapters as { chapterNumber, title, href }, i}
 			<!--{activeTabValue == promotion.index
-					? 'active border-2 rounded-xl border-primary-light dark:border-primary-dark'
+					? 'active border-2 rounded-xl border-primary-light border-primary-dark'
 					: -->
 			<div
 				class="py-1 my-2 md:py-2 rounded-2xl px-8 {currentHighlightedChapter == i
