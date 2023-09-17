@@ -1,6 +1,29 @@
 <script lang="ts">
 	import { base } from '$app/paths';
 	import Logo from '$lib/components/atoms/Logo.svelte';
+
+	const elements = [
+		{
+			name: 'Home',
+			href: '/',
+		},
+		{
+			name: 'Help',
+			href: '/contact',
+		},
+		{
+			name: 'FAQs',
+			href: '/contact#faqs',
+		},
+		{
+			name: 'About',
+			href: '/about',
+		},
+		{
+			name: 'Privacy Policy',
+			href: '/legal/privacy',
+		},
+	];
 </script>
 
 <div
@@ -8,13 +31,13 @@
 	<div class="flex flex-row justify-between items-center md:px-10 lg:px-20 xl:px-40 md:px-auto">
 		<Logo />
 		<ul
-			class="flex flex-wrap items-center self-center space-x-6 body-small sm:mb-0 text-background-on-light dark:text-background-on-dark">
-			{#each ['Home', 'Contact', 'Help', 'FAQS', 'Contact'] as element}
+			class="flex flex-wrap items-start space-x-6 body-medium sm:mb-0 text-background-on-light dark:text-background-on-dark">
+			{#each elements as { name, href }}
 				<li>
 					<a
 						class="inline mx-auto text-secondary-light dark:text-secondary-dark hover:text-tertiary-light dark:hover:text-tertiary-dark"
-						href="#">
-						{element}
+						{href}>
+						{name}
 					</a>
 				</li>
 			{/each}

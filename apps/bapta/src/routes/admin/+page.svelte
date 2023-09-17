@@ -12,7 +12,7 @@
 
 <Authenticate>
 	<div
-		class="flex flex-col w-full h-full shadow-lg shadow-background-dark lg:grid-cols-2 card-shadow grid-rows-2 px-10 lg:px-20 xl:px-40 py-40 justify-center place-items-center border-b border-secondary-light/40 dark:border-secondary-dark/40 bg-[url('/images/safari/18.webp')] bg-cover bg-left">
+		class="flex flex-col w-full h-full shadow-lg shadow-background-dark lg:grid-cols-2 card-shadow grid-rows-2 px-10 lg:px-20 xl:px-40 py-40 justify-center place-items-center border-b border-secondary-light/40 dark:border-secondary-dark/40">
 		<h1 class="font-bold text-primary-dark display-medium">Admin Board</h1>
 
 		<hr class="w-40 py-4" />
