@@ -31,11 +31,10 @@
 	export let cycle: string = 'monthly';
 </script>
 
-<div
-	class="flex bg-surface-light dark:bg-surface-dark border rounded-lg border-secondary-light/20 dark:border-secondary-dark/20">
+<div class="{$$props.class} flex bg-surface-dark border rounded-lg border-secondary-dark/20">
 	<div class="relative flex flex-row gap-1 items-center text-center mx-1 my-2">
 		<div
-			class="absolute border-2 rounded-lg border-primary-light dark:border-primary-dark transition-all delay-75 ease-in-out duration-500"
+			class="absolute border-2 rounded-lg border-primary-dark transition-all delay-75 ease-in-out duration-500"
 			style="width: {button_widths[activeTabValue]}px; {positionClass}; height: {rowHeight}px" />
 
 		{#each promotions as { label, discount, index }, i}
@@ -54,7 +53,7 @@
 
 					{#if discount}
 						<div
-							class="flex flex-row items-center gap-1 text-tertiary-light dark:text-tertiary-dark fill-tertiary-light stroke-tertiary-light dark:fill-tertiary-dark dark:stroke-tertiary-dark">
+							class="flex flex-row items-center gap-1 text-tertiary-dark fill-tertiary-dark stroke-tertiary-dark">
 							<Icon icon="discount" height="16" width="16" />
 
 							<h2 class="body-medium uppercase">

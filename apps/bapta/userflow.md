@@ -62,13 +62,13 @@ clicks_more_tours --> clicks_a_tour
 top_tours --> clicks_a_tour[Clicks on a Tour]
 clicks_a_tour --> reads_more[Reads more about the tour]
 reads_more --> clicks_request[Clicks Requests Quote]
-clicks_request --> reads_disclaimer["Reads that this is just a preset 
+clicks_request --> reads_disclaimer["Reads that this is just a preset
 and everything is fully customizable"]
 reads_disclaimer --> reads_summary[Reads and confirms tour package]
 reads_summary --> fills_form["Fills in the form
 Name
 Phone Number
-Accommodation Standard 
+Accommodation Standard
 Zanzibar Extension?
 Additional Notes/Requests/Questions
 "]

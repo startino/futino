@@ -34,14 +34,11 @@
 	<!--Contact Section-->
 	<div class="flex flex-col md:flex-row mx-10 my-20 lg:mx-32 md:mx-20 sm:mx-10 xs:mx-4 space-x-12">
 		<div
-			class="bg-surface-dark flex flex-col rounded-xl dark:bg-surface-dark my-auto py-10 px-10 space-y-6 max-w-xl">
+			class="bg-surface-dark self-start flex flex-col rounded-xl dark:bg-surface-dark py-10 px-10 space-y-6 max-w-xl">
 			<h3 class="font-bold text-left headline-medium text-primary-dark">Get in touch.</h3>
 			<h4 class=" text-lg font-thin text-left text-secondary-dark my-auto">
-				"Lorem ipsum dolor sit amet enim amet ad eleifend consequat elit per morbi nullam metus nam
-				class hac curabitur praesent sociosqu vulputate torquent sapien volutpat nostra vel curae
-				consectetur curabitur."
+				Feel free to contact us regarding any questions or requests. We'll get back to you shortly.
 			</h4>
-			<img src="images/safari/47.webp" alt="" class="object-cover w-full rounded-xl h-96" />
 		</div>
 		<div class="w-full">
 			<ContactForm />

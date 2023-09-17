@@ -26,9 +26,9 @@
 		{#each plans as plan}
 			<li class="justify-center">
 				<button
-					class="relative group overflow-hidden inline-block p-4 rounded-t-lg shadow-xl bg-surface-variant-light/20 dark:bg-surface-variant-dark/20 border-2 border-transparent {activeTabValue ===
+					class="relative group overflow-hidden inline-block p-4 rounded-t-lg shadow-xl bg-surface-variant-dark/20 border-2 border-transparent {activeTabValue ===
 					plan.index
-						? 'active border-2 rounded-xl border-primary-light dark:border-primary-dark transition-all duration-500 scale-110'
+						? 'active border-2 rounded-xl  border-primary-dark transition-all duration-500 scale-110'
 						: 'hover:border-outline-light rounded-xl'}"
 					on:click={handleClick(plan.index)}
 					type="button">

@@ -71,7 +71,11 @@
 <!-- Routes section -->
 <section class="section" id="routes">
 	<div class="flex flex-col">
-		<h2 class="mb-8 font-bold text-center display-large text-primary-dark">Routes</h2>
+		<h2 class=" font-bold text-center display-large text-primary-dark">Routes</h2>
+		<h1 class="body-medium mb-8">
+			* Each Route here is only a starting point and is fully customizeable after requesting the
+			Journey.
+		</h1>
 
 		<slot />
 	</div>

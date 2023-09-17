@@ -29,7 +29,7 @@
 	};
 </script>
 
-<section class="section overflow-hidden relative">
+<section class="section overflow-hidden relative" id="faqs">
 	<div
 		class="absolute bottom-0 w-screen bg-gradient-to-t from-surface-variant-dark to-transparent h-36" />
 	<div class="inner-section grid grid-cols-1 md:grid-cols-3 items-center gap-3 h-[500px]">
@@ -43,7 +43,7 @@
 			</h1>
 
 			<OutlineButton href="/contact" class="py-2">
-				<h1 class="font-bold title-small">See More</h1>
+				<h1 class="font-bold title-small">Contact us</h1>
 			</OutlineButton>
 		</div>
 		<div class="flex flex-col gap-4 h-screen col-span-2 items-center">

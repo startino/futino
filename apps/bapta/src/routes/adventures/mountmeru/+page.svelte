@@ -5,9 +5,11 @@
 	import FAQ from '$lib/components/organisms/FAQSection.svelte';
 	import MountPage from '$lib/components/pages/MountPage.svelte';
 	import mountMeruFaq from '$lib/components/tsData/mountMeruFaq';
+	import { addChosenJourney } from '$lib/journeysStore';
 
 	const routes = [
 		{
+			id: 'momella-route',
 			label: 'Momella Route',
 			difficulty: 'Intermediate',
 			duration: 4,
@@ -27,7 +29,7 @@
 		},
 		{
 			label: 'Route Options',
-			body: 'We offer a range of routes to suit your preferences and level of experience. Each route has its own unique features and challenges, from the shorter and less strenuous Marangu route to the longer and more scenic Lemosho route.',
+			body: 'We offer a range of routes to suit your preferences and level of experience. Each route has its own unique features and challenges.',
 		},
 		{
 			label: 'Duration',
@@ -50,13 +52,15 @@
 	FAQs={mountMeruFaq}
 	{overview_topics}>
 	<div class="grid grid-cols-1 justify-items-center items-center">
-		{#each routes as { label, difficulty, duration, body, img_path }}
+		{#each routes as { label, difficulty, duration, body, img_path, id }}
 			<div class="bg-surface-dark rounded-lg shadow-lg max-w-3xl flex flex-col h-full">
 				<img
 					src={img_path}
 					alt="Marangu Route"
 					class="w-full object-cover object-center h-[400px] sm:h-[500px] md:h-[600px] lg:h-[700px] rounded-t-lg bg-gradient-to-b from-transparent to-surface-dark" />
 
+				<!-- svelte-ignore a11y-click-events-have-key-events -->
+				<!-- svelte-ignore a11y-no-static-element-interactions -->
 				<!--Route Details-->
 				<div class="flex flex-col px-12 py-6 content-between h-fit">
 					<h3 class="mb-2 font-bold headline-medium text-primary-dark">{label}</h3>
@@ -93,8 +97,12 @@
 					</div>
 
 					<p class="text-secondary-dark body-large">{body}</p>
-					<div class="mt-auto pt-6 pb-2 mx-auto self-end">
-						<OutlineButton>
+					<div
+						class="mt-auto pt-6 pb-2 mx-auto self-end"
+						on:click={() => {
+							addChosenJourney(id);
+						}}>
+						<OutlineButton href="/request-tour">
 							<h1 class="p-3 title-medium">Request Now</h1>
 						</OutlineButton>
 					</div>

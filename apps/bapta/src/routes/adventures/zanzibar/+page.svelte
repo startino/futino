@@ -6,6 +6,7 @@
 	import OutlineButton from '$lib/components/molecules/OutlineButton.svelte';
 	import ToursSnippet from '$lib/components/organisms/ToursSnippet.svelte';
 	import ZanzibarPackageCard from './ZanzibarPackageCard.svelte';
+	import { addChosenJourney, journeysStore } from '$lib/journeysStore';
 
 	const accomodations = [
 		{
@@ -106,9 +107,6 @@
 						<p class="body-large my-auto">
 							{body}
 						</p>
-						<OutlineButton class="self-center mt-auto pt-6">
-							<h1 class="title-medium p-2">Book Now</h1>
-						</OutlineButton>
 					</div>
 				</div>
 			{/each}
@@ -124,26 +122,29 @@
 
 <!--Standalone Zanzibar Packages-->
 <section class="section">
-	<div class="inner-section text-left">
+	<div class="inner-section flex flex-col text-left gap-4">
 		<h2 class="headline-large font-extrabold text-primary-dark">
 			Simply looking for a beach holiday? <br /> Bapta has just that.
 		</h2>
-		<p class="max-w-2xl mt-4 title-small">
-			Specific Activities and Accommodations are completely up to you. Request a Package and we'll
+		<p class="max-w-2xl title-small">
+			Specific activities and accommodations are completely up to you. Request a journey and we'll
 			get a knowledgable guide to help customize your trip.
 		</p>
 
-		<div class="grid grid-cols-2 gap-6 py-4">
-			<ZanzibarPackageCard
-				href="/checkout"
-				thumbnail="/images/zanzibar/2.webp"
-				title="Family Beach Holiday"
-				days="7" />
-			<ZanzibarPackageCard
-				href="/checkout"
-				thumbnail="/images/zanzibar/1.webp"
-				title="Honeymoon Beach Escape"
-				days="5" />
+		<h1 class="body-medium max-w-xl pt-4">
+			* This is only a starting point and is fully customizeable after requesting the Journey.
+		</h1>
+
+		<!-- svelte-ignore a11y-no-static-element-interactions -->
+		<!-- svelte-ignore a11y-click-events-have-key-events -->
+		<div
+			class="w-fit"
+			on:click={() => {
+				addChosenJourney('zanzibar');
+			}}>
+			<OutlineButton href="/request-tour">
+				<h1 class="headline-medium">Request Journey</h1>
+			</OutlineButton>
 		</div>
 	</div>
 </section>
@@ -172,9 +173,6 @@
 						<p class=" body-large">
 							{accomodation.body}
 						</p>
-						<OutlineButton class="self-center pt-6">
-							<h1 class="title-medium p-2">Book Now</h1>
-						</OutlineButton>
 					</div>
 				</div>
 			{/each}

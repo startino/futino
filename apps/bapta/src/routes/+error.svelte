@@ -12,7 +12,7 @@
 			{emojis[$page.status] ?? emojis[500]}
 		</h1>
 		<h1 class="display-large">{$page.status} {$page.error?.message}</h1>
-		<OutlineButton>
+		<OutlineButton href="/">
 			<h1 class="display-small">Return to Home Page</h1>
 		</OutlineButton>
 	</div>
