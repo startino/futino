@@ -96,9 +96,9 @@
 	bind:clientHeight={flyAmount}>
 	<div class="relative {activeheaderClass} transition-all duration-400">
 		<div class="flex flex-row z-50 items-center px-6 md:px-18 lg:max-w-5xl xl:max-w-6xl mx-auto">
-			<a class="flex gap-3" href="/">
+			<a class="flex gap-3 not-prose" href="/">
 				<Logo />
-				<p class="hidden sm:flex text-xl my-auto pb-1">{companyName}</p>
+				<p class="hidden sm:flex text-xl my-auto">{companyName}</p>
 			</a>
 
 			<!-- Justify-between Header -->

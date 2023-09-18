@@ -20,6 +20,81 @@
 			href: '/',
 		},
 	];
+
+	const footerElements: { name: string; href: string }[] = {
+		Home: '/',
+		About: '/',
+		Contact: '/',
+		Pricing: '/',
+		Contact: '/',
+	};
+
+	const fatFooterElements = {
+		Explore: [
+			{
+				name: 'Home',
+				href: '/',
+			},
+			{
+				name: 'About',
+				href: '/',
+			},
+			{
+				name: 'Pricing',
+				href: '/',
+			},
+		],
+		Legal: [
+			{
+				name: 'Privacy Policy',
+				href: '/',
+			},
+			{
+				name: 'Terms of Service',
+				href: '/',
+			},
+			{
+				name: 'Company',
+				href: '/',
+			},
+		],
+		Support: [
+			{
+				name: 'Docs',
+				href: '/',
+			},
+			{
+				name: 'Status',
+				href: '/',
+			},
+			{
+				name: 'Skills',
+				href: '/',
+			},
+			{
+				name: 'FAQs',
+				href: '/',
+			},
+		],
+		Company: [
+			{
+				name: 'Blog',
+				href: '/',
+			},
+			{
+				name: 'Status',
+				href: '/',
+			},
+			{
+				name: 'Careers',
+				href: '/',
+			},
+			{
+				name: 'FAQs',
+				href: '/',
+			},
+		],
+	};
 </script>
 
 <Shell
@@ -34,6 +109,6 @@
 	<slot />
 
 	<svelte:fragment slot="footer">
-		<Footer />
+		<Footer pages={footerElements} fatFooter={false} companyName="Futino Web-template" />
 	</svelte:fragment>
 </Shell>
