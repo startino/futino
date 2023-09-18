@@ -3,9 +3,9 @@
 </script>
 
 <main
-	class="py-40 px-4 border-b shadow-2xl sm:px-6 md:px-8 border-primary-light/40 dark:border-primary-dark/40">
+	class="w-full py-40 px-4 border-b sm:px-6 md:px-8 border-primary-light/40 dark:border-primary-dark/40">
 	<div
-		class="text-left prose prose-sm sm:prose-base md:prose-lg lg:prose-xl xl:prose-2xl dark:prose-invert prose-main justify-items-center space-y-12 mx-auto">
+		class="text-left prose w-full sm:prose-base md:prose-lg lg:prose-xl xl:prose-2xl dark:prose-invert prose-main mx-auto">
 		<h1>Futino Web-Template</h1>
 
 		<p>
