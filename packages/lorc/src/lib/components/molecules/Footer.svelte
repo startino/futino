@@ -39,7 +39,7 @@
 	class="max-w-none prose-a:no-underline prose sm:prose-sm lg:prose-md dark:prose-invert prose-main">
 	{#if fatFooter}
 		<div
-			class="flex text-left flex-col md:flex-row z-50 w-full my-12 items-start justify-start gap-8 px-6 md:px-18 lg:max-w-5xl xl:max-w-6xl mx-auto p-4 justify-items-start">
+			class="flex text-left flex-col md:flex-row z-50 w-full py-24 items-start justify-start gap-8 px-6 md:px-18 lg:max-w-5xl xl:max-w-6xl mx-auto justify-items-start">
 			<a class="flex gap-3 items-start not-prose w-full" href="/">
 				<Logo />
 				<p class="flex m-0 my-auto">{companyName}</p>

@@ -109,6 +109,6 @@
 	<slot />
 
 	<svelte:fragment slot="footer">
-		<Footer pages={footerElements} fatFooter={false} companyName="Futino Web-template" />
+		<Footer pages={fatFooterElements} fatFooter={true} companyName="Futino Web-template" />
 	</svelte:fragment>
 </Shell>
