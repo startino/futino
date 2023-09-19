@@ -1,4 +1,4 @@
-name: Deploy to Remote Repo
+name: Build Projects
 
 on:
   workflow_dispatch:
@@ -11,6 +11,7 @@ jobs:
     name: Building ${{ matrix.project.name }} with Bun version ${{ matrix.bun-version }}
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
         bun-version: [ latest ]
         project:
