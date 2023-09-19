@@ -1,5 +1,5 @@
 {
-  "name": "bapta",
+  "name": "template",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -11,7 +11,6 @@
   },
   "type": "module",
   "devDependencies": {
-    "@supabase/supabase-js": "^2.33.2",
     "@sveltejs/kit": "^1.20.4",
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "@tailwindcss/container-queries": "^0.1.1",

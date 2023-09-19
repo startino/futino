@@ -1,4 +1,8 @@
 <script lang="ts">
+	// Props
+	/** Set `scrollbar-gutter` style. */
+	export let scrollbarGutter = 'auto';
+
 	// Props (regions)
 	/** Apply arbitrary classes to the entire `#page` region. */
 	export let regionPage: string = '';
@@ -16,42 +20,56 @@
 	export let pageFooterClass: string = '';
 	/** Apply arbitrary classes to the `footer` slot container element */
 	export let footerClass: string = '';
-	/** Apply prose typography classes
-	 * @remark
-	 * Default:
-	 * 'prose prose-sm sm:prose-base md:prose-lg lg:prose-xl xl:prose-2xl dark:prose-invert prose-main justify-items-center space-y-12';
-	 */
-	export let typographyClass: string =
-		'max-w-none prose-a:no-underline  prose sm:prose-base md:prose-lg lg:prose-xl xl:prose-2xl dark:prose-invert prose-main';
+
+	// Base Classes
+	const cBaseAppShell = 'w-full h-full flex flex-col overflow-hidden';
+	const cContentArea = 'w-full h-full flex overflow-hidden';
+	const cPage = 'flex-1 overflow-x-hidden flex flex-col';
+	const cSidebarLeft = 'flex-none overflow-x-hidden overflow-y-auto';
+	const cSidebarRight = 'flex-none overflow-x-hidden overflow-y-auto';
 
 	// Reactive Classes
-	$: classesBase = `${typographyClass} ${$$props.class ?? ''}`;
+	$: classesBase = `${cBaseAppShell} ${$$props.class ?? ''}`;
 	$: classesHeader = `${headerClass}`;
-	$: classesSidebarLeft = `flex-none overflow-x-hidden overflow-y-auto ${sidebarLeftClass}`;
-	$: classesSidebarRight = `flex-none overflow-x-hidden overflow-y-auto ${sidebarRightClass}`;
+	$: classesSidebarLeft = `${cSidebarLeft} ${sidebarLeftClass}`;
+	$: classesSidebarRight = `${cSidebarRight} ${sidebarRightClass}`;
 	$: classesPageHeader = `${pageHeaderClass}`;
 	$: classesPageContent = `${pageContentClass}`;
 	$: classesPageFooter = `${pageFooterClass}`;
 	$: classesFooter = `${footerClass}`;
 </script>
 
-<div id="shell" class=" h-full flex flex-col overflow-hidden {classesBase}">
+<div id="shell" class={classesBase}>
 	<!-- Slot: Header -->
 	{#if $$slots.header}
-		<slot name="header" />
+		<header id="shell-header" class="flex-none {classesHeader}"><slot name="header" /></header>
 	{/if}
 
 	<!-- Content Area -->
-	<div class="flex-auto h-full flex overflow-hidden">
+	<div class="flex-auto {cContentArea}">
 		<!-- Slot: Sidebar (left) -->
 		{#if $$slots.sidebarLeft}
 			<aside id="sidebar-left" class={classesSidebarLeft}><slot name="sidebarLeft" /></aside>
 		{/if}
 
 		<!-- Page -->
-		<div id="page" class="{regionPage} flex-1 overflow-x-hidden flex flex-col" on:scroll>
+		<div id="page" class="{regionPage} {cPage}" style:scrollbarGutter on:scroll>
+			<!-- Slot: Page Header -->
+			{#if $$slots.pageHeader}
+				<header id="page-header" class="flex-none {classesPageHeader}">
+					<slot name="pageHeader">(slot:header)</slot>
+				</header>
+			{/if}
+
 			<!-- Slot: Page Content (default) -->
-			<main id="page-content" class="flex-auto flex {classesPageContent}"><slot /></main>
+			<main id="page-content" class="flex-auto {classesPageContent}"><slot /></main>
+
+			<!-- Slot: Page Footer -->
+			{#if $$slots.pageFooter}
+				<footer id="page-footer" class="flex-none {classesPageFooter}">
+					<slot name="pageFooter">(slot:footer)</slot>
+				</footer>
+			{/if}
 		</div>
 
 		<!-- Slot: Sidebar (right) -->
@@ -62,6 +80,6 @@
 
 	<!-- Slot: footer -->
 	{#if $$slots.footer}
-		<slot name="footer" />
+		<footer id="shell-footer" class="flex-none {classesFooter}"><slot name="footer" /></footer>
 	{/if}
 </div>
