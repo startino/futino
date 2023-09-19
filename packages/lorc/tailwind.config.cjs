@@ -1,10 +1,9 @@
-import { join } from 'path';
 import fColors from '../../futino-colors.cjs';
 
 const alpha = '<alpha-value>';
 
 const config = {
-	
+	content: ['./src/**/*.{html,js,svelte,ts}'],
 
 	darkMode: 'class',
 
@@ -83,7 +82,12 @@ const config = {
 			}),
 		},
 	},
-	plugins: [require('@tailwindcss/typography')],
+	plugins: [
+	    require('@tailwindcss/typography'),
+	    require('@tailwindcss/forms'),
+	    require('@tailwindcss/aspect-ratio'),
+	    require('@tailwindcss/container-queries'),
+	],
 };
 
 module.exports = config;
