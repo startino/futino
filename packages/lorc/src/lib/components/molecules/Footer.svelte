@@ -1,8 +1,5 @@
 <script lang="ts">
-  import ThemeButton from "../atoms/ThemeButton.svelte";
   import Logo from "../atoms/Logo.svelte";
-  import { onMount } from "svelte";
-  import { stringify } from "postcss";
 
   // Props
   /**Provide the list of page links you'd like to put in the header.
@@ -15,18 +12,10 @@
    * }]
    * */
 
-  export let pages: { name: string; href: string }[] = [
-    {
-      name: "Home",
-      href: "/",
-    },
-    {
-      name: "About",
-      href: "/",
-    },
-  ];
-
-  export let fatFooter: boolean;
+  export let pages: { [key: string]: string } = {
+    Home: "/",
+    About: "/",
+  };
 
   /**Provide the company's name as text. If the name */
   export let companyName: string = "Company Name";
@@ -42,17 +31,14 @@
   export let shadow: string = "";
   /** Provide classes to set base styling for gap spacing. The default is: gap-6*/
   export let gap: string = "gap-6";
-  /** Provide classes to set the base typography styling. The default is: body-small text-primary-light dark:text-primary-dark*/
-  export let typography: string =
-    "dark:prose-invert text-primary-light dark:text-primary-dark";
 </script>
 
 <footer
   class="max-w-none prose-a:no-underline prose sm:prose-sm lg:prose-md dark:prose-invert prose-main"
 >
-  {#if fatFooter}
+  <div class="px-6 md:px-18 lg:max-w-5xl xl:max-w-6xl mx-auto">
     <div
-      class="flex text-left flex-col md:flex-row z-50 w-full py-24 items-start justify-start gap-8 px-6 md:px-18 lg:max-w-5xl xl:max-w-6xl mx-auto justify-items-start"
+      class="flex text-left flex-col md:flex-row z-50 w-full pt-12 pb-6 h-full items-start md:items-center border-b {border} justify-start gap-8 lg:max-w-5xl xl:max-w-6xl mx-auto justify-items-start"
     >
       <a class="flex gap-3 items-start not-prose w-full" href="/">
         <Logo />
@@ -60,54 +46,21 @@
       </a>
 
       <div
-        class="grid grid-cols-2 md:grid-cols-4 gap-12 justify-items-start items-start mt-3 sm:mt-0 w-full"
+        class="flex flex-row gap-12 mt-3 sm:mt-0 w-fit justify-self-center justify-items-center"
       >
-        {#each Object.entries(pages) as [catagory]}
-          <div
-            class="flex flex-col gap-3 max-w-none prose-a:no-underline prose sm:prose-sm lg:prose-md dark:prose-invert prose-main"
-          >
-            <h6 class="mb-1 font-bold m-0">
-              {catagory}
+        {#each Object.entries(pages) as [name, href]}
+          <a href={`${href}`} class="hover:underline m-0">
+            <h6>
+              {name}
             </h6>
-
-            {#each pages as { name, href }}
-              <a {href} class="hover:underline m-0">
-                <h6>
-                  {name}
-                </h6>
-              </a>
-            {/each}
-          </div>
+          </a>
         {/each}
       </div>
     </div>
-  {:else}
-    <div class="px-6 md:px-18 lg:max-w-5xl xl:max-w-6xl mx-auto">
-      <div
-        class="flex text-left flex-col md:flex-row z-50 w-full pt-12 pb-6 h-full items-start md:items-center border-b {border} justify-start gap-8 lg:max-w-5xl xl:max-w-6xl mx-auto justify-items-start"
-      >
-        <a class="flex gap-3 items-start not-prose w-full" href="/">
-          <Logo />
-          <p class="flex m-0 my-auto">{companyName}</p>
-        </a>
 
-        <div
-          class="flex flex-row gap-12 mt-3 sm:mt-0 w-fit justify-self-center justify-items-center"
-        >
-          {#each Object.entries(pages) as [name, href]}
-            <a href={`${href}`} class="hover:underline m-0">
-              <h6>
-                {name}
-              </h6>
-            </a>
-          {/each}
-        </div>
-      </div>
-
-      <div class="block text-left md:text-center my-6">
-        Unpublished © 2023
-        <a href="https://futi.no" class="hover:underline m-0"> Futino™ </a>
-      </div>
+    <div class="block text-left md:text-center my-6">
+      Unpublished © 2023
+      <a href="https://futi.no" class="hover:underline m-0"> Futino™ </a>
     </div>
-  {/if}
+  </div>
 </footer>

@@ -15,7 +15,9 @@
    * href: '/home',
    * }]
    * */
-  export let pages: { name: string; href: string }[] = [];
+  export let pages: { [key: string]: string } = {
+    Home: "/",
+  };
   /**Property to determine if the class 'fixed' is applied to the header.*/
   export let sticky: boolean = true;
   /**Property to determine if the theme toggle button should be included.*/
@@ -86,7 +88,7 @@
     >
       <!-- Nav Elements -->
       <nav class="text-center flex flex-col gap-6 headline-medium">
-        {#each pages as { name, href }}
+        {#each Object.entries(pages) as [name, href]}
           <a
             class="text-primary-container-on-dark hover:text-tertiary-dark hover:scale-105 transition-all duration-200"
             {href}
@@ -117,7 +119,7 @@
       <!-- Justify-between Header -->
       <div class="flex {gap} ml-auto items-center">
         <nav class="hidden md:flex {gap}">
-          {#each pages as { name, href }}
+          {#each Object.entries(pages) as [name, href]}
             <a
               class="hover:text-tertiary-light dark:hover:text-tertiary-dark"
               {href}
