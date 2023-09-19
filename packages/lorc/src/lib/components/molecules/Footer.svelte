@@ -12,25 +12,17 @@
    * }]
    * */
 
-  export let pages: { [key: string]: string } = {
+  export const pages: { [key: string]: string } = {
     Home: "/",
     About: "/",
   };
 
-  /**Provide the company's name as text. If the name */
-  export let companyName: string = "Company Name";
+  /** Provide the company's name as text. If the name */
+  export const companyName: string = "Company Name";
 
-  // Props (base styles)
-  /** Provide classes to set background color. */
-  export let background: string = "";
+  // Props
   /** Provide classes to set border styles. The default is: md:border-secondary-light/50 md:dark:border-primary-dark/50 */
-  export let border: string = "border-outline-light dark:border-outline-dark";
-  /** Provide classes to set padding. */
-  export let padding: string = "";
-  /** Provide classes to define a box shadow. */
-  export let shadow: string = "";
-  /** Provide classes to set base styling for gap spacing. The default is: gap-6*/
-  export let gap: string = "gap-6";
+  export const border: string = "border-outline-light dark:border-outline-dark";
 </script>
 
 <footer
@@ -49,7 +41,7 @@
         class="flex flex-row gap-12 mt-3 sm:mt-0 w-fit justify-self-center justify-items-center"
       >
         {#each Object.entries(pages) as [name, href]}
-          <a href={`${href}`} class="hover:underline m-0">
+          <a {href} class="hover:underline m-0">
             <h6>
               {name}
             </h6>
