@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<title>Good Game Soccer</title>
+		<meta
+			name="description"
+			content="Good Game Soccer hosts soccer camps for children. Our camps are aimed at providing each camper a chance to improve their soccer ability while also bringing home a memorable experience that is fun, social, and engaging." />
+		<link rel="icon" href="%sveltekit.assets%/favicon.png" />
+		<meta name="viewport" content="width=device-width" />
+
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&display=swap"
+			rel="stylesheet" />
+
+		<script>
+			/**
+			 * Loads the theme based on the user's preference or system setting.
+			 */
+			if (
+				localStorage.theme === 'dark' ||
+				(!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
+			) {
+				document.documentElement.classList.add('dark');
+			} else {
+				document.documentElement.classList.remove('dark');
+			}
+		</script>
+
+		%sveltekit.head%
+	</head>
+	<title>Good Game Soccer</title>
+	<body
+		data-sveltekit-preload-data="hover"
+		class="bg-background-light dark:bg-background-dark ext-center text-background-on-light dark:text-background-on-dark">
+		<div
+			class="min-h-screen bg-gradient-to-r from-background-light to-secondary-light/5 dark:from-background-dark dark:to-secondary-dark/5">
+			%sveltekit.body%
+		</div>
+	</body>
+</html>
