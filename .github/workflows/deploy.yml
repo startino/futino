@@ -4,7 +4,8 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - 'alpha'
+      # Disabled until bun finished https://bun.sh/guides/install/cicd
+      #      - 'alpha'
 
 jobs:
   deploy:
@@ -12,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [16]
+        node-version: [ 16 ]
         project:
           [
             { name: allheim, domain: allheim.futi.no },
@@ -22,7 +23,7 @@ jobs:
             { name: ggsoccer, domain: ggsoccer.futi.no },
             { name: liberole, domain: liberole.futi.no },
             { name: web-template, domain: template.futi.no },
-            { name: website, domain: futi.no },
+            { name: website, domain: futi.no }
           ]
 
     steps:
