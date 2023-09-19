@@ -195,6 +195,15 @@ importers:
         specifier: ^1.88.0
         version: 1.88.0
 
+  apps/wonderlee:
+    dependencies:
+      lorc:
+        specifier: workspace:*
+        version: link:../../packages/lorc
+      tsconfig:
+        specifier: workspace:*
+        version: link:../../packages/tsconfig
+
   packages/eslint-config-custom:
     dependencies:
       '@typescript-eslint/eslint-plugin':
