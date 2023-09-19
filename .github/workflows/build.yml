@@ -34,10 +34,11 @@ jobs:
           bun-version: ${{ matrix.bun-version }}
 
       - name: Install Dependencies
-        run: bun i
+        run: bun install
 
       - name: Build Project
         run: |
           cd ${{ matrix.project.path }}
+          bun i # fails sometimes without this
           bun run build
 
