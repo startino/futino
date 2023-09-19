@@ -2,10 +2,9 @@ name: Deploy to Remote Repo
 
 on:
   workflow_dispatch:
-  push:
-    branches:
-      # Disabled until bun finished https://bun.sh/guides/install/cicd
-      #      - 'alpha'
+    # push:
+    #   branches:
+    #     - 'alpha'
 
 jobs:
   deploy:
