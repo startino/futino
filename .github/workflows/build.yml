@@ -1,4 +1,4 @@
-name: Deploy to Remote Repo
+name: Build Projects
 
 on:
   workflow_dispatch:
