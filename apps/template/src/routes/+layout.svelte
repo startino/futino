@@ -1,10 +1,16 @@
 <script lang="ts">
-  import "../app.pcss";
-  import { Header } from "lorc";
+  import "../app.postcss";
+  import { Header, Shell, FatFooter } from "lorc";
 </script>
 
-<Header />
+<Shell class="bg-background-light dark:bg-background-dark">
+  <svelte:fragment slot="header">
+    <Header companyName="Wonderlee" />
+  </svelte:fragment>
 
-<div class="min-h-screen bg-background-light dark:bg-background-dark">
   <slot />
-</div>
+
+  <svelte:fragment slot="footer">
+    <FatFooter companyName="Wonderlee" />
+  </svelte:fragment>
+</Shell>
