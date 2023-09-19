@@ -1,0 +1,45 @@
+name: Build Projects
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - alpha
+
+jobs:
+  deploy:
+    name: Building ${{ matrix.project.name }} with Bun version ${{ matrix.bun-version }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        bun-version: [ latest ]
+        project:
+          - { name: LoRC, id: lorc, path: packages/lorc }
+          - { name: Allheim, id: allheim, path: apps/allheim }
+          - { name: Anzelmo, id: anzelmo, path: apps/anzelmo }
+          - { name: Bapta, id: bapta, path: apps/bapta }
+          - { name: Eksno, id: eksno, path: apps/eksno }
+          - { name: GGSoccer, id: ggsoccer, path: apps/ggsoccer }
+          - { name: Liberole, id: liberole, path: apps/liberole }
+          - { name: Template, id: template, path: apps/template }
+          - { name: Webskite, id: website, path: apps/website }
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Bun with version ${{ matrix.bun-version }}
+        uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: ${{ matrix.bun-version }}
+
+      - name: Install Dependencies
+        run: bun install
+
+      - name: Build Project
+        run: |
+          cd ${{ matrix.project.path }}
+          bun i # fails sometimes without this
+          bun run build
+
