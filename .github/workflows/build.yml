@@ -14,30 +14,30 @@ jobs:
       matrix:
         bun-version: [ latest ]
         project:
-          [
-            { name: LoRC, id: lorc, path: packages/lorc },
-            { name: Allheim, id: allheim, path: apps/allheim },
-            { name: Anzelmo, id: anzelmo, path: apps/anzelmo },
-            { name: Bapta, id: bapta, path: apps/bapta },
-            { name: Eksno, id: eksno, path: apps/eksno },
-            { name: GGSoccer, id: ggsoccer, path: apps/ggsoccer },
-            { name: Liberole, id: liberole, path: apps/liberole },
-            { name: Template, id: template, path: apps/template },
-            { name: Webskite, id: website, path: apps/website }
-          ]
+          - { name: LoRC, id: lorc, path: packages/lorc }
+          - { name: Allheim, id: allheim, path: apps/allheim }
+          - { name: Anzelmo, id: anzelmo, path: apps/anzelmo }
+          - { name: Bapta, id: bapta, path: apps/bapta }
+          - { name: Eksno, id: eksno, path: apps/eksno }
+          - { name: GGSoccer, id: ggsoccer, path: apps/ggsoccer }
+          - { name: Liberole, id: liberole, path: apps/liberole }
+          - { name: Template, id: template, path: apps/template }
+          - { name: Webskite, id: website, path: apps/website }
 
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v4
 
       - name: Setup Bun with version ${{ matrix.bun-version }}
-      - uses: oven-sh/setup-bun@v1
+        uses: oven-sh/setup-bun@v1
         with:
-          bun-version: latest
+          bun-version: ${{ matrix.bun-version }}
 
       - name: Install Dependencies
         run: bun i
 
       - name: Build Project
-      - run: |
+        run: |
           cd ${{ matrix.project.path }}
           bun run build
+
