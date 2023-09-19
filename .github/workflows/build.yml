@@ -8,11 +8,11 @@ on:
 
 jobs:
   deploy:
-    name: Building ${{ matrix.project.name }}
+    name: Building ${{ matrix.project.name }} with Bun version ${{ matrix.bun-version }}
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [ 20 ]
+        bun-version: [ latest ]
         project:
           [
             {
@@ -73,6 +73,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+
+      - name: Setup Bun with version ${{ matrix.bun-version }}
       - uses: oven-sh/setup-bun@v1
         with:
           bun-version: latest
