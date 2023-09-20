@@ -1,1 +1,3 @@
-<img src="favicon.png" class="h-9 not-prose" alt="Logo" />
+<!-- Not rounded, should be done in image with transparent background for logos -->
+<img src="favicon.png" class="h-8" alt="Logo" />
+
