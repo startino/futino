@@ -2,9 +2,9 @@ name: Deploy to Remote Repo
 
 on:
   workflow_dispatch:
-    # push:
-    #   branches:
-    #     - 'alpha'
+  push:
+    branches:
+      - 'alpha'
 
 jobs:
   deploy:
@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [ 16 ]
+        node-version: [16]
         project:
           [
             { name: allheim, domain: allheim.futi.no },
@@ -22,12 +22,12 @@ jobs:
             { name: ggsoccer, domain: ggsoccer.futi.no },
             { name: liberole, domain: liberole.futi.no },
             { name: web-template, domain: template.futi.no },
-            { name: website, domain: futi.no }
+            { name: website, domain: futi.no },
           ]
 
     steps:
       # pnpm setup following https://pnpm.io/continuous-integration#github-actions
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v3
 
       - uses: pnpm/action-setup@v2
         with:

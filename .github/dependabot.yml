@@ -10,18 +10,6 @@ updates:
     schedule:
       interval: 'daily'
 
-  # Packages
-  - package-ecosystem: 'npm'
-    directory: '/packages/lorc'
-    schedule:
-      interval: 'daily'
-
-  - package-ecosystem: 'npm'
-    directory: '/packages/tsconfig'
-    schedule:
-      interval: 'daily'
-
-  # Apps
   - package-ecosystem: 'npm'
     directory: '/apps/allheim'
     schedule:
@@ -48,16 +36,11 @@ updates:
       interval: 'daily'
 
   - package-ecosystem: 'npm'
-    directory: '/apps/template'
+    directory: '/apps/web-template'
     schedule:
       interval: 'daily'
 
   - package-ecosystem: 'npm'
     directory: '/apps/website'
-    schedule:
-      interval: 'daily'
-
-  - package-ecosystem: 'npm'
-    directory: '/apps/wonderlee'
     schedule:
       interval: 'daily'
