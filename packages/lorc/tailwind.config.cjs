@@ -45,6 +45,10 @@ const config = {
 			typography: ({ colors }) => ({
 				main: {
 					css: {
+						h1: {
+							'margin-bottom': '0px',
+							marginBottom: '0px',
+						},
 						'--tw-prose-body': colors.neutral[700],
 						'--tw-prose-headings': colors.neutral[900],
 						'--tw-prose-lead': colors.neutral[600],

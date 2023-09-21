@@ -1,68 +1,38 @@
-<script>
-	import { Prose } from 'lorc';
+<script lang="ts">
+	import { Hero, Prose } from 'lorc';
+	import { Button } from 'lorc';
+
+	const heroBg = '/pre_mockup_designs/garage_ref.png';
+
+	const CTAButtons = {
+		'Our work': {
+			href: '/',
+			secondary: false,
+		},
+		'Contact us': {
+			href: '/',
+			secondary: true,
+		},
+	};
 </script>
 
-<Prose class="max-w-prose mx-auto">
-	<h1>Futino Web-Template</h1>
+<Hero {CTAButtons} justified="center" bgImg={heroBg} />
 
-	<p>
-		Lorem ipsum, dolor sit amet consectetur adipisicing elit. Corrupti vero error in provident?
-		Quis, delectus id quam ad maxime nam fugiat fugit consectetur quidem animi tempore quisquam
-		iure, consequuntur reprehenderit!
-	</p>
-
-	<blockquote>This is a quote?</blockquote>
-
-	<ul>
-		<li>
-			<a href="https://futi.no">Futino</a>
-		</li>
-		<li>
-			<a href="https://web-template.futi.no">Web-Template</a>
-		</li>
-		<li>
-			<a href="https://github.com/Futino/web-template">Source Code</a>
-		</li>
-	</ul>
-
-	<p>
-		Lorem ipsum dolor sit amet, officia excepteur ex fugiat reprehenderit enim labore culpa sint ad
-		nisi Lorem pariatur mollit ex esse exercitation amet. Nisi anim cupidatat excepteur officia.
-		Reprehenderit nostrud nostrud ipsum Lorem est aliquip amet voluptate voluptate dolor minim nulla
-		est proident. Nostrud officia pariatur ut officia. Sit irure elit esse ea nulla sunt ex occaecat
-		reprehenderit commodo officia dolor Lorem duis laboris cupidatat officia voluptate. Culpa
-		proident adipisicing id nulla nisi laboris ex in Lorem sunt duis officia eiusmod. Aliqua
-		reprehenderit commodo ex non excepteur duis sunt velit enim. Voluptate laboris sint cupidatat
-		ullamco ut ea consectetur et est culpa et culpa duis.
-	</p>
-	<p>
-		Lorem ipsum dolor sit amet, officia excepteur ex fugiat reprehenderit enim labore culpa sint ad
-		nisi Lorem pariatur mollit ex esse exercitation amet. Nisi anim cupidatat excepteur officia.
-		Reprehenderit nostrud nostrud ipsum Lorem est aliquip amet voluptate voluptate dolor minim nulla
-		est proident. Nostrud officia pariatur ut officia. Sit irure elit esse ea nulla sunt ex occaecat
-		reprehenderit commodo officia dolor Lorem duis laboris cupidatat officia voluptate. Culpa
-		proident adipisicing id nulla nisi laboris ex in Lorem sunt duis officia eiusmod. Aliqua
-		reprehenderit commodo ex non excepteur duis sunt velit enim. Voluptate laboris sint cupidatat
-		ullamco ut ea consectetur et est culpa et culpa duis.
-	</p>
-	<p>
-		Lorem ipsum dolor sit amet, officia excepteur ex fugiat reprehenderit enim labore culpa sint ad
-		nisi Lorem pariatur mollit ex esse exercitation amet. Nisi anim cupidatat excepteur officia.
-		Reprehenderit nostrud nostrud ipsum Lorem est aliquip amet voluptate voluptate dolor minim nulla
-		est proident. Nostrud officia pariatur ut officia. Sit irure elit esse ea nulla sunt ex occaecat
-		reprehenderit commodo officia dolor Lorem duis laboris cupidatat officia voluptate. Culpa
-		proident adipisicing id nulla nisi laboris ex in Lorem sunt duis officia eiusmod. Aliqua
-		reprehenderit commodo ex non excepteur duis sunt velit enim. Voluptate laboris sint cupidatat
-		ullamco ut ea consectetur et est culpa et culpa duis.
-	</p>
-	<p>
-		Lorem ipsum dolor sit amet, officia excepteur ex fugiat reprehenderit enim labore culpa sint ad
-		nisi Lorem pariatur mollit ex esse exercitation amet. Nisi anim cupidatat excepteur officia.
-		Reprehenderit nostrud nostrud ipsum Lorem est aliquip amet voluptate voluptate dolor minim nulla
-		est proident. Nostrud officia pariatur ut officia. Sit irure elit esse ea nulla sunt ex occaecat
-		reprehenderit commodo officia dolor Lorem duis laboris cupidatat officia voluptate. Culpa
-		proident adipisicing id nulla nisi laboris ex in Lorem sunt duis officia eiusmod. Aliqua
-		reprehenderit commodo ex non excepteur duis sunt velit enim. Voluptate laboris sint cupidatat
-		ullamco ut ea consectetur et est culpa et culpa duis.
-	</p>
-</Prose>
+<!-- 
+<section
+	class="h-screen bg-[url('/pre_mockup_designs/garage_ref.png')] bg-center bg-cover w-full grid">
+	<div class="flex flex-col items-center my-auto gap-6">
+		<h1 class="m-0" style="margin: 0px">Lorem ipsum dolor sit amet.</h1>
+		<h5 class="" style="margin: 0px">
+			Lorem ipsum dolor sit amet consectetur, adipisicing elit. Omnis, quo.
+		</h5>
+		<div class="grid grid-cols-2 gap-6 md:gap-8 mt-6 place-items-center">
+			<Button>
+				<h6 class="" style="margin: 0px">Our Work</h6>
+			</Button>
+			<Button>
+				<h6 class="" style="margin: 0px">Contact Us</h6>
+			</Button>
+		</div>
+	</div>
+</section> -->

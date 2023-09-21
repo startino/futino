@@ -6,12 +6,13 @@ const alpha = '<alpha-value>';
 const config = {
 	content: [
 		'./src/**/*.{html,js,svelte,ts}',
-		join(require.resolve('lorc'),
-			'../**/*.{html,js,svelte,ts}',
-		),
+		join(require.resolve('lorc'), '../**/*.{html,js,svelte,ts}'),
 	],
 
 	darkMode: 'class',
+	backgroundImage: {
+		landing: "url('/favicon.png')",
+	},
 
 	theme: {
 		extend: {
@@ -50,9 +51,23 @@ const config = {
 
 			typography: ({ colors }) => ({
 				main: {
+					DEFAULT: {
+						css: {
+							// Will be using this later i bet >> color: theme('colors.yourSpecificColor'), // change global color scheme
+							h1: {
+								'margin-bottom': '0px',
+								marginBottom: '0px',
+							},
+						},
+					},
 					css: {
+						h1: {
+							'margin-bottom': '0px',
+							marginBottom: '0px',
+						},
 						'--tw-prose-body': colors.neutral[700],
 						'--tw-prose-headings': colors.neutral[900],
+
 						'--tw-prose-lead': colors.neutral[600],
 						'--tw-prose-links': fColors.tertiary.light,
 						'--tw-prose-bold': colors.neutral[900],
@@ -89,10 +104,10 @@ const config = {
 		},
 	},
 	plugins: [
-	    require('@tailwindcss/typography'),
-	    require('@tailwindcss/forms'),
-	    require('@tailwindcss/aspect-ratio'),
-	    require('@tailwindcss/container-queries'),
+		require('@tailwindcss/typography'),
+		require('@tailwindcss/forms'),
+		require('@tailwindcss/aspect-ratio'),
+		require('@tailwindcss/container-queries'),
 	],
 };
 

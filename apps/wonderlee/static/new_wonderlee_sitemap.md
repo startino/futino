@@ -33,10 +33,9 @@ flowchart LR
     services --- install
     services --- maintenance
     services --- diy-repair
-    services --- 
     legal --- disclaimer
     legal --- privacy-policy
 
     classDef section fill:#005500
-    classDef page fill:#000055
+    classDef page fill:#000055,color:#fff
 ```
