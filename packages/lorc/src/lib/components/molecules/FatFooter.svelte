@@ -40,20 +40,19 @@
 	// Props (base styles)
 	/** Provide classes to set background color. */
 	export let background: string = '';
-	/** Provide classes to set border styles. The default is: md:border-secondary-light/50 md:dark:border-primary-dark/50 */
-	export let border: string = 'border-outline-light dark:border-outline-dark';
+	/** Provide classes to set border styles. The default is: border-outline border-outline */
+	export let border: string = 'border-outline border-outline';
 	/** Provide classes to set padding. */
 	export let padding: string = '';
 	/** Provide classes to define a box shadow. */
 	export let shadow: string = '';
 	/** Provide classes to set base styling for gap spacing. The default is: gap-6*/
 	export let gap: string = 'gap-6';
-	/** Provide classes to set the base typography styling. The default is: body-small text-primary-light dark:text-primary-dark*/
-	export let typography: string = 'dark:prose-invert text-primary-light dark:text-primary-dark';
+	/** Provide classes to set the base typography styling. The default is: body-small text-primary*/
+	export let typography: string = 'text-primary';
 </script>
 
-<footer
-	class="max-w-none prose-a:no-underline prose sm:prose-sm lg:prose-md dark:prose-invert prose-main">
+<footer class="max-w-none prose-a:no-underline prose sm:prose-sm lg:prose-md prose-main">
 	<div
 		class="flex text-left flex-col md:flex-row z-50 w-full py-24 items-start justify-start gap-8 px-6 md:px-18 lg:max-w-5xl xl:max-w-6xl mx-auto justify-items-start">
 		<a class="flex gap-3 items-start not-prose w-full" href="/">
@@ -65,10 +64,10 @@
 			class="grid grid-cols-2 md:grid-cols-4 gap-12 justify-items-start items-start mt-3 sm:mt-0 w-full">
 			{#each Object.entries(categories) as [catagory, pages]}
 				<div
-					class="flex flex-col gap-3 max-w-none prose-a:no-underline prose sm:prose-sm lg:prose-md dark:prose-invert prose-main">
-					<h6 class="mb-1 font-bold m-0">
+					class="flex flex-col gap-3 max-w-none prose-a:no-underline prose sm:prose-sm lg:prose-md prose-main">
+					<h5 class="mb-1 font-bold m-0">
 						{catagory}
-					</h6>
+					</h5>
 
 					{#each Object.entries(pages) as [name, href]}
 						<a {href} class="hover:underline m-0">

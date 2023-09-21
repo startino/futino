@@ -19,10 +19,10 @@
 	/** Apply prose typography classes
 	 * @remark
 	 * Default:
-	 * 'prose prose-sm sm:prose-base md:prose-lg lg:prose-xl xl:prose-2xl dark:prose-invert prose-main justify-items-center space-y-12';
+	 * 'prose prose-sm sm:prose-base md:prose-lg lg:prose-xl xl:prose-2xl  space-y-12';
 	 */
 	export let typographyClass: string =
-		'max-w-none prose-a:no-underline  prose sm:prose-base md:prose-lg lg:prose-xl xl:prose-2xl dark:prose-invert prose-main';
+		'max-w-none prose-a:no-underline  prose sm:prose-base md:prose-lg lg:prose-xl xl:prose-2xl  prose-main';
 
 	// Reactive Classes
 	$: classesBase = `${typographyClass} ${$$props.class ?? ''}`;

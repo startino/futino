@@ -16,7 +16,12 @@
 	};
 </script>
 
-<Hero {CTAButtons} justified="center" bgImg={heroBg} />
+<Hero
+	{CTAButtons}
+	title="Lorem ipsum, dolor sit amet consectetur adipisicing."
+	subtitle="Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel odio mollitia excepturi laudantium nostrum sit!"
+	justified="center"
+	bgImg={heroBg} />
 
 <!-- 
 <section

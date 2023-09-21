@@ -28,16 +28,16 @@
 	// Props (base styles)
 	/** Provide classes to set background color. */
 	export let background: string = '';
-	/** Provide classes to set border styles. The default is: md:border-secondary-light/50 md:dark:border-primary-dark/50 */
-	export let border: string = 'md:border-secondary-light/50 md:dark:border-primary-dark/50';
+	/** Provide classes to set border styles. The default is: md:border-secondary/50 md:dark:border-primary/50 */
+	export let border: string = 'md:border-secondary/50 md:dark:border-primary/50';
 	/** Provide classes to set padding. */
 	export let padding: string = '';
 	/** Provide classes to define a box shadow. */
 	export let shadow: string = '';
 	/** Provide classes to set base styling for gap spacing. The default is: gap-6*/
 	export let gap: string = 'gap-6';
-	/** Provide classes to set the base typography styling. The default is: body-small text-primary-light dark:text-primary-dark*/
-	export let typography: string = 'dark:prose-invert text-primary-light dark:text-primary-dark';
+	/** Provide classes to set the base typography styling. The default is: body-small text-primary dark:text-primary*/
+	export let typography: string = 'dark:prose-invert text-primary dark:text-primary';
 
 	// Reactive Classes
 	$: classesBase = `${
@@ -76,12 +76,12 @@
 		<div
 			in:slide={{ delay: 200, duration: 300 }}
 			out:slide
-			class="absolute z-50 p-12 w-full mx-auto my-auto top-0 bottom-0 flex flex-col items-center gap-4 left-0 right-0 h-fit max-w-xs md:max-w-xl lg:max-w-2xl bg-surface-dark rounded-lg shadow-lg">
+			class="absolute z-50 p-12 w-full mx-auto my-auto top-0 bottom-0 flex flex-col items-center gap-4 left-0 right-0 h-fit max-w-xs md:max-w-xl lg:max-w-2xl bg-surface rounded-lg shadow-lg">
 			<!-- Nav Elements -->
 			<nav class="text-center flex flex-col gap-6 headline-medium">
 				{#each Object.entries(pages) as [name, href]}
 					<a
-						class="text-primary-container-on-dark hover:text-tertiary-dark hover:scale-105 transition-all duration-200"
+						class="text-primary-container-on hover:text-tertiary hover:scale-105 transition-all duration-200"
 						{href}
 						on:click={toggleMenu}>
 						{name}
@@ -107,7 +107,7 @@
 			<div class="flex {gap} ml-auto items-center">
 				<nav class="hidden md:flex {gap}">
 					{#each Object.entries(pages) as [name, href]}
-						<a class="hover:text-tertiary-light dark:hover:text-tertiary-dark" {href}>
+						<a class="hover:text-tertiary" {href}>
 							<h5>
 								{name}
 							</h5>
@@ -120,7 +120,7 @@
 				</div>
 
 				<button
-					class="flex md:hidden stroke-primary-light hover:stroke-tertiary-light dark:stroke-primary-dark dark:hover:stroke-tertiary-dark"
+					class="flex md:hidden stroke-primary hover:stroke-tertiary dark:hover:stroke-tertiary"
 					on:click={toggleMenu}>
 					<Icon height="28" width="28" fill={'none'} icon={menuOpen ? 'cross' : 'burger'} />
 				</button>

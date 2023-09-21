@@ -5,8 +5,6 @@ const alpha = '<alpha-value>';
 const config = {
 	content: ['./src/**/*.{html,js,svelte,ts}'],
 
-	darkMode: 'class',
-
 	theme: {
 		extend: {
 			padding: {

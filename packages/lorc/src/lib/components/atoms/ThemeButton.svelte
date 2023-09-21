@@ -15,7 +15,7 @@
 
 <button
 	on:click={changeTheme}
-	class="{$$props.class} fill-primary-light stroke-primary-light hover:fill-tertiary-light hover:stroke-tertiary-light dark:fill-primary-dark dark:stroke-primary-dark dark:hover:fill-tertiary-dark dark:hover:stroke-tertiary-dark">
+	class="{$$props.class} fill-primary stroke-primary hover:fill-tertiary hover:stroke-tertiary dark:hover:stroke-tertiary">
 	<!-- Light mode -->
 	<span class="dark:hidden">
 		<svg

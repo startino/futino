@@ -2,9 +2,14 @@
 	import type { CssClasses } from '$lib/types';
 	import Button from '../atoms/Button.svelte';
 
-	export let bgImg: string = '';
-	/** Provide classes to set the base typography styling. The default is: body-small text-primary-light dark:text-primary-dark*/
-	export let typography: CssClasses = 'dark:prose-invert text-primary-light dark:text-primary-dark';
+	// Content Props
+	/**Path to the background image. e.g. ``/garages/best_garage.png`` */
+	export let bgImg: string = '/favicon.png';
+	export let title: string = 'This is a great title for Company Name';
+	export let subtitle: string =
+		'This is an even better piece of text. Specifically, this is a subtitle';
+	/** Provide classes to set the base typography styling. The default is: body-small text-primary dark:text-primary*/
+	export let typography: CssClasses = '';
 	/** Labels and hrefs of CTA buttons on the hero. Recommended 1-2.*/
 	export let CTAButtons: {
 		[label: string]: { href: string; secondary: boolean };
@@ -36,14 +41,16 @@
 
 <section
 	class="h-screen bg-[url('{bgImg}')] bg-center bg-cover w-full grid {typography} place-items-center">
-	<div class="flex flex-col {justifyClass()} my-auto gap-6 mx-6">
-		<h1 class="" style="margin: 0px">Lorem ipsum dolor sit amet.</h1>
-		<h5 class="" style="margin: 0px">
-			Lorem ipsum dolor sit amet consectetur, adipisicing elit. Omnis, quo.
-		</h5>
+	<div class="flex flex-col {justifyClass()} my-auto gap-8 mx-6">
+		<div class="flex flex-col gap-4">
+			<h1 class="" style="margin: 0px">{title}</h1>
+			<h5 class="" style="margin: 0px">
+				{subtitle}
+			</h5>
+		</div>
 		<div
 			class="grid grid-cols-{Object.entries(CTAButtons)
-				.length} gap-6 md:gap-8 mt-6 place-items-center w-fit">
+				.length} gap-4 md:gap-6 place-items-center w-fit">
 			{#each Object.entries(CTAButtons) as [label, { href, secondary }]}
 				<Button {secondary} {href}>
 					<h6 class="" style="margin: 0px">{label}</h6>
