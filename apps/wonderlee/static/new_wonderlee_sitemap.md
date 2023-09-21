@@ -13,27 +13,27 @@ flowchart LR
     subgraph "Residential Gates"
         direction TB
         residential-gates --- gate-types
-        gate-types --- fold & slide & swing
-        slide --- uphill & curved & telescopic & cantilever
-        swing --- arm-type & underground
+        gate-types --- fold & slide-gate & swing-gate
+        slide-gate --- uphill & curved & telescopic & cantilever
+        swing-gate --- arm-type & underground
     end
     products --- commercial-doors:::page
-    commercial-door --- revolving-door
-    commercial-door --- slide-door
-    commercial-door --- swing-door
-    products --- secret-door
-    products --- roller-shutter
-    products --- fire-shutter
-    products --- renlita-doors
-    products --- avon-pas-68
-    products --- entrance-gate
-    entrance-gate --- sectional-garage-door
-    sectional-garage-door --- martin-copper-garage-door
-    services --- safety-standard
-    services --- design-install
-    services --- after-sales-services
-    services --- maintenance-services
+     subgraph "Residential Gates"
+        direction TB
+        commercial-doors --- door-types
+        door-types ---  slide-door & swing-door & revolving
+    end
+    products --- bifold-door:::page
+    products --- secret-door:::page
+    products --- roller-shutter:::page
+    products --- fire-shutter:::page
+    products --- renlita-doors:::page
+    products --- avon-pas-68:::page
+    services --- design
+    services --- install
+    services --- maintenance
     services --- diy-repair
+    services --- 
     legal --- disclaimer
     legal --- privacy-policy
 
