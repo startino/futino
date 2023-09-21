@@ -1,0 +1,15 @@
+services:
+  app:
+    image: app
+    build:
+      context: .
+      dockerfile: Containerfile.dev
+      args:
+        app: ${APP}
+    ports:
+      - 5173:5173
+    volumes:
+      - .:/src
+      - /src/node_modules
+      - /src/${APP}/node_modules
+    restart: unless-stopped
