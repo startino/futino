@@ -1,10 +1,11 @@
 FROM oven/bun:latest
-WORKDIR /app
+ARG app
+WORKDIR /src
 
-COPY package.json package.json
+COPY . .
 
 RUN bun install
 
-COPY . .
+WORKDIR /src/apps/${app}
 
 CMD [ "bun", "run", "dev" ]
