@@ -5,6 +5,9 @@ on:
   push:
     branches:
       - alpha
+  pull_request:
+    branches:
+      - alpha
 
 jobs:
   deploy:
