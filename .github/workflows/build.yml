@@ -22,8 +22,7 @@ jobs:
           - { name: Eksno, id: eksno, path: apps/eksno }
           - { name: GGSoccer, id: ggsoccer, path: apps/ggsoccer }
           - { name: Liberole, id: liberole, path: apps/liberole }
-          - { name: Template, id: template, path: apps/template }
-          - { name: Webskite, id: website, path: apps/website }
+          - { name: Website, id: website, path: apps/website }
 
     steps:
       - name: Checkout code
@@ -42,4 +41,3 @@ jobs:
           cd ${{ matrix.project.path }}
           bun i # fails sometimes without this
           bun run build
-
