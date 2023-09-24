@@ -161,40 +161,6 @@
   tag="Top Rated"
 />
 
-<!-- Testimonial Section -->
-<section class="section">
-  <div class="inner-section">
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 justify-items-center">
-      {#each testimonials as testimonial}
-        <a
-          href={testimonial.src}
-          class="transition-all duration-300 rounded-lg p-6 shadow-lg shadow-surface-dark flex flex-col h-full w-full max-w-md text-center items-center bg-surface-dark hover:scale-105 group"
-        >
-          <!--pfp-->
-          <img
-            class="w-32 h-32 p-1 m-2 border-2 rounded-full border-primary-dark"
-            src={testimonial.img_path}
-            alt={testimonial.name}
-          />
-          <!--text body-->
-          <h1 class="my-auto text-center body-medium text-surface-on-dark">
-            {testimonial.body}
-          </h1>
-          <!--credentials-->
-          <div
-            class="flex flex-col pt-3 mt-auto justify-self-end h-fit text-secondary-dark transition-all duration-500 group-hover:text-tertiary-dark"
-          >
-            <h1 class="title-large">
-              {testimonial.name}
-            </h1>
-            <h2 class="body-small">TripAdvisor</h2>
-          </div>
-        </a>
-      {/each}
-    </div>
-  </div>
-</section>
-
 <!--Adventure Snippets-->
 <section class="section relative">
   <div
