@@ -161,40 +161,6 @@
   tag="Top Rated"
 />
 
-<!-- Testimonial Section -->
-<section class="section">
-  <div class="inner-section">
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 justify-items-center">
-      {#each testimonials as testimonial}
-        <a
-          href={testimonial.src}
-          class="transition-all duration-300 rounded-lg p-6 shadow-lg shadow-surface-dark flex flex-col h-full w-full max-w-md text-center items-center bg-surface-dark hover:scale-105 group"
-        >
-          <!--pfp-->
-          <img
-            class="w-32 h-32 p-1 m-2 border-2 rounded-full border-primary-dark"
-            src={testimonial.img_path}
-            alt={testimonial.name}
-          />
-          <!--text body-->
-          <h1 class="my-auto text-center body-medium text-surface-on-dark">
-            {testimonial.body}
-          </h1>
-          <!--credentials-->
-          <div
-            class="flex flex-col pt-3 mt-auto justify-self-end h-fit text-secondary-dark transition-all duration-500 group-hover:text-tertiary-dark"
-          >
-            <h1 class="title-large">
-              {testimonial.name}
-            </h1>
-            <h2 class="body-small">TripAdvisor</h2>
-          </div>
-        </a>
-      {/each}
-    </div>
-  </div>
-</section>
-
 <!--Adventure Snippets-->
 <section class="section relative">
   <div
@@ -257,36 +223,6 @@
         </div>
       {/if}
     {/each}
-  </div>
-</section>
-
-<!-- CTA to book a tour -->
-
-<section class="section relative z-10">
-  <div
-    class="inner-section text-left grid grid-cols-1 md:grid-cols-2 place-items-center gap-8"
-  >
-    <div
-      class="flex flex-col gap-y-3 justify-self-start md:justify-self-center"
-    >
-      <h1 class="font-semibold headline-large text-primary-dark">
-        Let's choose a Safari
-      </h1>
-      <h2 class="body-large max-w-md">
-        Browse through our catalogue of tours to find just the one for you! But
-        don't worry if you don't find your dream tour, because each tour is
-        fully customizable! Find a tour you love, and request a quote!
-      </h2>
-
-      <OutlineButton href="/tours" class="py-2">
-        <h1 class="font-bold title-small">Find a Tour</h1>
-      </OutlineButton>
-    </div>
-    <img
-      src="/images/safari/59.webp"
-      alt="img"
-      class="object-cover object-center rounded-md w-full order-first md:order-last"
-    />
   </div>
 </section>
 

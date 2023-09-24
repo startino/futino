@@ -2,28 +2,67 @@ name: Build Projects
 
 on:
   workflow_dispatch:
-  push:
+  pull_request:
     branches:
       - alpha
 
 jobs:
   deploy:
-    name: Building ${{ matrix.project.name }} with Bun version ${{ matrix.bun-version }}
+    name: Building ${{ matrix.project.name }} with Bun ${{ matrix.bun-version }}
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
         bun-version: [ latest ]
         project:
-          - { name: LoRC, id: lorc, path: packages/lorc }
-          - { name: Allheim, id: allheim, path: apps/allheim }
-          - { name: Anzelmo, id: anzelmo, path: apps/anzelmo }
-          - { name: Bapta, id: bapta, path: apps/bapta }
-          - { name: Eksno, id: eksno, path: apps/eksno }
-          - { name: GGSoccer, id: ggsoccer, path: apps/ggsoccer }
-          - { name: Liberole, id: liberole, path: apps/liberole }
-          - { name: Template, id: template, path: apps/template }
-          - { name: Webskite, id: website, path: apps/website }
+          - {
+              name: LoRC,
+              id: lorc,
+              path: packages/lorc,
+              domain: lorc.futi.no
+            }
+          - {
+              name: Allheim,
+              id: allheim,
+              path: apps/allheim,
+              domain: allheim.futi.no
+            }
+          - {
+              name: Anzelmo,
+              id: anzelmo,
+              path: apps/anzelmo,
+              domain: anzelmo.futi.no
+            }
+          - {
+              name: Bapta,
+              id: bapta,
+              path: apps/bapta,
+              domain: bapta.futi.no
+            }
+          - {
+              name: Eksno,
+              id: eksno,
+              path: apps/eksno,
+              domain: eksno.com
+            }
+          - {
+              name: GGSoccer,
+              id: ggsoccer,
+              path: apps/ggsoccer,
+              domain: ggsoccer.futi.no
+            }
+          - {
+              name: Liberole,
+              id: liberole,
+              path: apps/liberole,
+              domain: liberole.futi.no
+            }
+          - {
+              name: Website,
+              id: website,
+              path: apps/website,
+              domain: futi.no
+            }
 
     steps:
       - name: Checkout code
@@ -42,4 +81,3 @@ jobs:
           cd ${{ matrix.project.path }}
           bun i # fails sometimes without this
           bun run build
-
