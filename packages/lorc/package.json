@@ -2,6 +2,7 @@
   "name": "lorc",
   "version": "0.0.1",
   "devDependencies": {
+    "@sveltejs/adapter-static": "^2.0.3",
     "@sveltejs/kit": "^1.20.4",
     "@sveltejs/package": "^2.0.0",
     "@tailwindcss/aspect-ratio": "^0.4.2",
