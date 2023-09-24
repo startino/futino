@@ -67,6 +67,12 @@ jobs:
         with:
           bun-version: ${{ matrix.bun-version }}
 
+      - name: Switch Adapter to Static
+        run: |
+          cd ${{ matrix.project.path }}
+          sed -i '%s|svelte-adapter-bun|@sveltejs/adapter-static|g' ./svelte.config.js
+          sed -i '%s|svelte-adapter-bun|@sveltejs/adapter-static|g' ./package.json
+
       - name: Install Dependencies
         run: bun install
 
@@ -78,16 +84,16 @@ jobs:
 
       - name: Prepare for GitHub Pages
         run: |
-          cd apps/${{ matrix.project.name }}
+          cd ${{ matrix.project.path }}
           echo -e "${{ matrix.project.domain }}" >> build/CNAME
           touch build/.nojekyll
 
-      - name: Deploy to https://github.com/Futino/${{ matrix.project.name }}@gh-pages
+      - name: Deploy to https://github.com/Futino/${{ matrix.project.id }}@gh-pages
         uses: JamesIves/github-pages-deploy-action@releases/v4
         with:
           token: ${{ secrets.TOKEN }}
           branch: gh-pages # The branch the action should deploy to.
-          folder: apps/${{ matrix.project.name }}/build # The folder the action should deploy.
-          repository-name: Futino/${{ matrix.project.name }} # The repository the action should deploy to.
+          folder: ${{ matrix.project.path }}/build # The folder the action should deploy.
+          repository-name: Futino/${{ matrix.project.id }} # The repository the action should deploy to.
           target-folder: /
           clean: true
