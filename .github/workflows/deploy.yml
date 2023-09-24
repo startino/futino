@@ -70,8 +70,8 @@ jobs:
       - name: Switch Adapter to Static
         run: |
           cd ${{ matrix.project.path }}
-          sed -i '%s|svelte-adapter-bun|@sveltejs/adapter-static|g' ./svelte.config.js
-          sed -i '%s|svelte-adapter-bun|@sveltejs/adapter-static|g' ./package.json
+          sed -i 's|svelte-adapter-bun|@sveltejs/adapter-static|g' ./svelte.config.js
+          sed -i 's|svelte-adapter-bun|@sveltejs/adapter-static|g' ./package.json
 
       - name: Install Dependencies
         run: bun install
