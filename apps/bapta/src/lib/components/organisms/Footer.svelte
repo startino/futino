@@ -1,55 +1,62 @@
 <script lang="ts">
-	import { base } from '$app/paths';
-	import Logo from '$lib/components/atoms/Logo.svelte';
+  import Logo from "../atoms/Logo.svelte";
 
-	const elements = [
-		{
-			name: 'Home',
-			href: '/',
-		},
-		{
-			name: 'Help',
-			href: '/contact',
-		},
-		{
-			name: 'FAQs',
-			href: '/contact#faqs',
-		},
-		{
-			name: 'About',
-			href: '/about',
-		},
-		{
-			name: 'Privacy Policy',
-			href: '/legal/privacy',
-		},
-	];
+  // Props
+  /**Provide the list of page links you'd like to put in the header.
+   * @remarks
+   * Type must be { name: string; href: string }[].
+   * @example
+   * [{
+   * name: 'Home',
+   * href: '/home',
+   * }]
+   * */
+
+  export const pages: { [key: string]: string } = {
+    Home: "/",
+    Tours: "/tours",
+    Contact: "/contact",
+    Adventures: "/adventures",
+    Privacy: "/legal/privacy",
+  };
+
+  /** Provide the company's name as text. If the name */
+  export const companyName: string = "Bapta Safaris";
+
+  // Props
+  /** Provide classes to set border styles. The default is: md:border-secondary-light/50 md:dark:border-primary-dark/50 */
+  export const border: string = "border-outline-dark ";
 </script>
 
-<div
-	class="{$$props.class} pt-20 p-6 border-t border-secondary-light/10 dark:border-secondary-dark/10">
-	<div class="flex flex-row justify-between items-center md:px-10 lg:px-20 xl:px-40 md:px-auto">
-		<Logo />
-		<ul
-			class="flex flex-wrap items-start space-x-6 body-medium sm:mb-0 text-background-on-light dark:text-background-on-dark">
-			{#each elements as { name, href }}
-				<li>
-					<a
-						class="inline mx-auto text-secondary-light dark:text-secondary-dark hover:text-tertiary-light dark:hover:text-tertiary-dark"
-						{href}>
-						{name}
-					</a>
-				</li>
-			{/each}
-		</ul>
-	</div>
-	<hr class="my-6 sm:mx-auto lg:my-8 border-secondary-light/10 dark:border-secondary-dark/10" />
-	<span class="block text-sm sm:text-center text-background-on-light dark:text-background-on-dark">
-		Unpublished © 2023
-		<a
-			href="https://futi.no/"
-			class="text-tertiary-light dark:text-tertiary-dark hover:underline hover:text-tertiary-light dark:hover:text-tertiary-light">
-			Futino™
-		</a>
-	</span>
-</div>
+<footer
+  class="max-w-none prose-a:no-underline prose sm:prose-sm prose-invert lg:prose-md prose-main"
+>
+  <div class="px-6 md:px-18 lg:max-w-5xl xl:max-w-6xl mx-auto">
+    <div
+      class="flex text-left flex-col md:flex-row z-50 w-full pt-12 pb-6 h-full items-start md:items-center border-b {border} justify-start gap-8 lg:max-w-5xl xl:max-w-6xl mx-auto justify-items-start"
+    >
+      <a class="flex gap-3 items-start not-prose w-full" href="/">
+        <Logo />
+        <p class="flex m-0 my-auto">{companyName}</p>
+      </a>
+
+      <div
+        class="flex flex-row gap-12 mt-3 sm:mt-0 w-fit justify-self-center justify-items-center"
+      >
+        {#each Object.entries(pages) as [name, href]}
+          <a {href} class="hover:underline m-0">
+            <h6>
+              {name}
+            </h6>
+          </a>
+        {/each}
+      </div>
+    </div>
+
+    <div class="block text-left md:text-center py-6">
+      Created & Hosted by
+      <a href="https://futi.no" class="hover:underline m-0"> Futino™ </a>
+    </div>
+  </div>
+</footer>
+

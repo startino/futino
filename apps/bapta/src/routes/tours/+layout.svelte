@@ -11,10 +11,10 @@
 </script>
 
 <main
-  class="py-40 px-4 border-b shadow-2xl sm:px-6 md:px-8 border-primary-light/40 dark:border-primary-dark/40"
+  class="py-40 px-4 border-b shadow-2xl sm:px-6 md:px-8 border-primary-dark/40"
 >
   <article
-    class="text-left prose prose-sm md:prose-base lg:prose-lg xl:prose-xl dark:prose-invert prose-main justify-items-center space-y-8 mx-auto"
+    class="text-left prose prose-sm md:prose-base lg:prose-lg xl:prose-xl prose-invert prose-main justify-items-center space-y-8 mx-auto"
   >
     <slot />
   </article>
