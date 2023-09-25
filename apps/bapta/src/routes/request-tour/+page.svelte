@@ -18,7 +18,7 @@
     { label: "Luxury", index: 1, for: "luxury" },
   ];
 
-  let standard: number = 0; // 0 is midrange, 1 is Luxury
+  let standard: number = -1; // 0 is midrange, 1 is Luxury
 
   async function requestTour(e) {
     console.log("inserting test data");
@@ -50,7 +50,9 @@
 
     // Supabase only has one name property
     let journeys = $journeysStore.toString().replaceAll("-", " ");
-    journeys.concat(accommodationOptions[standard].label);
+    journeys = `${
+      standard == -1 ? "No Preference." : accommodationOptions[standard].label
+    } ${journeys}`;
     console.log(journeys);
     const { data, error } = await supabase
       .from("baptaTours")
@@ -67,7 +69,13 @@
       ])
       .select();
     console.log(error);
+    $journeysStore = [];
+  }
+
+  function cancelForm() {
     journeysStore.reset();
+    goto("/tours");
+    $journeysStore = [];
   }
 </script>
 
@@ -148,6 +156,12 @@
           />
         </div>
         <div class="-ml-2">
+          <label
+            for="accomodation"
+            class="block ml-2 pt-4 title-large text-left text-primary-dark"
+            >Pick a standard:</label
+          >
+
           <AccommodationToggle
             promotions={accommodationOptions}
             bind:activeTabValue={standard}
@@ -159,6 +173,14 @@
           class="py-2 shadow-lg rounded-lg text-center bg-secondary-dark text-secondary-on-dark display-small"
         >
           Request Quote
+        </button>
+        <button
+          type="reset"
+          on:click={() => cancelForm()}
+          id="request"
+          class="py-2 shadow-lg rounded-lg text-center bg-surface-dark text-surface-on-dark headline-medium uppercase"
+        >
+          Cancel
         </button>
       </form>
     </div>
