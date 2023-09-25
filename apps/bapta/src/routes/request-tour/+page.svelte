@@ -49,25 +49,22 @@
     goto("/thank-you");
 
     // Supabase only has one name property
-    let journeys = $journeysStore.toString().replaceAll("-", " ");
+    let journeys: string = $journeysStore.toString().replaceAll("-", " ");
     journeys = `${
       standard == -1 ? "No Preference." : accommodationOptions[standard].label
     } ${journeys}`;
     console.log(journeys);
-    const { data, error } = await supabase
-      .from("baptaTours")
-      .insert([
-        {
-          firstName: formData.firstName,
-          lastName: formData.lastName,
-          email: formData.email,
-          whatsapp: formData.whatsapp,
-          people: formData.people,
-          tours: journeys,
-          message: formData.message,
-        },
-      ])
-      .select();
+    const { data, error } = await supabase.from("baptaTours").insert([
+      {
+        firstName: formData.firstName,
+        lastName: formData.lastName,
+        email: formData.email,
+        whatsapp: formData.whatsapp,
+        people: formData.people,
+        tours: journeys,
+        message: formData.message,
+      },
+    ]);
     console.log(error);
     $journeysStore = [];
   }
