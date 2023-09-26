@@ -3,7 +3,7 @@
   import { Header, Shell, FatFooter } from "lorc";
 </script>
 
-<Shell class="bg-background-light dark:bg-background-dark">
+<Shell class="bg-background">
   <svelte:fragment slot="header">
     <Header companyName="Wonderlee" />
   </svelte:fragment>
