@@ -1,7 +1,12 @@
 import { join } from 'path';
 import fColors from '../../futino-colors.cjs';
+import fAnimations from '../../futino-animations.cjs';
+import fKeyframes from '../../futino-keyframes.cjs';
+import fPadding from '../../futino-padding.cjs';
+import fTypography from '../../futino-typography.cjs';
 
 const alpha = '<alpha-value>';
+
 
 const config = {
 	content: [
@@ -15,62 +20,18 @@ const config = {
 
 	theme: {
 		extend: {
-			padding: {
-				18: '4.5rem',
-			},
-
+			padding: fPadding,
 			fontFamily: {
 				bilbo: ['Bilbo Swash Caps'],
 				ubuntu: ['Ubuntu'],
 			},
 
-			animation: {
-				wiggle: 'wiggle 1s ease-in-out infinite',
-				slideDown: 'slideDown 5s ease-in-out 1',
-				scroll: 'scroll 5s ease-in-out',
-			},
-
-			keyframes: {
-				wiggle: {
-					'0%, 100%': { transform: 'rotate(-3deg)' },
-					'50%': { transform: 'rotate(3deg)' },
-				},
-				slideDown: {
-					'0%, 100%': { transform: 'translate(0%, -200%)', opacity: 0 },
-					'1%, 99%': { opacity: 1 },
-					'20%, 70%': { transform: 'translate(0%, 0%)' },
-				},
-				scroll: {
-					'0%': { transform: 'translateY(0%)' },
-					'100%': { transform: 'translateY(100%)' },
-				},
-			},
-
+			animation: fAnimations,
+			keyframes: fKeyframes,
 			colors: fColors,
 
-			typography: ({ colors }) => ({
-				main: {
-					css: {
-						'--tw-prose-body': colors.neutral[300],
-						'--tw-prose-headings': colors.white,
-						'--tw-prose-lead': colors.neutral[400],
-						'--tw-prose-links': fColors.tertiary.DEFAULT.replace(alpha, 1),
-						'--tw-prose-bold': colors.white,
-						'--tw-prose-counters': colors.neutral[400],
-						'--tw-prose-bullets': fColors.secondary.DEFAULT.replace(alpha, 0.4),
-						'--tw-prose-hr': colors.neutral[700],
-						'--tw-prose-quotes': colors.neutral[100],
-						'--tw-prose-quote-borders': fColors.secondary.DEFAULT.replace(alpha, 0.3),
-						'--tw-prose-captions': colors.neutral[400],
-						'--tw-prose-code': colors.white,
-						'--tw-prose-pre-code': colors.neutral[300],
-						'--tw-prose-pre-bg': 'rgb(0 0 0 / 50%)',
-						'--tw-prose-th-borders': colors.neutral[600],
-						'--tw-prose-td-borders': colors.neutral[700],
-					},
-				},
-			}),
-		},
+			typography: ({colors}) => (fTypography(colors, alpha)),
+    },
 	},
 	plugins: [
 	    require('@tailwindcss/typography'),

@@ -24,4 +24,3 @@
     bgImg={heroBg}
   />
 </Prose>
-
