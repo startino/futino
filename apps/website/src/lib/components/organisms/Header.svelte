@@ -1,5 +1,5 @@
 <script lang="ts">
-	import ThemeButton from '$lib/components/atoms/ThemeButton.svelte';
+
 	import Logo from '$lib/components/atoms/Logo.svelte';
 	import { onMount } from 'svelte';
 	import { fade, slide } from 'svelte/transition';

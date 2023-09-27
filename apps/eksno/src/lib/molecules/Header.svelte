@@ -1,5 +1,5 @@
 <script lang="ts">
-	import ThemeButton from '$lib/atoms/ThemeButton.svelte';
+
 	import Logo from '$lib/atoms/Logo.svelte';
 	import { onMount } from 'svelte';
 
@@ -82,7 +82,7 @@
 			</nav>
 			<div
 				class="gap-6 pl-6 flex md:border-l md: md:border-primary/50">
-				<ThemeButton />
+
 				<button
 					class="flex md:hidden  stroke-primary hover:stroke-tertiary"
 					on:click={toggleMenu}>

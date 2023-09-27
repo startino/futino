@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { base } from '$app/paths';
-	import ThemeButton from '$lib/components/atoms/ThemeButton.svelte';
+
 	import Logo from '$lib/components/atoms/Logo.svelte';
 	import { fly, slide } from 'svelte/transition';
 	import process from 'node:process';
@@ -117,7 +117,7 @@
 						class="border-l  border-secondary/50 self-stretch" />
 
 					<li>
-						<ThemeButton />
+
 					</li>
 				</ul>
 			</nav>

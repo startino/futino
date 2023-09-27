@@ -1,5 +1,5 @@
 <script lang="ts">
-  import ThemeButton from "../atoms/ThemeButton.svelte";
+
   import Logo from "../atoms/Logo.svelte";
   import { onMount } from "svelte";
   import Icon from "../atoms/Icon.svelte";
@@ -136,7 +136,7 @@
             ? 'flex'
             : 'hidden'}"
         >
-          <ThemeButton />
+
         </div>
 
         <button

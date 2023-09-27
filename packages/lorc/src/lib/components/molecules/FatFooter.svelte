@@ -1,5 +1,4 @@
 <script lang="ts">
-  import ThemeButton from "../atoms/ThemeButton.svelte";
   import Logo from "../atoms/Logo.svelte";
   import { onMount } from "svelte";
   import { stringify } from "postcss";
@@ -51,8 +50,7 @@
   /** Provide classes to set base styling for gap spacing. The default is: gap-6*/
   export let gap: string = "gap-6";
   /** Provide classes to set the base typography styling. The default is: body-small  text-primary*/
-  export let typography: string =
-    "prose-invert  text-primary";
+  export let typography: string = "prose-invert  text-primary";
 </script>
 
 <footer

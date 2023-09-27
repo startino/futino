@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { base } from '$app/paths';
-	import ThemeButton from '$lib/components/molecules/ThemeButton.svelte';
+
 	import Logo from '$lib/components/atoms/Logo.svelte';
 	import Icon from '../atoms/Icon.svelte';
 </script>
@@ -38,7 +38,7 @@
 						</li>
 						<li class="self-stretch border-l border-black/20 border-secondary/20" />
 						<li>
-							<ThemeButton />
+
 						</li>
 					</ul>
 				</nav>
