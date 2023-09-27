@@ -8,7 +8,7 @@
 	.link {
 		@apply underline;
 		@apply text-tertiary-light;
-		@apply dark:text-tertiary-dark;
+		@apply dark:text-tertiary;
 	}
 
 	/* Material Design */
@@ -167,68 +167,37 @@
 @layer base {
 	:root {
 		--md-source: 255 0 0;
-		/* light */
-		--md-sys-color-primary-light: 192 1 0;
-		--md-sys-color-on-primary-light: 255 255 255;
-		--md-sys-color-primary-container-light: 255 218 212;
-		--md-sys-color-on-primary-container-light: 65 0 0;
-		--md-sys-color-secondary-light: 0 110 37;
-		--md-sys-color-on-secondary-light: 255 255 255;
-		--md-sys-color-secondary-container-light: 124 253 138;
-		--md-sys-color-on-secondary-container-light: 0 33 6;
-		--md-sys-color-tertiary-light: 0 107 91;
-		--md-sys-color-on-tertiary-light: 255 255 255;
-		--md-sys-color-tertiary-container-light: 120 248 221;
-		--md-sys-color-on-tertiary-container-light: 0 32 26;
-		--md-sys-color-error-light: 186 26 26;
-		--md-sys-color-error-container-light: 255 218 214;
-		--md-sys-color-on-error-light: 255 255 255;
-		--md-sys-color-on-error-container-light: 65 0 2;
-		--md-sys-color-background-light: 255 251 255;
-		--md-sys-color-on-background-light: 32 26 25;
-		--md-sys-color-surface-light: 255 251 255;
-		--md-sys-color-on-surface-light: 32 26 25;
-		--md-sys-color-surface-variant-light: 245 221 218;
-		--md-sys-color-on-surface-variant-light: 83 67 65;
-		--md-sys-color-outline-light: 133 115 112;
-		--md-sys-color-inverse-on-surface-light: 251 238 236;
-		--md-sys-color-inverse-surface-light: 54 47 46;
-		--md-sys-color-inverse-primary-light: 255 180 168;
-		--md-sys-color-shadow-light: 0 0 0;
-		--md-sys-color-surface-tint-light: 192 1 0;
-		--md-sys-color-outline-variant-light: 216 194 190;
-		--md-sys-color-scrim-light: 0 0 0;
 		/* dark */
-		--md-sys-color-primary-dark: 255 180 168;
-		--md-sys-color-on-primary-dark: 105 1 0;
-		--md-sys-color-primary-container-dark: 147 1 0;
-		--md-sys-color-on-primary-container-dark: 255 218 212;
-		--md-sys-color-secondary-dark: 94 224 112;
-		--md-sys-color-on-secondary-dark: 0 57 15;
-		--md-sys-color-secondary-container-dark: 0 83 26;
-		--md-sys-color-on-secondary-container-dark: 124 253 138;
-		--md-sys-color-tertiary-dark: 89 219 194;
-		--md-sys-color-on-tertiary-dark: 0 56 47;
-		--md-sys-color-tertiary-container-dark: 0 81 68;
-		--md-sys-color-on-tertiary-container-dark: 120 248 221;
-		--md-sys-color-error-dark: 255 180 171;
-		--md-sys-color-error-container-dark: 147 0 10;
-		--md-sys-color-on-error-dark: 105 0 5;
-		--md-sys-color-on-error-container-dark: 255 218 214;
-		--md-sys-color-background-dark: 32 26 25;
-		--md-sys-color-on-background-dark: 237 224 221;
-		--md-sys-color-surface-dark: 32 26 25;
-		--md-sys-color-on-surface-dark: 237 224 221;
-		--md-sys-color-surface-variant-dark: 83 67 65;
-		--md-sys-color-on-surface-variant-dark: 216 194 190;
-		--md-sys-color-outline-dark: 160 140 137;
-		--md-sys-color-inverse-on-surface-dark: 32 26 25;
-		--md-sys-color-inverse-surface-dark: 237 224 221;
-		--md-sys-color-inverse-primary-dark: 192 1 0;
-		--md-sys-color-shadow-dark: 0 0 0;
-		--md-sys-color-surface-tint-dark: 255 180 168;
-		--md-sys-color-outline-variant-dark: 83 67 65;
-		--md-sys-color-scrim-dark: 0 0 0;
+		--md-sys-color-primary: 255 180 168;
+		--md-sys-color-on-primary: 105 1 0;
+		--md-sys-color-primary-container: 147 1 0;
+		--md-sys-color-on-primary-container: 255 218 212;
+		--md-sys-color-secondary: 94 224 112;
+		--md-sys-color-on-secondary: 0 57 15;
+		--md-sys-color-secondary-container: 0 83 26;
+		--md-sys-color-on-secondary-container: 124 253 138;
+		--md-sys-color-tertiary: 89 219 194;
+		--md-sys-color-on-tertiary: 0 56 47;
+		--md-sys-color-tertiary-container: 0 81 68;
+		--md-sys-color-on-tertiary-container: 120 248 221;
+		--md-sys-color-error: 255 180 171;
+		--md-sys-color-error-container: 147 0 10;
+		--md-sys-color-on-error: 105 0 5;
+		--md-sys-color-on-error-container: 255 218 214;
+		--md-sys-color-background: 32 26 25;
+		--md-sys-color-on-background: 237 224 221;
+		--md-sys-color-surface: 32 26 25;
+		--md-sys-color-on-surface: 237 224 221;
+		--md-sys-color-surface-variant: 83 67 65;
+		--md-sys-color-on-surface-variant: 216 194 190;
+		--md-sys-color-outline: 160 140 137;
+		--md-sys-color-inverse-on-surface: 32 26 25;
+		--md-sys-color-inverse-surface: 237 224 221;
+		--md-sys-color-inverse-primary: 192 1 0;
+		--md-sys-color-shadow: 0 0 0;
+		--md-sys-color-surface-tint: 255 180 168;
+		--md-sys-color-outline-variant: 83 67 65;
+		--md-sys-color-scrim: 0 0 0;
 		/* display - large */
 		--md-sys-typescale-display-large-font-family-name: IBM Plex Sans;
 		--md-sys-typescale-display-large-font-family-style: Regular;

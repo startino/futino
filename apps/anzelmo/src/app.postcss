@@ -8,15 +8,15 @@
 	.link {
 		@apply underline;
 		@apply text-tertiary-light;
-		@apply dark:text-tertiary-dark;
+		@apply dark:text-tertiary;
 	}
 
 	/* There's for sure some way to make this one class and just prefix the group when it's being used but I couldn't find the solution.*/
 	.underline-animation-group {
-		@apply bg-left-bottom bg-gradient-to-r from-tertiary-dark to-tertiary-dark bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:100%_2px] transition-all duration-500;
+		@apply bg-left-bottom bg-gradient-to-r from-tertiary to-tertiary bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:100%_2px] transition-all duration-500;
 	}
 	.underline-animation {
-		@apply bg-left-bottom bg-gradient-to-r from-tertiary-dark to-tertiary-dark bg-[length:0%_2px] bg-no-repeat hover:bg-[length:100%_2px] transition-all duration-500;
+		@apply bg-left-bottom bg-gradient-to-r from-tertiary to-tertiary bg-[length:0%_2px] bg-no-repeat hover:bg-[length:100%_2px] transition-all duration-500;
 	}
 
 	/* Prevents default button highlighting when pressed.*/
@@ -186,68 +186,37 @@
 @layer base {
 	:root {
 		--md-source: 77 49 49;
-		/* light */
-		--md-sys-color-primary-light: 156 65 69;
-		--md-sys-color-on-primary-light: 255 255 255;
-		--md-sys-color-primary-container-light: 255 218 217;
-		--md-sys-color-on-primary-container-light: 64 0 9;
-		--md-sys-color-secondary-light: 119 86 86;
-		--md-sys-color-on-secondary-light: 255 255 255;
-		--md-sys-color-secondary-container-light: 255 218 217;
-		--md-sys-color-on-secondary-container-light: 44 21 21;
-		--md-sys-color-tertiary-light: 117 90 47;
-		--md-sys-color-on-tertiary-light: 255 255 255;
-		--md-sys-color-tertiary-container-light: 255 222 174;
-		--md-sys-color-on-tertiary-container-light: 40 25 0;
-		--md-sys-color-error-light: 186 26 26;
-		--md-sys-color-error-container-light: 255 218 214;
-		--md-sys-color-on-error-light: 255 255 255;
-		--md-sys-color-on-error-container-light: 65 0 2;
-		--md-sys-color-background-light: 255 251 255;
-		--md-sys-color-on-background-light: 32 26 26;
-		--md-sys-color-surface-light: 255 251 255;
-		--md-sys-color-on-surface-light: 32 26 26;
-		--md-sys-color-surface-variant-light: 244 221 220;
-		--md-sys-color-on-surface-variant-light: 82 67 67;
-		--md-sys-color-outline-light: 133 115 114;
-		--md-sys-color-inverse-on-surface-light: 251 238 237;
-		--md-sys-color-inverse-surface-light: 54 47 46;
-		--md-sys-color-inverse-primary-light: 255 179 179;
-		--md-sys-color-shadow-light: 0 0 0;
-		--md-sys-color-surface-tint-light: 156 65 69;
-		--md-sys-color-outline-variant-light: 215 193 193;
-		--md-sys-color-scrim-light: 0 0 0;
 		/* dark */
-		--md-sys-color-primary-dark: 255 179 179;
-		--md-sys-color-on-primary-dark: 95 19 27;
-		--md-sys-color-primary-container-dark: 126 42 47;
-		--md-sys-color-on-primary-container-dark: 255 218 217;
-		--md-sys-color-secondary-dark: 230 189 188;
-		--md-sys-color-on-secondary-dark: 68 41 41;
-		--md-sys-color-secondary-container-dark: 93 63 63;
-		--md-sys-color-on-secondary-container-dark: 255 218 217;
-		--md-sys-color-tertiary-dark: 229 193 141;
-		--md-sys-color-on-tertiary-dark: 66 44 5;
-		--md-sys-color-tertiary-container-dark: 91 66 26;
-		--md-sys-color-on-tertiary-container-dark: 255 222 174;
-		--md-sys-color-error-dark: 255 180 171;
-		--md-sys-color-error-container-dark: 147 0 10;
-		--md-sys-color-on-error-dark: 105 0 5;
-		--md-sys-color-on-error-container-dark: 255 218 214;
-		--md-sys-color-background-dark: 32 26 26;
-		--md-sys-color-on-background-dark: 236 224 223;
-		--md-sys-color-surface-dark: 32 26 26;
-		--md-sys-color-on-surface-dark: 236 224 223;
-		--md-sys-color-surface-variant-dark: 82 67 67;
-		--md-sys-color-on-surface-variant-dark: 215 193 193;
-		--md-sys-color-outline-dark: 160 140 140;
-		--md-sys-color-inverse-on-surface-dark: 32 26 26;
-		--md-sys-color-inverse-surface-dark: 236 224 223;
-		--md-sys-color-inverse-primary-dark: 156 65 69;
-		--md-sys-color-shadow-dark: 0 0 0;
-		--md-sys-color-surface-tint-dark: 255 179 179;
-		--md-sys-color-outline-variant-dark: 82 67 67;
-		--md-sys-color-scrim-dark: 0 0 0;
+		--md-sys-color-primary: 255 179 179;
+		--md-sys-color-on-primary: 95 19 27;
+		--md-sys-color-primary-container: 126 42 47;
+		--md-sys-color-on-primary-container: 255 218 217;
+		--md-sys-color-secondary: 230 189 188;
+		--md-sys-color-on-secondary: 68 41 41;
+		--md-sys-color-secondary-container: 93 63 63;
+		--md-sys-color-on-secondary-container: 255 218 217;
+		--md-sys-color-tertiary: 229 193 141;
+		--md-sys-color-on-tertiary: 66 44 5;
+		--md-sys-color-tertiary-container: 91 66 26;
+		--md-sys-color-on-tertiary-container: 255 222 174;
+		--md-sys-color-error: 255 180 171;
+		--md-sys-color-error-container: 147 0 10;
+		--md-sys-color-on-error: 105 0 5;
+		--md-sys-color-on-error-container: 255 218 214;
+		--md-sys-color-background: 32 26 26;
+		--md-sys-color-on-background: 236 224 223;
+		--md-sys-color-surface: 32 26 26;
+		--md-sys-color-on-surface: 236 224 223;
+		--md-sys-color-surface-variant: 82 67 67;
+		--md-sys-color-on-surface-variant: 215 193 193;
+		--md-sys-color-outline: 160 140 140;
+		--md-sys-color-inverse-on-surface: 32 26 26;
+		--md-sys-color-inverse-surface: 236 224 223;
+		--md-sys-color-inverse-primary: 156 65 69;
+		--md-sys-color-shadow: 0 0 0;
+		--md-sys-color-surface-tint: 255 179 179;
+		--md-sys-color-outline-variant: 82 67 67;
+		--md-sys-color-scrim: 0 0 0;
 
 		/* display - large */
 		--md-sys-typescale-display-large-font-family-name: Playfair Display;
