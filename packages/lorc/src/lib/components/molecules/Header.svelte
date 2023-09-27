@@ -28,18 +28,18 @@
   // Props (base styles)
   /** Provide classes to set background color. */
   export let background: string = "";
-  /** Provide classes to set border styles. The default is: md:border-secondary-light/50 md:dark:border-primary-dark/50 */
+  /** Provide classes to set border styles. The default is: md: md:dark:border-primary-dark/50 */
   export let border: string =
-    "md:border-secondary-light/50 md:dark:border-primary-dark/50";
+    "md: md:dark:border-primary-dark/50";
   /** Provide classes to set padding. */
   export let padding: string = "";
   /** Provide classes to define a box shadow. */
   export let shadow: string = "";
   /** Provide classes to set base styling for gap spacing. The default is: gap-6*/
   export let gap: string = "gap-6";
-  /** Provide classes to set the base typography styling. The default is: body-small text-primary-light dark:text-primary-dark*/
+  /** Provide classes to set the base typography styling. The default is: body-small  dark:text-primary-dark*/
   export let typography: string =
-    "dark:prose-invert text-primary-light dark:text-primary-dark";
+    "dark:prose-invert  dark:text-primary-dark";
 
   // Reactive Classes
   $: classesBase = `${
@@ -51,7 +51,7 @@
   // Constant Classes
   /** Default header class; user hasn't scrolled */
   let largeHeaderClass = `py-12`;
-  /** Class for when user has scrolled; slightly collapsed header */
+  /** Class for when user has scrolled;  collapsed header */
   let miniHeaderClass = `py-3 border-b ${border} backdrop-blur`;
 
   // Variables
@@ -121,7 +121,7 @@
         <nav class="hidden md:flex {gap}">
           {#each Object.entries(pages) as [name, href]}
             <a
-              class="hover:text-tertiary-light dark:hover:text-tertiary-dark"
+              class="dark:hover:text-tertiary-dark"
               {href}
             >
               <h5>
@@ -140,7 +140,7 @@
         </div>
 
         <button
-          class="flex md:hidden stroke-primary-light hover:stroke-tertiary-light dark:stroke-primary-dark dark:hover:stroke-tertiary-dark"
+          class="flex md:hidden  dark:stroke-primary-dark dark:hover:stroke-tertiary-dark"
           on:click={toggleMenu}
         >
           <Icon

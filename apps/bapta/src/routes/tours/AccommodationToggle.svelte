@@ -32,7 +32,7 @@
 
     {#each promotions as promotion, i}
       <!--{activeTabValue == promotion.index
-					? 'active border-2 rounded-xl border-primary-light dark:border-primary-dark'
+					? 'active border-2 rounded-xl  dark:border-primary-dark'
 					: -->
       <div
         class="py-2 rounded-xl transition-all duration-75 px-3 {activeTabValue ==

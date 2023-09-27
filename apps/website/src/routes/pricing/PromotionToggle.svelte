@@ -39,7 +39,7 @@
 
 		{#each promotions as { label, discount, index }, i}
 			<!--{activeTabValue == promotion.index
-					? 'active border-2 rounded-xl border-primary-light dark:border-primary-dark'
+					? 'active border-2 rounded-xl  dark:border-primary-dark'
 					: -->
 			<button
 				class="py-4 rounded-lg px-4 sm:px-5 md:px-8 {activeTabValue == i

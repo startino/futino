@@ -29,7 +29,7 @@
 					class="relative group overflow-hidden inline-block p-4 rounded-t-lg shadow-xl bg-surface-variant-dark/20 border-2 border-transparent {activeTabValue ===
 					plan.index
 						? 'active border-2 rounded-xl  border-primary-dark transition-all duration-500 scale-110'
-						: 'hover:border-outline-light rounded-xl'}"
+						: 'rounded-xl'}"
 					on:click={handleClick(plan.index)}
 					type="button">
 					<!--Shine Box-->

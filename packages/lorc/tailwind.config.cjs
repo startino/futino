@@ -126,92 +126,92 @@ const config = {
       colors: {
         // Primary tones
         primary: {
-          light: 'rgb(var(--md-sys-color-primary-light)/ <alpha-value>)',
+           'rgb(var( <alpha-value>)',
           on: {
-            light: 'rgb(var(--md-sys-color-on-primary-light)/ <alpha-value>) ',
+             'rgb(var( <alpha-value>) ',
           },
           container: {
-            light: 'rgb(var(--md-sys-color-primary-container-light)/ <alpha-value>) ',
+             'rgb(var( <alpha-value>) ',
             on: {
-              light: 'rgb(var(--md-sys-color-on-primary-container-light)/ <alpha-value>) ',
+               'rgb(var( <alpha-value>) ',
             },
           },
           inverse: {
-            light: 'rgb(var(--md-sys-color-inverse-primary-light)/ <alpha-value>) ',
+             'rgb(var( <alpha-value>) ',
           },
         },
 
         // Secondary tones
         secondary: {
-          light: 'rgb(var(--md-sys-color-secondary-light)/ <alpha-value>) ',
+           'rgb(var( <alpha-value>) ',
           on: {
-            light: 'rgb(var(--md-sys-color-on-secondary-light)/ <alpha-value>) ',
+             'rgb(var( <alpha-value>) ',
           },
           container: {
-            light: 'rgb(var(--md-sys-color-secondary-container-light)/ <alpha-value>) ',
+             'rgb(var( <alpha-value>) ',
             on: {
-              light: 'rgb(var(--md-sys-color-on-secondary-container-light)/ <alpha-value>) ',
+               'rgb(var( <alpha-value>) ',
             },
           },
         },
 
         // Tertiary tones
         tertiary: {
-          light: 'rgb(var(--md-sys-color-tertiary-light)/ <alpha-value>) ',
+           'rgb(var( <alpha-value>) ',
           on: {
-            light: 'rgb(var(--md-sys-color-on-tertiary-light)/ <alpha-value>) ',
+             'rgb(var( <alpha-value>) ',
           },
           container: {
-            light: 'rgb(var(--md-sys-color-tertiary-container-light)/ <alpha-value>) ',
+             'rgb(var( <alpha-value>) ',
             on: {
-              light: 'rgb(var(--md-sys-color-on-tertiary-container-light)/ <alpha-value>) ',
+               'rgb(var( <alpha-value>) ',
             },
           },
         },
 
         // Neutral tones (md3 names them as 'surface')
         surface: {
-          light: 'rgb(var(--md-sys-color-surface-light)/ <alpha-value>) ',
+           'rgb(var( <alpha-value>) ',
           on: {
-            light: 'rgb(var(--md-sys-color-on-surface-light)/ <alpha-value>) ',
+             'rgb(var( <alpha-value>) ',
             inverse: {
-              light: 'rgb(var(--md-sys-color-inverse-on-surface-light)/ <alpha-value>) ',
+               'rgb(var( <alpha-value>) ',
             },
           },
           // Neutral variant tones
           variant: {
-            light: 'rgb(var(--md-sys-color-surface-variant-light)/ <alpha-value>) ',
+             'rgb(var( <alpha-value>) ',
             on: {
-              light: 'rgb(var(--md-sys-color-on-surface-variant-light)/ <alpha-value>) ',
+               'rgb(var( <alpha-value>) ',
             },
           },
         },
 
         // Background tones
         background: {
-          light: 'rgb(var(--md-sys-color-background-light)/ <alpha-value>) ',
+           'rgb(var( <alpha-value>) ',
           on: {
-            light: 'rgb(var(--md-sys-color-on-background-light)/ <alpha-value>) ',
+             'rgb(var( <alpha-value>) ',
           },
         },
 
         outline: {
-          light: 'rgb(var(--md-sys-color-outline-light)/ <alpha-value>) ',
+           'rgb(var( <alpha-value>) ',
           variant: {
-            light: 'rgb(var(--md-sys-color-outline-variant-light)/ <alpha-value>) ',
+             'rgb(var( <alpha-value>) ',
           },
         },
 
         // On Error tones
         error: {
-          light: 'rgb(var(--md-sys-color-error-light)/ <alpha-value>) ',
+           'rgb(var( <alpha-value>) ',
           on: {
-            light: 'rgb(var(--md-sys-color-on-error-light)/ <alpha-value>) ',
+             'rgb(var( <alpha-value>) ',
           },
           container: {
-            light: 'rgb(var(--md-sys-color-error-container-light)/ <alpha-value>) ',
+             'rgb(var( <alpha-value>) ',
             on: {
-              light: 'rgb(var(--md-sys-color-on-error-container-light)/ <alpha-value>) ',
+               'rgb(var( <alpha-value>) ',
             },
           },
         },

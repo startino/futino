@@ -54,7 +54,7 @@
 				<h1 class="title-small md:title-medium">Standard</h1>
 				<h1 class="headline-medium md:headline-large font-bold inline-block">
 					<span class="text-primary-dark"> {formattedMidrange[0]} </span>
-					<span class="title-small text-outline-dark font-extralight">/person</span>
+					<span class="title-small text-outline-dark ">/person</span>
 				</h1>
 			</div>
 		{:else}
@@ -66,7 +66,7 @@
 					{:else}
 						<span class="text-primary-dark"> {formattedMidrange[0]} </span> -
 						<span class="text-primary-dark"> {formattedMidrange[1]} </span>
-						<span class="title-medium text-outline-dark font-extralight">/person</span>
+						<span class="title-medium text-outline-dark ">/person</span>
 					{/if}
 				</h1>
 			</div>
@@ -78,7 +78,7 @@
 					{:else}
 						<span class="text-primary-dark"> {formattedLuxury[0]}</span> -
 						<span class="text-primary-dark"> {formattedLuxury[1]} </span>
-						<span class="title-medium text-outline-dark font-extralight">/person</span>
+						<span class="title-medium text-outline-dark ">/person</span>
 					{/if}
 				</h1>
 			</div>

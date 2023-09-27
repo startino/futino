@@ -66,7 +66,7 @@
 						toggleMenu();
 					}}
 					type="button"
-					class="inline-flex items-center p-2 ml-1 stroke-outline-dark rounded-lg transition-transform bg-transparent no-highlights {burgerOpen
+					class="inline-flex items-center p-2 ml-1 stroke-outline-dark rounded-lg transition-transform bg-transparent  {burgerOpen
 						? 'rotate-90'
 						: ''}">
 					{#if burgerOpen}
@@ -85,7 +85,7 @@
 							<Alert />
 							{#each headerItems as { label, href }}
 								<li>
-									<a class="inline hover:text-tertiary-light dark:hover:text-tertiary-dark" {href}>
+									<a class="inline dark:hover:text-tertiary-dark" {href}>
 										<h1 class="body-medium px-16 py-2 underline-animation">
 											{label}
 										</h1>
@@ -103,7 +103,7 @@
 					{#each headerItems as { label, href }}
 						<li>
 							<a
-								class="inline hover:text-tertiary-light dark:hover:text-tertiary-dark underline-animation"
+								class="inline dark:hover:text-tertiary-dark underline-animation"
 								{href}>
 								{label}
 							</a>
@@ -114,7 +114,7 @@
 						<CartButton />
 					</li>
 					<li
-						class="border-l border-secondary-light/20 dark:border-secondary-dark/50 self-stretch" />
+						class="border-l  dark:border-secondary-dark/50 self-stretch" />
 
 					<li>
 						<ThemeButton />

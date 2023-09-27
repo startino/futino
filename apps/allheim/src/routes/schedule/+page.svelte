@@ -179,7 +179,7 @@
 <Header />
 
 <section
-	class="py-20 px-4 border-b shadow-2xl sm:px-6 md:px-8 border-primary-light/40 dark:border-primary-dark/40">
+	class="py-20 px-4 border-b shadow-2xl sm:px-6 md:px-8  dark:border-primary-dark/40">
 	<div class="grid justify-items-center space-y-12 mx-auto">
 		<h1 class="display-large">Schedule</h1>
 		<h2 class="headline-large text-center">
@@ -189,7 +189,7 @@
 
 		<input
 			id="name"
-			class="bg-primary-light dark:bg-primary-dark p-2 text-center placeholder-primary-on-light/60 dark:placeholder-primary-on-dark/60 text-primary-on-light dark:text-primary-on-dark headline-large"
+			class=" dark:bg-primary-dark p-2 text-center  dark:placeholder-primary-on-dark/60  dark:text-primary-on-dark headline-large"
 			placeholder="Your Name" />
 	</div>
 </section>
@@ -199,14 +199,14 @@
 		<button
 			on:click={register}
 			id="register"
-			class="p-5 shadow-lg rounded-lg text-center bg-secondary-light dark:bg-secondary-dark text-secondary-on-light dark:text-secondary-on-dark display-small">
+			class="p-5 shadow-lg rounded-lg text-center  dark:bg-secondary-dark  dark:text-secondary-on-dark display-small">
 			Register
 		</button>
 
 		<button
 			on:click={unregister}
 			id="unregister"
-			class="p-5 shadow-lg rounded-lg text-center bg-secondary-light dark:bg-secondary-dark text-secondary-on-light dark:text-secondary-on-dark display-small">
+			class="p-5 shadow-lg rounded-lg text-center  dark:bg-secondary-dark  dark:text-secondary-on-dark display-small">
 			Unregister
 		</button>
 	</div>
@@ -224,7 +224,7 @@
 					class="w-full h-full flex flex-row gap-5 p-5 bg-white/5 shadow-lg shadow-black rounded-lg">
 					{#each week as { day, month, date }}
 						<label
-							class="h-full w-full p-3 shadow-lg rounded-lg text-center bg-secondary-light dark:bg-secondary-dark text-secondary-on-light dark:text-secondary-on-dark">
+							class="h-full w-full p-3 shadow-lg rounded-lg text-center  dark:bg-secondary-dark  dark:text-secondary-on-dark">
 							<input id="session-{month}|{date}" type="checkbox" class="w-10 h-10" />
 							<p class="headline-large">{day}</p>
 							<p class="display-large lg:display-medium">{months[month].substring(0, 3)}. {date}</p>

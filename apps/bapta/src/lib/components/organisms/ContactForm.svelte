@@ -93,7 +93,7 @@
 
 <style>
   .placeholder {
-    @apply absolute pointer-events-none -left-1/2 invisible group-hover:visible group-hover:left-3 group-hover:right-auto text-left top-1/2 -translate-y-1/2 transition-all font-light text-outline-dark;
+    @apply absolute pointer-events-none -left-1/2 invisible group-hover:visible group-hover:left-3 group-hover:right-auto text-left top-1/2 -translate-y-1/2 transition-all  text-outline-dark;
   }
   .input {
     @apply w-full h-fit px-3 py-3 leading-tight text-secondary-dark bg-surface-dark border border-primary-dark rounded focus:outline-none;

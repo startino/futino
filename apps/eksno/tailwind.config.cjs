@@ -59,7 +59,7 @@ const config = {
 						'--tw-prose-body': colors.neutral[700],
 						'--tw-prose-headings': colors.neutral[900],
 						'--tw-prose-lead': colors.neutral[600],
-						'--tw-prose-links': fColors.tertiary.light,
+						'--tw-prose-links': fColors.tertiary.
 						'--tw-prose-bold': colors.neutral[900],
 						'--tw-prose-counters': colors.neutral[500],
 						'--tw-prose-bullets': colors.neutral[300],

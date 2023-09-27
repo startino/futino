@@ -4,7 +4,7 @@
 			localStorage.theme === 'dark' ||
 			(!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
 		) {
-			localStorage.setItem('theme', 'light');
+			localStorage.setItem('theme', '
 			document.documentElement.classList.remove('dark');
 		} else {
 			localStorage.setItem('theme', 'dark');
@@ -15,8 +15,8 @@
 
 <button
 	on:click={changeTheme}
-	class="{$$props.class} fill-primary-light stroke-primary-light hover:fill-tertiary-light hover:stroke-tertiary-light dark:fill-primary-dark dark:stroke-primary-dark dark:hover:fill-tertiary-dark dark:hover:stroke-tertiary-dark">
-	<!-- Light mode -->
+	class="{$$props.class}   dark:fill-primary-dark dark:stroke-primary-dark dark:hover:fill-tertiary-dark dark:hover:stroke-tertiary-dark">
+	<!--  mode -->
 	<span class="dark:hidden">
 		<svg
 			viewBox="0 0 24 24"

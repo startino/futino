@@ -42,17 +42,17 @@
   // Props (base styles)
   /** Provide classes to set background color. */
   export let background: string = "";
-  /** Provide classes to set border styles. The default is: md:border-secondary-light/50 md:dark:border-primary-dark/50 */
-  export let border: string = "border-outline-light dark:border-outline-dark";
+  /** Provide classes to set border styles. The default is: md: md:dark:border-primary-dark/50 */
+  export let border: string = " dark:border-outline-dark";
   /** Provide classes to set padding. */
   export let padding: string = "";
   /** Provide classes to define a box shadow. */
   export let shadow: string = "";
   /** Provide classes to set base styling for gap spacing. The default is: gap-6*/
   export let gap: string = "gap-6";
-  /** Provide classes to set the base typography styling. The default is: body-small text-primary-light dark:text-primary-dark*/
+  /** Provide classes to set the base typography styling. The default is: body-small  dark:text-primary-dark*/
   export let typography: string =
-    "dark:prose-invert text-primary-light dark:text-primary-dark";
+    "dark:prose-invert  dark:text-primary-dark";
 </script>
 
 <footer

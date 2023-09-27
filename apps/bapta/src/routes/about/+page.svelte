@@ -13,7 +13,7 @@
 
 <!--Hero-->
 <div
-	class="object-contain w-full h-screen grid-rows-2 px-10 bg-center bg-cover border-b shadow-lg shadow-background-dark lg:grid-cols-2 card-shadow lg:px-20 xl:px-40 pt-60 place-items-center border-secondary-light/40 dark:border-secondary-dark/40 bg-about">
+	class="object-contain w-full h-screen grid-rows-2 px-10 bg-center bg-cover border-b shadow-lg shadow-background-dark lg:grid-cols-2 card-shadow lg:px-20 xl:px-40 pt-60 place-items-center  dark:border-secondary-dark/40 bg-about">
 	<div
 		class="flex flex-col items-center max-w-2xl mx-auto mt-8 mb-64 space-y-2 bg-surface-dark/90 shadow-2xl drop-shadow-2xl rounded-lg py-12 px-8 md:px-14">
 		<h1 class="font-bold text-primary-dark display-medium">Discover Tanzania With Bapta</h1>

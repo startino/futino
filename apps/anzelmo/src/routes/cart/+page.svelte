@@ -62,10 +62,10 @@
 							{photoData.label}
 						</span>
 					</h1>
-					<h1 class="body-medium font-light">{photoData.album}</h1>
+					<h1 class="body-medium ">{photoData.album}</h1>
 				</div>
-				<h1 class="title-large font-light">${photoData.price}</h1>
-				<h1 class="title-large font-light">{count}</h1>
+				<h1 class="title-large ">${photoData.price}</h1>
+				<h1 class="title-large ">{count}</h1>
 				<RemoveFromCart {photoData} />
 			</div>
 		</div>

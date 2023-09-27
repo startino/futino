@@ -21,11 +21,11 @@
 <Header />
 
 <main
-	class="text-center border-b shadow-2xl border-primary-light/40 dark:border-primary-dark/40 flex flex-col items-stretch">
+	class="text-center border-b shadow-2xl  dark:border-primary-dark/40 flex flex-col items-stretch">
 	<!--Hero-->
 	<section
 		id="hero"
-		class="grow py-32 sm:py-34 md:py-44 shadow-lg px-4 sm:px-6 md:px-8 grid justify-items-center space-y-12 border-secondary-light/20 dark:border-secondary-dark/20 bg-black relative">
+		class="grow py-32 sm:py-34 md:py-44 shadow-lg px-4 sm:px-6 md:px-8 grid justify-items-center space-y-12  dark:border-secondary-dark/20 bg-black relative">
 		<img
 			src="media/IMG_4905.webp"
 			alt=""
@@ -59,7 +59,7 @@
 	<!--About section-->
 	<section
 		id="about"
-		class="flex flex-col text-center py-5 sm:py-10 md:py-20 px-4 sm:px-6 md:px-8 shadow-lg border-b border-secondary-light/20 dark:border-secondary-dark/20">
+		class="flex flex-col text-center py-5 sm:py-10 md:py-20 px-4 sm:px-6 md:px-8 shadow-lg border-b  dark:border-secondary-dark/20">
 		<ScrollFadeIn>
 			<div class="flex flex-col max-w-7xl mx-auto">
 				<h2 class="display-large">About GG Soccer</h2>
@@ -78,13 +78,13 @@
 	<!--Camp Options-->
 	<section
 		id="camps"
-		class="flex flex-col text-center py-5 sm:py-10 md:py-20 px-4 sm:px-6 md:px-8 shadow-lg border-b border-secondary-light/20 dark:border-secondary-dark/20">
+		class="flex flex-col text-center py-5 sm:py-10 md:py-20 px-4 sm:px-6 md:px-8 shadow-lg border-b  dark:border-secondary-dark/20">
 		<div class="flex flex-col max-w-7xl mx-auto">
 			<h1 class="display-large">Summer Camps 2023</h1>
 
 			<style>
 				.card {
-					@apply rounded-lg max-w-2xl shadow-2xl flex flex-col text-surface-on-light dark:text-surface-on-dark m-2 p-6 h-fit;
+					@apply rounded-lg max-w-2xl shadow-2xl flex flex-col  dark:text-surface-on-dark m-2 p-6 h-fit;
 				}
 			</style>
 			<div id="camps" class="">
@@ -93,16 +93,16 @@
 					<div
 						class="grid grid-cols-1 max-w-7xl mx-auto lg:grid-cols-2 my-8 justify-items-stretch"
 						id="jul_camp">
-						<div class="card space-y-2 bg-surface-light/5">
+						<div class="card space-y-2 ">
 							<img
 								src="media/CampAges36.webp"
 								alt="Ages 7-12 Camp"
 								class="object-cover h-60 sm:h-96" />
 							<h1 class="headline-medium font-bold">Ages 3 - 6</h1>
-							<h2 class="title-large font-light">{time_first}</h2>
+							<h2 class="title-large ">{time_first}</h2>
 							<hr class="p-1 opacity-40" />
-							<h2 class="title-medium font-light">{location}</h2>
-							<h2 class="font-bold title-large text-secondary-light dark:text-secondary-dark">
+							<h2 class="title-medium ">{location}</h2>
+							<h2 class="font-bold title-large  dark:text-secondary-dark">
 								{cost_first}
 							</h2>
 							<a href={link}>
@@ -111,16 +111,16 @@
 								</Button>
 							</a>
 						</div>
-						<div class="card space-y-2 bg-surface-light/5">
+						<div class="card space-y-2 ">
 							<img
 								src="media/CampAges712.png"
 								alt="Ages 7-12 Camp"
 								class="object-cover h-60 sm:h-96" />
 							<h1 class="headline-medium font-bold">Ages 7 - 12</h1>
-							<h2 class="title-large font-light">{time_second}</h2>
+							<h2 class="title-large ">{time_second}</h2>
 							<hr class="p-1 opacity-40" />
-							<h2 class="title-medium font-light">{location}</h2>
-							<h2 class="font-bold title-large text-secondary-light dark:text-secondary-dark">
+							<h2 class="title-medium ">{location}</h2>
+							<h2 class="font-bold title-large  dark:text-secondary-dark">
 								{cost_second}
 							</h2>
 							<a href={link}>
@@ -138,13 +138,13 @@
 	<!--Contact Section-->
 	<section
 		id="contact"
-		class="flex flex-col text-center py-5 sm:py-10 md:py-20 px-4 sm:px-6 md:px-8 shadow-lg border-b border-secondary-light/20 dark:border-secondary-dark/20">
+		class="flex flex-col text-center py-5 sm:py-10 md:py-20 px-4 sm:px-6 md:px-8 shadow-lg border-b  dark:border-secondary-dark/20">
 		<ScrollFadeIn>
 			<div class="flex flex-col max-w-7xl mx-auto">
 				<!--Contant methods-->
 				<div class="grid grid-cols-4 grid-rows-3 gap-2">
 					<!--Phone number-->
-					<div class="col-span-1 rounded-full bg-surface-variant-light w-min h-min ml-auto p-5">
+					<div class="col-span-1 rounded-full  w-min h-min ml-auto p-5">
 						<Icon icon="phone" height="32px" width="32px" />
 					</div>
 
@@ -152,7 +152,7 @@
 						<h1 class="title-small sm:title-large">(913) 360-0394</h1>
 					</a>
 					<!--Email-->
-					<div class="col-span-1 rounded-full bg-surface-variant-light w-min h-min ml-auto p-5">
+					<div class="col-span-1 rounded-full  w-min h-min ml-auto p-5">
 						<Icon icon="email" height="32px" width="32px" fillColor="black" />
 					</div>
 
@@ -160,7 +160,7 @@
 						<h1 class="title-small sm:title-large">ggsoccercamps@gmail.com</h1>
 					</a>
 					<!--Email-->
-					<div class="col-span-1 rounded-full bg-surface-variant-light w-min h-min ml-auto p-5">
+					<div class="col-span-1 rounded-full  w-min h-min ml-auto p-5">
 						<Icon icon="facebook" height="32px" width="32px" />
 					</div>
 

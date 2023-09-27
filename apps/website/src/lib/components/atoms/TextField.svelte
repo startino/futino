@@ -16,7 +16,7 @@
 			>{label}</label>
 		<div class="absolute w-full h-full overflow-hidden pointer-events-none">
 			<h1
-				class="absolute invisible font-light text-left transition-all duration-[400ms] ease-out -translate-y-1/2 pointer-events-none -left-1/2 group-hover:visible group-hover:left-3 group-hover:right-auto top-1/2 text-outline-dark">
+				class="absolute invisible  text-left transition-all duration-[400ms] ease-out -translate-y-1/2 pointer-events-none -left-1/2 group-hover:visible group-hover:left-3 group-hover:right-auto top-1/2 text-outline-dark">
 				{#if !value}
 					{placeholder}
 				{/if}
@@ -36,7 +36,7 @@
 			>{label}</label>
 		<div class="overflow-hidden w-full h-full absolute pointer-events-none">
 			<h1
-				class="absolute pointer-events-none -left-1/2 invisible group-hover:visible group-hover:left-3 group-hover:right-auto text-left top-2.5 transition-all duration-[400ms] ease-out font-light text-outline-dark">
+				class="absolute pointer-events-none -left-1/2 invisible group-hover:visible group-hover:left-3 group-hover:right-auto text-left top-2.5 transition-all duration-[400ms] ease-out  text-outline-dark">
 				{#if !value}
 					{placeholder}
 				{/if}

@@ -21,8 +21,8 @@
   export const companyName: string = "Company Name";
 
   // Props
-  /** Provide classes to set border styles. The default is: md:border-secondary-light/50 md:dark:border-primary-dark/50 */
-  export const border: string = "border-outline-light dark:border-outline-dark";
+  /** Provide classes to set border styles. The default is: md: md:dark:border-primary-dark/50 */
+  export const border: string = " dark:border-outline-dark";
 </script>
 
 <footer

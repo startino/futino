@@ -57,7 +57,7 @@
 
 <!-- Hero Section-->
 <section
-  class="grid justify-center w-full h-screen grid-rows-2 px-10 bg-cover bg-bottom border-b shadow-lg shadow-background-dark lg:grid-cols-5 card-shadow xl:px-32 pt-60 place-items-center justify-items-start border-secondary-light/40 dark:border-secondary-dark/40 bg-landing_hero"
+  class="grid justify-center w-full h-screen grid-rows-2 px-10 bg-cover bg-bottom border-b shadow-lg shadow-background-dark lg:grid-cols-5 card-shadow xl:px-32 pt-60 place-items-center justify-items-start  dark:border-secondary-dark/40 bg-landing_hero"
 >
   <div
     class="grid space-y-3 col-span-3 text-left justify-items-start bg-surface-dark/90 shadow-2xl drop-shadow-2xl rounded-lg pl-4 pr-8 py-10 md:py-12 md:pl-10 md:pr-14"
@@ -78,14 +78,14 @@
 </section>
 
 <!-- Social Proof -->
-<section class="shadow-lg bg-surface-variant-light/90 shadow-background-dark">
+<section class="shadow-lg  shadow-background-dark">
   <div
     class="grid grid-cols-3 gap-5 px-10 py-10 brightness-125 lg:px-20 xl:px-40 bg-primary-dark/20"
   >
     {#each Array(3) as _, index (index)}
       <div>
-        <h1 class="font-bold text-primary-light title-large">★★★★★</h1>
-        <!-- <h2 class="italic font-bold text-primary-light title-small">ReviewSite.com</h2> -->
+        <h1 class="font-bold  title-large">★★★★★</h1>
+        <!-- <h2 class="italic font-bold  title-small">ReviewSite.com</h2> -->
       </div>
     {/each}
   </div>
@@ -123,7 +123,7 @@
       />
       <div class="flex flex-col justify-center text-left">
         <h3 class="font-semibold body-large">Emmanuel Baptister Kilas</h3>
-        <h3 class="font-light body-medium">Creator of Bapta Safari</h3>
+        <h3 class=" body-medium">Creator of Bapta Safari</h3>
       </div>
     </div>
   </div>

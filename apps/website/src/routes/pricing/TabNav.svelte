@@ -26,7 +26,7 @@
 							<Tooltip
 							direction="top"
 							content="This explains the plan"
-							class="w-4 h-6 m-3 rounded-full bg-surface-variant-light dark:bg-surface-variant-dark"
+							class="w-4 h-6 m-3 rounded-full  dark:bg-surface-variant-dark"
 						/>
 						-->
 					</div></button>

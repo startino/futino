@@ -29,7 +29,7 @@
 		<a class="flex w-fit mr-auto gap-3" href="/">
 			<Logo />
 		</a>
-		<div class="flex items-center mr-auto sm:mr-0 sm:ml-auto gap-8 title-medium font-light">
+		<div class="flex items-center mr-auto sm:mr-0 sm:ml-auto gap-8 title-medium ">
 			<nav class="flex gap-6 lg:gap-8 pb-0.5">
 				{#each elements as element, i}
 					<a class="hhover:text-tertiary-dark" href={element.href}>

@@ -77,7 +77,7 @@
 </script>
 
 <div
-  class="flex flex-col w-full h-full shadow-lg shadow-background-dark lg:grid-cols-2 card-shadow grid-rows-2 px-4 lg:px-10 py-40 justify-center place-items-center border-b border-secondary-light/40 dark:border-secondary-dark/40 bg-[url('/images/safari/18.webp')] bg-cover bg-left"
+  class="flex flex-col w-full h-full shadow-lg shadow-background-dark lg:grid-cols-2 card-shadow grid-rows-2 px-4 lg:px-10 py-40 justify-center place-items-center border-b  dark:border-secondary-dark/40 bg-[url('/images/safari/18.webp')] bg-cover bg-left"
 >
   <h1 class="font-bold text-primary-dark display-medium">Request Your Tour</h1>
 

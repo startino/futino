@@ -25,21 +25,21 @@
 					class="flex flex-col gap-y-2 text-tertiary-dark underline underline-offset-2 md:no-underline tracking-wide">
 					<li>
 						<a
-							class="hover:text-tertiary-light dark:hover:text-tertiary-dark underline-animation"
+							class="dark:hover:text-tertiary-dark underline-animation"
 							href="#">
 							Instagram
 						</a>
 					</li>
 					<li>
 						<a
-							class="hover:text-tertiary-light dark:hover:text-tertiary-dark underline-animation"
+							class="dark:hover:text-tertiary-dark underline-animation"
 							href="#">
 							Facebook
 						</a>
 					</li>
 					<li>
 						<a
-							class="hover:text-tertiary-light dark:hover:text-tertiary-dark underline-animation"
+							class="dark:hover:text-tertiary-dark underline-animation"
 							href="#">
 							Email
 						</a>
