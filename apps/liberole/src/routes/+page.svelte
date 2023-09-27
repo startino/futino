@@ -35,7 +35,7 @@
 </script>
 
 <main
-	class="p-4 border-b shadow-2xl sm:px-6 md:px-8  dark:border-primary-dark/40">
+	class="p-4 border-b shadow-2xl sm:px-6 md:px-8  border-primary/40">
 	<div class="grid justify-items-center space-y-12 mx-auto">
 		<form class="grid justify-items-center space-y-5 w-full px-80">
 			<h1 class="display-large">External Reader</h1>

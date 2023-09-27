@@ -21,12 +21,12 @@
   export const companyName: string = "Company Name";
 
   // Props
-  /** Provide classes to set border styles. The default is: md: md:dark:border-primary-dark/50 */
-  export const border: string = " dark:border-outline-dark";
+  /** Provide classes to set border styles. The default is: md: md:border-primary/50 */
+  export const border: string = " border-outline";
 </script>
 
 <footer
-  class="max-w-none prose-a:no-underline prose sm:prose-sm lg:prose-md dark:prose-invert prose-main"
+  class="max-w-none prose-a:no-underline prose sm:prose-sm lg:prose-md prose-invert prose-main"
 >
   <div class="px-6 md:px-18 lg:max-w-5xl xl:max-w-6xl mx-auto">
     <div

@@ -4,7 +4,7 @@
 
 <section class="section">
 	<div class="inner-section flex flex-col place-items-center pt-32 gap-4">
-		<h1 class="display-small md:display-large text-primary-dark">Thank you!</h1>
+		<h1 class="display-small md:display-large text-primary">Thank you!</h1>
 		<p class="title-small md:title-large max-w-xl">
 			Your journey has been sent to our tour operators. We'll get back to you via Email within a few
 			days. From there we can plan in more detail your journey!

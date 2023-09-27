@@ -5,7 +5,7 @@
 </script>
 
 <a
-	class="{$$props.class} flex w-fit h-fit flex-col md:flex-row gap-4 group items-center overflow-visible text-surface-on-dark"
+	class="{$$props.class} flex w-fit h-fit flex-col md:flex-row gap-4 group items-center overflow-visible text-surface-on"
 	{href}>
 	<!--Phone number-->
 	<div

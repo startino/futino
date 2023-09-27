@@ -142,7 +142,7 @@
 			</g></svg>
 	{:else if $$props.icon.toLowerCase() == 'search'}
 		<svg
-			class="w-5 h-5  dark:text-primary-on-dark"
+			class="w-5 h-5  text-primary-on"
 			fill={$$props.fillColor}
 			stroke="currentColor"
 			viewBox="0 0 24 24"

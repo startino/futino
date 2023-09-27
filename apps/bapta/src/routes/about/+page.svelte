@@ -13,10 +13,10 @@
 
 <!--Hero-->
 <div
-	class="object-contain w-full h-screen grid-rows-2 px-10 bg-center bg-cover border-b shadow-lg shadow-background-dark lg:grid-cols-2 card-shadow lg:px-20 xl:px-40 pt-60 place-items-center  dark:border-secondary-dark/40 bg-about">
+	class="object-contain w-full h-screen grid-rows-2 px-10 bg-center bg-cover border-b shadow-lg shadow-background lg:grid-cols-2 card-shadow lg:px-20 xl:px-40 pt-60 place-items-center  border-secondary/40 bg-about">
 	<div
-		class="flex flex-col items-center max-w-2xl mx-auto mt-8 mb-64 space-y-2 bg-surface-dark/90 shadow-2xl drop-shadow-2xl rounded-lg py-12 px-8 md:px-14">
-		<h1 class="font-bold text-primary-dark display-medium">Discover Tanzania With Bapta</h1>
+		class="flex flex-col items-center max-w-2xl mx-auto mt-8 mb-64 space-y-2 bg-surface/90 shadow-2xl drop-shadow-2xl rounded-lg py-12 px-8 md:px-14">
+		<h1 class="font-bold text-primary display-medium">Discover Tanzania With Bapta</h1>
 		<h1 class="pb-6 text-white body-large">Experience the Adventure of a Lifetime</h1>
 
 		<OutlineButton href="/contact" class="py-2">
@@ -31,8 +31,8 @@
 		<div class="flex flex-col items-center w-full p-6 mx-auto rounded-xl">
 			<div class="grid items-center grid-cols-1 md:grid-cols-2 gap-y-3 md:flex-row gap-x-6">
 				<div
-					class="flex flex-col items-center self-center h-fit bg-surface-dark rounded-lg py-8 px-4">
-					<h2 class="font-semibold display-medium text-primary-dark">Our Mission</h2>
+					class="flex flex-col items-center self-center h-fit bg-surface rounded-lg py-8 px-4">
+					<h2 class="font-semibold display-medium text-primary">Our Mission</h2>
 					<p class="max-w-lg px-3 py-3 body-medium">
 						At Our Company, we believe in responsible tourism that respects local communities,
 						cultures, and environments. We are committed to sustainable development and
@@ -57,9 +57,9 @@
 <section class="section">
 	<div class="grid grid-cols-1 text-center md:grid-cols-2 gap-y-5 inner-section">
 		<!--Our Team Passage and group photo. Left -->
-		<div class="flex flex-col items-center self-center px-4 mx-2 py-6 bg-surface-dark rounded-lg">
-			<h1 class="display-medium text-primary-dark font-bold">Our Team</h1>
-			<p class="py-3 body-medium text-surface-variant-on-dark">
+		<div class="flex flex-col items-center self-center px-4 mx-2 py-6 bg-surface rounded-lg">
+			<h1 class="display-medium text-primary font-bold">Our Team</h1>
+			<p class="py-3 body-medium text-surface-variant-on">
 				Bapta, founder of Bapta Safaris, is passionate about wildlife conservation. Growing up in
 				Tanzania, he started his own safari business to share the beauty and biodiversity of his
 				country while supporting local communities and he started his own safari business to share

@@ -22,7 +22,7 @@
 </script>
 
 <div
-	class="grid grid-cols-2 md:grid-cols-1 lg:grid-cols-2 h-fit w-full text-left transition-all place-items-center rounded-lg shadow-lg shadow-surface-dark bg-surface-dark gap-4">
+	class="grid grid-cols-2 md:grid-cols-1 lg:grid-cols-2 h-fit w-full text-left transition-all place-items-center rounded-lg shadow-lg shadow-surface bg-surface gap-4">
 	<div class="flex h-full w-full relative rounded-md">
 		<img
 			src={thumbnail}
@@ -53,20 +53,20 @@
 			<div class="flex flex-col py-2 mt-2 w-fit">
 				<h1 class="title-small md:title-medium">Standard</h1>
 				<h1 class="headline-medium md:headline-large font-bold inline-block">
-					<span class="text-primary-dark"> {formattedMidrange[0]} </span>
-					<span class="title-small text-outline-dark ">/person</span>
+					<span class="text-primary"> {formattedMidrange[0]} </span>
+					<span class="title-small text-outline ">/person</span>
 				</h1>
 			</div>
 		{:else}
-			<div class="flex flex-col py-2 mt-2 border-b border-outline-dark w-fit pr-12">
+			<div class="flex flex-col py-2 mt-2 border-b border-outline w-fit pr-12">
 				<h1 class="title-small md:title-medium">Midrange</h1>
 				<h1 class="headline-small md:headline-medium font-bold inline-block">
 					{#if luxury[0] == 0}
 						-
 					{:else}
-						<span class="text-primary-dark"> {formattedMidrange[0]} </span> -
-						<span class="text-primary-dark"> {formattedMidrange[1]} </span>
-						<span class="title-medium text-outline-dark ">/person</span>
+						<span class="text-primary"> {formattedMidrange[0]} </span> -
+						<span class="text-primary"> {formattedMidrange[1]} </span>
+						<span class="title-medium text-outline ">/person</span>
 					{/if}
 				</h1>
 			</div>
@@ -76,9 +76,9 @@
 					{#if luxury[0] == 0}
 						-
 					{:else}
-						<span class="text-primary-dark"> {formattedLuxury[0]}</span> -
-						<span class="text-primary-dark"> {formattedLuxury[1]} </span>
-						<span class="title-medium text-outline-dark ">/person</span>
+						<span class="text-primary"> {formattedLuxury[0]}</span> -
+						<span class="text-primary"> {formattedLuxury[1]} </span>
+						<span class="title-medium text-outline ">/person</span>
 					{/if}
 				</h1>
 			</div>

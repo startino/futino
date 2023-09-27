@@ -15,9 +15,9 @@
 
 <button
 	on:click={changeTheme}
-	class="{$$props.class}   dark:fill-primary-dark dark:stroke-primary-dark dark:hover:fill-tertiary-dark dark:hover:stroke-tertiary-dark">
+	class="{$$props.class}   fill-primary stroke-primary hover:fill-tertiary hover:stroke-tertiary">
 	<!--  mode -->
-	<span class="dark:hidden">
+	<span class="hidden">
 		<svg
 			viewBox="0 0 24 24"
 			fill="none"
@@ -32,7 +32,7 @@
 	</span>
 
 	<!-- Dark mode -->
-	<span class="hidden dark:inline">
+	<span class="hidden inline">
 		<svg viewBox="0 0 24 24" fill="none" stroke-width="1.1" class="w-6 h-6">
 			<path
 				fill-rule="evenodd"

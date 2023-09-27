@@ -20,47 +20,47 @@
 			<h2 class="display-large font-extrabold leading-none">
 				{tier.name}
 			</h2>
-			<h3 class="title-medium text-outline-dark text-outline pb-6 pl-1">
+			<h3 class="title-medium text-outline text-outline pb-6 pl-1">
 				{tier.subtitle}
 			</h3>
 		</div>
 		<div class="flex flex-row items-end gap-2">
 			<div class="flex flex-row place-items-center">
-				<h1 class="font-extrabold text-primary-dark tracking-tighter display-large leading-none">
+				<h1 class="font-extrabold text-primary tracking-tighter display-large leading-none">
 					{cycle == 'yearly'
 						? formatter.format((tier.cost * 0.833) / 2)
 						: formatter.format(tier.cost / 2)}
 				</h1>
 			</div>
 			<div
-				class="relative flex flex-row text-outline-dark place-items-center w-fit overflow-hidden px-0.5 py-1">
+				class="relative flex flex-row text-outline place-items-center w-fit overflow-hidden px-0.5 py-1">
 				<span
-					class="absolute right-0 w-full top-1/2 content-[''] border-t-2 border-outline-dark rotate-45" />
+					class="absolute right-0 w-full top-1/2 content-[''] border-t-2 border-outline rotate-45" />
 				<h1 class="font-extrabold tracking-tighter leading-none headline-medium">
 					{cycle == 'yearly' ? formatter.format(tier.cost * 0.833) : formatter.format(tier.cost)}
 				</h1>
 			</div>
 		</div>
-		<h3 class="body-medium text-outline-dark">per month, billed {cycle}</h3>
+		<h3 class="body-medium text-outline">per month, billed {cycle}</h3>
 
 		<div class="grid grid-cols-2 w-full gap-y-1 px">
 			{#each Object.entries(features) as [catagoryName, catagoryFeatures]}
 				<div class="flex pb-0 grid-item col-span-2 border-none mt-2 mb-1 place-self-start">
-					<h1 class="mt-auto uppercase title-large text-outline-dark place-self-end">
+					<h1 class="mt-auto uppercase title-large text-outline place-self-end">
 						{catagoryName}
 					</h1>
 				</div>
 				<!-- Features Rows-->
 				{#each Object.entries(catagoryFeatures) as [featureName, featureAbout]}
-					<div class="flex flex-row place-items-center gap-3 border-t-1 border-outline-dark">
+					<div class="flex flex-row place-items-center gap-3 border-t-1 border-outline">
 						<h2 class="my-auto title-medium text-left py-1">
 							{featureName}
 						</h2>
 					</div>
 					<div
-						class="border-t-1 py-1 border-outline-dark w-full flex justify-items-end items-center">
+						class="border-t-1 py-1 border-outline w-full flex justify-items-end items-center">
 						{#if tier.features[catagoryName][featureName] == true}
-							<Icon icon="checkmark" height="24" width="24" class="ml-auto text-secondary-dark" />
+							<Icon icon="checkmark" height="24" width="24" class="ml-auto text-secondary" />
 						{:else}
 							<h2 class="my-auto title-medium ml-auto flex place-items-end justify-self-end">
 								{tier.features[catagoryName][featureName]}

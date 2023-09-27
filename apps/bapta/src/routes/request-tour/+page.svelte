@@ -77,14 +77,14 @@
 </script>
 
 <div
-  class="flex flex-col w-full h-full shadow-lg shadow-background-dark lg:grid-cols-2 card-shadow grid-rows-2 px-4 lg:px-10 py-40 justify-center place-items-center border-b  dark:border-secondary-dark/40 bg-[url('/images/safari/18.webp')] bg-cover bg-left"
+  class="flex flex-col w-full h-full shadow-lg shadow-background lg:grid-cols-2 card-shadow grid-rows-2 px-4 lg:px-10 py-40 justify-center place-items-center border-b  border-secondary/40 bg-[url('/images/safari/18.webp')] bg-cover bg-left"
 >
-  <h1 class="font-bold text-primary-dark display-medium">Request Your Tour</h1>
+  <h1 class="font-bold text-primary display-medium">Request Your Tour</h1>
 
   <hr class="w-40 py-4" />
   <div class="grid grid-cols-1 md:grid-cols-5 place-items-center gap-5">
     <div
-      class="rounded-lg shadow-lg col-span-3 shadow-black bg-surface-dark/70 h-full p-5 title-large sm:headline-medium lg:display-small justify-items-center"
+      class="rounded-lg shadow-lg col-span-3 shadow-black bg-surface/70 h-full p-5 title-large sm:headline-medium lg:display-small justify-items-center"
     >
       <h2>Your Selection:</h2>
       <h3 class="body-large max-w-xl mx-auto">
@@ -100,18 +100,18 @@
     </div>
 
     <div
-      class="p-5 rounded-lg self-start shadow-lg w-full max-w-xl col-span-2 shadow-black bg-surface-dark/70 prose prose-sm sm:prose-base md:prose-lg lg:prose-xl xl:prose-2xl dark:prose-invert prose-main justify-items-center mx-auto"
+      class="p-5 rounded-lg self-start shadow-lg w-full max-w-xl col-span-2 shadow-black bg-surface/70 prose prose-sm sm:prose-base md:prose-lg lg:prose-xl xl:prose-2xl prose-invert prose-main justify-items-center mx-auto"
     >
       <form class="flex flex-col gap-5" on:submit|preventDefault={requestTour}>
         <input
-          class="bg-surface-dark/70 border-black"
+          class="bg-surface/70 border-black"
           type="text"
           name="firstName"
           placeholder="First Name *"
           required
         />
         <input
-          class="bg-surface-dark/70 border-black"
+          class="bg-surface/70 border-black"
           name="lastName"
           type="text"
           placeholder="Last Name *"
@@ -119,20 +119,20 @@
         />
 
         <input
-          class="bg-surface-dark/70 border-black"
+          class="bg-surface/70 border-black"
           name="email"
           type="text"
           placeholder="Email *"
           required
         />
         <input
-          class="bg-surface-dark/70 border-black"
+          class="bg-surface/70 border-black"
           name="whatsapp"
           placeholder="WhatsApp"
           type="text"
         />
         <input
-          class="bg-surface-dark/70 border-black"
+          class="bg-surface/70 border-black"
           name="people"
           type="number"
           placeholder="People *"
@@ -141,13 +141,13 @@
         <div class="flex flex-col">
           <label
             for="message"
-            class="block pt-4 title-large text-left text-primary-dark"
+            class="block pt-4 title-large text-left text-primary"
             >Tell us more</label
           >
           <textarea
             id="message"
             rows="4"
-            class="bg-surface-dark/70 border-black"
+            class="bg-surface/70 border-black"
             name="message"
             placeholder="I want to ask about..."
           />
@@ -155,7 +155,7 @@
         <div class="-ml-2">
           <label
             for="accomodation"
-            class="block ml-2 pt-4 title-large text-left text-primary-dark"
+            class="block ml-2 pt-4 title-large text-left text-primary"
             >Pick a standard:</label
           >
 
@@ -167,7 +167,7 @@
         <button
           type="submit"
           id="request"
-          class="py-2 shadow-lg rounded-lg text-center bg-secondary-dark text-secondary-on-dark display-small"
+          class="py-2 shadow-lg rounded-lg text-center bg-secondary text-secondary-on display-small"
         >
           Request Quote
         </button>
@@ -175,7 +175,7 @@
           type="reset"
           on:click={() => cancelForm()}
           id="request"
-          class="py-2 shadow-lg rounded-lg text-center bg-surface-dark text-surface-on-dark headline-medium uppercase"
+          class="py-2 shadow-lg rounded-lg text-center bg-surface text-surface-on headline-medium uppercase"
         >
           Cancel
         </button>

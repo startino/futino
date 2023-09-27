@@ -16,10 +16,10 @@
 
 <!--Hero-->
 <div
-	class="w-full h-screen shadow-lg shadow-background-dark lg:grid-cols-2 card-shadow grid-rows-2 px-10 lg:px-20 xl:px-40 pt-56 place-items-center border-b  dark:border-secondary-dark/40 bg-contact bg-cover object-contain bg-center">
+	class="w-full h-screen shadow-lg shadow-background lg:grid-cols-2 card-shadow grid-rows-2 px-10 lg:px-20 xl:px-40 pt-56 place-items-center border-b  border-secondary/40 bg-contact bg-cover object-contain bg-center">
 	<div
-		class="flex flex-col max-w-xl self-center items-center h-fit inner-section bg-surface-dark/90 shadow-2xl drop-shadow-2xl rounded-lg py-12 px-8 md:px-14">
-		<h1 class="font-bold text-primary-dark display-medium">Connect With Bapta</h1>
+		class="flex flex-col max-w-xl self-center items-center h-fit inner-section bg-surface/90 shadow-2xl drop-shadow-2xl rounded-lg py-12 px-8 md:px-14">
+		<h1 class="font-bold text-primary display-medium">Connect With Bapta</h1>
 		<h1 class="pb-4 body-large">Bapta at Your Service, to Provide the Best Service</h1>
 
 		<div class="mx-auto">
@@ -30,13 +30,13 @@
 	</div>
 </div>
 
-<div class="border-b shadow-2xl  dark:border-primary-dark/40">
+<div class="border-b shadow-2xl  border-primary/40">
 	<!--Contact Section-->
 	<div class="flex flex-col md:flex-row mx-10 my-20 lg:mx-32 md:mx-20 sm:mx-10 xs:mx-4 space-x-12">
 		<div
-			class="bg-surface-dark self-start flex flex-col rounded-xl dark:bg-surface-dark py-10 px-10 space-y-6 max-w-xl">
-			<h3 class="font-bold text-left headline-medium text-primary-dark">Get in touch.</h3>
-			<h4 class=" text-lg font-thin text-left text-secondary-dark my-auto">
+			class="bg-surface self-start flex flex-col rounded-xl bg-surface py-10 px-10 space-y-6 max-w-xl">
+			<h3 class="font-bold text-left headline-medium text-primary">Get in touch.</h3>
+			<h4 class=" text-lg font-thin text-left text-secondary my-auto">
 				Feel free to contact us regarding any questions or requests. We'll get back to you shortly.
 			</h4>
 		</div>

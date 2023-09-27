@@ -31,15 +31,15 @@
 	export let cycle: string = 'monthly';
 </script>
 
-<div class="{$$props.class} flex bg-surface-dark border rounded-lg border-secondary-dark/20">
+<div class="{$$props.class} flex bg-surface border rounded-lg border-secondary/20">
 	<div class="relative flex flex-row gap-1 items-center text-center mx-1 my-2">
 		<div
-			class="absolute border-2 rounded-lg border-primary-dark transition-all delay-75 ease-in-out duration-500"
+			class="absolute border-2 rounded-lg border-primary transition-all delay-75 ease-in-out duration-500"
 			style="width: {button_widths[activeTabValue]}px; {positionClass}; height: {rowHeight}px" />
 
 		{#each promotions as { label, discount, index }, i}
 			<!--{activeTabValue == promotion.index
-					? 'active border-2 rounded-xl  dark:border-primary-dark'
+					? 'active border-2 rounded-xl  border-primary'
 					: -->
 			<button
 				class="py-4 rounded-lg px-4 sm:px-5 md:px-8 {activeTabValue == i
@@ -53,7 +53,7 @@
 
 					{#if discount}
 						<div
-							class="flex flex-row items-center gap-1 text-tertiary-dark fill-tertiary-dark stroke-tertiary-dark">
+							class="flex flex-row items-center gap-1 text-tertiary fill-tertiary stroke-tertiary">
 							<Icon icon="discount" height="16" width="16" />
 
 							<h2 class="body-medium uppercase">

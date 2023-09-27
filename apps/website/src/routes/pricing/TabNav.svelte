@@ -8,13 +8,13 @@
 	const handleClick = (tabIndex: number) => () => (activeTabIndex = tabIndex);
 </script>
 
-<div class="mb-4 border-b border-secondary-dark/20">
+<div class="mb-4 border-b border-secondary/20">
 	<ul
 		class="flex flex-row w-full gap-4 md:gap-6 items-center font-medium text-center justify-items-center">
 		{#each tabs as tab}
 			<li
 				class={activeTabIndex === tab.index
-					? 'active border-b-2  border-primary-dark'
+					? 'active border-b-2  border-primary'
 					: 'hover:border-b-2 mx-2'}>
 				<button
 					class="inline-block py-4 rounded-t-lg"
@@ -26,7 +26,7 @@
 							<Tooltip
 							direction="top"
 							content="This explains the plan"
-							class="w-4 h-6 m-3 rounded-full  dark:bg-surface-variant-dark"
+							class="w-4 h-6 m-3 rounded-full  bg-surface-variant"
 						/>
 						-->
 					</div></button>

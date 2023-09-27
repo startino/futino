@@ -17,7 +17,7 @@
 
 <a
 	href="/tours/{tour_url}"
-	class="{$$props.class} flex flex-col h-full w-full text-left transition-all group hover:scale-[102%] duration-300 place-items-start rounded-lg shadow-lg shadow-surface-dark bg-surface-dark">
+	class="{$$props.class} flex flex-col h-full w-full text-left transition-all group hover:scale-[102%] duration-300 place-items-start rounded-lg shadow-lg shadow-surface bg-surface">
 	<div class="flex shrink-0 h-80 w-full relative overflow-hidden bg-black rounded-md">
 		<img
 			src={tour.thumbnail}
@@ -47,20 +47,20 @@
 			<div class="flex flex-col py-2 w-fit pr-12 my-auto">
 				<h1 class="title-large">Standard</h1>
 				<h1 class="headline-large md: font-bold inline-block">
-					<span class="text-primary-dark"> {formattedMidrange[0]} </span>
-					<span class="title-medium text-outline-dark ">/person</span>
+					<span class="text-primary"> {formattedMidrange[0]} </span>
+					<span class="title-medium text-outline ">/person</span>
 				</h1>
 			</div>
 		{:else}
-			<div class="flex flex-col py-2 border-b border-outline-dark w-fit pr-12">
+			<div class="flex flex-col py-2 border-b border-outline w-fit pr-12">
 				<h1 class="title-medium">Midrange</h1>
 				<h1 class="title-large md: font-bold inline-block">
 					{#if tour.journey.midrange[0] == 0}
 						-
 					{:else}
-						<span class="text-primary-dark"> {formattedMidrange[0]} </span> -
-						<span class="text-primary-dark"> {formattedMidrange[1]} </span>
-						<span class="title-medium text-outline-dark ">/person</span>
+						<span class="text-primary"> {formattedMidrange[0]} </span> -
+						<span class="text-primary"> {formattedMidrange[1]} </span>
+						<span class="title-medium text-outline ">/person</span>
 					{/if}
 				</h1>
 			</div>
@@ -70,9 +70,9 @@
 					{#if tour.journey.luxury[0] == 0}
 						-
 					{:else}
-						<span class="text-primary-dark"> {formattedLuxury[0]} </span> -
-						<span class="text-primary-dark"> {formattedLuxury[1]} </span>
-						<span class="title-medium text-outline-dark ">/person</span>
+						<span class="text-primary"> {formattedLuxury[0]} </span> -
+						<span class="text-primary"> {formattedLuxury[1]} </span>
+						<span class="title-medium text-outline ">/person</span>
 					{/if}
 				</h1>
 			</div>

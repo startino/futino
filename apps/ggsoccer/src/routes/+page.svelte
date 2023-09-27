@@ -21,11 +21,11 @@
 <Header />
 
 <main
-	class="text-center border-b shadow-2xl  dark:border-primary-dark/40 flex flex-col items-stretch">
+	class="text-center border-b shadow-2xl  border-primary/40 flex flex-col items-stretch">
 	<!--Hero-->
 	<section
 		id="hero"
-		class="grow py-32 sm:py-34 md:py-44 shadow-lg px-4 sm:px-6 md:px-8 grid justify-items-center space-y-12  dark:border-secondary-dark/20 bg-black relative">
+		class="grow py-32 sm:py-34 md:py-44 shadow-lg px-4 sm:px-6 md:px-8 grid justify-items-center space-y-12  border-secondary/20 bg-black relative">
 		<img
 			src="media/IMG_4905.webp"
 			alt=""
@@ -59,7 +59,7 @@
 	<!--About section-->
 	<section
 		id="about"
-		class="flex flex-col text-center py-5 sm:py-10 md:py-20 px-4 sm:px-6 md:px-8 shadow-lg border-b  dark:border-secondary-dark/20">
+		class="flex flex-col text-center py-5 sm:py-10 md:py-20 px-4 sm:px-6 md:px-8 shadow-lg border-b  border-secondary/20">
 		<ScrollFadeIn>
 			<div class="flex flex-col max-w-7xl mx-auto">
 				<h2 class="display-large">About GG Soccer</h2>
@@ -78,13 +78,13 @@
 	<!--Camp Options-->
 	<section
 		id="camps"
-		class="flex flex-col text-center py-5 sm:py-10 md:py-20 px-4 sm:px-6 md:px-8 shadow-lg border-b  dark:border-secondary-dark/20">
+		class="flex flex-col text-center py-5 sm:py-10 md:py-20 px-4 sm:px-6 md:px-8 shadow-lg border-b  border-secondary/20">
 		<div class="flex flex-col max-w-7xl mx-auto">
 			<h1 class="display-large">Summer Camps 2023</h1>
 
 			<style>
 				.card {
-					@apply rounded-lg max-w-2xl shadow-2xl flex flex-col  dark:text-surface-on-dark m-2 p-6 h-fit;
+					@apply rounded-lg max-w-2xl shadow-2xl flex flex-col  text-surface-on m-2 p-6 h-fit;
 				}
 			</style>
 			<div id="camps" class="">
@@ -102,7 +102,7 @@
 							<h2 class="title-large ">{time_first}</h2>
 							<hr class="p-1 opacity-40" />
 							<h2 class="title-medium ">{location}</h2>
-							<h2 class="font-bold title-large  dark:text-secondary-dark">
+							<h2 class="font-bold title-large  text-secondary">
 								{cost_first}
 							</h2>
 							<a href={link}>
@@ -120,7 +120,7 @@
 							<h2 class="title-large ">{time_second}</h2>
 							<hr class="p-1 opacity-40" />
 							<h2 class="title-medium ">{location}</h2>
-							<h2 class="font-bold title-large  dark:text-secondary-dark">
+							<h2 class="font-bold title-large  text-secondary">
 								{cost_second}
 							</h2>
 							<a href={link}>
@@ -138,7 +138,7 @@
 	<!--Contact Section-->
 	<section
 		id="contact"
-		class="flex flex-col text-center py-5 sm:py-10 md:py-20 px-4 sm:px-6 md:px-8 shadow-lg border-b  dark:border-secondary-dark/20">
+		class="flex flex-col text-center py-5 sm:py-10 md:py-20 px-4 sm:px-6 md:px-8 shadow-lg border-b  border-secondary/20">
 		<ScrollFadeIn>
 			<div class="flex flex-col max-w-7xl mx-auto">
 				<!--Contant methods-->
@@ -180,21 +180,21 @@
 				</div>
 				<form method="post" class="flex-1 flex flex-col space-y-5 h-50">
 					<input
-						class="border border-black/50 dark:border-white/50 p-1 dark:bg-black/5"
+						class="border border-black/50 border-white/50 p-1 bg-black/5"
 						type="text"
 						name="name"
 						id="name"
 						placeholder="Name"
 					/>
 					<input
-						class="border border-black/50 dark:border-white/50 p-1 dark:bg-surface-dark/5"
+						class="border border-black/50 border-white/50 p-1 bg-surface/5"
 						type="text"
 						name="email"
 						id="email"
 						placeholder="E-Mail"
 					/>
 					<textarea
-						class="flex-1 border border-black/50 dark:border-white/50 p-1 dark:bg-black/5"
+						class="flex-1 border border-black/50 border-white/50 p-1 bg-black/5"
 						name="message"
 						id="message"
 						placeholder="Message"

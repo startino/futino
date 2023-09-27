@@ -18,5 +18,5 @@
 	};
 </script>
 
-<button on:click={() => removeFromCart()} class="rounded-md bg-secondary-dark">
-	<h1 class="body-large p-2 text-secondary-on-dark">Remove</h1></button>
+<button on:click={() => removeFromCart()} class="rounded-md bg-secondary">
+	<h1 class="body-large p-2 text-secondary-on">Remove</h1></button>

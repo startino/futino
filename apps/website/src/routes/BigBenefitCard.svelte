@@ -3,8 +3,8 @@
 </script>
 
 <div
-	class="{$$props.class} group lg:col-span-2 max-w-lg lg:max-w-none bg-surface-dark rounded-md items-center overflow-hidden lg:items-start flex flex-col gap-4 py-10 px-6 pb-0 lg:pb-10 lg:px-10 w-full drop-shadow-glow-sm-dark border-1 border-primary-dark">
-	<div class="bg-background-dark rounded-md p-3">
+	class="{$$props.class} group lg:col-span-2 max-w-lg lg:max-w-none bg-surface rounded-md items-center overflow-hidden lg:items-start flex flex-col gap-4 py-10 px-6 pb-0 lg:pb-10 lg:px-10 w-full drop-shadow-glow-sm border-1 border-primary">
+	<div class="bg-background rounded-md p-3">
 		<img src={$$props.topIcon} alt="book" class="w-7 h-7 object-center object-cover" />
 	</div>
 	<div class="flex flex-col gap-2 lg:text-left z-10">

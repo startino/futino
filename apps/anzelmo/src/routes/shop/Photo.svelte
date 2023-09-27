@@ -53,7 +53,7 @@
 	<div class="flex w-full flex-row place-items-center gap-4 uppercase justify-between py-2">
 		<a href="/shop" class="flex flex-col text-left">
 			<h1 class="title-small font-thin">{photoData.album}</h1>
-			<h1 class="headline-small text-surface-variant-on-dark font-semibold underline-animation">
+			<h1 class="headline-small text-surface-variant-on font-semibold underline-animation">
 				{photoData.label}
 			</h1>
 		</a>

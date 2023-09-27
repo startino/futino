@@ -66,7 +66,7 @@
 						toggleMenu();
 					}}
 					type="button"
-					class="inline-flex items-center p-2 ml-1 stroke-outline-dark rounded-lg transition-transform bg-transparent  {burgerOpen
+					class="inline-flex items-center p-2 ml-1 stroke-outline rounded-lg transition-transform bg-transparent  {burgerOpen
 						? 'rotate-90'
 						: ''}">
 					{#if burgerOpen}
@@ -81,11 +81,11 @@
 						class="absolute flex flex-col right-0 text-left py-2 rounded-lg"
 						in:fly={{ x: 300 }}
 						out:fly={{ x: 300 }}>
-						<ul class="flex flex-col gap-y-3 items-center bg-surface-dark rounded-lg">
+						<ul class="flex flex-col gap-y-3 items-center bg-surface rounded-lg">
 							<Alert />
 							{#each headerItems as { label, href }}
 								<li>
-									<a class="inline dark:hover:text-tertiary-dark" {href}>
+									<a class="inline hover:text-tertiary" {href}>
 										<h1 class="body-medium px-16 py-2 underline-animation">
 											{label}
 										</h1>
@@ -103,7 +103,7 @@
 					{#each headerItems as { label, href }}
 						<li>
 							<a
-								class="inline dark:hover:text-tertiary-dark underline-animation"
+								class="inline hover:text-tertiary underline-animation"
 								{href}>
 								{label}
 							</a>
@@ -114,7 +114,7 @@
 						<CartButton />
 					</li>
 					<li
-						class="border-l  dark:border-secondary-dark/50 self-stretch" />
+						class="border-l  border-secondary/50 self-stretch" />
 
 					<li>
 						<ThemeButton />

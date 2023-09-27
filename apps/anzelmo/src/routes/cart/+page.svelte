@@ -52,10 +52,10 @@
 	{/if}
 
 	{#each displayCart as { photoData, count }}
-		<div class="flex flex-row items-center gap-3 bg-surface-variant-dark rounded-md max-w-3xl">
+		<div class="flex flex-row items-center gap-3 bg-surface-variant rounded-md max-w-3xl">
 			<img src={photoData.path} alt="" class="w-[20%] aspect-square rounded-l-md" />
 			<div
-				class="text-center text-surface-variant-on-dark flex flex-row justify-between px-2 md:px-4 gap-x-3 pr-3 items-center w-full">
+				class="text-center text-surface-variant-on flex flex-row justify-between px-2 md:px-4 gap-x-3 pr-3 items-center w-full">
 				<div class="flex flex-col text-left">
 					<h1 class="title-medium">
 						<span class="block">
@@ -73,9 +73,9 @@
 
 	<button
 		class="fixed bottom-0 mb-8 md:mb-14 m-6 rounded-md mx-auto {displayCart.length == 0
-			? 'bg-surface-variant-dark/30 text-red-700 hover:cursor-not-allowed'
-			: 'bg-secondary-container-dark'}"
+			? 'bg-surface-variant/30 text-red-700 hover:cursor-not-allowed'
+			: 'bg-secondary-container'}"
 		on:click={() => checkout()}>
-		<h1 class="headline-medium py-3 px-12 text-secondary-container-on-dark">Proceed To Checkout</h1>
+		<h1 class="headline-medium py-3 px-12 text-secondary-container-on">Proceed To Checkout</h1>
 	</button>
 </main>

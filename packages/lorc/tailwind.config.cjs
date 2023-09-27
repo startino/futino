@@ -1,7 +1,22 @@
-const config = {
-  content: ['./src/**/*.{html,js,svelte,ts}'],
+import { join } from 'path';
+import fColors from '../../futino-colors.cjs';
+import fAnimations from '../../futino-animations.cjs';
+import fKeyframes from '../../futino-keyframes.cjs';
+import fPadding from '../../futino-padding.cjs';
+import fTypography from '../../futino-typography.cjs';
 
-  darkMode: 'class',
+const alpha = '<alpha-value>';
+
+
+const config = {
+	content: [
+		'./src/**/*.{html,js,svelte,ts}',
+		join(require.resolve('lorc'),
+			'../**/*.{html,js,svelte,ts}',
+		),
+	],
+
+	DEFAULTMode: 'class',
 
   theme: {
     extend: {
@@ -13,11 +28,11 @@ const config = {
         glow: '0 0 4px 4px current;',
       },
       dropShadow: {
-        'service-art': ['0 0 2px rgb(var(--md-sys-color-tertiary-container-dark))', '0 0 5px rgb(var(--md-sys-color-tertiary-container-dark) / 0.7)'],
-        'pricing-art': ['0 0 3px rgb(var(--md-sys-color-tertiary-container-dark) / 0.7)', '0 0 3px rgb(var(--md-sys-color-tertiary-container-dark) / 0.7)'],
-        'benefit-art': '0 0 1px rgb(var(--md-sys-color-primary-container-dark) / 1)',
-        'benefit-art-hover': '0 0 4px rgb(var(--md-sys-color-primary-container-dark) / 0.9)',
-        'star': ['0 0 7px rgb(var(--md-sys-color-tertiary-container-dark))', '0 0 7px rgb(var(--md-sys-color-tertiary-container-dark))'],
+        'service-art': ['0 0 2px rgb(var(--md-sys-color-tertiary-container))', '0 0 5px rgb(var(--md-sys-color-tertiary-container) / 0.7)'],
+        'pricing-art': ['0 0 3px rgb(var(--md-sys-color-tertiary-container) / 0.7)', '0 0 3px rgb(var(--md-sys-color-tertiary-container) / 0.7)'],
+        'benefit-art': '0 0 1px rgb(var(--md-sys-color-primary-container) / 1)',
+        'benefit-art-hover': '0 0 4px rgb(var(--md-sys-color-primary-container) / 0.9)',
+        'star': ['0 0 7px rgb(var(--md-sys-color-tertiary-container))', '0 0 7px rgb(var(--md-sys-color-tertiary-container))'],
         whatsapp: ['-5px 2px 7px #064A16BB', '5px -2px 7px #064A16BB'],
         'whatsapp-hover': ['-5px 2px 10px #064A16FF', '5px -2px 10px #064A16FF'],
         instagram: ['-5px 2px 7px #04417FBB', '5px -2px 7px #700053BB'],
@@ -39,11 +54,11 @@ const config = {
         'linkedin-hover': ['0px 0px 7px #0077B5FF'],
 
 
-        'glow-sm-dark': '0 0 5px rgb(var(--md-sys-color-primary-container-dark) / 0.5)',
-        'glow-md-dark': '0 0 10px rgb(var(--md-sys-color-primary-container-dark) / 0.5)',
-        'glow-lg-dark': '0 0 15px rgb(var(--md-sys-color-primary-container-dark) / 0.5)',
-        'glow-xl-dark': '0 0 20px rgb(var(--md-sys-color-primary-container-dark) / 0.5)',
-        'glow-2xl-dark': '0 0 25px rgb(var(--md-sys-color-primary-container-dark) / 0.5)',
+        'glow-sm': '0 0 5px rgb(var(--md-sys-color-primary-container) / 0.5)',
+        'glow-md': '0 0 10px rgb(var(--md-sys-color-primary-container) / 0.5)',
+        'glow-lg': '0 0 15px rgb(var(--md-sys-color-primary-container) / 0.5)',
+        'glow-xl': '0 0 20px rgb(var(--md-sys-color-primary-container) / 0.5)',
+        'glow-2xl': '0 0 25px rgb(var(--md-sys-color-primary-container) / 0.5)',
       },
       spacing: {
         110: '27.5rem',
@@ -122,107 +137,13 @@ const config = {
           '50%': { transform: 'rotate3d(0,1,0,90deg)' },
         },
       },
+    colors: fColors,
 
-      colors: {
-        // Primary tones
-        primary: {
-           'rgb(var( <alpha-value>)',
-          on: {
-             'rgb(var( <alpha-value>) ',
-          },
-          container: {
-             'rgb(var( <alpha-value>) ',
-            on: {
-               'rgb(var( <alpha-value>) ',
-            },
-          },
-          inverse: {
-             'rgb(var( <alpha-value>) ',
-          },
-        },
-
-        // Secondary tones
-        secondary: {
-           'rgb(var( <alpha-value>) ',
-          on: {
-             'rgb(var( <alpha-value>) ',
-          },
-          container: {
-             'rgb(var( <alpha-value>) ',
-            on: {
-               'rgb(var( <alpha-value>) ',
-            },
-          },
-        },
-
-        // Tertiary tones
-        tertiary: {
-           'rgb(var( <alpha-value>) ',
-          on: {
-             'rgb(var( <alpha-value>) ',
-          },
-          container: {
-             'rgb(var( <alpha-value>) ',
-            on: {
-               'rgb(var( <alpha-value>) ',
-            },
-          },
-        },
-
-        // Neutral tones (md3 names them as 'surface')
-        surface: {
-           'rgb(var( <alpha-value>) ',
-          on: {
-             'rgb(var( <alpha-value>) ',
-            inverse: {
-               'rgb(var( <alpha-value>) ',
-            },
-          },
-          // Neutral variant tones
-          variant: {
-             'rgb(var( <alpha-value>) ',
-            on: {
-               'rgb(var( <alpha-value>) ',
-            },
-          },
-        },
-
-        // Background tones
-        background: {
-           'rgb(var( <alpha-value>) ',
-          on: {
-             'rgb(var( <alpha-value>) ',
-          },
-        },
-
-        outline: {
-           'rgb(var( <alpha-value>) ',
-          variant: {
-             'rgb(var( <alpha-value>) ',
-          },
-        },
-
-        // On Error tones
-        error: {
-           'rgb(var( <alpha-value>) ',
-          on: {
-             'rgb(var( <alpha-value>) ',
-          },
-          container: {
-             'rgb(var( <alpha-value>) ',
-            on: {
-               'rgb(var( <alpha-value>) ',
-            },
-          },
-        },
-      },
-    },
-  },
-  plugins: [
-    require('@tailwindcss/forms'),
-    require('@tailwindcss/typography'),
-    require('@tailwindcss/aspect-ratio'),
-    require('@tailwindcss/container-queries'),
+    plugins: [
+      require('@tailwindcss/forms'),
+      require('@tailwindcss/typography'),
+      require('@tailwindcss/aspect-ratio'),
+      require('@tailwindcss/container-queries'),
   ],
 };
 

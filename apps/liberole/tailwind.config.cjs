@@ -1,7 +1,22 @@
-const config = {
-	content: ['./src/**/*.{html,js,svelte,ts}'],
+import { join } from 'path';
+import fColors from '../../futino-colors.cjs';
+import fAnimations from '../../futino-animations.cjs';
+import fKeyframes from '../../futino-keyframes.cjs';
+import fPadding from '../../futino-padding.cjs';
+import fTypography from '../../futino-typography.cjs';
 
-	darkMode: 'class',
+const alpha = '<alpha-value>';
+
+
+const config = {
+	content: [
+		'./src/**/*.{html,js,svelte,ts}',
+		join(require.resolve('lorc'),
+			'../**/*.{html,js,svelte,ts}',
+		),
+	],
+
+	DEFAULTMode: 'class',
 
 	theme: {
 		extend: {
@@ -32,129 +47,8 @@ const config = {
 					'100%': { transform: 'translateY(100%)' },
 				},
 			},
-
-			colors: {
-				// Primary tones
-				primary: {
-					 'rgb(var( <alpha-value>)',
-					dark: 'rgb(var(--md-sys-color-primary-dark) / <alpha-value>)',
-					on: {
-						 'rgb(var( <alpha-value>) ',
-						dark: 'rgb(var(--md-sys-color-on-primary-dark) / <alpha-value>) ',
-					},
-					container: {
-						 'rgb(var( <alpha-value>) ',
-						dark: 'rgb(var(--md-sys-color-primary-container-dark) / <alpha-value>) ',
-						on: {
-							 'rgb(var( <alpha-value>) ',
-							dark: 'rgb(var(--md-sys-color-on-primary-container-dark) / <alpha-value>) ',
-						},
-					},
-					inverse: {
-						 'rgb(var( <alpha-value>) ',
-						dark: 'rgb(var(--md-sys-color-on-primary-container-dark) / <alpha-value>) ',
-					},
-				},
-
-				// Secondary tones
-				secondary: {
-					 'rgb(var( <alpha-value>) ',
-					dark: 'rgb(var(--md-sys-color-secondary-dark) / <alpha-value>) ',
-					on: {
-						 'rgb(var( <alpha-value>) ',
-						dark: 'rgb(var(--md-sys-color-on-secondary-dark) / <alpha-value>) ',
-					},
-					container: {
-						 'rgb(var( <alpha-value>) ',
-						dark: 'rgb(var(--md-sys-color-secondary-container-dark) / <alpha-value>) ',
-						on: {
-							 'rgb(var( <alpha-value>) ',
-							dark: 'rgb(var(--md-sys-color-on-secondary-container-dark) / <alpha-value>) ',
-						},
-					},
-				},
-
-				// Tertiary tones
-				tertiary: {
-					 'rgb(var( <alpha-value>) ',
-					dark: 'rgb(var(--md-sys-color-tertiary-dark) / <alpha-value>) ',
-					on: {
-						 'rgb(var( <alpha-value>) ',
-						dark: 'rgb(var(--md-sys-color-on-tertiary-dark) / <alpha-value>) ',
-					},
-					container: {
-						 'rgb(var( <alpha-value>) ',
-						dark: 'rgb(var(--md-sys-color-tertiary-container-dark) / <alpha-value>) ',
-						on: {
-							 'rgb(var( <alpha-value>) ',
-							dark: 'rgb(var(--md-sys-color-on-tertiary-container-dark) / <alpha-value>) ',
-						},
-					},
-				},
-
-				// Neutral tones (md3 names them as 'surface')
-				surface: {
-					 'rgb(var( <alpha-value>) ',
-					dark: 'rgb(var(--md-sys-color-surface-dark) / <alpha-value>) ',
-					on: {
-						 'rgb(var( <alpha-value>) ',
-						dark: 'rgb(var(--md-sys-color-on-surface-dark) / <alpha-value>) ',
-						inverse: {
-							 'rgb(var( <alpha-value>) ',
-							dark: 'rgb(var(--md-sys-color-inverse-on-surface-dark) / <alpha-value>) ',
-						},
-					},
-					// Neutral variant tones
-					variant: {
-						 'rgb(var( <alpha-value>) ',
-						dark: 'rgb(var(--md-sys-color-surface-variant-dark) / <alpha-value>) ',
-						on: {
-							 'rgb(var( <alpha-value>) ',
-							dark: 'rgb(var(--md-sys-color-on-surface-variant-dark) / <alpha-value>) ',
-						},
-					},
-				},
-
-				// Background tones
-				background: {
-					 'rgb(var( <alpha-value>) ',
-					dark: 'rgb(var(--md-sys-color-background-dark) / <alpha-value>) ',
-					on: {
-						 'rgb(var( <alpha-value>) ',
-						dark: 'rgb(var(--md-sys-color-on-background-dark) / <alpha-value>) ',
-					},
-				},
-
-				outline: {
-					 'rgb(var( <alpha-value>) ',
-					dark: 'rgb(var(--md-sys-color-outline-dark) / <alpha-value>) ',
-					variant: {
-						 'rgb(var( <alpha-value>) ',
-						dark: 'rgb(var(--md-sys-color-outline-variant-dark) / <alpha-value>) ',
-					},
-				},
-
-				// On Error tones
-				error: {
-					 'rgb(var( <alpha-value>) ',
-					dark: 'rgb(var(--md-sys-color-error-dark) / <alpha-value>) ',
-					on: {
-						 'rgb(var( <alpha-value>) ',
-						dark: 'rgb(var(--md-sys-color-on-error-dark) / <alpha-value>) ',
-					},
-					container: {
-						 'rgb(var( <alpha-value>) ',
-						dark: 'rgb(var( <alpha-value>) ',
-						on: {
-							 'rgb(var( <alpha-value>) ',
-							dark: 'rgb(var(--md-sys-color-on-error-container-dark) / <alpha-value>) ',
-						},
-					},
-				},
-			},
-		},
-	},
-	plugins: [],
+      colors: fColors,
+      plugins: [],
 };
 
 module.exports = config;

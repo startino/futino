@@ -8,7 +8,7 @@
   export let title: string = "This is a great title for Company Name";
   export let subtitle: string =
     "This is an even better piece of text. Specifically, this is a subtitle";
-  /** Provide classes to set the base typography styling. The default is: body-small text-primary dark:text-primary*/
+  /** Provide classes to set the base typography styling. The default is: body-small text-primary text-primary*/
   export let typography: CssClasses = "";
   /** Labels and hrefs of CTA buttons on the hero. Recommended 1-2.*/
   export let CTAButtons: {
