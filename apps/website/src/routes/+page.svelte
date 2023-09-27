@@ -137,7 +137,7 @@
 
 <ChapterMenu bind:chapterInView chapters={landingPageChapters} />
 
-<main class="text-center border-b shadow-2xl border-primary-dark/40">
+<main class="text-center border-b shadow-2xl border-primary/40">
   <!--Hero-->
   <section
     id="hero"
@@ -163,11 +163,11 @@
       </h1>
 
       <h3 class=" headline-small lg:headline-medium max-w-3xl">
-        Growing startups and companies with <span class="text-primary-dark"
+        Growing startups and companies with <span class="text-primary"
           >AI Design, Optimized Development,</span
         >
         and
-        <span class="text-primary-dark">Modern Hosting</span>
+        <span class="text-primary">Modern Hosting</span>
         <span class="inline-block"> for a flat monthly fee.</span>
       </h3>
 
@@ -229,9 +229,9 @@
             Boring Agencies
           </h2>
           <h1 class="display-medium text-center sm:text-left lg:display-large">
-            <span class="text-primary-dark font-extrabold"> In </span> with the
+            <span class="text-primary font-extrabold"> In </span> with the
             new, <br />
-            <span class="text-primary-dark font-extrabold"> Out </span> with the
+            <span class="text-primary font-extrabold"> Out </span> with the
             old
           </h1>
         </div>
@@ -331,7 +331,7 @@
               icon="checkmark"
               height="32"
               width="32"
-              class="-ml-0.5 text-secondary-dark"
+              class="-ml-0.5 text-secondary"
             />
             <h3 class="body-large">No hidden fees</h3>
           </a>
@@ -343,7 +343,7 @@
               icon="checkmark"
               height="32"
               width="32"
-              class="-ml-0.5 text-secondary-dark"
+              class="-ml-0.5 text-secondary"
             />
             <h3 class="body-large">No upfront costs</h3>
           </a>
@@ -380,7 +380,7 @@
           >
             <!--Circle-->
             <div
-              class="flex items-center w-11 h-11 text-center rounded-full bg-surface-dark circle-shadow"
+              class="flex items-center w-11 h-11 text-center rounded-full bg-surface circle-shadow"
             >
               <h1 class="mx-auto display-small z-20">
                 {chapterNumber}
@@ -399,7 +399,7 @@
             >
               <!--Line-->
               <div
-                class=" -mt-6 flex w-1 mx-auto h-full rounded-full bg-surface-dark line-shadow"
+                class=" -mt-6 flex w-1 mx-auto h-full rounded-full bg-surface line-shadow"
               />
             </InView>
           </div>
@@ -423,7 +423,7 @@
             >
               <div class="relative flex w-12 h-12 place-items-center">
                 <div
-                  class="flex items-center w-11 h-11 text-center rounded-full bg-surface-dark circle-shadow shadow-primary-dark"
+                  class="flex items-center w-11 h-11 text-center rounded-full bg-surface circle-shadow shadow-primary"
                 >
                   <h1 class="mx-auto display-small z-20">
                     {chapterNumber}
@@ -431,17 +431,17 @@
                 </div>
               </div>
               <!-- Mobile title -->
-              <h1 class="headline-large uppercase text-primary-dark">
+              <h1 class="headline-large uppercase text-primary">
                 {title}
               </h1>
             </div>
             <InView fly={{ x: -100, y: 0 }} class="sm:hidden">
-              <div class="w-1/4 h-0.5 mt-3 border-t border-outline-dark" />
+              <div class="w-1/4 h-0.5 mt-3 border-t border-outline" />
             </InView>
             <InView presetOptions={leftFlyPreset} class="sm:pl-7 md:pl-12">
               <!-- sm+ title -->
               <h1
-                class="sm:headline-large md:title-large uppercase md:uppercase sm:text-primary-dark hidden sm:flex pb-4"
+                class="sm:headline-large md:title-large uppercase md:uppercase sm:text-primary hidden sm:flex pb-4"
               >
                 {title}
               </h1>
@@ -496,7 +496,7 @@
             >
               <!--Circle-->
               <div
-                class="flex items-center w-11 h-11 text-center rounded-full bg-surface-dark circle-shadow"
+                class="flex items-center w-11 h-11 text-center rounded-full bg-surface circle-shadow"
               >
                 <h1 class="mx-auto display-small z-20">{i + 1}</h1>
               </div>
@@ -513,7 +513,7 @@
               >
                 <!--Line-->
                 <div
-                  class="flex h-1 w-full my-2 bg-surface-dark line-shadow shadow-tertiary-dark"
+                  class="flex h-1 w-full my-2 bg-surface line-shadow shadow-tertiary"
                 />
               </InView>
             </div>
@@ -523,7 +523,7 @@
             >
               <!--Circle-->
               <div
-                class="flex items-center w-11 h-11 text-center rounded-full bg-surface-dark circle-shadow"
+                class="flex items-center w-11 h-11 text-center rounded-full bg-surface circle-shadow"
               >
                 <h1 class="mx-auto display-small z-20">
                   {i}
@@ -542,7 +542,7 @@
               >
                 <!--Line-->
                 <div
-                  class=" -mt-6 flex w-1 mx-auto h-full rounded-full bg-surface-dark line-shadow"
+                  class=" -mt-6 flex w-1 mx-auto h-full rounded-full bg-surface line-shadow"
                 />
               </InView>
             </div>
@@ -558,7 +558,7 @@
                 class="mt-14 ml-12 pl-1 pr-8 md:ml-0 flex flex-col py-4 my-2 w-full text-left md:mr-2"
               >
                 <h1
-                  class="headline-large uppercase text-primary-dark md:title-large md:uppercase sm:text-primary-dark"
+                  class="headline-large uppercase text-primary md:title-large md:uppercase sm:text-primary"
                 >
                   {title}
                 </h1>
@@ -592,7 +592,7 @@
         >
           <!--Contact form Option-->
           <div
-            class="flex flex-col p-4 md:p-8 gap-y-8 text-left shadow-xl shadow-black drop-shadow-glow-md-dark bg-surface-dark border-1 border-primary-dark rounded-md"
+            class="flex flex-col p-4 md:p-8 gap-y-8 text-left shadow-xl shadow-black drop-shadow-glow-md bg-surface border-1 border-primary rounded-md"
           >
             <div class="flex flex-col ml-2">
               <h2 class="font-extrabold display-medium">Contact Us</h2>
@@ -612,7 +612,7 @@
           <!--PM Option-->
 
           <div
-            class="flex flex-row md:flex-col h-full md:items-end justify-around w-full place-content-between text-surface-on-dark font-extrabold title-large"
+            class="flex flex-row md:flex-col h-full md:items-end justify-around w-full place-content-between text-surface-on font-extrabold title-large"
           >
             <InView
               duration={300}
@@ -703,13 +703,13 @@
   }
 
   .circle-shadow:before {
-    @apply absolute left-0 right-0 bottom-0 top-0 z-0 rounded-full shadow-glow shadow-primary-dark content-[''];
+    @apply absolute left-0 right-0 bottom-0 top-0 z-0 rounded-full shadow-glow shadow-primary content-[''];
   }
   .line-shadow {
     @apply relative;
   }
 
   .line-shadow::before {
-    @apply absolute left-0 right-0 bottom-0 top-0 rounded-full z-0  shadow-glow shadow-primary-dark content-[''];
+    @apply absolute left-0 right-0 bottom-0 top-0 rounded-full z-0  shadow-glow shadow-primary content-[''];
   }
 </style>

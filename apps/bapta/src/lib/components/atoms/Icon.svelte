@@ -37,7 +37,7 @@
 				stroke-linejoin="round" /><g id="SVGRepo_iconCarrier">
 				<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 					<g
-						id="Dribbble-Light-Preview"
+						id=""
 						transform="translate(-300.000000, -922.000000)"
 						fill={$$props.fillColor}>
 						<g id="icons" transform="translate(56.000000, 160.000000)">
@@ -153,7 +153,7 @@
 			stroke="currentColor"><path d="M19 9l-7 7-7-7" /></svg>
 	{:else if $$props.icon.toLowerCase() == 'search'}
 		<svg
-			class="w-5 h-5 text-primary-dark"
+			class="w-5 h-5 text-primary"
 			fill={$$props.fillColor}
 			stroke="currentColor"
 			viewBox="0 0 24 24"

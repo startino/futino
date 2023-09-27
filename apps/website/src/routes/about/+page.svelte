@@ -56,7 +56,7 @@
 	{/each}
 </svelte:head>
 
-<main class="text-center border-b border-primary-dark/40 flex flex-col items-stretch">
+<main class="text-center border-b border-primary/40 flex flex-col items-stretch">
 	<section id="hero" class="grow h-screen grid justify-items-center space-y-12 shadow-lg">
 		<div class="grid justify-items-center space-y-12 h-fit w-full mx-auto self-center">
 			<div class="w-fit">
@@ -84,12 +84,12 @@
 	<section class="shadow-2xl grid justify-items-center">
 		<div class="flex w-full flex-col text-center inner-section gap-44 items-center">
 			<div class="flex flex-col gap-4 items-center">
-				<h1 class="title-medium md:title-large uppercase text-primary-dark md:uppercase">
+				<h1 class="title-medium md:title-large uppercase text-primary md:uppercase">
 					Our mission
 				</h1>
 				<h3 class="headline-small sm:headline-medium md:display-small lg:display-medium max-w-3xl">
 					Leverage the power of modern technologies to
-					<span class="text-tertiary-dark"> design & develop websites </span>
+					<span class="text-tertiary"> design & develop websites </span>
 					in a more cost efficient manner for startups and small businesses.
 				</h3>
 			</div>
@@ -139,26 +139,26 @@
 			<TransitionElement transition="slide" delay={200} duration={1000}>
 				<!--Any sort of glass effect would be good here-->
 				<h1 class="display-medium pb-4">
-					<span class="text-primary-dark">[Y]</span>our People
+					<span class="text-primary">[Y]</span>our People
 				</h1>
 
 				<div
-					class="flex flex-col divide-y title-medium border-y border-primary-dark divide-primary-dark shadow-glow">
+					class="flex flex-col divide-y title-medium border-y border-primary divide-primary shadow-glow">
 					{#each team as { index, name, position, body, imgPath, socialLinks }}
 						<!-- svelte-ignore a11y-click-events-have-key-events -->
 						<button class="flex flex-col group" on:click={handleClick(index)}>
 							<div
-								class="grid grid-cols-3 grid-rows-2 group-hover:text-tertiary-dark md:grid-rows-1 md:grid-cols-7 place-content-between text-left md:text-center my-6 group hover:text-primary-dark">
+								class="grid grid-cols-3 grid-rows-2 group-hover:text-tertiary md:grid-rows-1 md:grid-cols-7 place-content-between text-left md:text-center my-6 group hover:text-primary">
 								<h1 class="col-span-2 row-start-1 my-auto md:col-span-3 tracking-wide title-large">
 									{name}
 								</h1>
 								<h1
-									class="col-span-2 row-start-2 md:row-start-1 my-auto md:col-span-3 text-outline-dark">
+									class="col-span-2 row-start-2 md:row-start-1 my-auto md:col-span-3 text-outline">
 									{position}
 								</h1>
 
 								<Icon
-									class="row-span-2 text-primary-dark group-hover:text-tertiary-dark row-start-1 flex place-items-center col-start-7 col-span-1 md:col-start-7 transition-all justify-self-end px-1 {index ==
+									class="row-span-2 text-primary group-hover:text-tertiary row-start-1 flex place-items-center col-start-7 col-span-1 md:col-start-7 transition-all justify-self-end px-1 {index ==
 									activeMember
 										? 'rotate-180 group-hover:-translate-y-1'
 										: 'group-hover:translate-y-1'} "
@@ -184,7 +184,7 @@
 									<div
 										in:fade
 										out:fade
-										class="flex flex-col text-tertiary-dark md:flex-row justify-self-start py-1 md:h-fit justify-between md:w-fit md:gap-6 md:mx-auto md:self-center md:col-start-4 md:col-span-3">
+										class="flex flex-col text-tertiary md:flex-row justify-self-start py-1 md:h-fit justify-between md:w-fit md:gap-6 md:mx-auto md:self-center md:col-start-4 md:col-span-3">
 										{#if socialLinks['instagram']}
 											<a href={socialLinks['instagram']} class="">
 												<img

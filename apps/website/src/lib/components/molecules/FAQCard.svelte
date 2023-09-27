@@ -11,7 +11,7 @@
 
 <button
 	on:click={toggle}
-	class="bg-surface-dark border-1 border-primary-dark/50 py-4 flex flex-col px-3 rounded-md shadow-lg text-left transition-all duration-300 w-full max-w-3xl">
+	class="bg-surface border-1 border-primary/50 py-4 flex flex-col px-3 rounded-md shadow-lg text-left transition-all duration-300 w-full max-w-3xl">
 	<div class="flex flex-row items-center justify-between w-full">
 		<h3 class="font-bold title-medium">
 			{question}
@@ -20,7 +20,7 @@
 		<span
 			class="justify-self-end self-center transition-all ease-in duration-200"
 			style={isOpen ? 'transform: rotate(180deg)' : ''}>
-			<Icon icon="down-arrow" height="22" width="22" class="text-primary-dark" />
+			<Icon icon="down-arrow" height="22" width="22" class="text-primary" />
 		</span>
 	</div>
 	{#if isOpen}

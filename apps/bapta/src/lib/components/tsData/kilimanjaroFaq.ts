@@ -45,7 +45,7 @@ fitness are important. The trek is challenging and involves walking for several 
 		question: `What should I pack for the Kilimanjaro trek?`,
 		answer: `Pack wisely and include essential items like appropriate clothing
 (layers are key), sturdy hiking boots, a good quality backpack, trekking poles, snacks, and a water bottle.
-It's important to pack light while ensuring you have everything you need.`,
+It's important to pack  while ensuring you have everything you need.`,
 	},
 	{
 		index: 7,

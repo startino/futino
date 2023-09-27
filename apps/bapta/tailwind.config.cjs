@@ -56,128 +56,99 @@ const config = {
 				},
 			},
 
-			colors: {
-				// Primary tones
-				primary: {
-					light: 'rgb(var(--md-sys-color-primary-light)/ <alpha-value>)',
-					dark: 'rgb(var(--md-sys-color-primary-dark) / <alpha-value>)',
-					on: {
-						light: 'rgb(var(--md-sys-color-on-primary-light)/ <alpha-value>) ',
-						dark: 'rgb(var(--md-sys-color-on-primary-dark) / <alpha-value>) ',
-					},
-					container: {
-						light: 'rgb(var(--md-sys-color-primary-container-light)/ <alpha-value>) ',
-						dark: 'rgb(var(--md-sys-color-primary-container-dark) / <alpha-value>) ',
-						on: {
-							light: 'rgb(var(--md-sys-color-on-primary-container-light)/ <alpha-value>) ',
-							dark: 'rgb(var(--md-sys-color-on-primary-container-dark) / <alpha-value>) ',
-						},
-					},
-					inverse: {
-						light: 'rgb(var(--md-sys-color-inverse-primary-light)/ <alpha-value>) ',
-						dark: 'rgb(var(--md-sys-color-on-primary-container-dark) / <alpha-value>) ',
-					},
-				},
+      colors: {
+	// Primary tones
+	primary: {
+		DEFAULT: 'rgb(var(--md-sys-color-primary))',
+		on: {
+			DEFAULT: 'rgb(var(--md-sys-color-on-primary))',
+		},
+		container: {
+			DEFAULT: 'rgb(var(--md-sys-color-primary-container))',
+			on: {
+				DEFAULT: 'rgb(var(--md-sys-color-on-primary-container))',
+			},
+		},
+		inverse: {
+			DEFAULT: 'rgb(var(--md-sys-color-inverse-primary))',
+		},
+	},
 
-				// Secondary tones
-				secondary: {
-					light: 'rgb(var(--md-sys-color-secondary-light)/ <alpha-value>) ',
-					dark: 'rgb(var(--md-sys-color-secondary-dark) / <alpha-value>) ',
-					on: {
-						light: 'rgb(var(--md-sys-color-on-secondary-light)/ <alpha-value>) ',
-						dark: 'rgb(var(--md-sys-color-on-secondary-dark) / <alpha-value>) ',
-					},
-					container: {
-						light: 'rgb(var(--md-sys-color-secondary-container-light)/ <alpha-value>) ',
-						dark: 'rgb(var(--md-sys-color-secondary-container-dark) / <alpha-value>) ',
-						on: {
-							light: 'rgb(var(--md-sys-color-on-secondary-container-light)/ <alpha-value>) ',
-							dark: 'rgb(var(--md-sys-color-on-secondary-container-dark) / <alpha-value>) ',
-						},
-					},
-				},
-
-				// Tertiary tones
-				tertiary: {
-					light: 'rgb(var(--md-sys-color-tertiary-light)/ <alpha-value>) ',
-					dark: 'rgb(var(--md-sys-color-tertiary-dark) / <alpha-value>) ',
-					on: {
-						light: 'rgb(var(--md-sys-color-on-tertiary-light)/ <alpha-value>) ',
-						dark: 'rgb(var(--md-sys-color-on-tertiary-dark) / <alpha-value>) ',
-					},
-					container: {
-						light: 'rgb(var(--md-sys-color-tertiary-container-light)/ <alpha-value>) ',
-						dark: 'rgb(var(--md-sys-color-tertiary-container-dark) / <alpha-value>) ',
-						on: {
-							light: 'rgb(var(--md-sys-color-on-tertiary-container-light)/ <alpha-value>) ',
-							dark: 'rgb(var(--md-sys-color-on-tertiary-container-dark) / <alpha-value>) ',
-						},
-					},
-				},
-
-				// Neutral tones (md3 names them as 'surface')
-				surface: {
-					light: 'rgb(var(--md-sys-color-surface-light)/ <alpha-value>) ',
-					dark: 'rgb(var(--md-sys-color-surface-dark) / <alpha-value>) ',
-					on: {
-						light: 'rgb(var(--md-sys-color-on-surface-light)/ <alpha-value>) ',
-						dark: 'rgb(var(--md-sys-color-on-surface-dark) / <alpha-value>) ',
-						inverse: {
-							light: 'rgb(var(--md-sys-color-inverse-on-surface-light)/ <alpha-value>) ',
-							dark: 'rgb(var(--md-sys-color-inverse-on-surface-dark) / <alpha-value>) ',
-						},
-					},
-					// Neutral variant tones
-					variant: {
-						light: 'rgb(var(--md-sys-color-surface-variant-light)/ <alpha-value>) ',
-						dark: 'rgb(var(--md-sys-color-surface-variant-dark) / <alpha-value>) ',
-						on: {
-							light: 'rgb(var(--md-sys-color-on-surface-variant-light)/ <alpha-value>) ',
-							dark: 'rgb(var(--md-sys-color-on-surface-variant-dark) / <alpha-value>) ',
-						},
-					},
-				},
-
-				// Background tones
-				background: {
-					light: 'rgb(var(--md-sys-color-background-light)/ <alpha-value>) ',
-					dark: 'rgb(var(--md-sys-color-background-dark) / <alpha-value>) ',
-					on: {
-						light: 'rgb(var(--md-sys-color-on-background-light)/ <alpha-value>) ',
-						dark: 'rgb(var(--md-sys-color-on-background-dark) / <alpha-value>) ',
-					},
-				},
-
-				// Outline tones
-				outline: {
-					light: 'rgb(var(--md-sys-color-outline-light)/ <alpha-value>) ',
-					dark: 'rgb(var(--md-sys-color-outline-dark) / <alpha-value>) ',
-					variant: {
-						light: 'rgb(var(--md-sys-color-outline-variant-light)/ <alpha-value>) ',
-						dark: 'rgb(var(--md-sys-color-outline-variant-dark) / <alpha-value>) ',
-					},
-				},
-
-				// On Error tones
-				error: {
-					light: 'rgb(var(--md-sys-color-error-light)/ <alpha-value>) ',
-					dark: 'rgb(var(--md-sys-color-error-dark) / <alpha-value>) ',
-					on: {
-						light: 'rgb(var(--md-sys-color-on-error-light)/ <alpha-value>) ',
-						dark: 'rgb(var(--md-sys-color-on-error-dark) / <alpha-value>) ',
-					},
-					container: {
-						light: 'rgb(var(--md-sys-color-error-container-light)/ <alpha-value>) ',
-						dark: 'rgb(var(--md-sys-color-error-container-light)/ <alpha-value>) ',
-						on: {
-							light: 'rgb(var(--md-sys-color-on-error-container-light)/ <alpha-value>) ',
-							dark: 'rgb(var(--md-sys-color-on-error-container-dark) / <alpha-value>) ',
-						},
-					},
-				},
+	// Secondary tones
+	secondary: {
+		DEFAULT: 'rgb(var(--md-sys-color-secondary))',
+		on: {
+			DEFAULT: 'rgb(var(--md-sys-color-on-secondary))',
+		},
+		container: {
+			DEFAULT: 'rgb(var(--md-sys-color-secondary-container))',
+			on: {
+				DEFAULT: 'rgb(var(--md-sys-color-on-secondary-container))',
 			},
 		},
 	},
+
+	// Tertiary tones
+	tertiary: {
+		DEFAULT: 'rgb(var(--md-sys-color-tertiary))',
+		on: {
+			DEFAULT: 'rgb(var(--md-sys-color-on-tertiary))',
+		},
+		container: {
+			DEFAULT: 'rgb(var(--md-sys-color-tertiary-container))',
+			on: {
+				DEFAULT: 'rgb(var(--md-sys-color-on-tertiary-container))',
+			},
+		},
+	},
+
+	// Neutral tones (md3 names them as 'surface')
+	surface: {
+		DEFAULT: 'rgb(var(--md-sys-color-surface))',
+		on: {
+			DEFAULT: 'rgb(var(--md-sys-color-on-surface))',
+			inverse: {
+				DEFAULT: 'rgb(var(--md-sys-color-inverse-on-surface))',
+			},
+		},
+		// Neutral variant tones
+		variant: {
+			DEFAULT: 'rgb(var(--md-sys-color-surface-variant))',
+			on: {
+				DEFAULT: 'rgb(var(--md-sys-color-on-surface-variant))',
+			},
+		},
+	},
+
+	// Background tones
+	background: {
+		DEFAULT: 'rgb(var(--md-sys-color-background))',
+		on: {
+			DEFAULT: 'rgb(var(--md-sys-color-on-background))',
+		},
+	},
+
+	outline: {
+		DEFAULT: 'rgb(var(--md-sys-color-outline))',
+		variant: {
+			DEFAULT: 'rgb(var(--md-sys-color-outline-variant))',
+		},
+	},
+
+	// On Error tones
+	error: {
+		DEFAULT: 'rgb(var(--md-sys-color-error))',
+		on: {
+			DEFAULT: 'rgb(var(--md-sys-color-on-error))',
+		},
+		container: {
+			DEFAULT: 'rgb(var(--md-sys-color-error-container))',
+			on: {
+				DEFAULT: 'rgb(var(--md-sys-color-on-error-container))',
+			},
+		},
+	},
+};
 	plugins: [require('@tailwindcss/typography'), require('@tailwindcss/forms')],
 };
 

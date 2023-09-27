@@ -24,8 +24,10 @@
   export const companyName: string = "Bapta Safaris";
 
   // Props
-  /** Provide classes to set border styles. The default is: md:border-secondary-light/50 md:dark:border-primary-dark/50 */
-  export const border: string = "border-outline-dark ";
+
+  /** Provide classes to set border styles. The default is: md: md:border-primary/50 */
+  export const border: string = "border-outline ";
+
 </script>
 
 <footer

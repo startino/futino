@@ -66,7 +66,7 @@
 	<button
 		type="submit"
 		id="submit"
-		class="flex w-full mx-1.5 relative border-2 border-primary-dark justify-center tracking-wide items-center py-3 my-1 px-6 font-bold rounded-md shadow-2xl group hover:text-primary-container-on-dark hover:bg-primary-container-dark/60 transition-all duration-300 hover:scale-[98%] text-primary-on-dark bg-primary-dark">
+		class="flex w-full mx-1.5 relative border-2 border-primary justify-center tracking-wide items-center py-3 my-1 px-6 font-bold rounded-md shadow-2xl group hover:text-primary-container-on hover:bg-primary-container/60 transition-all duration-300 hover:scale-[98%] text-primary-on bg-primary">
 		<h1 class="title-large">Submit</h1>
 	</button>
 
@@ -77,10 +77,10 @@
 
 <style>
 	.placeholder {
-		@apply absolute pointer-events-none -left-1/2 invisible group-hover:visible group-hover:left-3 group-hover:right-auto text-left top-1/2 -translate-y-1/2 transition-all font-light text-outline-dark;
+		@apply absolute pointer-events-none -left-1/2 invisible group-hover:visible group-hover:left-3 group-hover:right-auto text-left top-1/2 -translate-y-1/2 transition-all font-light text-outline;
 	}
 	.input {
-		@apply w-full h-fit px-3 py-3 leading-tight text-secondary-dark bg-surface-dark border border-primary-dark rounded focus:shadow-glow focus:shadow-tertiary-dark/20 focus:outline-none;
-		@apply w-full h-fit px-3 py-3 rounded-sm leading-tight text-secondary-dark bg-surface-dark border border-primary-dark rounded-r appearance-none;
+		@apply w-full h-fit px-3 py-3 leading-tight text-secondary bg-surface border border-primary rounded focus:shadow-glow focus:shadow-tertiary/20 focus:outline-none;
+		@apply w-full h-fit px-3 py-3 rounded-sm leading-tight text-secondary bg-surface border border-primary rounded-r appearance-none;
 	}
 </style>

@@ -18,7 +18,7 @@
 	const handlePromotionToggle = (tabValue: number) => () => (activeTabValue = tabValue);
 </script>
 
-<main class="text-left border-b shadow-2xl border-primary-dark/40">
+<main class="text-left border-b shadow-2xl border-primary/40">
 	<section class="shadow-2xl">
 		<div
 			class="flex flex-col items-center gap-8 justify-items-center pt-48 text-center inner-section">
@@ -52,7 +52,7 @@
 							<h2 class=" headline-large uppercase font-extrabold">
 								{name}
 							</h2>
-							<h3 class="pb-6 title-medium text-outline-dark text-outline">
+							<h3 class="pb-6 title-medium text-outline text-outline">
 								{subtitle}
 							</h3>
 						</div>
@@ -60,16 +60,16 @@
 							<div class="flex flex-row items-end gap-2">
 								<div class="flex flex-row place-items-center">
 									<h1
-										class="font-extrabold text-primary-dark tracking-tighter display-large leading-none">
+										class="font-extrabold text-primary tracking-tighter display-large leading-none">
 										{cycle == 'yearly'
 											? formatter.format((cost * 0.833) / 2)
 											: formatter.format(cost / 2)}
 									</h1>
 								</div>
 								<div
-									class="relative flex flex-row text-outline-dark place-items-center w-fit overflow-hidden px-0.5 py-1">
+									class="relative flex flex-row text-outline place-items-center w-fit overflow-hidden px-0.5 py-1">
 									<span
-										class="absolute right-0 w-full top-1/2 content-[''] border-t-2 border-outline-dark rotate-45" />
+										class="absolute right-0 w-full top-1/2 content-[''] border-t-2 border-outline rotate-45" />
 									<h1 class="font-extrabold tracking-tighter leading-none headline-medium">
 										{cycle == 'yearly' ? formatter.format(cost * 0.833) : formatter.format(cost)}
 									</h1>
@@ -80,16 +80,16 @@
 								<Tooltip
 									content={`To celebrate our recent launch and to build lasting relationships, we're offering this special first-year discount. 🎉`}
 									direction="left">
-									<Icon icon="info" width="16" height="16" class="text-outline-dark my-auto" />
+									<Icon icon="info" width="16" height="16" class="text-outline my-auto" />
 								</Tooltip>
 							</div>
-							<h3 class="body-medium text-outline-dark">per month, billed {cycle}</h3>
+							<h3 class="body-medium text-outline">per month, billed {cycle}</h3>
 						</div>
 					</div>
 				{/each}
 				{#each Object.entries(features) as [catagoryName, catagoryFeatures]}
 					<div class="flex pb-0 grid-item border-none col-span-4 mt-2 mb-1">
-						<h1 class="mt-auto uppercase title-large text-outline-dark place-self-end">
+						<h1 class="mt-auto uppercase title-large text-outline place-self-end">
 							{catagoryName}
 						</h1>
 					</div>
@@ -100,7 +100,7 @@
 								{featureName}
 							</h2>
 							<Tooltip content={featureAbout} direction="left">
-								<Icon icon="info" width="14" height="14" class="text-outline-dark" />
+								<Icon icon="info" width="14" height="14" class="text-outline" />
 							</Tooltip>
 						</div>
 						{#each norpTiers as tier}
@@ -110,7 +110,7 @@
 										icon="checkmark"
 										height="24"
 										width="24"
-										class="-ml-0.5 text-secondary-dark" />
+										class="-ml-0.5 text-secondary" />
 								{:else}
 									<h2 class=" title-medium text-left">
 										{tier.features[catagoryName][featureName]}
@@ -138,13 +138,13 @@
 				<div class="flex flex-row">
 					<!-- Mobile text -->
 					<div
-						class="flex md:hidden flex-col gap-2 pb-4 font-extrabold tracking-wider text-center border-b-4 md:-space-y-4 headline-large sm:display-small md:text-left md:pl-4 md:border-b-0 md:border-l-4 md:pb-0 border-primary-dark md:display-medium lg:display-large">
+						class="flex md:hidden flex-col gap-2 pb-4 font-extrabold tracking-wider text-center border-b-4 md:-space-y-4 headline-large sm:display-small md:text-left md:pl-4 md:border-b-0 md:border-l-4 md:pb-0 border-primary md:display-medium lg:display-large">
 						<h1 class="uppercase">Got questions?</h1>
 						<h1 class="uppercase">Not convinced?</h1>
 					</div>
 					<!-- md+ text-->
 					<div
-						class="hidden md:flex flex-col gap-2 pb-4 font-extrabold tracking-wider text-center border-b-4 md:-space-y-4 headline-large sm:display-small md:text-left md:pl-4 md:border-b-0 md:border-l-4 md:pb-0 border-primary-dark md:display-medium lg:display-large">
+						class="hidden md:flex flex-col gap-2 pb-4 font-extrabold tracking-wider text-center border-b-4 md:-space-y-4 headline-large sm:display-small md:text-left md:pl-4 md:border-b-0 md:border-l-4 md:pb-0 border-primary md:display-medium lg:display-large">
 						<InView fly={{ x: -200, y: 0 }} duration={250} class="">
 							<h1 class="uppercase">Got questions?</h1>
 						</InView>
@@ -170,6 +170,6 @@
 
 <style>
 	.grid-item {
-		@apply border-t border-outline-dark/50 w-full px-3 py-2 h-full;
+		@apply border-t border-outline/50 w-full px-3 py-2 h-full;
 	}
 </style>

@@ -68,7 +68,7 @@
 
 <!--Hero-->
 <section
-	class="w-full h-screen shadow-lg shadow-background-dark card-shadow px-10 lg:px-20 xl:px-40 pt-60 place-items-center border-b border-secondary-light/40 dark:border-secondary-dark/40 bg-zanzibar bg-cover object-contain bg-center">
+	class="w-full h-screen shadow-lg shadow-background card-shadow px-10 lg:px-20 xl:px-40 pt-60 place-items-center border-b  border-secondary/40 bg-zanzibar bg-cover object-contain bg-center">
 	<div class="flex flex-col max-w-2xl mx-auto mt-8 mb-64 text-center space-y-2">
 		<h1 class="font-bold text-black display-medium">Escape to Tanzania's Paradise</h1>
 		<h1 class="pb-6 body-large text-black">
@@ -87,8 +87,8 @@
 <section class="section">
 	<div class="inner-section">
 		<div class="">
-			<h2 class="headline-large font-extrabold text-primary-dark">Activities</h2>
-			<p class="title-medium text-primary-dark">
+			<h2 class="headline-large font-extrabold text-primary">Activities</h2>
+			<p class="title-medium text-primary">
 				Explore a range of activities during your beach holiday in Zanzibar
 			</p>
 		</div>
@@ -100,7 +100,7 @@
 						<img src={img_path} alt={label} class="object-cover w-full h-64 rounded-lg" />
 					</div>
 					<div
-						class="flex flex-col items-center h-full text-surface-on-dark gap-y-3 p-6 shadow-md hover:shadow-lg">
+						class="flex flex-col items-center h-full text-surface-on gap-y-3 p-6 shadow-md hover:shadow-lg">
 						<h3 class=" font-semibold title-large">
 							{label}
 						</h3>
@@ -123,7 +123,7 @@
 <!--Standalone Zanzibar Packages-->
 <section class="section">
 	<div class="inner-section flex flex-col text-left gap-4">
-		<h2 class="headline-large font-extrabold text-primary-dark">
+		<h2 class="headline-large font-extrabold text-primary">
 			Simply looking for a beach holiday? <br /> Bapta has just that.
 		</h2>
 		<p class="max-w-2xl title-small">
@@ -152,8 +152,8 @@
 <!--Accomodations Section-->
 <section class="section">
 	<div class="inner-section">
-		<h2 class="headline-large font-semibold text-primary-dark">Accomodation</h2>
-		<p class="max-w-2xl mx-auto mt-4 title-medium text-primary-dark">
+		<h2 class="headline-large font-semibold text-primary">Accomodation</h2>
+		<p class="max-w-2xl mx-auto mt-4 title-medium text-primary">
 			Explore a range of accomodations during your beach holiday in Zanzibar
 		</p>
 		<div class="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-3 mt-8">
@@ -166,7 +166,7 @@
 							class="object-cover w-full h-64 rounded-lg" />
 					</div>
 					<div
-						class="flex flex-col p-6 self-stretch gap-y-3 rounded-lg shadow-md hover:shadow-lg text-surface-on-dark">
+						class="flex flex-col p-6 self-stretch gap-y-3 rounded-lg shadow-md hover:shadow-lg text-surface-on">
 						<h3 class="title-large font-semibold">
 							{accomodation.label}
 						</h3>
@@ -182,6 +182,6 @@
 
 <style>
 	.image_card {
-		@apply max-w-md flex flex-col h-full bg-surface-dark rounded-lg shadow-lg;
+		@apply max-w-md flex flex-col h-full bg-surface rounded-lg shadow-lg;
 	}
 </style>

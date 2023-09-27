@@ -11,7 +11,7 @@
 </script>
 
 <main
-  class="py-40 px-4 border-b shadow-2xl sm:px-6 md:px-8 border-primary-dark/40"
+  class="py-40 px-4 border-b shadow-2xl sm:px-6 md:px-8 border-primary/40"
 >
   <article
     class="text-left prose prose-sm md:prose-base lg:prose-lg xl:prose-xl prose-invert prose-main justify-items-center space-y-8 mx-auto"
@@ -23,7 +23,7 @@
     <!-- svelte-ignore a11y-click-events-have-key-events -->
     <!-- <button
 			on:click={handleOnRequestClick}
-			class="bg-surface-dark rounded-lg w-72 md:w-96 text-primary-dark">
+			class="bg-surface rounded-lg w-72 md:w-96 text-primary">
 			<h1 class="display-small">Request Quote</h1>
 		</button> -->
     <div

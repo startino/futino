@@ -31,10 +31,10 @@
 
 <section class="section overflow-hidden relative" id="faqs">
 	<div
-		class="absolute bottom-0 w-screen bg-gradient-to-t from-surface-variant-dark to-transparent h-36" />
+		class="absolute bottom-0 w-screen bg-gradient-to-t from-surface-variant to-transparent h-36" />
 	<div class="inner-section grid grid-cols-1 md:grid-cols-3 items-center gap-3 h-[500px]">
 		<div
-			class="col-span-1 flex flex-col gap-y-4 items-center self-start md:items-start md:text-left text-surface-on-dark">
+			class="col-span-1 flex flex-col gap-y-4 items-center self-start md:items-start md:text-left text-surface-on">
 			<h1 class="font-semibold headline-medium md:display-medium leading-tight">
 				Your Safari Questions, Answered
 			</h1>
@@ -53,7 +53,7 @@
 				<section>
 					<div class="w-full py-12 display-small inline">
 						<h1 class="">Sorry, we couldn't find your question.</h1>
-						<a href="/contact" class="underline text-tertiary-dark">Try Asking Us Here</a>
+						<a href="/contact" class="underline text-tertiary">Try Asking Us Here</a>
 					</div>
 				</section>
 			{:else if filteredFaqs.length > 0}

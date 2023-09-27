@@ -1,6 +1,6 @@
 <a
 	href={$$props.href}
-	class="flex flex-col h-full w-full text-left transition-all group hover:scale-105 duration-300 place-items-start rounded-lg shadow-lg shadow-surface-dark bg-surface-dark">
+	class="flex flex-col h-full w-full text-left transition-all group hover:scale-105 duration-300 place-items-start rounded-lg shadow-lg shadow-surface bg-surface">
 	<div class="flex shrink-0 h-80 w-full relative overflow-hidden bg-black rounded-md">
 		<img
 			src={$$props.thumbnail}

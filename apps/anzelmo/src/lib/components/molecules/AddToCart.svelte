@@ -13,6 +13,6 @@
 	};
 </script>
 
-<button on:click={() => addToCart(photoData)} class="bg-tertiary-dark rounded-lg">
-	<Icon icon="cart" class="stroke-tertiary-on-dark p-2" strokeColor="" />
+<button on:click={() => addToCart(photoData)} class="bg-tertiary rounded-lg">
+	<Icon icon="cart" class="stroke-tertiary-on p-2" strokeColor="" />
 </button>

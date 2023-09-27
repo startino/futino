@@ -11,7 +11,7 @@
 
 <button
 	on:click={toggle}
-	class="bg-surface-dark py-4 flex flex-col px-3 gap-y-5 rounded-md shadow-lg text-left transition-all duration-300 w-full max-w-3xl">
+	class="bg-surface py-4 flex flex-col px-3 gap-y-5 rounded-md shadow-lg text-left transition-all duration-300 w-full max-w-3xl">
 	<div class="flex flex-row items-center w-full">
 		<h3 class="font-bold title-medium">
 			{question}

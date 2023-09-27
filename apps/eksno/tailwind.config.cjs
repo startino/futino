@@ -1,12 +1,22 @@
 import { join } from 'path';
 import fColors from '../../futino-colors.cjs';
+import fAnimations from '../../futino-animations.cjs';
+import fKeyframes from '../../futino-keyframes.cjs';
+import fPadding from '../../futino-padding.cjs';
+import fTypography from '../../futino-typography.cjs';
 
 const alpha = '<alpha-value>';
 
-const config = {
-	
 
-	darkMode: 'class',
+const config = {
+	content: [
+		'./src/**/*.{html,js,svelte,ts}',
+		join(require.resolve('lorc'),
+			'../**/*.{html,js,svelte,ts}',
+		),
+	],
+
+	DEFAULTMode: 'class',
 
 	theme: {
 		extend: {
@@ -41,7 +51,7 @@ const config = {
 				},
 			},
 
-			colors: fColors.tailwind,
+			colors: fColors,
 
 			typography: ({ colors }) => ({
 				main: {
@@ -49,7 +59,7 @@ const config = {
 						'--tw-prose-body': colors.neutral[700],
 						'--tw-prose-headings': colors.neutral[900],
 						'--tw-prose-lead': colors.neutral[600],
-						'--tw-prose-links': fColors.tertiary.light,
+						'--tw-prose-links': fColors.tertiary.DEFAULT,
 						'--tw-prose-bold': colors.neutral[900],
 						'--tw-prose-counters': colors.neutral[500],
 						'--tw-prose-bullets': colors.neutral[300],
@@ -65,13 +75,13 @@ const config = {
 						'--tw-prose-invert-body': colors.neutral[300],
 						'--tw-prose-invert-headings': colors.white,
 						'--tw-prose-invert-lead': colors.neutral[400],
-						'--tw-prose-invert-links': fColors.tailwind.tertiary.dark.replace(alpha, 1),
+						'--tw-prose-invert-links': fColors.tailwind.tertiary.DEFAULT.replace(alpha, 1),
 						'--tw-prose-invert-bold': colors.white,
 						'--tw-prose-invert-counters': colors.neutral[400],
-						'--tw-prose-invert-bullets': fColors.tailwind.secondary.dark.replace(alpha, 0.4),
+						'--tw-prose-invert-bullets': fColors.tailwind.secondary.DEFAULT.replace(alpha, 0.4),
 						'--tw-prose-invert-hr': colors.neutral[700],
 						'--tw-prose-invert-quotes': colors.neutral[100],
-						'--tw-prose-invert-quote-borders': fColors.tailwind.secondary.dark.replace(alpha, 0.3),
+						'--tw-prose-invert-quote-borders': fColors.tailwind.secondary.DEFAULT.replace(alpha, 0.3),
 						'--tw-prose-invert-captions': colors.neutral[400],
 						'--tw-prose-invert-code': colors.white,
 						'--tw-prose-invert-pre-code': colors.neutral[300],

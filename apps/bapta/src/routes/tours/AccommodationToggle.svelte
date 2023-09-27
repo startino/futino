@@ -22,17 +22,17 @@
 </script>
 
 <div
-  class="flex flex-col max-w-xl m-2 w-fit border rounded-2xl border-secondary-dark/20"
+  class="flex flex-col max-w-xl m-2 w-fit border rounded-2xl border-secondary/20"
 >
   <div class="relative flex flex-row gap-2 px-2 py-4 items-center text-center">
     <div
-      class="h-14 md:h-[4.5rem] absolute border-2 mx-2 rounded-xl border-primary-dark transition-all duration-500 ease-in-out"
+      class="h-14 md:h-[4.5rem] absolute border-2 mx-2 rounded-xl border-primary transition-all duration-500 ease-in-out"
       style="width: {button_widths[activeTabValue] - 4}px; {positionClass};"
     />
 
     {#each promotions as promotion, i}
       <!--{activeTabValue == promotion.index
-					? 'active border-2 rounded-xl border-primary-light dark:border-primary-dark'
+					? 'active border-2 rounded-xl  border-primary'
 					: -->
       <div
         class="py-2 rounded-xl transition-all duration-75 px-3 {activeTabValue ==
