@@ -75,13 +75,13 @@ const config = {
 						'--tw-prose-invert-body': colors.neutral[300],
 						'--tw-prose-invert-headings': colors.white,
 						'--tw-prose-invert-lead': colors.neutral[400],
-						'--tw-prose-invert-links': fColors.tailwind.tertiary.DEFAULT.replace(alpha, 1),
+						'--tw-prose-invert-links': fColors.tertiary.DEFAULT.replace(alpha, 1),
 						'--tw-prose-invert-bold': colors.white,
 						'--tw-prose-invert-counters': colors.neutral[400],
-						'--tw-prose-invert-bullets': fColors.tailwind.secondary.DEFAULT.replace(alpha, 0.4),
+						'--tw-prose-invert-bullets': fColors.secondary.DEFAULT.replace(alpha, 0.4),
 						'--tw-prose-invert-hr': colors.neutral[700],
 						'--tw-prose-invert-quotes': colors.neutral[100],
-						'--tw-prose-invert-quote-borders': fColors.tailwind.secondary.DEFAULT.replace(alpha, 0.3),
+						'--tw-prose-invert-quote-borders': fColors.secondary.DEFAULT.replace(alpha, 0.3),
 						'--tw-prose-invert-captions': colors.neutral[400],
 						'--tw-prose-invert-code': colors.white,
 						'--tw-prose-invert-pre-code': colors.neutral[300],
@@ -92,8 +92,8 @@ const config = {
 				},
 			}),
 		},
-	},
 	plugins: [require('@tailwindcss/typography')],
-};
+}
+}
 
 module.exports = config;

@@ -6,8 +6,7 @@
 @layer components {
 	/* Custom */
 	.link {
-		@apply underline;
-		 
+		@apply underline; 
 		@apply text-tertiary;
 	}
 
@@ -19,9 +18,9 @@
 		@apply bg-left-bottom bg-gradient-to-r from-tertiary to-tertiary bg-[length:0%_2px] bg-no-repeat hover:bg-[length:100%_2px] transition-all duration-500;
 	}
 
-	/* Prevents default button  when pressed.*/
-	. {
-		 transparent;
+	/* Prevents default button highlighting when pressed.*/
+	.no-highlights {
+		-webkit-tap-highlight-color: transparent;
 		-webkit-touch-callout: none;
 		-webkit-user-select: none;
 		-khtml-user-select: none;
@@ -186,7 +185,7 @@
 @layer base {
 	:root {
 		--md-source: 77 49 49;
-		/* Universal */
+		/* dark */
 		--md-sys-color-primary: 255 179 179;
 		--md-sys-color-on-primary: 95 19 27;
 		--md-sys-color-primary-container: 126 42 47;
