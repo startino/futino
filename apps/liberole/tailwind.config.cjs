@@ -49,6 +49,6 @@ const config = {
 			},
       colors: fColors,
       plugins: [],
-};
+}}}
 
 module.exports = config;
