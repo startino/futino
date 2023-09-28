@@ -40,7 +40,8 @@
 </script>
 
 <section
-  class="h-screen bg-[url({bgImg}')] bg-center bg-cover w-full grid {typography} place-items-center"
+  class="h-screen {bgImg} bg-center bg-cover w-full grid {typography} place-items-center"
+  style=""
 >
   <div
     class="flex flex-col items-center {justifyClass()} my-auto gap-8 mx-2 sm:mx-4 md:mx-6"

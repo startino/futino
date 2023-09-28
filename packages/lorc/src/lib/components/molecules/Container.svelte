@@ -3,15 +3,16 @@
 
   /** Provide the max widths of the container at different screen sizes. */
   export let sizes: CssClasses =
-    "max-w-xs xs:max-w-md sm:max-w-lg md:max-w-xl lg:max-w-2xl";
+    "max-w-md xs:max-w-lg sm:max-w-xl md:max-w-3xl lg:max-w-5xl xl:max-w-6xl 2xl:max-w-7xl";
   /** Provide classes to set border styles. The default is: md: md:border-primary/50 */
   export let border: CssClasses = "md:border-primary/50";
   /** Provide classes to set padding. */
-  export let padding: CssClasses = "";
+  export let padding: CssClasses =
+    "mx-4 sm:mx-6 md:mx-8 my-12 sm:my-24 md:my-32;";
   /** Provide classes to define a box shadow. */
   export let shadow: CssClasses = "";
 
-  $: classesBase = `${sizes} ${padding} ${shadow} ${border} ${$$props.class}`;
+  $: classesBase = `w-full ${sizes} ${padding} ${shadow} ${border} ${$$props.class}`;
 </script>
 
 <!--

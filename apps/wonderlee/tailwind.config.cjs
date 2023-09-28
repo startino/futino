@@ -20,11 +20,14 @@ const config = {
 
 	theme: {
 		extend: {
-			padding: fPadding,
+      backgroundImage: 
+      {
+        "landing": "url('/pre_mockup_designs/garage_ref.png')"
+      },
+      padding: fPadding,
 			fontFamily: {
-				bilbo: ['Bilbo Swash Caps'],
-				ubuntu: ['Ubuntu'],
-			},
+         'sans': ['Roboto Slab' ],
+					},
 
 			animation: fAnimations,
 			keyframes: fKeyframes,

@@ -1,8 +1,6 @@
 <script lang="ts">
   import { Hero, Prose, Button, Container, AnimatedCounter } from "lorc";
 
-  const heroBg = "/pre_mockup_designs/garage_ref.png";
-
   const CTAButtons = {
     "Our work": {
       href: "/",
@@ -38,19 +36,19 @@
     title="Lorem ipsum, dolor sit amet consectetur adipisicing."
     subtitle="Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel odio mollitia excepturi laudantium nostrum sit!"
     justified="center"
-    bgImg={heroBg}
+    bgImg="bg-landing"
   />
-  <section>
+  <section class="grid place-items-center bg-secondary-container">
     <Container
-      class="bg-primary-container flex flex-row  justify-around mx-auto rounded-md"
+      class="bg-tertiary-container w-full flex flex-row justify-around rounded-sm my-12"
     >
       {#each Object.entries(statistics) as [label, { finalValue, startValue, increment }]}
         <AnimatedCounter class="text-center p-4" {startValue} {increment}>
           <svelte:fragment slot="value">
-            <h1 class="m-0 sm:m-0">{finalValue}</h1>
+            <h1 class="m-0 text-tertiary sm:m-0">{finalValue}</h1>
           </svelte:fragment>
           <svelte:fragment slot="label">
-            <h4 class="m-0 sm:m-0">{label}</h4>
+            <h4 class="m-0 sm:m-0 text-tertiary-container-on">{label}</h4>
           </svelte:fragment>
         </AnimatedCounter>
       {/each}
