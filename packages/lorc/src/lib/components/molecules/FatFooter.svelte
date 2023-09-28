@@ -1,7 +1,5 @@
 <script lang="ts">
   import Logo from "../atoms/Logo.svelte";
-  import { onMount } from "svelte";
-  import { stringify } from "postcss";
 
   // Props
   /**Provide the list of page links you'd like to put in the header.
@@ -33,8 +31,6 @@
     },
   };
 
-  export let fatFooter: boolean;
-
   /**Provide the company's name as text. If the name */
   export let companyName: string = "Company Name";
 
@@ -50,7 +46,7 @@
   /** Provide classes to set base styling for gap spacing. The default is: gap-6*/
   export let gap: string = "gap-6";
   /** Provide classes to set the base typography styling. The default is: body-small  text-primary*/
-  export let typography: string = "prose-invert  text-primary";
+  export let typography: string = "text-primary";
 </script>
 
 <footer

@@ -1,9 +1,11 @@
 <script lang="ts">
-
   import Logo from "../atoms/Logo.svelte";
   import { onMount } from "svelte";
   import Icon from "../atoms/Icon.svelte";
   import { fade, slide } from "svelte/transition";
+
+  // Types to get TailwindCSS Intellisense
+  import type { CssClasses } from "../../types.ts";
 
   // Props
   /**Provide the list of page links you'd like to put in the header.
@@ -27,19 +29,17 @@
 
   // Props (base styles)
   /** Provide classes to set background color. */
-  export let background: string = "";
+  export let background: CssClasses = "";
   /** Provide classes to set border styles. The default is: md: md:border-primary/50 */
-  export let border: string =
-    "md: md:border-primary/50";
+  export let border: CssClasses = "md:border-primary/50";
   /** Provide classes to set padding. */
-  export let padding: string = "";
+  export let padding: CssClasses = "";
   /** Provide classes to define a box shadow. */
-  export let shadow: string = "";
+  export let shadow: CssClasses = "";
   /** Provide classes to set base styling for gap spacing. The default is: gap-6*/
-  export let gap: string = "gap-6";
+  export let gap: CssClasses = "gap-6";
   /** Provide classes to set the base typography styling. The default is: body-small  text-primary*/
-  export let typography: string =
-    "prose-invert  text-primary";
+  export let typography: CssClasses = "text-primary";
 
   // Reactive Classes
   $: classesBase = `${
@@ -120,10 +120,7 @@
       <div class="flex {gap} ml-auto items-center">
         <nav class="hidden md:flex {gap}">
           {#each Object.entries(pages) as [name, href]}
-            <a
-              class="hover:text-tertiary"
-              {href}
-            >
+            <a class="hover:text-tertiary" {href}>
               <h5>
                 {name}
               </h5>
@@ -135,12 +132,10 @@
           class="pl-6 md:border-l items-center {border} {dualTheme
             ? 'flex'
             : 'hidden'}"
-        >
-
-        </div>
+        />
 
         <button
-          class="flex md:hidden  stroke-primary hover:stroke-tertiary"
+          class="flex md:hidden stroke-primary hover:stroke-tertiary"
           on:click={toggleMenu}
         >
           <Icon
