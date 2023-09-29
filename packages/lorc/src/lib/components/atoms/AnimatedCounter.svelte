@@ -47,7 +47,7 @@
   });
 </script>
 
-<div class="flex flex-col gap-4 w-full items-center {$$props.class} ">
+<div class="flex flex-col gap-4 items-center {$$props.class} ">
   <div class="flex flex-row" use:bindValue>
     <slot name="value" />
     <slot name="unit" />
