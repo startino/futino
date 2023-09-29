@@ -38,9 +38,9 @@
     justified="center"
     bgImg="bg-landing"
   />
-  <section class="grid place-items-center bg-secondary-container">
+  <section class="grid place-items-center">
     <Container
-      class="bg-tertiary-container w-full flex flex-row justify-around rounded-sm my-12"
+      class="bg-primary w-full flex flex-row justify-around rounded-md my-12"
     >
       {#each Object.entries(statistics) as [label, { finalValue, startValue, increment }]}
         <AnimatedCounter class="text-center p-4" {startValue} {increment}>
@@ -48,9 +48,23 @@
             <h1 class="m-0 text-tertiary sm:m-0">{finalValue}</h1>
           </svelte:fragment>
           <svelte:fragment slot="label">
-            <h4 class="m-0 sm:m-0 text-tertiary-container-on">{label}</h4>
+            <h4 class="m-0 sm:m-0 text-tertiary">{label}</h4>
           </svelte:fragment>
         </AnimatedCounter>
+      {/each}
+    </Container>
+  </section>
+
+  <section class="grid place-items-center">
+    <Container class="flex flex-row justify-around w-full">
+      {#each Array(3) as _, i}
+        <div
+          class="max-w-sm w-full h-[600px] bg-secondary-container mt-[{i *
+            150}px] rounded-md"
+        >
+          <!-- mt-[150px] mt-[300px] -->
+          <h3 class="text-secondary-container-on text-center">Text Here</h3>
+        </div>
       {/each}
     </Container>
   </section>
