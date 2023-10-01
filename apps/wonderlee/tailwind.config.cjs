@@ -1,5 +1,5 @@
 import { join } from 'path';
-import fColors from '../../futino-colors.cjs';
+import fColors from '../../futino-universal-colors.cjs';
 import fAnimations from '../../futino-animations.cjs';
 import fKeyframes from '../../futino-keyframes.cjs';
 import fPadding from '../../futino-padding.cjs';
