@@ -143,7 +143,7 @@
             Startup
           </h3>
           <p
-            class="rounded-full bg-primary px-2.5 py-1 text-xs font-semibold leading-5 text-surface-highlight-on"
+            class="rounded-full bg-tertiary px-2.5 py-1 text-xs font-semibold leading-5 text-surface-highlight-on"
           >
             Most popular
           </p>
@@ -269,7 +269,7 @@
         <a
           href="#"
           aria-describedby="tier-enterprise"
-          class="mt-6 block rounded-md py-2 px-3 text-center text-sm font-semibold leading-6 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 bg-surface-on text-surface hover:bg-secondary/80 focus-visible:outline-white"
+          class="mt-6 block rounded-md py-2 px-3 text-center text-sm font-semibold leading-6 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 bg-secondary text-white hover:bg-secondary/80 focus-visible:outline-white"
           >Buy plan</a
         >
         <ul
