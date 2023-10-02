@@ -3,29 +3,31 @@ const colors = {
 	primary: {
 		DEFAULT: 'rgb(var(--universal-primary))',
 		on: {
-			DEFAULT: 'rgb(var(--universal-on-primary))',
+			DEFAULT: 'rgb(var(--universal-primary-on))',
 		},
-		surface: {
-			DEFAULT: 'rgb(var(--universal-primary-surface))',
-			on: {
-				DEFAULT: 'rgb(var(--universal-on-primary-surface))',
 			},
-		},
-	},
 
 	// Secondary tones
 	secondary: {
 		DEFAULT: 'rgb(var(--universal-secondary))',
 		on: {
-			DEFAULT: 'rgb(var(--universal-on-secondary))',
+			DEFAULT: 'rgb(var(--universal-secondary-on))',
 		},
-		surface: {
-			DEFAULT: 'rgb(var(--universal-secondary-surface))',
-			on: {
-				DEFAULT: 'rgb(var(--universal-on-secondary-surface))',
-			},
+  },
+
+  // Surface tones
+  surface: {
+    	DEFAULT: 'rgb(var(--universal-surface))',
+		on: {
+			DEFAULT: 'rgb(var(--universal-surface-on))',
 		},
-	},
+    highlight: {
+    	DEFAULT: 'rgb(var(--universal-surface-highlight))',
+		on: {
+			DEFAULT: 'rgb(var(--universal-surface-highlight-on))',
+		},
+    }
+  },
 
 	// Tertiary tones
 	tertiary: {
@@ -33,41 +35,23 @@ const colors = {
 		on: {
 			DEFAULT: 'rgb(var(--universal-on-tertiary))',
 		},
-		surface: {
-			DEFAULT: 'rgb(var(--universal-tertiary-surface))',
-			on: {
-				DEFAULT: 'rgb(var(--universal-on-tertiary-surface))',
-			},
-		},
-	},
+  },
 
 	// Background tones
 	background: {
 		DEFAULT: 'rgb(var(--universal-background))',
 		on: {
-			DEFAULT: 'rgb(var(--universal-on-background))',
+			DEFAULT: 'rgb(var(--universal-background-on))',
 		},
 	},
 
-	outline: {
-		DEFAULT: 'rgb(var(--universal-outline))',
-		variant: {
-			DEFAULT: 'rgb(var(--universal-outline-variant))',
-		},
-	},
 
 	// On Error tones
 	error: {
 		DEFAULT: 'rgb(var(--universal-error))',
 		on: {
-			DEFAULT: 'rgb(var(--universal-on-error))',
+			DEFAULT: 'rgb(var(--universal-error-on))',
 		},
-		surface: {
-			DEFAULT: 'rgb(var(--universal-error-surface))',
-			on: {
-				DEFAULT: 'rgb(var(--universal-on-error-surface))',
-			},
-		},
-	},
+  },
 };
 module.exports = colors;

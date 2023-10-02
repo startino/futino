@@ -14,7 +14,7 @@
     </p>
     <div class="mt-16 flex justify-center">
       <fieldset
-        class="grid grid-cols-2 gap-x-1 rounded-full bg-primary-surface p-1 text-center text-xs font-semibold leading-5 text-white"
+        class="grid grid-cols-2 gap-x-1 rounded-full bg-surface-highlight p-1 text-center text-xs font-semibold leading-5 text-white"
       >
         <legend class="sr-only">Payment frequency</legend>
         <!-- Checked: "bg-indigo-500" -->
@@ -42,7 +42,7 @@
     <div
       class="isolate mx-auto mt-10 grid max-w-md grid-cols-1 gap-8 lg:mx-0 lg:max-w-none lg:grid-cols-3"
     >
-      <div class="rounded-3xl p-8 xl:p-10 ring-1 ring-secondary">
+      <div class="rounded-3xl p-8 xl:p-10 bg-surface">
         <div class="flex items-center justify-between gap-x-4">
           <h3
             id="tier-freelancer"
@@ -134,21 +134,21 @@
           </li>
         </ul>
       </div>
-      <div class="rounded-3xl p-8 xl:p-10 bg-white/5 ring-2 ring-primary">
+      <div class="rounded-3xl p-8 xl:p-10 bg-surface-highlight">
         <div class="flex items-center justify-between gap-x-4">
           <h3
             id="tier-startup"
-            class="text-lg font-semibold leading-8 text-white"
+            class="text-lg font-semibold leading-8 text-surface-highlight-on"
           >
             Startup
           </h3>
           <p
-            class="rounded-full bg-primary px-2.5 py-1 text-xs font-semibold leading-5 text-white"
+            class="rounded-full bg-primary px-2.5 py-1 text-xs font-semibold leading-5 text-surface-highlight-on"
           >
             Most popular
           </p>
         </div>
-        <p class="mt-4 text-sm leading-6 text-gray-300">
+        <p class="mt-4 text-sm leading-6 text-surface-highlight-on">
           A plan that scales with your rapidly growing business.
         </p>
         <p class="mt-6 flex items-baseline gap-x-1">
@@ -162,7 +162,7 @@
         <a
           href="#"
           aria-describedby="tier-startup"
-          class="mt-6 block rounded-md py-2 px-3 text-center text-sm font-semibold leading-6 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 bg-primary text-white shadow-sm hover:bg-primary/80 focus-visible:outline-indigo-500"
+          class="mt-6 block rounded-md py-2 px-3 text-center text-sm font-semibold leading-6 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 bg-tertiary text-white shadow-sm hover:bg-primary/80 focus-visible:outline-indigo-500"
           >Buy plan</a
         >
         <ul
@@ -246,9 +246,7 @@
           </li>
         </ul>
       </div>
-      <div
-        class="rounded-3xl p-8 xl:p-10 ring-1 ring-secondary bg-secondary-surface"
-      >
+      <div class="rounded-3xl p-8 xl:p-10 bg-surface">
         <div class="flex items-center justify-between gap-x-4">
           <h3
             id="tier-enterprise"
@@ -271,7 +269,7 @@
         <a
           href="#"
           aria-describedby="tier-enterprise"
-          class="mt-6 block rounded-md py-2 px-3 text-center text-sm font-semibold leading-6 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 bg-secondary text-white hover:bg-secondary/80 focus-visible:outline-white"
+          class="mt-6 block rounded-md py-2 px-3 text-center text-sm font-semibold leading-6 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 bg-surface-on text-surface hover:bg-secondary/80 focus-visible:outline-white"
           >Buy plan</a
         >
         <ul
