@@ -1,74 +1,71 @@
 const colors = {
 	// Primary tones
 	primary: {
-		DEFAULT: 'rgb(var(--md-sys-color-primary))',
+		DEFAULT: 'rgb(var(--universal-primary))',
 		on: {
-			DEFAULT: 'rgb(var(--md-sys-color-on-primary))',
+			DEFAULT: 'rgb(var(--universal-on-primary))',
 		},
 		surface: {
-			DEFAULT: 'rgb(var(--md-sys-color-primary-surface))',
+			DEFAULT: 'rgb(var(--universal-primary-surface))',
 			on: {
-				DEFAULT: 'rgb(var(--md-sys-color-on-primary-surface))',
+				DEFAULT: 'rgb(var(--universal-on-primary-surface))',
 			},
-		},
-		inverse: {
-			DEFAULT: 'rgb(var(--md-sys-color-inverse-primary))',
 		},
 	},
 
 	// Secondary tones
 	secondary: {
-		DEFAULT: 'rgb(var(--md-sys-color-secondary))',
+		DEFAULT: 'rgb(var(--universal-secondary))',
 		on: {
-			DEFAULT: 'rgb(var(--md-sys-color-on-secondary))',
+			DEFAULT: 'rgb(var(--universal-on-secondary))',
 		},
 		surface: {
-			DEFAULT: 'rgb(var(--md-sys-color-secondary-surface))',
+			DEFAULT: 'rgb(var(--universal-secondary-surface))',
 			on: {
-				DEFAULT: 'rgb(var(--md-sys-color-on-secondary-surface))',
+				DEFAULT: 'rgb(var(--universal-on-secondary-surface))',
 			},
 		},
 	},
 
 	// Tertiary tones
 	tertiary: {
-		DEFAULT: 'rgb(var(--md-sys-color-tertiary))',
+		DEFAULT: 'rgb(var(--universal-tertiary))',
 		on: {
-			DEFAULT: 'rgb(var(--md-sys-color-on-tertiary))',
+			DEFAULT: 'rgb(var(--universal-on-tertiary))',
 		},
 		surface: {
-			DEFAULT: 'rgb(var(--md-sys-color-tertiary-surface))',
+			DEFAULT: 'rgb(var(--universal-tertiary-surface))',
 			on: {
-				DEFAULT: 'rgb(var(--md-sys-color-on-tertiary-surface))',
+				DEFAULT: 'rgb(var(--universal-on-tertiary-surface))',
 			},
 		},
 	},
 
 	// Background tones
 	background: {
-		DEFAULT: 'rgb(var(--md-sys-color-background))',
+		DEFAULT: 'rgb(var(--universal-background))',
 		on: {
-			DEFAULT: 'rgb(var(--md-sys-color-on-background))',
+			DEFAULT: 'rgb(var(--universal-on-background))',
 		},
 	},
 
 	outline: {
-		DEFAULT: 'rgb(var(--md-sys-color-outline))',
+		DEFAULT: 'rgb(var(--universal-outline))',
 		variant: {
-			DEFAULT: 'rgb(var(--md-sys-color-outline-variant))',
+			DEFAULT: 'rgb(var(--universal-outline-variant))',
 		},
 	},
 
 	// On Error tones
 	error: {
-		DEFAULT: 'rgb(var(--md-sys-color-error))',
+		DEFAULT: 'rgb(var(--universal-error))',
 		on: {
-			DEFAULT: 'rgb(var(--md-sys-color-on-error))',
+			DEFAULT: 'rgb(var(--universal-on-error))',
 		},
 		surface: {
-			DEFAULT: 'rgb(var(--md-sys-color-error-surface))',
+			DEFAULT: 'rgb(var(--universal-error-surface))',
 			on: {
-				DEFAULT: 'rgb(var(--md-sys-color-on-error-surface))',
+				DEFAULT: 'rgb(var(--universal-on-error-surface))',
 			},
 		},
 	},
