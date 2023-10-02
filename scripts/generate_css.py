@@ -6,7 +6,7 @@ TONAL_STEPS = [ 50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950]
 
 # Define your three key colors in RGB format
 primary = '#0270f9'
-secondary = '#12B39A'
+secondary = '#0270f9'
 tertiary = '#fabb04'
 
 # Defining the standard colors

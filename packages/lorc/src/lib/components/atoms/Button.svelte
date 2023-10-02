@@ -25,8 +25,8 @@
   on:mouseleave
   class:uppercase
   class="{$$props.class} {classesBase} flex w-fit relative hover:translate-y-1 place-items-center font-bold rounded-md group text-center hover:text-primary-container-on hover:bg-primary-container/60 transition-all duration-300 hover:scale-[97%] {$$props.secondary
-    ? ' text-primary bg-surface'
-    : 'text-primary-on bg-primary'}"
+    ? ' text-primary bg-white'
+    : 'text-primary bg-white'}"
 >
   <span class="relative z-0">
     <slot />
