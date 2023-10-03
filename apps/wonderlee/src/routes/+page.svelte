@@ -23,9 +23,9 @@
       increment: 10,
     },
     "Years of Experience": {
-      finalValue: 1998,
-      startValue: 2023,
-      increment: 1,
+      finalValue: 25,
+      startValue: 0,
+      increment: 10,
     },
   };
 
@@ -43,6 +43,38 @@
       href: "/",
     },
   };
+
+  const services = {
+    Design: {
+      href: "/design",
+    },
+    Install: {
+      href: "/instal",
+    },
+    "DIY Repair": {
+      href: "/diy-repair",
+    },
+    Maintenance: {
+      href: "/maintenance",
+    },
+  };
+  const products = {
+    "Garage Door": {
+      href: "/garage-door",
+      img: "/pre_mockup_designs/garage_ref.png",
+      types: "Canopy door, Sectional door, Canopy door",
+    },
+    "Residential Gate": {
+      href: "/residential-gate",
+      img: "/pre_mockup_designs/garage_ref.png",
+      types: "Folding gate, Slide gate, Swing gate",
+    },
+    "Commercial Doors": {
+      href: "/commercial-door",
+      img: "/pre_mockup_designs/garage_ref.png",
+      types: "Slide door, Swing door, Revolving door",
+    },
+  };
 </script>
 
 <Prose>
@@ -53,12 +85,12 @@
     justified="center"
     bgImg="bg-landing"
   />
-  <section class="grid place-items-center">
-    <Container class="grid grid-cols-3 w-full rounded-md py-32">
+  <section class="grid place-items-center py-24">
+    <Container class="grid grid-cols-3 w-full rounded-md " sizes="max-w-screen">
       {#each Object.entries(statistics) as [label, { finalValue, startValue, increment }], i}
         <AnimatedCounter
           class="text-center p-4 w-full"
-          border={i == 1 ? "border-x border-primary" : ""}
+          border={i == 1 ? "border-x border-surface-on/20" : ""}
           {startValue}
           {increment}
         >
@@ -73,14 +105,14 @@
     </Container>
   </section>
 
-  <section class="grid place-items-center">
+  <section class="grid place-items-center py-24">
     <Container
-      class="grid grid-cols-1 lg:grid-cols-3 gap-8 justify-around w-full"
+      class="grid grid-cols-1 lg:grid-cols-3 gap-12"
       sizes="max-w-screen"
     >
       {#each Object.entries(audiences) as [title, { body, href }], i}
         <Card
-          class="bg-surface h-fit flex flex-col gap-4 items-center mt-[{i *
+          class="bg-surface/30 h-fit flex flex-col gap-4 items-center mt-[{i *
             75}px]"
         >
           <!-- mt-[75px] mt-[150px] -->
@@ -89,10 +121,58 @@
             {body}
           </p>
           <Button class="bg-surface-highlight my-4">
-            <h4 class="m-0 sm:m-0 text-background">Read More</h4>
+            <p class="m-0 sm:m-0 text-background">Read More</p>
           </Button>
         </Card>
       {/each}
     </Container>
+  </section>
+
+  <section class="grid place-items-center py-24">
+    <Container
+      border="border-y border-surface-on flex"
+      sizes="max-w-none w-full"
+    >
+      <a href="/services" class="mx-auto my-24">
+        <h1 class="m-0 sm:m-0">Services</h1>
+      </a>
+    </Container>
+    {#each Object.entries(services) as [label, { href }]}
+      <Container
+        border="border-y border-surface-on flex"
+        sizes="max-w-none w-full"
+      >
+        <a href="/services" class="mx-auto my-8 text-center">
+          <h2 class="m-0 sm:m-0">
+            {label}
+          </h2>
+          <p class="m-0 sm:m-0">Lorem ipsum tandum meyos</p>
+        </a>
+      </Container>
+    {/each}
+  </section>
+
+  <section class="grid place-items-center gap-12 py-24">
+    {#each Object.entries(products) as [label, { href, img, types }]}
+      <Container
+        class="flex flex-col sm:flex-row gap-8 items-center justify-between w-full"
+        margin="mx-0"
+        border="sm:border-l-4 border-primary "
+        radius="rounded-none"
+        size="max-w-7xl"
+      >
+        <a {href} class="flex flex-col gap-2 text-center sm:text-left">
+          <h2 class="m-0 sm:m-0">{label}</h2>
+          <p class="m-0 sm:m-0">
+            {types}
+          </p>
+        </a>
+        <img
+          src={img}
+          alt="garage door"
+          class="object-cover order-first sm:order-last object-center h-44 w-96 m-0 sm:m-0"
+        />
+      </Container>
+    {/each}
   </section>
 </Prose>
