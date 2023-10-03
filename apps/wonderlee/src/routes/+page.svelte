@@ -120,7 +120,7 @@
           <p class="text-surface-on text-center">
             {body}
           </p>
-          <Button class="bg-surface-highlight my-4">
+          <Button class="bg-surface-highlight m-4" arrow={true}>
             <p class="m-0 sm:m-0 text-background">Read More</p>
           </Button>
         </Card>
@@ -130,23 +130,22 @@
 
   <section class="grid place-items-center py-24">
     <Container
-      border="border-y border-surface-on flex"
+      border="border-y border-surface-on/50 flex"
       sizes="max-w-none w-full"
     >
-      <a href="/services" class="mx-auto my-24">
+      <a href="/services" class="mx-auto my-12">
         <h1 class="m-0 sm:m-0">Services</h1>
       </a>
     </Container>
     {#each Object.entries(services) as [label, { href }]}
       <Container
-        border="border-y border-surface-on flex"
+        border="border-y border-surface-on/50 flex"
         sizes="max-w-none w-full"
       >
-        <a href="/services" class="mx-auto my-8 text-center">
-          <h2 class="m-0 sm:m-0">
+        <a href="/services" class="mx-auto my-3 text-center">
+          <h3 class="m-0 sm:m-0">
             {label}
-          </h2>
-          <p class="m-0 sm:m-0">Lorem ipsum tandum meyos</p>
+          </h3>
         </a>
       </Container>
     {/each}
@@ -155,9 +154,9 @@
   <section class="grid place-items-center gap-12 py-24">
     {#each Object.entries(products) as [label, { href, img, types }]}
       <Container
-        class="flex flex-col sm:flex-row gap-8 items-center justify-between w-full"
+        class="flex flex-col sm:flex-row gap-8 group items-center justify-between w-full"
         margin="mx-0"
-        border="sm:border-l-4 border-primary "
+        border="sm:border-l-4 group-hover:border-tertiary border-primary "
         radius="rounded-none"
         size="max-w-7xl"
       >

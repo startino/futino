@@ -33,7 +33,7 @@ const colors = {
 	tertiary: {
 		DEFAULT: 'rgb(var(--universal-tertiary))',
 		on: {
-			DEFAULT: 'rgb(var(--universal-on-tertiary))',
+			DEFAULT: 'rgb(var(--universal-tertiary-on))',
 		},
   },
 

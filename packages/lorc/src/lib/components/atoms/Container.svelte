@@ -12,7 +12,7 @@
   /** provide classes to define a box shadow. */
   export let shadow: CssClasses = "";
 
-  $: classesBase = `${sizes} ${padding} ${margin} ${shadow} ${border} ${$$props.class}`;
+  $: classesBase = `${sizes} ${padding} ${margin} ${shadow} ${border} ${$$props.class} group`;
 </script>
 
 <!--
