@@ -1,4 +1,5 @@
 <script lang="ts">
+  import type { CssClasses } from "$lib/types";
   import { onMount } from "svelte";
 
   /** Provide the final value that the counter should show.
@@ -39,6 +40,15 @@
     }, duration / finalValue);
   }
 
+  /** provide classes to set border styles. the default is: md: md:border-primary/50 */
+  export let border: CssClasses = "";
+  /** provide classes to set padding. */
+  export let padding: CssClasses = "mx-auto sm:px-6 lg:px-8 ;";
+  /** provide classes to define a box shadow. */
+  export let shadow: CssClasses = "";
+
+  $: classesBase = `${padding} ${shadow} ${border} ${$$props.class}`;
+
   onMount(() => {
     finalValue = parseInt(numberElement.textContent);
 
@@ -47,7 +57,7 @@
   });
 </script>
 
-<div class="flex flex-col gap-4 items-center {$$props.class} ">
+<div class="flex flex-col gap-4 items-center {classesBase}">
   <div class="flex flex-row" use:bindValue>
     <slot name="value" />
     <slot name="unit" />

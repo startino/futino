@@ -17,7 +17,7 @@ const config = {
       extensions: ['.md', '.svelte'],
     }),
   ],
-  extensions: ['.svelte', '.md'],
+  extensions: ['.svelte', '.md', ],
 };
 
 export default config;

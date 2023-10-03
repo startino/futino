@@ -4,8 +4,21 @@
 @tailwind components;
 @tailwind utilities;
 
+ @font-face {
+      font-family: 'Publica Sans';
+      font-weight: normal;
+      src:  url('/fonts/publicasans/PublicaSans-Medium.otf');
+  }
+ @font-face {
+      font-family: 'Publica Sans';
+      font-weight: light;
+      src:  url('/fonts/publicasans/PublicaSans-Light.otf');
+  }
+
+
+
 @layer base {
-    :root {
+     :root {
         --universal-primary: 2 91 202;
         --universal-primary-on: 230 241 255;
         --universal-secondary: 2 91 202;

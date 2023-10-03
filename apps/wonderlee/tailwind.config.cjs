@@ -12,7 +12,7 @@ const config = {
 	content: [
 		'./src/**/*.{html,js,svelte,ts}',
 		join(require.resolve('lorc'),
-			'../**/*.{html,js,svelte,ts}',
+			'../**/*.{html,js,svelte,ts,ttf}',
 		),
 	],
 
@@ -26,7 +26,7 @@ const config = {
       },
       padding: fPadding,
 			fontFamily: {
-         'sans': ['Roboto Slab' ],
+         'sans': ['Publica Sans' ],
 					},
 
 			animation: fAnimations,

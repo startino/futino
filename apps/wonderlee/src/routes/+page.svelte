@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Hero, Prose, Button, Container, AnimatedCounter } from "lorc";
+  import { Hero, Card, Prose, Button, Container, AnimatedCounter } from "lorc";
 
   const CTAButtons = {
     "Our work": {
@@ -12,20 +12,35 @@
     },
   };
   const statistics = {
-    "Gates made": {
+    "Custom gates built": {
       finalValue: 999,
       startValue: 0,
       increment: 10,
     },
-    "Garages made": {
+    "Custom garages built": {
       finalValue: 999,
       startValue: 0,
       increment: 10,
     },
-    "Creating since": {
+    "Years of Experience": {
       finalValue: 1998,
       startValue: 2023,
       increment: 1,
+    },
+  };
+
+  const audiences = {
+    Commercial: {
+      body: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.`,
+      href: "/",
+    },
+    "Home Owners": {
+      body: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.`,
+      href: "/",
+    },
+    Professionals: {
+      body: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.`,
+      href: "/",
     },
   };
 </script>
@@ -39,14 +54,19 @@
     bgImg="bg-landing"
   />
   <section class="grid place-items-center">
-    <Container class=" flex flex-row justify-around rounded-md my-12">
-      {#each Object.entries(statistics) as [label, { finalValue, startValue, increment }]}
-        <AnimatedCounter class="text-center p-4" {startValue} {increment}>
+    <Container class="grid grid-cols-3 w-full rounded-md py-32">
+      {#each Object.entries(statistics) as [label, { finalValue, startValue, increment }], i}
+        <AnimatedCounter
+          class="text-center p-4 w-full"
+          border={i == 1 ? "border-x border-primary" : ""}
+          {startValue}
+          {increment}
+        >
           <svelte:fragment slot="value">
             <h1 class="m-0 text-tertiary sm:m-0">{finalValue}</h1>
           </svelte:fragment>
           <svelte:fragment slot="label">
-            <h4 class="m-0 sm:m-0 text-primary-on">{label}</h4>
+            <h6 class="m-0 sm:m-0 text-primary-on font-light">{label}</h6>
           </svelte:fragment>
         </AnimatedCounter>
       {/each}
@@ -54,18 +74,24 @@
   </section>
 
   <section class="grid place-items-center">
-    <Container class="flex flex-row justify-around w-full">
-      {#each Array(3) as _, i}
-        <div
-          class="max-w-sm w-full h-[600px] bg-surface flex flex-col items-center mt-[{i *
-            150}px] rounded-md"
+    <Container
+      class="grid grid-cols-1 lg:grid-cols-3 gap-8 justify-around w-full"
+      sizes="max-w-screen"
+    >
+      {#each Object.entries(audiences) as [title, { body, href }], i}
+        <Card
+          class="bg-surface h-fit flex flex-col gap-4 items-center mt-[{i *
+            75}px]"
         >
-          <!-- mt-[150px] mt-[300px] -->
-          <h3 class="text-surface-on text-center">Text Here</h3>
-          <Button class="justify-self-end mt-auto">
-            <h4 class="m-0 sm:m-0 text-background">Click me</h4>
+          <!-- mt-[75px] mt-[150px] -->
+          <h2 class="text-surface-on text-center">{title}</h2>
+          <p class="text-surface-on text-center">
+            {body}
+          </p>
+          <Button class="bg-surface-highlight my-4">
+            <h4 class="m-0 sm:m-0 text-background">Read More</h4>
           </Button>
-        </div>
+        </Card>
       {/each}
     </Container>
   </section>
