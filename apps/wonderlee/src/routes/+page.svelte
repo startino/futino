@@ -85,6 +85,24 @@
       types: "",
     },
   };
+
+  const projects = {
+    "HKDI 3-leaf telescopic": {
+      href: "/our-work/#hkdi-3-leaf-telescopic",
+      date: 2022,
+      img: "/pre_mockup_designs/garage_ref.png",
+    },
+    "Beacon Hill Mont Verra": {
+      href: "/our-work/#hkdi-3-leaf-telescopic",
+      date: 2022,
+      img: "/pre_mockup_designs/garage_ref.png",
+    },
+    "Hi-speed slide gate": {
+      href: "/our-work/#hkdi-3-leaf-telescopic",
+      date: 2020,
+      img: "/pre_mockup_designs/garage_ref.png",
+    },
+  };
 </script>
 
 <Prose>
@@ -123,7 +141,7 @@
       <h6
         class="uppercase text-tertiary col-span-full justify-self-start self-end m-0 sm:m-0"
       >
-        Services
+        audience
       </h6>
       {#each Object.entries(audiences) as [title, { body, href }], i}
         <Card
@@ -225,5 +243,24 @@
     <Button class="bg-surface-highlight m-4 my-12" arrow={true}>
       <p class="m-0 sm:m-0 text-background">See all</p>
     </Button>
+  </section>
+  <section class="grid place-items-center py-24">
+    <Container class="grid grid-cols-3">
+      <h6 class="uppercase text-tertiary col-span-full justify-self-end my-6">
+        Projects
+      </h6>
+      {#each Object.entries(projects) as [label, { href, img, date }], i}
+        <Card class="flex flex-col">
+          <p class="m-0 sm:m-0 uppercase text-surface-on">
+            {date}
+          </p>
+          <img
+            src="/pre_mockup_designs/garage_ref.png"
+            alt=""
+            class="object-cover h-96 w-full"
+          />
+        </Card>
+      {/each}
+    </Container>
   </section>
 </Prose>

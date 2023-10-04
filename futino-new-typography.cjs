@@ -14,7 +14,7 @@ const typography = (colors, alpha) => {
         },
 
         h6: {
- fontFamily: "TASA Orbiter Display",
+          fontFamily: "TASA Orbiter Display",
           fontWeight: 'normal',
         },
         p: {
