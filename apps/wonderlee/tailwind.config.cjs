@@ -3,7 +3,7 @@ import fColors from '../../futino-universal-colors.cjs';
 import fAnimations from '../../futino-animations.cjs';
 import fKeyframes from '../../futino-keyframes.cjs';
 import fPadding from '../../futino-padding.cjs';
-import fTypography from '../../futino-typography.cjs';
+import fTypography from '../../futino-new-typography.cjs';
 
 const alpha = '<alpha-value>';
 
@@ -26,7 +26,7 @@ const config = {
       },
       padding: fPadding,
 			fontFamily: {
-         'sans': ['Publica Sans' ],
+         'sans': ['TASA Orbiter Text' ],
 					},
 
 			animation: fAnimations,

@@ -9,7 +9,7 @@
   /** provide classes to set border styles. the default is: md: md:border-primary/50 */
   export let border: CssClasses = "";
   /** provide classes to set padding. */
-  export let padding: CssClasses = "px-8 py-2";
+  export let padding: CssClasses = "px-8 py-1";
   /** provide classes to define a box shadow. */
   export let shadow: CssClasses = "";
 
