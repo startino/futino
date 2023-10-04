@@ -9,7 +9,7 @@
   /** provide classes to set border styles. the default is: md: md:border-primary/50 */
   export let border: CssClasses = "";
   /** provide classes to set padding. */
-  export let padding: CssClasses = "px-8 py-1";
+  export let padding: CssClasses = "px-8 py-3";
   /** provide classes to define a box shadow. */
   export let shadow: CssClasses = "";
 
@@ -38,7 +38,7 @@
     : 'text-primary bg-surface-on hover:bg-tertiary'}"
 >
   <span
-    class="relative z-0 flex gap-4 place-items-center mt-1 group-hover:text-surface-on"
+    class="relative z-0 flex gap-4 place-items-center mt-0.5 group-hover:text-surface-on"
   >
     <slot />
     {#if arrow}

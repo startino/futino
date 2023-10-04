@@ -26,7 +26,7 @@ tokens = {
 'primary-on': primary_tones[0],
 'secondary': secondary_tones[6],
 'secondary-on': secondary_tones[0],
-'tertiary': tertiary_tones[6],
+'tertiary': tertiary_tones[5],
 'tertiary-on': tertiary_tones[0],
 'background': primary_tones[9],
 'background-on': primary_tones[0],
