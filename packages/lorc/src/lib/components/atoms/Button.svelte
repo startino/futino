@@ -12,6 +12,7 @@
   export let padding: CssClasses = "px-8 py-2";
   /** provide classes to define a box shadow. */
   export let shadow: CssClasses = "";
+  export let margin: CssClasses = "";
 
   export let radius: CssClasses = "rounded-full";
 
@@ -25,7 +26,7 @@
 
   export let highlight: boolean = false;
 
-  $: classesBase = `${padding} ${shadow} ${border} ${radius} ${$$props.class}`;
+  $: classesBase = `${padding} ${margin} ${shadow} ${border} ${radius} ${$$props.class}`;
 </script>
 
 <a

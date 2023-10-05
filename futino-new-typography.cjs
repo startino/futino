@@ -34,6 +34,7 @@ const typography = (colors, alpha) => {
           fontFamily: "TASA Orbiter Text",
           letterSpacing: "0.5",
           lineHeight: "1",
+          opacity: '0.75'
         }
       }
     },
