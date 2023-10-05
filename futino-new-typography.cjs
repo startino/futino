@@ -9,13 +9,26 @@ const typography = (colors, alpha) => {
           fontFamily: "TASA Orbiter Display",
           fontWeight: "bold",
         },
-          h2: {
-            fontFamily: "TASA Orbiter Display",
+        h2: {
+          fontFamily: "TASA Orbiter Text",
+          fontWeight: "normal"
+        },
+        h3: {
+          fontFamily: "TASA Orbiter Text",
+          fontWeight: "normal"
+        },
+        h4: {
+          fontFamily: "TASA Orbiter Text",
+          fontWeight: "normal"
+        },
+        h5: {
+          fontFamily: "TASA Orbiter Text",
+          fontWeight: "normal"
         },
 
         h6: {
-          fontFamily: "TASA Orbiter Display",
-          fontWeight: 'normal',
+          fontFamily: "TASA Orbiter Text",
+      fontWeight: "normal"
         },
         p: {
           fontFamily: "TASA Orbiter Text",

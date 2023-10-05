@@ -5,11 +5,11 @@
   const CTAButtons = {
     "Our work": {
       href: "/",
-      secondary: false,
+      highlight: true,
     },
     "Contact us": {
       href: "/",
-      secondary: true,
+      highlight: false,
     },
   };
   const statistics = {
@@ -87,20 +87,21 @@
   };
 
   const projects = {
+    "Hi-speed slide gate": {
+      href: "/our-work/#hkdi-3-leaf-telescopic",
+      date: 2020,
+      img: "/projects/Hi_Speed_Slide_Gate.jpg",
+    },
+
     "HKDI 3-leaf telescopic": {
       href: "/our-work/#hkdi-3-leaf-telescopic",
       date: 2022,
-      img: "/pre_mockup_designs/garage_ref.png",
+      img: "/projects/HKDI_3-leaf_telescopic_1_clipdrop-enhance.jpeg",
     },
     "Beacon Hill Mont Verra": {
       href: "/our-work/#hkdi-3-leaf-telescopic",
       date: 2022,
-      img: "/pre_mockup_designs/garage_ref.png",
-    },
-    "Hi-speed slide gate": {
-      href: "/our-work/#hkdi-3-leaf-telescopic",
-      date: 2020,
-      img: "/pre_mockup_designs/garage_ref.png",
+      img: "/projects/Beacon_Hill_On_Slope_clipdrop-enhance.jpeg",
     },
   };
 </script>
@@ -135,11 +136,11 @@
 
   <section class="grid place-items-center py-24">
     <Container
-      class="grid grid-cols-1 lg:grid-cols-3 gap-12"
+      class="grid grid-cols-1 lg:grid-cols-3 gap-x-12"
       sizes="max-w-screen"
     >
       <h6
-        class="uppercase text-tertiary col-span-full justify-self-start self-end m-0 sm:m-0"
+        class="uppercase text-tertiary col-span-full justify-self-start self-end my-4"
       >
         audience
       </h6>
@@ -156,7 +157,7 @@
             {body}
           </p>
           <Button class="bg-surface-highlight m-4" arrow={true}>
-            <p class="m-0 sm:m-0 text-background">Read More</p>
+            Read More
           </Button>
         </Card>
       {/each}
@@ -168,7 +169,7 @@
       class="grid grid-cols-2 gap-6 md:grid-cols-3 xl:grid-cols-5 place-items-center"
       sizes="max-w-none"
     >
-      <h6 class="uppercase text-tertiary col-span-full place-self-end">
+      <h6 class="uppercase text-tertiary col-span-full place-self-end -my-2">
         Services
       </h6>
       <ServiceCard label="design" body={services["Design"].body} />
@@ -208,7 +209,7 @@
 
   <section class="grid place-items-center py-24">
     <Container sizes="max-w-none w-full">
-      <h6 class="uppercase text-tertiary col-span-full justify-self-start my-6">
+      <h6 class="uppercase text-tertiary col-span-full justify-self-start my-4">
         Products
       </h6>
 
@@ -229,7 +230,7 @@
               class="hidden md:flex h-24 lg:h-32 xl:h-44 not-prose"
             />
           </div>
-          <a href="/" class="mx-auto my-6 text-center">
+          <a href="/" class="mx-auto my-8 text-center flex flex-col gap-2">
             <h2 class="m-0 sm:m-0 uppercase text-surface-on">
               {label}
             </h2>
@@ -245,22 +246,40 @@
     </Button>
   </section>
   <section class="grid place-items-center py-24">
-    <Container class="grid grid-cols-3">
-      <h6 class="uppercase text-tertiary col-span-full justify-self-end my-6">
-        Projects
+    <Container
+      class="grid grid-cols-1 md:grid-cols-3 gap-x-6 place-items-center"
+      sizes="max-w-none"
+    >
+      <h6
+        class="uppercase text-tertiary col-span-full justify-self-end my-4 m-0 sm:m-0"
+      >
+        Our Recent Work
       </h6>
       {#each Object.entries(projects) as [label, { href, img, date }], i}
-        <Card class="flex flex-col">
-          <p class="m-0 sm:m-0 uppercase text-surface-on">
+        <Card class="flex flex-col group" padding="px-0 py-2">
+          <h6 class="m-0 sm:m-0 uppercase text-surface-on/60">
             {date}
-          </p>
+          </h6>
           <img
-            src="/pre_mockup_designs/garage_ref.png"
+            src={img}
             alt=""
-            class="object-cover h-96 w-full"
+            class="object-cover h-96 w-full not-prose md:brightness-95 group-hover: brightness-100"
           />
+          <h4 class="m-0 sm:m-0 py-4 uppercase">
+            {label}
+          </h4>
         </Card>
       {/each}
+      <Button
+        class="bg-surface-highlight m-4 my-12 col-span-full justify-self-center"
+        arrow={true}
+      >
+        <p class="m-0 sm:m-0 text-background">See all</p>
+      </Button>
     </Container>
+  </section>
+
+  <section class="grid place-items-center py-24">
+    <Container>he</Container>
   </section>
 </Prose>

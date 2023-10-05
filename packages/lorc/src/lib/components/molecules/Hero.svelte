@@ -12,15 +12,15 @@
   export let typography: CssClasses = "";
   /** Labels and hrefs of CTA buttons on the hero. Recommended 1-2.*/
   export let CTAButtons: {
-    [label: string]: { href: string; secondary: boolean };
+    [label: string]: { href: string; highlight: boolean };
   } = {
     "CTA ONE": {
       href: "/",
-      secondary: false,
+      highlight: true,
     },
     "CTA TWO": {
       href: "/",
-      secondary: true,
+      highlight: false,
     },
   };
 
@@ -56,9 +56,9 @@
       class="grid grid-cols-{Object.entries(CTAButtons)
         .length} gap-4 md:gap-6 place-items-center w-fit"
     >
-      {#each Object.entries(CTAButtons) as [label, { href, secondary }]}
-        <Button {secondary} {href}>
-          <h6 class="" style="margin: 0px">{label}</h6>
+      {#each Object.entries(CTAButtons) as [label, { href, highlight }]}
+        <Button {highlight} {href}>
+          {label}
         </Button>
       {/each}
     </div>

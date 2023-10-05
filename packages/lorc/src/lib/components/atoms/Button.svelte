@@ -9,7 +9,7 @@
   /** provide classes to set border styles. the default is: md: md:border-primary/50 */
   export let border: CssClasses = "";
   /** provide classes to set padding. */
-  export let padding: CssClasses = "px-8 py-3";
+  export let padding: CssClasses = "px-8 py-2";
   /** provide classes to define a box shadow. */
   export let shadow: CssClasses = "";
 
@@ -23,6 +23,8 @@
     outlined: "border-2 border-primary",
   };
 
+  export let highlight: boolean = false;
+
   $: classesBase = `${padding} ${shadow} ${border} ${radius} ${$$props.class}`;
 </script>
 
@@ -33,17 +35,19 @@
   on:mouseenter
   on:mouseleave
   class:uppercase
-  class=" {classesBase} flex w-fit h-fit relative place-items-center font-bold group text-center transition-all duration-300 {$$props.secondary
-    ? ' text-primary bg-white'
-    : 'text-primary bg-surface-on hover:bg-tertiary'}"
+  class=" {classesBase} flex w-fit h-fit relative place-items-center font-bold group text-center transition-all duration-300 {highlight
+    ? 'text-tertiary-on bg-primary'
+    : 'text-surface bg-surface-on hover:bg-tertiary'}"
 >
   <span
-    class="relative z-0 flex gap-4 place-items-center mt-0.5 group-hover:text-surface-on"
+    class="relative z-0 flex gap-4 place-items-center group-hover:text-tertiary-on transition-all duration-150 delay-75"
   >
-    <slot />
+    <h4 class="m-0 sm:m-0 not-prose font-normal">
+      <slot />
+    </h4>
     {#if arrow}
       <Icon
-        class="-rotate-90 my-auto group-hover:translate-x-2 duration-300 transition-all "
+        class="-rotate-90 my-auto group-hover:translate-x-2 duration-300 transition-all not-prose"
         icon="down-arrow"
         height="24"
         width="24"
