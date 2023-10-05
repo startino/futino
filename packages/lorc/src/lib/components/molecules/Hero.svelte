@@ -57,7 +57,7 @@
         .length} gap-4 md:gap-6 place-items-center w-fit"
     >
       {#each Object.entries(CTAButtons) as [label, { href, highlight }]}
-        <Button {highlight} {href}>
+        <Button class="w-full" {highlight} {href}>
           {label}
         </Button>
       {/each}

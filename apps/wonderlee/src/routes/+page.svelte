@@ -257,7 +257,7 @@
       </h6>
       {#each Object.entries(projects) as [label, { href, img, date }], i}
         <Card class="flex flex-col group" padding="px-0 py-2">
-          <h6 class="m-0 sm:m-0 uppercase text-surface-on/60">
+          <h6 class="m-0 sm:m-0 uppercase text-surface-on/70">
             {date}
           </h6>
           <img
@@ -279,7 +279,36 @@
     </Container>
   </section>
 
-  <section class="grid place-items-center py-24">
-    <Container>he</Container>
+  <section class="grid place-items-center relative">
+    <img
+      src="/Wonderlee-Crew-2020-06-02.jpg"
+      alt="crew"
+      class="bg-no-repeat object-cover w-full h-full z-0 absolute"
+    />
+    <div class="bg-black/40 z-10 absolute h-full w-full" />
+
+    <Container
+      class="grid place-items-center gap-12"
+      sizes="max-w-none w-full h-fit"
+      margin="my-0"
+      padding="py-32"
+    >
+      <h1
+        class="text-center font-normal uppercase text-3xl sm:text-4xl md:text-4xl not-prose z-10"
+      >
+        Let's Get the Ball <br /><span
+          class="text-tertiary text-7xl sm:text-9xl md:text-[10rem] font-normal"
+          >Rolling
+        </span>
+      </h1>
+      <div
+        class="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6 place-items-center w-fit z-10"
+      >
+        <Button highlight={true} class="w-full" href="/contact"
+          >Request Consultation</Button
+        >
+        <Button class="w-full" href="/about" arrow={true}>Learn More</Button>
+      </div></Container
+    >
   </section>
 </Prose>

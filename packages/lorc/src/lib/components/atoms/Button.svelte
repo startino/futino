@@ -36,13 +36,13 @@
   on:mouseleave
   class:uppercase
   class=" {classesBase} flex w-fit h-fit relative place-items-center font-bold group text-center transition-all duration-300 {highlight
-    ? 'text-tertiary-on bg-primary'
+    ? 'text-tertiary-on bg-primary hover:bg-tertiary'
     : 'text-surface bg-surface-on hover:bg-tertiary'}"
 >
   <span
-    class="relative z-0 flex gap-4 place-items-center group-hover:text-tertiary-on transition-all duration-150 delay-75"
+    class="relative mx-auto z-0 flex gap-4 place-items-center group-hover:text-tertiary-on transition-all duration-150 delay-75"
   >
-    <h4 class="m-0 sm:m-0 not-prose font-normal">
+    <h4 class="m-0 sm:m-0 not-prose font-normal whitespace-nowrap">
       <slot />
     </h4>
     {#if arrow}
