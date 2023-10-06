@@ -6,6 +6,7 @@ export { default as Button } from './components/atoms/Button.svelte';
 export { default as AnimatedCounter } from './components/atoms/AnimatedCounter.svelte';
 export { default as Container } from './components/atoms/Container.svelte';
 export { default as Card } from './components/atoms/Card.svelte';
+export { default as SelectMenu } from './components/atoms/SelectMenu.svelte';
 // Molecules
 export { default as FatFooter } from './components/molecules/FatFooter.svelte';
 export { default as Footer } from './components/molecules/Footer.svelte';
