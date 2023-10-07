@@ -14,12 +14,8 @@ def convert_and_set_quality(input_path, output_path, quality=72):
         print(f"An error occurred: {e}")
 
 
-input_folder = "D:/Development/Futino/futino/apps/bapta/static/images/kilimanjaro/original"  # Change this to the folder containing input images
+input_folder = '../apps/wonderlee/static/projects/images/'  # Change this to the folder containing input images
 output_folder = input_folder # Change this to the folder where you want to save output images
-
-# Create the output folder if it doesn't exist
-if not os.path.exists(output_folder):
-    os.makedirs(output_folder)
 
 # Loop through all image files in the input folder
 for filename in os.listdir(input_folder):
