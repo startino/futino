@@ -12,11 +12,11 @@ export class Project {
   date: number;
   description: string[];
 
-  public constructor(journey: ProjectProps) {
-    this.name = journey.name;
-    this.date = journey.date;
-    this.thumbnail = journey.thumbnail;
-    this.description = journey.description
+  public constructor(project: ProjectProps) {
+    this.name = project.name;
+    this.date = project.date;
+    this.thumbnail = project.thumbnail;
+    this.description = project.description
   }
 }
 
