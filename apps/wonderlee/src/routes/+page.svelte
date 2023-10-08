@@ -229,7 +229,7 @@
   </section>
   <section class="grid place-items-center py-24">
     <Container
-      class="grid grid-cols-1 md:grid-cols-3 gap-8 place-items-center"
+      class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 place-items-center"
       sizes="max-w-none"
     >
       <h6
