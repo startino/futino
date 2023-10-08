@@ -4,7 +4,7 @@
 
 <Prose>
   <section
-    class="grid grid-cols-1 sm:grid-cols-2 place-items-center min-h-screen gap-0"
+    class="grid grid-cols-1 sm:grid-cols-2 place-items-center pt-12 min-h-screen gap-0"
   >
     <Container class="flex flex-col" sizes="max-w-3xl w-full">
       <Card class="text-left" size="max-w-none w-full" padding="">
