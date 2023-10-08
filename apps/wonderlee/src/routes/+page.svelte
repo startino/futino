@@ -2,6 +2,7 @@
   import { text } from "@sveltejs/kit";
   import { Hero, Card, Prose, Button, Container, AnimatedCounter } from "lorc";
   import ServiceCard from "./ServiceCard.svelte";
+  import projects from "./our-work/projects";
   const CTAButtons = {
     "Our work": {
       href: "/",
@@ -83,25 +84,6 @@
       href: "/secret-door",
       img: "/animations/sectional_garage.gif",
       types: "",
-    },
-  };
-
-  const projects = {
-    "Hi-speed slide gate": {
-      href: "/our-work/#hkdi-3-leaf-telescopic",
-      date: 2020,
-      img: "/projects/Hi_Speed_Slide_Gate.jpg",
-    },
-
-    "HKDI 3-leaf telescopic": {
-      href: "/our-work/#hkdi-3-leaf-telescopic",
-      date: 2022,
-      img: "/projects/HKDI_3-leaf_telescopic_1_clipdrop-enhance.jpeg",
-    },
-    "Beacon Hill Mont Verra": {
-      href: "/our-work/#hkdi-3-leaf-telescopic",
-      date: 2022,
-      img: "/projects/Beacon_Hill_On_Slope_clipdrop-enhance.jpeg",
     },
   };
 </script>
@@ -247,7 +229,7 @@
   </section>
   <section class="grid place-items-center py-24">
     <Container
-      class="grid grid-cols-1 md:grid-cols-3 gap-x-6 place-items-center"
+      class="grid grid-cols-1 md:grid-cols-3 gap-8 place-items-center"
       sizes="max-w-none"
     >
       <h6
@@ -255,20 +237,33 @@
       >
         Our Recent Work
       </h6>
-      {#each Object.entries(projects) as [label, { href, img, date }], i}
-        <Card class="flex flex-col group" padding="px-0 py-2">
-          <h6 class="m-0 sm:m-0 uppercase text-surface-on/70">
-            {date}
-          </h6>
-          <img
-            src={img}
-            alt=""
-            class="object-cover h-96 w-full not-prose md:brightness-95 group-hover: brightness-100"
-          />
-          <h4 class="m-0 sm:m-0 py-4 uppercase">
-            {label}
-          </h4>
-        </Card>
+      {#each Object.entries(projects) as [label, project], i}
+        {#if i < 6}
+          <Card class="flex flex-col group h-full" padding="px-0 py-2">
+            <h6 class="m-0 sm:m-0 uppercase text-surface-on/70">
+              {project.date}
+            </h6>
+            <img
+              src={project.thumbnail}
+              alt=""
+              class="object-cover h-72 w-full not-prose md:brightness-95 group-hover: brightness-100"
+            />
+            <div class="flex flex-wrap place-items-center gap-4">
+              <h4 class="m-0 sm:m-0 pt-4 uppercase">
+                {project.name}
+              </h4>
+              <ul class="m-0 sm:m-0">
+                {#each project.description as item}
+                  <li class="m-0 sm:m-0">
+                    <p class="m-0 sm:m-0 prose-sm">
+                      {item}
+                    </p>
+                  </li>
+                {/each}
+              </ul>
+            </div>
+          </Card>
+        {/if}
       {/each}
       <Button
         class="bg-surface-highlight m-4 my-12 col-span-full justify-self-center"
