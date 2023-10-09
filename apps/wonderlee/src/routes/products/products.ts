@@ -83,7 +83,7 @@ const products: Products = {
   'secret-door': {
     name: 'Secret Door',
     description: "We are a distributor of Creative Home Engineering, the world's best engineering and customs manufacturer of secret passage systems and secret hidden doors. By turning bottles hanging on the wall, the secret hidden passage swings open. The secret door possibilities are endless, please visit hiddenpassageway.com here for more examples.",
-    types: [{ label: 'Secret Door', thumbnail: '/products/secret-door/thumbnail.jpg' }]
+    types: [{ label: 'Secret Door', thumbnail: '/products/secret-doors/thumbnail.jpg' }]
   },
   'shutter-door': {
     name: 'Shutter Door',
