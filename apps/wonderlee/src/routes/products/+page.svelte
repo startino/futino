@@ -21,6 +21,7 @@
     >
       {#each Object.entries(products) as [name, product]}
         <Container
+          id={name}
           class="grid grid-cols-3 gap-x-4 lg:grid-cols-4 place-items-center"
           sizes="max-w-none w-full"
         >

@@ -44,11 +44,11 @@
   style=""
 >
   <div
-    class="flex flex-col items-center {justifyClass()} my-auto gap-8 mx-2 sm:mx-4 md:mx-6"
+    class="flex flex-col items-center {justifyClass()} my-auto gap-12 mx-2 sm:mx-4 md:mx-6"
   >
-    <div class="flex flex-col gap-4">
+    <div class="flex flex-col items-center gap-4">
       <h1 class="" style="margin: 0px">{title}</h1>
-      <h5 class="" style="margin: 0px">
+      <h5 class="max-w-6xl" style="margin: 0px">
         {subtitle}
       </h5>
     </div>

@@ -3,6 +3,8 @@
 
   export let id: string = "";
 
+  export let href: string | undefined;
+
   /** Provide the max widths of the container at different screen sizes. */
   export let sizes: CssClasses = "max-w-7xl w-full";
   /** provide classes to set border styles. the default is: md: md:border-primary/50 */
@@ -28,6 +30,12 @@ Center content horizontally with predefined max-width
     </Container>
        ```
 -->
-<div class={classesBase} {id}>
-  <slot />
-</div>
+{#if href}
+  <a class={classesBase} {id} {href}>
+    <slot />
+  </a>
+{:else}
+  <div class={classesBase} {id}>
+    <slot />
+  </div>
+{/if}

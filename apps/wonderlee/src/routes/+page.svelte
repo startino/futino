@@ -5,11 +5,11 @@
   import projects from "./our-work/projects";
   const CTAButtons = {
     "Our work": {
-      href: "/",
+      href: "/our-work",
       highlight: true,
     },
     "Contact us": {
-      href: "/",
+      href: "/contact",
       highlight: false,
     },
   };
@@ -66,22 +66,22 @@
   };
   const products = {
     "Garage Door": {
-      href: "/garage-door",
+      href: "/products#garage-doors",
       img: "/animations/sectional_garage.gif",
       types: "Canopy door, Sectional door, Canopy door",
     },
     "Residential Gate": {
-      href: "/residential-gate",
+      href: "/products/#residential-gates",
       img: "/animations/canopy_garage.gif",
       types: "Folding gate, Slide gate, Swing gate",
     },
     "Commercial Doors": {
-      href: "/commercial-door",
+      href: "/products#commercial-doors",
       img: "/animations/sectional_garage.gif",
       types: "Slide door, Swing door, Revolving door",
     },
     "Secret Doors": {
-      href: "/secret-door",
+      href: "/products#secret-doors",
       img: "/animations/sectional_garage.gif",
       types: "",
     },
@@ -91,8 +91,8 @@
 <Prose>
   <Hero
     {CTAButtons}
-    title="Lorem ipsum, dolor sit amet consectetur adipisicing."
-    subtitle="Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel odio mollitia excepturi laudantium nostrum sit!"
+    title="Hong Kong's Leading Gate & Garage Firm."
+    subtitle="Serving and providing homeowners and business owners with premium services & products since 1998."
     justified="center"
     bgImg="/bg-landing"
   />
@@ -197,6 +197,8 @@
 
       {#each Object.entries(products) as [label, { href, img, types }], i}
         <Container
+          {href}
+          class="group hover:bg-surface/50 transition-all duration-300"
           border="border-y border-surface-on/50 flex"
           sizes="max-w-none w-full"
         >
@@ -223,7 +225,11 @@
         </Container>
       {/each}
     </Container>
-    <Button class="bg-surface-highlight m-4 my-12" arrow={true}>
+    <Button
+      class="bg-surface-highlight m-4 my-12"
+      arrow={true}
+      href="/products"
+    >
       <p class="m-0 sm:m-0 text-background">See all</p>
     </Button>
   </section>
@@ -266,6 +272,7 @@
         {/if}
       {/each}
       <Button
+        href="/our-work"
         class="bg-surface-highlight m-4 my-12 col-span-full justify-self-center"
         arrow={true}
       >
@@ -276,7 +283,7 @@
 
   <section class="grid place-items-center relative">
     <img
-      src="/Wonderlee-Crew-2020-06-02.jpg"
+      src="/Wonderlee-Crew.jpg"
       alt="crew"
       class="bg-no-repeat object-cover w-full h-full z-0 absolute"
     />
