@@ -2,8 +2,11 @@
   import { Container } from "lorc";
 </script>
 
-<Container class="flex flex-col pt-44">
-  <Container class="flex flex-col md:flex-row  gap-6">
+<Container class="flex flex-col gap-12 pt-44">
+  <Container
+    class="flex flex-col md:grid md:grid-cols-2 gap-6 place-items-center"
+    id="sliding"
+  >
     <img
       src="/products/garage-doors/canopy/canopy1.jpg"
       alt=""
@@ -15,7 +18,9 @@
       canopy when fully open
     </h3>
   </Container>
-  <Container class="flex flex-col md:flex-row gap-6">
+  <Container
+    class="flex flex-col md:grid md:grid-cols-2 gap-6 place-items-center"
+  >
     <img
       src="/products/garage-doors/canopy/1-piece_ani.gif"
       alt=""
@@ -43,7 +48,9 @@
       </ul>
     </div>
   </Container>
-  <Container class="flex flex-col md:flex-row  gap-6">
+  <Container
+    class="flex flex-col md:grid md:grid-cols-2 gap-6 place-items-center"
+  >
     <img
       src="/products/garage-doors/canopy/canopybig_200.gif"
       alt=""

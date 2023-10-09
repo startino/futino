@@ -1,6 +1,8 @@
 <script lang="ts">
   import type { CssClasses } from "$lib/types";
 
+  export let href: string | undefined;
+
   /** Provide the max widths of the container at different screen sizes. */
   export let size: CssClasses = "max-w-md";
   /** provide classes to set border styles. the default is: md: md:border-primary/50 */
@@ -16,6 +18,12 @@
   $: classesBase = `${size} ${margin}  ${padding} ${shadow} ${border} ${radius} ${$$props.class}`;
 </script>
 
-<div class={classesBase}>
-  <slot />
-</div>
+{#if href}
+  <a class={classesBase} {href}>
+    <slot />
+  </a>
+{:else}
+  <div class={classesBase}>
+    <slot />
+  </div>
+{/if}
