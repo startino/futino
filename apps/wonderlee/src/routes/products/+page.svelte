@@ -40,7 +40,7 @@
             {#each product.types as { label, thumbnail }}
               <Card
                 class="not-prose relative flex"
-                size="max-w-none w-full h-full aspect-1 "
+                size="max-w-none w-full h-full aspect-[1.3] "
                 padding="px-1 py-2"
               >
                 <p class="text-tertiary self-end">
@@ -49,7 +49,7 @@
                 <img
                   src={thumbnail}
                   alt=""
-                  class="object-cover object-center w-full aspect-1 absolute top-0 left-0 brightness-50"
+                  class="object-cover object-center w-full h-full absolute top-0 left-0"
                 />
               </Card>
             {/each}
