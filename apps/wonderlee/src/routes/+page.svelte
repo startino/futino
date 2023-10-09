@@ -33,15 +33,27 @@
 
   const audiences = {
     Commercial: {
-      body: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.`,
+      body: `
+Wonderlee caters to commercial needs with precision.
+We specialize in high-quality gates, garage doors, and repair services. 
+Whether you're a business owner, property manager, or organization seeking efficient garage solutions, 
+we deliver professionalism and security.`,
       href: "/",
     },
     "Home Owners": {
-      body: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.`,
+      body: `
+Wonderlee transforms houses into homes. Our premium gates
+and garage doors elevate aesthetics and security. Our expert team
+blends personal style with functionality and durability, making your dream home a reality.
+`,
       href: "/",
     },
     Professionals: {
-      body: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.`,
+      body: `
+Wonderlee is the choice for architectural and design professionals. 
+We collaborate closely to seamlessly integrate our products into your projects,
+enhancing elegance and functionality with top craftsmanship standards.
+`,
       href: "/",
     },
   };
@@ -49,19 +61,19 @@
   const services = {
     Design: {
       href: "/design",
-      body: `Lorem ipsum dolor sit amet,  sed do eiusmod tempor. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.`,
+      body: `Wonderlee's design services are the foundation of remarkable gates and garage doors. Our expert designers collaborate closely with you to bring your vision to life, ensuring your property shines with exceptional aesthetics.`,
     },
     Install: {
       href: "/instal",
-      body: `Lorem ipsum dolor sit amet, tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.`,
+      body: `When it comes to installation, Wonderlee sets the standard. Our skilled technicians guarantee flawless installation, ensuring your gates and garage doors are durable and functional. We handle every detail for your peace of mind.`,
     },
     "DIY Repair": {
       href: "/diy-repair",
-      body: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.`,
+      body: `Wonderlee offers DIY repair solutions for those who prefer hands-on approaches. We provide guidance, tools, and parts to help you efficiently address common repair issues, restoring your gates and garage doors.`,
     },
     Maintenance: {
       href: "/maintenance",
-      body: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.`,
+      body: `At Wonderlee, our maintenance services ensure peace of mind. We provide 24-hour technical support via telephone. Under our maintenance contract, inspections and maintenance every 6 months by our experienced team.`,
     },
   };
   const products = {
@@ -92,7 +104,7 @@
   <Hero
     {CTAButtons}
     title="Hong Kong's Leading Gate & Garage Firm."
-    subtitle="Serving and providing homeowners and business owners with premium services & products since 1998."
+    subtitle="Serving homeowners and business owners with premium services & products since 1998."
     justified="center"
     bgImg="/bg-landing"
   />
@@ -119,7 +131,7 @@
   <section class="grid place-items-center py-24">
     <Container
       class="grid grid-cols-1 lg:grid-cols-3 gap-x-12"
-      sizes="max-w-screen"
+      sizes="max-w-none"
     >
       <h6
         class="uppercase text-tertiary col-span-full justify-self-start self-end my-4"
@@ -128,25 +140,31 @@
       </h6>
       {#each Object.entries(audiences) as [title, { body, href }], i}
         <Card
-          class="bg-surface/10 border border-surface-on/90 h-fit flex flex-col gap-4 items-center mt-[{i *
+          size="max-w-lg h-fit w-full"
+          border="border border-surface-on/90"
+          padding="py-14 px-6"
+          class="bg-surface/10  flex flex-col gap-6 items-center text-center mt-[{i *
             75}px]"
         >
           <!-- mt-[75px] mt-[150px] -->
-          <h2 class="text-surface-on text-center uppercase">
+          <h2 class="text-surface-on uppercase m-0 sm:m-0 font-black">
             {title}
           </h2>
-          <p class="text-surface-on text-center">
+          <p class="text-surface-on m-0 sm:m-0">
             {body}
           </p>
-          <Button class="bg-surface-highlight m-4" arrow={true}>
-            Read More
+          <Button
+            class="bg-surface-highlight justify-self-end mt-6"
+            arrow={true}
+          >
+            Request consultation
           </Button>
         </Card>
       {/each}
     </Container>
   </section>
 
-  <section class="grid place-items-center py-24">
+  <section class="grid place-items-center py-24" id="services">
     <Container
       class="grid grid-cols-2 gap-6 md:grid-cols-3 xl:grid-cols-5 place-items-center"
       sizes="max-w-none"
@@ -156,7 +174,7 @@
       </h6>
       <ServiceCard label="design" body={services["Design"].body} />
       <img
-        src="/pre_mockup_designs/garage_ref.png"
+        src="/images/146_Waterloo.jpg"
         alt=""
         class="h-full hidden md:flex object-cover max-h-96 not-prose rounded-md"
       />
@@ -166,18 +184,18 @@
         body={services["Install"].body}
       />
       <img
-        src="/pre_mockup_designs/garage_ref.png"
+        src="/images/Devon_Road .jpg"
         alt=""
         class="h-full hidden md:flex max-h-96 row-start-2 xl:row-start-auto col-start-1 xl:col-start-auto object-cover not-prose rounded-md"
       />
       <ServiceCard label="DIY Repair" body={services["DIY Repair"].body} />
       <img
-        src="/pre_mockup_designs/garage_ref.png"
+        src="/images/Sun_Hung_Kai_Riva_slide_gates.jpg"
         alt=""
         class="w-full h-full max-h-96 hidden md:flex xl:col-span-2 object-cover not-prose rounded-md"
       />
       <img
-        src="/pre_mockup_designs/garage_ref.png"
+        src="/images/DB_Phase_17_B.jpg"
         alt=""
         class="w-full h-full max-h-96 xl:col-span-2 hidden md:flex object-cover not-prose rounded-md"
       />
