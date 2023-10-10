@@ -19,11 +19,11 @@
 </script>
 
 {#if href}
-  <a class={classesBase} {href}>
+  <a class={classesBase} {href} style={$$props.style}>
     <slot />
   </a>
 {:else}
-  <div class={classesBase}>
+  <div class={classesBase} style={$$props.style}>
     <slot />
   </div>
 {/if}

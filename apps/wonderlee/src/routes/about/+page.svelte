@@ -62,10 +62,13 @@
       <p
         class="body-large m-0 sm:m-0 tracking-wide leading-relaxed md:leading-loose"
       >
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum,
-        consequuntur, esse ex deleniti repellat illo temporibus saepe est odit
-        laboriosam ad non reprehenderit aut ullam commodi fugit, dolor iure
-        dolores natus debitis facilis tempore.
+        With a commitment to excellence since our establishment in 1998,
+        Wonderlee has continually evolved to meet the needs of homeowners,
+        businesses, and professionals in Hong Kong. Our passion for design,
+        precision craftsmanship, and dedication to customer satisfaction have
+        earned us a trusted reputation in the industry. We are prescribed as BD
+        class 1 Minor Works contractor. <br /> Registration no.
+        <b> MWC1628/2012 </b>.
       </p>
     </Container>
     <Container class="grid grid-cols-1 md:grid-cols-2 gap-x-12">
@@ -73,25 +76,31 @@
       <p
         class="body-large m-0 sm:m-0 tracking-wide leading-relaxed md:leading-loose"
       >
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum,
-        consequuntur, esse ex deleniti repellat illo temporibus.
+        Since 1998, Wonderlee has been a trusted name in gates and garage door
+        solutions. With a passion for design and a commitment to excellence,
+        we've evolved to create transformative solutions for homeowners,
+        businesses, and professionals in Hong Kong and the UK. Our enduring
+        legacy of quality and customer satisfaction has made Wonderlee a symbol
+        of reliability and style in the industry. We're dedicated to shaping the
+        future of property aesthetics and security.
       </p>
     </Container>
     <Container class="grid grid-cols-2" padding="pt-24">
       {#each historyEvents as { date, event }, i}
         <Card
-          class="{i % 2 != 0
-            ? 'border-l border-surface-on/40'
-            : 'text-right mt-64'} relative"
+          class=" border-surface-on/40 {i % 2 != 0
+            ? 'border-l col-start-2'
+            : 'text-right border-r col-start-1'} relative"
+          style="grid-row-start: {i + 1};"
           size="max-w-none w-full"
-          padding="px-24 py-24"
+          padding="px-12 py-24"
           radius=""
         >
           <span
             class="absolute flex items-center z-20 justify-center w-10 h-10 rounded-full {i %
             2
               ? '-left-5 bg-surface'
-              : '-right-5 bg-surface-highlight'} r"
+              : '-right-5 bg-surface-highlight'} "
           >
             <svg
               class="w-3 h-3 z-10 {i % 2
@@ -107,8 +116,8 @@
               />
             </svg>
           </span>
-          <p class="text-tertiary m-0 sm:m-0">{date}</p>
-          <h3 class="m-0 sm:m-0">{event}</h3>
+          <h6 class="text-tertiary m-0 sm:m-0">{date}</h6>
+          <h4 class="m-0 sm:m-0">{event}</h4>
         </Card>
       {/each}
     </Container>

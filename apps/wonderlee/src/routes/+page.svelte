@@ -61,7 +61,7 @@ enhancing elegance and functionality with top craftsmanship standards.
   const services = {
     Design: {
       href: "/design",
-      body: `Wonderlee's design services are the foundation of remarkable gates and garage doors. Our expert designers collaborate closely with you to bring your vision to life, ensuring your property shines with exceptional aesthetics.`,
+      body: `Our design services are the foundation of remarkable gates and garage doors. Our expert designers collaborate closely with you to bring your vision to life, ensuring your property shines with exceptional aesthetics.`,
     },
     Install: {
       href: "/instal",
@@ -84,17 +84,17 @@ enhancing elegance and functionality with top craftsmanship standards.
     },
     "Residential Gate": {
       href: "/products/#residential-gates",
-      img: "/animations/canopy_garage.gif",
+      img: "/animations/fold_gate_button.gif",
       types: "Folding gate, Slide gate, Swing gate",
     },
     "Commercial Doors": {
       href: "/products#commercial-doors",
-      img: "/animations/sectional_garage.gif",
+      img: "/products/commercial-doors/re2.gif",
       types: "Slide door, Swing door, Revolving door",
     },
     "Secret Doors": {
       href: "/products#secret-doors",
-      img: "/animations/sectional_garage.gif",
+      img: "/products/secret-doors/secret_door2.gif",
       types: "",
     },
   };
@@ -166,7 +166,7 @@ enhancing elegance and functionality with top craftsmanship standards.
 
   <section class="grid place-items-center py-24" id="services">
     <Container
-      class="grid grid-cols-2 gap-6 md:grid-cols-3 xl:grid-cols-5 place-items-center"
+      class="grid grid-cols-2 gap-6 md:grid-cols-3 xl:grid-cols-6 place-items-center"
       sizes="max-w-none"
     >
       <h6 class="uppercase text-tertiary col-span-full place-self-end -my-2">
@@ -174,9 +174,9 @@ enhancing elegance and functionality with top craftsmanship standards.
       </h6>
       <ServiceCard label="design" body={services["Design"].body} />
       <img
-        src="/images/146_Waterloo.jpg"
+        src="/images/Dragon_F.jpeg"
         alt=""
-        class="h-full hidden md:flex object-cover max-h-96 not-prose rounded-md"
+        class="h-full hidden md:flex xl:col-span-2 object-cover not-prose rounded-md"
       />
       <ServiceCard
         class="md:col-start-2 xl:col-start-auto"
@@ -184,20 +184,20 @@ enhancing elegance and functionality with top craftsmanship standards.
         body={services["Install"].body}
       />
       <img
-        src="/images/Devon_Road .jpg"
+        src="/images/Sun_Hung_Kai_Riva_swing_gates.jpg"
         alt=""
-        class="h-full hidden md:flex max-h-96 row-start-2 xl:row-start-auto col-start-1 xl:col-start-auto object-cover not-prose rounded-md"
+        class="h-full hidden md:flex row-start-2 xl:col-span-2 xl:row-start-auto col-start-1 xl:col-start-auto object-cover not-prose rounded-md"
       />
       <ServiceCard label="DIY Repair" body={services["DIY Repair"].body} />
       <img
-        src="/images/Sun_Hung_Kai_Riva_slide_gates.jpg"
+        src="/images/146_Waterloo.jpg"
         alt=""
-        class="w-full h-full max-h-96 hidden md:flex xl:col-span-2 object-cover not-prose rounded-md"
+        class="w-full h-full hidden md:flex xl:col-span-2 object-cover not-prose rounded-md"
       />
       <img
         src="/images/DB_Phase_17_B.jpg"
         alt=""
-        class="w-full h-full max-h-96 xl:col-span-2 hidden md:flex object-cover not-prose rounded-md"
+        class="w-full h-full xl:col-span-3 hidden md:flex object-cover not-prose rounded-md"
       />
       <ServiceCard
         class="xl:col-span-3"
@@ -208,38 +208,33 @@ enhancing elegance and functionality with top craftsmanship standards.
   </section>
 
   <section class="grid place-items-center py-24">
-    <Container sizes="max-w-none w-full">
-      <h6 class="uppercase text-tertiary col-span-full justify-self-start my-4">
+    <Container sizes="max-w-none w-full" padding="">
+      <h6
+        class="uppercase text-tertiary col-span-full justify-self-start my-4 mx-4 md:mx-6"
+      >
         Products
       </h6>
 
       {#each Object.entries(products) as [label, { href, img, types }], i}
         <Container
           {href}
-          class="group hover:bg-surface/50 transition-all duration-300"
+          class="group hover:bg-surface/50 transition-all duration-300 items-center"
           border="border-y border-surface-on/50 flex"
           sizes="max-w-none w-full"
         >
-          <div
-            class="absolute top-1/2 -translate-y-1/2 {i < 2
-              ? `left-[${i * 100}px] md:left-[${i * 200}px]`
-              : `right-[${(i - 2) * 100}px] md:right-[${i * 200}px]`}"
-          >
-            <!-- left-[100px] left-[200px] left-[0px] right-[0px] right-[100px] right-[200px]-->
-            <img
-              src={img}
-              alt=""
-              class="hidden md:flex h-24 lg:h-32 xl:h-44 not-prose"
-            />
-          </div>
-          <a href="/" class="mx-auto my-8 text-center flex flex-col gap-2">
+          <div class=" my-8 text-left flex flex-col gap-2">
             <h2 class="m-0 sm:m-0 uppercase text-surface-on">
               {label}
             </h2>
             <p class="m-0 sm:m-0 text-surface-on/70 font-light">
               {types}
             </p>
-          </a>
+          </div>
+          <img
+            src={img}
+            alt=""
+            class=" ml-auto md:flex h-24 sm:h-28 aspect-[1.5] my-2 object-cover not-prose"
+          />
         </Container>
       {/each}
     </Container>
