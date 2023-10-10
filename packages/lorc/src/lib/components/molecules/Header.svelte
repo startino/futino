@@ -3,6 +3,7 @@
   import { onMount } from "svelte";
   import Icon from "../atoms/Icon.svelte";
   import { fade, slide } from "svelte/transition";
+  import Button from "../atoms/Button.svelte";
 
   // Types to get TailwindCSS Intellisense
   import type { CssClasses } from "../../types.ts";
@@ -20,6 +21,10 @@
   export let pages: { [key: string]: string } = {
     Home: "/",
   };
+  /** Labels and hrefs of CTA buttons on the hero. Recommended 1-2.*/
+  export let CTAButtons: {
+    [label: string]: { href: string; highlight: boolean };
+  } = {};
   /**Property to determine if the class 'fixed' is applied to the header.*/
   export let sticky: boolean = true;
   /**Property to determine if the theme toggle button should be included.*/
@@ -31,7 +36,7 @@
   /** Provide classes to set background color. */
   export let background: CssClasses = "";
   /** Provide classes to set border styles. The default is: md: md:border-primary/50 */
-  export let border: CssClasses = "md:border-primary/50";
+  export let border: CssClasses = "border-primary/50";
   /** Provide classes to set padding. */
   export let padding: CssClasses = "";
   /** Provide classes to define a box shadow. */
@@ -84,13 +89,13 @@
     <div
       in:slide={{ delay: 200, duration: 300 }}
       out:slide
-      class="absolute z-50 p-12 w-full mx-auto my-auto top-0 bottom-0 flex flex-col items-center gap-4 left-0 right-0 h-fit max-w-xs md:max-w-xl lg:max-w-2xl bg-surface rounded-lg shadow-lg"
+      class="absolute z-50 p-12 w-full mx-auto my-auto top-0 bottom-0 flex flex-col items-center gap-4 left-0 right-0 h-fit max-w-xs md:max-w-xl bg-surface rounded-lg shadow-lg"
     >
       <!-- Nav Elements -->
       <nav class="text-center flex flex-col gap-6 headline-medium">
         {#each Object.entries(pages) as [name, href]}
           <a
-            class="text-primary-container-on hover:text-tertiary hover:scale-105 transition-all duration-200"
+            class="text-surface-on hover:text-tertiary hover:scale-105 transition-all duration-200"
             {href}
             on:click={toggleMenu}
           >
@@ -109,7 +114,7 @@
 >
   <div class="relative {activeheaderClass} transition-all duration-400">
     <div
-      class="flex flex-row z-50 items-center px-6 md:px-18 lg:max-w-5xl xl:max-w-6xl mx-auto"
+      class="flex md:grid md:grid-cols-5 z-50 items-center justify-between w-full px-6 max-w-7xl mx-auto"
     >
       <a class="flex gap-3 not-prose" href="/">
         <Logo />
@@ -117,35 +122,37 @@
       </a>
 
       <!-- Justify-between Header -->
-      <div class="flex {gap} ml-auto items-center">
-        <nav class="hidden md:flex {gap}">
-          {#each Object.entries(pages) as [name, href]}
-            <a class="hover:text-tertiary" {href}>
-              <h5>
-                {name}
-              </h5>
-            </a>
-          {/each}
-        </nav>
-
-        <div
-          class="pl-6 md:border-l items-center {border} {dualTheme
-            ? 'flex'
-            : 'hidden'}"
-        />
-
-        <button
-          class="flex md:hidden stroke-primary hover:stroke-tertiary"
-          on:click={toggleMenu}
-        >
-          <Icon
-            height="28"
-            width="28"
-            fill={"none"}
-            icon={menuOpen ? "cross" : "burger"}
-          />
-        </button>
+      <nav class="hidden md:flex col-span-3 mx-auto {gap}">
+        {#each Object.entries(pages) as [name, href]}
+          <a class="text-background-on hover:text-tertiary" {href}>
+            <h6 class="m-0 sm:m-0">
+              {name}
+            </h6>
+          </a>
+        {/each}
+      </nav>
+      <div
+        class="hidden md:flex grid grid-cols-{Object.entries(CTAButtons)
+          .length} gap-4 md:gap-6 place-items-center w-fit"
+      >
+        {#each Object.entries(CTAButtons) as [label, { href, highlight }]}
+          <Button class="w-full" {highlight} {href}>
+            {label}
+          </Button>
+        {/each}
       </div>
+
+      <button
+        class="flex md:hidden stroke-primary hover:stroke-tertiary"
+        on:click={toggleMenu}
+      >
+        <Icon
+          height="28"
+          width="28"
+          fill={"none"}
+          icon={menuOpen ? "cross" : "burger"}
+        />
+      </button>
     </div>
   </div>
 </header>

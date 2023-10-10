@@ -1,11 +1,9 @@
 <script lang="ts">
   import "../app.postcss";
-  import { Header, Shell, FatFooter } from "lorc";
+  import { Header, Shell, FatFooter, Prose } from "lorc";
 
   const headerLinks: { [key: string]: string } = {
-    Home: "/",
     "Our work": "/our-work",
-    Contact: "/contact",
     Services: "/#services",
     Products: "/products",
     About: "/about",
@@ -19,7 +17,7 @@
     Support: {
       About: "/about",
       Contact: "/contact",
-      FAQ: "/about#faq",
+      FAQ: "/",
     },
     Legal: {
       "Privacy Policy": "/legal/privacy",
@@ -27,11 +25,19 @@
       Licenses: "/legal/licenses",
     },
   };
+
+  const CTAButtons: {
+    [label: string]: { href: string; highlight: boolean };
+  } = {
+    "Contact us": { href: "/contact", highlight: false },
+  };
 </script>
 
 <Shell class="bg-background">
   <svelte:fragment slot="header">
-    <Header companyName="" pages={headerLinks} />
+    <Prose>
+      <Header companyName="" pages={headerLinks} {CTAButtons} />
+    </Prose>
   </svelte:fragment>
 
   <slot />

@@ -43,9 +43,9 @@
   <span
     class="relative mx-auto z-0 flex gap-4 place-items-center group-hover:text-tertiary-on transition-all duration-150 delay-75"
   >
-    <h4 class="m-0 sm:m-0 not-prose font-normal whitespace-nowrap">
+    <h6 class="m-0 sm:m-0 text-2xl font-normal whitespace-nowrap">
       <slot />
-    </h4>
+    </h6>
     {#if arrow}
       <Icon
         class="-rotate-90 my-auto group-hover:translate-x-2 duration-300 transition-all not-prose"
