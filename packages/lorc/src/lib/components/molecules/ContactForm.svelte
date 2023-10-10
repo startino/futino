@@ -2,6 +2,13 @@
   import Button from "../atoms/Button.svelte";
   import { createClient } from "@supabase/supabase-js";
   import TextField from "../atoms/TextField.svelte";
+  import type { Database } from "$lib/supabase.types";
+
+  // Create a Supabase client object
+  const supabase = createClient<Database>(
+    "https://qnzxoapdhdycrblbeovn.supabase.co",
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFuenhvYXBkaGR5Y3JibGJlb3ZuIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTMyNzc4NDQsImV4cCI6MjAwODg1Mzg0NH0.oXm7-RMRSzKw0blIJ99daqwW7vz93Tj2iadXg1m6EEs"
+  );
 
   let nameInput: string = "";
   let emailInput: string = "";

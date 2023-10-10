@@ -3,7 +3,7 @@
 
   export let id: string = "";
 
-  export let href: string | undefined;
+  export let href: string = "";
 
   /** Provide the max widths of the container at different screen sizes. */
   export let sizes: CssClasses = "max-w-7xl w-full";

@@ -40,13 +40,16 @@
           {#if product.types}
             {#each product.types as { label, thumbnail, href }}
               <Card
-                class=" relative flex place-items-center group overflow-hidden"
+                class=" relative flex place-items-center group overflow-hidden {product
+                  .types.length == 1
+                  ? 'col-span-2'
+                  : ''}"
                 href="/products/{name}{href}"
-                size="max-w-none w-full h-full aspect-[1.3] "
+                size="max-w-none w-full h-full aspect-[1.7] max-h-72"
                 padding="px-1 py-2"
               >
                 <h3
-                  class=" m-0 sm:m-0 w-full text-center z-10 group-hover:text-tertiary transition-all duration-300"
+                  class="m-0 sm:m-0 w-full text-center z-10 group-hover:text-tertiary transition-all duration-300"
                 >
                   {label}
                 </h3>

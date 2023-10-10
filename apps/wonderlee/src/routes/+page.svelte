@@ -153,12 +153,6 @@ enhancing elegance and functionality with top craftsmanship standards.
           <p class="text-surface-on m-0 sm:m-0">
             {body}
           </p>
-          <Button
-            class="bg-surface-highlight justify-self-end mt-6"
-            arrow={true}
-          >
-            Request consultation
-          </Button>
         </Card>
       {/each}
     </Container>

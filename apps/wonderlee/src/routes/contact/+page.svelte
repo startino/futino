@@ -10,10 +10,10 @@
       <Card class="text-left" size="max-w-none w-full" padding="">
         <h1 class="uppercase">Contact Us</h1>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat.
+          We're here to assist you with all your gates and garage door needs.
+          Feel free to reach out to us anytime for inquiries, consultations, or
+          to schedule services. Our team is ready to provide you with the
+          highest level of support and expertise.
         </p>
       </Card>
       <ContactForm />
