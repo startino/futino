@@ -289,7 +289,7 @@ enhancing elegance and functionality with top craftsmanship standards.
       alt="crew"
       class="bg-no-repeat object-cover w-full h-full z-0 absolute"
     />
-    <div class="bg-black/40 z-10 absolute h-full w-full" />
+    <div class="bg-black/80 z-0 absolute h-full w-full" />
 
     <Container
       class="grid place-items-center gap-12"
@@ -298,15 +298,15 @@ enhancing elegance and functionality with top craftsmanship standards.
       padding="py-32"
     >
       <h1
-        class="text-center font-normal uppercase text-3xl sm:text-4xl md:text-4xl not-prose z-10"
+        class="text-center font-normal uppercase text-3xl sm:text-4xl md:text-4xl not-prose z-0"
       >
         Let's Get the Ball <br /><span
-          class="text-tertiary text-7xl sm:text-9xl md:text-[10rem] font-normal"
+          class="text-tertiary text-7xl sm:text-9xl md:text-[10rem] font-bold"
           >Rolling
         </span>
       </h1>
       <div
-        class="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6 place-items-center w-fit z-10"
+        class="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6 place-items-center w-fit z-0"
       >
         <Button highlight={true} class="w-full" href="/contact"
           >Request Consultation</Button

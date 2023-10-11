@@ -97,7 +97,7 @@
           radius=""
         >
           <span
-            class="absolute flex items-center z-20 justify-center w-10 h-10 rounded-full {i %
+            class="absolute flex items-center z-0 justify-center w-10 h-10 rounded-full {i %
             2
               ? '-left-5 bg-surface'
               : '-right-5 bg-surface-highlight'} "
