@@ -41,7 +41,7 @@
   const cBaseAppShell: CssClasses =
     "w-full h-full flex flex-col overflow-hidden";
   const cContentArea: CssClasses = "w-full h-full flex overflow-hidden";
-  const cPage: CssClasses = "flex-1 overflow-x-hidden flex flex-col pt-40";
+  const cPage: CssClasses = "flex-1 overflow-x-hidden flex flex-col ";
   const cSidebarLeft: CssClasses =
     "flex-none overflow-x-hidden overflow-y-auto";
   const cSidebarRight: CssClasses =

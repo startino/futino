@@ -12,15 +12,15 @@
   export let typography: CssClasses = "";
   /** Labels and hrefs of CTA buttons on the hero. Recommended 1-2.*/
   export let CTAButtons: {
-    [label: string]: { href: string; secondary: boolean };
+    [label: string]: { href: string; highlight: boolean };
   } = {
     "CTA ONE": {
       href: "/",
-      secondary: false,
+      highlight: true,
     },
     "CTA TWO": {
       href: "/",
-      secondary: true,
+      highlight: false,
     },
   };
 
@@ -40,12 +40,15 @@
 </script>
 
 <section
-  class="h-screen bg-[url('{bgImg}')] bg-center bg-cover w-full grid {typography} place-items-center"
+  class="h-screen {bgImg} bg-center bg-cover w-full grid {typography} place-items-center"
+  style=""
 >
-  <div class="flex flex-col {justifyClass()} my-auto gap-8 mx-6">
-    <div class="flex flex-col gap-4">
+  <div
+    class="flex flex-col items-center {justifyClass()} my-auto gap-12 mx-2 sm:mx-4 md:mx-6"
+  >
+    <div class="flex flex-col items-center gap-4">
       <h1 class="" style="margin: 0px">{title}</h1>
-      <h5 class="" style="margin: 0px">
+      <h5 class="max-w-6xl" style="margin: 0px">
         {subtitle}
       </h5>
     </div>
@@ -53,9 +56,9 @@
       class="grid grid-cols-{Object.entries(CTAButtons)
         .length} gap-4 md:gap-6 place-items-center w-fit"
     >
-      {#each Object.entries(CTAButtons) as [label, { href, secondary }]}
-        <Button {secondary} {href}>
-          <h6 class="" style="margin: 0px">{label}</h6>
+      {#each Object.entries(CTAButtons) as [label, { href, highlight }]}
+        <Button class="w-full" {highlight} {href}>
+          {label}
         </Button>
       {/each}
     </div>

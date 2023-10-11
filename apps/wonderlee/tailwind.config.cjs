@@ -1,9 +1,9 @@
 import { join } from 'path';
-import fColors from '../../futino-colors.cjs';
+import fColors from '../../futino-universal-colors.cjs';
 import fAnimations from '../../futino-animations.cjs';
 import fKeyframes from '../../futino-keyframes.cjs';
 import fPadding from '../../futino-padding.cjs';
-import fTypography from '../../futino-typography.cjs';
+import fTypography from '../../futino-new-typography.cjs';
 
 const alpha = '<alpha-value>';
 
@@ -12,7 +12,7 @@ const config = {
 	content: [
 		'./src/**/*.{html,js,svelte,ts}',
 		join(require.resolve('lorc'),
-			'../**/*.{html,js,svelte,ts}',
+			'../**/*.{html,js,svelte,ts,ttf}',
 		),
 	],
 
@@ -20,11 +20,14 @@ const config = {
 
 	theme: {
 		extend: {
-			padding: fPadding,
+      backgroundImage: 
+      {
+        "landing": "url('/pre_mockup_designs/garage_ref.png')"
+      },
+      padding: fPadding,
 			fontFamily: {
-				bilbo: ['Bilbo Swash Caps'],
-				ubuntu: ['Ubuntu'],
-			},
+         'sans': ['TASA Orbiter Text' ],
+					},
 
 			animation: fAnimations,
 			keyframes: fKeyframes,
