@@ -29,7 +29,7 @@
       </div>
       <div class=" py-12">
         <p class="uppercase text-tertiary m-0 sm:m-0">Phone</p>
-        <h3 class="m-0 sm:m-0">6931 0020</h3>
+        <h3 class="m-0 sm:m-0">+852 6931 0020</h3>
       </div>
       <div class=" py-12">
         <p class="uppercase text-tertiary m-0 sm:m-0">Address</p>
