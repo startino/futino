@@ -149,7 +149,7 @@
       </ul>
     </div>
   </Container>
-  <Container class="flex flex-col md:grid md:grid-cols-2 gap-6" id="telescope">
+  <Container class="flex flex-col md:grid md:grid-cols-2 gap-6" id="telescopic">
     <img
       src="/products/residential-gates/sliding/TELESCOPIC.gif"
       alt=""

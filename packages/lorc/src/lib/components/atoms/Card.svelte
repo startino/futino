@@ -1,7 +1,7 @@
 <script lang="ts">
   import type { CssClasses } from "$lib/types";
 
-  export let href: string | undefined;
+  export let href: string = "";
 
   /** Provide the max widths of the container at different screen sizes. */
   export let size: CssClasses = "max-w-md";

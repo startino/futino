@@ -85,7 +85,7 @@
     </div>
   </Container>
   {#each renlita_doors as { label, id, description }}
-    <Container class="flex flex-col md:grid md:grid-cols-2 gap-6" id="uphill">
+    <Container class="flex flex-col md:grid md:grid-cols-2 gap-6" {id}>
       <div class="grid grid-cols-2 md:grid-cols-1 not-prose">
         <img
           src="/products/renlita-door/{id}-1.jpg"
