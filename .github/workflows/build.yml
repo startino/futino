@@ -63,6 +63,12 @@ jobs:
               path: apps/website,
               domain: futi.no
             }
+          - {
+              name: Wonderlee,
+              id: wonderlee,
+              path: apps/wonderlee,
+              domain: wonderlee.futi.no
+            }
 
     steps:
       - name: Checkout code
