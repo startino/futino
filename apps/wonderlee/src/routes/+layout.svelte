@@ -4,7 +4,7 @@
 
   const headerLinks: { [key: string]: string } = {
     "Our work": "/our-work",
-    Services: "/#services",
+    Services: "/services",
     Products: "/products",
     About: "/about",
   };
