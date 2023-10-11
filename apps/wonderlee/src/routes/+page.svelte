@@ -111,19 +111,14 @@ enhancing elegance and functionality with top craftsmanship standards.
   <section class="grid place-items-center py-24">
     <Container class="grid grid-cols-3 w-full rounded-md " sizes="max-w-screen">
       {#each Object.entries(statistics) as [label, { finalValue, startValue, increment }], i}
-        <AnimatedCounter
+        <Container
           class="text-center p-4 w-full"
+          radius=""
           border={i == 1 ? "border-x border-surface-on/50" : ""}
-          {startValue}
-          {increment}
         >
-          <svelte:fragment slot="value">
-            <h1 class="m-0 text-tertiary sm:m-0">{finalValue}</h1>
-          </svelte:fragment>
-          <svelte:fragment slot="label">
-            <h6 class="m-0 sm:m-0 text-primary-on font-light">{label}</h6>
-          </svelte:fragment>
-        </AnimatedCounter>
+          <h1 class="m-0 text-tertiary sm:m-0">{finalValue}</h1>
+          <h6 class="m-0 sm:m-0 text-primary-on font-light">{label}</h6>
+        </Container>
       {/each}
     </Container>
   </section>

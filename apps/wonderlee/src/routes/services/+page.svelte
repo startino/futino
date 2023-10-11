@@ -37,12 +37,6 @@
       body: `At Wonderlee, our maintenance services ensure peace of mind. We provide 24-hour technical support via telephone. Under our maintenance contract, inspections and maintenance every 6 months by our experienced team.`,
     },
   };
-  const other_services: string[] = [
-    "Safety",
-    "Best Product",
-    "Spare Parts",
-    "Everything Else",
-  ];
 </script>
 
 <Prose>
@@ -68,15 +62,6 @@
           >
         {/each}
       </div>
-      <ul class="gap-x-4 gap-y-4 place-items-center py-12">
-        {#each other_services as label}
-          <h3
-            class="uppercase m-0 sm:m-0 whitespace-nowrap text-5xl md:text-2xl lg:text-4xl mx-auto tracking-tighter"
-          >
-            {label}.
-          </h3>
-        {/each}
-      </ul>
     </Container>
     <section class="grid h-full min-h-screen place-items-center pt-44 gap-24">
       {#each Object.entries(services) as [label, { href, body, icon }]}

@@ -17,6 +17,7 @@
     </Container>
     <Container
       class="grid grid-cols-1 place-items-center gap-y-12"
+      padding="mt-32"
       sizes="max-w-none w-full"
     >
       {#each Object.entries(products) as [name, product]}

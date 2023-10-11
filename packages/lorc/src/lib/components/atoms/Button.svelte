@@ -36,9 +36,9 @@
   on:mouseenter
   on:mouseleave
   class:uppercase
-  class=" {classesBase} flex w-fit h-fit relative place-items-center font-bold group text-center transition-all duration-300 {highlight
-    ? 'text-tertiary-on bg-primary hover:bg-tertiary'
-    : 'text-surface bg-surface-on hover:bg-tertiary'}"
+  class=" {classesBase} flex w-fit h-fit relative place-items-center font-bold group text-center transition-all duration-300 hover:bg-tertiary hover:text-tertiary-on {highlight
+    ? 'text-primary-on bg-primary '
+    : 'text-surface bg-surface-on'}"
 >
   <span
     class="relative mx-auto z-0 flex gap-4 place-items-center group-hover:text-tertiary-on transition-all duration-150 delay-75"

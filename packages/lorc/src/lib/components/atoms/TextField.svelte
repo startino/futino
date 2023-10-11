@@ -13,7 +13,7 @@
       class=" {value
         ? 'font-bold text-surface-on -top-1/2 -translate-y-5 left-0'
         : 'font-normal left-3 top-1/2'} block group-hover:font-bold text-surface-on group-hover:text-surface-on absolute -translate-y-1/2 duration-[400ms] ease-in-out group-hover:left-0 group-hover:-top-1/2 group-hover:-translate-y-5 transition-all"
-      >{label}</label
+      >{label} {required ? "*" : ""}</label
     >
     <div class="absolute w-full h-full overflow-hidden pointer-events-none">
       <h3
@@ -36,7 +36,7 @@
       class="{value
         ? 'font-bold text-surface-on -top-1 -translate-y-full left-0'
         : 'font-normal left-3 top-2.5'} block group-hover:font-bold text-surface-on group-hover:text-surface-on absolute group-hover:-top-1 duration-[400ms] ease-in-out group-hover:-translate-y-full group-hover:left-0 transition-all"
-      >{label}</label
+      >{label} {required ? "*" : ""}</label
     >
     <div class="overflow-hidden w-full h-full absolute pointer-events-none">
       <h3
