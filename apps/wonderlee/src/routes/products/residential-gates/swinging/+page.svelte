@@ -30,9 +30,7 @@
         <li>
           Gate can go up to 5 meter in length and 400 Kg in weight per leave.
           Material can be stainless steel, wrought iron, brass, Aluminum or
-          glass, hot-dip galvanized steel with powder coating. Click
-          <a href="swing_set-up.html"><strong>here</strong></a>
-          to see typical setup.
+          glass, hot-dip galvanized steel with powder coating.
         </li>
       </ul>
     </div>
@@ -101,10 +99,6 @@
           control.
         </li>
         <li>Auto-lock when closed, not extra locking mechanism required.</li>
-        <li>
-          Click <a href="swing_gate_sample.html"><strong>here</strong></a> to see
-          swing + telescopic gate for special application.
-        </li>
       </ul>
     </div>
   </Container>

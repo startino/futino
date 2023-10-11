@@ -55,14 +55,6 @@
           control.
         </li>
         <li>Auto-lock when closed, not extra locking mechanism required.</li>
-        <li>
-          Click <a href="bipart1.html"><strong>here</strong></a> to see a bi-parting
-          slide gate in action.
-        </li>
-        <li>
-          Click <a href="cantilever.html"><strong>here</strong></a> to see cantilever
-          gate
-        </li>
       </ul>
     </div>
   </Container>

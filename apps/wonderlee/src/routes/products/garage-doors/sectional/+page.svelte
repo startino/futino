@@ -74,10 +74,6 @@
           its center of gravity, door movement is much more stable and as a
           result, quieter.
         </li>
-        <li>
-          Click <a href="gdo.html"><strong>here</strong></a> to learn more about
-          working principle of garage door opener
-        </li>
       </ul>
     </div>
   </Container>

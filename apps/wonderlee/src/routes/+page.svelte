@@ -60,19 +60,15 @@ enhancing elegance and functionality with top craftsmanship standards.
 
   const services = {
     Design: {
-      href: "/design",
       body: `Our design services are the foundation of remarkable gates and garage doors. Our expert designers collaborate closely with you to bring your vision to life, ensuring your property shines with exceptional aesthetics.`,
     },
     Install: {
-      href: "/instal",
       body: `When it comes to installation, Wonderlee sets the standard. Our skilled technicians guarantee flawless installation, ensuring your gates and garage doors are durable and functional. We handle every detail for your peace of mind.`,
     },
     "DIY Repair": {
-      href: "/diy-repair",
       body: `Wonderlee offers DIY repair solutions for those who prefer hands-on approaches. We provide guidance, tools, and parts to help you efficiently address common repair issues, restoring your gates and garage doors.`,
     },
     Maintenance: {
-      href: "/maintenance",
       body: `At Wonderlee, our maintenance services ensure peace of mind. We provide 24-hour technical support via telephone. Under our maintenance contract, inspections and maintenance every 6 months by our experienced team.`,
     },
   };
