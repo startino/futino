@@ -16,8 +16,8 @@
 <Prose>
   <Hero
     CTAButtons={HeroCTA}
-    title="Hong Kong's Leading Gate & Garage Firm."
-    subtitle="Serving homeowners and business owners with premium services & products since 1998."
+    title="Futino's Secret Sauce."
+    subtitle=""
     justified="center"
     bgImg="/bg-landing"
   />
