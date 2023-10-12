@@ -69,7 +69,18 @@ jobs:
               path: apps/wonderlee,
               domain: wonderlee.futi.no
             }
-
+            {
+              name: Template,
+              id: template,
+              path: apps/template,
+              domain: template.futi.no,
+            }
+            {
+              name: Aitino,
+              id: aitino,
+              path: apps/aitino,
+              domain: aitino.futi.no
+            }
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
