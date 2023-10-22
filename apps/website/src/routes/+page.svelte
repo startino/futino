@@ -229,10 +229,9 @@
             Boring Agencies
           </h2>
           <h1 class="display-medium text-center sm:text-left lg:display-large">
-            <span class="text-primary font-extrabold"> In </span> with the
-            new, <br />
-            <span class="text-primary font-extrabold"> Out </span> with the
-            old
+            <span class="text-primary font-extrabold"> In </span> with the new,
+            <br />
+            <span class="text-primary font-extrabold"> Out </span> with the old
           </h1>
         </div>
 
@@ -302,8 +301,8 @@
           title="Not Locked In"
           artwork="artwork/gate_1.png"
         >
-          Your projects use nonproprietary tech, meaning you can swap us out
-          later on. <span class="inline-block">(You won't &#128521;)</span>
+          Enabling us to seamlessly swap providers in response to price changes,
+          minimizing volatility, and providing peace of mind.
         </SmallBenefitCard>
 
         <SmallBenefitCard
