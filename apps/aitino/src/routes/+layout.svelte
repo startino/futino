@@ -3,28 +3,28 @@
   import { Header, Shell, FatFooter, Prose } from "lorc";
 
   const headerLinks: { [key: string]: string } = {
-    About: "/about",
-    Contact: "/contact",
+    About: "/",
+    Contact: "/",
   };
   const footerLinks: { [key: string]: { [key: string]: string } } = {
     Explore: {
       Home: "/",
     },
     Support: {
-      About: "/about",
-      Contact: "/contact",
+      About: "/",
+      Contact: "/",
       FAQ: "/",
     },
     Legal: {
-      "Privacy Policy": "/legal/privacy",
-      "Terms of Service": "/legal/terms",
+      "Privacy Policy": "/",
+      "Terms of Service": "/",
     },
   };
 
   const CTAButtons: {
     [label: string]: { href: string; highlight: boolean };
   } = {
-    "Contact us": { href: "/contact", highlight: false },
+    "Contact us": { href: "/", highlight: false },
   };
 </script>
 
