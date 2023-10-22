@@ -8,7 +8,7 @@ on:
 
 jobs:
   deploy:
-    name: Building ${{ matrix.project.name }} with Bun ${{ matrix.bun-version }}
+    name: Building Project with Bun ${{ matrix.bun-version }}
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
