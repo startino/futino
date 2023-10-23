@@ -3,11 +3,11 @@
   import { Hero, Card, Prose, Button, Container, AnimatedCounter } from "lorc";
   const HeroCTA = {
     "Our work": {
-      href: "/our-work",
+      href: "/",
       highlight: true,
     },
     "Contact us": {
-      href: "/contact",
+      href: "/",
       highlight: false,
     },
   };
