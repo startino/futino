@@ -9,6 +9,8 @@ export { default as Card } from './components/atoms/Card.svelte';
 export { default as SelectMenu } from './components/atoms/SelectMenu.svelte';
 export { default as Authenticate } from './components/atoms/Authenticate.svelte';
 export { default as TestimonialCard } from './components/atoms/TestimonialCard.svelte';
+export { default as SearchBox } from './components/atoms/SearchBox.svelte';
+export { default as FAQCard } from './components/atoms/FAQCard.svelte';
 // Molecules
 export { default as FatFooter } from './components/molecules/FatFooter.svelte';
 export { default as Footer } from './components/molecules/Footer.svelte';
@@ -18,5 +20,6 @@ export { default as ContactForm } from './components/molecules/ContactForm.svelt
 export { default as Testimonials } from './components/molecules/Testimonials.svelte'
 // Organisms
 export { default as Shell } from './components/organisms/Shell.svelte';
+export { default as FAQSection } from './components/organisms/FAQSection.svelte';
 
 export type { Database } from './supabase.types.ts';

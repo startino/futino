@@ -123,7 +123,7 @@
     </Container>
   </section>
 
-  <section class="grid place-items-center h-full pt-24">
+  <section class="grid place-items-center h-full pt-24" id="licenses">
     <Container
       class="grid grid-cols-1 md:grid-cols-4 place-items-center  gap-8 not-prose"
     >

@@ -4,6 +4,8 @@
   import ServiceCard from "./ServiceCard.svelte";
   import projects from "./our-work/projects";
   import TestimonialCard from "./TestimonialCard.svelte";
+  import faqs from "./faqs";
+  import FAQSection from "../../lib/organisms/FAQSection.svelte";
   const CTAButtons = {
     "Our work": {
       href: "/our-work",
@@ -19,16 +21,19 @@
       finalValue: 999,
       startValue: 0,
       increment: 10,
+      unit: "",
     },
     "Custom garages built": {
       finalValue: 999,
       startValue: 0,
       increment: 10,
+      unit: "",
     },
     "Years of Experience": {
       finalValue: 25,
       startValue: 0,
       increment: 10,
+      unit: "+",
     },
   };
 
@@ -151,13 +156,13 @@ enhancing elegance and functionality with top craftsmanship standards.
   />
   <section class="grid place-items-center py-24">
     <Container class="grid grid-cols-3 w-full rounded-md " sizes="max-w-screen">
-      {#each Object.entries(statistics) as [label, { finalValue, startValue, increment }], i}
+      {#each Object.entries(statistics) as [label, { finalValue, startValue, increment, unit }], i}
         <Container
           class="text-center p-4 w-full"
           radius=""
           border={i == 1 ? "border-x border-surface-on/50" : ""}
         >
-          <h1 class="m-0 text-tertiary sm:m-0">{finalValue}</h1>
+          <h1 class="m-0 text-tertiary sm:m-0">{finalValue} {unit}</h1>
           <h6 class="m-0 sm:m-0 text-primary-on font-light">{label}</h6>
         </Container>
       {/each}
@@ -324,7 +329,7 @@ enhancing elegance and functionality with top craftsmanship standards.
     </Container>
   </section>
 
-  <section class="grid place-items-center py-24" id="services">
+  <section class="grid place-items-center py-24" id="testimonials">
     <Container
       class="grid grid-cols-1 sm:grid-cols-2 gap-6 md:grid-cols-3 place-items-center"
       padding="px-8"
@@ -344,7 +349,8 @@ enhancing elegance and functionality with top craftsmanship standards.
       {/each}
     </Container>
     <Button
-      href="/our-work"
+      href="https://maps.app.goo.gl/QXdmpjRN1mX5RVgD7"
+      target="_blank"
       class="bg-surface-highlight m-4 my-12 col-span-full justify-self-center"
       arrow={true}
     >
@@ -352,6 +358,9 @@ enhancing elegance and functionality with top craftsmanship standards.
     </Button>
   </section>
 
+  <section class="grid place-items-center relative py-24" id="faq">
+    <FAQSection {faqs} />
+  </section>
   <section class="grid place-items-center relative">
     <img
       src="/Wonderlee-Crew.jpg"

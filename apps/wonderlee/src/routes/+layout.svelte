@@ -13,16 +13,17 @@
       Home: "/",
       "Our work": "/our-work",
       Products: "/products",
+      Testimonials: "/#testimonials",
     },
     Support: {
       About: "/about",
       Contact: "/contact",
-      FAQ: "/",
+      FAQ: "/#faq",
     },
     Legal: {
       "Privacy Policy": "/legal/privacy",
       "Terms of Service": "/legal/terms",
-      Licenses: "/legal/licenses",
+      Licenses: "/about#licenses",
     },
   };
 
