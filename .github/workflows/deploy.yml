@@ -16,12 +16,6 @@ jobs:
         bun-version: [ latest ]
         project:
           - {
-              name: LoRC,
-              id: lorc,
-              path: packages/lorc,
-              domain: lorc.futi.no,
-            }
-          - {
               name: Allheim,
               id: allheim,
               path: apps/allheim,
@@ -68,12 +62,6 @@ jobs:
               id: wonderlee,
               path: apps/wonderlee,
               domain: wonderlee.futi.no,
-            }
-          - {
-              name: Template,
-              id: template,
-              path: apps/template,
-              domain: template.futi.no,
             }
           - {
               name: Aitino,
