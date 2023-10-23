@@ -22,7 +22,24 @@
 
       gtag('config', 'AW-11362930413');
     </script>
+    <script>
+      window.gtagReportConversion = function gtag_report_conversion(url) {
+        console.log("gtag report")
 
+        const callback = () => {
+          if (typeof url !== "undefined") {
+            window.location = url
+            console.log("location = url")
+          }
+        }
+        gtag("event", "conversion", {
+          send_to: "AW-11362930413/1kPwCIHazO8YEO2doqoq",
+          event_callback: callback
+        })
+        return false
+    }
+
+    </script>
 		%sveltekit.head%
 	</head>
 	<body

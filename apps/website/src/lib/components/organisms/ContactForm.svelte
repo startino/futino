@@ -53,11 +53,7 @@
 
   function gtagReportConversion() {
     if (browser) {
-      console.log("ts gtag report conversion");
-      window.gtag("event", "conversion", {
-        send_to: "AW-11362930413/1kPwCIHazO8YEO2doqoq",
-        event_callback: () => "futi.no/contact",
-      });
+      window.gtagReportConversion();
     }
   }
 </script>
