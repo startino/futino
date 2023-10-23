@@ -37,7 +37,7 @@
 
 <Prose>
   <section class="grid place-items-center pt-44">
-    <h1 class="uppercase m-0 sm:m-0">Our Work</h1>
+    <h1 class="uppercase m-0 sm:m-0">Job References</h1>
     <Container
       class="grid grid-cols-1 sm:grid-cols-2 place-items-center gap-y-12"
       sizes="max-w-none w-full"

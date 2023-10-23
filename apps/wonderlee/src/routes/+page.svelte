@@ -3,6 +3,9 @@
   import { Hero, Card, Prose, Button, Container, AnimatedCounter } from "lorc";
   import ServiceCard from "./ServiceCard.svelte";
   import projects from "./our-work/projects";
+  import TestimonialCard from "./TestimonialCard.svelte";
+  import faqs from "./faqs";
+  import FAQSection from "../../lib/organisms/FAQSection.svelte";
   const CTAButtons = {
     "Our work": {
       href: "/our-work",
@@ -18,16 +21,19 @@
       finalValue: 999,
       startValue: 0,
       increment: 10,
+      unit: "",
     },
     "Custom garages built": {
       finalValue: 999,
       startValue: 0,
       increment: 10,
+      unit: "",
     },
     "Years of Experience": {
       finalValue: 25,
       startValue: 0,
       increment: 10,
+      unit: "+",
     },
   };
 
@@ -94,6 +100,50 @@ enhancing elegance and functionality with top craftsmanship standards.
       types: "",
     },
   };
+
+  const testimonials: {
+    name: string;
+    img: string;
+    body: string;
+    href: string;
+  }[] = [
+    {
+      name: "Ron Tsang",
+      img: "reviews/r.png",
+      body: "Very quick response to fix gate after severe weather. So helpful in warranty covering period to come n change wheels when needed. Wonderlee is also good in recommending the right motor for our gate. Very good service.",
+      href: "https://g.co/kgs/3hssko",
+    },
+    {
+      name: "Jeff Chan",
+      img: "reviews/jeff.png",
+      body: "reviews/Wonderlee is very professional. They built 6 meters span garage door for me. The gate is so reliable which is weatherproof withstand signal 10 strong wind. Well done Wonderlee!",
+      href: "https://g.co/kgs/ujkcJB",
+    },
+    {
+      name: "Michael Bradwell",
+      img: "reviews/michael.png",
+      body: "Mr. Ken Mak, and his Team at Wondrelee are the best! The level of service and professionalism is unrivaled!! If you have garage door needs , I highly recommend Wonderlee.",
+      href: "https://g.co/kgs/ax5DSf",
+    },
+    {
+      name: "Jackie Yung",
+      img: "reviews/jacky.png",
+      body: "Ken and his team helped us design, fabricate and all in between about 6-7 years ago, they are always responsive and fast, an valuable trait as a door and gate specialist~",
+      href: "https://g.co/kgs/afSDGc",
+    },
+    {
+      name: "Gail Taylor",
+      img: "reviews/gail.png",
+      body: "I called this company due to the malfunction of my car gates, which were operated using electric arms via remote. The response was fast, the problem was identified, the repair was finished, all in good time.",
+      href: "https://g.co/kgs/141qFt",
+    },
+    {
+      name: "Peter Sanderson",
+      img: "reviews/peter.png",
+      body: "Positive: Professionalism, Responsive. This company fitted my electric gate arms. They are very responsive and always quick to help if there's a problem. I recommend this company.",
+      href: "https://g.co/kgs/w9Wy16",
+    },
+  ];
 </script>
 
 <Prose>
@@ -106,13 +156,13 @@ enhancing elegance and functionality with top craftsmanship standards.
   />
   <section class="grid place-items-center py-24">
     <Container class="grid grid-cols-3 w-full rounded-md " sizes="max-w-screen">
-      {#each Object.entries(statistics) as [label, { finalValue, startValue, increment }], i}
+      {#each Object.entries(statistics) as [label, { finalValue, startValue, increment, unit }], i}
         <Container
           class="text-center p-4 w-full"
           radius=""
           border={i == 1 ? "border-x border-surface-on/50" : ""}
         >
-          <h1 class="m-0 text-tertiary sm:m-0">{finalValue}</h1>
+          <h1 class="m-0 text-tertiary sm:m-0">{finalValue} {unit}</h1>
           <h6 class="m-0 sm:m-0 text-primary-on font-light">{label}</h6>
         </Container>
       {/each}
@@ -279,6 +329,38 @@ enhancing elegance and functionality with top craftsmanship standards.
     </Container>
   </section>
 
+  <section class="grid place-items-center py-24" id="testimonials">
+    <Container
+      class="grid grid-cols-1 sm:grid-cols-2 gap-6 md:grid-cols-3 place-items-center"
+      padding="px-8"
+      sizes="max-w-none"
+    >
+      <h6 class="uppercase text-tertiary col-span-full place-self-start -my-2">
+        Testimonials
+      </h6>
+      {#each testimonials as { name, body, href, img }, i}
+        <TestimonialCard
+          class="{i < 3 ? 'flex' : 'hidden'} sm:flex"
+          {name}
+          {body}
+          {href}
+          {img}
+        />
+      {/each}
+    </Container>
+    <Button
+      href="https://maps.app.goo.gl/QXdmpjRN1mX5RVgD7"
+      target="_blank"
+      class="bg-surface-highlight m-4 my-12 col-span-full justify-self-center"
+      arrow={true}
+    >
+      <p class="m-0 sm:m-0 text-background">See more on Google</p>
+    </Button>
+  </section>
+
+  <section class="grid place-items-center relative py-24" id="faq">
+    <FAQSection {faqs} />
+  </section>
   <section class="grid place-items-center relative">
     <img
       src="/Wonderlee-Crew.jpg"

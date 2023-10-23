@@ -31,6 +31,7 @@
 
 <a
   {href}
+  target={$$props.target}
   on:click
   on:mouseover
   on:mouseenter

@@ -19,7 +19,7 @@
 </script>
 
 {#if href}
-  <a class={classesBase} {href} style={$$props.style}>
+  <a class={classesBase} target={$$props.target} {href} style={$$props.style}>
     <slot />
   </a>
 {:else}
