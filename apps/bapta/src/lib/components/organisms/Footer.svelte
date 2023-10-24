@@ -27,11 +27,10 @@
 
   /** Provide classes to set border styles. The default is: md: md:border-primary/50 */
   export const border: string = "border-outline ";
-
 </script>
 
 <footer
-  class="max-w-none prose-a:no-underline prose sm:prose-sm prose-invert lg:prose-md prose-main"
+  class="max-w-none w-full prose-a:no-underline prose sm:prose-sm lg:prose-md prose-invert prose-main"
 >
   <div class="px-6 md:px-18 lg:max-w-5xl xl:max-w-6xl mx-auto">
     <div
@@ -43,7 +42,7 @@
       </a>
 
       <div
-        class="flex flex-row gap-12 mt-3 sm:mt-0 w-fit justify-self-center justify-items-center"
+        class="flex flex-wrap gap-12 mt-3 sm:mt-0 w-fit justify-self-center justify-items-center"
       >
         {#each Object.entries(pages) as [name, href]}
           <a {href} class="hover:underline m-0">
@@ -61,4 +60,3 @@
     </div>
   </div>
 </footer>
-
