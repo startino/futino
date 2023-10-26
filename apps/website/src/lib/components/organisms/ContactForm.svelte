@@ -18,8 +18,6 @@
   let formSubmitted = false;
 
   async function submitForm(event: any) {
-    gtagReportConversion();
-
     let rawData = new FormData(event.target);
     console.log(rawData);
 
@@ -49,12 +47,6 @@
         message: formData.message,
       },
     ]);
-  }
-
-  function gtagReportConversion() {
-    if (browser) {
-      window.gtagReportConversion();
-    }
   }
 </script>
 
