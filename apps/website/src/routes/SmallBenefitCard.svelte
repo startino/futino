@@ -14,7 +14,7 @@
       <slot />
     </p>
   </div>
-  <div class="flex z-0 -mx-10 -mb-16">
+  <div class="flex z-0 -mx-10 -mb-16 -mt-32">
     <img
       src={$$props.artwork}
       class="object-center w-full h-full group-hover:drop-shadow-benefit-art-hover drop-shadow-benefit-art transition-all duration-300"

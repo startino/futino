@@ -13,9 +13,10 @@ export type Features = {
   };
   Development: {
     Database: boolean;
-    'Responsive Design': boolean;
+    'Mobile Design': boolean;
     'Admin Page': boolean;
     'Online Payment': boolean;
+    'SEO': boolean;
   };
   Hosting: {
     'Live Server': boolean;
@@ -54,12 +55,14 @@ export const features = {
   },
   Development: {
     Database: 'Data management, retrievals, and submissions for your website or application.',
-    'Responsive Design':
+    'Mobile Design':
       'Ensures your website looks and functions flawlessly across various devices and screen sizes.',
     'Admin Page':
       'A password protected page that allows you to easily update content and monitor performance.',
     'Online Payment':
       'Integrate a payment gateway on your website and configure it for your business.',
+    'SEO':
+      'The process of improving your website to increase its visibility in search engines like Google.'
   },
   Hosting: {
     'Live Server': 'Your website is hosted on a server with live updates.',
@@ -117,9 +120,10 @@ export const norpTiers: NorpTier[] = [
       },
       Development: {
         Database: true,
-        'Responsive Design': true,
+        'Mobile Design': true,
         'Admin Page': true,
         'Online Payment': true,
+        'SEO': true,
       },
       Hosting: {
         'Live Server': true,
@@ -159,9 +163,10 @@ export const norpTiers: NorpTier[] = [
       },
       Development: {
         Database: true,
-        'Responsive Design': true,
+        'Mobile Design': true,
         'Admin Page': true,
         'Online Payment': true,
+        'SEO': true,
       },
       Hosting: {
         'Live Server': true,
@@ -201,9 +206,11 @@ export const norpTiers: NorpTier[] = [
       },
       Development: {
         Database: true,
-        'Responsive Design': true,
+        'Mobile Design': true,
         'Admin Page': true,
         'Online Payment': true,
+        'SEO': true,
+
       },
       Hosting: {
         'Live Server': true,

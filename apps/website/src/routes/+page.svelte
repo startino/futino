@@ -90,13 +90,13 @@
     },
     {
       chapterNumber: 1,
-      title: "Benefits",
-      href: "#benefits",
+      title: "Services",
+      href: "#services",
     },
     {
       chapterNumber: 2,
-      title: "Services",
-      href: "#services",
+      title: "Benefits",
+      href: "#benefits",
     },
     {
       chapterNumber: 3,
@@ -146,7 +146,7 @@
     class="relative h-screen place-items-center bg-[url('/glow_bg_2.png')] bg-no-repeat bg-fit bg-top"
   >
     <div
-      class="pointer-events-none bg-gradient-to-b from-transparent to-black from-70% w-full h-full absolute z-10"
+      class="pointer-events-none bg-gradient-to-b to-black/30 from-black/50 from-90% w-full h-full absolute z-10"
     />
     <Particles
       id="tsparticles"
@@ -155,7 +155,6 @@
       on:particlesLoaded={onParticlesLoaded}
       {particlesInit}
     />
-    <div class="bg-black/40 w-full h-full absolute pointer-events-none" />
 
     <div class="relative grid gap-12 z-20 justify-items-center inner-section">
       <h1 class="font-extrabold tracking-tight display-medium lg:display-large">
@@ -183,7 +182,7 @@
     </div>
   </section>
 
-  <div class="bg-gradient-to-b from-black to-black/40">
+  <div class="bg-gradient-to-b from-black/30 to-black/20 z-10">
     <!--Big-Clients Slideshow-->
     <ClientCarousel />
   </div>
@@ -191,7 +190,7 @@
   <!--Differences Section-->
   <section
     id="differences"
-    class="justify-items-center bg-gradient-to-b from-black/40 to-30% to-transparent"
+    class="justify-items-center bg-gradient-to-b from-black/20 to-30% to-transparent"
   >
     <div
       class="inner-section grid grid-cols-1 sm:grid-cols-2 items-center gap-x-6"
@@ -244,113 +243,6 @@
     </div>
   </section>
 
-  <!-- Membership Benefits Section -->
-  <section
-    id="benefits"
-    use:inview={chapterInViewOptions}
-    on:inview_enter={handleChapterInView("benefits")}
-    class="justify-items-center"
-  >
-    <div class="inner-section flex flex-col gap-6 items-center">
-      <div class="max-w-xl py-6 w-fit">
-        <h1 class="display-medium">Membership Benefits</h1>
-        <h2 class="body-large">
-          Perks that are simply too good to look anywhere else for your website
-          needs. Seriously.
-        </h2>
-      </div>
-      <div
-        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center"
-      >
-        <BigBenefitCard
-          class="z-10"
-          topIcon="artwork/book_1.png"
-          title="Open Source Software"
-          artwork="artwork/github_outline_6.png"
-          body={`
-				We resort to using open-source tools, which
-				translates directly into saving costs without compromising on quality.`}
-        >
-          <!-- Bottom items -->
-          <a
-            href="https://github.com/Futino"
-            class="flex flex-row items-center gap-3"
-          >
-            <img
-              src="artwork/github_outline_7.png"
-              alt="youtube"
-              class="object-center object-cover drop-shadow-github hover:drop-shadow-github-hover w-8 h-8"
-            />
-            <h3 class="body-large">View our code</h3>
-          </a>
-          <a
-            href="https://www.youtube.com/@TryFutino"
-            class="flex flex-row items-center gap-3"
-          >
-            <img
-              src="artwork/yt_2.png"
-              alt="youtube"
-              class="object-center object-cover drop-shadow-youtube hover:drop-shadow-youtube-hover w-8 h-8"
-            />
-            <h3 class="body-large">Check out our streams</h3>
-          </a>
-        </BigBenefitCard>
-
-        <SmallBenefitCard
-          topIcon="artwork/unlocked_3.png"
-          title="Not Locked In"
-          artwork="artwork/gate_1.png"
-        >
-          Enabling us to seamlessly swap providers in response to price changes,
-          minimizing volatility, and providing peace of mind.
-        </SmallBenefitCard>
-
-        <SmallBenefitCard
-          topIcon="artwork/scalable_1.png"
-          title="Scalable Tiers"
-          artwork="artwork/staircase_2.png"
-        >
-          Start with what you need and scale with your business.
-        </SmallBenefitCard>
-
-        <BigBenefitCard
-          topIcon="artwork/mag_scope_1.png"
-          title="Transparent Pricing"
-          artwork="artwork/window_1.png"
-          body={`
-					Our simple and transparent subscription model fosters trust, gaurantees predictable prices, and provides peace of mind.
-			`}
-        >
-          <!-- Bottom items -->
-          <a
-            href="https://youtube.com/Futino"
-            class="flex flex-row items-center gap-2"
-          >
-            <Icon
-              icon="checkmark"
-              height="32"
-              width="32"
-              class="-ml-0.5 text-secondary"
-            />
-            <h3 class="body-large">No hidden fees</h3>
-          </a>
-          <a
-            href="https://github.com/Futino"
-            class="flex flex-row items-center gap-2"
-          >
-            <Icon
-              icon="checkmark"
-              height="32"
-              width="32"
-              class="-ml-0.5 text-secondary"
-            />
-            <h3 class="body-large">No upfront costs</h3>
-          </a>
-        </BigBenefitCard>
-      </div>
-    </div>
-  </section>
-
   <!--Journey Section-->
   <section
     id="services"
@@ -369,9 +261,9 @@
           From start to finish, we've got it all covered. Don't mention it.
         </h2>
       </div>
-      {#each servicesChapters as { chapterNumber, inView, title, image, body }}
+      {#each servicesChapters as { chapterNumber, inView, title, image, body, bullets }}
         <div
-          class="relative grid w-full grid-cols-1 py-16 overflow-y-hidden gap-y-14 gap-x-0 sm:grid-cols-2 place-items-center"
+          class="relative grid w-full max-w-5xl grid-cols-1 my-6 py-16 overflow-y-hidden gap-y-14 gap-x-0 sm:grid-cols-2 place-items-center"
         >
           <!--Center line and Chapter checkmark-->
           <div
@@ -414,7 +306,7 @@
           </InView>
 
           <div
-            class="flex flex-col max-w-xl gap-2 p-1 overflow-hidden text-left justify-self-start"
+            class="flex flex-col max-w-2xl gap-2 p-1 overflow-hidden text-left justify-self-start"
           >
             <!-- Mobile text content -->
             <div
@@ -449,10 +341,137 @@
               >
                 {body}
               </p>
+              <ul>
+                <div
+                  class="flex flex-col justify-self-end mt-auto gap-2 md:gap-3 pt-8"
+                >
+                  {#each bullets as point}
+                    <!-- Bottom items -->
+                    <div
+                      href="https://youtube.com/Futino"
+                      class="flex flex-row items-center gap-2"
+                    >
+                      <Icon
+                        icon="checkmark"
+                        height="32"
+                        width="32"
+                        class="-ml-0.5 text-secondary"
+                      />
+                      <h2 class="title-small md:title-medium">{point}</h2>
+                    </div>
+                  {/each}
+                </div>
+              </ul>
             </InView>
           </div>
         </div>
       {/each}
+    </div>
+  </section>
+
+  <!-- Membership Benefits Section -->
+  <section
+    id="benefits"
+    use:inview={chapterInViewOptions}
+    on:inview_enter={handleChapterInView("benefits")}
+    class="justify-items-center"
+  >
+    <div class="inner-section flex flex-col gap-6 items-center">
+      <div class="max-w-xl py-6 w-fit">
+        <h1 class="display-medium">Membership Benefits</h1>
+        <h2 class="body-large">
+          Perks that are simply too good to look anywhere else for your website
+          needs. Seriously.
+        </h2>
+      </div>
+      <div
+        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center"
+      >
+        <BigBenefitCard
+          topIcon="artwork/mag_scope_1.png"
+          title="Transparent Pricing"
+          artwork="artwork/window_1.png"
+          body={`
+					Our simple and transparent subscription model fosters trust, gaurantees predictable prices, and provides peace of mind.
+			`}
+        >
+          <!-- Bottom items -->
+          <a
+            href="https://youtube.com/Futino"
+            class="flex flex-row items-center gap-2"
+          >
+            <Icon
+              icon="checkmark"
+              height="32"
+              width="32"
+              class="-ml-0.5 text-secondary"
+            />
+            <h3 class="body-large">No hidden fees</h3>
+          </a>
+          <a
+            href="https://github.com/Futino"
+            class="flex flex-row items-center gap-2"
+          >
+            <Icon
+              icon="checkmark"
+              height="32"
+              width="32"
+              class="-ml-0.5 text-secondary"
+            />
+            <h3 class="body-large">No upfront costs</h3>
+          </a>
+        </BigBenefitCard>
+
+        <SmallBenefitCard
+          topIcon="artwork/unlocked_3.png"
+          title="Not Locked In"
+          artwork="artwork/gate_1.png"
+        >
+          Enabling us to seamlessly swap providers in response to price changes,
+          minimizing volatility, and providing peace of mind.
+        </SmallBenefitCard>
+
+        <SmallBenefitCard
+          topIcon="artwork/scalable_1.png"
+          title="Scalable Tiers"
+          artwork="artwork/staircase_2.png"
+        >
+          Start with what you need and scale with your business.
+        </SmallBenefitCard>
+        <BigBenefitCard
+          class="z-10"
+          topIcon="artwork/book_1.png"
+          title="Cost Efficient Tools"
+          artwork="artwork/github_outline_6.png"
+          body={`
+				We resort to using open-source software, which
+				translates directly into saving costs without compromising on quality.`}
+        >
+          <!-- Bottom items -->
+          <a
+            href="https://github.com/Futino"
+            class="flex flex-row items-center gap-3"
+          >
+            <img
+              src="artwork/github_outline_7.png"
+              alt="youtube"
+              class="object-center object-cover drop-shadow-github hover:drop-shadow-github-hover w-8 h-8"
+            />
+            <h3 class="body-large">View our code</h3>
+          </a>
+          <a
+            href="https://www.youtube.com/@TryFutino"
+            class="flex flex-row items-center gap-3"
+          >
+            <img
+              src="artwork/yt_2.png"
+              alt="youtube"
+              class="object-center object-cover drop-shadow-youtube hover:drop-shadow-youtube-hover w-8 h-8"
+            />
+            <h3 class="body-large">Check out our streams</h3>
+          </a>
+        </BigBenefitCard>
+      </div>
     </div>
   </section>
 
@@ -495,7 +514,7 @@
             >
               <!--Circle-->
               <div
-                class="flex items-center w-11 h-11 text-center rounded-full bg-surface circle-shadow"
+                class="flex items-center w-12 h-11 text-center rounded-full bg-surface circle-shadow"
               >
                 <h1 class="mx-auto display-small z-20">{i + 1}</h1>
               </div>
@@ -525,7 +544,7 @@
                 class="flex items-center w-11 h-11 text-center rounded-full bg-surface circle-shadow"
               >
                 <h1 class="mx-auto display-small z-20">
-                  {i}
+                  {i + 1}
                 </h1>
               </div>
 
@@ -603,7 +622,6 @@
                 </p>
               </div>
               <!--PM Option-->
-
               <div
                 class="flex flex-col sm:flex-row self-center justify-self-end ml-auto justify-between gap-4 mr-2 md:gap-12"
               >
@@ -625,7 +643,6 @@
                 />
               </div>
             </div>
-
             <ContactForm />
           </div>
         </InView>
