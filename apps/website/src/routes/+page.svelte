@@ -578,109 +578,56 @@
     class="justify-items-center"
   >
     <div
-      class="inner-section flex flex-col w-full gap-12
+      class="inner-section flex flex-col w-full gap-12 mx-auto
 		"
     >
-      <div class="grid grid-cols-1 md:grid-cols-5 w-full gap-12">
+      <div class="grid mx-auto w-full gap-12">
         <InView
           duration={350}
           fly={{ x: -700, y: 0 }}
           delay={0}
-          class="z-0 h-full md:col-span-4 max-w-4xl overflow-visible"
+          class="z-0 h-full max-w-5xl w-full mx-auto overflow-visible"
         >
           <!--Contact form Option-->
           <div
-            class="flex flex-col p-4 md:p-8 gap-y-8 text-left shadow-xl shadow-black drop-shadow-glow-md bg-surface border-1 border-primary rounded-md"
+            class="flex flex-col max-w-7xl w-full p-4 md:p-8 gap-y-8 text-left shadow-xl shadow-black drop-shadow-glow-md bg-surface border-1 border-primary rounded-md"
           >
-            <div class="flex flex-col ml-2">
-              <h2 class="font-extrabold display-medium">Contact Us</h2>
-              <p class="title-medium">
-                Feel free to send us an email for any requests or questions. <br
+            <div class="flex flex-row">
+              <div class="flex flex-col ml-2">
+                <h2 class="font-extrabold display-medium">Contact Us</h2>
+                <p class="title-medium">
+                  Feel free to send us an email for any requests or questions. <br
+                  />
+                  We'll get back to you within a couple hours.
+                </p>
+              </div>
+              <!--PM Option-->
+
+              <div
+                class="flex flex-col sm:flex-row self-center justify-self-end ml-auto justify-between gap-4 mr-2 md:gap-12"
+              >
+                <!--WhatsApp-->
+                <ContactIconButton
+                  img="artwork/whatsapp_logo_6.png"
+                  href="https://wa.me/+85297473013"
+                  label="Futino Whatsapp"
+                  class="hover:text-lime-400"
+                  imgClass="drop-shadow-whatsapp group-hover:drop-shadow-whatsapp-hover"
                 />
-                We'll get back to you within a couple hours.
-              </p>
+                <!--Email-->
+                <ContactIconButton
+                  img="artwork/email_2.png"
+                  href="mailto:contact@futi.no"
+                  label="contact@futi.no"
+                  class="hover:text-blue-400 scale-95"
+                  imgClass="drop-shadow-email group-hover:drop-shadow-email-hover"
+                />
+              </div>
             </div>
 
             <ContactForm />
           </div>
         </InView>
-        <div
-          class="z-10 w-full h-full md:order-first overflow-visible md:col-span-1 justify-self-center md:justify-self-end"
-        >
-          <!--PM Option-->
-
-          <div
-            class="flex flex-row md:flex-col h-full md:items-end justify-around w-full place-content-between text-surface-on font-extrabold title-large"
-          >
-            <InView
-              duration={300}
-              fly={{ x: -200, y: 0 }}
-              delay={250}
-              bottom={450}
-              class="overflow-visible"
-            >
-              <!--Phone-->
-              <ContactIconButton
-                img="artwork/call_logo_2.png"
-                href="tel:9133600394"
-                label="+852 9747 3013"
-                class="hover:text-violet-400"
-                imgClass="drop-shadow-phone group-hover:drop-shadow-phone-hover "
-              />
-            </InView>
-            <InView
-              duration={300}
-              top={150}
-              bottom={300}
-              fly={{ x: -200, y: 0 }}
-              delay={350}
-              class="overflow-visible"
-            >
-              <!--WhatsApp-->
-              <ContactIconButton
-                img="artwork/whatsapp_logo_6.png"
-                href="https://wa.me/+85297473013"
-                label="Futino Whatsapp"
-                class="hover:text-lime-400"
-                imgClass="drop-shadow-whatsapp group-hover:drop-shadow-whatsapp-hover"
-              />
-            </InView>
-            <InView
-              duration={300}
-              top={300}
-              bottom={150}
-              fly={{ x: -200, y: 0 }}
-              delay={450}
-              class="overflow-visible"
-            >
-              <!--Instagram-->
-              <ContactIconButton
-                img="artwork/instagram_logo_1.png"
-                href=""
-                label="@Futino"
-                class="hover:text-fuchsia-400"
-                imgClass="drop-shadow-instagram group-hover:drop-shadow-instagram-hover"
-              />
-            </InView>
-            <InView
-              duration={300}
-              top={450}
-              bottom={0}
-              fly={{ x: -200, y: 0 }}
-              delay={550}
-              class="overflow-visible"
-            >
-              <!--Email-->
-              <ContactIconButton
-                img="artwork/email_2.png"
-                href="mailto:contact@futi.no"
-                label="contact@futi.no"
-                class="hover:text-blue-400"
-                imgClass="drop-shadow-email group-hover:drop-shadow-email-hover"
-              />
-            </InView>
-          </div>
-        </div>
       </div>
     </div>
   </section>
