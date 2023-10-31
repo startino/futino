@@ -154,7 +154,7 @@
               <h2 class="my-auto title-medium text-left py-2">
                 {featureName}
               </h2>
-              <Tooltip content={featureAbout} direction="left">
+              <Tooltip content={featureAbout} direction="right">
                 <Icon icon="info" width="14" height="14" class="text-outline" />
               </Tooltip>
             </div>
