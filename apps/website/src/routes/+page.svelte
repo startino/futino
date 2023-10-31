@@ -90,13 +90,13 @@
     },
     {
       chapterNumber: 1,
-      title: "Benefits",
-      href: "#benefits",
+      title: "Services",
+      href: "#services",
     },
     {
       chapterNumber: 2,
-      title: "Services",
-      href: "#services",
+      title: "Benefits",
+      href: "#benefits",
     },
     {
       chapterNumber: 3,
@@ -146,7 +146,7 @@
     class="relative h-screen place-items-center bg-[url('/glow_bg_2.png')] bg-no-repeat bg-fit bg-top"
   >
     <div
-      class="pointer-events-none bg-gradient-to-b from-transparent to-black from-70% w-full h-full absolute z-10"
+      class="pointer-events-none bg-gradient-to-b to-black/30 from-black/50 from-90% w-full h-full absolute z-10"
     />
     <Particles
       id="tsparticles"
@@ -155,7 +155,6 @@
       on:particlesLoaded={onParticlesLoaded}
       {particlesInit}
     />
-    <div class="bg-black/40 w-full h-full absolute pointer-events-none" />
 
     <div class="relative grid gap-12 z-20 justify-items-center inner-section">
       <h1 class="font-extrabold tracking-tight display-medium lg:display-large">
@@ -183,7 +182,7 @@
     </div>
   </section>
 
-  <div class="bg-gradient-to-b from-black to-black/40">
+  <div class="bg-gradient-to-b from-black/30 to-black/20 z-10">
     <!--Big-Clients Slideshow-->
     <ClientCarousel />
   </div>
@@ -191,7 +190,7 @@
   <!--Differences Section-->
   <section
     id="differences"
-    class="justify-items-center bg-gradient-to-b from-black/40 to-30% to-transparent"
+    class="justify-items-center bg-gradient-to-b from-black/20 to-30% to-transparent"
   >
     <div
       class="inner-section grid grid-cols-1 sm:grid-cols-2 items-center gap-x-6"
@@ -241,6 +240,111 @@
           include everything you'd ever need for a web project.
         </p>
       </div>
+    </div>
+  </section>
+
+  <!--Journey Section-->
+  <section
+    id="services"
+    use:inview={chapterInViewOptions}
+    on:inview_enter={handleChapterInView("services")}
+    class="justify-items-center"
+  >
+    <!--Absolute center line
+		<div class="absolute z-50 w-1 h-6 -translate-x-1/2 bg-red-500 left-1/2 top-1/2" />
+		-->
+
+    <div class="flex flex-col inner-section">
+      <div class="max-w-xl py-6 w-fit mx-auto">
+        <h1 class="display-medium">Areas of Expertise</h1>
+        <h2 class="body-large">
+          From start to finish, we've got it all covered. Don't mention it.
+        </h2>
+      </div>
+      {#each servicesChapters as { chapterNumber, inView, title, image, body }}
+        <div
+          class="relative grid w-full grid-cols-1 py-16 overflow-y-hidden gap-y-14 gap-x-0 sm:grid-cols-2 place-items-center"
+        >
+          <!--Center line and Chapter checkmark-->
+          <div
+            class="absolute flex-col items-center hidden h-full text-center sm:flex -translate-x-1/2 left-1/2 top-8"
+          >
+            <!--Circle-->
+            <div
+              class="flex items-center w-11 h-11 text-center rounded-full bg-surface circle-shadow"
+            >
+              <h1 class="mx-auto display-small z-20">
+                {chapterNumber}
+              </h1>
+            </div>
+
+            <InView
+              once={true}
+              duration={800}
+              dontFade={true}
+              fly={{ x: 0, y: -620 }}
+              axis={"y"}
+              delay={100}
+              bottom={300}
+              class="flex justify-items-center h-full sm:flex w-full pb-2 mb-2"
+            >
+              <!--Line-->
+              <div
+                class=" -mt-6 flex w-1 mx-auto h-full rounded-full bg-surface line-shadow"
+              />
+            </InView>
+          </div>
+
+          <!--Content of Chapter-->
+
+          <InView presetOptions={rightFlyPreset} class="sm:pr-7 md:pr-12">
+            <img
+              src={image}
+              alt=""
+              class="order-last object-cover object-center w-1/2 mx-auto bg-no-repeat sm:w-full sm:order-first drop-shadow-service-art"
+            />
+          </InView>
+
+          <div
+            class="flex flex-col max-w-xl gap-2 p-1 overflow-hidden text-left justify-self-start"
+          >
+            <!-- Mobile text content -->
+            <div
+              class="flex flex-row items-center gap-3 pt-1 pl-1 sm:p-0 sm:hidden"
+            >
+              <div class="relative flex w-12 h-12 place-items-center">
+                <div
+                  class="flex items-center w-11 h-11 text-center rounded-full bg-surface circle-shadow shadow-primary"
+                >
+                  <h1 class="mx-auto display-small z-20">
+                    {chapterNumber}
+                  </h1>
+                </div>
+              </div>
+              <!-- Mobile title -->
+              <h1 class="headline-large uppercase text-primary">
+                {title}
+              </h1>
+            </div>
+            <InView fly={{ x: -100, y: 0 }} class="sm:hidden">
+              <div class="w-1/4 h-0.5 mt-3 border-t border-outline" />
+            </InView>
+            <InView presetOptions={leftFlyPreset} class="sm:pl-7 md:pl-12">
+              <!-- sm+ title -->
+              <h1
+                class="sm:headline-large md:title-large uppercase md:uppercase sm:text-primary hidden sm:flex pb-4"
+              >
+                {title}
+              </h1>
+              <p
+                class="title-large md:headline-large lg:display-small sm:max-w-xs md:max-w-md"
+              >
+                {body}
+              </p>
+            </InView>
+          </div>
+        </div>
+      {/each}
     </div>
   </section>
 
@@ -348,111 +452,6 @@
           </a>
         </BigBenefitCard>
       </div>
-    </div>
-  </section>
-
-  <!--Journey Section-->
-  <section
-    id="services"
-    use:inview={chapterInViewOptions}
-    on:inview_enter={handleChapterInView("services")}
-    class="justify-items-center"
-  >
-    <!--Absolute center line
-		<div class="absolute z-50 w-1 h-6 -translate-x-1/2 bg-red-500 left-1/2 top-1/2" />
-		-->
-
-    <div class="flex flex-col inner-section">
-      <div class="max-w-xl py-6 w-fit mx-auto">
-        <h1 class="display-medium">Areas of Expertise</h1>
-        <h2 class="body-large">
-          From start to finish, we've got it all covered. Don't mention it.
-        </h2>
-      </div>
-      {#each servicesChapters as { chapterNumber, inView, title, image, body }}
-        <div
-          class="relative grid w-full grid-cols-1 py-16 overflow-y-hidden gap-y-14 gap-x-0 sm:grid-cols-2 place-items-center"
-        >
-          <!--Center line and Chapter checkmark-->
-          <div
-            class="absolute flex-col items-center hidden h-full text-center sm:flex -translate-x-1/2 left-1/2 top-8"
-          >
-            <!--Circle-->
-            <div
-              class="flex items-center w-11 h-11 text-center rounded-full bg-surface circle-shadow"
-            >
-              <h1 class="mx-auto display-small z-20">
-                {chapterNumber}
-              </h1>
-            </div>
-
-            <InView
-              once={true}
-              duration={800}
-              dontFade={true}
-              fly={{ x: 0, y: -620 }}
-              axis={"y"}
-              delay={100}
-              bottom={300}
-              class="flex justify-items-center h-full sm:flex w-full pb-2 mb-2"
-            >
-              <!--Line-->
-              <div
-                class=" -mt-6 flex w-1 mx-auto h-full rounded-full bg-surface line-shadow"
-              />
-            </InView>
-          </div>
-
-          <!--Content of Chapter-->
-
-          <InView presetOptions={rightFlyPreset} class="sm:pr-7 md:pr-12">
-            <img
-              src={image}
-              alt=""
-              class="order-last object-cover object-center w-1/2 mx-auto bg-no-repeat sm:w-full sm:order-first drop-shadow-service-art"
-            />
-          </InView>
-
-          <div
-            class="flex flex-col max-w-xl gap-2 p-1 overflow-hidden text-left justify-self-start"
-          >
-            <!-- Mobile text content -->
-            <div
-              class="flex flex-row items-center gap-3 pt-1 pl-1 sm:p-0 sm:hidden"
-            >
-              <div class="relative flex w-12 h-12 place-items-center">
-                <div
-                  class="flex items-center w-11 h-11 text-center rounded-full bg-surface circle-shadow shadow-primary"
-                >
-                  <h1 class="mx-auto display-small z-20">
-                    {chapterNumber}
-                  </h1>
-                </div>
-              </div>
-              <!-- Mobile title -->
-              <h1 class="headline-large uppercase text-primary">
-                {title}
-              </h1>
-            </div>
-            <InView fly={{ x: -100, y: 0 }} class="sm:hidden">
-              <div class="w-1/4 h-0.5 mt-3 border-t border-outline" />
-            </InView>
-            <InView presetOptions={leftFlyPreset} class="sm:pl-7 md:pl-12">
-              <!-- sm+ title -->
-              <h1
-                class="sm:headline-large md:title-large uppercase md:uppercase sm:text-primary hidden sm:flex pb-4"
-              >
-                {title}
-              </h1>
-              <p
-                class="title-large md:headline-large lg:display-small sm:max-w-xs md:max-w-md"
-              >
-                {body}
-              </p>
-            </InView>
-          </div>
-        </div>
-      {/each}
     </div>
   </section>
 

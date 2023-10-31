@@ -10,6 +10,10 @@
   import InView from "$lib/components/organisms/Inview.svelte";
   import Tooltip from "$lib/components/organisms/tooltip/Tooltip.svelte";
   import { formatter } from "$lib/utils";
+  import Particles from "svelte-particles";
+  import { loadSlim } from "tsparticles-slim";
+  import type { Engine } from "tsparticles-engine";
+  import { particlesConfig } from "../pricingParticlesConfig";
 
   export let activeTabValue = 0;
 
@@ -17,10 +21,34 @@
 
   const handlePromotionToggle = (tabValue: number) => () =>
     (activeTabValue = tabValue);
+
+  let onParticlesLoaded = (event: any) => {
+    const particlesContainer = event.detail.particles;
+
+    // you can use particlesContainer to call all the Container class
+    // (from the core library) methods like play, pause, refresh, start, stop
+  };
+
+  let particlesInit = async (engine: Engine) => {
+    // you can use main to customize the tsParticles instance adding presets or custom shapes
+    // this loads the tsparticles package bundle, it's the easiest method for getting everything ready
+    // starting from v2 you can add only the features you need reducing the bundle size
+    //await loadFull(engine);
+    await loadSlim(engine);
+  };
 </script>
 
-<main class="text-left border-b shadow-2xl border-primary/40">
-  <section class="shadow-2xl">
+<main
+  class="text-left relative place-items-center grid bg-gradient-to-b from-black/50 to-transparent from-85%"
+>
+  <Particles
+    id="tsparticles"
+    class="w-full h-full absolute z-0"
+    options={particlesConfig}
+    on:particlesLoaded={onParticlesLoaded}
+    {particlesInit}
+  />
+  <section class="z-20">
     <div
       class="flex flex-col items-center gap-8 justify-items-center pt-48 text-center inner-section"
     >
@@ -60,7 +88,7 @@
               <h2 class=" headline-large uppercase font-extrabold">
                 {name}
               </h2>
-              <h3 class="pb-6 title-medium text-outline text-outline">
+              <h3 class="pb-6 title-medium text-outline">
                 {subtitle}
               </h3>
             </div>
@@ -163,7 +191,7 @@
     </div>
   </section>
 
-  <section class="sm:-my-12 md:-my-20">
+  <section class="sm:-m-12 md:m-12 z-20 section">
     <div
       class="flex flex-col items-center w-full inner-section md:flex-row gap-y-6"
     >
@@ -197,7 +225,7 @@
       </div>
 
       <div
-        class="flex ml-auto flex-col h-full max-w-sm gap-4 px-8 py-8 text-center rounded-md bg-surface place-items-center"
+        class="flex md:ml-auto flex-col h-full max-w-sm gap-4 px-8 py-8 text-center rounded-md bg-surface place-items-center"
       >
         <h3 class="pt-4 title-medium sm:title-large">
           Learn more about how Futino works and how it can help your business
