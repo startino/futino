@@ -22,58 +22,47 @@ const config = {
     extend: {
       backgroundImage:
       {
-        "landing": "url('/pre_mockup_designs/garage_ref.png')"
       },
       padding: fPadding,
-      fontFamily: {
-        'sans': ['TASA Orbiter Text'],
-      },
 
       animation: fAnimations,
       keyframes: fKeyframes,
       colors: fColors,
 
       typography: ({ colors }) => ({
-        ...fTypography(colors, alpha),
-        ...{
+        ...fTypography(colors, alpha), ...{
           DEFAULT: {
             css: {
               h1: {
-                fontFamily: "TASA Orbiter Display",
-                fontWeight: "bold",
+                fontFamily: "Antonio",
               },
               h2: {
-                fontFamily: "TASA Orbiter Text",
-                fontWeight: "normal"
+                fontFamily: "Antonio",
               },
               h3: {
-                fontFamily: "TASA Orbiter Text",
-                fontWeight: "normal"
+                fontfamily: "Antonio",
               },
               h4: {
-                fontFamily: "TASA Orbiter Text",
-                fontWeight: "normal"
+                fontfamily: "Antonio",
               },
               h5: {
-                fontFamily: "TASA Orbiter Text",
-                fontWeight: "normal"
+                fontfamily: "Antonio",
               },
 
               h6: {
-                fontFamily: "TASA Orbiter Text",
-                fontWeight: "normal"
+                fontfamily: "Antonio",
               },
               p: {
-                fontFamily: "TASA Orbiter Text",
+                fontFamily: "Orienta",
                 letterSpacing: "0.5",
                 lineHeight: "1.5",
                 opacity: '0.75'
               }
             }
-          }
+          },
         }
       }),
-    }
+    },
   },
   plugins: [
     require('@tailwindcss/typography'),

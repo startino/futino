@@ -22,7 +22,6 @@ const config = {
     extend: {
       backgroundImage:
       {
-        "landing": "url('/pre_mockup_designs/garage_ref.png')"
       },
       padding: fPadding,
       fontFamily: {
