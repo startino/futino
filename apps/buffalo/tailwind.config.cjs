@@ -22,6 +22,7 @@ const config = {
     extend: {
       backgroundImage:
       {
+        'landing': "url('/images/Screenshot from 2023-11-02 13-43-57.png')"
       },
       padding: fPadding,
 
