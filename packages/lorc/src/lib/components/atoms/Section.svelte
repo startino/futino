@@ -17,10 +17,10 @@
   export let typography: CssClasses = "";
 
   // Reactive Classes
-  $: classesBase = `grid place-items-center
+  $: classesBase = `grid place-items-center relative
    ${background} ${border} ${padding} ${shadow} ${typography} ${$$props.class}`;
 </script>
 
-<section class="${classesBase}">
+<section class={classesBase} style={$$props.style}>
   <slot />
 </section>

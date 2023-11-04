@@ -1,10 +1,15 @@
 <script lang="ts">
   import type { CssClasses } from "$lib/types";
   import Button from "../atoms/Button.svelte";
+  import Section from "../atoms/Section.svelte";
 
   // Content Props
   /**Path to the background image. e.g. ``/garages/best_garage.png`` */
   export let bgImg: string = "/favicon.png";
+  /** Provide classes to set the cover for the bg image. e.g. ``bg-black/50`` to darken the background image */
+  export let bgCover: CssClasses = "bg-black/0";
+  /** Provide classes to set the position of the b **/
+  export let parallax: boolean = false;
   export let title: string = "This is a great title for Company Name";
   export let subtitle: string =
     "This is an even better piece of text. Specifically, this is a subtitle";
@@ -39,14 +44,22 @@
   };
 </script>
 
-<section
-  class="h-screen {bgImg} bg-center bg-cover w-full grid {typography} place-items-center"
-  style=""
+<Section
+  class="h-screen bg-center bg-cover w-full {typography}"
+  style={$$props.style}
 >
+  <div class="{bgCover} w-full h-full z-10 {parallax ? 'fixed' : 'absolute'}" />
+  <img
+    src={bgImg}
+    alt=""
+    class="w-full h-full z-0 {parallax ? 'fixed' : 'absolute'}"
+  />
   <div
-    class="flex flex-col items-center {justifyClass()} my-auto gap-12 mx-2 sm:mx-4 md:mx-6"
+    class="flex flex-col items-center {justifyClass()} my-auto gap-12 mx-2 sm:mx-4 md:mx-6 z-10 {parallax
+      ? 'fixed'
+      : ''}"
   >
-    <div class="flex flex-col items-center gap-4">
+    <div class="flex flex-col items-center gap-4 z-10">
       <h1 class="" style="margin: 0px">{title}</h1>
       <h5 class="max-w-6xl" style="margin: 0px">
         {subtitle}
@@ -63,4 +76,4 @@
       {/each}
     </div>
   </div>
-</section>
+</Section>
