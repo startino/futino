@@ -28,7 +28,7 @@
   };
 </script>
 
-<Shell class="bg-background">
+<Shell class="bg-background ">
   <svelte:fragment slot="header">
     <Prose>
       <Header companyName="" pages={headerLinks} />
