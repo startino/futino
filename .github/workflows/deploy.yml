@@ -52,12 +52,6 @@ jobs:
               domain: liberole.futi.no,
             }
           - {
-              name: Website,
-              id: website,
-              path: apps/website,
-              domain: futi.no,
-            }
-          - {
               name: Wonderlee,
               id: wonderlee,
               path: apps/wonderlee,
