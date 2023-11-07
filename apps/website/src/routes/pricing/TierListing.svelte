@@ -7,7 +7,7 @@
   import { features, type NorpTier } from "./plans";
 
   export let tier: NorpTier;
-  export let cycle: string = "monthly";
+  export let cycle: string = "yearly";
 </script>
 
 <section>

@@ -17,7 +17,7 @@
 
   export let activeTabValue = 0;
 
-  let cycle: string = "monthly";
+  let cycle: string = "yearly";
 
   const handlePromotionToggle = (tabValue: number) => () =>
     (activeTabValue = tabValue);
