@@ -96,7 +96,7 @@
     </div>
 
     <Button
-      class="w-full"
+      class="w-full focus:cursor-wait"
       onClick={() => handleCheckout(tier.stripeIds[cycle])}
     >
       <h1 class="title-medium">GET STARTED</h1>
