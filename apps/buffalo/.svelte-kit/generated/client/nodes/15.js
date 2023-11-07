@@ -1,0 +1,1 @@
+export { default as component } from "../../../../src/routes/products/garage-doors/martin/+page.svelte";

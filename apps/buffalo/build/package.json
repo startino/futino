@@ -1,0 +1,15 @@
+{
+	"name": "wonderlee",
+	"version": "0.0.1",
+	"type": "module",
+	"private": true,
+	"main": "index.js",
+	"scripts": {
+		"start": "bun ./index.js"
+	},
+	"dependencies": {
+		"cookie": "latest",
+		"devalue": "latest",
+		"set-cookie-parser": "latest"
+	}
+}
