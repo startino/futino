@@ -98,13 +98,13 @@ export type NorpTier = {
 export const norpTiers: NorpTier[] = [
   {
     stripeIds: {
-      monthly: 'price_1O9gsUD09EWpqQ4YSj5svh19',
+      monthly: 'price_1O9qPFD09EWpqQ4YzqNx0d4W',
       yearly: 'price_1O9gxQD09EWpqQ4YIl5zeeMA',
     },
     index: 0,
     name: 'Cruising',
     subtitle: 'Keep it going.',
-    cost: 200,
+    cost: 149,
     features: {
       Output: {
         'Monthly Work Capacity': '2 hours',
@@ -147,7 +147,7 @@ export const norpTiers: NorpTier[] = [
     index: 1,
     name: 'Expanding',
     subtitle: 'Even the playing field.',
-    cost: 1400,
+    cost: 783,
     features: {
       Output: {
         'Monthly Work Capacity': '9 hours',
@@ -184,13 +184,13 @@ export const norpTiers: NorpTier[] = [
   },
   {
     stripeIds: {
-      monthly: 'price_1O9h2iD09EWpqQ4YZuQyKph8',
+      monthly: 'price_1O9qgFD09EWpqQ4YMEReE74v',
       yearly: 'price_1O9h2iD09EWpqQ4YVQMa2qIh',
     },
     index: 2,
     name: 'Blazing',
     subtitle: 'Make it unfair.',
-    cost: 5300,
+    cost: 2829,
     features: {
       Output: {
         'Monthly Work Capacity': '36 hours',

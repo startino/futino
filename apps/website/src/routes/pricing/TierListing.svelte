@@ -7,7 +7,7 @@
   import { features, type NorpTier } from "./plans";
 
   export let tier: NorpTier;
-  export let cycle: string = "monthly";
+  export let cycle: string = "yearly";
 </script>
 
 <section>
@@ -94,12 +94,11 @@
         {/each}
       {/each}
     </div>
-
-    <Button
+    <!--<Button
       class="w-full"
       onClick={() => handleCheckout(tier.stripeIds[cycle])}
     >
       <h1 class="title-medium">GET STARTED</h1>
-    </Button>
+    </Button>-->
   </div>
 </section>
