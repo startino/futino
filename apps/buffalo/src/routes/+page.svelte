@@ -200,20 +200,49 @@
       <img
         src="/images/buffalo_travel_times.jpg"
         alt="Travel times to Buffalo Jiu-Jitsu"
-        class="object-contain md:col-span-2 max-w-7xl w-full rounded-sm"
+        class="object-contain not-prose md:col-span-2 max-w-7xl w-full rounded-sm"
       />
     </Container>
   </Section>
-  <Section class="bg-background py-24 pb-96 -mb-32 text-left">
+  <Section class="py-64">
+    <img
+      src="/images/MJP_20230927_Mui_Wo_jiu-jitsu_9326.jpg"
+      alt=""
+      class="not-prose w-full h-full absolute object-cover z-0"
+    />
+    <div class="bg-black/60 w-full h-full absolute z-10" />
+
     <Container
-      class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8 items-start"
+      class="grid place-items-center gap-y-12 z-10"
       sizes="max-w-7xl w-full"
+      margin=""
     >
-      <img
-        src="/images/MJP_20230927_Mui_Wo_jiu-jitsu_9326.jpg"
-        alt=""
-        class="w-full h-full object-cover"
-      />
+      <h2 class="mx-auto" style="margin:0">WELCOME TO BUFFALO JIU-JITSU</h2>
+      <div
+        class="flex flex-col md:flex-row items-center justify-center mx-auto w-full"
+      >
+        <div
+          class="rounded-full h-44 w-44 md:h-64 md:w-64 lg:h-80 lg:w-80 border-4 -translate-x-12 md:translate-x-6 border-primary flex items-center justify-center"
+        >
+          <h4 class="" style="margin:0">PASSION</h4>
+        </div>
+        <div
+          class="rounded-full h-44 w-44 md:h-64 md:w-64 lg:h-80 lg:w-80 -mt-12 border-4 md:mt-0 border-primary flex items-center justify-center"
+        >
+          <h4 class="" style="margin:0">COMMUNITY</h4>
+        </div>
+        <div
+          class="rounded-full h-44 w-44 md:h-64 md:w-64 lg:h-80 lg:w-80 -mt-12 border-4 translate-x-12 md:mt-0 md:-translate-x-6 border-primary flex items-center justify-center"
+        >
+          <h4 class="" style="margin:0">AFFORDABILITY</h4>
+        </div>
+      </div>
+      <div
+        class="grid grid-cols-2 gap-4 md:gap-6 place-items-center w-full max-w-lg pt-12"
+      >
+        <Button class="w-full " href="/contact">CONTACT US</Button>
+        <Button class="w-full" href="/about">LEARN MORE</Button>
+      </div>
     </Container>
   </Section>
 </Prose>
