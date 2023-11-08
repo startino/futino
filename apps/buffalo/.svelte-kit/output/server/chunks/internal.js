@@ -27,7 +27,6 @@ const Root = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let { form } = $$props;
   let { data_0 = null } = $$props;
   let { data_1 = null } = $$props;
-  let { data_2 = null } = $$props;
   {
     setContext("__svelte__", stores);
   }
@@ -46,8 +45,6 @@ const Root = create_ssr_component(($$result, $$props, $$bindings, slots) => {
     $$bindings.data_0(data_0);
   if ($$props.data_1 === void 0 && $$bindings.data_1 && data_1 !== void 0)
     $$bindings.data_1(data_1);
-  if ($$props.data_2 === void 0 && $$bindings.data_2 && data_2 !== void 0)
-    $$bindings.data_2(data_2);
   let $$settled;
   let $$rendered;
   do {
@@ -66,31 +63,7 @@ const Root = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       },
       {
         default: () => {
-          return `${constructors[2] ? `${validate_component(constructors[1] || missing_component, "svelte:component").$$render(
-            $$result,
-            { data: data_1, this: components[1] },
-            {
-              this: ($$value) => {
-                components[1] = $$value;
-                $$settled = false;
-              }
-            },
-            {
-              default: () => {
-                return `${validate_component(constructors[2] || missing_component, "svelte:component").$$render(
-                  $$result,
-                  { data: data_2, form, this: components[2] },
-                  {
-                    this: ($$value) => {
-                      components[2] = $$value;
-                      $$settled = false;
-                    }
-                  },
-                  {}
-                )}`;
-              }
-            }
-          )}` : `${validate_component(constructors[1] || missing_component, "svelte:component").$$render(
+          return `${validate_component(constructors[1] || missing_component, "svelte:component").$$render(
             $$result,
             { data: data_1, form, this: components[1] },
             {
@@ -100,7 +73,7 @@ const Root = create_ssr_component(($$result, $$props, $$bindings, slots) => {
               }
             },
             {}
-          )}`}`;
+          )}`;
         }
       }
     )}` : `${validate_component(constructors[0] || missing_component, "svelte:component").$$render(
@@ -131,7 +104,7 @@ const options = {
   root: Root,
   service_worker: false,
   templates: {
-    app: ({ head, body, assets: assets2, nonce, env }) => '<!DOCTYPE html>\n<html lang="en">\n	<head>\n		<meta charset="utf-8" />\n		<link rel="icon" href="' + assets2 + '/favicon.png" />\n		<meta name="viewport" content="width=device-width" />\n\n    <title>Wonderlee</title>\n\n		<link rel="preconnect" href="https://fonts.googleapis.com" />\n		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />\n		 <link rel="preconnect" href="https://fonts.googleapis.com">\n    <link rel="preconnect" href="https://fonts.googleapis.com">\n    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n		' + head + '\n	</head>\n	<body data-sveltekit-preload-data="hover">\n		<div style="display: contents">' + body + "</div>\n	</body>\n</html>\n",
+    app: ({ head, body, assets: assets2, nonce, env }) => '<!DOCTYPE html>\n<html lang="en">\n	<head>\n		<meta charset="utf-8" />\n		<link rel="icon" href="' + assets2 + '/favicon.png" />\n		<meta name="viewport" content="width=device-width" />\n\n    <link rel="preconnect" href="https://fonts.googleapis.com">\n    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n    <link href="https://fonts.googleapis.com/css2?family=Antonio:wght@100;200;300;400;500;600;700&family=Orienta&display=swap" rel="stylesheet">\n    <title>Template</title>\n\n		' + head + '\n	</head>\n	<body data-sveltekit-preload-data="hover">\n		<div style="display: contents">' + body + "</div>\n	</body>\n</html>\n",
     error: ({ status, message }) => '<!DOCTYPE html>\n<html lang="en">\n	<head>\n		<meta charset="utf-8" />\n		<title>' + message + `</title>
 
 		<style>
@@ -193,7 +166,7 @@ const options = {
 		<div class="error">
 			<span class="status">` + status + '</span>\n			<div class="message">\n				<h1>' + message + "</h1>\n			</div>\n		</div>\n	</body>\n</html>\n"
   },
-  version_hash: "1qx1gsy"
+  version_hash: "t6g7e8"
 };
 function get_hooks() {
   return {};

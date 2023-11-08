@@ -21,6 +21,6 @@
    ${background} ${border} ${padding} ${shadow} ${typography} ${$$props.class}`;
 </script>
 
-<section class={classesBase} style={$$props.style}>
+<section class={classesBase} style={$$props.style} id={$$props.id}>
   <slot />
 </section>

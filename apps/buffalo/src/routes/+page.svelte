@@ -117,7 +117,7 @@
     </Container>
   </Section>
 
-  <Section class="bg-background py-24 ">
+  <Section class="bg-background py-24 " id="classes">
     <Container
       class="grid grid-cols-1 md:grid-cols-2 gap-y-12 items-center "
       sizes="max-w-7xl w-fit"
