@@ -85,8 +85,12 @@
       <div
         class="grid grid-cols-2 gap-4 md:gap-6 place-items-center w-fit pt-6"
       >
-        <Button class="w-full " href="#classes">CLASS SCHEDULE</Button>
-        <Button class="w-full" href="#classes">CONTACT US</Button>
+        <Button class="w-full" padding="px-4 md:px-8 py-4" href="#classes"
+          >CLASS SCHEDULE</Button
+        >
+        <Button class="w-full" padding="px-4 md:px-8 py-4" href="/contact"
+          >CONTACT US</Button
+        >
       </div>
     </Container>
   </Section>
@@ -222,7 +226,7 @@
         class="flex flex-col md:flex-row items-center justify-center mx-auto w-full"
       >
         <div
-          class="rounded-full h-44 w-44 md:h-64 md:w-64 lg:h-80 lg:w-80 border-4 -translate-x-12 md:translate-x-6 border-primary flex items-center justify-center"
+          class="rounded-full h-44 w-44 md:h-64 md:w-64 lg:h-80 lg:w-80 border-4 -translate-x-12 md:translate-x-6 lg:translate-x-12 border-primary flex items-center justify-center"
         >
           <h4 class="" style="margin:0">PASSION</h4>
         </div>
@@ -232,7 +236,7 @@
           <h4 class="" style="margin:0">COMMUNITY</h4>
         </div>
         <div
-          class="rounded-full h-44 w-44 md:h-64 md:w-64 lg:h-80 lg:w-80 -mt-12 border-4 translate-x-12 md:mt-0 md:-translate-x-6 border-primary flex items-center justify-center"
+          class="rounded-full h-44 w-44 md:h-64 md:w-64 lg:h-80 lg:w-80 -mt-12 border-4 translate-x-12 md:mt-0 md:-translate-x-6 lg:-translate-x-12 border-primary flex items-center justify-center"
         >
           <h4 class="" style="margin:0">AFFORDABILITY</h4>
         </div>

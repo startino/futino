@@ -75,7 +75,7 @@
   <span
     class="relative mx-auto z-0 flex gap-4 place-items-center group-hover:text-tertiary-on transition-all duration-150 delay-75"
   >
-    <h6 class="m-0 sm:m-0 text-2xl font-normal whitespace-nowrap">
+    <h6 class="m-0 sm:m-0 whitespace-nowrap">
       <slot />
     </h6>
     {#if tracking}
