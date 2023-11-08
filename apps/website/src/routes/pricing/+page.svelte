@@ -17,7 +17,7 @@
 
   export let activeTabValue = 0;
 
-  let cycle: string = "monthly";
+  let cycle: string = "yearly";
 
   const handlePromotionToggle = (tabValue: number) => () =>
     (activeTabValue = tabValue);
@@ -99,8 +99,8 @@
                     class="font-extrabold text-primary tracking-tighter display-large leading-none"
                   >
                     {cycle == "yearly"
-                      ? formatter.format((cost * 0.833) / 2)
-                      : formatter.format(cost / 2)}
+                      ? formatter.format(((cost * 10) / 12) * 0.7)
+                      : formatter.format(cost * 0.7)}
                   </h1>
                 </div>
                 <div
@@ -113,7 +113,7 @@
                     class="font-extrabold tracking-tighter leading-none headline-medium"
                   >
                     {cycle == "yearly"
-                      ? formatter.format(cost * 0.833)
+                      ? formatter.format((cost * 10) / 12)
                       : formatter.format(cost)}
                   </h1>
                 </div>
@@ -178,14 +178,14 @@
         {/each}
         <div class="border-none grid-item" />
         {#each norpTiers as { stripeIds }}
-          <div class="w-full mt-10 -ml-2 self-start md:pr-4 lg:pr-10">
+          <!--<div class="w-full mt-10 -ml-2 self-start md:pr-4 lg:pr-10">
             <Button
               class="w-full"
               onClick={() => handleCheckout(stripeIds[cycle])}
             >
               <h1 class="uppercase title-medium lg:title-large">Get Started</h1>
             </Button>
-          </div>
+          </div>-->
         {/each}
       </div>
     </div>
