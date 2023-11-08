@@ -50,7 +50,7 @@
 </script>
 
 <footer
-  class="max-w-none prose-a:no-underline prose sm:prose-sm lg:prose-md prose-invert prose-main"
+  class="max-w-none prose-a:no-underline prose sm:prose-sm lg:prose-md prose-invert prose-main bg-background"
 >
   <div
     class="flex text-left flex-col md:flex-row z-50 w-full py-24 items-start justify-start gap-8 px-6 md:px-18 lg:max-w-5xl xl:max-w-6xl mx-auto justify-items-start"

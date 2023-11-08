@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { MouseEventHandler } from "svelte/elements";
-  import type { CssClasses } from "$lib/types";
+  import type { CssClasses, IconType } from "../../types.ts";
   import Icon from "./Icon.svelte";
 
   export let href: string = "";
@@ -9,29 +9,60 @@
   /** provide classes to set border styles. the default is: md: md:border-primary/50 */
   export let border: CssClasses = "";
   /** provide classes to set padding. */
-  export let padding: CssClasses = "px-8 py-2";
+  export let padding: CssClasses = "";
   /** provide classes to define a box shadow. */
   export let shadow: CssClasses = "";
   export let margin: CssClasses = "";
 
-  export let radius: CssClasses = "rounded-full";
+  export let radius: CssClasses = "";
 
   export let uppercase: boolean = false;
 
+  /** LEGACY Determine whether arrow icon should be tracking **/
   export let arrow: boolean = false;
+  /** Determine the icon that is tracking any words. **/
+  export let tracking: IconType = "";
 
-  export const variations: { [key: string]: CssClasses } = {
-    outlined: "border-2 border-primary",
-  };
+  export const variant: string = "normal";
 
   export let highlight: boolean = false;
 
-  $: classesBase = `${padding} ${margin} ${shadow} ${border} ${radius} ${$$props.class}`;
+  type StyleVariant = {
+    [name: string]: {
+      colors: CssClasses[];
+      border: CssClasses;
+      padding: CssClasses;
+      radius: CssClasses;
+      typography: CssClasses;
+    };
+  };
+  const variants: StyleVariant = {};
+  variants["normal"] = {
+    colors: ["bg-surface", "bg-surface-highlight"],
+    border: "",
+    padding: "px-6 py-4",
+    radius: "rounded-md",
+    typography: "",
+  };
+  variants["pill"] = {
+    colors: ["bg-surface", "bg-surface-highlight"],
+    border: "",
+    padding: "px-8 py-2",
+    radius: "rounded-3xl",
+    typography: "",
+  };
+
+  $: classesBase = `${
+    padding || variants[variant].padding
+  } ${margin} ${shadow} ${border || variants[variant].border} ${
+    radius || variants[variant].radius
+  } ${$$props.class}`;
 </script>
 
 <a
   {href}
   target={$$props.target}
+  style={$$props.style}
   on:click
   on:mouseover
   on:mouseenter
@@ -44,13 +75,13 @@
   <span
     class="relative mx-auto z-0 flex gap-4 place-items-center group-hover:text-tertiary-on transition-all duration-150 delay-75"
   >
-    <h6 class="m-0 sm:m-0 text-2xl font-normal whitespace-nowrap">
+    <h6 class="m-0 sm:m-0 whitespace-nowrap">
       <slot />
     </h6>
-    {#if arrow}
+    {#if tracking}
       <Icon
         class="-rotate-90 my-auto group-hover:translate-x-2 duration-300 transition-all not-prose"
-        icon="down-arrow"
+        icon={tracking}
         height="24"
         width="24"
       />

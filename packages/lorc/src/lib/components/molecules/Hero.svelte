@@ -1,10 +1,15 @@
 <script lang="ts">
   import type { CssClasses } from "$lib/types";
   import Button from "../atoms/Button.svelte";
+  import Section from "../atoms/Section.svelte";
 
   // Content Props
   /**Path to the background image. e.g. ``/garages/best_garage.png`` */
   export let bgImg: string = "/favicon.png";
+  /** Provide classes to set the cover for the bg image. e.g. ``bg-black/50`` to darken the background image */
+  export let bgCover: CssClasses = "bg-black/0";
+  /** Provide classes to set the position of the b **/
+  export let parallax: boolean = false;
   export let title: string = "This is a great title for Company Name";
   export let subtitle: string =
     "This is an even better piece of text. Specifically, this is a subtitle";
@@ -37,16 +42,35 @@
         return "items-center text-center";
     }
   };
+
+  let y: number;
+  let scrollY: number;
+  $: scrollY = Math.round(y);
 </script>
 
-<section
-  class="h-screen {bgImg} bg-center bg-cover w-full grid {typography} place-items-center"
-  style=""
+<svelte:window bind:scrollY={y} />
+
+<Section
+  class="h-screen w-full z-0 {typography}"
+  style="{$$props.style} ; clip-path: inset(0 0 0 0);"
 >
+  <div class="{bgCover} w-full h-full z-0 absolute" />
+  <div class="{parallax ? 'fixed' : 'absolute '} w-full h-full not-prose -z-10">
+    <img
+      src={bgImg}
+      alt=""
+      class="object-cover object-center w-full h-screen max-h-screen"
+    />
+  </div>
   <div
-    class="flex flex-col items-center {justifyClass()} my-auto gap-12 mx-2 sm:mx-4 md:mx-6"
+    class="flex flex-col w-full z-10 items-center {justifyClass()} my-auto gap-12 mx-2 sm:mx-4 md:mx-6 {parallax
+      ? 'fixed'
+      : ''}"
   >
-    <div class="flex flex-col items-center gap-4">
+    <div
+      class="flex flex-col items-center gap-4
+       "
+    >
       <h1 class="" style="margin: 0px">{title}</h1>
       <h5 class="max-w-6xl" style="margin: 0px">
         {subtitle}
@@ -63,4 +87,4 @@
       {/each}
     </div>
   </div>
-</section>
+</Section>

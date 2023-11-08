@@ -34,7 +34,7 @@
 
 <form
   id="contactform"
-  class="flex flex-col gap-8 text-left items-center overflow-x-clip"
+  class="flex flex-col gap-8 text-left items-center overflow-x-clip h-full"
   on:submit|preventDefault={submitForm}
 >
   <TextField

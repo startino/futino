@@ -11,6 +11,7 @@ export { default as Authenticate } from './components/atoms/Authenticate.svelte'
 export { default as TestimonialCard } from './components/atoms/TestimonialCard.svelte';
 export { default as SearchBox } from './components/atoms/SearchBox.svelte';
 export { default as FAQCard } from './components/atoms/FAQCard.svelte';
+export { default as Section } from './components/atoms/Section.svelte';
 // Molecules
 export { default as FatFooter } from './components/molecules/FatFooter.svelte';
 export { default as Footer } from './components/molecules/Footer.svelte';

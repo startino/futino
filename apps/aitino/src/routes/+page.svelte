@@ -19,6 +19,6 @@
     title="Futino's Secret Sauce."
     subtitle=""
     justified="center"
-    bgImg="/bg-landing"
+    bgImg=""
   />
 </Prose>
