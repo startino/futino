@@ -30,6 +30,11 @@ const config = {
       keyframes: fKeyframes,
       colors: fColors,
 
+      fontFamily: {
+        'sans': 'Orienta',
+        'Antonio': 'Antonio',
+      },
+
       typography: ({ colors }) => ({
         ...fTypography(colors, alpha), ...{
           DEFAULT: {
@@ -41,7 +46,7 @@ const config = {
                 fontFamily: "Antonio",
               },
               h3: {
-                fontfamily: "Antonio",
+                fontFamily: "Antonio",
               },
               h4: {
                 fontfamily: "Antonio",

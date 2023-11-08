@@ -5,7 +5,8 @@
   let proseClasses: CssClasses = "";
   switch (size) {
     case "sm": {
-      proseClasses = " sm:prose-base md:prose-lg lg:prose-xl xl:prose-2xl ";
+      proseClasses =
+        " sm:prose-sm md:prose-base lg:prose-lg xl:prose-xl 2xl:prose-2xl ";
       break;
     }
     case "md": {

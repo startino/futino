@@ -6,7 +6,11 @@
   export let required: boolean = false;
 </script>
 
-<div class="relative mt-8 h-fit w-full group overflow-visible mx-1.5">
+<div
+  class="relative mb-8 h-fit w-full group overflow-visible mx-1.5 {textArea
+    ? 'h-full'
+    : ''}"
+>
   {#if !textArea}
     <label
       for={label.toLowerCase()}
@@ -53,7 +57,7 @@
       rows="4"
       name="message"
       bind:value
-      class="w-full h-fit px-3 py-3 leading-tight text-surface-on bg-surface/50 border border-primary rounded focus:shadow-glow focus:shadow-tertiary/20 focus:outline-none appearance-none"
+      class="w-full h-full px-3 py-3 leading-tight text-surface-on bg-surface/50 border border-primary rounded focus:shadow-glow focus:shadow-tertiary/20 focus:outline-none appearance-none"
     />
   {/if}
 </div>
