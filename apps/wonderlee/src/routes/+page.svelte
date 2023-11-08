@@ -152,7 +152,7 @@ enhancing elegance and functionality with top craftsmanship standards.
     title="Hong Kong's Leading Gate & Garage Firm."
     subtitle="Serving homeowners and business owners with premium services & products since 1998."
     justified="center"
-    bgImg="/bg-landing"
+    bgImg="/pre_mockup_designs/garage_ref.png"
   />
   <section class="grid place-items-center py-24">
     <Container class="grid grid-cols-3 w-full rounded-md " sizes="max-w-screen">

@@ -19,6 +19,6 @@
     title="Hong Kong's Leading Gate & Garage Firm."
     subtitle="Serving homeowners and business owners with premium services & products since 1998."
     justified="center"
-    bgImg="/bg-landing"
+    bgImg=""
   />
 </Prose>
