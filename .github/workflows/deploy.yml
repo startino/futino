@@ -63,6 +63,13 @@ jobs:
               path: apps/aitino,
               domain: aitino.futi.no,
             }
+          - {
+              name: Buffalo,
+              id: buffalo,
+              path: apps/buffalo,
+              domain: buffalo.futi.no,
+            }
+          
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
