@@ -3,8 +3,8 @@
   import { Header, Shell, FatFooter, Prose } from "lorc";
 
   const headerLinks: { [key: string]: string } = {
-    "ADULT CLASSES": "#adult-classes",
-    "YOUTH CLASSES": "#youth-classes",
+    "ADULT CLASSES": "/#adult-classes",
+    "YOUTH CLASSES": "/#youth-classes",
     ABOUT: "/about",
     CONTACT: "/contact",
   };
