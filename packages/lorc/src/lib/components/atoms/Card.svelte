@@ -19,11 +19,17 @@
 </script>
 
 {#if href}
-  <a class={classesBase} target={$$props.target} {href} style={$$props.style}>
+  <a
+    class={classesBase}
+    target={$$props.target}
+    {href}
+    style={$$props.style}
+    id={$$props.id}
+  >
     <slot />
   </a>
 {:else}
-  <div class={classesBase} style={$$props.style}>
+  <div class={classesBase} style={$$props.style} id={$$props.id}>
     <slot />
   </div>
 {/if}

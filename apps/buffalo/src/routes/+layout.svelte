@@ -3,8 +3,10 @@
   import { Header, Shell, FatFooter, Prose } from "lorc";
 
   const headerLinks: { [key: string]: string } = {
-    About: "/",
-    Contact: "/",
+    "ADULT CLASSES": "#adult-classes",
+    "YOUTH CLASSES": "#youth-classes",
+    ABOUT: "/about",
+    CONTACT: "/contact",
   };
   const footerLinks: { [key: string]: { [key: string]: string } } = {
     Explore: {
@@ -31,7 +33,15 @@
 <Shell class="bg-background ">
   <svelte:fragment slot="header">
     <Prose>
-      <Header companyName="" pages={headerLinks} />
+      <Header
+        companyName=""
+        variant="pill"
+        bgBig="bg-surface-on"
+        bgSmall="bg-surface-on"
+        typography="text-background text-base"
+        logoPos="center"
+        pages={headerLinks}
+      />
     </Prose>
   </svelte:fragment>
 
