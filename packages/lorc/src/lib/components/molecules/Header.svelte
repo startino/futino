@@ -178,6 +178,7 @@
       {/if}
 
       <!-- Justify-between Header -->
+      <!-- Loading classes for dynamic tw building of variable col number: grid-cols-1 grid-cols-2 grid-cols-3 grid-cols-4 grid-cols-5 grid-cols-6 grid-cols-7 -->
       <nav
         class="hidden {logoPos == 'center'
           ? `col-span-5 md:grid justify-between w-full h-full place-items-center grid-cols-${
