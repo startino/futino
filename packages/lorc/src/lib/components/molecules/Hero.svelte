@@ -5,7 +5,9 @@
 
   // Content Props
   /**Path to the background image. e.g. ``/garages/best_garage.png`` */
-  export let bgImg: string = "/favicon.png";
+  export let bgImg: string = "";
+  /**Path to the background video */
+  export let bgVideo: string = "";
   /** Provide classes to set the cover for the bg image. e.g. ``bg-black/50`` to darken the background image */
   export let bgCover: CssClasses = "bg-black/0";
   /** Provide classes to set the position of the b **/
@@ -56,11 +58,26 @@
 >
   <div class="{bgCover} w-full h-full z-0 absolute" />
   <div class="{parallax ? 'fixed' : 'absolute '} w-full h-full not-prose -z-10">
-    <img
-      src={bgImg}
-      alt=""
-      class="object-cover object-center w-full h-screen max-h-screen"
-    />
+    {#if bgImg == "sdf"}
+      <img
+        src={bgImg}
+        alt=""
+        class="object-cover object-center w-full h-screen max-h-screen mix-blend-darken"
+      />
+    {:else}
+      <video
+        muted
+        id="clip"
+        preload="auto"
+        autoplay
+        loop
+        class="object-cover object-center w-full h-screen max-h-screen"
+      >
+        <source title={$$props.company} type="video/webm" src={bgVideo} />
+        Your Browser does not support our video types
+        <track kind="captions" />
+      </video>
+    {/if}
   </div>
   <div
     class="flex flex-col w-full z-10 items-center {justifyClass()} my-auto gap-12 mx-2 sm:mx-4 md:mx-6 {parallax

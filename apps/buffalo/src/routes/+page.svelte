@@ -63,8 +63,8 @@
     title="BUFFALO JIU-JITSU"
     subtitle=""
     justified="center"
-    bgImg="/images/Screenshot.png"
-    bgCover="bg-black/60"
+    bgVideo="/videos/buffalo_hero_vid_4k.webm"
+    bgCover="bg-amber-800/60 brightness-[0.1]"
     parallax={true}
   />
 
@@ -122,7 +122,10 @@
       class="grid grid-cols-1 md:grid-cols-2 gap-y-12 items-center "
       sizes="max-w-7xl w-fit"
     >
-      <Card class="flex flex-col gap-6 items-center w-full justify-self-end">
+      <Card
+        id="adult-classes"
+        class="flex flex-col gap-6 items-center w-full justify-self-end"
+      >
         <h1 class="" style="margin:0">ADULT CLASSES</h1>
         <img
           class="not-prose object-cover object-center aspect-[3/4] w-full"
@@ -162,6 +165,7 @@
         </Prose>
       </Card>
       <Card
+        id="youth-classes"
         class="flex flex-col gap-6 items-center w-full h-full justify-self-start"
       >
         <h1 class="" style="margin:0">YOUTH CLASSES</h1>
@@ -212,12 +216,12 @@
     <img
       src="/images/MJP_20230927_Mui_Wo_jiu-jitsu_9326.jpg"
       alt=""
-      class="not-prose w-full h-full absolute object-cover z-0"
+      class="not-prose w-full h-full absolute object-cover -z-0"
     />
-    <div class="bg-black/60 w-full h-full absolute z-10" />
+    <div class="bg-black/60 w-full h-full absolute z-[5]" />
 
     <Container
-      class="grid place-items-center gap-y-12 z-10"
+      class="grid place-items-center gap-y-12 z-[7]"
       sizes="max-w-7xl w-full"
       margin=""
     >

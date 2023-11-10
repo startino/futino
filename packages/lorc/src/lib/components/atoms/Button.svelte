@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { MouseEventHandler } from "svelte/elements";
-  import type { CssClasses, IconType } from "../../types.ts";
+  import type { CssClasses, IconType, StyleVariants } from "../../types.ts";
   import Icon from "./Icon.svelte";
 
   export let href: string = "";
@@ -23,33 +23,25 @@
   /** Determine the icon that is tracking any words. **/
   export let tracking: IconType = "";
 
-  export const variant: string = "normal";
+  export let variant: string = "normal";
 
   export let highlight: boolean = false;
 
-  type StyleVariant = {
-    [name: string]: {
-      colors: CssClasses[];
-      border: CssClasses;
-      padding: CssClasses;
-      radius: CssClasses;
-      typography: CssClasses;
-    };
-  };
-  const variants: StyleVariant = {};
-  variants["normal"] = {
-    colors: ["bg-surface", "bg-surface-highlight"],
-    border: "",
-    padding: "px-6 py-4",
-    radius: "rounded-md",
-    typography: "",
-  };
-  variants["pill"] = {
-    colors: ["bg-surface", "bg-surface-highlight"],
-    border: "",
-    padding: "px-8 py-2",
-    radius: "rounded-3xl",
-    typography: "",
+  const variants: StyleVariants = {
+    normal: {
+      colors: ["bg-surface", "bg-surface-highlight"],
+      border: "",
+      padding: "px-6 py-4",
+      radius: "rounded-md",
+      typography: "",
+    },
+    pill: {
+      colors: ["bg-surface", "bg-surface-highlight"],
+      border: "",
+      padding: "px-8 py-2",
+      radius: "rounded-3xl",
+      typography: "",
+    },
   };
 
   $: classesBase = `${
