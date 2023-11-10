@@ -1,2 +1,9 @@
+<script lang="ts">
+  import { CssClasses } from "../../types";
+
+  export let height: CssClasses = "h-8";
+</script>
+
 <!-- Not rounded, should be done in image with transparent background for logos -->
-<img src="/favicon.png" class="h-8" alt="Logo" />
+<img src="/favicon.png" class={height} alt="Logo" />
+

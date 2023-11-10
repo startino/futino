@@ -105,8 +105,8 @@
     title="BUFFALO JIU-JITSU"
     subtitle=""
     justified="center"
-    bgImg="/images/Screenshot.png"
-    bgCover="bg-black/60"
+    bgVideo="/videos/buffalo_hero_vid_4k.webm"
+    bgCover="bg-amber-800/60 brightness-[0.1]"
     parallax={true}
     inviewPresetOptions={downFadePreset}
   />
@@ -215,6 +215,61 @@
             </div>
           </Prose>
         </Card>
+        <Card
+          id="youth-classes"
+          class="flex flex-col gap-6 items-center w-full h-full justify-self-start"
+        >
+          <h1 class="" style="margin:0">YOUTH CLASSES</h1>
+          <img
+            class="not-prose object-cover object-center aspect-[3/4] w-full"
+            src="/images/MJP_20230927_Mui_Wo_jiu-jitsu_9376.jpg"
+            alt="Adult classes"
+          />
+          <Prose size="sm" class="w-full my-auto">
+            <h3 class="">COMING SOON!</h3>
+            <h4>SIGN UP IF INTERESTED!</h4>
+          </Prose>
+          <Button class="col-span-2 w-full place-self-end mt-auto"
+            >REGISTER</Button
+          >>>>>>> alpha >
+          <h1 class="" style="margin:0">ADULT CLASSES</h1>
+          <img
+            class="not-prose object-cover object-center aspect-[3/4] w-full"
+            src="/images/MJP_20230927_Mui_Wo_jiu-jitsu_9342.jpg"
+            alt="Adult classes"
+          />
+          <Prose size="sm" class="w-full">
+            <div class="grid grid-cols-2 gap-y-2 w-full">
+              {#each prices as { price, label }}
+                <h4 class="text-left justify-self-start" style="margin:0">
+                  {price}
+                </h4>
+                <h4
+                  class="text-right whitespace-nowrap justify-self-end"
+                  style="margin:0"
+                >
+                  {label}
+                </h4>
+              {/each}
+              <div class="pt-4 col-span-2" />
+              {#each classTimes as { day, time }}
+                <h4 class="text-left justify-self-start" style="margin:0">
+                  {day}
+                </h4>
+                <h4
+                  class="text-right whitespace-nowrap justify-self-end"
+                  style="margin:0"
+                >
+                  {time}
+                </h4>
+              {/each}
+              <div class="pt-6 col-span-2" />
+              <Prose size="lg" class="w-full col-span-2 self-end">
+                <Button class="col-span-2 w-full">REGISTER</Button>
+              </Prose>
+            </div>
+          </Prose>
+        </Card>
       </Inview>
       <Inview presetOptions={fromTopPreset} class="w-full h-full">
         <Card
@@ -278,12 +333,12 @@
     <img
       src="/images/MJP_20230927_Mui_Wo_jiu-jitsu_9326.jpg"
       alt=""
-      class="not-prose w-full h-full absolute object-cover z-0"
+      class="not-prose w-full h-full absolute object-cover -z-0"
     />
-    <div class="bg-black/60 w-full h-full absolute z-10" />
+    <div class="bg-black/60 w-full h-full absolute z-[5]" />
 
     <Container
-      class="grid place-items-center gap-y-12 z-10"
+      class="grid place-items-center gap-y-12 z-[7]"
       sizes="max-w-7xl w-full"
     >
       <Inview
