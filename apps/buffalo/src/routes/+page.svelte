@@ -121,7 +121,7 @@
     subtitle=""
     justified="center"
     bgVideo={{
-      md: "/videos/1280_high.wemb",
+      md: "/videos/1280_high.webm",
       lg: "/videos/1280_high.webm",
     }}
     bgCover="bg-amber-800/60 brightness-[0.15]"
