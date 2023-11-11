@@ -12,6 +12,7 @@ export { default as TestimonialCard } from './components/atoms/TestimonialCard.s
 export { default as SearchBox } from './components/atoms/SearchBox.svelte';
 export { default as FAQCard } from './components/atoms/FAQCard.svelte';
 export { default as Section } from './components/atoms/Section.svelte';
+export { default as Inview } from './components/atoms/Inview.svelte';
 // Molecules
 export { default as FatFooter } from './components/molecules/FatFooter.svelte';
 export { default as Footer } from './components/molecules/Footer.svelte';
@@ -24,3 +25,4 @@ export { default as Shell } from './components/organisms/Shell.svelte';
 export { default as FAQSection } from './components/organisms/FAQSection.svelte';
 
 export type { Database } from './supabase.types.ts';
+export type { TransitionOptions } from './types.ts';
