@@ -120,8 +120,11 @@
     title="BUFFALO JIU-JITSU"
     subtitle=""
     justified="center"
-    bgVideo={{ md: "/videos/1280_high.mp4", lg: "/videos/1920_high.mp4 1.5x" }}
-    bgCover="bg-amber-800/60 brightness-[0.1]"
+    bgVideo={{
+      md: "/videos/1280_high.wemb",
+      lg: "/videos/1280_high.webm",
+    }}
+    bgCover="bg-amber-800/60 brightness-[0.15]"
     parallax={true}
     inviewPresetOptions={downFadePreset}
   />

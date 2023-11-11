@@ -14,6 +14,8 @@ export type StyleVariants = {
     radius: CssClasses;
     typography: CssClasses;
     margin: CssClasses;
+    top: CssClasses;
+    maxWidth: CssClasses;
   };
 };
 

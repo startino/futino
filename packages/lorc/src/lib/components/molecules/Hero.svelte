@@ -74,17 +74,17 @@
       >
         <source
           type="video/webm"
-          media="(max-width: 799px)"
-          src={bgVideo["md"]}
-        />
-        <source
-          type="video/webm"
           title="Hero Video"
           media="(min-width: 800px)"
           src={bgVideo["lg"]}
         />
+
+        <source
+          type="video/webm"
+          media="(max-width: 799px)"
+          src={bgVideo["md"]}
+        />
         Your Browser does not support our video types
-        <track kind="captions" />
       </video>
     {:else}
       <img
