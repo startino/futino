@@ -7,7 +7,7 @@
   /**Path to the background image. e.g. ``/garages/best_garage.png`` */
   export let bgImg: string = "";
   /**Path to the background video */
-  export let bgVideo: string = "";
+  export let bgVideo: { [size: string]: string };
   /** Provide classes to set the cover for the bg image. e.g. ``bg-black/50`` to darken the background image */
   export let bgCover: CssClasses = "bg-black/0";
   /** Provide classes to set the position of the b **/
@@ -72,9 +72,19 @@
         loop
         class="object-cover object-center w-full h-screen max-h-screen"
       >
-        <source title={$$props.company} type="video/webm" src={bgVideo} />
+        <source
+          type="video/webm"
+          title="Hero Video"
+          media="(min-width: 800px)"
+          src={bgVideo["lg"]}
+        />
+
+        <source
+          type="video/webm"
+          media="(max-width: 799px)"
+          src={bgVideo["md"]}
+        />
         Your Browser does not support our video types
-        <track kind="captions" />
       </video>
     {:else}
       <img
