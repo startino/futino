@@ -1,8 +1,8 @@
 <script lang="ts">
-  import type { CssClasses } from "$lib/types";
+  import type { CssClasses, TransitionOptions } from "$lib/types";
   import Button from "../atoms/Button.svelte";
   import Section from "../atoms/Section.svelte";
-
+  import Inview from "../atoms/Inview.svelte";
   // Content Props
   /**Path to the background image. e.g. ``/garages/best_garage.png`` */
   export let bgImg: string = "";
@@ -29,6 +29,11 @@
       href: "/",
       highlight: false,
     },
+  };
+
+  export let inviewPresetOptions: TransitionOptions = {
+    delay: 0,
+    duration: 400,
   };
 
   /** Provide how you want the hero text and items to be positioned on the horizontal axis.*/
@@ -58,13 +63,7 @@
 >
   <div class="{bgCover} w-full h-full z-0 absolute" />
   <div class="{parallax ? 'fixed' : 'absolute '} w-full h-full not-prose -z-10">
-    {#if bgImg == "sdf"}
-      <img
-        src={bgImg}
-        alt=""
-        class="object-cover object-center w-full h-screen max-h-screen mix-blend-darken"
-      />
-    {:else}
+    {#if bgVideo}
       <video
         muted
         id="clip"
@@ -77,6 +76,12 @@
         Your Browser does not support our video types
         <track kind="captions" />
       </video>
+    {:else}
+      <img
+        src={bgImg}
+        alt=""
+        class="object-cover object-center w-full h-screen max-h-screen mix-blend-darken"
+      />
     {/if}
   </div>
   <div
@@ -84,15 +89,17 @@
       ? 'fixed'
       : ''}"
   >
-    <div
-      class="flex flex-col items-center gap-4
+    <Inview class="w-full h-full" presetOptions={inviewPresetOptions}>
+      <div
+        class="flex flex-col items-center gap-4
        "
-    >
-      <h1 class="" style="margin: 0px">{title}</h1>
-      <h5 class="max-w-6xl" style="margin: 0px">
-        {subtitle}
-      </h5>
-    </div>
+      >
+        <h1 class="" style="margin: 0px">{title}</h1>
+        <h5 class="max-w-6xl" style="margin: 0px">
+          {subtitle}
+        </h5>
+      </div>
+    </Inview>
     <div
       class="grid grid-cols-{Object.entries(CTAButtons)
         .length} gap-4 md:gap-6 place-items-center w-fit"
