@@ -10,15 +10,30 @@
     AnimatedCounter,
     ContactForm,
     Inview,
+    Icon,
   } from "lorc";
   import type { TransitionOptions } from "lorc";
-  import Icon from "lorc/components/atoms/Icon.svelte";
+
+  const socials = [
+    {
+      href: "https://www.instagram.com/buffalojiujitsu/",
+      icon: "instagram",
+    },
+    {
+      href: "http://www.facebook.com/buffalojiujitsu",
+      icon: "facebook",
+    },
+    {
+      href: "mailto:info@buffalojiujitsu.hk",
+      icon: "email",
+    },
+  ];
 
   const aboutItems = [
     {
       title: "NO GI",
       body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.",
-      img: "/images/MJP_20230927_Mui_Wo_jiu-jitsu_9172.jpg",
+      img: "/images/relaxed_bjj.gif",
     },
     {
       title: "OUR METHOD",
@@ -28,7 +43,7 @@
     {
       title: "THE VISION",
       body: "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ut enim ad minim veniam, quis nostrud.",
-      img: "/images/MJP_20230927_Mui_Wo_jiu-jitsu_9288.jpg",
+      img: "/images/MJP_20230927_Mui_Wo_jiu-jitsu_9335.jpg",
     },
   ];
 
@@ -172,66 +187,11 @@
       class="grid grid-cols-1 md:grid-cols-2 gap-y-12 items-center "
       sizes="max-w-7xl w-fit"
     >
-      <Inview presetOptions={fromTopPreset}>
+      <Inview presetOptions={fromTopPreset} class="w-full h-full">
         <Card
           id="adult-classes"
           class="flex flex-col gap-6 items-center w-full justify-self-end"
         >
-          <h1 class="" style="margin:0">ADULT CLASSES</h1>
-          <img
-            class="not-prose object-cover object-center aspect-[3/4] w-full"
-            src="/images/MJP_20230927_Mui_Wo_jiu-jitsu_9342.jpg"
-            alt="Adult classes"
-          />
-          <Prose size="sm" class="w-full">
-            <div class="grid grid-cols-2 gap-y-2 w-full">
-              {#each prices as { price, label }}
-                <h4 class="text-left justify-self-start" style="margin:0">
-                  {price}
-                </h4>
-                <h4
-                  class="text-right whitespace-nowrap justify-self-end"
-                  style="margin:0"
-                >
-                  {label}
-                </h4>
-              {/each}
-              <div class="pt-4 col-span-2" />
-              {#each classTimes as { day, time }}
-                <h4 class="text-left justify-self-start" style="margin:0">
-                  {day}
-                </h4>
-                <h4
-                  class="text-right whitespace-nowrap justify-self-end"
-                  style="margin:0"
-                >
-                  {time}
-                </h4>
-              {/each}
-              <div class="pt-6 col-span-2" />
-              <Prose size="lg" class="w-full col-span-2 self-end">
-                <Button class="col-span-2 w-full">REGISTER</Button>
-              </Prose>
-            </div>
-          </Prose>
-        </Card>
-        <Card
-          id="youth-classes"
-          class="flex flex-col gap-6 items-center w-full h-full justify-self-start"
-        >
-          <h1 class="" style="margin:0">YOUTH CLASSES</h1>
-          <img
-            class="not-prose object-cover object-center aspect-[3/4] w-full"
-            src="/images/MJP_20230927_Mui_Wo_jiu-jitsu_9376.jpg"
-            alt="Adult classes"
-          />
-          <Prose size="sm" class="w-full my-auto">
-            <h3 class="">COMING SOON!</h3>
-            <h4>SIGN UP IF INTERESTED!</h4>
-          </Prose>
-          <Button class="col-span-2 w-full place-self-end mt-auto"
-            >REGISTER</Button
-          >>>>>>> alpha >
           <h1 class="" style="margin:0">ADULT CLASSES</h1>
           <img
             class="not-prose object-cover object-center aspect-[3/4] w-full"
@@ -282,14 +242,13 @@
             src="/images/MJP_20230927_Mui_Wo_jiu-jitsu_9376.jpg"
             alt="Adult classes"
           />
-          <div>
+          <Prose size="sm" class="w-full my-auto">
             <h3 class="">COMING SOON!</h3>
             <h4>SIGN UP IF INTERESTED!</h4>
-          </div>
-
-          <Prose size="lg" class="w-full mt-auto place-self-end">
-            <Button class="col-span-2 w-full">REGISTER</Button>
           </Prose>
+          <Button class="col-span-2 w-full place-self-end mt-auto"
+            >REGISTER</Button
+          >
         </Card>
       </Inview>
     </Container>
@@ -311,16 +270,23 @@
             nerd, we have a home for you here.
           </p>
           <p style="margin:0">
-            info@buffalojiujitsu.hk(+852) 9648 2270 1/F Buffalo Strength GymMui
-            Wo, Lantau Island, Hong Kong
+            info@buffalojiujitsu.hk <br /> (+852) 9648 2270 <br /> <br /> 1/F
+            Buffalo Strength Gym <br /> Mui Wo, Lantau Island, Hong Kong
           </p>
+          <div class="flex flex-row gap-4 text-primary not-prose">
+            {#each socials as { href, icon }}
+              <a {href} target="new" class="">
+                <Icon {icon} height="32" width="32" />
+              </a>
+            {/each}
+          </div>
         </div>
       </Inview>
 
       <Inview presetOptions={fromRightPreset}>
         <ContactForm />
       </Inview>
-      <Inview class="w-full h-full md:col-span-2">
+      <Inview class="w-full h-full md:col-span-2" presetOptions={fromTopPreset}>
         <img
           src="/images/buffalo_travel_times.jpg"
           alt="Travel times to Buffalo Jiu-Jitsu"
@@ -355,7 +321,7 @@
             class="flex flex-col md:flex-row items-center justify-center mx-auto w-full"
           >
             <div
-              class="rounded-full h-44 w-44 md:h-64 md:w-64 lg:h-80 lg:w-80 border-4 -translate-x-12 md:translate-x-6 lg:translate-x-12 border-secondary flex items-center justify-center"
+              class="rounded-full h-44 w-44 md:h-64 md:w-64 lg:h-80 lg:w-80 border-4 -translate-x-12 md:translate-x-6 lg:translate-x-12 border-primary flex items-center justify-center"
             >
               <h4 class="" style="margin:0">PASSION</h4>
             </div>
@@ -365,7 +331,7 @@
               <h4 class="" style="margin:0">COMMUNITY</h4>
             </div>
             <div
-              class="rounded-full h-44 w-44 md:h-64 md:w-64 lg:h-80 lg:w-80 -mt-12 border-4 translate-x-12 md:mt-0 md:-translate-x-6 lg:-translate-x-12 border-secondary flex items-center justify-center"
+              class="rounded-full h-44 w-44 md:h-64 md:w-64 lg:h-80 lg:w-80 -mt-12 border-4 translate-x-12 md:mt-0 md:-translate-x-6 lg:-translate-x-12 border-primary flex items-center justify-center"
             >
               <h4 class="" style="margin:0">AFFORDABILITY</h4>
             </div>

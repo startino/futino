@@ -63,13 +63,7 @@
 >
   <div class="{bgCover} w-full h-full z-0 absolute" />
   <div class="{parallax ? 'fixed' : 'absolute '} w-full h-full not-prose -z-10">
-    {#if bgImg == "sdf"}
-      <img
-        src={bgImg}
-        alt=""
-        class="object-cover object-center w-full h-screen max-h-screen mix-blend-darken"
-      />
-    {:else}
+    {#if bgVideo}
       <video
         muted
         id="clip"
@@ -82,6 +76,12 @@
         Your Browser does not support our video types
         <track kind="captions" />
       </video>
+    {:else}
+      <img
+        src={bgImg}
+        alt=""
+        class="object-cover object-center w-full h-screen max-h-screen mix-blend-darken"
+      />
     {/if}
   </div>
   <div
