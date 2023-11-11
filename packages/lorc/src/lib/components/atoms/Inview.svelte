@@ -3,7 +3,7 @@
 
   import { onDestroy, onMount } from "svelte";
   import { createEventDispatcher } from "svelte";
-  import type { TransitionOptions } from "../../types";
+  import type { TransitionOptions, Animation } from "../../types";
 
   // Individual Options.
   export let animation: Animation | undefined = undefined;
