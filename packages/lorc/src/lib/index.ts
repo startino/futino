@@ -13,6 +13,7 @@ export { default as SearchBox } from './components/atoms/SearchBox.svelte';
 export { default as FAQCard } from './components/atoms/FAQCard.svelte';
 export { default as Section } from './components/atoms/Section.svelte';
 export { default as Inview } from './components/atoms/Inview.svelte';
+export { default as Video } from './components/atoms/Video.svelte';
 // Molecules
 export { default as FatFooter } from './components/molecules/FatFooter.svelte';
 export { default as Footer } from './components/molecules/Footer.svelte';

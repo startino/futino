@@ -13,6 +13,12 @@
     Icon,
   } from "lorc";
   import type { TransitionOptions } from "lorc";
+  import {
+    fromTopPreset,
+    downFadePreset,
+    fromLeftPreset,
+    fromRightPreset,
+  } from "$lib/transitionOptions.ts";
 
   const socials = [
     {
@@ -73,45 +79,6 @@
       time: "7:45PM",
     },
   ];
-  const downFadePreset: TransitionOptions = {
-    delay: 75,
-    duration: 400,
-    once: false,
-    threshold: 0.2,
-    fly: {
-      x: 0,
-      y: 25,
-    },
-  };
-  const fromTopPreset: TransitionOptions = {
-    delay: 75,
-    duration: 400,
-    once: false,
-    threshold: 0.2,
-    fly: {
-      x: 0,
-      y: -25,
-    },
-  };
-
-  const fromLeftPreset: TransitionOptions = {
-    delay: 100,
-    duration: 500,
-    once: false,
-    fly: {
-      x: -25,
-      y: 0,
-    },
-  };
-  const fromRightPreset: TransitionOptions = {
-    delay: 100,
-    duration: 500,
-    once: false,
-    fly: {
-      x: 25,
-      y: 0,
-    },
-  };
 </script>
 
 <Prose size="lg" class="text-center">
@@ -158,7 +125,7 @@
       </Container>
     </Inview>
   </Section>
-  <Section class="bg-background py-18">
+  <Section class="bg-background py-18" id="about">
     <Container
       class="text-center md:text-left items-start flex flex-col md:grid md:grid-cols-2 md:place-items-center gap-x-12 gap-y-4 sm:gap-y-4 md:gap-y-12"
       sizes="max-w-7xl"
@@ -257,7 +224,7 @@
     </Container>
   </Section>
 
-  <Section class="bg-background py-18 text-left">
+  <Section class="bg-background py-18 text-left" id="contact">
     <Container
       class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8 items-start"
       sizes="max-w-7xl w-full"
@@ -298,7 +265,7 @@
       </Inview>
     </Container>
   </Section>
-  <Section class="py-64">
+  <Section class="py-64" id="end-cta">
     <img
       src="/images/MJP_20230927_Mui_Wo_jiu-jitsu_9326.jpg"
       alt=""
