@@ -1,6 +1,6 @@
 <script lang="ts">
   export let srcset: { [size: string]: string };
-  export let src: string;
+  export let src: string = "";
   export let title: string = "Video";
   export let poster: string;
 </script>
@@ -11,7 +11,7 @@
   preload="auto"
   autoplay
   loop
-  class="{$$props.class}  "
+  class={$$props.class}
   {poster}
 >
   {#if srcset}
@@ -35,7 +35,7 @@
       src={srcset["lg"]}
     />
   {:else}
-    <source type="video/webm" {title} {src} />
+    <source {title} {src} />
   {/if}
   Your Browser does not support our video types
 </video>

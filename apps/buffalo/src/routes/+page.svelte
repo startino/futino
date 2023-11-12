@@ -11,6 +11,7 @@
     ContactForm,
     Inview,
     Icon,
+    Video,
   } from "lorc";
   import type { TransitionOptions } from "lorc";
   import {
@@ -38,24 +39,25 @@
   const aboutItems = [
     {
       title: "NO GI",
-      body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.",
-      img: "/images/relaxed_bjj.gif",
+      body: "Hong Kong’s first and only exclusively no gi gym. Leave the pyjamas at home. Wear actual sports attire. Begin your no gi journey with us.",
+      src: "/videos/slow_bjj.mp4",
+      video: true,
     },
     {
       title: "OUR METHOD",
       body: "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ut enim ad minim veniam, quis nostrud.",
-      img: "/images/MJP_20230927_Mui_Wo_jiu-jitsu_9286.jpg",
+      src: "/images/MJP_20230927_Mui_Wo_jiu-jitsu_9286.jpg",
     },
     {
       title: "THE VISION",
       body: "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ut enim ad minim veniam, quis nostrud.",
-      img: "/images/MJP_20230927_Mui_Wo_jiu-jitsu_9335.jpg",
+      src: "/images/MJP_20230927_Mui_Wo_jiu-jitsu_9335.jpg",
     },
   ];
 
   const prices = [
     {
-      label: "GUEST TRIAL",
+      label: "TRIAL WEEK",
       price: "FREE",
     },
     {
@@ -130,16 +132,20 @@
       class="text-center md:text-left items-start flex flex-col md:grid md:grid-cols-2 md:place-items-center gap-x-12 gap-y-4 sm:gap-y-4 md:gap-y-12"
       sizes="max-w-7xl"
     >
-      {#each aboutItems as { title, body, img }}
+      {#each aboutItems as { title, body, src, video }}
         <Inview presetOptions={fromLeftPreset} class="w-full h-full">
           <div
             class="w-full max-w-lg md:max-w-none mx-auto h-64 sm:h-96 flex place-items-center"
           >
-            <img
-              src={img}
-              alt=""
-              class="not-prose w-full h-full aspect-video object-cover object-center"
-            />
+            {#if video}
+              <Video class="w-full h-full object-cover" {src} {title} />
+            {:else}
+              <img
+                {src}
+                alt=""
+                class="not-prose w-full h-full aspect-video object-cover object-center"
+              />
+            {/if}
           </div>
         </Inview>
         <Inview presetOptions={fromRightPreset}>
