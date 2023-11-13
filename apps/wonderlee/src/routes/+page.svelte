@@ -32,13 +32,13 @@
       finalValue: 300,
       startValue: 0,
       increment: 10,
-      unit: "",
+      unit: "+",
     },
     "Custom garages built": {
       finalValue: 300,
       startValue: 0,
       increment: 10,
-      unit: "",
+      unit: "+",
     },
     "Years of Experience": {
       finalValue: 25,
@@ -342,30 +342,32 @@ enhancing elegance and functionality with top craftsmanship standards.
       </h6>
       {#each Object.entries(projects) as [label, project], i}
         {#if i < 6}
-          <Card class="flex flex-col group h-full" padding="px-0 py-2">
-            <h6 class="m-0 sm:m-0 uppercase text-surface-on/70">
-              {project.date}
-            </h6>
-            <img
-              src={project.thumbnail}
-              alt=""
-              class="object-cover h-72 w-full not-prose md:brightness-95 group-hover: brightness-100"
-            />
-            <div class="flex flex-wrap place-items-center gap-4">
-              <h4 class="m-0 sm:m-0 pt-4 uppercase">
-                {project.name}
-              </h4>
-              <ul class="m-0 sm:m-0">
-                {#each project.description as item}
-                  <li class="m-0 sm:m-0">
-                    <p class="m-0 sm:m-0 prose-sm">
-                      {item}
-                    </p>
-                  </li>
-                {/each}
-              </ul>
-            </div>
-          </Card>
+          <Inview presetOptions={fromTop} class="h-full w-full">
+            <Card class="flex flex-col group h-full" padding="px-0 py-2">
+              <h6 class="m-0 sm:m-0 uppercase text-surface-on/70">
+                {project.date}
+              </h6>
+              <img
+                src={project.thumbnail}
+                alt=""
+                class="object-cover h-72 w-full not-prose md:brightness-95 group-hover: brightness-100"
+              />
+              <div class="flex flex-wrap gap-4">
+                <h4 class="m-0 sm:m-0 pt-4 uppercase">
+                  {project.name}
+                </h4>
+                <ul class="m-0 sm:m-0">
+                  {#each project.description as item}
+                    <li class="m-0 sm:m-0">
+                      <p class="m-0 sm:m-0 prose-sm">
+                        {item}
+                      </p>
+                    </li>
+                  {/each}
+                </ul>
+              </div>
+            </Card>
+          </Inview>
         {/if}
       {/each}
       <Button
@@ -389,13 +391,15 @@ enhancing elegance and functionality with top craftsmanship standards.
         Testimonials
       </h6>
       {#each testimonials as { name, body, href, img }, i}
-        <TestimonialCard
-          class="{i < 3 ? 'flex' : 'hidden'} sm:flex"
-          {name}
-          {body}
-          {href}
-          {img}
-        />
+        <Inview presetOptions={fromLeft} delay={i * 150} class="w-full h-full">
+          <TestimonialCard
+            class="{i < 3 ? 'flex' : 'hidden'} sm:flex"
+            {name}
+            {body}
+            {href}
+            {img}
+          />
+        </Inview>
       {/each}
     </Container>
     <Button

@@ -1,5 +1,13 @@
 <script lang="ts">
-  import { Prose, Container, ContactForm, Card, Button } from "lorc";
+  import {
+    Prose,
+    Container,
+    ContactForm,
+    Card,
+    Button,
+    Inview,
+    fromRight,
+  } from "lorc";
 </script>
 
 <Prose>
@@ -23,21 +31,31 @@
       margin="mr-auto"
       class="flex flex-col justify-items-center divide-y divide-surface-on/40"
     >
-      <div class=" py-12">
-        <p class="uppercase text-tertiary m-0 sm:m-0">Email</p>
-        <h3 class="m-0 sm:m-0">Sales@wonderlee.hk</h3>
-      </div>
-      <div class=" py-12">
-        <p class="uppercase text-tertiary m-0 sm:m-0">Phone</p>
-        <h3 class="m-0 sm:m-0">+852 6931 0020</h3>
-      </div>
-      <div class=" py-12">
-        <p class="uppercase text-tertiary m-0 sm:m-0">Address</p>
-        <h3 class="m-0 sm:m-0 pb-3">
-          1402 Hip Kwan Commercial Building <br /> 38 Pitt Street, Yaumatei, Kowloon
-        </h3>
-        <Button href="#map-iframe" arrow={true}>Google Maps</Button>
-      </div>
+      <Inview presetOptions={fromRight} delay={150}>
+        <div class=" py-12">
+          <p class="uppercase text-tertiary m-0 sm:m-0">Email</p>
+          <h3 class="m-0 sm:m-0">Sales@wonderlee.hk</h3>
+        </div>
+      </Inview>
+
+      <Inview presetOptions={fromRight} delay={300}>
+        <div class=" py-12">
+          <p class="uppercase text-tertiary m-0 sm:m-0">Phone</p>
+          <h3 class="m-0 sm:m-0">+852 6931 0020</h3>
+        </div>
+      </Inview>
+
+      <Inview presetOptions={fromRight} delay={450}>
+        <div class=" py-12">
+          <p class="uppercase text-tertiary m-0 sm:m-0">Address</p>
+          <h3 class="m-0 sm:m-0 pb-3">
+            1402 Hip Kwan Commercial Building <br /> 38 Pitt Street, Yaumatei, Kowloon
+          </h3>
+          <Button variant="pill" href="#map-iframe" arrow={true}
+            >Google Maps</Button
+          >
+        </div>
+      </Inview>
     </Container>
   </section>
 

@@ -102,7 +102,7 @@
   >
     <Inview class="w-full h-full" presetOptions={inviewPresetOptions}>
       <div
-        class="flex flex-col items-center gap-4
+        class="flex flex-col items-center gap-4 pt-69420
        "
       >
         <h1 class="" style="margin: 0px">{title}</h1>
