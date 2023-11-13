@@ -38,6 +38,9 @@ function get_current_component() {
     throw new Error("Function called outside component initialization");
   return current_component;
 }
+function onDestroy(fn) {
+  get_current_component().$$.on_destroy.push(fn);
+}
 function setContext(key, context) {
   get_current_component().$$.context.set(key, context);
   return context;
@@ -141,9 +144,9 @@ function add_styles(style_object) {
 }
 export {
   setContext as a,
-  each as b,
+  add_attribute as b,
   create_ssr_component as c,
-  add_attribute as d,
+  each as d,
   escape as e,
   add_styles as f,
   compute_slots as g,
@@ -151,6 +154,7 @@ export {
   subscribe as i,
   missing_component as m,
   noop as n,
+  onDestroy as o,
   safe_not_equal as s,
   validate_component as v
 };

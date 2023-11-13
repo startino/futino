@@ -11,45 +11,38 @@
     ContactForm,
     Inview,
     Icon,
+    Video,
   } from "lorc";
   import type { TransitionOptions } from "lorc";
-
-  const socials = [
-    {
-      href: "https://www.instagram.com/buffalojiujitsu/",
-      icon: "instagram",
-    },
-    {
-      href: "http://www.facebook.com/buffalojiujitsu",
-      icon: "facebook",
-    },
-    {
-      href: "mailto:info@buffalojiujitsu.hk",
-      icon: "email",
-    },
-  ];
-
+  import {
+    fromTopPreset,
+    downFadePreset,
+    fromLeftPreset,
+    fromRightPreset,
+  } from "$lib/transitionOptions.ts";
+  import { socials } from "$lib/socials.ts";
   const aboutItems = [
     {
       title: "NO GI",
-      body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.",
-      img: "/images/relaxed_bjj.gif",
+      body: "Hong Kong’s first and only exclusively no gi gym. Leave the pyjamas at home. Wear actual sports attire. Begin your no gi journey with us.",
+      src: "/videos/slow_bjj.mp4",
+      video: true,
     },
     {
       title: "OUR METHOD",
       body: "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ut enim ad minim veniam, quis nostrud.",
-      img: "/images/MJP_20230927_Mui_Wo_jiu-jitsu_9286.jpg",
+      src: "/images/MJP_20230927_Mui_Wo_jiu-jitsu_9286.jpg",
     },
     {
       title: "THE VISION",
       body: "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ut enim ad minim veniam, quis nostrud.",
-      img: "/images/MJP_20230927_Mui_Wo_jiu-jitsu_9335.jpg",
+      src: "/images/MJP_20230927_Mui_Wo_jiu-jitsu_9335.jpg",
     },
   ];
 
   const prices = [
     {
-      label: "GUEST TRIAL",
+      label: "TRIAL WEEK",
       price: "FREE",
     },
     {
@@ -73,45 +66,6 @@
       time: "7:45PM",
     },
   ];
-  const downFadePreset: TransitionOptions = {
-    delay: 75,
-    duration: 400,
-    once: false,
-    threshold: 0.2,
-    fly: {
-      x: 0,
-      y: 25,
-    },
-  };
-  const fromTopPreset: TransitionOptions = {
-    delay: 75,
-    duration: 400,
-    once: false,
-    threshold: 0.2,
-    fly: {
-      x: 0,
-      y: -25,
-    },
-  };
-
-  const fromLeftPreset: TransitionOptions = {
-    delay: 100,
-    duration: 500,
-    once: false,
-    fly: {
-      x: -25,
-      y: 0,
-    },
-  };
-  const fromRightPreset: TransitionOptions = {
-    delay: 100,
-    duration: 500,
-    once: false,
-    fly: {
-      x: 25,
-      y: 0,
-    },
-  };
 </script>
 
 <Prose size="lg" class="text-center">
@@ -158,21 +112,25 @@
       </Container>
     </Inview>
   </Section>
-  <Section class="bg-background py-18">
+  <Section class="bg-background py-18" id="about">
     <Container
       class="text-center md:text-left items-start flex flex-col md:grid md:grid-cols-2 md:place-items-center gap-x-12 gap-y-4 sm:gap-y-4 md:gap-y-12"
       sizes="max-w-7xl"
     >
-      {#each aboutItems as { title, body, img }}
+      {#each aboutItems as { title, body, src, video }}
         <Inview presetOptions={fromLeftPreset} class="w-full h-full">
           <div
             class="w-full max-w-lg md:max-w-none mx-auto h-64 sm:h-96 flex place-items-center"
           >
-            <img
-              src={img}
-              alt=""
-              class="not-prose w-full h-full aspect-video object-cover object-center"
-            />
+            {#if video}
+              <Video class="w-full h-full object-cover" {src} {title} />
+            {:else}
+              <img
+                {src}
+                alt=""
+                class="not-prose w-full h-full aspect-video object-cover object-center"
+              />
+            {/if}
           </div>
         </Inview>
         <Inview presetOptions={fromRightPreset}>
@@ -257,7 +215,7 @@
     </Container>
   </Section>
 
-  <Section class="bg-background py-18 text-left">
+  <Section class="bg-background py-18 text-left" id="contact">
     <Container
       class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8 items-start"
       sizes="max-w-7xl w-full"
@@ -298,7 +256,7 @@
       </Inview>
     </Container>
   </Section>
-  <Section class="py-64">
+  <Section class="py-64" id="end-cta">
     <img
       src="/images/MJP_20230927_Mui_Wo_jiu-jitsu_9326.jpg"
       alt=""

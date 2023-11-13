@@ -6,7 +6,7 @@
 </script>
 
 <Card
-  class="{$$props.class} col-span-2 grid grid-cols-3 w-full bg-surface/10"
+  class="{$$props.class}  grid grid-cols-3 w-full bg-surface/10"
   size="max-w-none h-full "
   border="border border-surface-on"
 >

@@ -3,7 +3,7 @@ export { default as Icon } from './components/atoms/Icon.svelte';
 export { default as Logo } from './components/atoms/Logo.svelte';
 export { default as Prose } from './components/atoms/Prose.svelte';
 export { default as Button } from './components/atoms/Button.svelte';
-export { default as AnimatedCounter } from './components/atoms/AnimatedCounter.svelte';
+export { default as Counter } from './components/atoms/Counter.svelte';
 export { default as Container } from './components/atoms/Container.svelte';
 export { default as Card } from './components/atoms/Card.svelte';
 export { default as SelectMenu } from './components/atoms/SelectMenu.svelte';
@@ -12,7 +12,9 @@ export { default as TestimonialCard } from './components/atoms/TestimonialCard.s
 export { default as SearchBox } from './components/atoms/SearchBox.svelte';
 export { default as FAQCard } from './components/atoms/FAQCard.svelte';
 export { default as Section } from './components/atoms/Section.svelte';
-export { default as Inview } from './components/atoms/Inview.svelte';
+export { default as Inview } from './components/atoms/inview/Inview.svelte';
+export { fromBot, fromTop, fromLeft, fromRight } from './components/atoms/inview/commonPresets';
+export { default as Video } from './components/atoms/Video.svelte';
 // Molecules
 export { default as FatFooter } from './components/molecules/FatFooter.svelte';
 export { default as Footer } from './components/molecules/Footer.svelte';

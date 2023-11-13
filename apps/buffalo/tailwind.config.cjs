@@ -24,7 +24,9 @@ const config = {
       {
         'landing': "url('/images/Screenshot from 2023-11-02 13-43-57.png')"
       },
-      padding: fPadding,
+      padding:
+        { '69420': 'pt-24' }
+      ,
 
       animation: fAnimations,
       keyframes: fKeyframes,

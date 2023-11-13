@@ -1,10 +1,14 @@
-import { c as create_ssr_component, v as validate_component, e as escape, b as each, d as add_attribute, f as add_styles, g as compute_slots } from "../../chunks/ssr.js";
+import { c as create_ssr_component, b as add_attribute, v as validate_component, e as escape, d as each, f as add_styles, g as compute_slots } from "../../chunks/ssr.js";
 import { P as Prose } from "../../chunks/Prose.js";
+import "svelte-inview";
 import "crypto-js/sha256.js";
-import { B as Button, I as Icon } from "../../chunks/Button.js";
+/* empty css                                                 */import { B as Button, I as Icon } from "../../chunks/Button.js";
 const app = "";
 const Logo = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-  return ` <img src="/favicon.png" class="h-8" alt="Logo">`;
+  let { height = "h-8" } = $$props;
+  if ($$props.height === void 0 && $$bindings.height && height !== void 0)
+    $$bindings.height(height);
+  return ` <img src="/favicon.png"${add_attribute("class", height, 0)} alt="Logo">`;
 });
 const FatFooter = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let { pages = {
@@ -52,13 +56,55 @@ const Header = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let { sticky = true } = $$props;
   let { dualTheme = true } = $$props;
   let { companyName = "Company Name" } = $$props;
-  let { background = "" } = $$props;
-  let { border = "border-primary/50" } = $$props;
-  let { padding = "" } = $$props;
+  let { logoPos = "leading" } = $$props;
+  let { bgBig = "" } = $$props;
+  let { bgSmall = "" } = $$props;
+  let { maxWidth = "" } = $$props;
+  let { border = "" } = $$props;
+  let { paddingBig = "" } = $$props;
+  let { paddingSmall = "" } = $$props;
+  let { margin = "mx-auto" } = $$props;
+  let { top = "" } = $$props;
+  let { radius = "" } = $$props;
   let { shadow = "" } = $$props;
   let { gap = "gap-6" } = $$props;
-  let { typography = "text-primary" } = $$props;
-  let largeHeaderClass = `py-12`;
+  let { typography = "" } = $$props;
+  let { variant = "normal" } = $$props;
+  let { buttonVariant = "normal" } = $$props;
+  const variants = {
+    normal: {
+      colors: ["bg-transparent", "bg-transparent"],
+      border: "border-b border-primary/50",
+      padding: ["py-12", "py-3"],
+      radius: "rounded-md",
+      typography: "text-surface-on",
+      top: "top-0"
+    },
+    pill: {
+      colors: ["bg-surface", "bg-surface"],
+      border: "",
+      padding: ["py-4 px-4", "py-2 px-2 md:py-4 md:px-4"],
+      radius: "rounded-full",
+      typography: "text-surface-on",
+      top: "top-4",
+      margin: "",
+      maxWidth: "max-w-5xl"
+    }
+  };
+  function setClasses() {
+    bgBig = bgBig || variants[variant].colors[0];
+    bgSmall = bgSmall || variants[variant].colors[1];
+    paddingBig = paddingBig || variants[variant].padding[0];
+    paddingSmall = paddingSmall || variants[variant].padding[1];
+    margin = margin || variants[variant].margin;
+    border = border || variants[variant].border;
+    radius = radius || variants[variant].radius;
+    top = top || variants[variant].top;
+    maxWidth = maxWidth || variants[variant].maxWidth;
+    typography = typography || variants[variant].typography;
+  }
+  setClasses();
+  let largeHeaderClass = `${paddingBig} ${bgBig}`;
   let activeheaderClass = largeHeaderClass;
   if ($$props.pages === void 0 && $$bindings.pages && pages !== void 0)
     $$bindings.pages(pages);
@@ -70,32 +116,63 @@ const Header = create_ssr_component(($$result, $$props, $$bindings, slots) => {
     $$bindings.dualTheme(dualTheme);
   if ($$props.companyName === void 0 && $$bindings.companyName && companyName !== void 0)
     $$bindings.companyName(companyName);
-  if ($$props.background === void 0 && $$bindings.background && background !== void 0)
-    $$bindings.background(background);
+  if ($$props.logoPos === void 0 && $$bindings.logoPos && logoPos !== void 0)
+    $$bindings.logoPos(logoPos);
+  if ($$props.bgBig === void 0 && $$bindings.bgBig && bgBig !== void 0)
+    $$bindings.bgBig(bgBig);
+  if ($$props.bgSmall === void 0 && $$bindings.bgSmall && bgSmall !== void 0)
+    $$bindings.bgSmall(bgSmall);
+  if ($$props.maxWidth === void 0 && $$bindings.maxWidth && maxWidth !== void 0)
+    $$bindings.maxWidth(maxWidth);
   if ($$props.border === void 0 && $$bindings.border && border !== void 0)
     $$bindings.border(border);
-  if ($$props.padding === void 0 && $$bindings.padding && padding !== void 0)
-    $$bindings.padding(padding);
+  if ($$props.paddingBig === void 0 && $$bindings.paddingBig && paddingBig !== void 0)
+    $$bindings.paddingBig(paddingBig);
+  if ($$props.paddingSmall === void 0 && $$bindings.paddingSmall && paddingSmall !== void 0)
+    $$bindings.paddingSmall(paddingSmall);
+  if ($$props.margin === void 0 && $$bindings.margin && margin !== void 0)
+    $$bindings.margin(margin);
+  if ($$props.top === void 0 && $$bindings.top && top !== void 0)
+    $$bindings.top(top);
+  if ($$props.radius === void 0 && $$bindings.radius && radius !== void 0)
+    $$bindings.radius(radius);
   if ($$props.shadow === void 0 && $$bindings.shadow && shadow !== void 0)
     $$bindings.shadow(shadow);
   if ($$props.gap === void 0 && $$bindings.gap && gap !== void 0)
     $$bindings.gap(gap);
   if ($$props.typography === void 0 && $$bindings.typography && typography !== void 0)
     $$bindings.typography(typography);
-  classesBase = `${sticky ? "fixed" : ""} ${background} ${border} ${padding} ${shadow} ${typography} ${$$props.class}`;
-  return `${``} <header id="header" class="${escape(classesBase, true) + " top-0 z-40 w-full transition-all duration-400"}"><div class="${"relative " + escape(activeheaderClass, true) + " transition-all duration-400"}"><div class="flex md:grid md:grid-cols-5 z-50 items-center justify-between w-full px-6 max-w-7xl mx-auto"><a class="flex gap-3 not-prose" href="/">${validate_component(Logo, "Logo").$$render($$result, {}, {}, {})} <p class="hidden sm:flex text-xl my-auto">${escape(companyName)}</p></a>  <nav class="${"hidden md:flex col-span-3 mx-auto " + escape(gap, true)}">${each(Object.entries(pages), ([name, href]) => {
-    return `<a class="text-background-on hover:text-tertiary"${add_attribute("href", href, 0)}><h6 class="m-0 sm:m-0">${escape(name)}</h6> </a>`;
-  })}</nav> <div class="${"hidden md:flex grid grid-cols-" + escape(Object.entries(CTAButtons).length, true) + " gap-4 md:gap-6 place-items-center w-fit"}">${each(Object.entries(CTAButtons), ([label, { href, highlight }]) => {
-    return `${validate_component(Button, "Button").$$render($$result, { class: "w-full", highlight, href }, {}, {
-      default: () => {
-        return `${escape(label)} `;
+  if ($$props.variant === void 0 && $$bindings.variant && variant !== void 0)
+    $$bindings.variant(variant);
+  if ($$props.buttonVariant === void 0 && $$bindings.buttonVariant && buttonVariant !== void 0)
+    $$bindings.buttonVariant(buttonVariant);
+  classesBase = `${maxWidth} ${margin} ${shadow} ${border} ${radius} ${top} ${$$props.class} ${typography}`;
+  return `${``} <header id="header" class="${"" + escape(sticky ? "fixed" : "", true) + " z-40 w-full transition-all duration-400 justify-items-center"}"><div class="${escape(classesBase, true) + " " + escape(activeheaderClass, true) + " z-40 relative transition-all duration-400"}"><div class="flex md:grid md:grid-cols-5 z-50 items-center w-full justify-center px-6 max-w-7xl mx-auto">${logoPos == "leading" ? `<a class="flex gap-3 not-prose justify-self-start mr-auto" href="/">${validate_component(Logo, "Logo").$$render($$result, {}, {}, {})} <p class="hidden sm:flex text-xl my-auto">${escape(companyName)}</p></a>` : `<a class="flex md:hidden gap-3 not-prose justify-self-start mr-auto" href="/">${validate_component(Logo, "Logo").$$render($$result, { height: "h-10" }, {}, {})} <p class="hidden sm:flex text-xl my-auto">${escape(companyName)}</p></a>`}   <nav class="${"hidden " + escape(
+    logoPos == "center" ? `col-span-5 md:grid justify-between w-full h-full place-items-center grid-cols-${Object.entries(pages).length + 1}` : `md:flex col-span-3 `,
+    true
+  ) + " mx-auto " + escape(gap, true) + " justify-self-center"}">${each(Object.entries(pages), ([name, href], i) => {
+    return `<a class="${"text-center " + escape(typography, true)}"${add_attribute("href", href, 0)}><h6 class="m-0 sm:m-0">${escape(name)} </h6></a>  ${logoPos == "center" && i == Object.entries(pages).length / 2 - 1 ? `<a class="flex gap-3 not-prose" href="/">${validate_component(Logo, "Logo").$$render($$result, { height: "h-10" }, {}, {})} <p class="hidden sm:flex text-xl my-auto">${escape(companyName)}</p> </a>` : ``}`;
+  })}</nav> <div class="${"hidden md:flex grid grid-cols-" + escape(Object.entries(CTAButtons).length, true) + " gap-4 md:gap-6 place-items-center w-fit justify-self-end"}">${each(Object.entries(CTAButtons), ([label, { href, highlight }]) => {
+    return `${validate_component(Button, "Button").$$render(
+      $$result,
+      {
+        variant: buttonVariant,
+        class: "w-full",
+        highlight,
+        href
+      },
+      {},
+      {
+        default: () => {
+          return `${escape(label)} `;
+        }
       }
-    })}`;
-  })}</div> <button class="flex md:hidden stroke-primary hover:stroke-tertiary">${validate_component(Icon, "Icon").$$render(
+    )}`;
+  })}</div> ${logoPos == "trailing" ? `<a class="flex gap-3 not-prose" href="/">${validate_component(Logo, "Logo").$$render($$result, {}, {}, {})} <p class="hidden sm:flex text-xl my-auto">${escape(companyName)}</p></a>` : ``} <button class="flex md:hidden stroke-primary hover:stroke-tertiary">${validate_component(Icon, "Icon").$$render(
     $$result,
     {
-      height: "28",
-      width: "28",
+      height: "32",
+      width: "32",
       fill: "none",
       icon: "burger"
     },
@@ -157,7 +234,12 @@ const Shell = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   return `<div id="appShell"${add_attribute("class", classesBase, 0)} data-testid="app-shell"> ${$$slots.header ? `<header id="shell-header" class="${"flex-none " + escape(classesHeader, true)}">${slots.header ? slots.header({}) : ``}</header>` : ``}  <div class="${"flex-auto " + escape(cContentArea, true)}"> ${$$slots.sidebarLeft ? `<aside id="sidebar-left"${add_attribute("class", classesSidebarLeft, 0)}>${slots.sidebarLeft ? slots.sidebarLeft({}) : ``}</aside>` : ``}  <div id="page" class="${escape(regionPage, true) + " " + escape(cPage, true)}"${add_styles({ "scrollbar-gutter": scrollbarGutter })}> ${$$slots.pageHeader ? `<header id="page-header" class="${"flex-none " + escape(classesPageHeader, true)}">${slots.pageHeader ? slots.pageHeader({}) : `(slot:header)`}</header>` : ``}  <main id="page-content" class="${"flex-auto " + escape(classesPageContent, true)}">${slots.default ? slots.default({}) : ``}</main>  ${$$slots.pageFooter ? `<footer id="page-footer" class="${"flex-none " + escape(classesPageFooter, true)}">${slots.pageFooter ? slots.pageFooter({}) : `(slot:footer)`}</footer>` : ``}</div>  ${$$slots.sidebarRight ? `<aside id="sidebar-right"${add_attribute("class", classesSidebarRight, 0)}>${slots.sidebarRight ? slots.sidebarRight({}) : ``}</aside>` : ``}</div>  ${$$slots.footer ? `<footer id="shell-footer" class="${"flex-none " + escape(classesFooter, true)}">${slots.footer ? slots.footer({}) : ``}</footer>` : ``}</div>`;
 });
 const Layout = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-  const headerLinks = { About: "/", Contact: "/" };
+  const headerLinks = {
+    "ADULT CLASSES": "/#adult-classes",
+    "YOUTH CLASSES": "/#youth-classes",
+    ABOUT: "/about",
+    CONTACT: "/contact"
+  };
   const footerLinks = {
     Explore: { Home: "/" },
     Support: { About: "/", Contact: "/", FAQ: "/" },
@@ -173,7 +255,20 @@ const Layout = create_ssr_component(($$result, $$props, $$bindings, slots) => {
     header: () => {
       return `${validate_component(Prose, "Prose").$$render($$result, {}, {}, {
         default: () => {
-          return `${validate_component(Header, "Header").$$render($$result, { companyName: "", pages: headerLinks }, {}, {})}`;
+          return `${validate_component(Header, "Header").$$render(
+            $$result,
+            {
+              companyName: "",
+              variant: "pill",
+              bgBig: "bg-surface-on",
+              bgSmall: "bg-surface-on",
+              typography: "text-background text-base",
+              logoPos: "center",
+              pages: headerLinks
+            },
+            {},
+            {}
+          )}`;
         }
       })} `;
     },

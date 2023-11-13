@@ -6,6 +6,8 @@
     Card,
     Button,
     SelectMenu,
+    Inview,
+    fromLeft,
   } from "lorc";
   import products from "./products";
 </script>
@@ -39,27 +41,32 @@
             </p>
           </Card>
           {#if product.types}
-            {#each product.types as { label, thumbnail, href }}
-              <Card
-                class=" relative flex place-items-center group overflow-hidden {product
-                  .types.length == 1
+            {#each product.types as { label, thumbnail, href }, i}
+              <Inview
+                fly={{ y: 0, x: -200 }}
+                class="w-full h-full {product.types.length == 1
                   ? 'col-span-2'
                   : ''}"
-                href="/products/{name}{href}"
-                size="max-w-none w-full h-full aspect-[1.7] max-h-72"
-                padding="px-1 py-2"
+                delay={i * 200}
               >
-                <h3
-                  class="m-0 sm:m-0 w-full text-center z-10 group-hover:text-tertiary transition-all duration-300"
+                <Card
+                  class=" relative flex place-items-center group overflow-hidden "
+                  href="/products/{name}{href}"
+                  size="max-w-none w-full h-full aspect-[1.7] max-h-72 min-h-96"
+                  padding="px-1 py-2"
                 >
-                  {label}
-                </h3>
-                <img
-                  src={thumbnail}
-                  alt=""
-                  class="object-cover not-prose object-center w-full h-full absolute top-0 left-0 brightness-50 rounded-md group-hover:brightness-100 transition-all duration-300 group-hover:scale-105"
-                />
-              </Card>
+                  <h3
+                    class="m-0 sm:m-0 w-full text-center z-10 group-hover:text-tertiary transition-all duration-300"
+                  >
+                    {label}
+                  </h3>
+                  <img
+                    src={thumbnail}
+                    alt=""
+                    class="object-cover not-prose object-center w-full h-full absolute top-0 left-0 brightness-50 md:brightness-50 rounded-md group-hover:brightness-100 transition-all duration-300 group-hover:scale-105"
+                  />
+                </Card>
+              </Inview>
             {/each}
           {/if}
         </Container>

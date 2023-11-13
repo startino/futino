@@ -46,5 +46,6 @@ export type TransitionOptions = {
 export enum Animation {
   flyIn,
   SomeOtherAnimation,
-}
+};
+
 

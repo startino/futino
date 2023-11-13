@@ -2,7 +2,7 @@
   import type { CssClasses, TransitionOptions } from "$lib/types";
   import Button from "../atoms/Button.svelte";
   import Section from "../atoms/Section.svelte";
-  import Inview from "../atoms/Inview.svelte";
+  import Inview from "../atoms/inview/Inview.svelte";
   // Content Props
   /**Path to the background image. e.g. ``/garages/best_garage.png`` */
   export let bgImg: string = "";
@@ -35,6 +35,7 @@
     delay: 0,
     duration: 400,
   };
+  export let buttonVariant: string = "normal";
 
   /** Provide how you want the hero text and items to be positioned on the horizontal axis.*/
   export let justified: "left" | "center" | "right" = "center";
@@ -86,7 +87,7 @@
         />
         Your Browser does not support our video types
       </video>
-    {:else}
+    {:else if bgImg}
       <img
         src={bgImg}
         alt=""
@@ -115,7 +116,7 @@
         .length} gap-4 md:gap-6 place-items-center w-fit"
     >
       {#each Object.entries(CTAButtons) as [label, { href, highlight }]}
-        <Button class="w-full" {highlight} {href}>
+        <Button variant={buttonVariant} class="w-full" {highlight} {href}>
           {label}
         </Button>
       {/each}

@@ -37,7 +37,12 @@
 <Shell class="bg-background">
   <svelte:fragment slot="header">
     <Prose>
-      <Header companyName="" pages={headerLinks} {CTAButtons} />
+      <Header
+        buttonVariant="pill"
+        companyName=""
+        pages={headerLinks}
+        {CTAButtons}
+      />
     </Prose>
   </svelte:fragment>
 
