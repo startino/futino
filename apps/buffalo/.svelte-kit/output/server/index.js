@@ -2047,7 +2047,7 @@ async function render_page(event, page, options2, manifest, state, resolve_opts)
     }
     state.prerender_default = should_prerender;
     const fetched = [];
-    if (get_option(nodes, "ssr") === false) {
+    if (get_option(nodes, "ssr") === false && !state.prerendering) {
       return await render_response({
         branch: [],
         fetched,

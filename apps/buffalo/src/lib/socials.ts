@@ -4,7 +4,7 @@ export const socials = [
     icon: "instagram",
   },
   {
-    href: "http://www.facebook.com/buffalojiujitsu",
+    href: "https://www.facebook.com/buffalojiujitsu",
     icon: "facebook",
   },
   {

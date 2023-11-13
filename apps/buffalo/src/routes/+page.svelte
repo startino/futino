@@ -20,22 +20,7 @@
     fromLeftPreset,
     fromRightPreset,
   } from "$lib/transitionOptions.ts";
-
-  const socials = [
-    {
-      href: "https://www.instagram.com/buffalojiujitsu/",
-      icon: "instagram",
-    },
-    {
-      href: "http://www.facebook.com/buffalojiujitsu",
-      icon: "facebook",
-    },
-    {
-      href: "mailto:info@buffalojiujitsu.hk",
-      icon: "email",
-    },
-  ];
-
+  import { socials } from "$lib/socials.ts";
   const aboutItems = [
     {
       title: "NO GI",
