@@ -57,6 +57,7 @@
   export let typography: CssClasses = "";
 
   export let variant: string = "normal";
+  export let buttonVariant: string = "normal";
 
   const variants: StyleVariants = {
     normal: {
@@ -207,7 +208,7 @@
           .length} gap-4 md:gap-6 place-items-center w-fit justify-self-end"
       >
         {#each Object.entries(CTAButtons) as [label, { href, highlight }]}
-          <Button class="w-full" {highlight} {href}>
+          <Button variant={buttonVariant} class="w-full" {highlight} {href}>
             {label}
           </Button>
         {/each}

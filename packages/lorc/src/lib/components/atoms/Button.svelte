@@ -38,8 +38,8 @@
     pill: {
       colors: ["bg-surface", "bg-surface-highlight"],
       border: "",
-      padding: "px-8 py-2",
-      radius: "rounded-3xl",
+      padding: "px-10 py-2",
+      radius: "rounded-full",
       typography: "",
     },
   };

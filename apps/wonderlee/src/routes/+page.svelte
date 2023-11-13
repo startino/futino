@@ -1,11 +1,22 @@
 <script lang="ts">
   import { text } from "@sveltejs/kit";
-  import { Hero, Card, Prose, Button, Container, AnimatedCounter } from "lorc";
+  import {
+    Hero,
+    Card,
+    Prose,
+    Button,
+    Container,
+    Counter,
+    Inview,
+    fromBot,
+    fromTop,
+    fromLeft,
+  } from "lorc";
   import ServiceCard from "./ServiceCard.svelte";
   import projects from "./our-work/projects";
   import TestimonialCard from "./TestimonialCard.svelte";
   import faqs from "./faqs";
-  import FAQSection from "../../lib/organisms/FAQSection.svelte";
+  import FAQSection from "$lib/organisms/FAQSection.svelte";
   const CTAButtons = {
     "Our work": {
       href: "/our-work",
@@ -18,13 +29,13 @@
   };
   const statistics = {
     "Custom gates built": {
-      finalValue: 999,
+      finalValue: 300,
       startValue: 0,
       increment: 10,
       unit: "",
     },
     "Custom garages built": {
-      finalValue: 999,
+      finalValue: 300,
       startValue: 0,
       increment: 10,
       unit: "",
@@ -43,10 +54,10 @@
 Wonderlee caters to commercial needs with precision.
 We specialize in high-quality gates, garage doors, and repair services. 
 Whether you're a business owner, property manager, or organization seeking efficient garage solutions, 
-we deliver professionalism and security.`,
+we deliver to your needs.`,
       href: "/",
     },
-    "Home Owners": {
+    Residential: {
       body: `
 Wonderlee transforms houses into homes. Our premium gates
 and garage doors elevate aesthetics and security. Our expert team
@@ -152,7 +163,7 @@ enhancing elegance and functionality with top craftsmanship standards.
     title="Hong Kong's Leading Gate & Garage Firm."
     subtitle="Serving homeowners and business owners with premium services & products since 1998."
     justified="center"
-    bgImg="/pre_mockup_designs/garage_ref.png"
+    buttonVariant="pill"
   />
   <section class="grid place-items-center py-24">
     <Container class="grid grid-cols-3 w-full rounded-md " sizes="max-w-screen">
@@ -162,7 +173,10 @@ enhancing elegance and functionality with top craftsmanship standards.
           radius=""
           border={i == 1 ? "border-x border-surface-on/50" : ""}
         >
-          <h1 class="m-0 text-tertiary sm:m-0">{finalValue} {unit}</h1>
+          <h1 class="m-0 text-tertiary sm:m-0">
+            <Counter value={finalValue} />
+            {unit}
+          </h1>
           <h6 class="m-0 sm:m-0 text-primary-on font-light">{label}</h6>
         </Container>
       {/each}
@@ -171,30 +185,37 @@ enhancing elegance and functionality with top craftsmanship standards.
 
   <section class="grid place-items-center py-24">
     <Container
-      class="grid grid-cols-1 lg:grid-cols-3 gap-x-12"
+      class="grid grid-cols-1 lg:grid-cols-3 gap-x-12 gap-y-6"
       sizes="max-w-none"
     >
       <h6
-        class="uppercase text-tertiary col-span-full justify-self-start self-end my-4"
+        class="uppercase text-tertiary col-span-full justify-self-start self-end"
       >
         audience
       </h6>
       {#each Object.entries(audiences) as [title, { body, href }], i}
-        <Card
-          size="max-w-lg h-fit w-full"
-          border="border border-surface-on/90"
-          padding="py-14 px-6"
-          class="bg-surface/10  flex flex-col gap-6 items-center text-center mt-[{i *
-            75}px]"
+        <Inview
+          presetOptions={fromTop}
+          fly={{ y: -50, x: 0 }}
+          delay={i * 200}
+          class="w-fit h-fit"
         >
-          <!-- mt-[75px] mt-[150px] -->
-          <h2 class="text-surface-on uppercase m-0 sm:m-0 font-black">
-            {title}
-          </h2>
-          <p class="text-surface-on m-0 sm:m-0">
-            {body}
-          </p>
-        </Card>
+          <Card
+            size="max-w-lg  w-full"
+            border="border border-surface-on/90"
+            padding="py-14 px-6"
+            class="bg-surface/10 flex flex-col gap-6 items-center place-items-center text-center lg:mt-[{i *
+              75}px]"
+          >
+            <!-- lg:mt-[75px] lg:mt-[150px] -->
+            <h2 class="text-surface-on uppercase m-0 sm:m-0 font-black">
+              {title}
+            </h2>
+            <p class="text-surface-on m-0 sm:m-0">
+              {body}
+            </p>
+          </Card>
+        </Inview>
       {/each}
     </Container>
   </section>
@@ -207,38 +228,57 @@ enhancing elegance and functionality with top craftsmanship standards.
       <h6 class="uppercase text-tertiary col-span-full place-self-end -my-2">
         Services
       </h6>
-      <ServiceCard label="design" body={services["Design"].body} />
-      <img
-        src="/images/Dragon_F.jpeg"
-        alt=""
-        class="h-full hidden md:flex xl:col-span-2 object-cover not-prose rounded-md"
-      />
-      <ServiceCard
-        class="md:col-start-2 xl:col-start-auto"
-        label="Install"
-        body={services["Install"].body}
-      />
-      <img
-        src="/images/Sun_Hung_Kai_Riva_swing_gates.jpg"
-        alt=""
-        class="h-full hidden md:flex row-start-2 xl:col-span-2 xl:row-start-auto col-start-1 xl:col-start-auto object-cover not-prose rounded-md"
-      />
-      <ServiceCard label="DIY Repair" body={services["DIY Repair"].body} />
-      <img
-        src="/images/146_Waterloo.jpg"
-        alt=""
-        class="w-full h-full hidden md:flex xl:col-span-2 object-cover not-prose rounded-md"
-      />
-      <img
-        src="/images/DB_Phase_17_B.jpg"
-        alt=""
-        class="w-full h-full xl:col-span-3 hidden md:flex object-cover not-prose rounded-md"
-      />
-      <ServiceCard
-        class="xl:col-span-3"
-        label="Maintenance"
-        body={services["Maintenance"].body}
-      />
+
+      <Inview class="w-full h-full col-span-2" delay={100}>
+        <ServiceCard class="" label="design" body={services["Design"].body} />
+      </Inview>
+      <Inview class="col-span-2 w-full h-full" delay={250}>
+        <img
+          src="/images/Dragon_F.jpeg"
+          alt=""
+          class="h-full hidden md:flex object-cover not-prose rounded-md"
+        /></Inview
+      >
+      <Inview
+        class="md:col-start-2 xl:col-start-auto w-full h-full col-span-2"
+        delay={400}
+      >
+        <ServiceCard label="Install" body={services["Install"].body} /></Inview
+      >
+      <Inview
+        class="row-start-2 xl:col-span-2 xl:row-start-auto col-start-1 xl:col-start-auto h-full w-full"
+        delay={100}
+      >
+        <img
+          src="/images/Sun_Hung_Kai_Riva_swing_gates.jpg"
+          alt=""
+          class="h-full hidden md:flex object-cover not-prose rounded-md"
+        />
+      </Inview>
+      <Inview class="col-span-2" delay={250}>
+        <ServiceCard label="DIY Repair" body={services["DIY Repair"].body} />
+      </Inview>
+      <Inview class="w-full h-full xl:col-span-2" delay={400}>
+        <img
+          src="/images/146_Waterloo.jpg"
+          alt=""
+          class="w-full h-full hidden md:flex object-cover not-prose rounded-md"
+        />
+      </Inview>
+      <Inview class="xl:col-span-3 w-full" delay={400}>
+        <img
+          src="/images/DB_Phase_17_B.jpg"
+          alt=""
+          class="w-full h-full hidden md:flex object-cover not-prose rounded-md"
+        /></Inview
+      >
+      <Inview class="xl:col-span-3 col-span-2 h-full w-full" delay={550}>
+        <ServiceCard
+          class=""
+          label="Maintenance"
+          body={services["Maintenance"].body}
+        />
+      </Inview>
     </Container>
   </section>
 
@@ -257,23 +297,32 @@ enhancing elegance and functionality with top craftsmanship standards.
           border="border-y border-surface-on/50 flex"
           sizes="max-w-none w-full"
         >
-          <div class=" my-8 text-left flex flex-col gap-2">
-            <h2 class="m-0 sm:m-0 uppercase text-surface-on">
-              {label}
-            </h2>
-            <p class="m-0 sm:m-0 text-surface-on/70 font-light">
-              {types}
-            </p>
-          </div>
-          <img
-            src={img}
-            alt=""
-            class=" ml-auto md:flex h-24 sm:h-28 aspect-[1.5] my-2 object-cover not-prose"
-          />
+          <Inview presetOptions={fromLeft} delay={i * 100}>
+            <div class=" my-8 text-left flex flex-col gap-2">
+              <h2 class="m-0 sm:m-0 uppercase text-surface-on">
+                {label}
+              </h2>
+              <p class="m-0 sm:m-0 text-surface-on/70 font-light">
+                {types}
+              </p>
+            </div>
+          </Inview>
+          <Inview
+            presetOptions={fromLeft}
+            delay={400 + i * 100}
+            class="ml-auto h-24 sm:h-28"
+          >
+            <img
+              src={img}
+              alt=""
+              class=" ml-auto md:flex h-24 sm:h-28 aspect-[1.5] my-2 object-cover not-prose"
+            />
+          </Inview>
         </Container>
       {/each}
     </Container>
     <Button
+      variant="pill"
       class="bg-surface-highlight m-4 my-12"
       arrow={true}
       href="/products"
@@ -287,7 +336,7 @@ enhancing elegance and functionality with top craftsmanship standards.
       sizes="max-w-none"
     >
       <h6
-        class="uppercase text-tertiary col-span-full justify-self-end my-4 m-0 sm:m-0"
+        class="uppercase text-tertiary col-span-full justify-self-end m-0 sm:m-0"
       >
         Our Recent Work
       </h6>
@@ -320,6 +369,7 @@ enhancing elegance and functionality with top craftsmanship standards.
         {/if}
       {/each}
       <Button
+        variant="pill"
         href="/our-work"
         class="bg-surface-highlight m-4 my-12 col-span-full justify-self-center"
         arrow={true}
@@ -349,6 +399,7 @@ enhancing elegance and functionality with top craftsmanship standards.
       {/each}
     </Container>
     <Button
+      variant="pill"
       href="https://maps.app.goo.gl/QXdmpjRN1mX5RVgD7"
       target="_blank"
       class="bg-surface-highlight m-4 my-12 col-span-full justify-self-center"
@@ -386,10 +437,12 @@ enhancing elegance and functionality with top craftsmanship standards.
       <div
         class="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6 place-items-center w-fit z-0"
       >
-        <Button highlight={true} class="w-full" href="/contact"
+        <Button variant="pill" highlight={true} class="w-full" href="/contact"
           >Request Consultation</Button
         >
-        <Button class="w-full" href="/about" arrow={true}>Learn More</Button>
+        <Button variant="pill" class="w-full" href="/about" arrow={true}
+          >Learn More</Button
+        >
       </div></Container
     >
   </section>

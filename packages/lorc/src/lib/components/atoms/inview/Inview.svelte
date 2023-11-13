@@ -1,9 +1,7 @@
 <script lang="ts">
-  import { updated } from "$app/stores";
-
   import { onDestroy, onMount } from "svelte";
   import { createEventDispatcher } from "svelte";
-  import type { TransitionOptions, Animation } from "../../types";
+  import type { TransitionOptions, Animation } from "../../../types";
 
   // Individual Options.
   export let animation: Animation | undefined = undefined;
@@ -29,7 +27,7 @@
     top: 0,
     bottom: 0,
     delay: 100,
-    duration: 1000,
+    duration: 500,
     fly: {
       x: 0,
       y: 0,
@@ -100,11 +98,11 @@
 <div
   bind:this={element}
   class:fade-in={!inView && !dontFade}
-  class="{$$props.class} transition-all delay-200"
+  class="{$$props.class} transition delay-200"
   style="transition-duration: {finalizedOptions.duration}ms; transition-delay: {finalizedOptions.delay}ms;"
 >
   <div
-    class="transition-all duration-500 h-full w-full"
+    class="transition duration-500 h-full w-full"
     style="transition-duration: {finalizedOptions.duration}ms; transition-delay: {finalizedOptions.delay}ms; {!inView
       ? `transform: translate(${finalizedOptions.fly?.x}px, ${finalizedOptions.fly?.y}px)`
       : ''}"
