@@ -30,7 +30,7 @@
     },
     {
       title: "OUR METHOD",
-      body: "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ut enim ad minim veniam, quis nostrud.",
+      body: "That's why our training is live. You can do it at your own pace. You will work with a partner to explore ideas and become skilful in small areas of the game first, then ‘join the dots’ to mature into a confident grappler.",
       src: "/images/MJP_20230927_Mui_Wo_jiu-jitsu_9286.jpg",
     },
     {
