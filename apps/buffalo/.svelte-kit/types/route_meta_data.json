@@ -8,5 +8,14 @@
 	],
 	"/contact": [
 		"src/routes/+layout.ts"
+	],
+	"/legal/privacy": [
+		"src/routes/+layout.ts"
+	],
+	"/legal/terms": [
+		"src/routes/+layout.ts"
+	],
+	"/legal/waiver": [
+		"src/routes/+layout.ts"
 	]
 }

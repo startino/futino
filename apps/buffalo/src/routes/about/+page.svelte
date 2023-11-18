@@ -8,6 +8,9 @@
     ContactForm,
     Icon,
     Video,
+    fromRight,
+    fromLeft,
+    fromTop,
   } from "lorc";
   import {
     fromTopPreset,
@@ -17,6 +20,7 @@
   } from "$lib/transitionOptions.ts";
   import { socials } from "$lib/socials";
   import { testimonials } from "$lib/testimonials";
+  import Classes from "$lib/components/molecules/Classes.svelte";
   const aboutTopics = [
     {
       title: "INTERESTED?",
@@ -74,82 +78,138 @@
       padding="px-8 md:px-16 xl:px-32"
     >
       {#each aboutTopics as { title, body, cta }, i}
-        <Card
-          class="hidden lg:flex relative h-full w-full aspect-[2/3] {i % 2 == 0
-            ? ''
-            : 'lg:hidden'}"
-        >
-          <img
-            src={testimonials[i].img}
-            alt={testimonials[i].name}
-            class="absolute h-full w-full object-cover not-prose"
-          />
-          <blockquote class="">
-            {testimonials[i].body}
-          </blockquote>
-          <p>{testimonials[i].name}</p>
-        </Card>
+        <Inview class="w-full h-full" presetOptions={fromLeft}>
+          <Card
+            class="hidden lg:flex flex-col h-full w-full items-center justify-center aspect-[2/3] relative {i %
+              2 !=
+            0
+              ? 'lg:hidden'
+              : ''}"
+          >
+            <img
+              src={testimonials[i].img}
+              alt={testimonials[i].name}
+              class="absolute h-full w-full object-cover not-prose"
+            />
+            <div class="bg-black/60 w-full h-full absolute z-[5]" />
 
-        <Prose size="sm" class="w-full h-full ">
-          <Card class="flex flex-col " size="max-w-none">
-            <h6 style="margin: 0;" class="text-primary">0{i + 1}</h6>
-            <h1 style="margin: 0;" class="pb-6">{title}</h1>
-            {#each body as paragraph}
-              <p style="margin: 0;" class="py-2">
-                {paragraph}
-              </p>
-            {/each}
-          </Card>
-        </Prose>
-        <Card
-          class="hidden lg:flex flex-col h-full w-full  aspect-[2/3] relative {i %
-            2 ==
-          0
-            ? 'lg:hidden'
-            : ''}"
-        >
-          <img
-            src={testimonials[i].img}
-            alt={testimonials[i].name}
-            class="absolute h-full w-full object-cover not-prose"
-          />
-          <div class="bg-black/50 w-full h-full absolute z-[5]" />
-
-          <figure class="mt-10">
-            <blockquote
-              class="text-center text-xl font-semibold leading-8 text-surface-on sm:text-2xl sm:leading-9"
-            >
-              <p>
-                “Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo
-                expedita voluptas culpa sapiente alias molestiae. Numquam
-                corrupti in laborum sed rerum et corporis.”
-              </p>
-            </blockquote>
-            <figcaption class="mt-10">
-              <img
-                class="mx-auto h-10 w-10 rounded-full"
-                src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                alt=""
-              />
-              <div
-                class="mt-4 flex items-center justify-center space-x-3 text-base"
+            <figure class="z-[7] w-full h-fit px-4">
+              <blockquote
+                class="not-prose text-center text-surface-on border-0 relative"
               >
-                <div class="font-semibold text-surface-on">Judith Black</div>
                 <svg
-                  viewBox="0 0 2 2"
-                  width="3"
-                  height="3"
+                  viewBox="0 0 162 128"
+                  fill="none"
                   aria-hidden="true"
-                  class="fill-gray-900"
+                  class="absolute h-32 z-20 stroke-primary left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2"
                 >
-                  <circle cx="1" cy="1" r="1" />
+                  <path
+                    id="b56e9dab-6ccb-4d32-ad02-6b4bb5d9bbeb"
+                    d="M65.5697 118.507L65.8918 118.89C68.9503 116.314 71.367 113.253 73.1386 109.71C74.9162 106.155 75.8027 102.28 75.8027 98.0919C75.8027 94.237 75.16 90.6155 73.8708 87.2314C72.5851 83.8565 70.8137 80.9533 68.553 78.5292C66.4529 76.1079 63.9476 74.2482 61.0407 72.9536C58.2795 71.4949 55.276 70.767 52.0386 70.767C48.9935 70.767 46.4686 71.1668 44.4872 71.9924L44.4799 71.9955L44.4726 71.9988C42.7101 72.7999 41.1035 73.6831 39.6544 74.6492C38.2407 75.5916 36.8279 76.455 35.4159 77.2394L35.4047 77.2457L35.3938 77.2525C34.2318 77.9787 32.6713 78.3634 30.6736 78.3634C29.0405 78.3634 27.5131 77.2868 26.1274 74.8257C24.7483 72.2185 24.0519 69.2166 24.0519 65.8071C24.0519 60.0311 25.3782 54.4081 28.0373 48.9335C30.703 43.4454 34.3114 38.345 38.8667 33.6325C43.5812 28.761 49.0045 24.5159 55.1389 20.8979C60.1667 18.0071 65.4966 15.6179 71.1291 13.7305C73.8626 12.8145 75.8027 10.2968 75.8027 7.38572C75.8027 3.6497 72.6341 0.62247 68.8814 1.1527C61.1635 2.2432 53.7398 4.41426 46.6119 7.66522C37.5369 11.6459 29.5729 17.0612 22.7236 23.9105C16.0322 30.6019 10.618 38.4859 6.47981 47.558L6.47976 47.558L6.47682 47.5647C2.4901 56.6544 0.5 66.6148 0.5 77.4391C0.5 84.2996 1.61702 90.7679 3.85425 96.8404L3.8558 96.8445C6.08991 102.749 9.12394 108.02 12.959 112.654L12.959 112.654L12.9646 112.661C16.8027 117.138 21.2829 120.739 26.4034 123.459L26.4033 123.459L26.4144 123.465C31.5505 126.033 37.0873 127.316 43.0178 127.316C47.5035 127.316 51.6783 126.595 55.5376 125.148L55.5376 125.148L55.5477 125.144C59.5516 123.542 63.0052 121.456 65.9019 118.881L65.5697 118.507Z"
+                  />
+                  <use href="#b56e9dab-6ccb-4d32-ad02-6b4bb5d9bbeb" x="86" />
                 </svg>
-                <div class="text-gray-600">CEO of Workcation</div>
-              </div>
-            </figcaption>
-          </figure>
-        </Card>
+                <p class="m-0 sm:m-0 uppercase">
+                  {testimonials[i].body}
+                </p>
+              </blockquote>
+              <figcaption class="">
+                <div class="mt-4 flex items-center justify-center">
+                  <div class="">
+                    <p class="uppercase text-surface-on m-0 sm:m-0">
+                      {testimonials[i].name}
+                    </p>
+                  </div>
+                </div>
+              </figcaption>
+            </figure>
+          </Card>
+        </Inview>
+        <Inview
+          class="w-full h-full"
+          presetOptions={i % 2 ? fromLeft : fromRight}
+        >
+          <Prose size="sm" class="w-full h-full ">
+            <Card class="flex flex-col " size="max-w-none">
+              <h6 style="font-black margin: 0;" class="text-primary">
+                0{i + 1}
+              </h6>
+              <h1 style="margin: 0;" class="pb-6">{title}</h1>
+              {#each body as paragraph}
+                <p style="margin: 0;" class="py-2">
+                  {paragraph}
+                </p>
+              {/each}
+            </Card>
+          </Prose>
+        </Inview>
+        <Inview class="w-full h-full" presetOptions={fromRight}>
+          <Card
+            class="hidden lg:flex flex-col h-full w-full items-center justify-center aspect-[2/3] relative {i %
+              2 ==
+            0
+              ? 'lg:hidden'
+              : ''}"
+          >
+            <img
+              src={testimonials[i].img}
+              alt={testimonials[i].name}
+              class="absolute h-full w-full object-cover not-prose"
+            />
+            <div class="bg-black/60 w-full h-full absolute z-[5]" />
+
+            <figure class="z-[7] w-full h-fit px-4">
+              <blockquote
+                class="not-prose text-center text-surface-on border-0 relative"
+              >
+                <svg
+                  viewBox="0 0 162 128"
+                  fill="none"
+                  aria-hidden="true"
+                  class="absolute h-32 z-20 stroke-primary left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2"
+                >
+                  <path
+                    id="b56e9dab-6ccb-4d32-ad02-6b4bb5d9bbeb"
+                    d="M65.5697 118.507L65.8918 118.89C68.9503 116.314 71.367 113.253 73.1386 109.71C74.9162 106.155 75.8027 102.28 75.8027 98.0919C75.8027 94.237 75.16 90.6155 73.8708 87.2314C72.5851 83.8565 70.8137 80.9533 68.553 78.5292C66.4529 76.1079 63.9476 74.2482 61.0407 72.9536C58.2795 71.4949 55.276 70.767 52.0386 70.767C48.9935 70.767 46.4686 71.1668 44.4872 71.9924L44.4799 71.9955L44.4726 71.9988C42.7101 72.7999 41.1035 73.6831 39.6544 74.6492C38.2407 75.5916 36.8279 76.455 35.4159 77.2394L35.4047 77.2457L35.3938 77.2525C34.2318 77.9787 32.6713 78.3634 30.6736 78.3634C29.0405 78.3634 27.5131 77.2868 26.1274 74.8257C24.7483 72.2185 24.0519 69.2166 24.0519 65.8071C24.0519 60.0311 25.3782 54.4081 28.0373 48.9335C30.703 43.4454 34.3114 38.345 38.8667 33.6325C43.5812 28.761 49.0045 24.5159 55.1389 20.8979C60.1667 18.0071 65.4966 15.6179 71.1291 13.7305C73.8626 12.8145 75.8027 10.2968 75.8027 7.38572C75.8027 3.6497 72.6341 0.62247 68.8814 1.1527C61.1635 2.2432 53.7398 4.41426 46.6119 7.66522C37.5369 11.6459 29.5729 17.0612 22.7236 23.9105C16.0322 30.6019 10.618 38.4859 6.47981 47.558L6.47976 47.558L6.47682 47.5647C2.4901 56.6544 0.5 66.6148 0.5 77.4391C0.5 84.2996 1.61702 90.7679 3.85425 96.8404L3.8558 96.8445C6.08991 102.749 9.12394 108.02 12.959 112.654L12.959 112.654L12.9646 112.661C16.8027 117.138 21.2829 120.739 26.4034 123.459L26.4033 123.459L26.4144 123.465C31.5505 126.033 37.0873 127.316 43.0178 127.316C47.5035 127.316 51.6783 126.595 55.5376 125.148L55.5376 125.148L55.5477 125.144C59.5516 123.542 63.0052 121.456 65.9019 118.881L65.5697 118.507Z"
+                  />
+                  <use href="#b56e9dab-6ccb-4d32-ad02-6b4bb5d9bbeb" x="86" />
+                </svg>
+                <p class="m-0 sm:m-0 uppercase">
+                  {testimonials[i].body}
+                </p>
+              </blockquote>
+              <figcaption class="">
+                <div class="mt-4 flex items-center justify-center">
+                  <div class="">
+                    <p class="uppercase text-surface-on m-0 sm:m-0">
+                      {testimonials[i].name}
+                    </p>
+                  </div>
+                </div>
+              </figcaption>
+            </figure>
+          </Card>
+        </Inview>
       {/each}
     </Container>
+  </Section>
+  <Section class="py-14">
+    <Prose size="sm">
+      <Inview class="w-full h-full" presetOptions={fromTop}>
+        <Container
+          class="flex flex-col text-center gap-2"
+          sizes="w-full max-w-5xl"
+        >
+          <h6 style="font-black margin: 0;" class="text-primary">04</h6>
+          <h1 style="margin: 0;" class="pb-6">THE COST OF SPORT</h1>
+          <p style="margin: 0;" class="py-2 pb-20">
+            We believe that money should not be a significant barrier to sport,
+            hence the cost of a single session or monthly membership is half
+            that of HK Island or Kowloon.
+          </p>
+        </Container></Inview
+      >
+    </Prose>
+    <Classes />
   </Section>
 </Prose>

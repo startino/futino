@@ -11,15 +11,19 @@
   const footerLinks: { [key: string]: { [key: string]: string } } = {
     Explore: {
       Home: "/",
+      Testimonials: "/",
+      Classes: "/#classes",
     },
     Support: {
       About: "/",
+      "Find Us": "/",
       Contact: "/",
       FAQ: "/",
     },
     Legal: {
-      "Privacy Policy": "/",
-      "Terms of Service": "/",
+      "Privacy Policy": "/legal/privacy",
+      "Terms & Conditions": "/legal/terms",
+      "Participation Waiver": "/legal/waiver",
     },
   };
 
