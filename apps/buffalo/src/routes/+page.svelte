@@ -30,12 +30,12 @@
     },
     {
       title: "OUR METHOD",
-      body: "That's why our training is live. You can do it at your own pace. You will work with a partner to explore ideas and become skilful in small areas of the game first, then ‘join the dots’ to mature into a confident grappler.",
+      body: "Our training is live. You can do it at your own pace. You will work with a partner to explore ideas and become skilful in small areas of the game first, then ‘join the dots’ to mature into a confident grappler.",
       src: "/images/MJP_20230927_Mui_Wo_jiu-jitsu_9286.jpg",
     },
     {
       title: "THE VISION",
-      body: "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ut enim ad minim veniam, quis nostrud.",
+      body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed doe. iusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut. aliquip ex ea commodo consequat.",
       src: "/images/MJP_20230927_Mui_Wo_jiu-jitsu_9335.jpg",
     },
   ];
@@ -93,10 +93,9 @@
       >
         <h2 class="" style="margin:0">OUR MISSION</h2>
         <p class="max-w-3xl" style="margin:0">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat.
+          We provide an environment for grapplers to explore and develop their
+          game with a friendly, competitive attitude. We help each other get
+          sharper by providing challenges. We act as a team on and off the mats.
         </p>
 
         <div
@@ -112,7 +111,7 @@
       </Container>
     </Inview>
   </Section>
-  <Section class="bg-background py-18" id="about">
+  <Section class="bg-background py-20" id="about">
     <Container
       class="text-center md:text-left items-start flex flex-col md:grid md:grid-cols-2 md:place-items-center gap-x-12 gap-y-4 sm:gap-y-4 md:gap-y-12"
       sizes="max-w-7xl"
@@ -143,7 +142,7 @@
     </Container>
   </Section>
 
-  <Section class="bg-background py-18 " id="classes">
+  <Section class="bg-background py-20 " id="classes">
     <Container
       class="grid grid-cols-1 md:grid-cols-2 gap-y-12 items-center "
       sizes="max-w-7xl w-fit"
@@ -215,7 +214,7 @@
     </Container>
   </Section>
 
-  <Section class="bg-background py-18 text-left" id="contact">
+  <Section class="bg-background py-20 text-left" id="contact">
     <Container
       class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8 items-start"
       sizes="max-w-7xl w-full"

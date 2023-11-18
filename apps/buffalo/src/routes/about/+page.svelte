@@ -58,7 +58,7 @@
       srcset={{ md: "/videos/slow_bjj.mp4", lg: "" }}
     />
     <div class="bg-black/70 w-full h-full absolute z-[5]" />
-    <Inview presetOptions={fromLeftPreset} class="">
+    <Inview presetOptions={fromTopPreset} class="z-[7]">
       <Container
         class="grid gap-x-12 gap-y-8 items-start z-[7]"
         sizes="max-w-7xl w-full h-full"
@@ -75,7 +75,7 @@
     >
       {#each aboutTopics as { title, body, cta }, i}
         <Card
-          class="hidden lg:flex relative h-full w-full {i % 2 == 0
+          class="hidden lg:flex relative h-full w-full aspect-[2/3] {i % 2 == 0
             ? ''
             : 'lg:hidden'}"
         >
@@ -102,7 +102,9 @@
           </Card>
         </Prose>
         <Card
-          class="hidden lg:flex aspect-1 relative {i % 2 == 0
+          class="hidden lg:flex flex-col h-full w-full  aspect-[2/3] relative {i %
+            2 ==
+          0
             ? 'lg:hidden'
             : ''}"
         >
@@ -111,10 +113,41 @@
             alt={testimonials[i].name}
             class="absolute h-full w-full object-cover not-prose"
           />
-          <blockquote class="">
-            {testimonials[i].body}
-          </blockquote>
-          <p>{testimonials[i].name}</p>
+          <div class="bg-black/50 w-full h-full absolute z-[5]" />
+
+          <figure class="mt-10">
+            <blockquote
+              class="text-center text-xl font-semibold leading-8 text-surface-on sm:text-2xl sm:leading-9"
+            >
+              <p>
+                “Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo
+                expedita voluptas culpa sapiente alias molestiae. Numquam
+                corrupti in laborum sed rerum et corporis.”
+              </p>
+            </blockquote>
+            <figcaption class="mt-10">
+              <img
+                class="mx-auto h-10 w-10 rounded-full"
+                src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                alt=""
+              />
+              <div
+                class="mt-4 flex items-center justify-center space-x-3 text-base"
+              >
+                <div class="font-semibold text-surface-on">Judith Black</div>
+                <svg
+                  viewBox="0 0 2 2"
+                  width="3"
+                  height="3"
+                  aria-hidden="true"
+                  class="fill-gray-900"
+                >
+                  <circle cx="1" cy="1" r="1" />
+                </svg>
+                <div class="text-gray-600">CEO of Workcation</div>
+              </div>
+            </figcaption>
+          </figure>
         </Card>
       {/each}
     </Container>
