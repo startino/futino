@@ -73,17 +73,17 @@
   </Section>
   <Section class="py-12 md:py-24">
     <Container
-      class="grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-12 items-start justify-start"
+      class="grid grid-cols-1 lg:grid-cols-2 gap-x-12 gap-y-12 lg:gap-y-12 items-start justify-start"
       sizes="max-w-none w-full"
       padding="px-8 md:px-16 xl:px-32"
     >
       {#each aboutTopics as { title, body, cta }, i}
         <Inview class="w-full h-full" presetOptions={fromLeft}>
           <Card
-            class="hidden lg:flex flex-col h-full w-full items-center justify-center aspect-[2/3] relative {i %
+            class="flex flex-col h-full w-full items-center justify-center aspect-[2/3] relative {i %
               2 !=
             0
-              ? 'lg:hidden'
+              ? 'hidden'
               : ''}"
           >
             <img
@@ -126,14 +126,21 @@
           </Card>
         </Inview>
         <Inview
-          class="w-full h-full"
+          class="w-full h-full z-[7]"
           presetOptions={i % 2 ? fromLeft : fromRight}
         >
-          <Prose size="sm" class="w-full h-full ">
-            <Card class="flex flex-col " size="max-w-none">
-              <h6 style="font-black margin: 0;" class="text-primary">
-                0{i + 1}
-              </h6>
+          <Prose size="sm" class="w-full h-full text-left">
+            <Card class="flex flex-col relative" size="max-w-none">
+              <div
+                class="hidden lg:flex flex-col items-center justify-start text-primary text-9xl absolute {i %
+                2
+                  ? 'left-full'
+                  : 'right-full'} -top-12 font-black"
+                style=" margin: 0;"
+              >
+                <h1 class="text-primary/50" style="margin: 0">0</h1>
+                <h1 class="text-primary/50" style="margin:0">{i + 1}</h1>
+              </div>
               <h1 style="margin: 0;" class="pb-6">{title}</h1>
               {#each body as paragraph}
                 <p style="margin: 0;" class="py-2">
@@ -145,10 +152,9 @@
         </Inview>
         <Inview class="w-full h-full" presetOptions={fromRight}>
           <Card
-            class="hidden lg:flex flex-col h-full w-full items-center justify-center aspect-[2/3] relative {i %
-              2 ==
-            0
-              ? 'lg:hidden'
+            class="flex flex-col h-full w-full items-center justify-center aspect-[2/3] relative {i %
+            2
+              ? 'hidden'
               : ''}"
           >
             <img
@@ -195,13 +201,20 @@
   </Section>
   <Section class="py-14">
     <Prose size="sm">
-      <Inview class="w-full h-full" presetOptions={fromTop}>
+      <Inview class="w-full h-full z-[5]" presetOptions={fromTop}>
         <Container
           class="flex flex-col text-center gap-2"
           sizes="w-full max-w-5xl"
         >
-          <h6 style="font-black margin: 0;" class="text-primary">04</h6>
-          <h1 style="margin: 0;" class="pb-6">THE COST OF SPORT</h1>
+          <div
+            class="hidden lg:flex flex-row z-[0] items-center justify-start text-primary text-9xl absolute
+              left-1/2 -translate-x-1/2 -top-12 font-black"
+            style=" margin: 0;"
+          >
+            <h1 class="text-primary/50" style="margin: 0">0</h1>
+            <h1 class="text-primary/50" style="margin:0">4</h1>
+          </div>
+          <h1 style="margin: 0;" class="pb-6 z-0">THE COST OF SPORT</h1>
           <p style="margin: 0;" class="py-2 pb-20">
             We believe that money should not be a significant barrier to sport,
             hence the cost of a single session or monthly membership is half

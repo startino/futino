@@ -9,6 +9,9 @@
 	"/contact": [
 		"src/routes/+layout.ts"
 	],
+	"/legal": [
+		"src/routes/+layout.ts"
+	],
 	"/legal/privacy": [
 		"src/routes/+layout.ts"
 	],

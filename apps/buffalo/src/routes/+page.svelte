@@ -40,7 +40,13 @@
       src: "/images/MJP_20230927_Mui_Wo_jiu-jitsu_9335.jpg",
     },
   ];
+
+  let scrollY: number;
+
+  let endCTAEnterHeight: number | undefined;
 </script>
+
+<svelte:window bind:scrollY />
 
 <Prose size="lg" class="text-center">
   <Hero
@@ -58,7 +64,8 @@
   />
 
   <Section
-    class="-translate-y-36 -mb-36 z-0 rounded-t-[25px] bg-background pt-12 pb-32"
+    class="-translate-y-36 -mb-36 z-0 rounded-t-[25px] bg-background pt-16 pb-32"
+    id="mission"
   >
     <Inview presetOptions={downFadePreset} delay={100}>
       <Container
@@ -87,7 +94,7 @@
   </Section>
   <Section class="bg-background py-20" id="about">
     <Container
-      class="text-center md:text-left items-start flex flex-col md:grid md:grid-cols-2 md:place-items-center gap-x-12 gap-y-4 sm:gap-y-4 md:gap-y-12"
+      class="text-center md:text-left items-start flex flex-col md:grid md:grid-cols-2 md:place-items-center gap-x-12 gap-y-4 sm:gap-y-4 md:gap-y-16"
       sizes="max-w-7xl"
     >
       {#each aboutItems as { title, body, src, video }}
@@ -161,11 +168,24 @@
       </Inview>
     </Container>
   </Section>
-  <Section class="py-64" id="end-cta">
+  <Section
+    useInview={true}
+    onInviewEnter={() => {
+      console.log(endCTAEnterHeight);
+    }}
+    bind:scrollEnterHeight={endCTAEnterHeight}
+    class="py-64 overflow-hidden"
+    id="end-cta"
+  >
     <img
       src="/images/MJP_20230927_Mui_Wo_jiu-jitsu_9326.jpg"
       alt=""
-      class="not-prose w-full h-full absolute object-cover -z-0"
+      class="not-prose w-full h-full absolute object-cover -z-0 transition-transform duration-700"
+      style={endCTAEnterHeight
+        ? "transform: scale(" +
+          (1.1 + (scrollY - endCTAEnterHeight) / 10000) +
+          "); transition-timing-function: cubic-bezier(0,.5,.5,1); "
+        : ""}
     />
     <div class="bg-black/60 w-full h-full absolute z-[5]" />
 

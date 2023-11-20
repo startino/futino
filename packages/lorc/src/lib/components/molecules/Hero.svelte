@@ -63,7 +63,18 @@
   style="{$$props.style} ; clip-path: inset(0 0 0 0);"
 >
   <div class="{bgCover} w-full h-full z-0 absolute" />
-  <div class="{parallax ? 'fixed' : 'absolute '} w-full h-full not-prose -z-10">
+  <div
+    class="{parallax
+      ? 'fixed'
+      : 'absolute '}  w-full h-full not-prose -z-10 transition-transform duration-700"
+    style={parallax && scrollY < 1000
+      ? "transform: translateY(-" +
+        scrollY / 7 +
+        "px) scale(" +
+        (1.2 - scrollY / 5000) +
+        "); transition-timing-function: cubic-bezier(0,.5,.5,1);"
+      : ""}
+  >
     {#if bgVideo}
       <video
         muted
@@ -96,9 +107,14 @@
     {/if}
   </div>
   <div
-    class="flex flex-col w-full z-10 items-center {justifyClass()} my-auto gap-12 mx-2 sm:mx-4 md:mx-6 {parallax
+    class="flex flex-col w-full z-10 items-center {justifyClass()} my-auto gap-12 mx-2 sm:mx-4 md:mx-6 transition-transform duration-700 {parallax
       ? 'fixed'
       : ''}"
+    style={parallax && scrollY < 1000
+      ? "transform:  scale(" +
+        (1 + scrollY / 9000) +
+        ");  transition-timing-function: cubic-bezier(0,.5,.5,1);"
+      : ""}
   >
     <Inview class="w-full h-full" presetOptions={inviewPresetOptions}>
       <div
