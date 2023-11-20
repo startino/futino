@@ -22,6 +22,7 @@ export { default as Header } from './components/molecules/Header.svelte';
 export { default as Hero } from './components/molecules/Hero.svelte';
 export { default as ContactForm } from './components/molecules/ContactForm.svelte';
 export { default as Testimonials } from './components/molecules/Testimonials.svelte'
+export { default as LegalPage } from './components/molecules/LegalPage.svelte';
 // Organisms
 export { default as Shell } from './components/organisms/Shell.svelte';
 export { default as FAQSection } from './components/organisms/FAQSection.svelte';

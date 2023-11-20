@@ -1,1 +1,1 @@
-export { default as component } from "../../../../src/routes/legal/privacy/+page.md";
+export { default as component } from "../../../../src/routes/legal/waiver/+page.md";

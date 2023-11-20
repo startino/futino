@@ -5,5 +5,4 @@
 </script>
 
 <!-- Not rounded, should be done in image with transparent background for logos -->
-<img src="/favicon.png" class={height} alt="Logo" />
-
+<img src="/favicon.png" class="{$$props.class} {height}" alt="Logo" />
