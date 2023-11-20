@@ -19,7 +19,7 @@ export const dictionary = {
 		"/about": [4],
 		"/contact": [5],
 		"/legal/privacy": [6,[2]],
-		"/legal/terms": [7,[2]],
+		"/legal/t&c-and-waiver": [7,[2]],
 		"/legal/waiver": [8,[2]]
 	};
 

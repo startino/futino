@@ -15,7 +15,7 @@
 	"/legal/privacy": [
 		"src/routes/+layout.ts"
 	],
-	"/legal/terms": [
+	"/legal/t&c-and-waiver": [
 		"src/routes/+layout.ts"
 	],
 	"/legal/waiver": [

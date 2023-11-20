@@ -1,6 +1,6 @@
 <script lang="ts">
   import "../app.postcss";
-  import { Header, Shell, FatFooter, Prose } from "lorc";
+  import { Header, Shell, FatFooter, Prose, Icon } from "lorc";
 
   const headerLinks: { [key: string]: string } = {
     "ADULT CLASSES": "/#adult-classes",
@@ -22,10 +22,27 @@
     },
     Legal: {
       "Privacy Policy": "/legal/privacy",
-      "Terms & Conditions": "/legal/terms",
-      "Participation Waiver": "/legal/waiver",
+      "T&C and Waiver": "/legal/t&c-and-waiver",
     },
   };
+
+  const contactItems: { icon: string; label: string; href: string }[] = [
+    {
+      icon: "phone",
+      label: "(+852) 9648 2270",
+      href: "tel:(+852) 9648 2270",
+    },
+    {
+      icon: "email",
+      label: "info@buffalojiujitsu.hk",
+      href: "mailto:info@buffalojiujitsu.hk",
+    },
+    {
+      icon: "location",
+      label: "1/F Buffalo Strength Gym, Mui Wo, Lantau Island, Hong Kong",
+      href: "https://maps.app.goo.gl/EHDb9uehHdCc8PXj8",
+    },
+  ];
 
   const CTAButtons: {
     [label: string]: { href: string; highlight: boolean };
@@ -52,6 +69,21 @@
   <slot />
 
   <svelte:fragment slot="footer">
-    <FatFooter companyName="" pages={footerLinks} />
+    <FatFooter companyName="" pages={footerLinks}>
+      <svelte:fragment slot="left">
+        <div class="flex flex-col gap-4">
+          {#each contactItems as { icon, label, href }}
+            <a
+              class="flex flex-row gap-4 place-items-center"
+              style="margin: 0px"
+              {href}
+            >
+              <Icon width="24" height="24" {icon} />
+              <h6 class="" style="margin:0">{label}</h6>
+            </a>
+          {/each}
+        </div>
+      </svelte:fragment>
+    </FatFooter>
   </svelte:fragment>
 </Shell>

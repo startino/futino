@@ -80,11 +80,11 @@
       {#each aboutTopics as { title, body, cta }, i}
         <Inview class="w-full h-full" presetOptions={fromLeft}>
           <Card
-            class="flex flex-col h-full w-full items-center justify-center aspect-[2/3] relative {i %
+            class=" h-full w-full items-center justify-center aspect-[2/3] relative {i %
               2 !=
             0
               ? 'hidden'
-              : ''}"
+              : 'flex flex-col'}"
           >
             <img
               src={testimonials[i].img}
@@ -152,10 +152,11 @@
         </Inview>
         <Inview class="w-full h-full" presetOptions={fromRight}>
           <Card
-            class="flex flex-col h-full w-full items-center justify-center aspect-[2/3] relative {i %
-            2
+            class=" h-full w-full items-center justify-center aspect-[2/3] relative {i %
+              2 ==
+            0
               ? 'hidden'
-              : ''}"
+              : 'flex flex-col'}"
           >
             <img
               src={testimonials[i].img}

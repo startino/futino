@@ -1,4 +1,5 @@
 <script lang="ts">
+  import Icon from "../atoms/Icon.svelte";
   import Logo from "../atoms/Logo.svelte";
 
   // Props
@@ -55,10 +56,17 @@
   <div
     class="flex text-left flex-col md:flex-row z-50 w-full py-24 items-start justify-start gap-8 px-6 md:px-18 lg:max-w-5xl xl:max-w-6xl mx-auto justify-items-start"
   >
-    <a class="flex gap-3 items-start not-prose w-full" href="/">
-      <Logo />
-      <p class="flex m-0 my-auto">{companyName}</p>
-    </a>
+    <div
+      class="flex flex-col gap-3 items-start prose-a:no-underline prose sm:prose-sm lg:prose-md prose-invert prose-main w-full"
+    >
+      <a class="" style="margin: 0" href="/">
+        <Logo class="not-prose" />
+        {#if companyName != "Company Name"}
+          <p class="flex m-0 my-auto">{companyName}</p>
+        {/if}
+      </a>
+      <slot name="left" />
+    </div>
 
     <div
       class="grid grid-cols-2 md:grid-cols-4 gap-12 justify-items-start items-start mt-3 sm:mt-0 w-full"

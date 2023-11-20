@@ -66,7 +66,7 @@
     >
   {:else if $$props.icon.toLowerCase() == "location"}
     <svg
-      fill="#000000"
+      fill="currentColor"
       viewBox="0 0 32 32"
       width={$$props.width}
       height={$$props.height}

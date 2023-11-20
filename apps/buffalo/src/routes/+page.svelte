@@ -58,7 +58,7 @@
       md: "/videos/1280_high.webm",
       lg: "/videos/1280_high.webm",
     }}
-    bgCover="bg-amber-800/60 brightness-[0.15]"
+    bgCover="bg-amber-950/60 brightness-[0.2]"
     parallax={true}
     inviewPresetOptions={downFadePreset}
   />

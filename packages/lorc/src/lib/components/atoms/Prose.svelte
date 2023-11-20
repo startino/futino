@@ -1,10 +1,14 @@
 <script lang="ts">
-  import { CssClasses } from "../../../../dist/types";
+  import { CssClasses } from "$/lib/components/types";
   import { onMount } from "svelte";
-  export let size: "sm" | "md" | "lg" | "xl" = "md";
+  export let size: "xs" | "sm" | "md" | "lg" | "xl" = "md";
   let proseClasses: CssClasses = "";
   onMount(() => {
     switch (size) {
+      case "xs": {
+        proseClasses = " prose-sm ";
+        break;
+      }
       case "sm": {
         proseClasses = " prose-sm md:prose-base   2xl:prose-lg ";
         break;
