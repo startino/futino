@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { fade } from "svelte/transition";
+  import { onMount } from "svelte";
   // Slots
   /** @slot header - Insert fixed header content, such as Skeleton's App Bar component.
    * @slot sidebarLeft - Hidden when empty. Allows you to set fixed left sidebar content.
@@ -56,18 +58,33 @@
   $: classesPageContent = `${slotPageContent}`;
   $: classesPageFooter = `${slotPageFooter}`;
   $: classesFooter = `${slotFooter}`;
+  let mounted = false;
+  onMount(() => {
+    mounted = true;
+  });
 </script>
 
 <div id="appShell" class={classesBase} data-testid="app-shell">
   <!-- Slot: Header -->
   {#if $$slots.header}
-    <header id="shell-header" class="flex-none {classesHeader}">
+    <header
+      class:invisible={!mounted}
+      id="shell-header"
+      class="flex-none {classesHeader} {mounted
+        ? 'opacity-100'
+        : 'opacity-0'} transition-opacity"
+    >
       <slot name="header" />
     </header>
   {/if}
 
   <!-- Content Area -->
-  <div class="flex-auto {cContentArea}">
+  <div
+    class:invisible={!mounted}
+    class="flex-auto {mounted
+      ? 'opacity-100'
+      : 'opacity-0'} transition-opacity duration-300 {cContentArea}"
+  >
     <!-- Slot: Sidebar (left) -->
     {#if $$slots.sidebarLeft}
       <aside id="sidebar-left" class={classesSidebarLeft}>

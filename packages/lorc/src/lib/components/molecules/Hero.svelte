@@ -31,10 +31,6 @@
     },
   };
 
-  export let inviewPresetOptions: TransitionOptions = {
-    delay: 0,
-    duration: 400,
-  };
   export let buttonVariant: string = "normal";
 
   /** Provide how you want the hero text and items to be positioned on the horizontal axis.*/
@@ -116,7 +112,7 @@
         ");  transition-timing-function: cubic-bezier(0,.5,.5,1);"
       : ""}
   >
-    <Inview class="w-full h-full" presetOptions={inviewPresetOptions}>
+    <Inview class="w-full h-full">
       <div
         class="flex flex-col items-center gap-4
        "
@@ -127,15 +123,17 @@
         </h5>
       </div>
     </Inview>
-    <div
-      class="grid grid-cols-{Object.entries(CTAButtons)
-        .length} gap-4 md:gap-6 place-items-center w-fit"
-    >
-      {#each Object.entries(CTAButtons) as [label, { href, highlight }]}
-        <Button variant={buttonVariant} class="w-full" {highlight} {href}>
-          {label}
-        </Button>
-      {/each}
-    </div>
+    <Inview class="w-fit h-full">
+      <div
+        class="h-full w-fit grid grid-cols-{Object.entries(CTAButtons)
+          .length} gap-4 md:gap-6 place-items-center w-fit"
+      >
+        {#each Object.entries(CTAButtons) as [label, { href, highlight }]}
+          <Button variant={buttonVariant} class="w-full" {highlight} {href}>
+            {label}
+          </Button>
+        {/each}
+      </div>
+    </Inview>
   </div>
 </Section>
