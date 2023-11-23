@@ -29,3 +29,6 @@ export { default as FAQSection } from './components/organisms/FAQSection.svelte'
 
 export type { Database } from './supabase.types.ts';
 export type { TransitionOptions } from './types.ts';
+
+export { mergeDictionaries } from './functions.ts';
+

@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { onMount } from "svelte";
+
   // Types to get TailwindCSS Intellisense
   import type { CssClasses } from "../../types.ts";
   import { inview } from "svelte-inview";
@@ -30,6 +32,12 @@
   // Reactive Classes
   $: classesBase = `grid place-items-center relative
    ${background} ${border} ${padding} ${shadow} ${typography} ${$$props.class}`;
+
+  let mounted = false;
+  onMount(() => {
+    mounted = true;
+    console.log("section mounted");
+  });
 </script>
 
 <svelte:window bind:scrollY />

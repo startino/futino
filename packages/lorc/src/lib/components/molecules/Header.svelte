@@ -139,7 +139,7 @@
       <nav class="text-center flex flex-col gap-6 headline-medium">
         {#each Object.entries(pages) as [name, href]}
           <a
-            class="text-surface-on hover:text-tertiary hover:scale-105 transition-all duration-200"
+            class="text-surface-on hover:text-tertiary hover:scale-105 transition duration-200"
             {href}
             on:click={toggleMenu}
           >
@@ -154,11 +154,11 @@
 <header
   id="header"
   class=" {sticky ? 'fixed' : ''} 
- z-40 w-full transition-all duration-400 justify-items-center"
+ z-40 w-full transition duration-400 justify-items-center"
   bind:clientHeight={flyAmount}
 >
   <div
-    class="{classesBase} {activeheaderClass} z-40 relative transition-all duration-400"
+    class="{classesBase} {activeheaderClass} z-40 relative transition duration-400"
   >
     <div
       class="flex md:grid md:grid-cols-5 z-50 items-center w-full justify-center px-6 max-w-7xl mx-auto"
