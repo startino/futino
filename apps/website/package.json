@@ -38,5 +38,9 @@
   },
   "peerDependencies": {
     "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "@types/gtag.js": "^0.0.18",
+    "gtag": "^1.0.1"
   }
 }

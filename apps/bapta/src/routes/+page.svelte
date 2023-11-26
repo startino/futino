@@ -57,12 +57,12 @@
 
 <!-- Hero Section-->
 <section
-  class="grid justify-center w-full h-screen grid-rows-2 px-10 bg-cover bg-bottom border-b shadow-lg shadow-background-dark lg:grid-cols-5 card-shadow xl:px-32 pt-60 place-items-center justify-items-start border-secondary-light/40 dark:border-secondary-dark/40 bg-landing_hero"
+  class="grid justify-center w-full h-screen grid-rows-2 px-10 bg-cover bg-bottom border-b shadow-lg shadow-background lg:grid-cols-5 card-shadow xl:px-32 pt-60 place-items-center justify-items-start border-secondary/40 bg-landing_hero"
 >
   <div
-    class="grid space-y-3 col-span-3 text-left justify-items-start bg-surface-dark/90 shadow-2xl drop-shadow-2xl rounded-lg pl-4 pr-8 py-10 md:py-12 md:pl-10 md:pr-14"
+    class="grid space-y-3 col-span-3 text-left justify-items-start bg-surface/90 shadow-2xl drop-shadow-2xl rounded-lg pl-4 pr-8 py-10 md:py-12 md:pl-10 md:pr-14"
   >
-    <h1 class="font-bold text-primary-dark display-small md:display-medium">
+    <h1 class="font-bold text-primary display-small md:display-medium">
       Safari of a Lifetime,<br />
       Memories for Forever.
     </h1>
@@ -78,14 +78,14 @@
 </section>
 
 <!-- Social Proof -->
-<section class="shadow-lg bg-surface-variant-light/90 shadow-background-dark">
+<section class="shadow-lg shadow-background">
   <div
-    class="grid grid-cols-3 gap-5 px-10 py-10 brightness-125 lg:px-20 xl:px-40 bg-primary-dark/20"
+    class="grid grid-cols-3 gap-5 px-10 py-10 brightness-125 lg:px-20 xl:px-40 bg-primary/20"
   >
     {#each Array(3) as _, index (index)}
       <div>
-        <h1 class="font-bold text-primary-light title-large">★★★★★</h1>
-        <!-- <h2 class="italic font-bold text-primary-light title-small">ReviewSite.com</h2> -->
+        <h1 class="font-bold title-large">★★★★★</h1>
+        <!-- <h2 class="italic font-bold  title-small">ReviewSite.com</h2> -->
       </div>
     {/each}
   </div>
@@ -123,7 +123,7 @@
       />
       <div class="flex flex-col justify-center text-left">
         <h3 class="font-semibold body-large">Emmanuel Baptister Kilas</h3>
-        <h3 class="font-light body-medium">Creator of Bapta Safari</h3>
+        <h3 class=" body-medium">Creator of Bapta Safari</h3>
       </div>
     </div>
   </div>
@@ -136,10 +136,10 @@
   >
     {#each why_choose_us as { title, body }}
       <div
-        class="h-full bg-surface-dark rounded-lg flex flex-col justify-items-center w-fit px-4 py-6 gap-2 shadow-lg shadow-surface-dark"
+        class="h-full bg-surface rounded-lg flex flex-col justify-items-center w-fit px-4 py-6 gap-2 shadow-lg shadow-surface"
       >
         <h1
-          class="text-primary-dark headline-small md:headline-large justify-self-start"
+          class="text-primary headline-small md:headline-large justify-self-start"
         >
           {title}
         </h1>
@@ -166,7 +166,7 @@
   <div
     class="inner-section text-left flex flex-col gap-y-12 items-start md:items-center"
   >
-    <div class="flex flex-col md:text-center text-surface-on-dark">
+    <div class="flex flex-col md:text-center text-surface-on">
       <h1 class="display-large md:display-large pt-6">Extend Your Safari</h1>
       <h1 class="headline-small pb-6">
         Add a beach stay or hiking adventure to your safari
@@ -182,12 +182,12 @@
             alt="img"
             height="720"
             width="1280"
-            class="object-cover object-center w-full h-full rounded-md; md:order-last"
+            class="object-cover object-center w-full h-full rounded-md md:order-last"
           />
           <div
             class="flex flex-col md:items-end self-center gap-y-1 md:text-right md:order-first"
           >
-            <h1 class="font-semibold headline-large text-primary-dark">
+            <h1 class="font-semibold headline-large text-primary">
               {label}
             </h1>
             <h2 class="body-large max-w-md">
@@ -209,7 +209,7 @@
             class="object-cover object-center w-full h-full rounded-md md:order-first"
           />
           <div class="flex flex-col items-start self-center gap-y-1">
-            <h1 class="font-semibold headline-large text-primary-dark">
+            <h1 class="font-semibold headline-large text-primary">
               {label}
             </h1>
             <h2 class=" body-large max-w-md">
@@ -231,7 +231,7 @@
 <!--About Section-->
 <section class="flex flex-col items-center space-y-12 section">
   <div
-    class="card max-w-5xl p-10 space-y-6 border rounded-lg shadow-2xl border-primary-dark/50 bg-card-surface-on"
+    class="card max-w-5xl p-10 space-y-6 border rounded-lg shadow-2xl border-primary/50 bg-card-surface-on"
   >
     <h1 class="font-bold text-center display-small">Bapta Safaris</h1>
     <img src="favicon.webp" class="rounded-full h-44" alt="logo" />
@@ -255,7 +255,7 @@
     <div
       class="flex flex-col gap-y-3 justify-self-start md:justify-self-center"
     >
-      <h1 class="font-semibold headline-large text-primary-dark">
+      <h1 class="font-semibold headline-large text-primary">
         Now, are you ready to find a Safari?
       </h1>
       <h2 class="body-large max-w-md">

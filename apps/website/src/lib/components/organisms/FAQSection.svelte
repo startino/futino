@@ -30,7 +30,7 @@
 
 <div class="grid grid-cols-1 md:grid-cols-5 gap-3 w-full">
 	<div
-		class="col-span-2 h-fit flex flex-col gap-y-4 items-center self-start md:items-start md:text-left text-surface-on-dark">
+		class="col-span-2 h-fit flex flex-col gap-y-4 items-center self-start md:items-start md:text-left text-surface-on">
 		<h1 class="font-semibold headline-medium md:display-medium leading-tight">
 			Your Questions, <br class="hidden md:flex" /> Answered
 		</h1>
@@ -54,7 +54,7 @@
 				{#if searchInput && filteredFaqs.length === 0}
 					<div class="w-full py-12 headline-medium inline">
 						<h1 class="">Sorry, we couldn't find your question.</h1>
-						<a href="/contact" class="underline text-tertiary-dark headline-small">Ask Us Here!</a>
+						<a href="/contact" class="underline text-tertiary headline-small">Ask Us Here!</a>
 					</div>
 				{:else if filteredFaqs.length > 0}
 					{#each filteredFaqs as { question, answer }}

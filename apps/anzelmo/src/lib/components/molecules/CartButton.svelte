@@ -5,10 +5,10 @@
 
 <a
 	href="/cart"
-	class="flex flex-row bg-tertiary-dark px-2 py-1 rounded-md gap-2 items-center align-text-top">
-	<h1 class="body-large text-tertiary-on-dark">
+	class="flex flex-row bg-tertiary px-2 py-1 rounded-md gap-2 items-center align-text-top">
+	<h1 class="body-large text-tertiary-on">
 		{$cart.photos.length}
 	</h1>
 
-	<Icon icon="cart" fillColor="transparent" strokeColor="" class="stroke-tertiary-on-dark" />
+	<Icon icon="cart" fillColor="transparent" strokeColor="" class="stroke-tertiary-on" />
 </a>

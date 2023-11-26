@@ -68,8 +68,8 @@ Sauti za Busara music festival, and the Mwaka Kogwa celebration. These events sh
 	{
 		index: 11,
 		question: `What is the best way to reach Zanzibar from the mainland?`,
-		answer: `The most common way to reach Zanzibar is by taking a short flight from Dar es Salaam.
-Ferries are also available and offer a scenic journey, but flight options are more reliable and efficient.`,
+		answer: `The most common way to reach Zanzibar is by taking a short  from Dar es Salaam.
+Ferries are also available and offer a scenic journey, but  options are more reliable and efficient.`,
 	},
 	{
 		index: 12,
@@ -111,7 +111,7 @@ Prison Island, Mnemba Island, and Chumbe Island, each offering its own attractio
 		index: 18,
 		question: `What is the weather like in Zanzibar?`,
 		answer: `Zanzibar has a tropical climate with hot and humid conditions throughout the year.
-The average temperature is around 25-30°C (77-86°F). It's a good idea to pack light and breathable clothing.`,
+The average temperature is around 25-30°C (77-86°F). It's a good idea to pack  and breathable clothing.`,
 	},
 	{
 		index: 19,

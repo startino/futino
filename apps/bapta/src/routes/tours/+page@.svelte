@@ -36,12 +36,12 @@
 
 <!--Hero-->
 <section
-  class="w-full h-screen shadow-lg shadow-background-dark lg:grid-cols-2 card-shadow grid-rows-2 px-10 lg:px-20 xl:px-40 pt-56 place-items-center border-b border-secondary-light/40 dark:border-secondary-dark/40 bg-[url('/images/safari/57.webp')] bg-cover object-contain bg-top"
+  class="w-full h-screen shadow-lg shadow-background lg:grid-cols-2 card-shadow grid-rows-2 px-10 lg:px-20 xl:px-40 pt-56 place-items-center border-b border-secondary/40 bg-[url('/images/safari/57.webp')] bg-cover object-contain bg-top"
 >
   <div
-    class="flex flex-col max-w-2xl self-center items-center h-fit inner-section bg-surface-dark/90 shadow-2xl drop-shadow-2xl rounded-lg py-12 pl-10 pr-14"
+    class="flex flex-col max-w-2xl self-center items-center h-fit inner-section bg-surface/90 shadow-2xl drop-shadow-2xl rounded-lg py-12 pl-10 pr-14"
   >
-    <h1 class="font-bold text-primary-dark display-medium">
+    <h1 class="font-bold text-primary display-medium">
       Explore Our Safaris
     </h1>
     <h1 class="pb-4 title-medium">
@@ -62,7 +62,7 @@
     <div class="text-center">
       <h1 class="display-large">Safari Tour Packages</h1>
       <h1 class="headline-small">Click on a tour to learn more!</h1>
-      <h1 class="body-medium text-outline-dark pt-4 max-w-xl">
+      <h1 class="body-medium text-outline pt-4 max-w-xl">
         * Each Journey is only a starting point and is fully customizeable. <br
         />
         * Prices displayed are estimations and may vary.

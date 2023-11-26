@@ -5,5 +5,5 @@ export default defineConfig({
   plugins: [sveltekit()],
   ssr: {
     noExternal: ['tsparticles', 'tsparticles-engine', 'svelte-particles']
-  }
+  },
 });

@@ -17,7 +17,7 @@
 					<button on:click={() => handleClick(animal.index)}>
 						<li
 							class={activeAnimalIndex == animal.index
-								? 'border-2 border-primary-light rounded-lg dark:border-primary-dark'
+								? 'border-2  rounded-lg border-primary'
 								: 'hover:border-2 rounded-lg'}>
 							<h1 class="text-left headline-medium">
 								{animal.label}
@@ -34,7 +34,7 @@
 		</div>
 	</div>
 
-	<div class="overflow-hidden rounded-lg shadow-md bg-surface-light">
+	<div class="overflow-hidden rounded-lg shadow-md ">
 		{#each animals[activeAnimalIndex].media as animal}
 			images
 			<!-- <img src={animal} /> -->

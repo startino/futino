@@ -18,7 +18,7 @@
 	<div class="h-1 bg-red-700 w-full top-[333px] fixed" />
 	<div class="h-[200px] bg-black" />
 	{#each Array(10) as item, i}
-		<div class="h-[332px] my-1 w-24 bg-primary-dark text-black relative">
+		<div class="h-[332px] my-1 w-24 bg-primary text-black relative">
 			<div class="absolute">
 				{i}
 			</div>

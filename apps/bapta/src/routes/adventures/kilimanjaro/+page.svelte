@@ -69,19 +69,19 @@
 	{overview_topics}>
 	<div class="grid grid-cols-1 md:grid-cols-2 gap-6 justify-items-center items-center">
 		{#each routes as { label, difficulty, days, body, img_path, id }}
-			<div class="bg-surface-dark rounded-lg shadow-lg max-w-3xl flex flex-col h-full w-full">
+			<div class="bg-surface rounded-lg shadow-lg max-w-3xl flex flex-col h-full w-full">
 				<img
 					src={img_path}
 					alt="Marangu Route"
-					class="w-full object-cover object-center h-[400px] sm:h-[500px] md:h-[600px] lg:h-[700px] rounded-t-lg bg-gradient-to-b from-transparent to-surface-dark" />
+					class="w-full object-cover object-center h-[400px] sm:h-[500px] md:h-[600px] lg:h-[700px] rounded-t-lg bg-gradient-to-b from-transparent to-surface" />
 
 				<!-- svelte-ignore a11y-click-events-have-key-events -->
 				<!-- svelte-ignore a11y-no-static-element-interactions -->
 				<!--Route Details-->
 				<div class="flex flex-col px-12 py-6 content-between h-fit">
-					<h3 class="mb-2 font-bold headline-medium text-primary-dark">{label}</h3>
+					<h3 class="mb-2 font-bold headline-medium text-primary">{label}</h3>
 					<div class="flex flex-col items-center gap-y-1 my-3">
-						<h1 class="title-large text-primary-dark">Difficulty</h1>
+						<h1 class="title-large text-primary">Difficulty</h1>
 						<div
 							class=" rounded-md [&>*]:py-2 [&>*]:px-3 [&>*]:w-fit [&>*]:rounded-md [&>*]:text-white">
 							{#if difficulty == 'Easy'}
@@ -95,14 +95,14 @@
 					</div>
 					<!--Duration-->
 					<div class="flex flex-col py-3 items-center">
-						<h1 class="title-large text-primary-dark">Duration</h1>
+						<h1 class="title-large text-primary">Duration</h1>
 						<div class="flex flex-row flex-nowrap items-center py-2 gap-x-2">
 							{#each { length: days } as i}
-								<div class="w-8 h-3 bg-primary-dark rounded-sm">
+								<div class="w-8 h-3 bg-primary rounded-sm">
 									<!--This block represents one day :)-->
 								</div>
 							{/each}
-							<h1 class="title-large text-primary-dark">
+							<h1 class="title-large text-primary">
 								{#if days > 1}
 									{days} Days
 								{:else}
@@ -112,7 +112,7 @@
 						</div>
 					</div>
 
-					<p class="text-secondary-dark body-large">{body}</p>
+					<p class="text-secondary body-large">{body}</p>
 					<div
 						class="mt-auto pt-6 pb-2 mx-auto self-end"
 						on:click={() => {

@@ -1,99 +1,86 @@
 import { join } from 'path';
-import fColors from '../../futino-colors.cjs';
+import fColors from '../../futino-universal-colors.cjs';
+import fAnimations from '../../futino-animations.cjs';
+import fKeyframes from '../../futino-keyframes.cjs';
+import fPadding from '../../futino-padding.cjs';
+import fTypography from '../../futino-new-typography.cjs';
 
 const alpha = '<alpha-value>';
 
+
 const config = {
-	content: [
-		'./src/**/*.{html,js,svelte,ts}',
-		join(require.resolve('lorc'),
-			'../**/*.{html,js,svelte,ts}',
-		),
-	],
+  content: [
+    './src/**/*.{html,js,svelte,ts}',
+    join(require.resolve('lorc'),
+      '../**/*.{html,js,svelte,ts,ttf}',
+    ),
+  ],
 
-	darkMode: 'class',
+  DEFAULTMode: 'class',
 
-	theme: {
-		extend: {
-			padding: {
-				18: '4.5rem',
-			},
+  theme: {
+    extend: {
+      backgroundImage:
+      {
+        "landing": "url('/pre_mockup_designs/garage_ref.png')"
+      },
+      padding: fPadding,
+      fontFamily: {
+        'sans': ['TASA Orbiter Text'],
+      },
 
-			fontFamily: {
-				bilbo: ['Bilbo Swash Caps'],
-				ubuntu: ['Ubuntu'],
-			},
+      animation: fAnimations,
+      keyframes: fKeyframes,
+      colors: fColors,
 
-			animation: {
-				wiggle: 'wiggle 1s ease-in-out infinite',
-				slideDown: 'slideDown 5s ease-in-out 1',
-				scroll: 'scroll 5s ease-in-out',
-			},
+      typography: ({ colors }) => ({
+        ...fTypography(colors, alpha),
+        ...{
+          DEFAULT: {
+            css: {
+              h1: {
+                fontFamily: "TASA Orbiter Display",
+                fontWeight: "bold",
+              },
+              h2: {
+                fontFamily: "TASA Orbiter Text",
+                fontWeight: "normal"
+              },
+              h3: {
+                fontFamily: "TASA Orbiter Text",
+                fontWeight: "normal"
+              },
+              h4: {
+                fontFamily: "TASA Orbiter Text",
+                fontWeight: "normal"
+              },
+              h5: {
+                fontFamily: "TASA Orbiter Text",
+                fontWeight: "normal"
+              },
 
-			keyframes: {
-				wiggle: {
-					'0%, 100%': { transform: 'rotate(-3deg)' },
-					'50%': { transform: 'rotate(3deg)' },
-				},
-				slideDown: {
-					'0%, 100%': { transform: 'translate(0%, -200%)', opacity: 0 },
-					'1%, 99%': { opacity: 1 },
-					'20%, 70%': { transform: 'translate(0%, 0%)' },
-				},
-				scroll: {
-					'0%': { transform: 'translateY(0%)' },
-					'100%': { transform: 'translateY(100%)' },
-				},
-			},
-
-			colors: fColors.tailwind,
-
-			typography: ({ colors }) => ({
-				main: {
-					css: {
-						'--tw-prose-body': colors.neutral[700],
-						'--tw-prose-headings': colors.neutral[900],
-						'--tw-prose-lead': colors.neutral[600],
-						'--tw-prose-links': fColors.tertiary.light,
-						'--tw-prose-bold': colors.neutral[900],
-						'--tw-prose-counters': colors.neutral[500],
-						'--tw-prose-bullets': colors.neutral[300],
-						'--tw-prose-hr': colors.neutral[200],
-						'--tw-prose-quotes': colors.neutral[900],
-						'--tw-prose-quote-borders': colors.neutral[200],
-						'--tw-prose-captions': colors.neutral[500],
-						'--tw-prose-code': colors.neutral[900],
-						'--tw-prose-pre-code': colors.neutral[200],
-						'--tw-prose-pre-bg': colors.neutral[800],
-						'--tw-prose-th-borders': colors.neutral[300],
-						'--tw-prose-td-borders': colors.neutral[200],
-						'--tw-prose-invert-body': colors.neutral[300],
-						'--tw-prose-invert-headings': colors.white,
-						'--tw-prose-invert-lead': colors.neutral[400],
-						'--tw-prose-invert-links': fColors.tailwind.tertiary.dark.replace(alpha, 1),
-						'--tw-prose-invert-bold': colors.white,
-						'--tw-prose-invert-counters': colors.neutral[400],
-						'--tw-prose-invert-bullets': fColors.tailwind.secondary.dark.replace(alpha, 0.4),
-						'--tw-prose-invert-hr': colors.neutral[700],
-						'--tw-prose-invert-quotes': colors.neutral[100],
-						'--tw-prose-invert-quote-borders': fColors.tailwind.secondary.dark.replace(alpha, 0.3),
-						'--tw-prose-invert-captions': colors.neutral[400],
-						'--tw-prose-invert-code': colors.white,
-						'--tw-prose-invert-pre-code': colors.neutral[300],
-						'--tw-prose-invert-pre-bg': 'rgb(0 0 0 / 50%)',
-						'--tw-prose-invert-th-borders': colors.neutral[600],
-						'--tw-prose-invert-td-borders': colors.neutral[700],
-					},
-				},
-			}),
-		},
-	},
-	plugins: [
-	    require('@tailwindcss/typography'),
-	    require('@tailwindcss/forms'),
-	    require('@tailwindcss/aspect-ratio'),
-	    require('@tailwindcss/container-queries'),
-	],
+              h6: {
+                fontFamily: "TASA Orbiter Text",
+                fontWeight: "normal"
+              },
+              p: {
+                fontFamily: "TASA Orbiter Text",
+                letterSpacing: "0.5",
+                lineHeight: "1.5",
+                opacity: '0.75'
+              }
+            }
+          }
+        }
+      }),
+    }
+  },
+  plugins: [
+    require('@tailwindcss/typography'),
+    require('@tailwindcss/forms'),
+    require('@tailwindcss/aspect-ratio'),
+    require('@tailwindcss/container-queries'),
+  ],
 };
 
 module.exports = config;

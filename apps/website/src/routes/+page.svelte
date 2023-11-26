@@ -90,13 +90,13 @@
     },
     {
       chapterNumber: 1,
-      title: "Benefits",
-      href: "#benefits",
+      title: "Services",
+      href: "#services",
     },
     {
       chapterNumber: 2,
-      title: "Services",
-      href: "#services",
+      title: "Benefits",
+      href: "#benefits",
     },
     {
       chapterNumber: 3,
@@ -137,7 +137,7 @@
 
 <ChapterMenu bind:chapterInView chapters={landingPageChapters} />
 
-<main class="text-center border-b shadow-2xl border-primary-dark/40">
+<main class="text-center border-b shadow-2xl border-primary/40">
   <!--Hero-->
   <section
     id="hero"
@@ -146,7 +146,7 @@
     class="relative h-screen place-items-center bg-[url('/glow_bg_2.png')] bg-no-repeat bg-fit bg-top"
   >
     <div
-      class="pointer-events-none bg-gradient-to-b from-transparent to-black from-70% w-full h-full absolute z-10"
+      class="pointer-events-none bg-gradient-to-b to-black/30 from-black/50 from-90% w-full h-full absolute z-10"
     />
     <Particles
       id="tsparticles"
@@ -155,7 +155,6 @@
       on:particlesLoaded={onParticlesLoaded}
       {particlesInit}
     />
-    <div class="bg-black/40 w-full h-full absolute pointer-events-none" />
 
     <div class="relative grid gap-12 z-20 justify-items-center inner-section">
       <h1 class="font-extrabold tracking-tight display-medium lg:display-large">
@@ -163,11 +162,11 @@
       </h1>
 
       <h3 class=" headline-small lg:headline-medium max-w-3xl">
-        Growing startups and companies with <span class="text-primary-dark"
+        Growing startups and companies with <span class="text-primary"
           >AI Design, Optimized Development,</span
         >
         and
-        <span class="text-primary-dark">Modern Hosting</span>
+        <span class="text-primary">Modern Hosting</span>
         <span class="inline-block"> for a flat monthly fee.</span>
       </h3>
 
@@ -183,7 +182,7 @@
     </div>
   </section>
 
-  <div class="bg-gradient-to-b from-black to-black/40">
+  <div class="bg-gradient-to-b from-black/30 to-black/20 z-10">
     <!--Big-Clients Slideshow-->
     <ClientCarousel />
   </div>
@@ -191,7 +190,7 @@
   <!--Differences Section-->
   <section
     id="differences"
-    class="justify-items-center bg-gradient-to-b from-black/40 to-30% to-transparent"
+    class="justify-items-center bg-gradient-to-b from-black/20 to-30% to-transparent"
   >
     <div
       class="inner-section grid grid-cols-1 sm:grid-cols-2 items-center gap-x-6"
@@ -229,10 +228,9 @@
             Boring Agencies
           </h2>
           <h1 class="display-medium text-center sm:text-left lg:display-large">
-            <span class="text-primary-dark font-extrabold"> In </span> with the
-            new, <br />
-            <span class="text-primary-dark font-extrabold"> Out </span> with the
-            old
+            <span class="text-primary font-extrabold"> In </span> with the new,
+            <br />
+            <span class="text-primary font-extrabold"> Out </span> with the old
           </h1>
         </div>
 
@@ -242,6 +240,132 @@
           include everything you'd ever need for a web project.
         </p>
       </div>
+    </div>
+  </section>
+
+  <!--Journey Section-->
+  <section
+    id="services"
+    use:inview={chapterInViewOptions}
+    on:inview_enter={handleChapterInView("services")}
+    class="justify-items-center"
+  >
+    <!--Absolute center line
+		<div class="absolute z-50 w-1 h-6 -translate-x-1/2 bg-red-500 left-1/2 top-1/2" />
+		-->
+
+    <div class="flex flex-col inner-section">
+      <div class="max-w-xl py-6 w-fit mx-auto">
+        <h1 class="display-medium">Areas of Expertise</h1>
+        <h2 class="body-large">
+          From start to finish, we've got it all covered. Don't mention it.
+        </h2>
+      </div>
+      {#each servicesChapters as { chapterNumber, inView, title, image, body, bullets }}
+        <div
+          class="relative grid w-full max-w-5xl grid-cols-1 my-6 py-16 overflow-y-hidden gap-y-14 gap-x-0 sm:grid-cols-2 place-items-center"
+        >
+          <!--Center line and Chapter checkmark-->
+          <div
+            class="absolute flex-col items-center hidden h-full text-center sm:flex -translate-x-1/2 left-1/2 top-8"
+          >
+            <!--Circle-->
+            <div
+              class="flex items-center w-11 h-11 text-center rounded-full bg-surface circle-shadow"
+            >
+              <h1 class="mx-auto display-small z-20">
+                {chapterNumber}
+              </h1>
+            </div>
+
+            <InView
+              once={true}
+              duration={800}
+              dontFade={true}
+              fly={{ x: 0, y: -620 }}
+              axis={"y"}
+              delay={100}
+              bottom={300}
+              class="flex justify-items-center h-full sm:flex w-full pb-2 mb-2"
+            >
+              <!--Line-->
+              <div
+                class=" -mt-6 flex w-1 mx-auto h-full rounded-full bg-surface line-shadow"
+              />
+            </InView>
+          </div>
+
+          <!--Content of Chapter-->
+
+          <InView presetOptions={rightFlyPreset} class="sm:pr-7 md:pr-12">
+            <img
+              src={image}
+              alt=""
+              class="order-last object-cover object-center w-1/2 mx-auto bg-no-repeat sm:w-full sm:order-first drop-shadow-service-art"
+            />
+          </InView>
+
+          <div
+            class="flex flex-col max-w-2xl gap-2 p-1 overflow-hidden text-left justify-self-start"
+          >
+            <!-- Mobile text content -->
+            <div
+              class="flex flex-row items-center gap-3 pt-1 pl-1 sm:p-0 sm:hidden"
+            >
+              <div class="relative flex w-12 h-12 place-items-center">
+                <div
+                  class="flex items-center w-11 h-11 text-center rounded-full bg-surface circle-shadow shadow-primary"
+                >
+                  <h1 class="mx-auto display-small z-20">
+                    {chapterNumber}
+                  </h1>
+                </div>
+              </div>
+              <!-- Mobile title -->
+              <h1 class="headline-large uppercase text-primary">
+                {title}
+              </h1>
+            </div>
+            <InView fly={{ x: -100, y: 0 }} class="sm:hidden">
+              <div class="w-1/4 h-0.5 mt-3 border-t border-outline" />
+            </InView>
+            <InView presetOptions={leftFlyPreset} class="sm:pl-7 md:pl-12">
+              <!-- sm+ title -->
+              <h1
+                class="sm:headline-large md:title-large uppercase md:uppercase sm:text-primary hidden sm:flex pb-4"
+              >
+                {title}
+              </h1>
+              <p
+                class="title-large md:headline-large lg:display-small sm:max-w-xs md:max-w-md"
+              >
+                {body}
+              </p>
+              <ul>
+                <div
+                  class="flex flex-col justify-self-end mt-auto gap-2 md:gap-3 pt-8"
+                >
+                  {#each bullets as point}
+                    <!-- Bottom items -->
+                    <div
+                      href="https://youtube.com/Futino"
+                      class="flex flex-row items-center gap-2"
+                    >
+                      <Icon
+                        icon="checkmark"
+                        height="32"
+                        width="32"
+                        class="-ml-0.5 text-secondary"
+                      />
+                      <h2 class="title-small md:title-medium">{point}</h2>
+                    </div>
+                  {/each}
+                </div>
+              </ul>
+            </InView>
+          </div>
+        </div>
+      {/each}
     </div>
   </section>
 
@@ -264,12 +388,63 @@
         class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center"
       >
         <BigBenefitCard
+          topIcon="artwork/mag_scope_1.png"
+          title="Transparent Pricing"
+          artwork="artwork/window_1.png"
+          body={`
+					Our simple and transparent subscription model fosters trust, gaurantees predictable prices, and provides peace of mind.
+			`}
+        >
+          <!-- Bottom items -->
+          <a
+            href="https://youtube.com/Futino"
+            class="flex flex-row items-center gap-2"
+          >
+            <Icon
+              icon="checkmark"
+              height="32"
+              width="32"
+              class="-ml-0.5 text-secondary"
+            />
+            <h3 class="body-large">No hidden fees</h3>
+          </a>
+          <a
+            href="https://github.com/Futino"
+            class="flex flex-row items-center gap-2"
+          >
+            <Icon
+              icon="checkmark"
+              height="32"
+              width="32"
+              class="-ml-0.5 text-secondary"
+            />
+            <h3 class="body-large">No upfront costs</h3>
+          </a>
+        </BigBenefitCard>
+
+        <SmallBenefitCard
+          topIcon="artwork/unlocked_3.png"
+          title="Not Locked In"
+          artwork="artwork/gate_1.png"
+        >
+          Enabling us to seamlessly swap providers in response to price changes,
+          minimizing volatility, and providing peace of mind.
+        </SmallBenefitCard>
+
+        <SmallBenefitCard
+          topIcon="artwork/scalable_1.png"
+          title="Scalable Tiers"
+          artwork="artwork/staircase_2.png"
+        >
+          Start with what you need and scale with your business.
+        </SmallBenefitCard>
+        <BigBenefitCard
           class="z-10"
           topIcon="artwork/book_1.png"
-          title="Open Source Software"
+          title="Cost Efficient Tools"
           artwork="artwork/github_outline_6.png"
           body={`
-				We resort to using open-source tools, which
+				We resort to using open-source software, which
 				translates directly into saving costs without compromising on quality.`}
         >
           <!-- Bottom items -->
@@ -296,164 +471,7 @@
             <h3 class="body-large">Check out our streams</h3>
           </a>
         </BigBenefitCard>
-
-        <SmallBenefitCard
-          topIcon="artwork/unlocked_3.png"
-          title="Not Locked In"
-          artwork="artwork/gate_1.png"
-        >
-          Your projects use nonproprietary tech, meaning you can swap us out
-          later on. <span class="inline-block">(You won't &#128521;)</span>
-        </SmallBenefitCard>
-
-        <SmallBenefitCard
-          topIcon="artwork/scalable_1.png"
-          title="Scalable Tiers"
-          artwork="artwork/staircase_2.png"
-        >
-          Start with what you need and scale with your business.
-        </SmallBenefitCard>
-
-        <BigBenefitCard
-          topIcon="artwork/mag_scope_1.png"
-          title="Transparent Pricing"
-          artwork="artwork/window_1.png"
-          body={`
-					Our simple and transparent subscription model fosters trust, gaurantees predictable prices, and provides peace of mind.
-			`}
-        >
-          <!-- Bottom items -->
-          <a
-            href="https://youtube.com/Futino"
-            class="flex flex-row items-center gap-2"
-          >
-            <Icon
-              icon="checkmark"
-              height="32"
-              width="32"
-              class="-ml-0.5 text-secondary-dark"
-            />
-            <h3 class="body-large">No hidden fees</h3>
-          </a>
-          <a
-            href="https://github.com/Futino"
-            class="flex flex-row items-center gap-2"
-          >
-            <Icon
-              icon="checkmark"
-              height="32"
-              width="32"
-              class="-ml-0.5 text-secondary-dark"
-            />
-            <h3 class="body-large">No upfront costs</h3>
-          </a>
-        </BigBenefitCard>
       </div>
-    </div>
-  </section>
-
-  <!--Journey Section-->
-  <section
-    id="services"
-    use:inview={chapterInViewOptions}
-    on:inview_enter={handleChapterInView("services")}
-    class="justify-items-center"
-  >
-    <!--Absolute center line
-		<div class="absolute z-50 w-1 h-6 -translate-x-1/2 bg-red-500 left-1/2 top-1/2" />
-		-->
-
-    <div class="flex flex-col inner-section">
-      <div class="max-w-xl py-6 w-fit mx-auto">
-        <h1 class="display-medium">Areas of Expertise</h1>
-        <h2 class="body-large">
-          From start to finish, we've got it all covered. Don't mention it.
-        </h2>
-      </div>
-      {#each servicesChapters as { chapterNumber, inView, title, image, body }}
-        <div
-          class="relative grid w-full grid-cols-1 py-16 overflow-y-hidden gap-y-14 gap-x-0 sm:grid-cols-2 place-items-center"
-        >
-          <!--Center line and Chapter checkmark-->
-          <div
-            class="absolute flex-col items-center hidden h-full text-center sm:flex -translate-x-1/2 left-1/2 top-8"
-          >
-            <!--Circle-->
-            <div
-              class="flex items-center w-11 h-11 text-center rounded-full bg-surface-dark circle-shadow"
-            >
-              <h1 class="mx-auto display-small z-20">
-                {chapterNumber}
-              </h1>
-            </div>
-
-            <InView
-              once={true}
-              duration={800}
-              dontFade={true}
-              fly={{ x: 0, y: -620 }}
-              axis={"y"}
-              delay={100}
-              bottom={300}
-              class="flex justify-items-center h-full sm:flex w-full pb-2 mb-2"
-            >
-              <!--Line-->
-              <div
-                class=" -mt-6 flex w-1 mx-auto h-full rounded-full bg-surface-dark line-shadow"
-              />
-            </InView>
-          </div>
-
-          <!--Content of Chapter-->
-
-          <InView presetOptions={rightFlyPreset} class="sm:pr-7 md:pr-12">
-            <img
-              src={image}
-              alt=""
-              class="order-last object-cover object-center w-1/2 mx-auto bg-no-repeat sm:w-full sm:order-first drop-shadow-service-art"
-            />
-          </InView>
-
-          <div
-            class="flex flex-col max-w-xl gap-2 p-1 overflow-hidden text-left justify-self-start"
-          >
-            <!-- Mobile text content -->
-            <div
-              class="flex flex-row items-center gap-3 pt-1 pl-1 sm:p-0 sm:hidden"
-            >
-              <div class="relative flex w-12 h-12 place-items-center">
-                <div
-                  class="flex items-center w-11 h-11 text-center rounded-full bg-surface-dark circle-shadow shadow-primary-dark"
-                >
-                  <h1 class="mx-auto display-small z-20">
-                    {chapterNumber}
-                  </h1>
-                </div>
-              </div>
-              <!-- Mobile title -->
-              <h1 class="headline-large uppercase text-primary-dark">
-                {title}
-              </h1>
-            </div>
-            <InView fly={{ x: -100, y: 0 }} class="sm:hidden">
-              <div class="w-1/4 h-0.5 mt-3 border-t border-outline-dark" />
-            </InView>
-            <InView presetOptions={leftFlyPreset} class="sm:pl-7 md:pl-12">
-              <!-- sm+ title -->
-              <h1
-                class="sm:headline-large md:title-large uppercase md:uppercase sm:text-primary-dark hidden sm:flex pb-4"
-              >
-                {title}
-              </h1>
-              <p
-                class="title-large md:headline-large lg:display-small sm:max-w-xs md:max-w-md"
-              >
-                {body}
-              </p>
-            </InView>
-          </div>
-        </div>
-      {/each}
     </div>
   </section>
 
@@ -496,7 +514,7 @@
             >
               <!--Circle-->
               <div
-                class="flex items-center w-11 h-11 text-center rounded-full bg-surface-dark circle-shadow"
+                class="flex items-center w-12 h-11 text-center rounded-full bg-surface circle-shadow"
               >
                 <h1 class="mx-auto display-small z-20">{i + 1}</h1>
               </div>
@@ -513,7 +531,7 @@
               >
                 <!--Line-->
                 <div
-                  class="flex h-1 w-full my-2 bg-surface-dark line-shadow shadow-tertiary-dark"
+                  class="flex h-1 w-full my-2 bg-surface line-shadow shadow-tertiary"
                 />
               </InView>
             </div>
@@ -523,10 +541,10 @@
             >
               <!--Circle-->
               <div
-                class="flex items-center w-11 h-11 text-center rounded-full bg-surface-dark circle-shadow"
+                class="flex items-center w-11 h-11 text-center rounded-full bg-surface circle-shadow"
               >
                 <h1 class="mx-auto display-small z-20">
-                  {i}
+                  {i + 1}
                 </h1>
               </div>
 
@@ -542,7 +560,7 @@
               >
                 <!--Line-->
                 <div
-                  class=" -mt-6 flex w-1 mx-auto h-full rounded-full bg-surface-dark line-shadow"
+                  class=" -mt-6 flex w-1 mx-auto h-full rounded-full bg-surface line-shadow"
                 />
               </InView>
             </div>
@@ -558,7 +576,7 @@
                 class="mt-14 ml-12 pl-1 pr-8 md:ml-0 flex flex-col py-4 my-2 w-full text-left md:mr-2"
               >
                 <h1
-                  class="headline-large uppercase text-primary-dark md:title-large md:uppercase sm:text-primary-dark"
+                  class="headline-large uppercase text-primary md:title-large md:uppercase sm:text-primary"
                 >
                   {title}
                 </h1>
@@ -580,109 +598,54 @@
     class="justify-items-center"
   >
     <div
-      class="inner-section flex flex-col w-full gap-12
+      class="inner-section flex flex-col w-full gap-12 mx-auto
 		"
     >
-      <div class="grid grid-cols-1 md:grid-cols-5 w-full gap-12">
+      <div class="grid mx-auto w-full gap-12">
         <InView
           duration={350}
           fly={{ x: -700, y: 0 }}
           delay={0}
-          class="z-0 h-full md:col-span-4 max-w-4xl overflow-visible"
+          class="z-0 h-full max-w-5xl w-full mx-auto overflow-visible"
         >
           <!--Contact form Option-->
           <div
-            class="flex flex-col p-4 md:p-8 gap-y-8 text-left shadow-xl shadow-black drop-shadow-glow-md-dark bg-surface-dark border-1 border-primary-dark rounded-md"
+            class="flex flex-col max-w-7xl w-full p-4 md:p-8 gap-y-8 text-left shadow-xl shadow-black drop-shadow-glow-md bg-surface border-1 border-primary rounded-md"
           >
-            <div class="flex flex-col ml-2">
-              <h2 class="font-extrabold display-medium">Contact Us</h2>
-              <p class="title-medium">
-                Feel free to send us an email for any requests or questions. <br
+            <div class="flex flex-row">
+              <div class="flex flex-col ml-2">
+                <h2 class="font-extrabold display-medium">Contact Us</h2>
+                <p class="title-medium">
+                  Feel free to send us an email for any requests or questions. <br
+                  />
+                  We'll get back to you within a couple hours.
+                </p>
+              </div>
+              <!--PM Option-->
+              <div
+                class="flex flex-col sm:flex-row self-center justify-self-end ml-auto justify-between gap-4 mr-2 md:gap-12"
+              >
+                <!--WhatsApp-->
+                <ContactIconButton
+                  img="artwork/whatsapp_logo_6.png"
+                  href="https://wa.me/+85297473013"
+                  label="Futino Whatsapp"
+                  class="hover:text-lime-400"
+                  imgClass="drop-shadow-whatsapp group-hover:drop-shadow-whatsapp-hover"
                 />
-                We'll get back to you within a couple hours.
-              </p>
+                <!--Email-->
+                <ContactIconButton
+                  img="artwork/email_2.png"
+                  href="mailto:contact@futi.no"
+                  label="contact@futi.no"
+                  class="hover:text-blue-400 scale-95"
+                  imgClass="drop-shadow-email group-hover:drop-shadow-email-hover"
+                />
+              </div>
             </div>
-
             <ContactForm />
           </div>
         </InView>
-        <div
-          class="z-10 w-full h-full md:order-first overflow-visible md:col-span-1 justify-self-center md:justify-self-end"
-        >
-          <!--PM Option-->
-
-          <div
-            class="flex flex-row md:flex-col h-full md:items-end justify-around w-full place-content-between text-surface-on-dark font-extrabold title-large"
-          >
-            <InView
-              duration={300}
-              fly={{ x: -200, y: 0 }}
-              delay={250}
-              bottom={450}
-              class="overflow-visible"
-            >
-              <!--Phone-->
-              <ContactIconButton
-                img="artwork/call_logo_2.png"
-                href="tel:9133600394"
-                label="+852 9747 3013"
-                class="hover:text-violet-400"
-                imgClass="drop-shadow-phone group-hover:drop-shadow-phone-hover "
-              />
-            </InView>
-            <InView
-              duration={300}
-              top={150}
-              bottom={300}
-              fly={{ x: -200, y: 0 }}
-              delay={350}
-              class="overflow-visible"
-            >
-              <!--WhatsApp-->
-              <ContactIconButton
-                img="artwork/whatsapp_logo_6.png"
-                href="https://wa.me/+85297473013"
-                label="Futino Whatsapp"
-                class="hover:text-lime-400"
-                imgClass="drop-shadow-whatsapp group-hover:drop-shadow-whatsapp-hover"
-              />
-            </InView>
-            <InView
-              duration={300}
-              top={300}
-              bottom={150}
-              fly={{ x: -200, y: 0 }}
-              delay={450}
-              class="overflow-visible"
-            >
-              <!--Instagram-->
-              <ContactIconButton
-                img="artwork/instagram_logo_1.png"
-                href=""
-                label="@Futino"
-                class="hover:text-fuchsia-400"
-                imgClass="drop-shadow-instagram group-hover:drop-shadow-instagram-hover"
-              />
-            </InView>
-            <InView
-              duration={300}
-              top={450}
-              bottom={0}
-              fly={{ x: -200, y: 0 }}
-              delay={550}
-              class="overflow-visible"
-            >
-              <!--Email-->
-              <ContactIconButton
-                img="artwork/email_2.png"
-                href="mailto:contact@futi.no"
-                label="contact@futi.no"
-                class="hover:text-blue-400"
-                imgClass="drop-shadow-email group-hover:drop-shadow-email-hover"
-              />
-            </InView>
-          </div>
-        </div>
       </div>
     </div>
   </section>
@@ -703,13 +666,13 @@
   }
 
   .circle-shadow:before {
-    @apply absolute left-0 right-0 bottom-0 top-0 z-0 rounded-full shadow-glow shadow-primary-dark content-[''];
+    @apply absolute left-0 right-0 bottom-0 top-0 z-0 rounded-full shadow-glow shadow-primary content-[''];
   }
   .line-shadow {
     @apply relative;
   }
 
   .line-shadow::before {
-    @apply absolute left-0 right-0 bottom-0 top-0 rounded-full z-0  shadow-glow shadow-primary-dark content-[''];
+    @apply absolute left-0 right-0 bottom-0 top-0 rounded-full z-0  shadow-glow shadow-primary content-[''];
   }
 </style>

@@ -26,7 +26,7 @@ const safariFaq = [
 	{
 		index: 3,
 		question: `What should I pack for the safari?`,
-		answer: `Pack lightweight and breathable clothing in neutral colors, a
+		answer: `Pack  and breathable clothing in neutral colors, a
             wide-brimmed hat, sunscreen, insect repellent, sturdy walking
             shoes, a camera, and binoculars. Don't forget your passport,
             necessary medications, and any personal essentials.`,

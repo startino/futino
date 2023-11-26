@@ -19,45 +19,57 @@ jobs:
               name: Allheim,
               id: allheim,
               path: apps/allheim,
-              domain: allheim.futi.no
+              domain: allheim.futi.no,
             }
           - {
               name: Anzelmo,
               id: anzelmo,
               path: apps/anzelmo,
-              domain: anzelmo.futi.no
+              domain: anzelmo.futi.no,
             }
           - {
               name: Bapta,
               id: bapta,
               path: apps/bapta,
-              domain: bapta.futi.no
+              domain: bapta.futi.no,
             }
           - {
               name: Eksno,
               id: eksno,
               path: apps/eksno,
-              domain: eksno.com
+              domain: eksno.com,
             }
           - {
               name: GGSoccer,
               id: ggsoccer,
               path: apps/ggsoccer,
-              domain: ggsoccer.futi.no
+              domain: ggsoccer.futi.no,
             }
           - {
               name: Liberole,
               id: liberole,
               path: apps/liberole,
-              domain: liberole.futi.no
+              domain: liberole.futi.no,
             }
           - {
-              name: Website,
-              id: website,
-              path: apps/website,
-              domain: futi.no
+              name: Wonderlee,
+              id: wonderlee,
+              path: apps/wonderlee,
+              domain: wonderlee.futi.no,
             }
-
+          - {
+              name: Aitino,
+              id: aitino,
+              path: apps/aitino,
+              domain: aitino.futi.no,
+            }
+          - {
+              name: Buffalo,
+              id: buffalo,
+              path: apps/buffalo,
+              domain: buffalo.futi.no,
+            }
+          
     steps:
       - name: Checkout code
         uses: actions/checkout@v4

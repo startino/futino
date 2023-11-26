@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
-	<head>
+<html lang="en" class="scroll-smooth"> <head>
 		<meta charset="utf-8" />
 		<link rel="icon" href="%sveltekit.assets%/favicon.png" />
 		<meta name="viewport" content="width=device-width" />
@@ -15,25 +14,11 @@
 			href="https://fonts.googleapis.com/css2?family=Cinzel&family=PT+Serif+Caption&display=swap"
 			rel="stylesheet" />
 
-		<script>
-			/**
-			 * Loads the theme based on the user's preference or system setting.
-			 */
-			if (
-				localStorage.theme === 'dark' ||
-				(!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
-			) {
-				document.documentElement.classList.add('dark');
-			} else {
-				document.documentElement.classList.remove('dark');
-			}
-		</script>
-
 		%sveltekit.head%
 	</head>
-	<body data-sveltekit-preload-data="hover" class="text-center text-background-on-dark">
+	<body data-sveltekit-preload-data="hover" class="text-center text-background-on">
 		<div style="display: contents">
-			<div class="min-h-screen bg-gradient-to-tr to-surface-dark from-surface-variant-dark">
+			<div class="min-h-screen bg-gradient-to-tr to-surface from-surface-variant">
 				%sveltekit.body%
 			</div>
 		</div>

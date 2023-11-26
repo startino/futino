@@ -59,9 +59,9 @@
 
 <style>
 	.label {
-		@apply block pt-4 pb-2 font-bold text-left text-primary-dark;
+		@apply block pt-4 pb-2 font-bold text-left text-primary;
 	}
 	.input {
-		@apply w-full h-full px-3 py-2 leading-tight text-surface-on-dark bg-surface-dark border border-primary-dark placeholder:text-outline-dark/90 rounded-md;
+		@apply w-full h-full px-3 py-2 leading-tight text-surface-on bg-surface border border-primary placeholder:text-outline/90 rounded-md;
 	}
 </style>
