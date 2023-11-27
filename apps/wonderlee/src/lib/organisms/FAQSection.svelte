@@ -43,7 +43,7 @@
     <div
       class="md:flex flex-row md:flex-col lg:flex-row gap-y-4 -ml-2 my-2 mb-6 self-start hidden"
     >
-      <Button class="bg-surface-highlight" arrow={true} href="/contact">
+      <Button class="bg-surface-highlight" tracking="down-arrow" variant="pill" href="/contact">
         Book a consultation
       </Button>
     </div>

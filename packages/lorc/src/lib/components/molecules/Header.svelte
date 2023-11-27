@@ -62,9 +62,9 @@
   const variants: StyleVariants = {
     normal: {
       colors: ["bg-transparent", "bg-transparent"],
-      border: "border-b border-primary/50",
-      padding: ["py-12", "py-3"],
-      radius: "rounded-md",
+      border: "border-b border-primary/40",
+      padding: ["py-10", "py-3 md:py-4"],
+      radius: "rounded-none",
       typography: "text-surface-on",
       top: "top-0",
     },
@@ -158,7 +158,7 @@
   bind:clientHeight={flyAmount}
 >
   <div
-    class="{classesBase} {activeheaderClass} z-40 relative transition duration-400"
+    class="{classesBase} {activeheaderClass} z-40 relative transition transition-[padding] duration-400"
   >
     <div
       class="flex md:grid md:grid-cols-5 z-50 items-center w-full justify-center px-6 max-w-7xl mx-auto"
