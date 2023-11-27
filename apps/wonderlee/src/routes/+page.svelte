@@ -29,13 +29,13 @@
   };
   const statistics = {
     "Custom gates built": {
-      finalValue: 300,
+      finalValue: 100,
       startValue: 0,
       increment: 10,
       unit: "+",
     },
     "Custom garages built": {
-      finalValue: 300,
+      finalValue: 2000,
       startValue: 0,
       increment: 10,
       unit: "+",
