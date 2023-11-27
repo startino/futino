@@ -34,8 +34,9 @@
       padding: "px-6 py-4",
       radius: "rounded-md",
       typography: "",
+    
     },
-    pill: {
+    "pill": {
       colors: ["bg-surface", "bg-surface-highlight"],
       border: "",
       padding: "px-10 py-2",

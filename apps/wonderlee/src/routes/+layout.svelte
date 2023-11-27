@@ -24,7 +24,6 @@
     },
     Legal: {
       "Privacy Policy": "/legal/privacy",
-      "Terms of Service": "/legal/terms",
       Licenses: "/about#licenses",
     },
   };

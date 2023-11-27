@@ -29,13 +29,13 @@
   };
   const statistics = {
     "Custom gates built": {
-      finalValue: 300,
+      finalValue: 100,
       startValue: 0,
-      increment: 10,
+      increment: 1,
       unit: "+",
     },
     "Custom garages built": {
-      finalValue: 300,
+      finalValue: 2000,
       startValue: 0,
       increment: 10,
       unit: "+",
@@ -43,7 +43,7 @@
     "Years of Experience": {
       finalValue: 25,
       startValue: 0,
-      increment: 10,
+      increment: 1,
       unit: "+",
     },
   };
@@ -164,6 +164,7 @@ enhancing elegance and functionality with top craftsmanship standards.
     subtitle="Serving homeowners and business owners with premium services & products since 1998."
     justified="center"
     buttonVariant="pill"
+    bgImg="/pre_mockup_designs/garage_ref.png"
   />
   <section class="grid place-items-center py-24">
     <Container class="grid grid-cols-3 w-full rounded-md " sizes="max-w-screen">
@@ -174,7 +175,7 @@ enhancing elegance and functionality with top craftsmanship standards.
           border={i == 1 ? "border-x border-surface-on/50" : ""}
         >
           <h1 class="m-0 text-tertiary sm:m-0">
-            <Counter value={finalValue} />
+            <Counter value={finalValue} step={increment} duration={1000} />
             {unit}
           </h1>
           <h6 class="m-0 sm:m-0 text-primary-on font-light">{label}</h6>
@@ -185,7 +186,7 @@ enhancing elegance and functionality with top craftsmanship standards.
 
   <section class="grid place-items-center py-24">
     <Container
-      class="grid grid-cols-1 lg:grid-cols-3 gap-x-12 gap-y-6"
+      class="grid grid-cols-1 lg:grid-cols-3 gap-x-8 2xl:gap-x-12 gap-y-6"
       sizes="max-w-none"
     >
       <h6
@@ -198,7 +199,7 @@ enhancing elegance and functionality with top craftsmanship standards.
           presetOptions={fromTop}
           fly={{ y: -50, x: 0 }}
           delay={i * 200}
-          class="w-fit h-fit"
+          class="w-full h-fit"
         >
           <Card
             size="max-w-lg  w-full"
@@ -232,7 +233,7 @@ enhancing elegance and functionality with top craftsmanship standards.
       <Inview class="w-full h-full col-span-2" delay={100}>
         <ServiceCard class="" label="design" body={services["Design"].body} />
       </Inview>
-      <Inview class="col-span-2 w-full h-full" delay={250}>
+      <Inview class="xl:col-span-2 col-span-1 w-full h-full" delay={250}>
         <img
           src="/images/Dragon_F.jpeg"
           alt=""
@@ -240,13 +241,13 @@ enhancing elegance and functionality with top craftsmanship standards.
         /></Inview
       >
       <Inview
-        class="md:col-start-2 xl:col-start-auto w-full h-full col-span-2"
+        class="col-start-2 xl:col-span-2 xl:col-start-auto w-full h-full col-span-2"
         delay={400}
       >
         <ServiceCard label="Install" body={services["Install"].body} /></Inview
       >
       <Inview
-        class="row-start-2 xl:col-span-2 xl:row-start-auto col-start-1 xl:col-start-auto h-full w-full"
+        class="row-start-2 xl:col-span-2 col-span-1 xl:row-start-auto col-start-3 xl:col-start-auto h-full w-full"
         delay={100}
       >
         <img
@@ -265,7 +266,7 @@ enhancing elegance and functionality with top craftsmanship standards.
           class="w-full h-full hidden md:flex object-cover not-prose rounded-md"
         />
       </Inview>
-      <Inview class="xl:col-span-3 w-full" delay={400}>
+      <Inview class="xl:col-span-3 w-full h-full" delay={400}>
         <img
           src="/images/DB_Phase_17_B.jpg"
           alt=""
@@ -299,7 +300,7 @@ enhancing elegance and functionality with top craftsmanship standards.
         >
           <Inview presetOptions={fromLeft} delay={i * 100}>
             <div class=" my-8 text-left flex flex-col gap-2">
-              <h2 class="m-0 sm:m-0 uppercase text-surface-on">
+              <h2 class="m-0 sm:m-0 uppercase text-surface-on group-hover:pl-4 transition-[padding] duration-300">
                 {label}
               </h2>
               <p class="m-0 sm:m-0 text-surface-on/70 font-light">
@@ -310,12 +311,12 @@ enhancing elegance and functionality with top craftsmanship standards.
           <Inview
             presetOptions={fromLeft}
             delay={400 + i * 100}
-            class="ml-auto h-24 sm:h-28"
+            class="ml-auto h-24 sm:h-28 md:h-32 my-4"
           >
             <img
               src={img}
               alt=""
-              class=" ml-auto md:flex h-24 sm:h-28 aspect-[1.5] my-2 object-cover not-prose"
+              class=" ml-auto md:flex h-full aspect-[1.5]  object-cover not-prose"
             />
           </Inview>
         </Container>
@@ -324,7 +325,7 @@ enhancing elegance and functionality with top craftsmanship standards.
     <Button
       variant="pill"
       class="bg-surface-highlight m-4 my-12"
-      arrow={true}
+      tracking="down-arrow"
       href="/products"
     >
       <p class="m-0 sm:m-0 text-background">See all</p>
@@ -374,7 +375,7 @@ enhancing elegance and functionality with top craftsmanship standards.
         variant="pill"
         href="/our-work"
         class="bg-surface-highlight m-4 my-12 col-span-full justify-self-center"
-        arrow={true}
+        tracking="down-arrow"
       >
         <p class="m-0 sm:m-0 text-background">See all</p>
       </Button>
@@ -407,7 +408,7 @@ enhancing elegance and functionality with top craftsmanship standards.
       href="https://maps.app.goo.gl/QXdmpjRN1mX5RVgD7"
       target="_blank"
       class="bg-surface-highlight m-4 my-12 col-span-full justify-self-center"
-      arrow={true}
+      tracking="down-arrow"
     >
       <p class="m-0 sm:m-0 text-background">See more on Google</p>
     </Button>
@@ -444,7 +445,7 @@ enhancing elegance and functionality with top craftsmanship standards.
         <Button variant="pill" highlight={true} class="w-full" href="/contact"
           >Request Consultation</Button
         >
-        <Button variant="pill" class="w-full" href="/about" arrow={true}
+        <Button variant="pill" class="w-full" href="/about" tracking="down-arrow"
           >Learn More</Button
         >
       </div></Container

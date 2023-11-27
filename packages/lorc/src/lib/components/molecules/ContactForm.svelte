@@ -58,7 +58,7 @@
     textArea={true}
   />
 
-  <Button type="submit" id="submit" class="w-full">Send</Button>
+  <Button type="submit" id="submit" class="w-full" variant={$$props.buttonVariant}>Send</Button>
 
   <div class:hidden={!formSubmitted} class="mx-1.5 text-left self-start">
     <h2 class="title-medium m-0 sm:m-0">
