@@ -11,14 +11,12 @@
   const footerLinks: { [key: string]: { [key: string]: string } } = {
     Explore: {
       Home: "/",
-      Testimonials: "/",
       Classes: "/#classes",
     },
     Support: {
-      About: "/",
-      "Find Us": "/",
-      Contact: "/",
-      FAQ: "/",
+      About: "/about",
+      "Find Us": "/contact#find-us",
+      Contact: "/contact",
     },
     Legal: {
       "Privacy Policy": "/legal/privacy",
@@ -69,7 +67,7 @@
   <slot />
 
   <svelte:fragment slot="footer">
-    <FatFooter companyName="" pages={footerLinks}>
+    <FatFooter pages={footerLinks}>
       <svelte:fragment slot="left">
         <div class="flex flex-col gap-4">
           {#each contactItems as { icon, label, href }}
