@@ -27,10 +27,12 @@
  */
 declare module '$env/static/private' {
 	export const SHELL: string;
-	export const COLORTERM: string;
+	export const __ETC_PROFILE_DONE: string;
 	export const __HM_SESS_VARS_SOURCED: string;
+	export const COLORTERM: string;
 	export const HYPRLAND_CMD: string;
 	export const XDG_CONFIG_DIRS: string;
+	export const XDG_SESSION_PATH: string;
 	export const WLR_NO_HARDWARE_CURSORS: string;
 	export const XDG_BACKEND: string;
 	export const NODE: string;
@@ -43,6 +45,7 @@ declare module '$env/static/private' {
 	export const LOCALE_ARCHIVE_2_27: string;
 	export const npm_config_local_prefix: string;
 	export const GNUPGHOME: string;
+	export const DESKTOP_SESSION: string;
 	export const LC_MONETARY: string;
 	export const KITTY_PID: string;
 	export const NO_AT_BRIDGE: string;
@@ -53,18 +56,19 @@ declare module '$env/static/private' {
 	export const PWD: string;
 	export const NIX_PROFILES: string;
 	export const XDG_VIDEOS_DIR: string;
+	export const XDG_SESSION_DESKTOP: string;
 	export const LOGNAME: string;
 	export const XDG_SESSION_TYPE: string;
 	export const CUPS_DATADIR: string;
 	export const NIX_PATH: string;
 	export const NIXPKGS_CONFIG: string;
-	export const XDG_PICTURES_DIR: string;
 	export const KITTY_PUBLIC_KEY: string;
+	export const XDG_PICTURES_DIR: string;
 	export const HOME: string;
 	export const XDG_PUBLICSHARE_DIR: string;
 	export const SSH_ASKPASS: string;
-	export const LC_PAPER: string;
 	export const LANG: string;
+	export const LC_PAPER: string;
 	export const NIXOS_OZONE_WL: string;
 	export const TMUX_TMPDIR: string;
 	export const _JAVA_AWT_WM_NONREPARENTING: string;
@@ -73,8 +77,9 @@ declare module '$env/static/private' {
 	export const npm_package_version: string;
 	export const WAYLAND_DISPLAY: string;
 	export const GIO_EXTRA_MODULES: string;
-	export const KITTY_WINDOW_ID: string;
 	export const XDG_DOWNLOAD_DIR: string;
+	export const KITTY_WINDOW_ID: string;
+	export const XDG_SEAT_PATH: string;
 	export const XDG_MUSIC_DIR: string;
 	export const XDG_TEMPLATES_DIR: string;
 	export const GTK_A11Y: string;
@@ -84,8 +89,8 @@ declare module '$env/static/private' {
 	export const XDG_SESSION_CLASS: string;
 	export const XDG_DESKTOP_DIR: string;
 	export const TERMINFO: string;
-	export const LC_IDENTIFICATION: string;
 	export const TERM: string;
+	export const LC_IDENTIFICATION: string;
 	export const npm_package_name: string;
 	export const XDG_DESKTOP_PORTAL_DIR: string;
 	export const GTK_PATH: string;
@@ -112,11 +117,11 @@ declare module '$env/static/private' {
 	export const npm_execpath: string;
 	export const LD_LIBRARY_PATH: string;
 	export const XDG_RUNTIME_DIR: string;
-	export const LC_TIME: string;
 	export const npm_package_json: string;
+	export const LC_TIME: string;
 	export const XDG_DOCUMENTS_DIR: string;
+	export const NIXOS_XDG_DESKTOP_PORTAL_CONFIG_DIR: string;
 	export const XDG_DATA_DIRS: string;
-	export const HUSHLOGIN: string;
 	export const LIBEXEC_PATH: string;
 	export const PATH: string;
 	export const __fish_nixos_env_preinit_sourced: string;
@@ -156,10 +161,12 @@ declare module '$env/static/public' {
 declare module '$env/dynamic/private' {
 	export const env: {
 		SHELL: string;
-		COLORTERM: string;
+		__ETC_PROFILE_DONE: string;
 		__HM_SESS_VARS_SOURCED: string;
+		COLORTERM: string;
 		HYPRLAND_CMD: string;
 		XDG_CONFIG_DIRS: string;
+		XDG_SESSION_PATH: string;
 		WLR_NO_HARDWARE_CURSORS: string;
 		XDG_BACKEND: string;
 		NODE: string;
@@ -172,6 +179,7 @@ declare module '$env/dynamic/private' {
 		LOCALE_ARCHIVE_2_27: string;
 		npm_config_local_prefix: string;
 		GNUPGHOME: string;
+		DESKTOP_SESSION: string;
 		LC_MONETARY: string;
 		KITTY_PID: string;
 		NO_AT_BRIDGE: string;
@@ -182,18 +190,19 @@ declare module '$env/dynamic/private' {
 		PWD: string;
 		NIX_PROFILES: string;
 		XDG_VIDEOS_DIR: string;
+		XDG_SESSION_DESKTOP: string;
 		LOGNAME: string;
 		XDG_SESSION_TYPE: string;
 		CUPS_DATADIR: string;
 		NIX_PATH: string;
 		NIXPKGS_CONFIG: string;
-		XDG_PICTURES_DIR: string;
 		KITTY_PUBLIC_KEY: string;
+		XDG_PICTURES_DIR: string;
 		HOME: string;
 		XDG_PUBLICSHARE_DIR: string;
 		SSH_ASKPASS: string;
-		LC_PAPER: string;
 		LANG: string;
+		LC_PAPER: string;
 		NIXOS_OZONE_WL: string;
 		TMUX_TMPDIR: string;
 		_JAVA_AWT_WM_NONREPARENTING: string;
@@ -202,8 +211,9 @@ declare module '$env/dynamic/private' {
 		npm_package_version: string;
 		WAYLAND_DISPLAY: string;
 		GIO_EXTRA_MODULES: string;
-		KITTY_WINDOW_ID: string;
 		XDG_DOWNLOAD_DIR: string;
+		KITTY_WINDOW_ID: string;
+		XDG_SEAT_PATH: string;
 		XDG_MUSIC_DIR: string;
 		XDG_TEMPLATES_DIR: string;
 		GTK_A11Y: string;
@@ -213,8 +223,8 @@ declare module '$env/dynamic/private' {
 		XDG_SESSION_CLASS: string;
 		XDG_DESKTOP_DIR: string;
 		TERMINFO: string;
-		LC_IDENTIFICATION: string;
 		TERM: string;
+		LC_IDENTIFICATION: string;
 		npm_package_name: string;
 		XDG_DESKTOP_PORTAL_DIR: string;
 		GTK_PATH: string;
@@ -241,11 +251,11 @@ declare module '$env/dynamic/private' {
 		npm_execpath: string;
 		LD_LIBRARY_PATH: string;
 		XDG_RUNTIME_DIR: string;
-		LC_TIME: string;
 		npm_package_json: string;
+		LC_TIME: string;
 		XDG_DOCUMENTS_DIR: string;
+		NIXOS_XDG_DESKTOP_PORTAL_CONFIG_DIR: string;
 		XDG_DATA_DIRS: string;
-		HUSHLOGIN: string;
 		LIBEXEC_PATH: string;
 		PATH: string;
 		__fish_nixos_env_preinit_sourced: string;
