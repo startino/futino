@@ -12,5 +12,9 @@
   },
   "peerDependencies": {
     "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "@types/scrollmagic": "^2.0.8",
+    "scrollmagic": "^2.0.8"
   }
 }

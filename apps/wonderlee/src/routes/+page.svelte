@@ -17,6 +17,8 @@
   import TestimonialCard from "./TestimonialCard.svelte";
   import faqs from "./faqs";
   import FAQSection from "$lib/organisms/FAQSection.svelte";
+  import ModelAnimation from "./ModelAnimation.svelte";
+
   const CTAButtons = {
     "Our work": {
       href: "/our-work",
@@ -157,6 +159,8 @@ enhancing elegance and functionality with top craftsmanship standards.
   ];
 </script>
 
+<ModelAnimation />
+
 <Prose>
   <Hero
     {CTAButtons}
@@ -164,7 +168,6 @@ enhancing elegance and functionality with top craftsmanship standards.
     subtitle="Serving homeowners and business owners with premium services & products since 1998."
     justified="center"
     buttonVariant="pill"
-    bgImg="/pre_mockup_designs/garage_ref.png"
   />
   <section class="grid place-items-center py-24">
     <Container class="grid grid-cols-3 w-full rounded-md " sizes="max-w-screen">
@@ -300,7 +303,9 @@ enhancing elegance and functionality with top craftsmanship standards.
         >
           <Inview presetOptions={fromLeft} delay={i * 100}>
             <div class=" my-8 text-left flex flex-col gap-2">
-              <h2 class="m-0 sm:m-0 uppercase text-surface-on group-hover:pl-4 transition-[padding] duration-300">
+              <h2
+                class="m-0 sm:m-0 uppercase text-surface-on group-hover:pl-4 transition-[padding] duration-300"
+              >
                 {label}
               </h2>
               <p class="m-0 sm:m-0 text-surface-on/70 font-light">
@@ -316,7 +321,7 @@ enhancing elegance and functionality with top craftsmanship standards.
             <img
               src={img}
               alt=""
-              class=" ml-auto md:flex h-full aspect-[1.5]  object-cover not-prose"
+              class=" ml-auto md:flex h-full aspect-[1.5] object-cover not-prose"
             />
           </Inview>
         </Container>
@@ -445,8 +450,11 @@ enhancing elegance and functionality with top craftsmanship standards.
         <Button variant="pill" highlight={true} class="w-full" href="/contact"
           >Request Consultation</Button
         >
-        <Button variant="pill" class="w-full" href="/about" tracking="down-arrow"
-          >Learn More</Button
+        <Button
+          variant="pill"
+          class="w-full"
+          href="/about"
+          tracking="down-arrow">Learn More</Button
         >
       </div></Container
     >
