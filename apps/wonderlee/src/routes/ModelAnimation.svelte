@@ -1,10 +1,9 @@
-<script >
-  import {onMount} from 'svelte';
-
+<script>
+  import { onMount } from "svelte";
 
   let modelWrapper;
   let video;
-  let text;
+  let inside_element;
 
   onMount(async () => {
     const section = document.querySelector("section");
@@ -15,56 +14,62 @@
 
     //Scenes
     let scene = new ScrollMagic.Scene({
-      duration: 9000,
+      duration: 2500,
       triggerElement: modelWrapper,
-      triggerHook: 0
+      triggerHook: 0,
     })
       .addIndicators()
       .setPin(modelWrapper)
       .addTo(controller);
 
     //Text Animation
-    const textAnim = TweenMax.fromTo(text, 3, { opacity: 1 }, { opacity: 0 });
+    const textAnim = TweenMax.fromTo(
+      inside_element,
+      3,
+      { opacity: 1 },
+      { opacity: 0 }
+    );
 
     let scene2 = new ScrollMagic.Scene({
-      duration: 3000,
+      duration: 500,
       triggerElement: modelWrapper,
-      triggerHook: 0
+      triggerHook: 0,
     })
       .setTween(textAnim)
-      .addTo(controller);
+      .addTo(controller)
+      .offset(2000);
 
     //Video Animation
     let accelamount = 0.1;
     let scrollpos = 0;
     let delay = 0;
 
-    scene.on("update", e => {
+    scene.on("update", (e) => {
       scrollpos = e.scrollPos / 1000;
     });
 
     setInterval(() => {
       delay += (scrollpos - delay) * accelamount;
-      console.log(scrollpos, delay);
 
       video.currentTime = delay;
-    }, 300.3);
-});
+    }, 33.3);
+  });
 </script>
 
-<svelte:head>
-</svelte:head>
+<svelte:head />
 
-<div bind:this={modelWrapper} class="h-screen relative">
-  <h1 bind:this={text} class="absolute top-1/2 left-1/2 text-9xl">
-    Hey there, how are yopu?
-  </h1>
-  <video bind:this={video} class="w-full h-full object-cover" src="/animations/garage_animation_60fps.mp4" preload>
-  </video>
+<div bind:this={modelWrapper} class=" h-screen relative w-screen">
+  <div
+    bind:this={inside_element}
+    class="absolute top-1/2 left-1/2 z-40 -translate-x-1/2 -translate-y-1/2 w-fit h-fit"
+  >
+    <slot />
+  </div>
+  <video
+    bind:this={video}
+    class="w-full h-full object-cover absolute"
+    src="/animations/garage_animation_parsed_120fps.mp4"
+    fetchpriority="high"
+    preload
+  />
 </div>
-
-<section>
-REVOLUTION
-</section>
-
-

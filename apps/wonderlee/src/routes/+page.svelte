@@ -9,6 +9,7 @@
     Counter,
     Inview,
     fromBot,
+    Section,
     fromTop,
     fromLeft,
   } from "lorc";
@@ -159,35 +160,56 @@ enhancing elegance and functionality with top craftsmanship standards.
   ];
 </script>
 
-<ModelAnimation />
-
 <Prose>
-  <Hero
-    {CTAButtons}
-    title="Hong Kong's Leading Gate & Garage Firm."
-    subtitle="Serving homeowners and business owners with premium services & products since 1998."
-    justified="center"
-    buttonVariant="pill"
-  />
-  <section class="grid place-items-center py-24">
+  <ModelAnimation>
+    <div
+      class="flex flex-col w-screen z-40 text-center h-full items-center gap-12 mx-2 sm:mx-4 md:mx-6"
+    >
+      <div
+        class="flex flex-col items-center gap-4
+       "
+      >
+        <h1 class="" style="margin: 0px">
+          Hong Kong's Leading Gate & Garage Firm.
+        </h1>
+        <h5 class="max-w-6xl" style="margin: 0px">
+          Serving homeowners and business owners with premium services &
+          products since 1998.
+        </h5>
+      </div>
+      <div
+        class="h-full w-fit grid grid-cols-{Object.entries(CTAButtons)
+          .length} gap-4 md:gap-6 place-items-center w-fit"
+      >
+        {#each Object.entries(CTAButtons) as [label, { href, highlight }]}
+          <Button variant="pill" class="w-full" {highlight} {href}>
+            {label}
+          </Button>
+        {/each}
+      </div>
+    </div>
+  </ModelAnimation>
+  <section class="grid place-items-center -mt-64 lg:-mt-64 pb-24">
     <Container class="grid grid-cols-3 w-full rounded-md " sizes="max-w-screen">
       {#each Object.entries(statistics) as [label, { finalValue, startValue, increment, unit }], i}
         <Container
           class="text-center p-4 w-full"
           radius=""
-          border={i == 1 ? "border-x border-surface-on/50" : ""}
+          border={i == 1 ? "md:border-x border-surface-on/50" : ""}
         >
-          <h1 class="m-0 text-tertiary sm:m-0">
-            <Counter value={finalValue} step={increment} duration={1000} />
-            {unit}
-          </h1>
-          <h6 class="m-0 sm:m-0 text-primary-on font-light">{label}</h6>
+          <Prose size="sm">
+            <h1 class="m-0 text-tertiary sm:m-0 whitespace-nowrap">
+              <Counter value={finalValue} step={increment} duration={1000} />
+              {unit}
+            </h1>
+            <h6 class="m-0 sm:m-0 text-primary-on font-light">{label}</h6>
+          </Prose>
         </Container>
       {/each}
     </Container>
   </section>
 
-  <section class="grid place-items-center py-24">
+  <section class="grid place-items-center">
     <Container
       class="grid grid-cols-1 lg:grid-cols-3 gap-x-8 2xl:gap-x-12 gap-y-6"
       sizes="max-w-none"
