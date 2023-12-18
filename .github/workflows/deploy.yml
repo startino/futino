@@ -13,7 +13,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        bun-version: [ latest ]
+        bun-version: [latest]
         project:
           - {
               name: Allheim,
@@ -27,18 +27,8 @@ jobs:
               path: apps/anzelmo,
               domain: anzelmo.futi.no,
             }
-          - {
-              name: Bapta,
-              id: bapta,
-              path: apps/bapta,
-              domain: bapta.futi.no,
-            }
-          - {
-              name: Eksno,
-              id: eksno,
-              path: apps/eksno,
-              domain: eksno.com,
-            }
+          - { name: Bapta, id: bapta, path: apps/bapta, domain: bapta.futi.no }
+          - { name: Eksno, id: eksno, path: apps/eksno, domain: eksno.com }
           - {
               name: GGSoccer,
               id: ggsoccer,
@@ -63,7 +53,7 @@ jobs:
               path: apps/buffalo,
               domain: buffalo.futi.no,
             }
-          
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4

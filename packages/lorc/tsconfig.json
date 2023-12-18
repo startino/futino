@@ -1,9 +1,6 @@
 {
-  "extends": [
-  ],
-  "lib": [
-    "ESNext"
-  ],
+  "extends": [],
+  "lib": ["ESNext"],
   "module": "esnext",
   "target": "esnext",
   "moduleResolution": "bundler",
