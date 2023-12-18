@@ -248,58 +248,83 @@ enhancing elegance and functionality with top craftsmanship standards.
 
   <section class="grid place-items-center py-24" id="services">
     <Container
-      class="grid grid-cols-2 gap-6 md:grid-cols-3 xl:grid-cols-6 place-items-center"
-      sizes="max-w-none"
+      class="grid grid-cols-1 gap-6 md:grid-cols-3 xl:grid-cols-6 place-items-center"
+      sizes="max-w-none w-full"
     >
-      <h6 class="uppercase text-tertiary col-span-full place-self-end -my-2">
+      <h6
+        class="uppercase text-tertiary md:col-span-3 row-start-1 xl:col-span-6 place-self-end w-full -my-2"
+      >
         Services
       </h6>
 
-      <Inview class="w-full h-full col-span-2" delay={100}>
-        <ServiceCard class="" label="design" body={services["Design"].body} />
+      <Inview
+        class="w-full h-full row-start-2 col-span-1 md:col-span-2"
+        delay={100}
+      >
+        <ServiceCard
+          src="/images/Dragon_F.jpeg"
+          class=""
+          label="design"
+          body={services["Design"].body}
+        />
       </Inview>
-      <Inview class="xl:col-span-2 col-span-1 w-full h-full" delay={250}>
+      <Inview
+        class="xl:col-span-2 col-span-1 w-full h-full hidden md:flex"
+        delay={250}
+      >
         <img
           src="/images/Dragon_F.jpeg"
           alt=""
-          class="h-full hidden md:flex object-cover not-prose rounded-md"
+          class="h-full w-full flex object-cover not-prose rounded-md"
         /></Inview
       >
       <Inview
-        class="col-start-2 xl:col-span-2 xl:col-start-auto w-full h-full col-span-2"
+        class="md:col-start-2 xl:col-span-2 xl:col-start-auto w-full h-full md:col-span-2"
         delay={400}
       >
-        <ServiceCard label="Install" body={services["Install"].body} /></Inview
+        <ServiceCard
+          src="/images/Sun_Hung_Kai_Riva_swing_gates.jpg"
+          label="Install"
+          body={services["Install"].body}
+        /></Inview
       >
       <Inview
-        class="row-start-2 xl:col-span-2 col-span-1 xl:row-start-auto col-start-3 xl:col-start-auto h-full w-full"
+        class="md:row-start-2 xl:col-span-2 col-span-1 hidden md:flex  xl:row-start-auto md:col-start-3 xl:col-start-auto h-full w-full"
         delay={100}
       >
         <img
           src="/images/Sun_Hung_Kai_Riva_swing_gates.jpg"
           alt=""
-          class="h-full hidden md:flex object-cover not-prose rounded-md"
+          class="h-full flex object-cover not-prose rounded-md"
         />
       </Inview>
-      <Inview class="col-span-2" delay={250}>
-        <ServiceCard label="DIY Repair" body={services["DIY Repair"].body} />
+      <Inview class="md:col-span-2" delay={250}>
+        <ServiceCard
+          src="/images/146_Waterloo.jpg"
+          label="DIY Repair"
+          body={services["DIY Repair"].body}
+        />
       </Inview>
-      <Inview class="w-full h-full xl:col-span-2" delay={400}>
+      <Inview class="w-full h-full xl:col-span-2 hidden md:flex" delay={400}>
         <img
           src="/images/146_Waterloo.jpg"
           alt=""
-          class="w-full h-full hidden md:flex object-cover not-prose rounded-md"
+          class="w-full h-full object-cover not-prose rounded-md"
         />
       </Inview>
-      <Inview class="xl:col-span-3 w-full h-full" delay={400}>
+      <Inview class="xl:col-span-3 w-full h-full hidden md:flex" delay={400}>
         <img
           src="/images/DB_Phase_17_B.jpg"
           alt=""
-          class="w-full h-full hidden md:flex object-cover not-prose rounded-md"
+          class="w-full h-full object-cover not-prose rounded-md"
         /></Inview
       >
-      <Inview class="xl:col-span-3 col-span-2 h-full w-full" delay={550}>
+      <Inview
+        class="xl:col-span-3 col-span-1 md:col-span-2 h-full w-full"
+        delay={550}
+      >
         <ServiceCard
+          src="/images/DB_Phase_17_B.jpg"
           class=""
           label="Maintenance"
           body={services["Maintenance"].body}
