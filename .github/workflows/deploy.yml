@@ -21,13 +21,13 @@ jobs:
               path: apps/allheim,
               domain: allheim.futi.no,
             }
-          - {
-              name: Anzelmo,
-              id: anzelmo,
-              path: apps/anzelmo,
-              domain: anzelmo.futi.no,
-            }
-          - { name: Bapta, id: bapta, path: apps/bapta, domain: bapta.futi.no }
+          # - {
+          #     name: Anzelmo,
+          #     id: anzelmo,
+          #     path: apps/anzelmo,
+          #     domain: anzelmo.futi.no,
+          #   }
+          # - { name: Bapta, id: bapta, path: apps/bapta, domain: bapta.futi.no }
           # - { name: Eksno, id: eksno, path: apps/eksno, domain: eksno.com }
           - {
               name: GGSoccer,
