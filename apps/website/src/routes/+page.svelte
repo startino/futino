@@ -22,6 +22,7 @@
   import BigBenefitCard from "./BigBenefitCard.svelte";
   import FaqSection from "$lib/components/organisms/FAQSection.svelte";
   import { faqs } from "$lib/faqs";
+  import ClientCard from "./ClientCard.svelte";
 
   let scrollY: number;
   // Index of the current chapter that is in the viewport, used by chapter menu.
@@ -241,6 +242,22 @@
         </p>
       </div>
     </div>
+  </section>
+
+  <!--Portfolio-->
+  <section
+    id="services"
+    use:inview={chapterInViewOptions}
+    on:inview_enter={handleChapterInView("services")}
+    class="justify-items-center"
+  >
+    <ClientCard
+      name="Bapta"
+      phone_src="/client_websites/phone_bapta.png"
+      desktop_src="/client_websites/desktop_bapta.png"
+      bgColor="bg-[#391A08]"
+      body="A website for a soccer club."
+    />
   </section>
 
   <!--Journey Section-->
@@ -666,13 +683,13 @@
   }
 
   .circle-shadow:before {
-    @apply absolute left-0 right-0 bottom-0 top-0 z-0 rounded-full shadow-glow shadow-primary content-[''];
+    @apply absolute bottom-0 left-0 right-0 top-0 z-0 rounded-full shadow-glow shadow-primary content-[''];
   }
   .line-shadow {
     @apply relative;
   }
 
   .line-shadow::before {
-    @apply absolute left-0 right-0 bottom-0 top-0 rounded-full z-0  shadow-glow shadow-primary content-[''];
+    @apply absolute bottom-0 left-0 right-0 top-0 z-0 rounded-full  shadow-glow shadow-primary content-[''];
   }
 </style>
