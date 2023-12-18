@@ -18,7 +18,6 @@
       triggerElement: modelWrapper,
       triggerHook: 0,
     })
-      .addIndicators()
       .setPin(modelWrapper)
       .addTo(controller);
 
@@ -37,7 +36,7 @@
     })
       .setTween(textAnim)
       .addTo(controller)
-      .offset(2000);
+      .offset(1000);
 
     //Video Animation
     let accelamount = 0.1;
@@ -67,7 +66,7 @@
   </div>
   <video
     bind:this={video}
-    class="w-full h-full object-cover absolute"
+    class="w-full object-cover absolute h-full"
     src="/animations/garage_animation_parsed_120fps.mp4"
     fetchpriority="high"
     preload

@@ -1,44 +1,38 @@
-import { join } from 'path';
-import fColors from '../../futino-universal-colors.cjs';
-import fAnimations from '../../futino-animations.cjs';
-import fKeyframes from '../../futino-keyframes.cjs';
-import fPadding from '../../futino-padding.cjs';
-import fTypography from '../../futino-new-typography.cjs';
+import { join } from "path";
+import fColors from "../../futino-universal-colors.cjs";
+import fAnimations from "../../futino-animations.cjs";
+import fKeyframes from "../../futino-keyframes.cjs";
+import fPadding from "../../futino-padding.cjs";
+import fTypography from "../../futino-new-typography.cjs";
 
-const alpha = '<alpha-value>';
-
+const alpha = "<alpha-value>";
 
 const config = {
   content: [
-    './src/**/*.{html,js,svelte,ts}',
-    join(require.resolve('lorc'),
-      '../**/*.{html,js,svelte,ts,ttf}',
-    ),
+    "./src/**/*.{html,js,svelte,ts}",
+    join(require.resolve("lorc"), "../**/*.{html,js,svelte,ts,ttf}"),
   ],
 
-  DEFAULTMode: 'class',
+  DEFAULTMode: "class",
 
   theme: {
     extend: {
-      backgroundImage:
-      {
-        'landing': "url('/images/Screenshot from 2023-11-02 13-43-57.png')"
+      backgroundImage: {
+        landing: "url('/images/Screenshot from 2023-11-02 13-43-57.png')",
       },
-      padding:
-        { '69420': 'pt-24' }
-      ,
-
+      padding: { 69420: "pt-24" },
       animation: fAnimations,
       keyframes: fKeyframes,
       colors: fColors,
 
       fontFamily: {
-        'sans': 'Orienta',
-        'Antonio': 'Antonio',
+        sans: "Orienta",
+        Antonio: "Antonio",
       },
 
       typography: ({ colors }) => ({
-        ...fTypography(colors, alpha), ...{
+        ...fTypography(colors, alpha),
+        ...{
           DEFAULT: {
             css: {
               h1: {
@@ -64,19 +58,19 @@ const config = {
                 fontFamily: "Orienta",
                 letterSpacing: "0.5",
                 lineHeight: "1.5",
-                opacity: '0.75'
-              }
-            }
+                opacity: "0.75",
+              },
+            },
           },
-        }
+        },
       }),
     },
   },
   plugins: [
-    require('@tailwindcss/typography'),
-    require('@tailwindcss/forms'),
-    require('@tailwindcss/aspect-ratio'),
-    require('@tailwindcss/container-queries'),
+    require("@tailwindcss/typography"),
+    require("@tailwindcss/forms"),
+    require("@tailwindcss/aspect-ratio"),
+    require("@tailwindcss/container-queries"),
   ],
 };
 

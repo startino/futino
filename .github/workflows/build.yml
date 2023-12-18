@@ -22,14 +22,9 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        bun-version: [ latest ]
+        bun-version: [latest]
         project:
-          - {
-              name: LoRC,
-              id: lorc,
-              path: packages/lorc,
-              domain: lorc.futi.no,
-            }
+          - { name: LoRC, id: lorc, path: packages/lorc, domain: lorc.futi.no }
           - {
               name: Allheim,
               id: allheim,
@@ -42,36 +37,21 @@ jobs:
               path: apps/anzelmo,
               domain: anzelmo.futi.no,
             }
-          - {
-              name: Bapta,
-              id: bapta,
-              path: apps/bapta,
-              domain: bapta.futi.no,
-            }
-          - {
-              name: Eksno,
-              id: eksno,
-              path: apps/eksno,
-              domain: eksno.com,
-            }
+          - { name: Bapta, id: bapta, path: apps/bapta, domain: bapta.futi.no }
+          # - { name: Eksno, id: eksno, path: apps/eksno, domain: eksno.com }
           - {
               name: GGSoccer,
               id: ggsoccer,
               path: apps/ggsoccer,
               domain: ggsoccer.futi.no,
             }
-          - {
-              name: Liberole,
-              id: liberole,
-              path: apps/liberole,
-              domain: liberole.futi.no,
-            }
-          - {
-              name: Website,
-              id: website,
-              path: apps/website,
-              domain: futi.no,
-            }
+          # - {
+          #     name: Liberole,
+          #     id: liberole,
+          #     path: apps/liberole,
+          #     domain: liberole.futi.no,
+          #   }
+          - { name: Website, id: website, path: apps/website, domain: futi.no }
           - {
               name: Wonderlee,
               id: wonderlee,
@@ -91,11 +71,11 @@ jobs:
               domain: aitino.futi.no,
             }
           - {
-            name: Buffalo,
-            id: buffalo,
-            path: apps/buffalo,
-            domain: buffalo.futi.no,
-          }
+              name: Buffalo,
+              id: buffalo,
+              path: apps/buffalo,
+              domain: buffalo.futi.no,
+            }
     steps:
       - name: Checkout code
         uses: actions/checkout@v4

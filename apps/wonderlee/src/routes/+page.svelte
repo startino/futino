@@ -189,7 +189,7 @@ enhancing elegance and functionality with top craftsmanship standards.
       </div>
     </div>
   </ModelAnimation>
-  <section class="grid place-items-center -mt-64 lg:-mt-64 pb-24">
+  <section class="grid place-items-center -mt-[1500px] md:-mt-[1000px] pb-24">
     <Container class="grid grid-cols-3 w-full rounded-md " sizes="max-w-screen">
       {#each Object.entries(statistics) as [label, { finalValue, startValue, increment, unit }], i}
         <Container
