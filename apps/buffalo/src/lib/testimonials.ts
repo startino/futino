@@ -18,4 +18,5 @@ export const testimonials = [
     href: "",
     img: "/images/MJP_20230927_Mui_Wo_jiu-jitsu_9288.jpg",
   },
-];
+
+]

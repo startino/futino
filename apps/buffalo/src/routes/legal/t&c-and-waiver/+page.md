@@ -1,5 +1,4 @@
 # Terms & Conditions and Safety Waiver
-
 [Go to Waiver Section](#waiver)
 
 ## Terms & Conditions

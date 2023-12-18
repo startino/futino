@@ -1,4 +1,4 @@
-import type { TransitionOptions } from "lorc";
+import type { TransitionOptions } from 'lorc';
 
 export const downFadePreset: TransitionOptions = {
   delay: 75,
@@ -39,3 +39,4 @@ export const fromRightPreset: TransitionOptions = {
     y: 0,
   },
 };
+

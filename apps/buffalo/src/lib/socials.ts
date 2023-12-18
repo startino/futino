@@ -12,3 +12,4 @@ export const socials = [
     icon: "email",
   },
 ];
+

@@ -89,3 +89,4 @@ Our services are not intended for children under the age of 13. We do not knowin
 ## **8. Changes to Privacy Notice**
 
 We reserve the right to change this Privacy Notice from time to time in our sole discretion. We will notify you about material changes in the way we treat personal data by sending a notice to the primary email address specified in your Bapta account and/or by placing a prominent notice on our Site. It is your responsibility to review this Privacy Notice periodically. When we do change the Privacy Notice, we will also revise the "last modified" date.
+

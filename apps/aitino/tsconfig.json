@@ -1,3 +1,5 @@
 {
-  "extends": ["tsconfig/tsconfig.json"]
+  "extends": [
+    "tsconfig/tsconfig.json"
+  ]
 }
