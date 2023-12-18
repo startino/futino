@@ -1,3 +1,13 @@
+# Svelte
+.svelte-kit/
+
+# Vercel
+.vercel/
+
+# Vite
+vite.config.js.timestamp-*
+vite.config.ts.timestamp-*
+
 # Based on https://raw.githubusercontent.com/github/gitignore/main/Node.gitignore
 
 # Logs
@@ -102,6 +112,8 @@ web_modules/
 .env.temp.local
 .env.test.local
 .env.local
+
+!.env.example
 
 # parcel-bundler cache (https://parceljs.org/)
 
