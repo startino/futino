@@ -1,12 +1,12 @@
-import preprocess from 'svelte-preprocess';
-import adapter from '@sveltejs/adapter-vercel';
-import { vitePreprocess } from '@sveltejs/kit/vite';
-import { mdsvex } from 'mdsvex';
+import preprocess from "svelte-preprocess";
+import adapter from "@sveltejs/adapter-vercel";
+import { vitePreprocess } from "@sveltejs/kit/vite";
+import { mdsvex } from "mdsvex";
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
   kit: {
-    adapter: adapter()
+    adapter: adapter(),
   },
   preprocess: [
     vitePreprocess(),
@@ -14,10 +14,14 @@ const config = {
       postcss: true,
     }),
     mdsvex({
-      extensions: ['.md', '.svelte'],
+      extensions: [".md", ".svelte"],
     }),
   ],
-  extensions: ['.svelte', '.md'],
+  extensions: [".svelte", ".md"],
+  optimizeDeps: {
+    include: ["objection", "scrollmagic", "pg"],
+    exclude: ["pg-native"],
+  },
 };
 
 export default config;

@@ -94,13 +94,15 @@
         />
         Your Browser does not support our video types
       </video>
-    {:else if bgImg}
+    {/if}
+    {#if bgImg}
       <img
         src={bgImg}
         alt=""
         class="object-cover object-center w-full h-screen max-h-screen mix-blend-darken"
       />
     {/if}
+    <slot />
   </div>
   <div
     class="flex flex-col w-full z-10 items-center {justifyClass()} my-auto gap-12 mx-2 sm:mx-4 md:mx-6 transition-transform duration-700 {parallax

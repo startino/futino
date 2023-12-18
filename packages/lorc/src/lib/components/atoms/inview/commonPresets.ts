@@ -1,4 +1,4 @@
-import type { TransitionOptions } from '../../../types.ts';
+import type { TransitionOptions } from "../../../types.ts";
 
 export const fromBot: TransitionOptions = {
   delay: 75,
@@ -39,4 +39,3 @@ export const fromRight: TransitionOptions = {
     y: 0,
   },
 };
-
