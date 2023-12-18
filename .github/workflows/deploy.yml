@@ -28,19 +28,19 @@ jobs:
               domain: anzelmo.futi.no,
             }
           - { name: Bapta, id: bapta, path: apps/bapta, domain: bapta.futi.no }
-          - { name: Eksno, id: eksno, path: apps/eksno, domain: eksno.com }
+          # - { name: Eksno, id: eksno, path: apps/eksno, domain: eksno.com }
           - {
               name: GGSoccer,
               id: ggsoccer,
               path: apps/ggsoccer,
               domain: ggsoccer.futi.no,
             }
-          - {
-              name: Liberole,
-              id: liberole,
-              path: apps/liberole,
-              domain: liberole.futi.no,
-            }
+          # - {
+          #     name: Liberole,
+          #     id: liberole,
+          #     path: apps/liberole,
+          #     domain: liberole.futi.no,
+          #   }
           - {
               name: Aitino,
               id: aitino,
@@ -53,7 +53,6 @@ jobs:
               path: apps/buffalo,
               domain: buffalo.futi.no,
             }
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v4

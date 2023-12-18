@@ -38,19 +38,19 @@ jobs:
               domain: anzelmo.futi.no,
             }
           - { name: Bapta, id: bapta, path: apps/bapta, domain: bapta.futi.no }
-          - { name: Eksno, id: eksno, path: apps/eksno, domain: eksno.com }
+          # - { name: Eksno, id: eksno, path: apps/eksno, domain: eksno.com }
           - {
               name: GGSoccer,
               id: ggsoccer,
               path: apps/ggsoccer,
               domain: ggsoccer.futi.no,
             }
-          - {
-              name: Liberole,
-              id: liberole,
-              path: apps/liberole,
-              domain: liberole.futi.no,
-            }
+          # - {
+          #     name: Liberole,
+          #     id: liberole,
+          #     path: apps/liberole,
+          #     domain: liberole.futi.no,
+          #   }
           - { name: Website, id: website, path: apps/website, domain: futi.no }
           - {
               name: Wonderlee,
