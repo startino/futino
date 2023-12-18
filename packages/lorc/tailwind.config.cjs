@@ -137,14 +137,16 @@ const config = {
           '50%': { transform: 'rotate3d(0,1,0,90deg)' },
         },
       },
-    colors: fColors,
+      colors: fColors,
 
-    plugins: [
-      require('@tailwindcss/forms'),
-      require('@tailwindcss/typography'),
-      require('@tailwindcss/aspect-ratio'),
-      require('@tailwindcss/container-queries'),
-  ],
+      plugins: [
+        require('@tailwindcss/forms'),
+        require('@tailwindcss/typography'),
+        require('@tailwindcss/aspect-ratio'),
+        require('@tailwindcss/container-queries'),
+      ],
+    }
+  }
 };
 
 module.exports = config;
