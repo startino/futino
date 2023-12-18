@@ -10,7 +10,7 @@
         break;
       }
       case "sm": {
-        proseClasses = " prose-sm md:prose-base   2xl:prose-lg ";
+        proseClasses = " prose-sm md:prose-base xl:prose-md  2xl:prose-lg ";
         break;
       }
       case "md": {
