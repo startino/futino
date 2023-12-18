@@ -91,26 +91,31 @@
     },
     {
       chapterNumber: 1,
+      title: "Portfolio",
+      href: "#portfolio",
+    },
+    {
+      chapterNumber: 2,
       title: "Services",
       href: "#services",
     },
     {
-      chapterNumber: 2,
+      chapterNumber: 3,
       title: "Benefits",
       href: "#benefits",
     },
     {
-      chapterNumber: 3,
+      chapterNumber: 4,
       title: "Process",
       href: "#process",
     },
     {
-      chapterNumber: 4,
+      chapterNumber: 5,
       title: "Contact",
       href: "#contact",
     },
     {
-      chapterNumber: 5,
+      chapterNumber: 6,
       title: "FAQs",
       href: "#faqs",
     },
@@ -246,18 +251,56 @@
 
   <!--Portfolio-->
   <section
-    id="services"
+    id="portfolio"
     use:inview={chapterInViewOptions}
-    on:inview_enter={handleChapterInView("services")}
+    on:inview_enter={handleChapterInView("portfolio")}
     class="justify-items-center"
   >
-    <ClientCard
-      name="Bapta"
-      phone_src="/client_websites/phone_bapta.png"
-      desktop_src="/client_websites/desktop_bapta.png"
-      bgColor="bg-[#391A08]"
-      body="A website for a soccer club."
-    />
+    <div
+      class="flex flex-col gap-12 md:gap-24 inner-section w-full place-items-center"
+    >
+      <div>
+        <h1 class="display-medium">The Portfolio</h1>
+        <h2 class="body-large">
+          Here's our most recent projects. Feel free to take a look!
+        </h2>
+      </div>
+
+      <ClientCard
+        name="Bapta Safaris"
+        phone_src="/client_websites/phone_bapta.png"
+        desktop_src="/client_websites/desktop_bapta.png"
+        bgColor="bg-[#391A08]"
+        href="https://bapta.futi.no"
+        body="A midrange-premium safari company based in Tanzania."
+        services={["Web Design", "Copywriting", "Development", "Web Hosting"]}
+      />
+      <ClientCard
+        name="Wonderlee"
+        phone_src="/client_websites/phone_wonderlee.png"
+        desktop_src="/client_websites/desktop_wonderlee.png"
+        bgColor="bg-[#001534]"
+        href="https://wonderlee.com"
+        body="Hong Kong's Leading Gate & Garage Firm."
+        services={[
+          "Web Design",
+          "Branding",
+          "Copywriting",
+          "3D Design",
+          "Development",
+          "Web Hosting",
+        ]}
+      />
+      <ClientCard
+        name="Buffalo JiuJitsu"
+        phone_src="/client_websites/phone_buffalo.png"
+        desktop_src="/client_websites/desktop_buffalo.png"
+        bgColor="bg-[#142131]"
+        href="https://buffalo.futi.no"
+        body="A local martial arts club and company."
+        services={["Web Design", "Development", "Web Hosting"]}
+      />
+    </div>
   </section>
 
   <!--Journey Section-->
@@ -271,7 +314,7 @@
 		<div class="absolute z-50 w-1 h-6 -translate-x-1/2 bg-red-500 left-1/2 top-1/2" />
 		-->
 
-    <div class="flex flex-col inner-section">
+    <div class="flex flex-col inner-section place-items-center">
       <div class="max-w-xl py-6 w-fit mx-auto">
         <h1 class="display-medium">Areas of Expertise</h1>
         <h2 class="body-large">
