@@ -1,5 +1,7 @@
 # Svelte
 .svelte-kit/
+build/
+.DS_Store
 
 # Vercel
 .vercel/
