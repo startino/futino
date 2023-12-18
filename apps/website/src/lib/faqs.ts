@@ -70,6 +70,6 @@ export const faqs: Faqs = [
   },
   {
     question: `What plan should I get?`,
-    answer: `The plans totally depend on our current budget and needs and are super flexible accordingly. The cruising tier is perfect for getting started with a static website or to maintain a website over a longer timeframe. The Expansion tier is perfect for having us build a website with higher-end functionality and features, like online payment functionality. The Blazing tier would be recommended for businesses looking to build full online platforms. But remember! You can mix and match tiers to find the perfect balance.`
-  }
+    answer: `The plans totally depend on our current budget and needs and are super flexible accordingly. The cruising tier is perfect for getting started with a static website or to maintain a website over a longer timeframe. The Expansion tier is perfect for having us build a website with higher-end functionality and features, like online payment functionality. The Blazing tier would be recommended for businesses looking to build full online platforms. But remember! You can mix and match tiers to find the perfect balance.`,
+  },
 ];
