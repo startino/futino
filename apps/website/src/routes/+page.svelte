@@ -144,7 +144,7 @@
 <ChapterMenu bind:chapterInView chapters={landingPageChapters} />
 
 <main class="text-center border-b shadow-2xl border-primary/40">
-  <!--Hero-->
+  <!-- Hero -->
   <section
     id="hero"
     use:inview={chapterInViewOptions}
@@ -189,11 +189,11 @@
   </section>
 
   <div class="bg-gradient-to-b from-black/30 to-black/20 z-10">
-    <!--Big-Clients Slideshow-->
+    <!-- Big-Clients Slideshow -->
     <ClientCarousel />
   </div>
 
-  <!--Differences Section-->
+  <!-- Differences Section -->
   <section
     id="differences"
     class="justify-items-center bg-gradient-to-b from-black/20 to-30% to-transparent"
@@ -209,9 +209,9 @@
       <div
         class="flex flex-col text-center sm:text-left lg:gap-14 gap-8 relative w-fit"
       >
-        <!--Main text content-->
+        <!-- Main text content -->
         <div class="relative w-fit mx-auto sm:mx-0">
-          <!-- New annotations-->
+          <!-- New annotations -->
           <img
             src="artwork/arrow_1.png"
             alt=""
@@ -222,7 +222,7 @@
           >
             Futino
           </h2>
-          <!-- Old annotations-->
+          <!-- Old annotations -->
           <img
             src="artwork/arrow_1.png"
             alt=""
@@ -249,7 +249,7 @@
     </div>
   </section>
 
-  <!--Portfolio-->
+  <!-- Portfolio -->
   <section
     id="portfolio"
     use:inview={chapterInViewOptions}
@@ -303,16 +303,16 @@
     </div>
   </section>
 
-  <!--Journey Section-->
+  <!-- Journey Section -->
   <section
     id="services"
     use:inview={chapterInViewOptions}
     on:inview_enter={handleChapterInView("services")}
     class="justify-items-center"
   >
-    <!--Absolute center line
+    <!-- Absolute center line
 		<div class="absolute z-50 w-1 h-6 -translate-x-1/2 bg-red-500 left-1/2 top-1/2" />
-		-->
+		 -->
 
     <div class="flex flex-col inner-section place-items-center">
       <div class="max-w-xl py-6 w-fit mx-auto">
@@ -325,11 +325,11 @@
         <div
           class="relative grid w-full max-w-5xl grid-cols-1 my-6 py-16 overflow-y-hidden gap-y-14 gap-x-0 sm:grid-cols-2 place-items-center"
         >
-          <!--Center line and Chapter checkmark-->
+          <!-- Center line and Chapter checkmark -->
           <div
             class="absolute flex-col items-center hidden h-full text-center sm:flex -translate-x-1/2 left-1/2 top-8"
           >
-            <!--Circle-->
+            <!-- Circle -->
             <div
               class="flex items-center w-11 h-11 text-center rounded-full bg-surface circle-shadow"
             >
@@ -348,14 +348,14 @@
               bottom={300}
               class="flex justify-items-center h-full sm:flex w-full pb-2 mb-2"
             >
-              <!--Line-->
+              <!-- Line -->
               <div
                 class=" -mt-6 flex w-1 mx-auto h-full rounded-full bg-surface line-shadow"
               />
             </InView>
           </div>
 
-          <!--Content of Chapter-->
+          <!-- Content of Chapter -->
 
           <InView presetOptions={rightFlyPreset} class="sm:pr-7 md:pr-12">
             <img
@@ -568,11 +568,11 @@
       <div class="grid grid-cols-1 md:grid-cols-3 place-items-center gap-y-6">
         {#each steps as { title, body }, i}
           <div class="flex relative w-full h-full">
-            <!--md+ Journey line and Chapter checkmark-->
+            <!-- md+ Journey line and Chapter checkmark -->
             <div
               class="absolute flex-row place-items-center hidden h-full w-full text-center md:flex top-0 -translate-y-1/2"
             >
-              <!--Circle-->
+              <!-- Circle -->
               <div
                 class="flex items-center w-12 h-11 text-center rounded-full bg-surface circle-shadow"
               >
@@ -589,17 +589,17 @@
                 bottom={300}
                 class="flex justify-items-center pr-16 w-full items-center"
               >
-                <!--Line-->
+                <!-- Line -->
                 <div
                   class="flex h-1 w-full my-2 bg-surface line-shadow shadow-tertiary"
                 />
               </InView>
             </div>
-            <!-- Mobile Journey line and Chapter checkmark-->
+            <!-- Mobile Journey line and Chapter checkmark -->
             <div
               class="absolute flex-col items-center flex h-full text-center md:hidden top-8"
             >
-              <!--Circle-->
+              <!-- Circle -->
               <div
                 class="flex items-center w-11 h-11 text-center rounded-full bg-surface circle-shadow"
               >
@@ -618,7 +618,7 @@
                 bottom={300}
                 class="flex justify-items-center h-full sm:flex w-full pb-2 mb-2"
               >
-                <!--Line-->
+                <!-- Line -->
                 <div
                   class=" -mt-6 flex w-1 mx-auto h-full rounded-full bg-surface line-shadow"
                 />
@@ -650,7 +650,7 @@
       </div>
     </div>
   </section>
-  <!--Contact Section-->
+  <!-- Contact Section -->
   <section
     id="contact"
     use:inview={chapterInViewOptions}
@@ -668,7 +668,7 @@
           delay={0}
           class="z-0 h-full max-w-5xl w-full mx-auto overflow-visible"
         >
-          <!--Contact form Option-->
+          <!-- Contact form Option -->
           <div
             class="flex flex-col max-w-7xl w-full p-4 md:p-8 gap-y-8 text-left shadow-xl shadow-black drop-shadow-glow-md bg-surface border-1 border-primary rounded-md"
           >
@@ -681,11 +681,11 @@
                   We'll get back to you within a couple hours.
                 </p>
               </div>
-              <!--PM Option-->
+              <!-- PM Option -->
               <div
                 class="flex flex-col sm:flex-row self-center justify-self-end ml-auto justify-between gap-4 mr-2 md:gap-12"
               >
-                <!--WhatsApp-->
+                <!-- WhatsApp -->
                 <ContactIconButton
                   img="artwork/whatsapp_logo_6.png"
                   href="https://wa.me/+85297473013"
@@ -693,7 +693,7 @@
                   class="hover:text-lime-400"
                   imgClass="drop-shadow-whatsapp group-hover:drop-shadow-whatsapp-hover"
                 />
-                <!--Email-->
+                <!-- Email -->
                 <ContactIconButton
                   img="artwork/email_2.png"
                   href="mailto:contact@futi.no"

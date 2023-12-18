@@ -1,6 +1,5 @@
 <script>
   import Button from "$lib/components/atoms/Button.svelte";
-  import Icon from "$lib/components/atoms/Icon.svelte";
 </script>
 
 <div
@@ -30,7 +29,8 @@
       target="_blank">Check it out!</Button
     >
   </div>
-  <div
+  <a
+    href={$$props.href}
     class="flex flex-row flex-nowrap {$$props.bgColor} h-full w-full mx-auto z-0 rounded-xl not-prose p-2 py-6 sm:p-6 md:p-6 justify-center gap-2 md:gap-3 items-center"
   >
     <img
@@ -44,5 +44,5 @@
       src={$$props.phone_src}
       alt="{$$props.company} phone mockup"
     />
-  </div>
+  </a>
 </div>
