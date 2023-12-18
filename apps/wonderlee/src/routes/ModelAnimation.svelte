@@ -45,7 +45,7 @@
     let delay = 0;
 
     scene.on("update", (e) => {
-      scrollpos = e.scrollPos / 1000;
+      scrollpos = e.scrollPos / 800;
     });
 
     setInterval(() => {
