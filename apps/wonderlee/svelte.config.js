@@ -18,6 +18,7 @@ const config = {
     }),
   ],
   extensions: ['.svelte', '.md'],
+  optimizeDeps: { include: [ 'objection', 'scrollmagic', 'pg' ], exclude: [ 'pg-native' ] }
 };
 
 export default config;

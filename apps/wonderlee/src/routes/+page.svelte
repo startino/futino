@@ -9,6 +9,7 @@
     Counter,
     Inview,
     fromBot,
+    Section,
     fromTop,
     fromLeft,
   } from "lorc";
@@ -17,6 +18,8 @@
   import TestimonialCard from "./TestimonialCard.svelte";
   import faqs from "./faqs";
   import FAQSection from "$lib/organisms/FAQSection.svelte";
+  import ModelAnimation from "./ModelAnimation.svelte";
+
   const CTAButtons = {
     "Our work": {
       href: "/our-work",
@@ -158,33 +161,55 @@ enhancing elegance and functionality with top craftsmanship standards.
 </script>
 
 <Prose>
-  <Hero
-    {CTAButtons}
-    title="Hong Kong's Leading Gate & Garage Firm."
-    subtitle="Serving homeowners and business owners with premium services & products since 1998."
-    justified="center"
-    buttonVariant="pill"
-    bgImg="/pre_mockup_designs/garage_ref.png"
-  />
-  <section class="grid place-items-center py-24">
+  <ModelAnimation>
+    <div
+      class="flex flex-col w-screen z-40 text-center h-full items-center gap-12 mx-2 sm:mx-4 md:mx-6"
+    >
+      <div
+        class="flex flex-col items-center gap-4
+       "
+      >
+        <h1 class="" style="margin: 0px">
+          Hong Kong's Leading Gate & Garage Firm.
+        </h1>
+        <h5 class="max-w-6xl" style="margin: 0px">
+          Serving homeowners and business owners with premium services &
+          products since 1998.
+        </h5>
+      </div>
+      <div
+        class="h-full w-fit grid grid-cols-{Object.entries(CTAButtons)
+          .length} gap-4 md:gap-6 place-items-center w-fit"
+      >
+        {#each Object.entries(CTAButtons) as [label, { href, highlight }]}
+          <Button variant="pill" class="w-full" {highlight} {href}>
+            {label}
+          </Button>
+        {/each}
+      </div>
+    </div>
+  </ModelAnimation>
+  <section class="grid place-items-center -mt-64 lg:-mt-64 pb-24">
     <Container class="grid grid-cols-3 w-full rounded-md " sizes="max-w-screen">
       {#each Object.entries(statistics) as [label, { finalValue, startValue, increment, unit }], i}
         <Container
           class="text-center p-4 w-full"
           radius=""
-          border={i == 1 ? "border-x border-surface-on/50" : ""}
+          border={i == 1 ? "md:border-x border-surface-on/50" : ""}
         >
-          <h1 class="m-0 text-tertiary sm:m-0">
-            <Counter value={finalValue} step={increment} duration={1000} />
-            {unit}
-          </h1>
-          <h6 class="m-0 sm:m-0 text-primary-on font-light">{label}</h6>
+          <Prose size="sm">
+            <h1 class="m-0 text-tertiary sm:m-0 whitespace-nowrap">
+              <Counter value={finalValue} step={increment} duration={1000} />
+              {unit}
+            </h1>
+            <h6 class="m-0 sm:m-0 text-primary-on font-light">{label}</h6>
+          </Prose>
         </Container>
       {/each}
     </Container>
   </section>
 
-  <section class="grid place-items-center py-24">
+  <section class="grid place-items-center">
     <Container
       class="grid grid-cols-1 lg:grid-cols-3 gap-x-8 2xl:gap-x-12 gap-y-6"
       sizes="max-w-none"
@@ -223,58 +248,83 @@ enhancing elegance and functionality with top craftsmanship standards.
 
   <section class="grid place-items-center py-24" id="services">
     <Container
-      class="grid grid-cols-2 gap-6 md:grid-cols-3 xl:grid-cols-6 place-items-center"
-      sizes="max-w-none"
+      class="grid grid-cols-1 gap-6 md:grid-cols-3 xl:grid-cols-6 place-items-center"
+      sizes="max-w-none w-full"
     >
-      <h6 class="uppercase text-tertiary col-span-full place-self-end -my-2">
+      <h6
+        class="uppercase text-tertiary md:col-span-3 row-start-1 xl:col-span-6 place-self-end w-full -my-2"
+      >
         Services
       </h6>
 
-      <Inview class="w-full h-full col-span-2" delay={100}>
-        <ServiceCard class="" label="design" body={services["Design"].body} />
+      <Inview
+        class="w-full h-full row-start-2 col-span-1 md:col-span-2"
+        delay={100}
+      >
+        <ServiceCard
+          src="/images/Dragon_F.jpeg"
+          class=""
+          label="design"
+          body={services["Design"].body}
+        />
       </Inview>
-      <Inview class="xl:col-span-2 col-span-1 w-full h-full" delay={250}>
+      <Inview
+        class="xl:col-span-2 col-span-1 w-full h-full hidden md:flex"
+        delay={250}
+      >
         <img
           src="/images/Dragon_F.jpeg"
           alt=""
-          class="h-full hidden md:flex object-cover not-prose rounded-md"
+          class="h-full w-full flex object-cover not-prose rounded-md"
         /></Inview
       >
       <Inview
-        class="col-start-2 xl:col-span-2 xl:col-start-auto w-full h-full col-span-2"
+        class="md:col-start-2 xl:col-span-2 xl:col-start-auto w-full h-full md:col-span-2"
         delay={400}
       >
-        <ServiceCard label="Install" body={services["Install"].body} /></Inview
+        <ServiceCard
+          src="/images/Sun_Hung_Kai_Riva_swing_gates.jpg"
+          label="Install"
+          body={services["Install"].body}
+        /></Inview
       >
       <Inview
-        class="row-start-2 xl:col-span-2 col-span-1 xl:row-start-auto col-start-3 xl:col-start-auto h-full w-full"
+        class="md:row-start-2 xl:col-span-2 col-span-1 hidden md:flex  xl:row-start-auto md:col-start-3 xl:col-start-auto h-full w-full"
         delay={100}
       >
         <img
           src="/images/Sun_Hung_Kai_Riva_swing_gates.jpg"
           alt=""
-          class="h-full hidden md:flex object-cover not-prose rounded-md"
+          class="h-full flex object-cover not-prose rounded-md"
         />
       </Inview>
-      <Inview class="col-span-2" delay={250}>
-        <ServiceCard label="DIY Repair" body={services["DIY Repair"].body} />
+      <Inview class="md:col-span-2" delay={250}>
+        <ServiceCard
+          src="/images/146_Waterloo.jpg"
+          label="DIY Repair"
+          body={services["DIY Repair"].body}
+        />
       </Inview>
-      <Inview class="w-full h-full xl:col-span-2" delay={400}>
+      <Inview class="w-full h-full xl:col-span-2 hidden md:flex" delay={400}>
         <img
           src="/images/146_Waterloo.jpg"
           alt=""
-          class="w-full h-full hidden md:flex object-cover not-prose rounded-md"
+          class="w-full h-full object-cover not-prose rounded-md"
         />
       </Inview>
-      <Inview class="xl:col-span-3 w-full h-full" delay={400}>
+      <Inview class="xl:col-span-3 w-full h-full hidden md:flex" delay={400}>
         <img
           src="/images/DB_Phase_17_B.jpg"
           alt=""
-          class="w-full h-full hidden md:flex object-cover not-prose rounded-md"
+          class="w-full h-full object-cover not-prose rounded-md"
         /></Inview
       >
-      <Inview class="xl:col-span-3 col-span-2 h-full w-full" delay={550}>
+      <Inview
+        class="xl:col-span-3 col-span-1 md:col-span-2 h-full w-full"
+        delay={550}
+      >
         <ServiceCard
+          src="/images/DB_Phase_17_B.jpg"
           class=""
           label="Maintenance"
           body={services["Maintenance"].body}
@@ -300,7 +350,9 @@ enhancing elegance and functionality with top craftsmanship standards.
         >
           <Inview presetOptions={fromLeft} delay={i * 100}>
             <div class=" my-8 text-left flex flex-col gap-2">
-              <h2 class="m-0 sm:m-0 uppercase text-surface-on group-hover:pl-4 transition-[padding] duration-300">
+              <h2
+                class="m-0 sm:m-0 uppercase text-surface-on group-hover:pl-4 transition-[padding] duration-300"
+              >
                 {label}
               </h2>
               <p class="m-0 sm:m-0 text-surface-on/70 font-light">
@@ -316,7 +368,7 @@ enhancing elegance and functionality with top craftsmanship standards.
             <img
               src={img}
               alt=""
-              class=" ml-auto md:flex h-full aspect-[1.5]  object-cover not-prose"
+              class=" ml-auto md:flex h-full aspect-[1.5] object-cover not-prose"
             />
           </Inview>
         </Container>
@@ -445,8 +497,11 @@ enhancing elegance and functionality with top craftsmanship standards.
         <Button variant="pill" highlight={true} class="w-full" href="/contact"
           >Request Consultation</Button
         >
-        <Button variant="pill" class="w-full" href="/about" tracking="down-arrow"
-          >Learn More</Button
+        <Button
+          variant="pill"
+          class="w-full"
+          href="/about"
+          tracking="down-arrow">Learn More</Button
         >
       </div></Container
     >

@@ -8,5 +8,6 @@ export default defineConfig({
       allow: ['..'],
     },
   },
-  plugins: [sveltekit()]
+  plugins: [sveltekit()],
+  ssr: false
 });
