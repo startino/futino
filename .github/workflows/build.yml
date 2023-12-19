@@ -25,12 +25,12 @@ jobs:
         bun-version: [latest]
         project:
           - { name: LoRC, id: lorc, path: packages/lorc, domain: lorc.futi.no }
-          - {
-              name: Allheim,
-              id: allheim,
-              path: apps/allheim,
-              domain: allheim.futi.no,
-            }
+          # - {
+          #    name: Allheim,
+          #    id: allheim,
+          #    path: apps/allheim,
+          #    domain: allheim.futi.no,
+          #  }
           # - {
           #     name: Anzelmo,
           #     id: anzelmo,
@@ -64,12 +64,12 @@ jobs:
               path: apps/template,
               domain: template.futi.no,
             }
-          - {
-              name: Aitino,
-              id: aitino,
-              path: apps/aitino,
-              domain: aitino.futi.no,
-            }
+          # - {
+          #    name: Aitino,
+          #    id: aitino,
+          #    path: apps/aitino,
+          #    domain: aitino.futi.no,
+          #  }
           - {
               name: Buffalo,
               id: buffalo,
