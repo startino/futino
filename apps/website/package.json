@@ -42,6 +42,6 @@
     "gtag": "^1.0.1",
     "@sveltejs/adapter-vercel": "^3.0.3",
     "@sveltejs/adapter-static": "^2.0.3",
-    "@sveltejs/kit": "^1.20.4"
+    "@sveltejs/kit": "^2.0.6"
   }
 }
