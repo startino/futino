@@ -36,6 +36,8 @@
     "typescript": "^5.0.0"
   },
   "dependencies": {
-    "gtag": "^1.0.1"
+    "@sveltejs/adapter-vercel": "^4.0.3",
+    "gtag": "^1.0.1",
+    "svelte-preprocess": "^5.1.3"
   }
 }

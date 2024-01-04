@@ -1,3 +1,6 @@
 {
-  "extends": ["tsconfig/tsconfig.json"]
+  "extends": [
+    "./.svelte-kit/tsconfig.json",
+    "@repo/typescript-config/svelte/tsconfig.json"
+  ]
 }

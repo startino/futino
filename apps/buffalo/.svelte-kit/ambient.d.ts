@@ -33,8 +33,10 @@ declare module '$env/static/private' {
 	export const HYPRLAND_CMD: string;
 	export const XDG_CONFIG_DIRS: string;
 	export const XDG_SESSION_PATH: string;
+	export const TERM_PROGRAM_VERSION: string;
 	export const WLR_NO_HARDWARE_CURSORS: string;
 	export const XDG_BACKEND: string;
+	export const TMUX: string;
 	export const NODE: string;
 	export const LC_ADDRESS: string;
 	export const LC_NAME: string;
@@ -44,6 +46,7 @@ declare module '$env/static/private' {
 	export const XCURSOR_PATH: string;
 	export const LOCALE_ARCHIVE_2_27: string;
 	export const npm_config_local_prefix: string;
+	export const LIBVA_DRIVER_NAME: string;
 	export const GNUPGHOME: string;
 	export const DESKTOP_SESSION: string;
 	export const LC_MONETARY: string;
@@ -61,20 +64,20 @@ declare module '$env/static/private' {
 	export const XDG_SESSION_TYPE: string;
 	export const CUPS_DATADIR: string;
 	export const NIX_PATH: string;
+	export const BUN_WHICH_IGNORE_CWD: string;
 	export const NIXPKGS_CONFIG: string;
-	export const KITTY_PUBLIC_KEY: string;
 	export const XDG_PICTURES_DIR: string;
+	export const KITTY_PUBLIC_KEY: string;
 	export const HOME: string;
 	export const XDG_PUBLICSHARE_DIR: string;
 	export const SSH_ASKPASS: string;
-	export const LANG: string;
 	export const LC_PAPER: string;
+	export const LANG: string;
 	export const NIXOS_OZONE_WL: string;
 	export const TMUX_TMPDIR: string;
 	export const _JAVA_AWT_WM_NONREPARENTING: string;
 	export const LS_COLORS: string;
 	export const XDG_CURRENT_DESKTOP: string;
-	export const npm_package_version: string;
 	export const WAYLAND_DISPLAY: string;
 	export const GIO_EXTRA_MODULES: string;
 	export const XDG_DOWNLOAD_DIR: string;
@@ -82,24 +85,26 @@ declare module '$env/static/private' {
 	export const XDG_SEAT_PATH: string;
 	export const XDG_MUSIC_DIR: string;
 	export const XDG_TEMPLATES_DIR: string;
+	export const resurrect_dir: string;
+	export const INIT_CWD: string;
 	export const GTK_A11Y: string;
 	export const XDG_CACHE_HOME: string;
 	export const NIX_USER_PROFILE_DIR: string;
 	export const INFOPATH: string;
 	export const XDG_SESSION_CLASS: string;
 	export const XDG_DESKTOP_DIR: string;
-	export const TERMINFO: string;
-	export const TERM: string;
 	export const LC_IDENTIFICATION: string;
+	export const TERM: string;
+	export const TERMINFO: string;
 	export const npm_package_name: string;
 	export const XDG_DESKTOP_PORTAL_DIR: string;
 	export const GTK_PATH: string;
 	export const LESSOPEN: string;
 	export const USER: string;
+	export const TMUX_PANE: string;
 	export const TZDIR: string;
 	export const HYPRLAND_INSTANCE_SIGNATURE: string;
 	export const DISPLAY: string;
-	export const npm_lifecycle_event: string;
 	export const SHLVL: string;
 	export const MOZ_ENABLE_WAYLAND: string;
 	export const PAGER: string;
@@ -124,13 +129,16 @@ declare module '$env/static/private' {
 	export const XDG_DATA_DIRS: string;
 	export const LIBEXEC_PATH: string;
 	export const PATH: string;
+	export const __GLX_VENDOR_LIBRARY_NAME: string;
+	export const npm_config_node_gyp: string;
 	export const __fish_nixos_env_preinit_sourced: string;
+	export const GBM_BACKEND: string;
 	export const DBUS_SESSION_BUS_ADDRESS: string;
 	export const KITTY_INSTALLATION_DIR: string;
 	export const npm_node_execpath: string;
 	export const LC_NUMERIC: string;
+	export const TERM_PROGRAM: string;
 	export const _: string;
-	export const NODE_ENV: string;
 }
 
 /**
@@ -147,9 +155,11 @@ declare module '$env/static/public' {
 }
 
 /**
- * This module provides access to runtime environment variables, as defined by the platform you're running on. For example if you're using [`adapter-node`](https://github.com/sveltejs/kit/tree/master/packages/adapter-node) (or running [`vite preview`](https://kit.svelte.dev/docs/cli)), this is equivalent to `process.env`. This module only includes variables that _do not_ begin with [`config.kit.env.publicPrefix`](https://kit.svelte.dev/docs/configuration#env) _and do_ start with [`config.kit.env.privatePrefix`](https://kit.svelte.dev/docs/configuration#env) (if configured).
+ * This module provides access to runtime environment variables, as defined by the platform you're running on. For example if you're using [`adapter-node`](https://github.com/sveltejs/kit/tree/main/packages/adapter-node) (or running [`vite preview`](https://kit.svelte.dev/docs/cli)), this is equivalent to `process.env`. This module only includes variables that _do not_ begin with [`config.kit.env.publicPrefix`](https://kit.svelte.dev/docs/configuration#env) _and do_ start with [`config.kit.env.privatePrefix`](https://kit.svelte.dev/docs/configuration#env) (if configured).
  * 
  * This module cannot be imported into client-side code.
+ * 
+ * Dynamic environment variables cannot be used during prerendering.
  * 
  * ```ts
  * import { env } from '$env/dynamic/private';
@@ -167,8 +177,10 @@ declare module '$env/dynamic/private' {
 		HYPRLAND_CMD: string;
 		XDG_CONFIG_DIRS: string;
 		XDG_SESSION_PATH: string;
+		TERM_PROGRAM_VERSION: string;
 		WLR_NO_HARDWARE_CURSORS: string;
 		XDG_BACKEND: string;
+		TMUX: string;
 		NODE: string;
 		LC_ADDRESS: string;
 		LC_NAME: string;
@@ -178,6 +190,7 @@ declare module '$env/dynamic/private' {
 		XCURSOR_PATH: string;
 		LOCALE_ARCHIVE_2_27: string;
 		npm_config_local_prefix: string;
+		LIBVA_DRIVER_NAME: string;
 		GNUPGHOME: string;
 		DESKTOP_SESSION: string;
 		LC_MONETARY: string;
@@ -195,20 +208,20 @@ declare module '$env/dynamic/private' {
 		XDG_SESSION_TYPE: string;
 		CUPS_DATADIR: string;
 		NIX_PATH: string;
+		BUN_WHICH_IGNORE_CWD: string;
 		NIXPKGS_CONFIG: string;
-		KITTY_PUBLIC_KEY: string;
 		XDG_PICTURES_DIR: string;
+		KITTY_PUBLIC_KEY: string;
 		HOME: string;
 		XDG_PUBLICSHARE_DIR: string;
 		SSH_ASKPASS: string;
-		LANG: string;
 		LC_PAPER: string;
+		LANG: string;
 		NIXOS_OZONE_WL: string;
 		TMUX_TMPDIR: string;
 		_JAVA_AWT_WM_NONREPARENTING: string;
 		LS_COLORS: string;
 		XDG_CURRENT_DESKTOP: string;
-		npm_package_version: string;
 		WAYLAND_DISPLAY: string;
 		GIO_EXTRA_MODULES: string;
 		XDG_DOWNLOAD_DIR: string;
@@ -216,24 +229,26 @@ declare module '$env/dynamic/private' {
 		XDG_SEAT_PATH: string;
 		XDG_MUSIC_DIR: string;
 		XDG_TEMPLATES_DIR: string;
+		resurrect_dir: string;
+		INIT_CWD: string;
 		GTK_A11Y: string;
 		XDG_CACHE_HOME: string;
 		NIX_USER_PROFILE_DIR: string;
 		INFOPATH: string;
 		XDG_SESSION_CLASS: string;
 		XDG_DESKTOP_DIR: string;
-		TERMINFO: string;
-		TERM: string;
 		LC_IDENTIFICATION: string;
+		TERM: string;
+		TERMINFO: string;
 		npm_package_name: string;
 		XDG_DESKTOP_PORTAL_DIR: string;
 		GTK_PATH: string;
 		LESSOPEN: string;
 		USER: string;
+		TMUX_PANE: string;
 		TZDIR: string;
 		HYPRLAND_INSTANCE_SIGNATURE: string;
 		DISPLAY: string;
-		npm_lifecycle_event: string;
 		SHLVL: string;
 		MOZ_ENABLE_WAYLAND: string;
 		PAGER: string;
@@ -258,13 +273,16 @@ declare module '$env/dynamic/private' {
 		XDG_DATA_DIRS: string;
 		LIBEXEC_PATH: string;
 		PATH: string;
+		__GLX_VENDOR_LIBRARY_NAME: string;
+		npm_config_node_gyp: string;
 		__fish_nixos_env_preinit_sourced: string;
+		GBM_BACKEND: string;
 		DBUS_SESSION_BUS_ADDRESS: string;
 		KITTY_INSTALLATION_DIR: string;
 		npm_node_execpath: string;
 		LC_NUMERIC: string;
+		TERM_PROGRAM: string;
 		_: string;
-		NODE_ENV: string;
 		[key: `PUBLIC_${string}`]: undefined;
 		[key: `${string}`]: string | undefined;
 	}
@@ -274,6 +292,8 @@ declare module '$env/dynamic/private' {
  * Similar to [`$env/dynamic/private`](https://kit.svelte.dev/docs/modules#$env-dynamic-private), but only includes variables that begin with [`config.kit.env.publicPrefix`](https://kit.svelte.dev/docs/configuration#env) (which defaults to `PUBLIC_`), and can therefore safely be exposed to client-side code.
  * 
  * Note that public dynamic environment variables must all be sent from the server to the client, causing larger network requests — when possible, use `$env/static/public` instead.
+ * 
+ * Dynamic environment variables cannot be used during prerendering.
  * 
  * ```ts
  * import { env } from '$env/dynamic/public';
