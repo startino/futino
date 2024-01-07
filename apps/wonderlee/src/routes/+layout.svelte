@@ -1,8 +1,6 @@
 <script lang="ts">
   import "../app.postcss";
-  import { Header, Shell, FatFooter, Prose } from "lorc";
-  import { onMount } from "svelte";
-  import { genLorc } from "./theme.ts";
+  import { Header, Shell, FatFooter, Prose } from "@repo/lorc";
 
   const headerLinks: { [key: string]: string } = {
     "Our work": "/our-work",
@@ -33,26 +31,6 @@
   } = {
     "Contact us": { href: "/contact", highlight: false },
   };
-
-  let ls: any = null;
-  let foo = `Cannot read "foo".`;
-
-  const read = () => !!ls && ls.getItem(`foo`);
-
-  const update = () => {
-    !!ls && ls.setItem(`foo`, `bar`);
-    foo = read();
-  };
-
-  onMount(() => {
-    typeof localStorage !== `undefined` && (ls = localStorage);
-    foo = read();
-    let lorcConfig = genLorc();
-    for (let component in lorcConfig) {
-      let componentConfig = lorcConfig[component as keyof typeof lorcConfig];
-      localStorage.setItem(component, JSON.stringify(componentConfig));
-    }
-  });
 </script>
 
 <Shell class="bg-background">

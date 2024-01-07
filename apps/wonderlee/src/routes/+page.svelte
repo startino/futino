@@ -1,18 +1,14 @@
 <script lang="ts">
-  import { text } from "@sveltejs/kit";
   import {
-    Hero,
     Card,
     Prose,
     Button,
     Container,
     Counter,
     Inview,
-    fromBot,
-    Section,
     fromTop,
     fromLeft,
-  } from "lorc";
+  } from "@repo/lorc";
   import ServiceCard from "./ServiceCard.svelte";
   import projects from "./our-work/projects";
   import TestimonialCard from "./TestimonialCard.svelte";

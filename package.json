@@ -11,7 +11,7 @@
   "devDependencies": {
     "@repo/eslint-config": "*",
     "@repo/typescript-config": "*",
-    "prettier": "latest",
+    "prettier": "^3.1.1",
     "turbo": "latest"
   },
   "engines": {
