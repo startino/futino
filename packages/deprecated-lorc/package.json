@@ -34,9 +34,9 @@
   },
   "exports": {
     ".": {
-      "types": "./src/lib/index.ts",
-      "svelte": "./src/lib/index.ts",
-      "default": "./src/lib/index.ts"
+      "types": "./src/lib/index.js",
+      "svelte": "./src/lib/index.js",
+      "default": "./src/lib/index.js"
     },
     "./*": "./src/lib/*"
   },
@@ -65,4 +65,3 @@
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
   }
 }
-

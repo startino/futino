@@ -12,8 +12,8 @@
     Inview,
     Icon,
     Video,
-  } from "lorc";
-  import type { TransitionOptions } from "lorc";
+  } from "@repo/deprecated-lorc";
+  import type { TransitionOptions } from "@repo/deprecated-lorc";
   import {
     fromTopPreset,
     downFadePreset,

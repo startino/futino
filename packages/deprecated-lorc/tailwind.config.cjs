@@ -1,10 +1,10 @@
 import { join } from "path";
-import fColors from "../../futino-colors.cjs";
+import fColors from "../../legacy/futino-colors.cjs";
 
 const config = {
   content: [
     "./src/**/*.{html,js,svelte,ts}",
-    join(require.resolve("lorc"), "../**/*.{html,js,svelte,ts}"),
+    join(require.resolve("@repo/deprecated-lorc"), "../**/*.{html,js,svelte,ts}"),
   ],
 
   DEFAULTMode: "class",

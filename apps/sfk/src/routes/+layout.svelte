@@ -1,24 +1,17 @@
 <script>
 	import '../app.pcss';
+	import Header from '$lib/components/Header.svelte';
 </script>
 
-<!-- Header -->
-<header class="flex items-center justify-center pt-2">
-	<div class="max-w-2xl">
-		<div class="grid grid-cols-5 gap-12">
-			<a href="/" class="col-span-1">Home</a>
-			<a href="/events" class="col-span-1">Upcoming Events Page</a>
-			<a href="/classes" class="col-span-1">Contact Us</a>
-			<a href="/contact" class="col-span-1">Contact Us</a>
-			<a href="/contact" class="col-span-1">Contact Us</a>
-		</div>
-	</div>
-</header>
-
 <!-- Main -->
-<main>
-	<slot />
-</main>
+<main class="flex min-h-screen flex-col bg-sky-900 text-white">
+	<!-- Header -->
+	<Header />
 
-<!-- Footer -->
-<footer></footer>
+	<div class="pt:20 flex flex-col items-center justify-center md:pt-40">
+		<slot />
+	</div>
+
+	<!-- Footer -->
+	<footer></footer>
+</main>

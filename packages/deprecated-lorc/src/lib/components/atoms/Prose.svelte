@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { CssClasses } from "$/lib/components/types";
+  import { CssClasses } from "../../types";
   import { onMount } from "svelte";
   export let size: "xs" | "sm" | "md" | "lg" | "xl" = "md";
   let proseClasses: CssClasses = "";

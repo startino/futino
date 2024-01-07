@@ -1,16 +1,16 @@
 import { join } from "path";
-import fColors from "../../futino-colors.cjs";
-import fAnimations from "../../futino-animations.cjs";
-import fKeyframes from "../../futino-keyframes.cjs";
-import fPadding from "../../futino-padding.cjs";
-import fTypography from "../../futino-typography.cjs";
+import fColors from "../../legacy/futino-colors.cjs";
+import fAnimations from "../../legacy/futino-animations.cjs";
+import fKeyframes from "../../legacy/futino-keyframes.cjs";
+import fPadding from "../../legacy/futino-padding.cjs";
+import fTypography from "../../legacy/futino-typography.cjs";
 
 const alpha = "<alpha-value>";
 
 const config = {
   content: [
     "./src/**/*.{html,js,svelte,ts}",
-    join(require.resolve("lorc"), "../**/*.{html,js,svelte,ts}"),
+    join(require.resolve("@repo/deprecated-lorc"), "../**/*.{html,js,svelte,ts}"),
   ],
 
   DEFAULTMode: "class",

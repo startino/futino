@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { LegalPage } from "lorc";
+  import { LegalPage } from "@repo/deprecated-lorc";
 </script>
 
 <LegalPage>

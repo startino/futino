@@ -1,7 +1,7 @@
 <script lang="ts">
   import { createClient } from "@supabase/supabase-js";
-  import { Authenticate, Button } from "lorc";
-  import type { Database } from "lorc";
+  import { Authenticate, Button } from "@repo/deprecated-lorc";
+  import type { Database } from "@repo/deprecated-lorc";
 
   // Create a Supabase client object
   const supabase = createClient<Database>(
