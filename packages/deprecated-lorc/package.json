@@ -1,9 +1,8 @@
 {
-  "name": "@repo/lorc",
+  "name": "@repo/deprecated-lorc",
   "version": "0.0.0",
+  "private": true,
   "devDependencies": {
-    "@repo/eslint-config": "*",
-    "@repo/typescript-config": "*",
     "@sveltejs/adapter-static": "^2.0.3",
     "@sveltejs/kit": "^1.20.4",
     "@sveltejs/package": "^2.0.0",
@@ -64,7 +63,6 @@
     "prepublishOnly": "npm run package",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
-  },
-  "type": "module",
-  "types": "./src/lib/index.ts"
+  }
 }
+
