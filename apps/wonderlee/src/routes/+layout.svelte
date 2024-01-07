@@ -1,6 +1,6 @@
 <script lang="ts">
   import "../app.postcss";
-  import { Header, Shell, FatFooter, Prose } from "@repo/lorc";
+  import { Header, Shell, FatFooter, Prose } from "@repo/deprecated-lorc";
 
   const headerLinks: { [key: string]: string } = {
     "Our work": "/our-work",

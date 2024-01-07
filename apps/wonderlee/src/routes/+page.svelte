@@ -8,7 +8,7 @@
     Inview,
     fromTop,
     fromLeft,
-  } from "@repo/lorc";
+  } from "@repo/deprecated-lorc";
   import ServiceCard from "./ServiceCard.svelte";
   import projects from "./our-work/projects";
   import TestimonialCard from "./TestimonialCard.svelte";

@@ -3,44 +3,14 @@
 </script>
 
 <!-- Header -->
-<header>
-	<div class="">
-		<div class="col-end-5 flex items-center">
-			<p>
-				Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officiis odio harum ad in, quasi
-				amet consectetur quo modi laboriosam maxime, nisi, quae ab? Vitae saepe architecto quos
-				pariatur blanditiis. Laudantium!
-			</p>
-
-			<p>
-				Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officiis odio harum ad in, quasi
-				amet consectetur quo modi laboriosam maxime, nisi, quae ab? Vitae saepe architecto quos
-				pariatur blanditiis. Laudantium!
-			</p>
-
-			<p>
-				Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officiis odio harum ad in, quasi
-				amet consectetur quo modi laboriosam maxime, nisi, quae ab? Vitae saepe architecto quos
-				pariatur blanditiis. Laudantium!
-			</p>
-
-			<p>
-				Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officiis odio harum ad in, quasi
-				amet consectetur quo modi laboriosam maxime, nisi, quae ab? Vitae saepe architecto quos
-				pariatur blanditiis. Laudantium!
-			</p>
-
-			<p>
-				Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officiis odio harum ad in, quasi
-				amet consectetur quo modi laboriosam maxime, nisi, quae ab? Vitae saepe architecto quos
-				pariatur blanditiis. Laudantium!
-			</p>
-
-			<p>
-				Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officiis odio harum ad in, quasi
-				amet consectetur quo modi laboriosam maxime, nisi, quae ab? Vitae saepe architecto quos
-				pariatur blanditiis. Laudantium!
-			</p>
+<header class="flex items-center justify-center pt-2">
+	<div class="max-w-2xl">
+		<div class="grid grid-cols-5 gap-12">
+			<a href="/" class="col-span-1">Home</a>
+			<a href="/events" class="col-span-1">Upcoming Events Page</a>
+			<a href="/classes" class="col-span-1">Contact Us</a>
+			<a href="/contact" class="col-span-1">Contact Us</a>
+			<a href="/contact" class="col-span-1">Contact Us</a>
 		</div>
 	</div>
 </header>
