@@ -1,26 +1,22 @@
 <script lang="ts">
-  import { text } from "@sveltejs/kit";
   import {
     Hero,
-    Card,
     Prose,
     Section,
     Button,
     Container,
-    AnimatedCounter,
     ContactForm,
     Inview,
     Icon,
     Video,
-  } from "lorc";
-  import type { TransitionOptions } from "lorc";
+  } from "@repo/deprecated-lorc";
   import {
     fromTopPreset,
     downFadePreset,
     fromLeftPreset,
     fromRightPreset,
-  } from "$lib/transitionOptions.ts";
-  import { socials } from "$lib/socials.ts";
+  } from "$lib/transitionOptions";
+  import { socials } from "$lib/socials";
   import Classes from "$lib/components/molecules/Classes.svelte";
   const aboutItems = [
     {

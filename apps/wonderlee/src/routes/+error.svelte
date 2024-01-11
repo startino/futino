@@ -1,6 +1,6 @@
 <script lang="ts">
   import { page } from "$app/stores";
-  import { Button } from "lorc";
+  import { Button } from "@repo/deprecated-lorc";
 </script>
 
 <!--Hero-->
