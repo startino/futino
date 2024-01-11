@@ -1,54 +1,48 @@
-<script lang="ts">
-  import { onMount } from "svelte";
-  // Targeting video element
-  let clip: HTMLVideoElement; // Was getting errors without stating its type
-  let card: HTMLDivElement;
-
-  onMount(() => {
-    /* Applying mouseover event on video clip 
-        and then we call play() function to play 
-        the video when the mouse is over the video */
-    card.addEventListener("mouseover", function () {
-      console.log("mouseover");
-      clip.play();
-    });
-
-    card.addEventListener("mouseout", function () {
-      //clip.playbackRate = -1;
-    });
-  });
+<script>
+  import Button from "$lib/components/atoms/Button.svelte";
 </script>
 
 <div
-  bind:this={card}
-  class=" shadow-lg bg-surface-variant/20 rounded-lg h-fit w-72 md:w-80 xl:w-110 group overflow-hidden flex flex-col flex-grow hover:flex-grow-[10] transition-all duration-1000"
+  class="{$$props.class} group bg-surface rounded-md items-center max-w-lg md:max-w-7xl w-full lg:items-start grid grid-cols-1 md:grid-cols-2 gap-4 py-4 px-4 md:px-8 md:py-10 lg:px-10 drop-shadow-glow-sm border-1 border-primary"
 >
-  <div
-    class="
-	flex flex-col items-center p-6"
-  >
-    <img src="favicon.png" alt="Face" class="h-24 w-24 rounded-full" />
-    <h1 class="headline-medium pt-2">{$$props.name}</h1>
-    <h2 class="headline-small pb-2">{$$props.company}</h2>
-    <h2 class="body-medium">
+  <div class="flex flex-col h-full gap-2 lg:text-left z-10 text-left">
+    <h1 class="display-medium">{$$props.name}</h1>
+    <h3 class=" max-w-sm">
       {$$props.body}
-    </h2>
+    </h3>
+    <ul
+      class="flex flex-row flex-wrap headline-medium items-center py-4 gap-1 place-items-center"
+    >
+      <li class="title-medium">Services:</li>
+      <br class="w-96 sm:hidden" />
+      {#each $$props.services as service, i}
+        <li class="title-medium font-bold my-auto">
+          {service}
+          {#if i !== $$props.services.length - 1},{/if}
+        </li>
+      {/each}
+    </ul>
+    <Button
+      secondary
+      class="justify-self-end mt-auto"
+      href={$$props.href}
+      target="_blank">Check it out!</Button
+    >
   </div>
-  <!--Webite video-->
-  <!--Cant seem to align it to the bottom...-->
-  <video
-    bind:this={clip}
-    muted
-    id="clip"
-    preload="auto"
-    class="w-fit transition-transform aspect-[16/9] self-end"
+  <a
+    href={$$props.href}
+    class="flex flex-row flex-nowrap {$$props.bgColor} h-full w-full mx-auto z-0 rounded-xl not-prose p-2 py-6 sm:p-6 md:p-6 justify-center gap-2 md:gap-3 items-center"
   >
-    <source
-      title={$$props.company}
-      type="video/webm"
-      src="./client_websites/ggsoccer_whole_dark.webm"
+    <img
+      class="w-[230px] sm:w-[350px] md:w-[250px] lg:w-[300px] xl:w-[400px] 2xl:w-[425px] basis-2 shrink object-contain not-prose"
+      src={$$props.desktop_src}
+      alt="{$$props.company} desktop mockup"
     />
-    Your Browser does not support our video types
-    <track kind="captions" />
-  </video>
+
+    <img
+      class="w-[53px] sm:w-[100px] md:w-[60px] lg:w-[75px] xl:w-[100px] h-fit object-contain not-prose"
+      src={$$props.phone_src}
+      alt="{$$props.company} phone mockup"
+    />
+  </a>
 </div>

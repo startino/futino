@@ -1,6 +1,6 @@
 <script lang="ts">
   import "../app.postcss";
-  import { Header, Shell, FatFooter, Prose, Icon } from "lorc";
+  import { Header, Shell, FatFooter, Prose, Icon } from "@repo/deprecated-lorc";
 
   const headerLinks: { [key: string]: string } = {
     "ADULT CLASSES": "/#adult-classes",
@@ -19,8 +19,8 @@
       Contact: "/contact",
     },
     Legal: {
-      "Privacy Policy": "/legal/privacy",
-      "T&C and Waiver": "/legal/t&c-and-waiver",
+      "Privacy Policy": "/",
+      "T&C and Waiver": "/",
     },
   };
 

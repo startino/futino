@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Container } from "lorc";
+  import { Container } from "@repo/deprecated-lorc";
   import Button from "../atoms/Button.svelte";
   import FAQCard from "../atoms/FAQCard.svelte";
   import SearchBox from "../atoms/SearchBox.svelte";

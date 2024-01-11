@@ -17,7 +17,7 @@
     Inview,
     fromLeft,
     fromRight,
-  } from "lorc";
+  } from "@repo/deprecated-lorc";
   import { inview } from "svelte-inview";
   const historyEvents = [
     { date: "08 / 1998", event: "Incorporation of Wonderlee in Hong Kong" },
