@@ -9,7 +9,7 @@
     Inview,
     fromLeft,
     fromRight,
-  } from "lorc";
+  } from "@repo/deprecated-lorc";
 
   import projects from "./projects";
   import products from "../products/products";

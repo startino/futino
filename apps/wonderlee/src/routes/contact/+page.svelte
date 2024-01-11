@@ -7,7 +7,7 @@
     Button,
     Inview,
     fromRight,
-  } from "lorc";
+  } from "@repo/deprecated-lorc";
 </script>
 
 <Prose>
@@ -15,7 +15,11 @@
     class="grid grid-cols-1 sm:grid-cols-2 place-items-center pt-44 min-h-screen gap-0"
   >
     <Container class="flex flex-col gap-12" sizes="max-w-3xl w-full">
-      <Card class="text-left flex flex-col gap-6" size="max-w-none w-full" padding="">
+      <Card
+        class="text-left flex flex-col gap-6"
+        size="max-w-none w-full"
+        padding=""
+      >
         <h1 class="uppercase m-0 sm:m-0">Contact Us</h1>
         <p class="m-0 sm:m-0">
           We're here to assist you with all your gates and garage door needs.
@@ -24,7 +28,7 @@
           highest level of support and expertise.
         </p>
       </Card>
-      <ContactForm buttonVariant="pill"/>
+      <ContactForm buttonVariant="pill" />
     </Container>
     <Container
       sizes="max-w-3xl w-full"

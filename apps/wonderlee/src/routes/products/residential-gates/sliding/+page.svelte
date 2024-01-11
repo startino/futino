@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Container, Button } from "lorc";
+  import { Container, Button } from "@repo/deprecated-lorc";
   import { slide } from "svelte/transition";
 </script>
 
