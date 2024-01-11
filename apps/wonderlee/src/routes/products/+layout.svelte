@@ -6,7 +6,7 @@
     Card,
     Button,
     SelectMenu,
-  } from "lorc";
+  } from "@repo/deprecated-lorc";
 </script>
 
 <Prose>

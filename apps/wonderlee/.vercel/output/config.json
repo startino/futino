@@ -35,39 +35,6 @@
 			}
 		},
 		{
-			"src": "/legal/licenses",
-			"dest": "/legal/licenses/"
-		},
-		{
-			"src": "/legal/licenses/",
-			"status": 308,
-			"headers": {
-				"Location": "/legal/licenses"
-			}
-		},
-		{
-			"src": "/legal/privacy",
-			"dest": "/legal/privacy/"
-		},
-		{
-			"src": "/legal/privacy/",
-			"status": 308,
-			"headers": {
-				"Location": "/legal/privacy"
-			}
-		},
-		{
-			"src": "/legal/terms",
-			"dest": "/legal/terms/"
-		},
-		{
-			"src": "/legal/terms/",
-			"status": 308,
-			"headers": {
-				"Location": "/legal/terms"
-			}
-		},
-		{
 			"src": "/our-work",
 			"dest": "/our-work/"
 		},
@@ -258,15 +225,6 @@
 		},
 		"contact.html": {
 			"path": "contact"
-		},
-		"legal/licenses.html": {
-			"path": "legal/licenses"
-		},
-		"legal/privacy.html": {
-			"path": "legal/privacy"
-		},
-		"legal/terms.html": {
-			"path": "legal/terms"
 		},
 		"our-work.html": {
 			"path": "our-work"

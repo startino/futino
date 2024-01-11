@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Card, Prose, Icon } from "lorc";
+  import { Card, Prose, Icon } from "@repo/deprecated-lorc";
   export let name: string = "no name provided";
   export let body: string = "no body provided";
   export let href: string = "no link";

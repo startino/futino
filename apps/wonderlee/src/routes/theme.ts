@@ -1,4 +1,4 @@
-import { mergeDictionaries } from "lorc";
+import { mergeDictionaries } from "@repo/deprecated-lorc";
 
 const buttonVariants: any = {
   DEFAULT: {

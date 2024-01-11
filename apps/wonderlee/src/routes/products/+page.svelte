@@ -8,7 +8,7 @@
     SelectMenu,
     Inview,
     fromLeft,
-  } from "lorc";
+  } from "@repo/deprecated-lorc";
   import products from "./products";
 </script>
 

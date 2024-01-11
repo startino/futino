@@ -1,6 +1,6 @@
 <script lang="ts">
   import { slide } from "svelte/transition";
-  import { Icon } from "lorc";
+  import { Icon } from "@repo/deprecated-lorc";
 
   export let question = "";
   export let answer = "";

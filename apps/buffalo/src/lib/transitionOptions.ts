@@ -1,4 +1,4 @@
-import type { TransitionOptions } from "lorc";
+import type { TransitionOptions } from "@repo/deprecated-lorc";
 
 export const downFadePreset: TransitionOptions = {
   delay: 75,
