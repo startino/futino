@@ -5,7 +5,7 @@
 	import { browser } from '$app/environment';
 
 	// stores
-	let { stores, page, constructors, components = [], form, data_0 = null, data_1 = null, data_2 = null } = $props();
+	let { stores, page, constructors, components = [], form, data_0 = null, data_1 = null } = $props();
 
 	if (!browser) {
 		setContext('__svelte__', stores);
@@ -17,7 +17,7 @@
 		stores.page.set(page);
 	}
 	$effect(() => {
-		stores;page;constructors;components;form;data_0;data_1;data_2;
+		stores;page;constructors;components;form;data_0;data_1;
 		stores.page.notify();
 	});
 
@@ -42,13 +42,7 @@
 
 {#if constructors[1]}
 	<svelte:component this={constructors[0]} bind:this={components[0]} data={data_0}>
-		{#if constructors[2]}
-			<svelte:component this={constructors[1]} bind:this={components[1]} data={data_1}>
-				<svelte:component this={constructors[2]} bind:this={components[2]} data={data_2} {form} />
-			</svelte:component>
-		{:else}
-			<svelte:component this={constructors[1]} bind:this={components[1]} data={data_1} {form} />
-		{/if}
+		<svelte:component this={constructors[1]} bind:this={components[1]} data={data_1} {form} />
 	</svelte:component>
 {:else}
 	<svelte:component this={constructors[0]} bind:this={components[0]} data={data_0} {form} />
