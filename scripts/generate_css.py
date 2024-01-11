@@ -5,9 +5,9 @@ TONAL_STEPS = [ 50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950]
 
 
 # Define your three key colors in RGB format
-primary = '#059669'
-secondary = '#db2777'
-tertiary = '#db2777'
+primary = '#4d84ba'
+secondary = '#363858'
+tertiary = '#4d84ba'
 
 # Defining the standard colors
 red = '#ef4444'
@@ -21,7 +21,7 @@ primary_tones, secondary_tones, tertiary_tones, red_tones, emerald_tones =[(colo
 
 
 # Darker mappings
-tokens = {
+darker_tokens = {
     'primary': primary_tones[6],
     'primary-on': primary_tones[0],
     'secondary': secondary_tones[6],
@@ -42,8 +42,42 @@ tokens = {
     'success-on': emerald_tones[0]
 }
 
+# Usually don't use this unless it's the specific design.
+light_tokens = {
+    'primary': primary_tones[6],
+    'primary-on': primary_tones[0],
+    'secondary': secondary_tones[6],
+    'secondary-on': secondary_tones[0],
+    'tertiary': tertiary_tones[5],
+    'tertiary-on': tertiary_tones[0],
+    'background': '250 253 252',
+    'background-on': '25 28 28',
+    'surface': '255 255 255',
+    'surface-on': '25 28 28',
+    'surface-highlight': secondary_tones[7],
+    'surface-highlight-on': secondary_tones[0],
+    'muted': primary_tones[9],
+    'muted-on': primary_tones[0],
+    'error': red_tones[8],
+    'error-on': red_tones[0],
+    'success': emerald_tones[8],
+    'success-on': emerald_tones[0]
+}
+
+saturated_tokens = {} 
+ligher_tokens = {}
+
+theme_type = input("Input the theme type (lighter, darker, saturated, light)")
+
+if theme_type == 'lighter':
+    tokens = ligher_tokens
+elif theme_type == 'darker':
+    tokens = darker_tokens
+elif theme_type == 'light':
+    tokens = light_tokens
+
 # Define the output PostCSS file path
-output_file = '../apps/template/src/app.postcss'
+output_file = '../apps/' + input("Project Name: ") + '/src/app.postcss'
 
 # Generate the PostCSS content
 postcss_content = f'''

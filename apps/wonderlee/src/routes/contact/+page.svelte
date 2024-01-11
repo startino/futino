@@ -1,43 +1,65 @@
 <script lang="ts">
-  import { Prose, Container, ContactForm, Card, Button } from "lorc";
+  import {
+    Prose,
+    Container,
+    ContactForm,
+    Card,
+    Button,
+    Inview,
+    fromRight,
+  } from "@repo/deprecated-lorc";
 </script>
 
 <Prose>
   <section
     class="grid grid-cols-1 sm:grid-cols-2 place-items-center pt-44 min-h-screen gap-0"
   >
-    <Container class="flex flex-col" sizes="max-w-3xl w-full">
-      <Card class="text-left" size="max-w-none w-full" padding="">
-        <h1 class="uppercase">Contact Us</h1>
-        <p>
+    <Container class="flex flex-col gap-12" sizes="max-w-3xl w-full">
+      <Card
+        class="text-left flex flex-col gap-6"
+        size="max-w-none w-full"
+        padding=""
+      >
+        <h1 class="uppercase m-0 sm:m-0">Contact Us</h1>
+        <p class="m-0 sm:m-0">
           We're here to assist you with all your gates and garage door needs.
           Feel free to reach out to us anytime for inquiries, consultations, or
           to schedule services. Our team is ready to provide you with the
           highest level of support and expertise.
         </p>
       </Card>
-      <ContactForm />
+      <ContactForm buttonVariant="pill" />
     </Container>
     <Container
       sizes="max-w-3xl w-full"
       margin="mr-auto"
       class="flex flex-col justify-items-center divide-y divide-surface-on/40"
     >
-      <div class=" py-12">
-        <p class="uppercase text-tertiary m-0 sm:m-0">Email</p>
-        <h3 class="m-0 sm:m-0">Sales@wonderlee.hk</h3>
-      </div>
-      <div class=" py-12">
-        <p class="uppercase text-tertiary m-0 sm:m-0">Phone</p>
-        <h3 class="m-0 sm:m-0">+852 6931 0020</h3>
-      </div>
-      <div class=" py-12">
-        <p class="uppercase text-tertiary m-0 sm:m-0">Address</p>
-        <h3 class="m-0 sm:m-0 pb-3">
-          1402 Hip Kwan Commercial Building <br /> 38 Pitt Street, Yaumatei, Kowloon
-        </h3>
-        <Button href="#map-iframe" arrow={true}>Google Maps</Button>
-      </div>
+      <Inview presetOptions={fromRight} delay={150}>
+        <div class=" py-12">
+          <p class="uppercase text-tertiary m-0 sm:m-0">Email</p>
+          <h3 class="m-0 sm:m-0">Sales@wonderlee.hk</h3>
+        </div>
+      </Inview>
+
+      <Inview presetOptions={fromRight} delay={300}>
+        <div class=" py-12">
+          <p class="uppercase text-tertiary m-0 sm:m-0">Phone</p>
+          <h3 class="m-0 sm:m-0">+852 6931 0020</h3>
+        </div>
+      </Inview>
+
+      <Inview presetOptions={fromRight} delay={450}>
+        <div class=" py-12">
+          <p class="uppercase text-tertiary m-0 sm:m-0">Address</p>
+          <h3 class="m-0 sm:m-0 pb-6">
+            1402 Hip Kwan Commercial Building <br /> 38 Pitt Street, Yaumatei, Kowloon
+          </h3>
+          <Button variant="pill" href="#map-iframe" tracking="down-arrow"
+            >Google Maps</Button
+          >
+        </div>
+      </Inview>
     </Container>
   </section>
 
