@@ -16,7 +16,7 @@
 		},
 		{
 			name: 'Privacy Policy',
-			href: '/legal/privacy'
+			href: '/' // TODO: add link
 		}
 	];
 </script>
