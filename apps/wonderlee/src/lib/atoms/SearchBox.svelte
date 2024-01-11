@@ -1,6 +1,6 @@
 <script lang="ts">
   export let searchInput: string;
-  import { Icon } from "lorc";
+  import { Icon } from "@repo/deprecated-lorc";
 </script>
 
 <label for="search-field" class=" sr-only">Search</label>

@@ -1,32 +1,31 @@
-import { join } from 'path';
-import fColors from '../../futino-universal-colors.cjs';
-import fAnimations from '../../futino-animations.cjs';
-import fKeyframes from '../../futino-keyframes.cjs';
-import fPadding from '../../futino-padding.cjs';
-import fTypography from '../../futino-new-typography.cjs';
+import { join } from "path";
+import fColors from "../../legacy/futino-universal-colors.cjs";
+import fAnimations from "../../legacy/futino-animations.cjs";
+import fKeyframes from "../../legacy/futino-keyframes.cjs";
+import fPadding from "../../legacy/futino-padding.cjs";
+import fTypography from "../../legacy/futino-new-typography.cjs";
 
-const alpha = '<alpha-value>';
-
+const alpha = "<alpha-value>";
 
 const config = {
   content: [
-    './src/**/*.{html,js,svelte,ts}',
-    join(require.resolve('lorc'),
-      '../**/*.{html,js,svelte,ts,ttf}',
+    "./src/**/*.{html,js,svelte,ts}",
+    join(
+      require.resolve("@repo/deprecated-lorc"),
+      "../**/*.{html,js,svelte,ts,ttf}",
     ),
   ],
 
-  DEFAULTMode: 'class',
+  DEFAULTMode: "class",
 
   theme: {
     extend: {
-      backgroundImage:
-      {
-        "landing": "url('/pre_mockup_designs/garage_ref.png')"
+      backgroundImage: {
+        landing: "url('/pre_mockup_designs/garage_ref.png')",
       },
       padding: fPadding,
       fontFamily: {
-        'sans': ['TASA Orbiter Text'],
+        sans: ["TASA Orbiter Text"],
       },
 
       animation: fAnimations,
@@ -44,42 +43,42 @@ const config = {
               },
               h2: {
                 fontFamily: "TASA Orbiter Text",
-                fontWeight: "normal"
+                fontWeight: "normal",
               },
               h3: {
                 fontFamily: "TASA Orbiter Text",
-                fontWeight: "normal"
+                fontWeight: "normal",
               },
               h4: {
                 fontFamily: "TASA Orbiter Text",
-                fontWeight: "normal"
+                fontWeight: "normal",
               },
               h5: {
                 fontFamily: "TASA Orbiter Text",
-                fontWeight: "normal"
+                fontWeight: "normal",
               },
 
               h6: {
                 fontFamily: "TASA Orbiter Text",
-                fontWeight: "normal"
+                fontWeight: "normal",
               },
               p: {
                 fontFamily: "TASA Orbiter Text",
                 letterSpacing: "0.5",
                 lineHeight: "1.5",
-                opacity: '0.75'
-              }
-            }
-          }
-        }
+                opacity: "0.75",
+              },
+            },
+          },
+        },
       }),
-    }
+    },
   },
   plugins: [
-    require('@tailwindcss/typography'),
-    require('@tailwindcss/forms'),
-    require('@tailwindcss/aspect-ratio'),
-    require('@tailwindcss/container-queries'),
+    require("@tailwindcss/typography"),
+    require("@tailwindcss/forms"),
+    require("@tailwindcss/aspect-ratio"),
+    require("@tailwindcss/container-queries"),
   ],
 };
 

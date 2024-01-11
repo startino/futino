@@ -1,0 +1,275 @@
+{
+	"version": 3,
+	"routes": [
+		{
+			"src": "/about",
+			"dest": "/about/"
+		},
+		{
+			"src": "/about/",
+			"status": 308,
+			"headers": {
+				"Location": "/about"
+			}
+		},
+		{
+			"src": "/admin",
+			"dest": "/admin/"
+		},
+		{
+			"src": "/admin/",
+			"status": 308,
+			"headers": {
+				"Location": "/admin"
+			}
+		},
+		{
+			"src": "/contact",
+			"dest": "/contact/"
+		},
+		{
+			"src": "/contact/",
+			"status": 308,
+			"headers": {
+				"Location": "/contact"
+			}
+		},
+		{
+			"src": "/our-work",
+			"dest": "/our-work/"
+		},
+		{
+			"src": "/our-work/",
+			"status": 308,
+			"headers": {
+				"Location": "/our-work"
+			}
+		},
+		{
+			"src": "/products",
+			"dest": "/products/"
+		},
+		{
+			"src": "/products/",
+			"status": 308,
+			"headers": {
+				"Location": "/products"
+			}
+		},
+		{
+			"src": "/products/avon-barriers",
+			"dest": "/products/avon-barriers/"
+		},
+		{
+			"src": "/products/avon-barriers/",
+			"status": 308,
+			"headers": {
+				"Location": "/products/avon-barriers"
+			}
+		},
+		{
+			"src": "/products/commercial-doors",
+			"dest": "/products/commercial-doors/"
+		},
+		{
+			"src": "/products/commercial-doors/",
+			"status": 308,
+			"headers": {
+				"Location": "/products/commercial-doors"
+			}
+		},
+		{
+			"src": "/products/garage-doors/canopy",
+			"dest": "/products/garage-doors/canopy/"
+		},
+		{
+			"src": "/products/garage-doors/canopy/",
+			"status": 308,
+			"headers": {
+				"Location": "/products/garage-doors/canopy"
+			}
+		},
+		{
+			"src": "/products/garage-doors/martin",
+			"dest": "/products/garage-doors/martin/"
+		},
+		{
+			"src": "/products/garage-doors/martin/",
+			"status": 308,
+			"headers": {
+				"Location": "/products/garage-doors/martin"
+			}
+		},
+		{
+			"src": "/products/garage-doors/sectional",
+			"dest": "/products/garage-doors/sectional/"
+		},
+		{
+			"src": "/products/garage-doors/sectional/",
+			"status": 308,
+			"headers": {
+				"Location": "/products/garage-doors/sectional"
+			}
+		},
+		{
+			"src": "/products/renlita-doors",
+			"dest": "/products/renlita-doors/"
+		},
+		{
+			"src": "/products/renlita-doors/",
+			"status": 308,
+			"headers": {
+				"Location": "/products/renlita-doors"
+			}
+		},
+		{
+			"src": "/products/residential-gates/folding",
+			"dest": "/products/residential-gates/folding/"
+		},
+		{
+			"src": "/products/residential-gates/folding/",
+			"status": 308,
+			"headers": {
+				"Location": "/products/residential-gates/folding"
+			}
+		},
+		{
+			"src": "/products/residential-gates/sliding",
+			"dest": "/products/residential-gates/sliding/"
+		},
+		{
+			"src": "/products/residential-gates/sliding/",
+			"status": 308,
+			"headers": {
+				"Location": "/products/residential-gates/sliding"
+			}
+		},
+		{
+			"src": "/products/residential-gates/swinging",
+			"dest": "/products/residential-gates/swinging/"
+		},
+		{
+			"src": "/products/residential-gates/swinging/",
+			"status": 308,
+			"headers": {
+				"Location": "/products/residential-gates/swinging"
+			}
+		},
+		{
+			"src": "/products/secret-doors",
+			"dest": "/products/secret-doors/"
+		},
+		{
+			"src": "/products/secret-doors/",
+			"status": 308,
+			"headers": {
+				"Location": "/products/secret-doors"
+			}
+		},
+		{
+			"src": "/products/shutter-doors/fire",
+			"dest": "/products/shutter-doors/fire/"
+		},
+		{
+			"src": "/products/shutter-doors/fire/",
+			"status": 308,
+			"headers": {
+				"Location": "/products/shutter-doors/fire"
+			}
+		},
+		{
+			"src": "/products/shutter-doors/roller",
+			"dest": "/products/shutter-doors/roller/"
+		},
+		{
+			"src": "/products/shutter-doors/roller/",
+			"status": 308,
+			"headers": {
+				"Location": "/products/shutter-doors/roller"
+			}
+		},
+		{
+			"src": "/services",
+			"dest": "/services/"
+		},
+		{
+			"src": "/services/",
+			"status": 308,
+			"headers": {
+				"Location": "/services"
+			}
+		},
+		{
+			"src": "/_app/immutable/.+",
+			"headers": {
+				"cache-control": "public, immutable, max-age=31536000"
+			}
+		},
+		{
+			"handle": "filesystem"
+		},
+		{
+			"src": "/.*",
+			"dest": "/fn"
+		}
+	],
+	"overrides": {
+		"index.html": {
+			"path": ""
+		},
+		"about.html": {
+			"path": "about"
+		},
+		"admin.html": {
+			"path": "admin"
+		},
+		"contact.html": {
+			"path": "contact"
+		},
+		"our-work.html": {
+			"path": "our-work"
+		},
+		"products.html": {
+			"path": "products"
+		},
+		"products/avon-barriers.html": {
+			"path": "products/avon-barriers"
+		},
+		"products/commercial-doors.html": {
+			"path": "products/commercial-doors"
+		},
+		"products/garage-doors/canopy.html": {
+			"path": "products/garage-doors/canopy"
+		},
+		"products/garage-doors/martin.html": {
+			"path": "products/garage-doors/martin"
+		},
+		"products/garage-doors/sectional.html": {
+			"path": "products/garage-doors/sectional"
+		},
+		"products/renlita-doors.html": {
+			"path": "products/renlita-doors"
+		},
+		"products/residential-gates/folding.html": {
+			"path": "products/residential-gates/folding"
+		},
+		"products/residential-gates/sliding.html": {
+			"path": "products/residential-gates/sliding"
+		},
+		"products/residential-gates/swinging.html": {
+			"path": "products/residential-gates/swinging"
+		},
+		"products/secret-doors.html": {
+			"path": "products/secret-doors"
+		},
+		"products/shutter-doors/fire.html": {
+			"path": "products/shutter-doors/fire"
+		},
+		"products/shutter-doors/roller.html": {
+			"path": "products/shutter-doors/roller"
+		},
+		"services.html": {
+			"path": "services"
+		}
+	}
+}

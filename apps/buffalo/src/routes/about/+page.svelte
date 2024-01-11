@@ -11,7 +11,7 @@
     fromRight,
     fromLeft,
     fromTop,
-  } from "lorc";
+  } from "@repo/deprecated-lorc";
   import {
     fromTopPreset,
     downFadePreset,

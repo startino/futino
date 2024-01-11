@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { fromTop, Container, Card, Inview, Prose, Button } from "lorc";
+  import { fromTop, Container, Card, Inview, Prose, Button } from "@repo/deprecated-lorc";
   const classTimes = [
     { day: "MON", time: "7:45PM" },
     {

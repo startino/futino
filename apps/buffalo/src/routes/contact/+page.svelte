@@ -8,7 +8,7 @@
     ContactForm,
     Icon,
     Video,
-  } from "lorc";
+  } from "@repo/deprecated-lorc";
   import {
     fromTopPreset,
     downFadePreset,
