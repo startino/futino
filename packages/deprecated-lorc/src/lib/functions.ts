@@ -22,7 +22,3 @@ export function mergeDictionaries(
 
   return mergedDict;
 }
-
-function combineClasses(componentConfig: any, classesToUse: string[]) {
-  return finalClassString;
-}

@@ -19,10 +19,6 @@ const config = {
     // See https://kit.svelte.dev/docs/adapters for more information about adapters.
     adapter: adapter(),
   },
-  optimizeDeps: {
-    include: ["objection", "scrollmagic", "pg"],
-    exclude: ["pg-native"],
-  },
 };
 
 export default config;

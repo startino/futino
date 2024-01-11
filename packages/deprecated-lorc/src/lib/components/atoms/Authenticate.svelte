@@ -1,7 +1,21 @@
 <script lang="ts">
-  import sha256 from "crypto-js/sha256";
   import Button from "./Button.svelte";
+  async function sha256(message: string) {
+    // Encode the message as UTF-8
+    const encoder = new TextEncoder();
+    const data = encoder.encode(message);
 
+    // Calculate the SHA-256 hash
+    const hashBuffer = await crypto.subtle.digest("SHA-256", data);
+
+    // Convert the hash buffer to a hex string
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    const hashHex = hashArray
+      .map((byte) => byte.toString(16).padStart(2, "0"))
+      .join("");
+
+    return hashHex;
+  }
   // Double SHA256 hashed
   const key =
     "d17b0d9a8b44aaa69bcbd82285e67a30418a6c3dc38e16c02e64035386452580";
@@ -13,31 +27,40 @@
     window.location.reload();
   }
 
-  function verify() {
+  async function verify() {
     // Remove key from localStorage the key for debug purposes.
     if (!rememberKey) localStorage.setItem("key", "");
 
     // Check if the saved key in localStorage is correct, if so verify immediately.
-    if (sha256(localStorage.getItem("key")) == key) return true;
+    //
+    sha256(localStorage.getItem("key")).then((hash) => {
+      if (hash == key) return true;
+    });
 
     // First hashing with SHA256 so the original password cannot be read in localStorage
     // A second hashing of the input is performed only on checks to prevent copy pasting
     // the true key.
-    localStorage.setItem(
-      "key",
-      sha256(prompt("Enter Key", "")?.replace(/\s+/g, ""))
-    );
+
+    sha256(prompt("Enter Key", "")?.replace(/\s+/g, "")).then((hash) => {
+      localStorage.setItem("key", hash);
+    });
 
     // Log given hashes of input key.
     console.debug(
       `SHA256: ${localStorage.getItem("key")}\nDouble SHA256: ${sha256(
-        localStorage.getItem("key")
-      )}`
+        localStorage.getItem("key"),
+      )}`,
     );
 
     // Perform second hashing only when checking to prevent user from edeting their
     // localStorage to ensure they didn't copy paste the true key.
-    return sha256(localStorage.getItem("key")) == key;
+    try {
+      const hash = await sha256(localStorage.getItem("key"));
+      return hash === key;
+    } catch (error) {
+      console.error("Error hashing the key:", error);
+      return false;
+    }
   }
 
   let verified: Promise<boolean> = new Promise((resolve, reject) => {

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { CssClasses } from "$lib/types";
+  import type { CssClasses } from "../../types";
   import { onMount } from "svelte";
 
   export let label: string = "Label";
@@ -26,7 +26,7 @@
 
   export let removeDuplicates: boolean = true;
 
-  function removeDuplicateItems<T>() {
+  function removeDuplicateItems() {
     const result: { [key: string]: string } = {};
     Object.entries(items).forEach((item) => {
       if (!Object.entries(result).includes(item)) {

@@ -58,7 +58,7 @@
   $: classesPageContent = `${slotPageContent}`;
   $: classesPageFooter = `${slotPageFooter}`;
   $: classesFooter = `${slotFooter}`;
-  let mounted = false;
+  let mounted = true;
   onMount(() => {
     mounted = true;
   });

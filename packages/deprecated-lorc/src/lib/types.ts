@@ -23,11 +23,6 @@ export type StyleVariants = {
 };
 
 export type IconType = string;
-enum IconKeys {
-  NONE,
-  PHONE,
-  Email,
-}
 
 export type TransitionOptions = {
   top?: number;
