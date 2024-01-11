@@ -19,8 +19,8 @@
       Contact: "/contact",
     },
     Legal: {
-      "Privacy Policy": "/legal/privacy",
-      "T&C and Waiver": "/legal/t&c-and-waiver",
+      "Privacy Policy": "/",
+      "T&C and Waiver": "/",
     },
   };
 
