@@ -38,8 +38,7 @@ jobs:
           version: ${{ matrix.pnpm-version }}
           run_install: |
             - recursive: true
-              args: [--lockfile=false, --strict-peer-dependencies]
-            - args: [--global, gulp, prettier, typescript]
+              args: [--lockfile=false, --frozen-lockfile=false]
 
       - name: Get pnpm store directory
         shell: bash
