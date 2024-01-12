@@ -38,7 +38,7 @@ jobs:
           version: ${{ matrix.pnpm-version }}
           run_install: |
             - recursive: true
-              args: [--frozen-lockfile, --strict-peer-dependencies]
+              args: [--lockfile=false, --strict-peer-dependencies]
             - args: [--global, gulp, prettier, typescript]
 
       - name: Get pnpm store directory
@@ -60,5 +60,4 @@ jobs:
       - name: Build Project
         run: |
           cd ${{ matrix.project.path }}
-          pnpm install # fails sometimes without this
           pnpm run build
