@@ -38,7 +38,7 @@ jobs:
           version: ${{ matrix.pnpm-version }}
           run_install: |
             - recursive: true
-              args: [--lockfile=false, --frozen-lockfile=false]
+              args: [--lockfile=false, --frozen-lockfile=false, --no-frozen-lockfile, --strict-peer-dependencies=false]
 
       - name: Get pnpm store directory
         shell: bash
