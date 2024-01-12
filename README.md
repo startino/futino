@@ -6,7 +6,7 @@ This is Futino's Monorepo.
 
 ## Status
 
-[![Build Projects](https://github.com/Futino/futino/actions/workflows/build.yml/badge.svg)](https://github.com/Futino/futino/actions/workflows/build.yml)
+[![Build Projects](https://github.com/Futino/futino/actions/workflows/build.yml/badge.svg?branch=alpha)](https://github.com/Futino/futino/actions/workflows/build.yml)
 
 ### SonarCloud
 
