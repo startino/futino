@@ -369,10 +369,7 @@ function _layout($$payload, $$props) {
       Contact: "/contact",
       FAQ: "/#faq"
     },
-    Legal: {
-      "Privacy Policy": "/",
-      Licenses: "/about#licenses"
-    }
+    Legal: { "Privacy Policy": "/", Licenses: "/" }
   };
   const CTAButtons = {
     "Contact us": { href: "/contact", highlight: false }
