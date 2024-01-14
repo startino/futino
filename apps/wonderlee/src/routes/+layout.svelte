@@ -23,8 +23,8 @@
 			FAQ: '/#faq'
 		},
 		Legal: {
-			'Privacy Policy': '/legal/privacy',
-			Licenses: '/about#licenses'
+			'Privacy Policy': '/',
+			Licenses: '/'
 		}
 	};
 
