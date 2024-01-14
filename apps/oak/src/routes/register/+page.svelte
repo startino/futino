@@ -1,30 +1,13 @@
 <script lang="ts">
-	import { Card, Button } from "flowbite-svelte";
 	import { superForm } from "sveltekit-superforms/client";
 	import type { PageData } from "./$types";
-	import toast from "svelte-french-toast";
-	export let data: PageData;
+	import * as Card from '$lib/components/ui/card';
+	import { Button } from '$lib/components/ui/button';
+	import {enhance} from '$app/forms';
 
-	const { form, errors, enhance } = superForm(data.form, {
-		resetForm: true,
-		onResult: ({ result }) => {
-			switch (result.type) {
-				case "success":
-					toast.success("Success! Confirm your email to login.");
-					break;
-				case "error":
-					toast.error("Error creating your account!");
-					break;
-				case "failure":
-					console.log(result);
-					toast.error("Check your details and try again!");
-					break;
-				default:
-					return;
-			}
-			return;
-		}
-	});
+	export let data: PageData;
+	export let form;
+	
 </script>
 
 <div class="py-20">
@@ -32,7 +15,7 @@
 		<div class="max-w-2xl text-center">
 			<h1 class="text-4xl font-semibold">Register for an account</h1>
 		</div>
-		<Card class="mt-6 w-full" padding="xl" size="md">
+		<Card.Root class="mt-6 w-full" padding="xl" size="md">
 			<form method="POST" class="flex flex-col space-y-6" use:enhance data-testid="register-form">
 				<label class="space-y-2" for="full_name">
 					<span>Name</span>
@@ -81,6 +64,6 @@
 						class="text-blue-700 hover:underline dark:text-blue-500">Sign in</a>
 				</div>
 			</form>
-		</Card>
+		</Card.Root>
 	</div>
 </div>
