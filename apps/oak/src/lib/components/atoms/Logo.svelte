@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { CssClasses } from "../../types";
+  import type { CssClasses } from "../../types";
 
   export let height: CssClasses = "h-8";
 </script>

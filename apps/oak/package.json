@@ -3,7 +3,7 @@
 	"version": "0.0.1",
 	"private": true,
 	"scripts": {
-		"dev": "vite dev",
+		"dev": "vite dev --host",
 		"build": "vite build",
 		"preview": "vite preview",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
@@ -39,9 +39,12 @@
 	"type": "module",
 	"dependencies": {
 		"@internationalized/date": "^3.5.1",
+		"@supabase/auth-helpers-sveltekit": "^0.10.7",
+		"@supabase/supabase-js": "^2.39.3",
 		"bits-ui": "^0.14.0",
 		"clsx": "^2.1.0",
 		"cmdk-sv": "^0.0.13",
+		"dotenv": "^16.3.1",
 		"embla-carousel-svelte": "8.0.0-rc19",
 		"formsnap": "^0.4.2",
 		"lucide-svelte": "^0.309.0",
