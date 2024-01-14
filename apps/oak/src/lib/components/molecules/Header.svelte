@@ -4,6 +4,7 @@
 	import Icon from '../atoms/Icon.svelte';
 	import { fade, slide } from 'svelte/transition';
 	import { Button } from '$lib/components/ui/button';
+  import ThemeToggle from '$lib/components/atoms/ThemeToggle.svelte';
 
 	// Types to get TailwindCSS Intellisense
 	import type { CssClasses, StyleVariants } from '../../types.ts';
@@ -20,13 +21,13 @@
 	 * */
 	export let pages: { [key: string]: string }[] = [
 		{
-			name: "Home",
-      href: '/'
+			name: 'Home',
+			href: '/'
 		},
-    {
-      name: "About",
-      href: '/about'
-    }
+		{
+			name: 'About',
+			href: '/about'
+		}
 	];
 	/** Labels and hrefs of CTA buttons on the hero. Recommended 1-2.*/
 	export let CTAButtons: {
@@ -36,8 +37,6 @@
 	export let sticky: boolean = true;
 	/**Provide the company's name as text. If the name */
 	export let companyName: string = 'Company Name';
-
-	export let logoPos: 'leading' | 'center' | 'trailing' = 'leading';
 
 	// Constant Classes
 	/** Default header class; user hasn't scrolled */
@@ -61,101 +60,99 @@
 	});
 </script>
 
-{#if menuOpen}
-	<!-- svelte-ignore a11y-no-static-element-interactions -->
-	<!-- svelte-ignore a11y-click-events-have-key-events -->
-	<!-- Background Blurr -->
-	<div transition:fade class="fixed inset-0 z-50">
-		<div on:click={toggleMenu} class="absolute h-screen w-screen bg-black/50 backdrop-blur-sm" />
-		<!-- Menu Card -->
-		<div
-			in:slide={{ delay: 200, duration: 300 }}
-			out:slide
-			class="bg-surface absolute bottom-0 left-0 right-0 top-0 z-50 mx-auto my-auto flex h-fit w-full max-w-xs flex-col items-center gap-4 rounded-lg p-12 shadow-lg md:max-w-xl"
-		>
-			<!-- Nav Elements -->
-			<nav class="headline-medium flex flex-col gap-6 text-center">
-				{#each pages as {name, href}}
-					<a
-						class="text-foreground hover:text-tertiary transition duration-200 hover:scale-105"
-						{href}
-						on:click={toggleMenu}
-					>
-						{name}
-					</a>
-				{/each}
-			</nav>
-		</div>
-	</div>
-{/if}
-
-<header
-	id="header"
-	class=" {sticky ? 'fixed' : ''} 
- duration-400 z-40 w-full justify-items-center transition"
-	bind:clientHeight={flyAmount}
->
-	<div class="{activeheaderClass} rounded-3xl max-w-7xl mx-auto mt-8 duration-400 relative z-40 transition text-foreground">
-		<div
-			class="z-50 mx-auto flex w-full max-w-7xl items-center justify-center px-6 md:grid md:grid-cols-5"
-		>
-			{#if logoPos == 'leading'}
-				<a class="not-prose mr-auto flex gap-3 justify-self-start" href="/">
-					<Logo />
-					<p class="my-auto hidden text-xl sm:flex">{companyName}</p>
-				</a>
-			{:else}
-				<a class="not-prose mr-auto flex gap-3 justify-self-start md:hidden" href="/">
-					<Logo height="h-10" />
-					<p class="my-auto hidden text-xl sm:flex">{companyName}</p>
-				</a>
-			{/if}
-
-			<!-- Justify-between Header -->
-			<!-- Loading classes for dynamic tw building of variable col number: grid-cols-1 grid-cols-2 grid-cols-3 grid-cols-4 grid-cols-5 grid-cols-6 grid-cols-7 -->
-			<nav
-				class="hidden {logoPos == 'center'
-					? `col-span-5 h-full w-full place-items-center justify-between md:grid grid-cols-${
-							Object.entries(pages).length + 1
-						}`
-					: `col-span-3 md:flex `} mx-auto gap-2 justify-self-center"
+<header class="bg-card text-card-foreground rounded-3xl mt-8 fixed w-[90%] left-1/2 -translate-x-1/2 ">
+	<nav class="items-center justify-between p-6 lg:px-8 {menuOpen ? "hidden" : 'flex'}" aria-label="Global">
+		<a href="#" class="-m-1.5 p-1.5">
+			<span class="sr-only">Your Company</span>
+			<Logo />
+		</a>
+		<div class="flex lg:hidden">
+			<button
+				type="button"
+        on:click={toggleMenu}
+				class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
 			>
-				{#each pages as {name, href}, i}
-					<a class="text-center" {href}>
-						<h6 class="m-0 sm:m-0">
-							{name}
-						</h6>
-					</a>
-					<!-- Places the logo in the middle of the page items. Will only look good if there's an even number of pages!-->
-					{#if logoPos == 'center' && i == Object.entries(pages).length / 2 - 1}
-						<a class="not-prose flex gap-3" href="/">
-							<Logo height="h-10" />
-							<p class="my-auto hidden text-xl sm:flex">{companyName}</p>
-						</a>
-					{/if}
-				{/each}
-			</nav>
-
-			<div
-				class="grid hidden md:flex grid-cols-{Object.entries(CTAButtons)
-					.length} w-fit place-items-center gap-4 justify-self-end md:gap-6"
-			>
-				{#each Object.entries(CTAButtons) as [label, { href, highlight }]}
-					<Button class="w-full" {highlight} {href}>
-						{label}
-					</Button>
-				{/each}
-			</div>
-			{#if logoPos == 'trailing'}
-				<a class="not-prose flex gap-3" href="/">
-					<Logo />
-					<p class="my-auto hidden text-xl sm:flex">{companyName}</p>
-				</a>
-			{/if}
-
-			<button class="stroke-primary hover:stroke-tertiary flex md:hidden" on:click={toggleMenu}>
-				<Icon height="32" width="32" fill={'none'} icon={menuOpen ? 'cross' : 'burger'} />
+				<span class="sr-only">Open main menu</span>
+				<svg
+					class="h-6 w-6"
+					fill="none"
+					viewBox="0 0 24 24"
+					stroke-width="1.5"
+					stroke="currentColor"
+					aria-hidden="true"
+				>
+					<path
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+					/>
+				</svg>
 			</button>
+		</div>
+		<div class="hidden lg:flex lg:gap-x-12 place-items-center">
+			{#each pages as { name, href }}
+				<a {href} class="m-0 text-sm font-semibold leading-6 text-card-foreground hover:text-accent sm:m-0">{name}</a>
+			{/each}
+      <div class="grid grid-cols-2 gap-x-4">
+			{#each Object.entries(CTAButtons) as [name, { href, highlight }]}
+				<Button {href} class="w-full">
+					{name}
+				</Button>
+			{/each}
+    </div>
+      <ThemeToggle />
+		</div>
+	</nav>
+	<!-- Mobile menu, show/hide based on menu open state. -->
+	<div class="lg:hidden {menuOpen ? '' : 'hidden'}" role="dialog" aria-modal="true">
+		<!-- Background backdrop, show/hide based on slide-over state. -->
+		<div class="fixed inset-0 z-10 "></div>
+		<div
+			class="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-card px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10"
+		>
+			<div class="flex items-center justify-between">
+				<a href="#" class="-m-1.5 p-1.5">
+					<span class="sr-only">Your Company</span>
+					<img
+						class="h-8 w-auto"
+						src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+						alt=""
+					/>
+				</a>
+				<button type="button" on:click={toggleMenu} class="-m-2.5 rounded-md p-2.5 text-gray-700">
+					<span class="sr-only">Close menu</span>
+					<svg
+						class="h-6 w-6"
+						fill="none"
+						viewBox="0 0 24 24"
+						stroke-width="1.5"
+						stroke="currentColor"
+						aria-hidden="true"
+					>
+						<path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+					</svg>
+				</button>
+			</div>
+			<div class="mt-6 flow-root">
+				<div class="-my-6 divide-y divide-gray-500/10">
+					<div class="space-y-2 py-6">
+						{#each pages as { name, href }}
+							<a
+								{href}
+								class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-card-foreground hover:text-accent-foreground hover:bg-accent"
+								>{name}</a
+							>
+						{/each}
+					</div>
+					<div class="py-6 grid grid-cols-2 gap-x-4">
+            {#each Object.entries(CTAButtons) as [name, { href, highlight }]}
+              <Button {href} class="w-full">
+                {name}
+              </Button>
+            {/each}
+          </div>
+				</div>
+			</div>
 		</div>
 	</div>
 </header>

@@ -1,14 +1,14 @@
 <script>
 	import '../app.pcss';
 	import Shell from '$lib/components/organisms/Shell.svelte';
-	import Sidebar from '$lib/components/organisms/Sidebar.svelte';
-	import ThemeToggle from '$lib/components/atoms/ThemeToggle.svelte';
-	import Header from '$lib/components/molecules/Header.svelte';
 
-		const navigation = [
-			{ name: "Home", href: '/' },
-			{ name: "Pricing", href: '/pricing'},
-		];
+	import Header from '$lib/components/molecules/Header.svelte';
+	import Prose from '$lib/components/atoms/Prose.svelte';
+
+	const navigation = [
+		{ name: 'Home', href: '/' },
+		{ name: 'Pricing', href: '/pricing' }
+	];
 
 	const CTAButtons = {
 		Login: { href: '/login', highlight: false },
@@ -16,14 +16,16 @@
 	};
 </script>
 
-<Shell class="h-screen">
+<Shell
+	class="no-scroll prose-a:no-underline prose  prose-main sm:prose-base md:prose-lg lg:prose-xl xl:prose-2xl h-screen max-w-none overflow-hidden"
+>
 	<svelte:fragment slot="header">
-		<Header pages={navigation} {CTAButtons} />
+		<Header companyName="Oak" pages={navigation} {CTAButtons} />
 	</svelte:fragment>
 
 	<!-- Router Slot -->
 	<slot />
 	<!-- ---- / ---- -->
-	<svelte:fragment slot="pageFooter">Page sdfsdFooter</svelte:fragment>
+	<svelte:fragment slot="pageFooter"></svelte:fragment>
 	<!-- (footer) -->
 </Shell>

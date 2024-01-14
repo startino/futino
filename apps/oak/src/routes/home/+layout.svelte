@@ -14,7 +14,7 @@
 	<!-- Router Slot -->
 	<slot />
 	<!-- ---- / ---- -->
-	<svelte:fragment slot="pageFooter">Page sdfsdFooter</svelte:fragment>
+	<svelte:fragment slot="pageFooter">Page y sdfsdFooter</svelte:fragment>
 	<!-- (footer) -->
 </Shell>
 

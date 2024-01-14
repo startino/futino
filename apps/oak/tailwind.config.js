@@ -37,32 +37,25 @@ const config = {
 					DEFAULT: {
 						css: {
 							h1: {
-								fontFamily: "TASA Orbiter Display",
 								fontWeight: "bold",
 							},
 							h2: {
-								fontFamily: "TASA Orbiter Text",
 								fontWeight: "normal",
 							},
 							h3: {
-								fontFamily: "TASA Orbiter Text",
 								fontWeight: "normal",
 							},
 							h4: {
-								fontFamily: "TASA Orbiter Text",
 								fontWeight: "normal",
 							},
 							h5: {
-								fontFamily: "TASA Orbiter Text",
 								fontWeight: "normal",
 							},
 
 							h6: {
-								fontFamily: "TASA Orbiter Text",
 								fontWeight: "normal",
 							},
 							p: {
-								fontFamily: "TASA Orbiter Text",
 								letterSpacing: "0.5",
 								lineHeight: "1.5",
 								opacity: "0.75",
