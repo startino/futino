@@ -8,7 +8,7 @@
 </script>
 
 
-<Shell class="h-screen">
+<Shell class="h-screen prose-a:no-underline prose prose-main sm:prose-base md:prose-lg lg:prose-xl xl:prose-2xl h-screen w-full max-w-none">
 	<svelte:fragment slot="sidebarLeft"><Sidebar /></svelte:fragment>
 	<svelte:fragment slot="pageHeader"><PageHeader /></svelte:fragment>
 	<!-- Router Slot -->

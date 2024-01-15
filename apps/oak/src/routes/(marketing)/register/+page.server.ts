@@ -5,12 +5,16 @@ import type { Actions, PageServerLoad } from "./$types";
 import { AuthApiError } from "@supabase/supabase-js";
 import { createSupabaseLoadClient } from '@supabase/auth-helpers-sveltekit';
 
-export const load: PageServerLoad = async ({locals: getSession}) => {
-	const form = await superValidate(registerUserSchema);
+export const load: PageServerLoad = async (event) => {
+
+	const session = await event.locals.getSession();
+
+	if (!session) {
+		throw redirect(302, '/')
+	}
 
 	return {
-		session: await getSession,
-		form: form
+		form: await superValidate(registerUserSchema)
 	}
 }
 
@@ -25,13 +29,25 @@ export const actions: Actions = {
 			})
 		}
 
-		if(form.data.password !== form.data.confirmPassword) {
+		if (form.data.password !== form.data.confirmPassword) {
 			return setError(form, "confirmPassword", "Passwords do not match");
 		}
 
-		
-		//TODO:  Register user
 
+		const { error: authError } = await event.locals.supabase.auth.signInWithOtp({
+			email: form.data.email,
+			options: {
+				emailRedirectTo: `http://localhost:5173/home`
+			}
+			
+		});
+
+		if (authError) {
+			return setError(form, "An error occured while registering.");
+		} 
+		else {
+			throw redirect(302, "/home");
+		}
 		return {
 			msg: "Form is valid!",
 			form: form

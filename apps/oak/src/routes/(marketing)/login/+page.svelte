@@ -9,6 +9,6 @@
 </script>
 
 <main class="mt-32 flex h-fit w-full flex-col items-center">
-	<h1 class="mt-24">Register for an account</h1>
+	<h1 class="mt-24">Log in to your account</h1>
 	<AuthForm typeOfAuth="login" data={data} />
 </main>

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import "$styling";
+	import '$styling';
 </script>
 
 <slot />

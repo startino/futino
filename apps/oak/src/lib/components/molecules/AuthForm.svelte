@@ -33,7 +33,6 @@
 <Card.Root class="w-full max-w-2xl p-12">
 	<form
 		method="POST"
-		action={typeOfAuth == 'login' ? '?/login' : '?/register'}
 		class="flex flex-col gap-y-6"
 		use:enhance
 		data-testid="register-form"

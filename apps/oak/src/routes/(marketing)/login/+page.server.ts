@@ -4,8 +4,9 @@ import type { Actions, PageServerLoad } from "./$types";
 import { fail, redirect } from "@sveltejs/kit";
 import { AuthApiError } from "@supabase/supabase-js";
 
-export const load: PageServerLoad = async (event) => {
+export const load: PageServerLoad = async ({ locals: { getSession, supabase } }) => {
 	const form = await superValidate(loginUserSchema);
+
 	return {
 		form: form
 	};
@@ -22,7 +23,10 @@ export const actions: Actions = {
 			});
 		}
 
-		const { error: authError } = await event.locals.supabase.auth.signInWithPassword(form.data);
+		const { error: authError } = await event.locals.supabase.auth.signInWithPassword({
+			email: form.data.email,
+			password: form.data.password
+		});
 
 		if (authError) {
 			if (authError instanceof AuthApiError && authError.status === 400) {
@@ -33,11 +37,8 @@ export const actions: Actions = {
 				});
 			}
 		}
-
-		if (redirectTo) {
-			throw redirect(302, `/${redirectTo.slice(1)}`);
+		else {
+			throw redirect(302, "/home");
 		}
-
-		throw redirect(302, "/");
 	}
 };
