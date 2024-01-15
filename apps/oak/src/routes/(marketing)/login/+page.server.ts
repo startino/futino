@@ -1,21 +1,13 @@
-import { z } from "zod";
+import { loginUserSchema } from "$lib/schemas";
 import { setError, superValidate } from "sveltekit-superforms/server";
 import type { Actions, PageServerLoad } from "./$types";
 import { fail, redirect } from "@sveltejs/kit";
 import { AuthApiError } from "@supabase/supabase-js";
 
-const loginUserSchema = z.object({
-	email: z.string().email("Please enter a valid email address"),
-	password: z.string().min(1, "Please enter a password")
-});
-
 export const load: PageServerLoad = async (event) => {
-	const session = await event.locals.getSession();
-	if (session) {
-		throw redirect(302, "/");
-	}
+	const form = await superValidate(loginUserSchema);
 	return {
-		form: superValidate(loginUserSchema)
+		form: form
 	};
 };
 

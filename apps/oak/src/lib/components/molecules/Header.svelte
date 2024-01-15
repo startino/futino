@@ -60,7 +60,7 @@
 	});
 </script>
 
-<header class="bg-card text-card-foreground rounded-3xl mt-8 fixed w-[90%] max-w-7xl left-1/2 -translate-x-1/2 ">
+<header class="bg-card text-card-foreground rounded-3xl mt-6 fixed w-[90%] max-w-7xl left-1/2 -translate-x-1/2 ">
 	<nav class="items-center justify-between p-6 lg:px-8 {menuOpen ? "hidden" : 'flex'}" aria-label="Global">
 		<a href="#" class="-m-1.5 p-1.5">
 			<span class="sr-only">Your Company</span>
