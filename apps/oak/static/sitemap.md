@@ -91,14 +91,7 @@ mindmap
             [trial_end]
             [metadata]
         subscription_status
-            (trialing)
-            (active)
-            (canceled)
-            (incomplete)
-            (incomplete_expired)
-            (past_due)
-            (unpaid)
-            (paused)
+
 
         contracts
         bills

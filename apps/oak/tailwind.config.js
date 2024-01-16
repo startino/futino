@@ -1,7 +1,7 @@
 import { fontFamily } from "tailwindcss/defaultTheme";
 import typographyConfig  from "./theme/typography.cjs";
 import colorConfig  from "./theme/color.cjs";
-
+import {animationsConfig, keyframesConfig}  from "./theme/animation.cjs";
 
 /** @type {import('tailwindcss').Config} */
 
@@ -22,6 +22,8 @@ const config = {
 			}
 		},
 		extend: {
+			animation: animationsConfig,
+			keyframes: keyframesConfig,
 			colors: colorConfig,
 			borderRadius: {
 				lg: "var(--radius)",

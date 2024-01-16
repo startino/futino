@@ -9,4 +9,3 @@
 </script>
 
 <h1>{data.profile?.full_name}</h1>
-<h1>hellssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssso</h1>

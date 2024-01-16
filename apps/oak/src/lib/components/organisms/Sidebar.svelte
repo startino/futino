@@ -1,67 +1,150 @@
 <script lang="ts">
-	const navigation = [
-		{ name: 'Dashboard', href: '#', icon: 'home', current: true },
-		{ name: 'Team', href: '#', icon: 'users', current: false },
-		{ name: 'Projects', href: '#', icon: 'folder', current: false },
-		{ name: 'Calendar', href: '#', icon: 'calendar', current: false },
-		{ name: 'Documents', href: '#', icon: 'document-duplicate', current: false },
-		{ name: 'Reports', href: '#', icon: 'chart-pie', current: false }
+	import LucideIcon from '$lib/components/atoms/LucideIcon.svelte';
+	import { page } from '$app/stores';
+	import Logo from '../atoms/Logo.svelte';
+
+	export let navigations: {
+		name: string;
+		items: {
+			name: string;
+			href: string;
+			icon: string;
+			current: boolean;
+			pendingCount?: number;
+		}[];
+	}[] = [
+		{
+			name: 'Pending Approvals',
+			items: [
+				{
+					name: 'Contract Entries',
+					href: 'pending-contracts',
+					icon: 'Paperclip',
+					current: false,
+					pendingCount: 2
+				},
+				{
+					name: 'Bill Entries',
+					href: 'pending-bills',
+					icon: 'Receipt',
+					current: false,
+					pendingCount: 3
+				},
+				{
+					name: 'Contract Modifications',
+					href: 'pending-modifications',
+					icon: 'PencilRuler',
+					current: false,
+					pendingCount: 0
+				}
+			]
+		},
+		{
+			name: 'Contract Management',
+			items: [
+				{ name: 'Contract Repository', href: 'contract-repository', icon: 'Table', current: false },
+				{
+					name: 'Contract Entry Form',
+					href: 'contract-entry-form',
+					icon: 'PlusCircle',
+					current: false
+				},
+				{ name: 'Contract Report', href: 'contract-report', icon: 'PieChart', current: false }
+			],
+			current: false
+		},
+		{
+			name: 'Bill Management',
+			items: [
+				{ name: 'Bill Repository', href: 'bill-repository', icon: 'Table', current: false },
+				{ name: 'Bill Entry Form', href: 'bill-entry-form', icon: 'PlusCircle', current: false }
+			],
+			current: false
+		},
+		{
+			name: 'Settings',
+			items: [
+				{
+					name: 'Personal Account',
+					href: 'personal-account',
+					icon: 'CircleUserRound',
+					current: false
+				},
+				{ name: 'Company Account', href: 'company-account', icon: 'Building', current: false },
+				{ name: 'Logs', href: '#', icon: 'ScrollText', current: false }
+			],
+			current: false
+		}
+	];
+	export let bottomNavigation = [
+		{ name: 'Help', href: 'help', icon: 'HelpCircle', current: false },
+		{ name: 'Logout', href: 'logout', icon: 'LogOut', current: false }
 	];
 </script>
 
 <!-- Static sidebar for desktop -->
-<div class="hidden lg:z-50 lg:flex lg:w-72 lg:flex-col h-full">
+<div class="hidden h-full overflow-y-clip lg:z-50 lg:flex lg:w-72 lg:flex-col">
 	<!-- Sidebar component, swap this element with another sidebar if you like -->
-	<div class="flex grow flex-col gap-y-5 bg-primary px-6 pb-6">
-		<div class="flex h-16 shrink-0 items-center">
-			<img
-				class="h-8 w-auto"
-				src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
-				alt="Your Company"
-			/>
+	<div class="bg-primary flex grow flex-col gap-y-5 px-6 pb-6 text-white">
+		<div class="items-cente flex h-16 shrink-0 px-2 pt-6">
+			<a href="https://flowbite.com" class="mr-4 flex place-items-center space-x-2">
+				<Logo color="accent" />
+				<span class="self-center whitespace-nowrap text-2xl font-semibold dark:text-white">Oak</span
+				>
+			</a>
 		</div>
-		<nav class="flex flex-1 flex-col">
-			<ul role="list" class="flex flex-1 flex-col gap-y-7">
-				<li>
-					<ul role="list" class="-mx-2 space-y-1">
-						{#each navigation as { name, href, icon, current }}
-							<li>
+		<nav class="flex flex-col pt-0 sm:mt-0 sm:pt-0">
+			<ul role="list" class="flex list-none flex-col gap-y-7 pl-0 sm:mt-0 sm:pl-0">
+				<li class="pl-0 sm:pl-0">
+					{#each navigations as { name, items }}
+						<ul role="list" class=" mb-6 list-none gap-4 pl-0 sm:mb-8 sm:pl-0">
+							<p class="m-0 px-2 pb-2 text-xs font-semibold sm:m-0">{name}</p>
+							{#each items as { name, href, icon, current, pendingCount }}
+								<li class="m-0 pl-0 sm:m-0 sm:pl-0">
+									<!-- Current: "bg-gray-800 text-primary-foreground", Default: "text-gray-400 hover:text-primary-foreground hover:bg-gray-800" -->
+									<a
+										href={'/home/' + href}
+										class="group flex gap-x-3 rounded-md p-2 text-sm font-semibold transition transition-colors transition-transform hover:translate-x-2 hover:scale-[1.04] {$page.url.pathname.includes(
+											href
+										)
+											? 'bg-accent/90 text-accent-foreground hover:bg-accent '
+											: 'text-primary-foreground hover:text-accent opacity-100'}"
+									>
+										<LucideIcon name={icon} />
+										{name}
+										{#if pendingCount}
+											<span
+												class="bg-accent text-accent-foreground ml-auto rounded-full px-2 py-1 text-xs font-semibold"
+											>
+												{pendingCount}
+											</span>
+										{/if}
+									</a>
+								</li>
+							{/each}
+						</ul>
+					{/each}
+				</li>
+				<li class="mt-auto pl-0 sm:pl-0">
+					<ul role="list" class=" list-none space-y-1 pl-0 sm:pl-0">
+						{#each bottomNavigation as { name, href, icon, current }}
+							<li class="pl-0 sm:pl-0">
 								<!-- Current: "bg-gray-800 text-primary-foreground", Default: "text-gray-400 hover:text-primary-foreground hover:bg-gray-800" -->
 								<a
-									{href}
-									class="group flex gap-x-3 rounded-md {current ? 'bg-accent' : ''} p-2 text-sm font-semibold leading-6 text-primary-foreground hover:text-accent"
+									href={'/home/' + href}
+									class="group flex gap-x-3 rounded-md p-2 text-sm font-semibold transition transition-colors transition-transform hover:translate-x-2 hover:scale-[1.04] {$page.url.pathname.includes(
+										href
+									)
+										? 'bg-accent/90 text-accent-foreground hover:bg-accent '
+										: 'text-primary-foreground hover:text-accent opacity-100'}"
 								>
-									<svg
-										class="h-6 w-6 shrink-0"
-										fill="none"
-										viewBox="0 0 24 24"
-										stroke-width="1.5"
-										stroke="currentColor"
-										aria-hidden="true"
-									>
-										<path
-											stroke-linecap="round"
-											stroke-linejoin="round"
-											d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"
-										/>
-									</svg>
+									<LucideIcon name={icon} />
 									{name}
 								</a>
 							</li>
-              
 						{/each}
-           
 					</ul>
 				</li>
-        <li class="mt-auto">
-          <a href="#" class="group -mx-2 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-gray-400 hover:bg-gray-800 hover:text-primary-foreground">
-            <svg class="h-6 w-6 shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.324.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 011.37.49l1.296 2.247a1.125 1.125 0 01-.26 1.431l-1.003.827c-.293.24-.438.613-.431.992a6.759 6.759 0 010 .255c-.007.378.138.75.43.99l1.005.828c.424.35.534.954.26 1.43l-1.298 2.247a1.125 1.125 0 01-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.57 6.57 0 01-.22.128c-.331.183-.581.495-.644.869l-.213 1.28c-.09.543-.56.941-1.11.941h-2.594c-.55 0-1.02-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 01-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 01-1.369-.49l-1.297-2.247a1.125 1.125 0 01.26-1.431l1.004-.827c.292-.24.437-.613.43-.992a6.932 6.932 0 010-.255c.007-.378-.138-.75-.43-.99l-1.004-.828a1.125 1.125 0 01-.26-1.43l1.297-2.247a1.125 1.125 0 011.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.087.22-.128.332-.183.582-.495.644-.869l.214-1.281z" />
-              <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-            </svg>
-            Settings
-          </a>
-        </li>
 			</ul>
 		</nav>
 	</div>

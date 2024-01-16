@@ -8,6 +8,19 @@ export const registerUserSchema = z.object({
 });
 
 export const loginUserSchema = z.object({
-	email: z.string().email("Please enter a valid email address"),
-	password: z.string().min(1, "Please enter a password")
+    email: z.string().email("Please enter a valid email address"),
+    password: z.string().min(1, "Please enter a password")
+});
+
+export const contractEntrySchema = z.object({
+    parentContract: z.string().optional(),
+    startDate: z.date(),
+    endDate: z.date(),
+    description: z.string(),
+    projectCode: z.string().optional(),
+    owner: z.string().optional(),
+    approver: z.string().optional(),
+    department: z.string().optional(),
+    amount: z.number().optional(),
+    spendCategory: z.enum(["Contract", "Clinical", "Other"]).optional(),
 });
