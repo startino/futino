@@ -22,3 +22,7 @@ export const handle: Handle = async ({ event, resolve }) => {
     },
   })
 }
+
+export function handleError({ event, error }) {
+  console.error("Handle Error caught an error: " + error.stack);
+}

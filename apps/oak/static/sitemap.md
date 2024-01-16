@@ -5,7 +5,7 @@ mindmap
         👋 Landing Page
         💲 Pricing Page
         ✍️ Login/Register Page
-            Email Authentication
+            📧 Email Authentication 
         📱 User-side App
             💼 Contract Management
                 🗃️ Contract repository
@@ -15,11 +15,21 @@ mindmap
                 📊 Contract report
             📝 Bill management
                 ...
-            📩 Pending approvals
+            📩 Notifications
                 📋 Pending contract approvals
                 📋 Pending bill approvals
                 📋 Pending contract reviews
+                📋 Requested admin help
             ⚙️ Account settings
+                📝 Edit profile
+                📝 Edit notification settings
+                📝 Edit approval settings
+            ⚙️ Company settings (admin only)
+                📝 Edit user accounts
+                    📝 Edit permissions
+                    📝 Edit approvers
+                    📝 Edit approval thresholds
+                📝 Edit company billing settings
             💰 Payment
                 🔄 Select Payment cycle
                 💳 Go to Stripe checkout
@@ -49,6 +59,57 @@ mindmap
             Post MVP
             
 ```
+
+```mermaid
+
+mindmap
+    root(database)
+        auth.users
+            [user_id]
+            [role]
+            [email]
+            [encrypted_password]
+        profiles
+            [user_id]
+            [company_secret_id]
+            [user_role]
+            [user_id]
+            [name]
+            [email]
+            [password]
+            [approval_threshold]
+        companies
+            [company_secret_id]
+            [name]
+            [customer_id]
+            [status]
+            [cancel_at_period_end]
+            [created_at]
+            [current_period_start]
+            [current_period_end]
+            [trial_start]
+            [trial_end]
+            [metadata]
+        subscription_status
+            (trialing)
+            (active)
+            (canceled)
+            (incomplete)
+            (incomplete_expired)
+            (past_due)
+            (unpaid)
+            (paused)
+
+        contracts
+        bills
+        logs
+        billing
+```
+
+
+
+
+
 
 -----------------
 
@@ -80,8 +141,8 @@ mindmap
 | End Date        | Date Field        |
 | Description     | Free Text Field   |
 | Project Code    | Project code ({custom type}@jonas{can we make enum types in a db? or array of strings?}) |
-| Owner           | User ID / username, defaulted to self |
-| Approver        | User Id / username, defaulted to {default approver}@jared{does default approver exist?} |
+| Creator         | User ID / username, defaulted to self |
+| Approver        | User Id / username, defaulted to default approver |
 | Department      | department code (custom type), defaulted to contract |
 | Amount          |  |
 | Spend Category  | Drop-down |
@@ -99,7 +160,6 @@ mindmap
 
 -----------------
 
-
 ### LOGIN FORM: 
 | Field        | Description                           |
 |--------------|---------------------------------------|
@@ -108,31 +168,65 @@ mindmap
 | Password     | User's password (hidden)               |
 | Company Code | Unique secret ID for the company       |
 
+### PROFILES DATATABLE:
+| Field               | Description                                          |
+|---------------------|------------------------------------------------------|
+| Company code        | Unique secret ID for the company                     |
+| User role           | Enum from {"admin", "signatory", "default"}          |
+| User ID             | Immutable user ID from auth.users                    |
+| Name                | Username/first-name of the user                      |
+| Email               | Email address of the company                         |
+| Password            | Password for the user                                |
+| Approval threshold  | Threshold for single-amount contract approvals       |
+| Default Approver(s) | IDs of                                               |
 
-### USER DATATABLE:
-
-| Field              | Description                           |
-|--------------------|---------------------------------------|
-| Company code       | Unique secret ID for the company      |
-| User ID            | Immutable user ID                      |
-| Name               | Username/first-name of the user        |
-| Email              | Email address of the company           |
-| Password           | Password for the user  |
-| Approval threshold | Threshold for single-amount contract approvals       |
-| {Approver}@jared{is approver constant?} | User responsible for approving this user's contracts |
-
-
-## ACCOUNT SETTINGS:
+### APPROVERS DATATABLE:
 | Field              | Description                          |
 |--------------------|--------------------------------------|
-| Company code       | Unique secret ID for the company     |
-| Name               | Username/first-name of the user      |
-| Email              | Email address of the company         |
-| Password           | Password for the user                |
-| User ID            | Immutable user ID                    |
-| Approval threshold | Threshold for single-amount contract approvals (admin-only modifiable) |
-| Approver           | User responsible for approving this user's contracts (admin-only modifiable) |
-| Approvees          | List of users this user is responsible for approving |
+| User ID            | User ID of approvee                  |
+| Approver           | User ID of approver                  |
+
+## ACCOUNT SETTINGS:
+| Field              | Description                              |
+|--------------------|------------------------------------------|
+| Company code       | Unique secret ID for the company (star)  |
+| Name               | Username/first-name of the user          |
+| Email              | Email address of the company             |
+| Password           | Password for the user (star)             |
+| Approval threshold | Threshold for single-amount contract approvals (admin-only modifiable (AOM)) |
+| Approver(s)        | User(s) responsible for approving this user's contracts (AOM)                |
+| Approvee(s)        | User(s) this user is responsible for approving (AOM)                         |
+
+
+-----------------
+
+
+## LOG DATATABLE:
+| Field              | Description                            |
+|--------------------|----------------------------------------|
+| Created at         | Unique secret ID for the company       |
+| User ID            | ID of user that caused the log         |
+| {Company code}@jonas{should we just get company code from the profiles table using user.id instead of storing here?} | Unique secret ID for the company  |
+| Event              | Enum from Log Events                   |
+| Fields modified    | List of fields modified                |
+| Old data           | Data before changes                    |
+| New data           | Data after changes                     |
+
+## LOG EVENTS:
+| Event              | 
+|--------------------|
+| Contract Created   |
+| Contract Modified  |
+| Contract Deleted   |
+| User Created       |
+| User Login         |
+| User Logout        |
+| User Deleted       |
+| User Modified      |
+| Payment Events     |
+
+## Log example
+|  Created at 16-1-2024@16:00:20  |  User 123456abcdef  | Company 98765aoeui  |  Contract Created  | all fields modified (n/a) |  n/a  |  { contract: {...} }  |
 
 
 -----------------

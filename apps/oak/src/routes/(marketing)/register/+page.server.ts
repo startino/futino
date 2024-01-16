@@ -1,6 +1,6 @@
 import { setError, superValidate } from 'sveltekit-superforms/server';
 import { registerUserSchema } from '$lib/schemas';
-import { fail, redirect } from '@sveltejs/kit';;
+import { fail, redirect, error } from '@sveltejs/kit';;
 import type { Actions, PageServerLoad } from "./$types";
 import { AuthApiError } from "@supabase/supabase-js";
 import { createSupabaseLoadClient } from '@supabase/auth-helpers-sveltekit';
@@ -8,10 +8,6 @@ import { createSupabaseLoadClient } from '@supabase/auth-helpers-sveltekit';
 export const load: PageServerLoad = async (event) => {
 
 	const session = await event.locals.getSession();
-
-	if (!session) {
-		throw redirect(302, '/')
-	}
 
 	return {
 		form: await superValidate(registerUserSchema)
