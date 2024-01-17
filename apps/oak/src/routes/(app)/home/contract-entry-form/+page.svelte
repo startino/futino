@@ -44,7 +44,7 @@
 	let endDatePlaceholder: DateValue = today(getLocalTimeZone());
 </script>
 
-<Card.Root class="mx-auto max-w-3xl p-12">
+<Card.Root class="mx-auto  mx-4 p-12">
 	<Card.Header
 		><Card.Title class="m-0 sm:m-0">Contract Entry Form</Card.Title>
 		<Card.Description class="m-0 sm:m-0"
