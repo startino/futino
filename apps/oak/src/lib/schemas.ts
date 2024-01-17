@@ -14,13 +14,18 @@ export const loginUserSchema = z.object({
 
 export const contractEntrySchema = z.object({
     parentContract: z.string().optional(),
-    startDate: z.date(),
-    endDate: z.date(),
-    description: z.string(),
+    startDate: z
+        .string()
+        .refine((v) => v, { message: "A start date is required." }),
+    endDate: z.string()
+        .refine((v) => v, { message: "An end date is required." }),
+    description: z.string().optional(),
     projectCode: z.string().optional(),
-    owner: z.string().optional(),
+    owner: z.string(),
     approver: z.string().optional(),
     department: z.string().optional(),
     amount: z.number().optional(),
     spendCategory: z.enum(["Contract", "Clinical", "Other"]).optional(),
 });
+
+export type ContractEntryForm = typeof contractEntrySchema;

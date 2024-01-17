@@ -85,7 +85,7 @@
 <!-- Static sidebar for desktop -->
 <div class="hidden h-full overflow-y-clip lg:z-50 lg:flex lg:w-72 lg:flex-col">
 	<!-- Sidebar component, swap this element with another sidebar if you like -->
-	<div class="bg-primary flex grow flex-col gap-y-5 px-6 pb-6 text-white">
+	<div class="bg-primary-900 flex grow flex-col gap-y-5 px-6 pb-6 text-white">
 		<div class="items-cente flex h-16 shrink-0 px-2 pt-6">
 			<a href="https://flowbite.com" class="mr-4 flex place-items-center space-x-2">
 				<Logo color="accent" />
