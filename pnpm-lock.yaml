@@ -27,8 +27,8 @@ importers:
   apps/anzelmo:
     dependencies:
       bits-ui:
-        specifier: ^0.11.7
-        version: 0.11.8(svelte@5.0.0-next.31)
+        specifier: ^0.14.0
+        version: 0.14.0(svelte@5.0.0-next.31)
       clsx:
         specifier: ^2.1.0
         version: 2.1.0
@@ -115,8 +115,8 @@ importers:
   apps/bapta:
     dependencies:
       bits-ui:
-        specifier: ^0.11.7
-        version: 0.11.8(svelte@5.0.0-next.31)
+        specifier: ^0.14.0
+        version: 0.14.0(svelte@5.0.0-next.31)
       clsx:
         specifier: ^2.1.0
         version: 2.1.0
@@ -382,97 +382,6 @@ importers:
         specifier: ^5.0.3
         version: 5.0.11
 
-  apps/ggsoccer:
-    dependencies:
-      bits-ui:
-        specifier: ^0.11.7
-        version: 0.11.8(svelte@5.0.0-next.31)
-      clsx:
-        specifier: ^2.1.0
-        version: 2.1.0
-      lucide-svelte:
-        specifier: ^0.309.0
-        version: 0.309.0(svelte@5.0.0-next.31)
-      mdsvex:
-        specifier: ^0.11.0
-        version: 0.11.0(svelte@5.0.0-next.31)
-      tailwind-merge:
-        specifier: ^2.2.0
-        version: 2.2.0
-      tailwind-variants:
-        specifier: ^0.1.20
-        version: 0.1.20(tailwindcss@3.4.1)
-    devDependencies:
-      '@sveltejs/adapter-auto':
-        specifier: ^3.0.0
-        version: 3.1.0(@sveltejs/kit@2.1.2)
-      '@sveltejs/adapter-vercel':
-        specifier: ^4.0.4
-        version: 4.0.4(@sveltejs/kit@2.1.2)
-      '@sveltejs/kit':
-        specifier: ^2.0.0
-        version: 2.1.2(@sveltejs/vite-plugin-svelte@3.0.1)(svelte@5.0.0-next.31)(vite@5.0.11)
-      '@sveltejs/vite-plugin-svelte':
-        specifier: ^3.0.0
-        version: 3.0.1(svelte@5.0.0-next.31)(vite@5.0.11)
-      '@types/eslint':
-        specifier: 8.56.2
-        version: 8.56.2
-      '@typescript-eslint/eslint-plugin':
-        specifier: ^6.0.0
-        version: 6.17.0(@typescript-eslint/parser@6.17.0)(eslint@8.56.0)(typescript@5.3.3)
-      '@typescript-eslint/parser':
-        specifier: ^6.0.0
-        version: 6.17.0(eslint@8.56.0)(typescript@5.3.3)
-      autoprefixer:
-        specifier: ^10.4.16
-        version: 10.4.16(postcss@8.4.33)
-      eslint:
-        specifier: ^8.56.0
-        version: 8.56.0
-      eslint-config-prettier:
-        specifier: ^9.1.0
-        version: 9.1.0(eslint@8.56.0)
-      eslint-plugin-svelte:
-        specifier: ^2.35.1
-        version: 2.35.1(eslint@8.56.0)(svelte@5.0.0-next.31)
-      postcss:
-        specifier: ^8.4.32
-        version: 8.4.33
-      postcss-load-config:
-        specifier: ^5.0.2
-        version: 5.0.2(postcss@8.4.33)
-      prettier:
-        specifier: ^3.1.1
-        version: 3.1.1
-      prettier-plugin-svelte:
-        specifier: ^3.1.2
-        version: 3.1.2(prettier@3.1.1)(svelte@5.0.0-next.31)
-      prettier-plugin-tailwindcss:
-        specifier: ^0.5.9
-        version: 0.5.11(prettier-plugin-svelte@3.1.2)(prettier@3.1.1)
-      svelte:
-        specifier: ^5.0.0-next.1
-        version: 5.0.0-next.31
-      svelte-check:
-        specifier: ^3.6.0
-        version: 3.6.2(postcss-load-config@5.0.2)(postcss@8.4.33)(svelte@5.0.0-next.31)
-      svelte-inview:
-        specifier: ^4.0.2
-        version: 4.0.2(svelte@5.0.0-next.31)
-      tailwindcss:
-        specifier: ^3.3.6
-        version: 3.4.1
-      tslib:
-        specifier: ^2.4.1
-        version: 2.6.2
-      typescript:
-        specifier: ^5.0.0
-        version: 5.3.3
-      vite:
-        specifier: ^5.0.3
-        version: 5.0.11
-
   apps/oak:
     dependencies:
       '@internationalized/date':
@@ -582,8 +491,8 @@ importers:
   apps/template:
     dependencies:
       bits-ui:
-        specifier: ^0.11.7
-        version: 0.11.8(svelte@5.0.0-next.31)
+        specifier: ^0.14.0
+        version: 0.14.0(svelte@5.0.0-next.31)
       clsx:
         specifier: ^2.1.0
         version: 2.1.0
@@ -676,8 +585,8 @@ importers:
         specifier: ^0.0.18
         version: 0.0.18
       bits-ui:
-        specifier: ^0.11.7
-        version: 0.11.8(svelte@5.0.0-next.31)
+        specifier: ^0.14.0
+        version: 0.14.0(svelte@5.0.0-next.31)
       clsx:
         specifier: ^2.1.0
         version: 2.1.0
@@ -797,8 +706,8 @@ importers:
   apps/wonderlee:
     dependencies:
       bits-ui:
-        specifier: ^0.11.7
-        version: 0.11.8(svelte@5.0.0-next.31)
+        specifier: ^0.14.0
+        version: 0.14.0(svelte@5.0.0-next.31)
       clsx:
         specifier: ^2.1.0
         version: 2.1.0
@@ -1635,6 +1544,20 @@ packages:
       focus-trap: 7.5.4
       nanoid: 5.0.4
       svelte: 4.2.8
+    dev: false
+
+  /@melt-ui/svelte@0.68.0(svelte@5.0.0-next.31):
+    resolution: {integrity: sha512-/QvA98hnYEodZtHJ71+ocum/WWp30hVNt3F8uiZKnNYwZDaiQYjlyR9AaGKYcZLCe6R68op1mfCzc0kTzJilyA==}
+    peerDependencies:
+      svelte: '>=3 <5'
+    dependencies:
+      '@floating-ui/core': 1.5.3
+      '@floating-ui/dom': 1.5.4
+      '@internationalized/date': 3.5.1
+      dequal: 2.0.3
+      focus-trap: 7.5.4
+      nanoid: 5.0.4
+      svelte: 5.0.0-next.31
     dev: false
 
   /@microsoft/tsdoc-config@0.16.2:
@@ -2705,6 +2628,17 @@ packages:
       '@melt-ui/svelte': 0.68.0(svelte@4.2.8)
       nanoid: 5.0.4
       svelte: 4.2.8
+    dev: false
+
+  /bits-ui@0.14.0(svelte@5.0.0-next.31):
+    resolution: {integrity: sha512-S1LNwp/Sge1Ro1g0iJ+msIUeJYmoNhXBFShnLDOUOKQe3JG1wd027KxZnVd7db6UWr1IqlJdd4/bbB7NYXeYDw==}
+    peerDependencies:
+      svelte: ^4.0.0
+    dependencies:
+      '@internationalized/date': 3.5.1
+      '@melt-ui/svelte': 0.68.0(svelte@5.0.0-next.31)
+      nanoid: 5.0.4
+      svelte: 5.0.0-next.31
     dev: false
 
   /bits-ui@0.9.9(svelte@4.2.8):

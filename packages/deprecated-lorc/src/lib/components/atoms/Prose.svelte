@@ -1,34 +1,33 @@
 <script lang="ts">
-  import { CssClasses } from "../../types";
-  import { onMount } from "svelte";
-  export let size: "xs" | "sm" | "md" | "lg" | "xl" = "md";
-  let proseClasses: CssClasses = "";
+  import { onMount } from "svelte"
+  export let size: "xs" | "sm" | "md" | "lg" | "xl" = "md"
+  let proseClasses = ""
   onMount(() => {
     switch (size) {
       case "xs": {
-        proseClasses = " prose-sm ";
-        break;
+        proseClasses = " prose-sm "
+        break
       }
       case "sm": {
-        proseClasses = " prose-sm md:prose-base xl:prose-md  2xl:prose-lg ";
-        break;
+        proseClasses = " prose-sm md:prose-base xl:prose-md  2xl:prose-lg "
+        break
       }
       case "md": {
-        proseClasses = "sm:prose-base md:prose-lg lg:prose-xl xl:prose-2xl";
-        break;
+        proseClasses = "sm:prose-base md:prose-lg lg:prose-xl xl:prose-2xl"
+        break
       }
       case "lg": {
-        proseClasses = "sm:prose-lg md:prose-xl lg:prose-2xl";
-        break;
+        proseClasses = "sm:prose-lg md:prose-xl lg:prose-2xl"
+        break
       }
       case "xl": {
-        break;
+        break
       }
       default: {
-        break;
+        break
       }
     }
-  });
+  })
 </script>
 
 <div
