@@ -9,7 +9,7 @@
 </script>
 
 <header class="antialiased">
-	<nav class="bg-card border border-accent rounded-2xl my-4 mx-4 px-4 py-4 ">
+	<nav class="bg-card border rounded-2xl m-4 px-4 py-4 ">
 		<div class="flex flex-wrap items-center justify-between">
 			<div class="flex items-center justify-start">
 				<!-- <button

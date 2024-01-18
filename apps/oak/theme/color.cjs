@@ -1,5 +1,5 @@
 const colors = {
-    border: "rgb(var(--border) )",
+    border: "rgb(var(--primary) / 0.3)",
     input: "rgb(var(--input) )",
     ring: "rgb(var(--ring) )",
     background: "rgb(var(--background) )",

@@ -19,8 +19,15 @@
 	import type { SuperValidated } from 'sveltekit-superforms';
 	import { superForm, type SuperForm } from 'sveltekit-superforms/client';
 	import DatePicker from '$lib/components/atoms/DatePicker.svelte';
+	import type { FormOptions } from 'formsnap';
+	import EmployeeDropDown from '$lib/components/atoms/EmployeeDropDown.svelte';
 
 	export let form: SuperValidated<ContractEntryForm> = $page.data.datePicker;
+	const userID: string = $page.data.userID;
+	let companyUsers: { id: string; fullName: string }[] = $page.data.companyUsers.map((user) => ({
+		id: user.id,
+		fullName: user.full_name
+	}));
 
 	const theForm: SuperForm<ContractEntryForm> = superForm(form, {
 		validators: contractEntrySchema,
@@ -28,6 +35,17 @@
 	});
 
 	const { form: formStore } = theForm;
+
+	const options: FormOptions<typeof contractEntrySchema> = {
+		validators: contractEntrySchema,
+		onSubmit: () => {
+			// do something
+		},
+		onError: () => {
+			// do something else
+		}
+		// ...
+	};
 
 	const df = new DateFormatter('en-US', {
 		dateStyle: 'long'
@@ -44,7 +62,7 @@
 	let endDatePlaceholder: DateValue = today(getLocalTimeZone());
 </script>
 
-<Card.Root class="mx-auto  mx-4 p-12">
+<Card.Root class="m-4 mx-auto h-full p-12">
 	<Card.Header
 		><Card.Title class="m-0 sm:m-0">Contract Entry Form</Card.Title>
 		<Card.Description class="m-0 sm:m-0"
@@ -52,7 +70,7 @@
 		></Card.Header
 	>
 	<Card.Content>
-		<Form.Root class="space-y-6" schema={contractEntrySchema} {form} let:config>
+		<Form.Root class="w-fit space-y-6" schema={contractEntrySchema} {form} let:config {options}>
 			<Form.Field {config} name="parentContract">
 				<Form.Item>
 					<Form.Label>Parent Contract</Form.Label>
@@ -119,6 +137,26 @@
 					<Form.Validation />
 				</Form.Item>
 			</Form.Field>
+			<Form.Field {config} name="description">
+				<Form.Item>
+					<Form.Label>Description</Form.Label>
+					<Form.Input />
+					<Form.Description>Free text field to describe the contract if needed.</Form.Description>
+					<Form.Validation />
+				</Form.Item>
+			</Form.Field>
+			<!--TODO project code input field-->
+			<Form.Field {config} name="owner">
+				<Form.Item>
+					<Form.Label>Owner</Form.Label>
+					<EmployeeDropDown users={companyUsers} initialValue={userID} />
+					<Form.Description
+						>Select the owner of the contract, if it isn't yourself.</Form.Description
+					>
+					<Form.Validation />
+				</Form.Item>
+			</Form.Field>
+
 			<Button type="submit">Submit</Button>
 		</Form.Root>
 	</Card.Content>

@@ -1,5 +1,6 @@
 import { PUBLIC_SUPABASE_URL, PUBLIC_SUPABASE_ANON_KEY } from '$env/static/public'
 import { createSupabaseServerClient } from '@supabase/auth-helpers-sveltekit'
+import type { PostgrestError } from '@supabase/supabase-js'
 import type { Handle } from '@sveltejs/kit'
 
 export const handle: Handle = async ({ event, resolve }) => {
@@ -23,6 +24,6 @@ export const handle: Handle = async ({ event, resolve }) => {
   })
 }
 
-export function handleError({ event, error }) {
-  console.error("Handle Error caught an error: " + error.stack);
+export function handleError({ event, error }: { event: any, error: PostgrestError }) {
+  console.error("Handle Error caught an error: " + error.message);
 }

@@ -10,7 +10,7 @@
 	export let value: string = "";
 </script>
 
-<div class="flex items-center border-b px-2 not-prose" data-cmdk-input-wrapper="">
+<div class="flex items-center px-2 not-prose" data-cmdk-input-wrapper="">
 	<Search class="mr-2 h-4 w-4 shrink-0 opacity-50" />
 	<CommandPrimitive.Input
 		class={cn(
