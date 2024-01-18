@@ -16,15 +16,15 @@ export const contractEntrySchema = z.object({
     parentContract: z.string().optional(),
     startDate: z
         .string()
-        .refine((v) => v, { message: "A start date is required." }),
+        .refine((v) => v, { message: "A start date is required." }).optional(),
     endDate: z.string()
-        .refine((v) => v, { message: "An end date is required." }),
+        .refine((v) => v, { message: "An end date is required." }).optional(),
     description: z.string().optional(),
     projectCode: z.string().optional(),
-    owner: z.string(),
+    owner: z.string().optional(),
     approver: z.string().optional(),
     department: z.string().optional(),
-    amount: z.number().optional(),
+    amount: z.string().optional(),
     spendCategory: z.enum(["Contract", "Clinical", "Other"]).optional(),
 });
 

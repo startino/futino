@@ -8,26 +8,14 @@
 	import * as Form from '../ui/form';
 	import { string } from 'zod';
 
-	export let users: { fullName: string; id: string }[];
+	export let users: { id: string; fullName: string }[];
 
 	export let open = false;
 	export let initialValue: string = '';
 	export let value = '';
 	value = initialValue;
 
-	$: selectedValue = users.find((f) => f.id === value)?.fullName ?? 'Select a user...';
-
-	function formatName(name: string) {
-		const words = name.split(' ');
-		const abbreviatedWords = words.map((word, index) => {
-			if (index === 0 || index === words.length - 1) {
-				return word;
-			} else {
-				return `${word.charAt(0)}.`;
-			}
-		});
-		return abbreviatedWords.join(' ');
-	}
+	$: selectedValue = users.find((f) => f.fullName === value)?.fullName ?? 'Select a company employee...';
 
 	// We want to refocus the trigger button when the user selects
 	// an item from the list so users can continue navigating the
@@ -49,16 +37,16 @@
 				variant="outline"
 				role="combobox"
 				type="button"
-				class={cn('w-[200px] justify-between', !value && 'text-muted-foreground')}
+				class={cn('mt-12 w-[350px] justify-between', !value && 'text-muted-foreground')}
 			>
-				{users.find((f) => f.id === value)?.fullName ?? 'Select User'}
+				{selectedValue}
 				<ChevronsUpDown class="ml-2 h-4 w-4 shrink-0 opacity-50" />
 			</Button>
 		</Form.Control>
 	</Popover.Trigger>
-	<Popover.Content class="w-[200px] p-0">
+	<Popover.Content class="w-[350px] pt-1">
 		<Command.Root>
-			<Command.Input placeholder="Search for a user..." />
+			<Command.Input class="mt-2" placeholder="Search for a company employee..." />
 			<Command.Empty>No User Found.</Command.Empty>
 			<Command.Group>
 				{#each users as user}

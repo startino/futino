@@ -1,6 +1,6 @@
 import { contractEntrySchema } from '$lib/schemas'
 import { redirect, fail } from '@sveltejs/kit';
-import type { PageServerLoad } from './$types';
+import type { Actions, PageServerLoad } from './$types';
 import { superValidate } from 'sveltekit-superforms/server';
 
 export const load: PageServerLoad = async ({ locals: { getSession, supabase } }) => {
@@ -30,3 +30,20 @@ export const load: PageServerLoad = async ({ locals: { getSession, supabase } })
         companyUsers: companyUsers
     }
 }
+
+export const actions: Actions = {
+    default: async (event) => {
+        const form = await superValidate(event, contractEntrySchema);
+
+        console.log("Form: ", form);
+        
+        if (!form.valid) {
+            return fail(400, {
+                form
+            });
+        }
+        return {
+            form
+        };
+    }
+};

@@ -24,10 +24,12 @@
 
 	export let form: SuperValidated<ContractEntryForm> = $page.data.datePicker;
 	const userID: string = $page.data.userID;
-	let companyUsers: { id: string; fullName: string }[] = $page.data.companyUsers.map((user) => ({
-		id: user.id,
-		fullName: user.full_name
-	}));
+	let companyUsers: { id: string; fullName: string }[] = $page.data.companyUsers.map(
+		(user: { id: string; full_name: string }) => ({
+			id: user.id,
+			fullName: user.full_name
+		})
+	);
 
 	const theForm: SuperForm<ContractEntryForm> = superForm(form, {
 		validators: contractEntrySchema,
@@ -58,11 +60,15 @@
 		? parseDate($formStore.endDate)
 		: undefined;
 
+	function submitClicked() {
+		console.log($formStore.startDate);
+	}
+
 	let startDatePlaceholder: DateValue = today(getLocalTimeZone());
 	let endDatePlaceholder: DateValue = today(getLocalTimeZone());
 </script>
 
-<Card.Root class="m-4 mx-auto h-full p-12">
+<Card.Root class="m-4 h-full p-10">
 	<Card.Header
 		><Card.Title class="m-0 sm:m-0">Contract Entry Form</Card.Title>
 		<Card.Description class="m-0 sm:m-0"
@@ -70,10 +76,10 @@
 		></Card.Header
 	>
 	<Card.Content>
-		<Form.Root class="w-fit space-y-6" schema={contractEntrySchema} {form} let:config {options}>
+		<Form.Root class="w-min space-y-6" schema={contractEntrySchema} {form} let:config {options}>
 			<Form.Field {config} name="parentContract">
-				<Form.Item>
-					<Form.Label>Parent Contract</Form.Label>
+				<Form.Item class="flex flex-col">
+					<Form.Label class="mb-2">Parent Contract</Form.Label>
 					<Form.Input />
 					<Form.Description>
 						Enter the parent contract number if this is a renewal or extension
@@ -83,7 +89,7 @@
 			</Form.Field>
 			<Form.Field {config} name="startDate">
 				<Form.Item class="flex flex-col">
-					<Form.Label for="startDate">Start Date</Form.Label>
+					<Form.Label class="mb-2">Start Date</Form.Label>
 					<Popover.Root>
 						<Form.Control id="startDate" let:attrs>
 							<Popover.Trigger
@@ -91,7 +97,7 @@
 								{...attrs}
 								class={cn(
 									buttonVariants({ variant: 'outline' }),
-									'w-[280px] justify-start pl-4 text-left font-normal',
+									'w-[220px] justify-start pl-4 text-left font-normal',
 									!startDateValue && 'text-muted-foreground'
 								)}
 							>
@@ -110,17 +116,17 @@
 					<Form.Validation />
 				</Form.Item>
 			</Form.Field>
-			<Form.Field {config} name="startDate">
+			<Form.Field {config} name="endDate">
 				<Form.Item class="flex flex-col">
-					<Form.Label for="startDate">End Date</Form.Label>
+					<Form.Label class="mb-2">End Date</Form.Label>
 					<Popover.Root>
-						<Form.Control id="startDate" let:attrs>
+						<Form.Control id="endDate" let:attrs>
 							<Popover.Trigger
-								id="startDate"
+								id="endDate"
 								{...attrs}
 								class={cn(
 									buttonVariants({ variant: 'outline' }),
-									'w-[280px] justify-start pl-4 text-left font-normal',
+									'w-[220px] justify-start pl-4 text-left font-normal',
 									!endDateValue && 'text-muted-foreground'
 								)}
 							>
@@ -138,17 +144,20 @@
 				</Form.Item>
 			</Form.Field>
 			<Form.Field {config} name="description">
-				<Form.Item>
-					<Form.Label>Description</Form.Label>
-					<Form.Input />
+				<Form.Item class="flex flex-col">
+					<Form.Label class="mb-2">Description</Form.Label>
+					<Form.Textarea
+						placeholder="Free text field to describe the contract if needed."
+						class="resize-none"
+					/>
 					<Form.Description>Free text field to describe the contract if needed.</Form.Description>
 					<Form.Validation />
 				</Form.Item>
 			</Form.Field>
 			<!--TODO project code input field-->
 			<Form.Field {config} name="owner">
-				<Form.Item>
-					<Form.Label>Owner</Form.Label>
+				<Form.Item class="flex flex-col">
+					<Form.Label class="mb-2">Owner</Form.Label>
 					<EmployeeDropDown users={companyUsers} initialValue={userID} />
 					<Form.Description
 						>Select the owner of the contract, if it isn't yourself.</Form.Description
@@ -156,8 +165,31 @@
 					<Form.Validation />
 				</Form.Item>
 			</Form.Field>
-
-			<Button type="submit">Submit</Button>
+			<Form.Field {config} name="approver">
+				<Form.Item class="flex flex-col">
+					<Form.Label class="mb-2">Approver</Form.Label>
+					<EmployeeDropDown users={companyUsers} initialValue={userID} />
+					<Form.Description
+						>Select the owner of the contract, if it isn't yourself.</Form.Description
+					>
+					<Form.Validation />
+				</Form.Item>
+			</Form.Field>
+			<Form.Field {config} name="amount">
+				<Form.Item class="flex flex-col">
+					<Form.Label class="mb-2">Amount</Form.Label>
+					<div class="flex flex-row place-items-center gap-x-2">
+						<Form.Input />
+						<Form.Label
+							class="border-input flex h-[40px] max-h-[300px] place-items-center rounded-md border px-2"
+							>USD</Form.Label
+						>
+					</div>
+					<Form.Description>Enter the amount of the contract.</Form.Description>
+					<Form.Validation />
+				</Form.Item>
+			</Form.Field>
+			<Form.Button on:click={submitClicked()}>Submit</Form.Button>
 		</Form.Root>
 	</Card.Content>
 </Card.Root>

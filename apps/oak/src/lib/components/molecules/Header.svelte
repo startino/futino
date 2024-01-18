@@ -1,7 +1,6 @@
 <script lang="ts">
 	import Logo from '../atoms/Logo.svelte';
 	import { onMount } from 'svelte';
-	import Icon from '../atoms/Icon.svelte';
 	import { fade, slide } from 'svelte/transition';
 	import { Button } from '$lib/components/ui/button';
   import ThemeToggle from '$lib/components/atoms/ThemeToggle.svelte';
