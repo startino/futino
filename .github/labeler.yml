@@ -30,7 +30,15 @@ javascript:
 
 python:
   - changed-files:
-      - any-glob-to-any-file: ["**/*.js"]
+      - any-glob-to-any-file: ["**/*.py"]
+      
+svelte:
+  - changed-files:
+      - any-glob-to-any-file: ["**/*.svelte"]
+
+css:
+  - changed-files:
+      - any-glob-to-any-file: ["**/*.css", "**/*.pcss", "**/*.postcss", "**/*.scss"]
 
 # Misc
 
