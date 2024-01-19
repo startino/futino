@@ -5,7 +5,7 @@ export const recentWork = [
 		name: 'John Mackadoo',
 		company: 'Flyers Go Crazy',
 		body: "I know there's a way i can type loris paragraphs in vscode but I forgot the shortcut, if you could lmk, would be appreciated.",
-		vid_path: 'client_websites/ggsoccer_whole_dark.webm',
+		vid_path: 'client_websites/ggsoccer_whole_dark.webm'
 	},
 	{
 		index: 1,
@@ -13,7 +13,7 @@ export const recentWork = [
 		name: 'John Mackadoo',
 		company: 'Flyers Go Crazy',
 		body: "I know there's a way i can type loris paragraphs in vscode but I forgot the shortcut, if you could lmk, would be appreciated.",
-		vid_path: 'client_websites/ggsoccer_whole_dark.webm',
+		vid_path: 'client_websites/ggsoccer_whole_dark.webm'
 	},
 	{
 		index: 2,
@@ -21,7 +21,7 @@ export const recentWork = [
 		name: 'John Mackadoo',
 		company: 'Flyers Go Crazy',
 		body: "I know there's a way i can type loris paragraphs in vscode but I forgot the shortcut, if you could lmk, would be appreciated.",
-		vid_path: 'client_websites/ggsoccer_whole_dark.webm',
+		vid_path: 'client_websites/ggsoccer_whole_dark.webm'
 	},
 	{
 		index: 3,
@@ -29,6 +29,6 @@ export const recentWork = [
 		name: 'John Mackadoo',
 		company: 'Flyers Go Crazy',
 		body: "I know there's a way i can type loris paragraphs in vscode but I forgot the shortcut, if you could lmk, would be appreciated.",
-		vid_path: 'client_websites/ggsoccer_whole_dark.webm',
-	},
+		vid_path: 'client_websites/ggsoccer_whole_dark.webm'
+	}
 ];

@@ -25,7 +25,7 @@ export function createStore() {
 		set: (storedValue: string[]) => {
 			isBrowser && (localStorage.storable = JSON.stringify(storedValue));
 			set(storedValue);
-		},
+		}
 	};
 }
 

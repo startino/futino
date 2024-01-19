@@ -1,32 +1,12 @@
-<!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
-
-<head>
-  <meta charset="utf-8" />
-  <title>Replace This Title</title>
-  <meta name="description" content="Write the website description here" />
-
-  <link rel="icon" href="%sveltekit.assets%/favicon.png" />
-  <meta name="viewport" content="width=device-width" />
-
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Condensed&display=swap" rel="stylesheet" />
-
-
-  <!-- Google Tag Manager -->
-  <!-- Insert Google Tag Manager Here -->
-  <!-- End Google Tag Manager -->
-
-  %sveltekit.head%
-</head>
-
-<body data-sveltekit-preload-data="hover" class="bg-background text-center text-background-on">
-  <!-- Google Tag Manager (noscript) -->
-  <!-- insert noscript gtag manager -->
-  <!-- End Google Tag Manager (noscript) -->
-  <div class="min-h-screen bg-background">%sveltekit.body%</div>
-</body>
-
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="%sveltekit.assets%/favicon.png" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		%sveltekit.head%
+	</head>
+	<body data-sveltekit-preload-data="hover">
+		<div style="display: contents">%sveltekit.body%</div>
+	</body>
 </html>

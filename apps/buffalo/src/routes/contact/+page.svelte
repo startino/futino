@@ -8,7 +8,7 @@
     ContactForm,
     Icon,
     Video,
-  } from "lorc";
+  } from "@repo/deprecated-lorc";
   import {
     fromTopPreset,
     downFadePreset,
@@ -66,6 +66,7 @@
       padding="px-6 md:px-16 lg:px-32"
     >
       <img
+        id="find-us"
         src="/images/buffalo_travel_times_1.jpg"
         alt="Travel times to Buffalo Jiu-Jitsu"
         class="object-contain not-prose max-w-7xl w-full rounded-sm my-auto"

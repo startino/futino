@@ -1,110 +1,93 @@
-name: Deploy Projects to Github Pages
-
-on:
-  workflow_dispatch:
-  push:
-    branches:
-      - alpha
-
-jobs:
-  deploy:
-    name: Deploying ${{ matrix.project.name }} to ${{ matrix.project.domain }}
-    runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        bun-version: [ latest ]
-        project:
-          - {
-              name: Allheim,
-              id: allheim,
-              path: apps/allheim,
-              domain: allheim.futi.no,
-            }
-          - {
-              name: Anzelmo,
-              id: anzelmo,
-              path: apps/anzelmo,
-              domain: anzelmo.futi.no,
-            }
-          - {
-              name: Bapta,
-              id: bapta,
-              path: apps/bapta,
-              domain: bapta.futi.no,
-            }
-          - {
-              name: Eksno,
-              id: eksno,
-              path: apps/eksno,
-              domain: eksno.com,
-            }
-          - {
-              name: GGSoccer,
-              id: ggsoccer,
-              path: apps/ggsoccer,
-              domain: ggsoccer.futi.no,
-            }
-          - {
-              name: Liberole,
-              id: liberole,
-              path: apps/liberole,
-              domain: liberole.futi.no,
-            }
-          - {
-              name: Wonderlee,
-              id: wonderlee,
-              path: apps/wonderlee,
-              domain: wonderlee.futi.no,
-            }
-          - {
-              name: Aitino,
-              id: aitino,
-              path: apps/aitino,
-              domain: aitino.futi.no,
-            }
-          - {
-              name: Buffalo,
-              id: buffalo,
-              path: apps/buffalo,
-              domain: buffalo.futi.no,
-            }
-          
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Setup Bun with version ${{ matrix.bun-version }}
-        uses: oven-sh/setup-bun@v1
-        with:
-          bun-version: ${{ matrix.bun-version }}
-
-      - name: Switch Adapter to Static
-        run: |
-          cd ${{ matrix.project.path }}
-          sed -i 's|svelte-adapter-bun|@sveltejs/adapter-static|g' ./svelte.config.js
-
-      - name: Install Dependencies
-        run: bun install
-
-      - name: Build Project
-        run: |
-          cd ${{ matrix.project.path }}
-          bun i # fails sometimes without this
-          bun run build
-
-      - name: Prepare for GitHub Pages
-        run: |
-          cd ${{ matrix.project.path }}
-          echo -e "${{ matrix.project.domain }}" >> build/CNAME
-          touch build/.nojekyll
-
-      - name: Deploy to https://github.com/Futino/${{ matrix.project.id }}@gh-pages
-        uses: JamesIves/github-pages-deploy-action@releases/v4
-        with:
-          token: ${{ secrets.TOKEN }}
-          branch: gh-pages # The branch the action should deploy to.
-          folder: ${{ matrix.project.path }}/build # The folder the action should deploy.
-          repository-name: Futino/${{ matrix.project.id }} # The repository the action should deploy to.
-          target-folder: /
-          clean: true
+# name: Deploy Projects to Github Pages
+#
+# on:
+#   workflow_dispatch:
+#   push:
+#     branches:
+#       - alpha
+#
+# jobs:
+#   deploy:
+#     name: Deploying ${{ matrix.project.name }} to ${{ matrix.project.domain }}
+#     runs-on: ubuntu-latest
+#     strategy:
+#       fail-fast: false
+#       matrix:
+#         bun-version: [latest]
+#         project:
+#           - {
+#               name: Allheim,
+#               id: allheim,
+#               path: apps/allheim,
+#               domain: allheim.futi.no,
+#             }
+#           # - {
+#           #     name: Anzelmo,
+#           #     id: anzelmo,
+#           #     path: apps/anzelmo,
+#           #     domain: anzelmo.futi.no,
+#           #   }
+#           # - { name: Bapta, id: bapta, path: apps/bapta, domain: bapta.futi.no }
+#           # - { name: Eksno, id: eksno, path: apps/eksno, domain: eksno.com }
+#           - {
+#               name: GGSoccer,
+#               id: ggsoccer,
+#               path: apps/ggsoccer,
+#               domain: ggsoccer.futi.no,
+#             }
+#           # - {
+#           #     name: Liberole,
+#           #     id: liberole,
+#           #     path: apps/liberole,
+#           #     domain: liberole.futi.no,
+#           #   }
+#           - {
+#               name: Aitino,
+#               id: aitino,
+#               path: apps/aitino,
+#               domain: aitino.futi.no,
+#             }
+#           - {
+#               name: Buffalo,
+#               id: buffalo,
+#               path: apps/buffalo,
+#               domain: buffalo.futi.no,
+#             }
+#     steps:
+#       - name: Checkout code
+#         uses: actions/checkout@v4
+#
+#       - name: Setup Bun with version ${{ matrix.bun-version }}
+#         uses: oven-sh/setup-bun@v1
+#         with:
+#           bun-version: ${{ matrix.bun-version }}
+#
+#       - name: Switch Adapter to Static
+#         run: |
+#           cd ${{ matrix.project.path }}
+#           sed -i 's|svelte-adapter-bun|@sveltejs/adapter-static|g' ./svelte.config.js
+#
+#       - name: Install Dependencies
+#         run: bun install
+#
+#       - name: Build Project
+#         run: |
+#           cd ${{ matrix.project.path }}
+#           bun i # fails sometimes without this
+#           bun run build
+#
+#       - name: Prepare for GitHub Pages
+#         run: |
+#           cd ${{ matrix.project.path }}
+#           echo -e "${{ matrix.project.domain }}" >> build/CNAME
+#           touch build/.nojekyll
+#
+#       - name: Deploy to https://github.com/Futino/${{ matrix.project.id }}@gh-pages
+#         uses: JamesIves/github-pages-deploy-action@releases/v4
+#         with:
+#           token: ${{ secrets.TOKEN }}
+#           branch: gh-pages # The branch the action should deploy to.
+#           folder: ${{ matrix.project.path }}/build # The folder the action should deploy.
+#           repository-name: Futino/${{ matrix.project.id }} # The repository the action should deploy to.
+#           target-folder: /
+#           clean: true

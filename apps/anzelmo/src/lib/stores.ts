@@ -11,7 +11,7 @@ export interface Cart {
 export function createCartStore() {
 	const emptyCart: Cart = {
 		photos: [],
-		total: 0,
+		total: 0
 	};
 	const store = writable(emptyCart);
 	const { subscribe, set } = store;
@@ -33,7 +33,7 @@ export function createCartStore() {
 		set: (storedValue: Cart) => {
 			isBrowser && (localStorage.storable = JSON.stringify(storedValue));
 			set(storedValue);
-		},
+		}
 	};
 }
 
@@ -72,7 +72,7 @@ export function createAlertsStore() {
 		send,
 		addedToCart: (msg, timeout) => send(msg, 'addedToCart', timeout),
 		removedFromCart: (msg, timeout) => send(msg, 'removedFromCart', timeout),
-		cartEmptied: (msg, timeout) => send(msg, 'cartEmptied', timeout),
+		cartEmptied: (msg, timeout) => send(msg, 'cartEmptied', timeout)
 	};
 }
 

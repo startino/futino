@@ -1,0 +1,53 @@
+erDiagram
+    "auth.users" ||--|| profile : is
+
+    organization ||--|{ profile : has
+    organization ||--|{ role : has
+    organization ||--o{ contract : manages
+    organization ||--o{ bill : manages
+
+    profile ||--o{ approver : has
+
+    role ||--o{ profile : has
+    role }|--|{ permission : has
+
+    profile {
+        uuid profile_id pk
+        uuid fk_organization fk  
+        uuid fk_role_id fk
+        money approval_threshold
+        timestamptz created_at
+        timestamptz updated_at
+    }
+    approver {
+        uuid approver_id pk
+        uuid approvee_id fk
+    }
+    role {
+        uuid role_id pk
+        uuid fk_organization_id fk
+        timestamptz created_at
+        timestamptz updated_at
+    }
+    permission {
+        uuid permission_id pk
+        timestamptz created_at
+        timestamptz updated_at
+    }
+    organization {
+        uuid organization_id pk "Secret company ID used for joining a company" 
+        timestamptz created_at
+        timestamptz updated_at
+    }
+    contract {
+        uuid contract_id pk
+        uuid fk_organization_id fk
+        timestamptz created_at
+        timestamptz updated_at
+    }
+    bill {
+        uuid contract_id pk
+        uuid fk_organization_id fk
+        timestamptz created_at
+        timestamptz updated_at
+    }

@@ -1,6 +1,6 @@
 <script lang="ts">
   import "../app.postcss";
-  import { Header, Shell, FatFooter, Prose, Icon } from "lorc";
+  import { Header, Shell, FatFooter, Prose, Icon } from "@repo/deprecated-lorc";
 
   const headerLinks: { [key: string]: string } = {
     "ADULT CLASSES": "/#adult-classes",
@@ -11,18 +11,16 @@
   const footerLinks: { [key: string]: { [key: string]: string } } = {
     Explore: {
       Home: "/",
-      Testimonials: "/",
       Classes: "/#classes",
     },
     Support: {
-      About: "/",
-      "Find Us": "/",
-      Contact: "/",
-      FAQ: "/",
+      About: "/about",
+      "Find Us": "/contact#find-us",
+      Contact: "/contact",
     },
     Legal: {
-      "Privacy Policy": "/legal/privacy",
-      "T&C and Waiver": "/legal/t&c-and-waiver",
+      "Privacy Policy": "/",
+      "T&C and Waiver": "/",
     },
   };
 
@@ -69,7 +67,7 @@
   <slot />
 
   <svelte:fragment slot="footer">
-    <FatFooter companyName="" pages={footerLinks}>
+    <FatFooter pages={footerLinks}>
       <svelte:fragment slot="left">
         <div class="flex flex-col gap-4">
           {#each contactItems as { icon, label, href }}

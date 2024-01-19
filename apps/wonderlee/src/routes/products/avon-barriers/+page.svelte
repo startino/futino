@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Container, Button } from "lorc";
+  import { Container } from "@repo/deprecated-lorc";
 </script>
 
 <Container class="flex flex-col gap-12 pt-44">

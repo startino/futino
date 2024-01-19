@@ -4,8 +4,8 @@ export function onView(node: Element, params = {}) {
 	const handleIntersect = (entry: IntersectionObserverEntry[]) => {
 		node.dispatchEvent(
 			new CustomEvent('intersect', {
-				detail: entry[0].isIntersecting,
-			}),
+				detail: entry[0].isIntersecting
+			})
 		);
 	};
 
@@ -29,6 +29,6 @@ export function onView(node: Element, params = {}) {
 
 		destroy() {
 			if (observer) observer.disconnect();
-		},
+		}
 	};
 }

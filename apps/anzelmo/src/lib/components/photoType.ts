@@ -14,6 +14,6 @@ export function newPhoto(photoData: PhotoData): PhotoType {
 		album: photoData.album,
 		path: photoData.path,
 		label: photoData.label,
-		price: photoData.price,
+		price: photoData.price
 	};
 }

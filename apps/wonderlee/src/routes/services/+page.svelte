@@ -7,7 +7,7 @@
     Button,
     SelectMenu,
     Icon,
-  } from "lorc";
+  } from "@repo/deprecated-lorc";
 
   const services = {
     Safety: {
