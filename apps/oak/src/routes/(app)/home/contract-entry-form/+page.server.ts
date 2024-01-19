@@ -6,6 +6,8 @@ import { superValidate } from 'sveltekit-superforms/server';
 export const load: PageServerLoad = async ({ locals: { getSession, supabase } }) => {
     const session = await getSession();
 
+    const form = await superValidate(contractEntrySchema);
+
     const userID = await session?.user.id;
 
     // Fetch th company_id for the current user
@@ -25,22 +27,23 @@ export const load: PageServerLoad = async ({ locals: { getSession, supabase } })
     }
 
     return {
-        form: await superValidate(contractEntrySchema),
+        form: form,
         userID: userID,
         companyUsers: companyUsers
-    }
+    };
 }
 
 export const actions: Actions = {
     default: async (event) => {
         const form = await superValidate(event, contractEntrySchema);
 
-        console.log("Form: ", form);
-        
         if (!form.valid) {
+            console.log("Form invalid: ", form.errors)
             return fail(400, {
                 form
             });
+        } else {
+            console.log("Form submitted successfully: ", form.data)
         }
         return {
             form

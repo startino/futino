@@ -9,7 +9,7 @@
 		getLocalTimeZone,
 		parseDate,
 		CalendarDate,
-		today
+		today,
 	} from '@internationalized/date';
 	import { cn } from '$lib/utils';
 	import { Button, buttonVariants } from '$lib/components/ui/button';
@@ -21,8 +21,11 @@
 	import DatePicker from '$lib/components/atoms/DatePicker.svelte';
 	import type { FormOptions } from 'formsnap';
 	import EmployeeDropDown from '$lib/components/atoms/EmployeeDropDown.svelte';
+	import { ZodObject } from 'zod';
+	import type {PageData} from './$types';
 
-	export let form: SuperValidated<ContractEntryForm> = $page.data.datePicker;
+	let form: SuperValidated<ContractEntryForm> = $page.data.form;
+
 	const userID: string = $page.data.userID;
 	let companyUsers: { id: string; fullName: string }[] = $page.data.companyUsers.map(
 		(user: { id: string; full_name: string }) => ({
@@ -31,38 +34,36 @@
 		})
 	);
 
-	const theForm: SuperForm<ContractEntryForm> = superForm(form, {
-		validators: contractEntrySchema,
-		taintedMessage: null
-	});
+	const theForm = superForm(form, {
+    	validators: contractEntrySchema,
+    	taintedMessage: null
+  	});
 
 	const { form: formStore } = theForm;
 
 	const options: FormOptions<typeof contractEntrySchema> = {
 		validators: contractEntrySchema,
-		onSubmit: () => {
-			// do something
-		},
+		onSubmit: () => {},
 		onError: () => {
 			// do something else
 		}
 		// ...
 	};
 
+	// Update formstore on changing the datepicker value
+	$: $formStore.startDate = startDateValue ? new Date(startDateValue.toString()) : new Date(today.toString()); 
+	$: $formStore.endDate = endDateValue ? new Date(endDateValue.toString()) : new Date(today.toString());
+
 	const df = new DateFormatter('en-US', {
 		dateStyle: 'long'
 	});
 
 	let startDateValue: DateValue | undefined = $formStore.startDate
-		? parseDate($formStore.startDate)
+		? parseDate($formStore.startDate.toString())
 		: undefined;
 	let endDateValue: DateValue | undefined = $formStore.endDate
-		? parseDate($formStore.endDate)
+		? parseDate($formStore.endDate.toString())
 		: undefined;
-
-	function submitClicked() {
-		console.log($formStore.startDate);
-	}
 
 	let startDatePlaceholder: DateValue = today(getLocalTimeZone());
 	let endDatePlaceholder: DateValue = today(getLocalTimeZone());
@@ -76,7 +77,14 @@
 		></Card.Header
 	>
 	<Card.Content>
-		<Form.Root class="w-min space-y-6" schema={contractEntrySchema} {form} let:config {options}>
+		<Form.Root
+			method="POST"
+			class="w-min space-y-6"
+			controlled
+			schema={contractEntrySchema}
+			form={theForm}
+			let:config
+		>
 			<Form.Field {config} name="parentContract">
 				<Form.Item class="flex flex-col">
 					<Form.Label class="mb-2">Parent Contract</Form.Label>
@@ -89,7 +97,7 @@
 			</Form.Field>
 			<Form.Field {config} name="startDate">
 				<Form.Item class="flex flex-col">
-					<Form.Label class="mb-2">Start Date</Form.Label>
+					<Form.Label for="startDate" class="mb-2">Start Date</Form.Label>
 					<Popover.Root>
 						<Form.Control id="startDate" let:attrs>
 							<Popover.Trigger
@@ -189,7 +197,7 @@
 					<Form.Validation />
 				</Form.Item>
 			</Form.Field>
-			<Form.Button on:click={submitClicked()}>Submit</Form.Button>
+			<Form.Button>Submit</Form.Button>
 		</Form.Root>
 	</Card.Content>
 </Card.Root>

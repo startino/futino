@@ -14,14 +14,11 @@ export const loginUserSchema = z.object({
 
 export const contractEntrySchema = z.object({
     parentContract: z.string().optional(),
-    startDate: z
-        .string()
-        .refine((v) => v, { message: "A start date is required." }).optional(),
-    endDate: z.string()
-        .refine((v) => v, { message: "An end date is required." }).optional(),
+    startDate: z.date(),
+    endDate: z.date().optional(),
     description: z.string().optional(),
     projectCode: z.string().optional(),
-    owner: z.string().optional(),
+    owner: z.string(),
     approver: z.string().optional(),
     department: z.string().optional(),
     amount: z.string().optional(),
