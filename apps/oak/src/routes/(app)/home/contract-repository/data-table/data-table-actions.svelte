@@ -1,6 +1,7 @@
 <script lang="ts">
 	import * as DropdownMenu from '$lib/components/ui/dropdown-menu';
 	import { Button } from '$lib/components/ui/button';
+  // TODO: Replace radix with lucide icons, radix hasn't had an update in 2 years
 	import { DotsHorizontal } from 'radix-icons-svelte';
 
 	export let id: string;
