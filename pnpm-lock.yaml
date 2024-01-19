@@ -26,9 +26,6 @@ importers:
 
   apps/anzelmo:
     dependencies:
-      bits-ui:
-        specifier: ^0.14.0
-        version: 0.14.0(svelte@5.0.0-next.31)
       clsx:
         specifier: ^2.1.0
         version: 2.1.0
@@ -114,9 +111,6 @@ importers:
 
   apps/bapta:
     dependencies:
-      bits-ui:
-        specifier: ^0.14.0
-        version: 0.14.0(svelte@5.0.0-next.31)
       clsx:
         specifier: ^2.1.0
         version: 2.1.0
@@ -205,9 +199,6 @@ importers:
 
   apps/buffalo:
     dependencies:
-      bits-ui:
-        specifier: ^0.11.7
-        version: 0.11.8(svelte@5.0.0-next.31)
       clsx:
         specifier: ^2.1.0
         version: 2.1.0
@@ -291,11 +282,8 @@ importers:
         specifier: ^5.0.3
         version: 5.0.11
 
-  apps/caffeino:
+  apps/ggsoccer:
     dependencies:
-      bits-ui:
-        specifier: ^0.11.7
-        version: 0.11.8(svelte@5.0.0-next.31)
       clsx:
         specifier: ^2.1.0
         version: 2.1.0
@@ -505,9 +493,6 @@ importers:
 
   apps/template:
     dependencies:
-      bits-ui:
-        specifier: ^0.14.0
-        version: 0.14.0(svelte@5.0.0-next.31)
       clsx:
         specifier: ^2.1.0
         version: 2.1.0
@@ -599,9 +584,6 @@ importers:
       '@types/gtag.js':
         specifier: ^0.0.18
         version: 0.0.18
-      bits-ui:
-        specifier: ^0.14.0
-        version: 0.14.0(svelte@5.0.0-next.31)
       clsx:
         specifier: ^2.1.0
         version: 2.1.0
@@ -720,9 +702,6 @@ importers:
 
   apps/wonderlee:
     dependencies:
-      bits-ui:
-        specifier: ^0.14.0
-        version: 0.14.0(svelte@5.0.0-next.31)
       clsx:
         specifier: ^2.1.0
         version: 2.1.0
@@ -1511,20 +1490,6 @@ packages:
       svelte: 4.2.8
     dev: false
 
-  /@melt-ui/svelte@0.65.2(svelte@5.0.0-next.31):
-    resolution: {integrity: sha512-BpsSl9Bjp1++8U3+LaDOFUoX/PFQ9N7QWFhlFdUEZduhrbVyU70v9A459SKrQ+esFSjvh1AvqJYkMAUJXJlAmQ==}
-    peerDependencies:
-      svelte: '>=3 <5'
-    dependencies:
-      '@floating-ui/core': 1.5.3
-      '@floating-ui/dom': 1.5.4
-      '@internationalized/date': 3.5.1
-      dequal: 2.0.3
-      focus-trap: 7.5.4
-      nanoid: 4.0.2
-      svelte: 5.0.0-next.31
-    dev: false
-
   /@melt-ui/svelte@0.67.0(svelte@4.2.8):
     resolution: {integrity: sha512-fd9PsDE6sKbeyExagqH0nOpZEnDqyr2efbkjfmCRRYXVW5vlDEOPaSB+mg4Tjch121102sFH1Od+MlXwmeHy3A==}
     peerDependencies:
@@ -1551,20 +1516,6 @@ packages:
       focus-trap: 7.5.4
       nanoid: 5.0.4
       svelte: 4.2.8
-    dev: false
-
-  /@melt-ui/svelte@0.68.0(svelte@5.0.0-next.31):
-    resolution: {integrity: sha512-/QvA98hnYEodZtHJ71+ocum/WWp30hVNt3F8uiZKnNYwZDaiQYjlyR9AaGKYcZLCe6R68op1mfCzc0kTzJilyA==}
-    peerDependencies:
-      svelte: '>=3 <5'
-    dependencies:
-      '@floating-ui/core': 1.5.3
-      '@floating-ui/dom': 1.5.4
-      '@internationalized/date': 3.5.1
-      dequal: 2.0.3
-      focus-trap: 7.5.4
-      nanoid: 5.0.4
-      svelte: 5.0.0-next.31
     dev: false
 
   /@microsoft/tsdoc-config@0.16.2:
@@ -1836,7 +1787,7 @@ packages:
     peerDependencies:
       '@sveltejs/kit': ^2.0.0
     dependencies:
-      '@sveltejs/kit': 2.1.2(@sveltejs/vite-plugin-svelte@3.0.1)(svelte@5.0.0-next.31)(vite@5.0.11)
+      '@sveltejs/kit': 2.1.2(@sveltejs/vite-plugin-svelte@3.0.1)(svelte@4.2.8)(vite@5.0.11)
       import-meta-resolve: 4.0.0
     dev: true
 
@@ -2661,17 +2612,6 @@ packages:
       file-uri-to-path: 1.0.0
     dev: true
 
-  /bits-ui@0.11.8(svelte@5.0.0-next.31):
-    resolution: {integrity: sha512-T3YaT88OJguBoUU/MSncf41fiIc+5/ka8Au2LUDo0nSECex+LFY40+hKWLJc5tRT56avkyHsI7x9daA2r9eS/g==}
-    peerDependencies:
-      svelte: ^4.0.0
-    dependencies:
-      '@internationalized/date': 3.5.1
-      '@melt-ui/svelte': 0.65.2(svelte@5.0.0-next.31)
-      nanoid: 5.0.4
-      svelte: 5.0.0-next.31
-    dev: false
-
   /bits-ui@0.13.6(svelte@4.2.8):
     resolution: {integrity: sha512-LmbWgtriqfotontFi1lC6tEB56HOLP4YpwVKX3qrHxEMfMAyc/NFQgtGOHizTGMmUUkdVtCE37PA1Wnk6gsUZg==}
     peerDependencies:
@@ -2692,17 +2632,6 @@ packages:
       '@melt-ui/svelte': 0.68.0(svelte@4.2.8)
       nanoid: 5.0.4
       svelte: 4.2.8
-    dev: false
-
-  /bits-ui@0.14.0(svelte@5.0.0-next.31):
-    resolution: {integrity: sha512-S1LNwp/Sge1Ro1g0iJ+msIUeJYmoNhXBFShnLDOUOKQe3JG1wd027KxZnVd7db6UWr1IqlJdd4/bbB7NYXeYDw==}
-    peerDependencies:
-      svelte: ^4.0.0
-    dependencies:
-      '@internationalized/date': 3.5.1
-      '@melt-ui/svelte': 0.68.0(svelte@5.0.0-next.31)
-      nanoid: 5.0.4
-      svelte: 5.0.0-next.31
     dev: false
 
   /bits-ui@0.9.9(svelte@4.2.8):
@@ -5406,7 +5335,7 @@ packages:
         optional: true
     dependencies:
       prettier: 3.1.1
-      prettier-plugin-svelte: 3.1.2(prettier@3.1.1)(svelte@5.0.0-next.31)
+      prettier-plugin-svelte: 3.1.2(prettier@3.1.1)(svelte@4.2.8)
     dev: true
 
   /prettier@3.1.1:
