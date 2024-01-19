@@ -24,7 +24,6 @@ jobs:
       matrix:
         pnpm-version: [8]
         project:
-          - { name: GGSoccer, id: ggsoccer, path: apps/ggsoccer }
           - { name: Website, id: website, path: apps/website }
           - { name: Wonderlee, id: wonderlee, path: apps/wonderlee }
           - { name: Template, id: template, path: apps/template }

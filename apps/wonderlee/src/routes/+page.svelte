@@ -14,6 +14,7 @@
 	import TestimonialCard from './TestimonialCard.svelte';
 	import faqs from './faqs';
 	import FAQSection from '$lib/organisms/FAQSection.svelte';
+	import ModelAnimation from './ModelAnimation.svelte';
 
 	const CTAButtons = {
 		'Our work': {
@@ -156,30 +157,32 @@ enhancing elegance and functionality with top craftsmanship standards.
 </script>
 
 <Prose>
-	<div
-		class="z-40 mx-2 flex h-full w-screen flex-col items-center gap-12 text-center sm:mx-4 md:mx-6"
-	>
+	<ModelAnimation>
 		<div
-			class="flex flex-col items-center gap-4
-      "
+			class="z-40 mx-2 flex h-full w-screen flex-col items-center gap-12 text-center sm:mx-4 md:mx-6"
 		>
-			<h1 class="" style="margin: 0px">Hong Kong's Leading Gate & Garage Firm.</h1>
-			<h5 class="max-w-6xl" style="margin: 0px">
-				Serving homeowners and business owners with premium services & products since 1998.
-			</h5>
+			<div
+				class="flex flex-col items-center gap-4
+       "
+			>
+				<h1 class="" style="margin: 0px">Hong Kong's Leading Gate & Garage Firm.</h1>
+				<h5 class="max-w-6xl" style="margin: 0px">
+					Serving homeowners and business owners with premium services & products since 1998.
+				</h5>
+			</div>
+			<div
+				class="grid h-full w-fit grid-cols-{Object.entries(CTAButtons)
+					.length} w-fit place-items-center gap-4 md:gap-6"
+			>
+				{#each Object.entries(CTAButtons) as [label, { href, highlight }]}
+					<Button variant="pill" class="w-full" {highlight} {href}>
+						{label}
+					</Button>
+				{/each}
+			</div>
 		</div>
-		<div
-			class="grid h-full w-fit grid-cols-{Object.entries(CTAButtons)
-				.length} w-fit place-items-center gap-4 md:gap-6"
-		>
-			{#each Object.entries(CTAButtons) as [label, { href, highlight }]}
-				<Button variant="pill" class="w-full" {highlight} {href}>
-					{label}
-				</Button>
-			{/each}
-		</div>
-	</div>
-	<section class="-mt-[1500px] grid place-items-center pb-24 md:-mt-[1000px]">
+	</ModelAnimation>
+	<section class="grid place-items-center pb-24">
 		<Container class="grid w-full grid-cols-3 rounded-md " sizes="max-w-screen">
 			{#each Object.entries(statistics) as [label, { finalValue, startValue, increment, unit }], i}
 				<Container

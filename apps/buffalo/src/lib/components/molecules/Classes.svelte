@@ -68,9 +68,6 @@
             </h4>
           {/each}
           <div class="pt-6 col-span-2" />
-          <Prose size="lg" class="w-full col-span-2 self-end">
-            <Button class="col-span-2 w-full">REGISTER</Button>
-          </Prose>
         </div>
       </Prose>
     </Card>
@@ -90,7 +87,6 @@
         <h3 class="">COMING SOON!</h3>
         <h4>SIGN UP IF INTERESTED!</h4>
       </Prose>
-      <Button class="col-span-2 w-full place-self-end mt-auto">REGISTER</Button>
     </Card>
   </Inview>
 </Container>
