@@ -1,6 +1,3 @@
-import Section from "./section.svelte";
+import Section from './section.svelte';
 
-export {
-  Section as Section
-	};
-
+export { Section as Section };
