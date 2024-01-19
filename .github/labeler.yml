@@ -1,0 +1,52 @@
+# Project Type
+
+app:
+  - changed-files:
+      - any-glob-to-any-file: ["apps/**"]
+
+package:
+  - changed-files:
+      - any-glob-to-any-file: ["packages/**"]
+
+# Packages
+
+eslint-config:
+  - changed-files:
+      - any-glob-to-any-file: ["packages/eslint-config/**"]
+
+typescript-config:
+  - changed-files:
+      - any-glob-to-any-file: ["packages/typescript-config/**"]
+
+# Languages
+
+typescript:
+  - changed-files:
+      - any-glob-to-any-file: ["**/*.ts"]
+
+javascript:
+  - changed-files:
+      - any-glob-to-any-file: ["**/*.js"]
+
+python:
+  - changed-files:
+      - any-glob-to-any-file: ["**/*.js"]
+
+# Misc
+
+ci:
+  - changed-files:
+      - any-glob-to-any-file:
+          [
+            ".github/workflows/*",
+            ".github/labeler.yml",
+            ".github/dependabot.yml",
+          ]
+
+dependencies:
+  - changed-files:
+      - any-glob-to-any-file: ["**/package.json"]
+
+documentation:
+  - changed-files:
+      - any-glob-to-any-file: ["*/*.md", ".github/ISSUE_TEMPLATE"]
