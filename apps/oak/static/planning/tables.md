@@ -126,3 +126,17 @@
 | Company code       | Unique secret ID for the company     |
 | Name               | Name of the company                  |
 | Employees          | List of user IDs of employees        |
+
+
+### Pricing Chart
+| First Column | Second Column |
+|--------------|--------------|
+| Green        |   $15,000 - $20,000       |
+| Yellow       |   $20,000 - $22,000       |
+| Orange       |   $22,000 - $24,000       |
+| Red          |   $24,000 - $30,000       |
+
+
+permanent % fee on transactions
+oppurtunity-cost payback 1.5x for 22k + 12k in payback.
+upfront 15/17/20/22/30 k
