@@ -1,5 +1,5 @@
 import type { PageServerLoad } from './$types';
-import { redirect } from '@sveltejs/kit';
+import { redirect, fail } from '@sveltejs/kit';
 
 export const load: PageServerLoad = async ({ locals: { getSession, supabase } }) => {
 	const session = await getSession();
@@ -8,14 +8,19 @@ export const load: PageServerLoad = async ({ locals: { getSession, supabase } })
 		throw redirect(303, '/');
 	}
 
-	const { data: profile } = await supabase
+	const { data: profile, error } = await supabase
 		.from('profiles')
-		.select('full_name')
+		.select('*')
 		.eq('id', session.user.id)
 		.single();
 
+	if (error) {
+		console.error(error);
+		throw fail(400, error);
+	}
+
 	if (!profile) {
-		console.log('in home but redirecting');
+		console.log('No profile could be found, redirecting back to landing page.');
 		throw redirect(303, '/');
 	}
 	return {

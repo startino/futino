@@ -1,10 +1,10 @@
 <script lang="ts">
-  // import {
-  //   createTable,
-  //   Subscribe,
-  //   Render,
-  //   createRender
-  // } from "svelte-headless-table";
+  import {
+    createTable,
+    Subscribe,
+    Render,
+    createRender
+  } from "svelte-headless-table";
 	import {
 		addSortBy,
 		addPagination,
@@ -408,56 +408,56 @@
 	<div class="rounded-md border">
 		<Table.Root {...$tableAttrs}>
 			<Table.Header>
-				<!-- {#each $headerRows as headerRow} -->
-				<!-- 	<Subscribe rowAttrs={headerRow.attrs()}> -->
-				<!-- 		<Table.Row> -->
-				<!-- 			{#each headerRow.cells as cell (cell.id)} -->
-				<!-- 				<Subscribe attrs={cell.attrs()} let:attrs props={cell.props()} let:props> -->
-				<!-- 					<Table.Head {...attrs} class={cn('[&:has([role=checkbox])]:pl-3')}> -->
-				<!-- 						{#if cell.id === 'amount'} -->
-				<!-- 							<div class="text-right"> -->
-				<!-- 								<Render of={cell.render()} /> -->
-				<!-- 							</div> -->
-				<!-- 						{:else if cell.id === 'email'} -->
-				<!-- 							<Button variant="ghost" on:click={props.sort.toggle}> -->
-				<!-- 								<Render of={cell.render()} /> -->
-				<!-- 								<CaretSort -->
-				<!-- 									class={cn( -->
-				<!-- 										$sortKeys[0]?.id === cell.id && 'text-foreground', -->
-				<!-- 										'ml-2 h-4 w-4' -->
-				<!-- 									)} -->
-				<!-- 								/> -->
-				<!-- 							</Button> -->
-				<!-- 						{:else} -->
-				<!-- 							<Render of={cell.render()} /> -->
-				<!-- 						{/if} -->
-				<!-- 					</Table.Head> -->
-				<!-- 				</Subscribe> -->
-				<!-- 			{/each} -->
-				<!-- 		</Table.Row> -->
-				<!-- 	</Subscribe> -->
-				<!-- {/each} -->
+				{#each $headerRows as headerRow}
+					<Subscribe rowAttrs={headerRow.attrs()}>
+						<Table.Row>
+							{#each headerRow.cells as cell (cell.id)}
+								<Subscribe attrs={cell.attrs()} let:attrs props={cell.props()} let:props>
+									<Table.Head {...attrs} class={cn('[&:has([role=checkbox])]:pl-3')}>
+										{#if cell.id === 'amount'}
+											<div class="text-right">
+												<Render of={cell.render()} />
+											</div>
+										{:else if cell.id === 'email'}
+											<Button variant="ghost" on:click={props.sort.toggle}>
+												<Render of={cell.render()} />
+												<CaretSort
+													class={cn(
+														$sortKeys[0]?.id === cell.id && 'text-foreground',
+														'ml-2 h-4 w-4'
+													)}
+												/>
+											</Button>
+										{:else}
+											<Render of={cell.render()} />
+										{/if}
+									</Table.Head>
+								</Subscribe>
+							{/each}
+						</Table.Row>
+					</Subscribe>
+				{/each}
 			</Table.Header>
 			<Table.Body {...$tableBodyAttrs}>
-<!-- 				{#each $pageRows as row (row.id)} -->
-<!-- 					<Subscribe rowAttrs={row.attrs()} let:rowAttrs> -->
-<!-- 						<Table.Row {...rowAttrs} data-state={$selectedDataIds[row.id] && 'selected'}> -->
-<!-- 							{#each row.cells as cell (cell.id)} -->
-<!-- 								<Subscribe attrs={cell.attrs()} let:attrs> -->
-<!-- 									<Table.Cell class="[&:has([role=checkbox])]:pl-3" {...attrs}> -->
-<!-- 										{#if cell.id === 'amount'} -->
-<!-- 											<div class="text-right font-medium"> -->
-<!-- 												<Render of={cell.render()} /> -->
-<!-- 											</div> -->
-<!-- 										{:else} -->
-<!-- 											<Render of={cell.render()} /> -->
-<!-- 										{/if} -->
-<!-- 									</Table.Cell> -->
-<!-- 								</Subscribe> -->
-<!-- 							{/each} -->
-<!-- 						</Table.Row> -->
-<!-- 					</Subscribe> -->
-<!-- 				{/each} -->
+				{#each $pageRows as row (row.id)}
+					<Subscribe rowAttrs={row.attrs()} let:rowAttrs>
+						<Table.Row {...rowAttrs} data-state={$selectedDataIds[row.id] && 'selected'}>
+							{#each row.cells as cell (cell.id)}
+								<Subscribe attrs={cell.attrs()} let:attrs>
+									<Table.Cell class="[&:has([role=checkbox])]:pl-3" {...attrs}>
+										{#if cell.id === 'amount'}
+											<div class="text-right font-medium">
+												<Render of={cell.render()} />
+											</div>
+										{:else}
+											<Render of={cell.render()} />
+										{/if}
+									</Table.Cell>
+								</Subscribe>
+							{/each}
+						</Table.Row>
+					</Subscribe>
+				{/each}
 			</Table.Body>
 		</Table.Root>
 	</div>
