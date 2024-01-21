@@ -1,17 +1,26 @@
 erDiagram
-    "auth.users" ||--|| profile : is
+    "auth.users" ||--|| Profile : is
+    "auth.users" ||--|{ Role : has
+    Organization ||--|{ Profile : has
+    Organization ||--|{ Role : has
+    Organization ||--o{ Contract : manages
+    Organization ||--o{ Bill : manages
+    Organization ||--|{ Log : has
+    Organization ||--|| Billed-Customer : is
+    Organization ||--|{ Vendor : has
 
-    organization ||--|{ profile : has
-    organization ||--|{ role : has
-    organization ||--o{ contract : manages
-    organization ||--o{ bill : manages
+    Contract ||--||  Vendor : uses
 
-    profile ||--o{ approver : has
+    Billed-Customer ||--|| SUBSCRIPTION-STATUS : uses
 
-    role ||--o{ profile : has
-    role }|--|{ permission : has
+    Log ||--|| EVENT : uses
 
-    profile {
+    Profile ||--|{ Approver : has
+
+    Role ||--o{ Profile : has
+    Role }|--|{ Permission : has
+
+    Profile {
         uuid profile_id pk
         uuid fk_organization fk  
         uuid fk_role_id fk
@@ -19,35 +28,101 @@ erDiagram
         timestamptz created_at
         timestamptz updated_at
     }
-    approver {
-        uuid approver_id pk
-        uuid approvee_id fk
+    Approver {
+        uuid fk_profile_id fk
+        uuid approver_id "Porfile ID of the approver"
     }
-    role {
+    Role {
         uuid role_id pk
         uuid fk_organization_id fk
         timestamptz created_at
         timestamptz updated_at
     }
-    permission {
+    Permission {
         uuid permission_id pk
         timestamptz created_at
         timestamptz updated_at
     }
-    organization {
+    Organization {
         uuid organization_id pk "Secret company ID used for joining a company" 
+
         timestamptz created_at
         timestamptz updated_at
     }
-    contract {
+    Contract {
+        uuid contract_id pk
+        uuid parent_contract fk
+        uuid fk_organization_id fk
+        date start_date
+        date end_date
+        string(250) description
+        int4 project_code fk
+        uuid creator fk
+        uuid[] approvers fk  
+        enum status "Pending, Active, Paid, Partially Paid"
+        money amount
+        enum department "Accounting, IT, etc."
+        enum spend_category "Testing, Manufacturing, Legal, etc."
+        file attachment
+        uuid vendor fk
+        timestamptz created_at
+        timestamptz updated_at
+
+    }
+    Vendor {
+        uuid vendor_id pk
+        uuid fk_organization_id fk
+        string vendor_name
+        enum department "Accounting, IT, etc."
+    }
+    Bill {
         uuid contract_id pk
         uuid fk_organization_id fk
         timestamptz created_at
         timestamptz updated_at
     }
-    bill {
-        uuid contract_id pk
-        uuid fk_organization_id fk
+    Log {
+        uuid fk_organization_id pk,fk
+        uuid fk_user_id fk "User whom caused the event"
+        enum event fk "Not sure how enums work in mermaid..."
+        json old_data
+        json new_data
+        timestamptz created_at
+    }
+    EVENT {
+        value CREATE_CONTRACT
+        value MODIFY_CONTRACT
+        value DELETE_CONTRACT
+        value CREATE_BILL
+        value MODIFY_BILL
+        value DELETE_BILL
+        value CREATE_USER
+        value MODIFY_USER
+        value DELETE_USER
+        value CREATE_COMPANY
+        value MODIFY_COMPANY
+    }
+    Billed-Customer {
+        uuid fk_organization_id pk,fk
+        enum subscription_status fk
+        product_id text 
+        bool cancel_at_period_end
+        created timestamp
+        current_period_start timestamp 
+        current_period_end timestamp
+        trial_start timestamp
+        trial_end timestamp
         timestamptz created_at
         timestamptz updated_at
+    }
+    Products {
+    
+    }
+    SUBSCRIPTION-STATUS {
+        value TRAILING
+        value ACTIVE
+        value CANCELED
+        value PAST_DUE
+        value UNPAID
+        value PAUSED
     }

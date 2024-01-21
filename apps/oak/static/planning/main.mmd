@@ -1,59 +1,65 @@
+%%{init: {"flowchart": {"htmlLabels": false}} }%%
 graph LR
-    A((Oak))
-    A --> B["👋 Landing Page"]
-    A --> C["💲 Pricing Page"]:::taskForNazif
-    A --> D["✍️ Login/Register Page"]
-    D --> E["📧 Email Authentication"]
-    A --> F["📱 User-side App"]
-    F --> G["💼 Contract Management"]
-    G --> H["🗃️ Contract repository"]:::taskForNazif
-    H --> I["📑 Contract table"]:::taskForNazif
-    H --> J["🔍 Search & Filter by XYZ"]
-    G --> K["📝 Contract entry form"]
-    G --> L["📊 Contract report"]
-    F --> M["📝 Bill management"]
-    F --> N["📩 Notifications"]
-    N --> O["📋 Pending contract approvals"]
-    N --> P["📋 Pending bill approvals"]
-    N --> Q["📋 Pending contract reviews"]
-    N --> R["📋 Requested admin help"]
-    F --> S["⚙️ Account settings"]
-    S --> T["📝 Edit profile"]
-    S --> U["📝 Edit notification settings"]
-    S --> V["📝 Edit approval settings"]
-    F --> W["⚙️ Company settings admin only"]
-    W --> X["📝 Edit user accounts"]
-    X --> Y["📝 Edit permissions"]
-    X --> Z["📝 Edit approvers"]
-    X --> AA["📝 Edit approval thresholds"]
-    W --> AB["📝 Edit company billing settings"]
-    F --> AC["💰 Payment"]
-    AC --> AD["🔄 Select Payment cycle"]
-    AC --> AE["💳 Go to Stripe checkout"]
-    F --> AF["⏳ Company Logs"]
-    AF --> AG["🗃️ Contract logs"]
-    AG --> AH["➕ Contract created"]
-    AH --> AI["⏰ date-time of event, 📜 Entire contract item"]
-    AG --> AJ["🔄 Contract modified"]
-    AJ --> AK["⏰ date-time of event, 🆔 ID, fields modified, old value & new value for each."]
-    AG --> AL["🗑️ Contract deleted"]
-    AL --> AM["⏰ date-time of event, 📜 Entire contract item"]
-    AF --> AN["🗃️ Bill logs"]
-    AF --> AO["🗃️ User logs"]
-    AO --> AP["➕ User created"]
-    AP --> AQ["⏰ date-time of event, 📜 Entire user item"]
-    AO --> AR["📲 User login"]
-    AR --> AS["⏰ date-time of event, 🆔 User ID"]
-    AO --> AT["🚪 User logout"]
-    AT --> AU["⏰ date-time of event, 🆔 User ID"]
-    AO --> AV["🗑️ User deleted"]
-    AV --> AW["⏰ date-time of event, 📜 Entire user item"]
-    AO --> AX["🔄 User modified"]
-    AX --> AY["⏰ date-time of event, 🆔 ID, fields modified, old value & new value for each."]
-    AF --> AZ["🗃️ Payment logs"]
-    AZ --> BA["💸 Item paid, billing modified, refund requested, refund approved, refund denied"]
-    A --> BB["Vendor-side App"]
-    BB --> BC["Post MVP"]
+    A[(Oak)]
+    A --> B["`👋Hero-only Landing Page `"]:::green
+    B --> B1["`👋Half a Landing Page `"]:::yellow
+    B1 --> B2["`👋Remaining (Full) Landing Page `"]:::orange
+    A --> A1["`📱 Contact Page `"]:::orange
+    A --> A2["`📱 About Page  `"]:::orange
+    A --> C["`💲 Hero-only Pricing Page `"]:::green
+    C --> C1["`💲 Remaining (Full) Pricing Page  `"]:::orange
+    C --> C2["`💲 Custom Checkout Page  `"]:::orange
+    A --> D["`✍️ Login/Register Page  `"]:::green
+    D --> E["`📧 Email Authentication  `"]:::yellow
+    A --> F["`📱 User-side App`"]:::green
+    A --> F1["❓ Help Feature  "]:::orange
+    A --> F2[" App-wide Search Command  "]:::red
+    F --> G["`💼 Contract Management`"]:::green
+    G --> G1["`📝 Contract Review Request `"]:::orange
+    G --> G2["`📝 PDF Display `"]:::red
+    G --> H["`🗃️ Contract repository`"]:::green
+    H --> I["`📑 Encrypt (password-lock) contracts `"]:::orange
+    I --> I1["`📑 Contract table `"]:::green
+    H --> J["`🔍 Search & Filter by XYZ  `"]:::green
+    G --> K["`📝 Contract entry form`"]:::green
+    K --> K1["`📝 Digital Signing `"]:::red
+    K1 --> K11["`📝 $20||$50/mo subscription + $0.5/document`"]:::red
+    G --> L["`📊 Contract report`"]:::green
+    F --> M["`📝 Bill management`"]:::green
+    M --> M1["`🗃️ Bill repository`"]:::green
+    M1 --> M11["`📑 Bill table `"]:::green
+    M1 --> M12["`🔍 Search & Filter by XYZ  `"]:::green
+    M --> M3["`📝 Bill entry form`"]:::green
+    F --> N["`📩 (In-app) Notifications`"]:::green
+    N --> NA["`⚙️ Email Notifications  + email server`"]:::orange
+    NA --> NB["`📩 Email Action Interface `"]:::red
+    N --> O["`📋 Pending contract approvals`"]:::green
+    N --> P["`📋 Pending bill approvals`"]:::green
+    N --> Q["`📋 Pending contract reviews`"]:::green
+    O & P & Q --> N1["`📋 Approval Form`"]:::green
+    N --> R["`📋 Requested admin help `"]:::orange
+    F --> S["`⚙️ Account settings`"]:::green
+    S --> T["`📝 Edit profile`"]:::green
+    S --> U["`📝 Edit notification settings  `"]:::orange
+    F --> W["`⚙️ Company settings admin only`"]:::green
+    W --> X["`📝 Edit company users`"]:::green
+    X --> Y["`📝 Edit permissions `"]:::orange
+    Y --> YA["`Dynamic permissions 
+                3 User types (admin, signer, default) `"]:::orange
+    X --> Z["`📝 Edit approvers`"]:::green
+    X --> AA["`📝 Edit approval thresholds`"]:::green
+    W --> AB["`📝 Edit company billing settings`"]:::green
+    F --> AF["`⏳ Company Logs`"]:::green
+    AF --> AG["`🗃️ Contract logs`"]:::green
+    AF --> AN["`🗃️ Bill logs`"]:::green
+    AF --> AO["`🗃️ User logs`"]:::green
+    AF --> AZ["`🗃️ Payment logs`"]:::green
+    A --> BB["`Vendor-side App`"]:::red
 
 
     classDef taskForNazif fill:#559999
+    classDef green fill:#99cc99
+    classDef yellow fill:#ffff99
+    classDef orange fill:#ffcc99
+    classDef red fill:#ff9999
+    
