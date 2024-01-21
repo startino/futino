@@ -1,6 +1,3 @@
-import Prose from "./prose.svelte";
+import Prose from './prose.svelte';
 
-export {
-  Prose	as Prose
-};
-
+export { Prose as Prose };
