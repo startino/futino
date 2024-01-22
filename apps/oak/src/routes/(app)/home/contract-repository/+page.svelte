@@ -23,7 +23,21 @@
 	import { Input } from '$lib/components/ui/input';
 	import DataTableCheckbox from './data-table/data-table-checkbox.svelte';
 
-	
+	type Contract = {
+		id: string;
+		amount: number;
+		status: 'Pending' | 'Active' | 'Paid' | 'Partially';
+		department: 'Accounting' | 'IT' | 'Legal';
+		startDate: string;
+		endDate: string;
+		spendCategory: 'Testing' | 'Manufacturing' | 'Legal';
+		attachment: string;
+		projectCode: number;
+		creator: string;
+		approver: string;
+		description: string;
+		vendorName: string;
+	};
 
 	const data: Contract[] = [
 		{

@@ -2,7 +2,6 @@ import { contractEntrySchema } from '$lib/schemas';
 import { redirect, fail } from '@sveltejs/kit';
 import type { Actions, PageServerLoad } from './$types';
 import { superValidate } from 'sveltekit-superforms/server';
-import { insertContract } from '$lib/server/contracts';
 
 export const load: PageServerLoad = async ({ locals: { getSession, supabase } }) => {
 	const session = await getSession();

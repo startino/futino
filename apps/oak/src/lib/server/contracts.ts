@@ -1,4 +1,3 @@
-import { supabase } from './$types';
 import type { Contract } from '$lib/types';
 
 const sampleContract: Contract = {
@@ -17,32 +16,32 @@ const sampleContract: Contract = {
     vendorName: 'John Doe',
 };
 
-async function insertContract(contract: Contract): Promise<void> {
-    if (!contract) {
-        contract = sampleContract;
-    }
+async function insertContract(): Promise<void> {
+    // if (!contract) {
+    //     contract = sampleContract;
+    // }
 
-    const { data, error } = await supabase
-        .from('contracts')
-        .insert({
-            parent_contract: formData.parent_contract,
-            org
-        contract_name: formData.contract_name,
-            contract_type: formData.contract_type,
-        });
+    // const { data, error } = await supabase
+    //     .from('contracts')
+    //     .insert({
+    //         parent_contract: formData.parent_contract,
+    //         org
+    //     contract_name: formData.contract_name,
+    //         contract_type: formData.contract_type,
+    //     });
 
-    const { error, count } = await supabaseAdmin
-        .from("contracts")
-        .select("*")
-        .eq("user_id", user_id);
+    // const { error, count } = await supabaseAdmin
+    //     .from("contracts")
+    //     .select("*")
+    //     .eq("user_id", user_id);
 
-    if (error) {
-        throw error;
-    }
+    // if (error) {
+    //     throw error;
+    // }
 
-    if (!count) {
-        return 0;
-    }
+    // if (!count) {
+    //     return 0;
+    // }
 
-    return count;
+    // return count;
 }
