@@ -31,11 +31,11 @@ export type TransitionOptions = {
 	delay?: number;
 	duration?: number;
 	fly?:
-		| {
-				x: number;
-				y: number;
-		  }
-		| undefined;
+	| {
+		x: number;
+		y: number;
+	}
+	| undefined;
 	axis?: 'x' | 'y';
 	threshold?: number;
 };
@@ -44,3 +44,19 @@ export enum Animation {
 	flyIn,
 	SomeOtherAnimation
 }
+
+export type Contract = {
+	id: string;
+	amount: number;
+	status: 'Pending' | 'Active' | 'Paid' | 'Partially';
+	department: 'Accounting' | 'IT' | 'Legal';
+	startDate: string;
+	endDate: string;
+	spendCategory: 'Testing' | 'Manufacturing' | 'Legal';
+	attachment: string;
+	projectCode: number;
+	creator: string;
+	approver: string;
+	description: string;
+	vendorName: string;
+};

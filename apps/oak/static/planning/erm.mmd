@@ -53,6 +53,7 @@ erDiagram
         uuid contract_id pk
         uuid parent_contract fk
         uuid fk_organization_id fk
+        uuid vendor fk
         date start_date
         date end_date
         string(250) description
@@ -64,7 +65,6 @@ erDiagram
         enum department "Accounting, IT, etc."
         enum spend_category "Testing, Manufacturing, Legal, etc."
         file attachment
-        uuid vendor fk
         timestamptz created_at
         timestamptz updated_at
 

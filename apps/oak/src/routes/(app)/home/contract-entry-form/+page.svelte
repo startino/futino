@@ -27,7 +27,7 @@
 	let form: SuperValidated<ContractEntryForm> = $page.data.form;
 
 	const userID: string = $page.data.userID;
-	let companyUsers: { id: string; fullName: string }[] = $page.data.companyUsers.map(
+	let organizationUsers: { id: string; fullName: string }[] = $page.data.organizationUsers.map(
 		(user: { id: string; full_name: string }) => ({
 			id: user.id,
 			fullName: user.full_name
@@ -166,7 +166,7 @@
 			<Form.Field {config} name="owner">
 				<Form.Item class="flex flex-col">
 					<Form.Label class="mb-2">Owner</Form.Label>
-					<EmployeeDropDown users={companyUsers} initialValue={userID} />
+					<EmployeeDropDown users={organizationUsers} initialValue={userID} />
 					<Form.Description
 						>Select the owner of the contract, if it isn't yourself.</Form.Description
 					>
@@ -176,7 +176,7 @@
 			<Form.Field {config} name="approver">
 				<Form.Item class="flex flex-col">
 					<Form.Label class="mb-2">Approver</Form.Label>
-					<EmployeeDropDown users={companyUsers} initialValue={userID} />
+					<EmployeeDropDown users={organizationUsers} initialValue={userID} />
 					<Form.Description
 						>Select the owner of the contract, if it isn't yourself.</Form.Description
 					>

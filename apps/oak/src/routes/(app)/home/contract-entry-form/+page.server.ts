@@ -2,6 +2,7 @@ import { contractEntrySchema } from '$lib/schemas';
 import { redirect, fail } from '@sveltejs/kit';
 import type { Actions, PageServerLoad } from './$types';
 import { superValidate } from 'sveltekit-superforms/server';
+import { insertContract } from '$lib/server/contracts';
 
 export const load: PageServerLoad = async ({ locals: { getSession, supabase } }) => {
 	const session = await getSession();
@@ -23,8 +24,8 @@ export const load: PageServerLoad = async ({ locals: { getSession, supabase } })
 
 	const companyID = userData?.company_id;
 
-	// Fetch all users with the same company_id
-	const { data: companyUsers, error: companyError } = await supabase
+	// Fetch users of same organization
+	const { data: organizationUsers, error: companyError } = await supabase
 		.from('profiles')
 		.select('id, full_name')
 		.eq('company_id', companyID);
@@ -36,13 +37,19 @@ export const load: PageServerLoad = async ({ locals: { getSession, supabase } })
 	return {
 		form: form,
 		userID: userID,
-		companyUsers: companyUsers
+		organizationUsers: organizationUsers
 	};
 };
 
 export const actions: Actions = {
 	default: async (event) => {
+		const supabase = event.locals.supabase;
+		const session = await event.locals.getSession();
+		const user = session?.user;
+
 		const form = await superValidate(event, contractEntrySchema);
+
+		const formData = form.data;
 
 		if (!form.valid) {
 			console.log('Form invalid: ', form.errors);
@@ -52,6 +59,16 @@ export const actions: Actions = {
 		} else {
 			console.log('Form submitted successfully: ', form.data);
 		}
+
+
+
+
+		if (error) {
+			throw fail(500, error);
+		}
+
+		console.log('Row inserted successfully:', data);
+
 		return {
 			form
 		};
