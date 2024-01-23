@@ -1,3 +1,5 @@
+import type { Tables } from '$lib/server/types';
+
 /**
  * This type alias is to identify CSS classes within component props,
  * which enables Tailwind IntelliSense
@@ -60,3 +62,5 @@ export type Contract = {
 	description: string;
 	vendorName: string;
 };
+
+export type NestedContract = Omit<Tables<'contracts'>, 'vendor' | 'creator'> & { vendor: { full_name: string }, creator: { full_name: string } };
