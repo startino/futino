@@ -8,6 +8,9 @@ erDiagram
     Organization ||--|{ Log : has
     Organization ||--|| Billed-Customer : is
     Organization ||--|{ Vendor : has
+    Organization ||--|{ Project : has
+    Organization ||--|{ Department : has
+    Organization ||--|{ Finance-Account : has
 
     Contract ||--||  Vendor : uses
 
@@ -45,9 +48,26 @@ erDiagram
     }
     Organization {
         uuid organization_id pk "Secret company ID used for joining a company" 
-
+        text company_name "Official company name"
+        text password
         timestamptz created_at
         timestamptz updated_at
+    }
+    Project {
+        uuid organization_id fk
+        string project_name
+        string description
+    }
+    Finance-Account {
+        uuid organization_id fk
+        int account_number "4200"
+        string description
+    }
+    Department {
+        uuid organization_id fk
+        int department_number "240"
+        string department_name "Chemistry"
+        string description
     }
     Contract {
         uuid contract_id pk
@@ -115,7 +135,7 @@ erDiagram
         timestamptz updated_at
     }
     Products {
-    
+
     }
     SUBSCRIPTION-STATUS {
         value TRAILING

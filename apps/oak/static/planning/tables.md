@@ -138,5 +138,6 @@
 
 
 permanent % fee on transactions
-oppurtunity-cost payback 1.5x for 22k + 12k in payback.
+oppurtunity-cost payback 1.5x for (costs to develop yellow)  + (1.5x remaining to develop from yellow red) in payback.
+
 upfront 15/17/20/22/30 k
