@@ -224,11 +224,6 @@
 			}
 		}),
 		table.column({
-			header: 'Status',
-			accessor: 'status',
-			plugins: { sort: { disable: true }, filter: { exclude: true } }
-		}),
-		table.column({
 			header: 'Department',
 			accessor: 'department',
 			plugins: { sort: { disable: true }, filter: { exclude: true } }
