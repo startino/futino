@@ -4,7 +4,7 @@ import type { Actions, PageServerLoad } from './$types';
 import { fail, redirect } from '@sveltejs/kit';
 import { AuthApiError } from '@supabase/supabase-js';
 
-export const load: PageServerLoad = async ({ locals: { getSession, supabase } }) => {
+export const load: PageServerLoad = async () => {
 	const form = await superValidate(loginUserSchema);
 
 	return {
@@ -14,7 +14,6 @@ export const load: PageServerLoad = async ({ locals: { getSession, supabase } })
 
 export const actions: Actions = {
 	default: async (event) => {
-		const redirectTo = event.url.searchParams.get('redirectTo');
 		const form = await superValidate(event, loginUserSchema);
 
 		if (!form.valid) {

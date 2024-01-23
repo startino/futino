@@ -6,7 +6,7 @@
 
 	export let data: PageData;
 	export let typeOfAuth: 'login' | 'register' = 'login';
-	const { form, errors, enhance } = superForm(data.form, {
+	const { form, errors, enhance, submitting } = superForm(data.form, {
 		onResult: ({ result }) => {
 			switch (result.type) {
 				case 'success':
@@ -74,7 +74,7 @@
 				{/if}
 			</label>
 		{/if}
-		<Button type="submit" class="w-full mt-4 py-8"><h3 class="m-0 sm:m-0">Register</h3></Button
+		<Button disabled={$submitting} type="submit" class="w-full mt-4 py-8"><h3 class="m-0 sm:m-0">{$submitting ? '........': 'Register'}</h3></Button
 		>
 		<div class="text-sm font-medium text-gray-500 dark:text-gray-300">
 			{typeOfAuth == 'login' ? "Don't have an account yet?" : 'Already have an account?'}

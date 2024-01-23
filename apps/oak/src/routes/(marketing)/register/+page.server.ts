@@ -1,12 +1,9 @@
 import { setError, superValidate } from 'sveltekit-superforms/server';
 import { registerUserSchema } from '$lib/schemas';
-import { fail, redirect, error } from '@sveltejs/kit';
+import { fail, redirect } from '@sveltejs/kit';
 import type { Actions, PageServerLoad } from './$types';
-import { AuthApiError } from '@supabase/supabase-js';
-import { createSupabaseLoadClient } from '@supabase/auth-helpers-sveltekit';
 
-export const load: PageServerLoad = async (event) => {
-	const session = await event.locals.getSession();
+export const load: PageServerLoad = async () => {
 
 	return {
 		form: await superValidate(registerUserSchema)
@@ -22,27 +19,26 @@ export const actions: Actions = {
 				msg: form.errors,
 				form: form
 			});
-		}
+		}		
 
 		if (form.data.password !== form.data.confirmPassword) {
 			return setError(form, 'confirmPassword', 'Passwords do not match');
 		}
 
-		const { error: authError } = await event.locals.supabase.auth.signInWithOtp({
+		const { error: authError } = await event.locals.supabase.auth.signUp({
 			email: form.data.email,
+			password: form.data.password,
 			options: {
-				emailRedirectTo: `http://localhost:5173/home`
+				data: {
+					full_name: form.data.fullName
+				}
 			}
 		});
 
 		if (authError) {
 			return setError(form, 'An error occured while registering.');
 		} else {
-			throw redirect(302, '/home');
+			throw redirect(302, '/login');
 		}
-		return {
-			msg: 'Form is valid!',
-			form: form
-		};
 	}
 };
