@@ -1,5 +1,5 @@
 import { PUBLIC_SUPABASE_URL, PUBLIC_SUPABASE_ANON_KEY } from '$env/static/public';
-import type { Database } from '$lib/server/types';
+import type { Database } from '$lib/server/supabase.types';
 import { createSupabaseServerClient } from '@supabase/auth-helpers-sveltekit';
 import type { PostgrestError } from '@supabase/supabase-js';
 import type { Handle } from '@sveltejs/kit';

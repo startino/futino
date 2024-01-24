@@ -1,4 +1,4 @@
-import type { Tables } from '$lib/server/types';
+import type { Tables } from '$lib/server/supabase.types';
 
 /**
  * This type alias is to identify CSS classes within component props,

@@ -1,8 +1,6 @@
 <script>
-    export let error;
+	import { page } from '$app/stores';
 </script>
 
-<main class="flex flex-col items-center justify-center h-screen font-sans">
-    <h1 class="text-2xl mb-4">Error</h1>
-    <p class="text-red-500 text-lg">{error.message}</p>
-</main>
+
+<h1 class="prose prose-main">{$page.status} {$page.error.message}</h1>
