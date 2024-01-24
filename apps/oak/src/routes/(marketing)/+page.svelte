@@ -53,10 +53,10 @@
 			<div class="mt-24 sm:mt-32 lg:mt-16">
 				<a href="#" class="inline-flex space-x-6">
 					<span
-						class="bg-primary-500/10 text-primary-500 ring-primary-500/20 rounded-full px-3 py-1 text-sm ring-1 ring-inset"
+						class="rounded-full bg-primary-500/10 px-3 py-1 text-sm text-primary-500 ring-1 ring-inset ring-primary-500/20"
 						>Latest updates</span
 					>
-					<span class="text-foreground/70 inline-flex items-center space-x-2 text-sm">
+					<span class="inline-flex items-center space-x-2 text-sm text-foreground/70">
 						<span>Just shipped v1.0</span>
 						<svg
 							class="h-5 w-5 text-gray-500"

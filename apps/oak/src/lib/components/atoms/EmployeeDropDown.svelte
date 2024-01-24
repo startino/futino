@@ -15,7 +15,8 @@
 	export let value = '';
 	value = initialValue;
 
-	$: selectedValue = users.find((f) => f.fullName === value)?.fullName ?? 'Select a company employee...';
+	$: selectedValue =
+		users.find((f) => f.fullName === value)?.fullName ?? 'Select a company employee...';
 
 	// We want to refocus the trigger button when the user selects
 	// an item from the list so users can continue navigating the
