@@ -46,7 +46,7 @@ export const load: PageServerLoad = async ({ locals: { getSession, supabase } })
 		if (contractsError) {
 			throw error(500, "Error fetching contacts, please try again later.");
 		}
-		await new Promise(r => setTimeout(r, 10000));
+		await new Promise(r => setTimeout(r, 5000));
 
 		return orgUsers;
 	}

@@ -114,7 +114,10 @@
 	<Card.Content>
 		{#await waitForMe()}
 		<h1 class="prose prose-main">HEREEEE LOADINGGG</h1>
-		<Skeleton class="w-screen h-screen" />
+		<div class="h-full w-full bg-red-900">
+			<Skeleton class="w-full h-full" />
+		</div>
+		
 		{:then {contracts, organizationUsers}} 
 		<Form.Root
 		method="POST"
