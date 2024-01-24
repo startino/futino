@@ -8,7 +8,6 @@ export const load: PageServerLoad = async ({ locals: { getSession, supabase } })
 		throw redirect(303, '/');
 	}
 
-
 	return {
 		session
 	};

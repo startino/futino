@@ -31,12 +31,7 @@
 </script>
 
 <Card.Root class="w-full max-w-2xl p-12">
-	<form
-		method="POST"
-		class="flex flex-col gap-y-6"
-		use:enhance
-		data-testid="register-form"
-	>
+	<form method="POST" class="flex flex-col gap-y-6" use:enhance data-testid="register-form">
 		{#if typeOfAuth == 'register'}
 			<label class="space-y-2" for="fullName">
 				<span>Full Name</span>
@@ -74,8 +69,7 @@
 				{/if}
 			</label>
 		{/if}
-		<Button type="submit" class="w-full mt-4 py-8"><h3 class="m-0 sm:m-0">Register</h3></Button
-		>
+		<Button type="submit" class="mt-4 w-full py-8"><h3 class="m-0 sm:m-0">Register</h3></Button>
 		<div class="text-sm font-medium text-gray-500 dark:text-gray-300">
 			{typeOfAuth == 'login' ? "Don't have an account yet?" : 'Already have an account?'}
 			<a
@@ -88,14 +82,14 @@
 </Card.Root>
 
 <style>
-label {
-	@apply m-0 sm:m-0;
-  }
-  
-  input[type="text"],
-  input[type="number"],
-  input[type="email"],
-  input[type="password"] {
-	  @apply block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500 !important;
-  }
-  </style>
+	label {
+		@apply m-0 sm:m-0;
+	}
+
+	input[type='text'],
+	input[type='number'],
+	input[type='email'],
+	input[type='password'] {
+		@apply block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500 !important;
+	}
+</style>

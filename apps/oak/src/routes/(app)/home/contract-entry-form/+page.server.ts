@@ -4,8 +4,9 @@ import type { Actions, PageServerLoad } from './$types';
 import { superValidate } from 'sveltekit-superforms/server';
 import type { Tables } from '$lib/server/supabase.types';
 import type { PostgrestError, QueryData } from '@supabase/supabase-js';
+import { getVendorsInOrg } from '$lib/server/vendors';
 
-export const load: PageServerLoad = async ({ locals: { getSession, supabase } }) => {
+export const load = async ({ locals: { getSession, supabase } }) => {
 	const session = await getSession();
 
 	const form = await superValidate(contractEntrySchema);
@@ -20,7 +21,7 @@ export const load: PageServerLoad = async ({ locals: { getSession, supabase } })
 		.single();
 
 	if (userError) {
-		console.log("User Error: ", userError);
+		console.log('User Error: ', userError);
 		throw fail(404, userError);
 	}
 
@@ -33,44 +34,68 @@ export const load: PageServerLoad = async ({ locals: { getSession, supabase } })
 		.eq('organization_id', organizationID);
 
 	if (organizationError) {
-		console.log("Org Error: ", organizationError);
+		console.log('Org Error: ', organizationError);
 		throw fail(404, organizationError);
 	}
-	async function getOrgUsers() {
+
+	async function getOrgUsers(): Promise<
+		{
+			id: any;
+			full_name: any;
+		}[]
+	> {
 		const orgUsersData = supabase
 			.from('profiles')
 			.select('id, full_name')
 			.eq('organization_id', organizationID);
-		const { data: orgUsers, error: contractsError }: { data: QueryData<typeof orgUsersData>; error: PostgrestError } = await orgUsersData;
+		const {
+			data: orgUsers,
+			error: contractsError
+		}: { data: QueryData<typeof orgUsersData>; error: PostgrestError } = await orgUsersData;
 
 		if (contractsError) {
-			throw error(500, "Error fetching contacts, please try again later.");
+			throw error(500, 'Error fetching contacts, please try again later.');
 		}
-		await new Promise(r => setTimeout(r, 5000));
+		await new Promise((r) => setTimeout(r, 5000));
 
 		return orgUsers;
 	}
 
-
-
-	async function getContracts() {
-		const contractsData = supabase.from('contracts').select('*').eq('organization_id', organizationID);
-		const { data: contracts, error: contractsError }: { data: Tables<'contracts'>[]; error: PostgrestError } = await contractsData;
+	async function getContractsWithVendors() {
+		const contractsData = supabase
+			.from('contracts')
+			.select('*')
+			.eq('organization_id', organizationID);
+		const {
+			data: contracts,
+			error: contractsError
+		}: { data: Tables<'contracts'>[]; error: PostgrestError } = await contractsData;
 
 		if (contractsError) {
-			throw error(500, "Error fetching contacts, please try again later.");
+			throw error(500, 'Error fetching contacts, please try again later.');
 		}
-		await new Promise(r => setTimeout(r, 1000));
-		return contracts;
+
+		const vendors: Tables<'vendors'>[] = await getVendorsInOrg(organizationID);
+		console.log(vendors);
+		// Add vendors "name" to contracts
+		const contractsWithVendors = contracts.map((contract) => {
+			console.log(contract.vendor_id);
+			const vendor = vendors.find((vendor) => vendor.id === contract.vendor_id);
+			console.log(vendor);
+			return {
+				...contract,
+				vendor_name: vendor?.name || ''
+			};
+		});
+
+		return contractsWithVendors;
 	}
-
-
 
 	return {
 		form: form,
 		userID: userID,
 		organizationUsers: getOrgUsers(),
-		contractsData: getContracts()
+		contractsWithVendors: getContractsWithVendors()
 	};
 };
 
@@ -92,8 +117,6 @@ export const actions: Actions = {
 		} else {
 			console.log('Form submitted successfully: ', form.data);
 		}
-
-
 
 		return {
 			form
