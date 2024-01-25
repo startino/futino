@@ -41,16 +41,16 @@ export const loginUserSchema = z.object({
 });
 
 export const contractEntrySchema = z.object({
-	parentContract: z.string().optional(),
-	startDate: z.date(),
-	endDate: z.date().optional(),
+	parent_contract: z.string().optional(),
+	start_date: z.date(),
+	end_date: z.date(),
 	description: z.string().optional(),
-	projectCode: z.string().optional(),
-	owner: z.string(),
-	approver: z.string().optional(),
+	vendor_id: z.string(),
+	project: z.string().optional(),
+	creator: z.string(),
 	department: z.string().optional(),
-	amount: z.string().optional(),
-	spendCategory: z.enum(['Contract', 'Clinical', 'Other']).optional()
+	amount: z.string(),
+	spend_category: z.string().optional()
 });
 
 export type ContractEntryForm = typeof contractEntrySchema;

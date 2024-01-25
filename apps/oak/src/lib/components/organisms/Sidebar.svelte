@@ -50,16 +50,14 @@
 					current: false
 				},
 				{ name: 'Contract Report', href: 'contract-report', icon: 'PieChart', current: false }
-			],
-			current: false
+			]
 		},
 		{
 			name: 'Bill Management',
 			items: [
 				{ name: 'Bill Repository', href: 'bill-repository', icon: 'Table', current: false },
 				{ name: 'Bill Entry Form', href: 'bill-entry-form', icon: 'PlusCircle', current: false }
-			],
-			current: false
+			]
 		},
 		{
 			name: 'Settings',
@@ -72,8 +70,7 @@
 				},
 				{ name: 'Company Account', href: 'company-account', icon: 'Building', current: false },
 				{ name: 'Logs', href: '#', icon: 'ScrollText', current: false }
-			],
-			current: false
+			]
 		}
 	];
 	export let bottomNavigation = [
@@ -83,10 +80,10 @@
 </script>
 
 <!-- Static sidebar for desktop -->
-<div class="hidden h-full overflow-y-clip lg:z-50 lg:flex lg:w-72 lg:flex-col">
+<div class="hidden h-full overflow-y-clip lg:z-50 lg:flex lg:w-72 lg:flex-col {$$props.class}">
 	<!-- Sidebar component, swap this element with another sidebar if you like -->
 	<div
-		class="m-4 flex grow flex-col gap-y-5 overflow-hidden rounded-2xl border bg-primary-900/20 px-6 pb-6 text-white"
+		class="flex grow flex-col gap-y-5 overflow-hidden rounded-2xl border bg-primary-900/20 px-6 pb-6 text-white"
 	>
 		<div class="flex h-16 shrink-0 items-center px-2 pt-6">
 			<a href="https://flowbite.com" class="mr-4 flex place-items-center space-x-2">

@@ -8,8 +8,8 @@
 	let searchBarValue: string = '';
 </script>
 
-<header class="antialiased">
-	<nav class="m-4 rounded-2xl border bg-card px-4 py-4">
+<header class="antialiased {$$props.class}">
+	<nav class=" rounded-2xl border bg-card px-4 py-4">
 		<div class="flex flex-wrap items-center justify-between">
 			<div class="flex items-center justify-start">
 				<!-- <button

@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { fade } from 'svelte/transition';
 	import { onMount } from 'svelte';
+	import type { SvelteEvent } from '$lib/types';
 	// Slots
 	/** @slot header - Insert fixed header content, such as Skeleton's App Bar component.
 	 * @slot sidebarLeft - Hidden when empty. Allows you to set fixed left sidebar content.
@@ -9,9 +10,6 @@
 	 * @slot pageFooter - Insert content that resides below your page content. Recommended for most layouts.
 	 * @slot footer - Insert fixed footer content. Not recommended for most layouts.
 	 */
-
-	// Types to get TailwindCSS Intellisense
-	import type { CssClasses, SvelteEvent } from '../../types.ts';
 
 	interface $$Events {
 		scroll: SvelteEvent<UIEvent, HTMLDivElement>;
@@ -23,28 +21,28 @@
 
 	// Props (regions)
 	/** Apply arbitrary classes to the entire `#page` region. */
-	export let regionPage: CssClasses = '';
+	export let regionPage: string = '';
 	/** Apply arbitrary classes to the `header` slot container element */
-	export let slotHeader: CssClasses = 'z-10';
+	export let slotHeader: string = 'z-10';
 	/** Apply arbitrary classes to the `sidebarLeft` slot container element */
-	export let slotSidebarLeft: CssClasses = 'w-auto';
+	export let slotSidebarLeft: string = 'w-auto';
 	/** Apply arbitrary classes to the `sidebarRight` slot container element */
-	export let slotSidebarRight: CssClasses = 'w-auto';
+	export let slotSidebarRight: string = 'w-auto';
 	/** Apply arbitrary classes to the `pageHeader` slot container element */
-	export let slotPageHeader: CssClasses = '';
+	export let slotPageHeader: string = '';
 	/** Apply arbitrary classes to the `pageContent` slot container element */
-	export let slotPageContent: CssClasses = '';
+	export let slotPageContent: string = '';
 	/** Apply arbitrary classes to the `pageFooter` slot container element */
-	export let slotPageFooter: CssClasses = '';
+	export let slotPageFooter: string = '';
 	/** Apply arbitrary classes to the `footer` slot container element */
-	export let slotFooter: CssClasses = '';
+	export let slotFooter: string = '';
 
 	// Base classes
-	const cBaseAppShell: CssClasses = 'w-full h-full flex flex-col overflow-hidden';
-	const cContentArea: CssClasses = 'w-full h-full flex overflow-hidden';
-	const cPage: CssClasses = 'flex-1 overflow-x-hidden flex flex-col ';
-	const cSidebarLeft: CssClasses = 'flex-none overflow-x-hidden overflow-y-auto';
-	const cSidebarRight: CssClasses = 'flex-none overflow-x-hidden overflow-y-auto';
+	const cBaseAppShell: string = 'w-full h-full flex flex-col overflow-hidden';
+	const cContentArea: string = 'w-full h-full flex overflow-hidden';
+	const cPage: string = 'flex-1 overflow-x-hidden flex flex-col ';
+	const cSidebarLeft: string = 'flex-none overflow-x-hidden overflow-y-auto';
+	const cSidebarRight: string = 'flex-none overflow-x-hidden overflow-y-auto';
 
 	// Reactive Classes
 	$: classesBase = `${cBaseAppShell} ${$$props.class ?? ''}`;

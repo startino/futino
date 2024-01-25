@@ -2,7 +2,7 @@
 	import * as Form from '$lib/components/ui/form';
 	import { contractEntrySchema, type ContractEntryForm } from '$lib/schemas';
 	import { navigating, page } from '$app/stores';
-	import { Calendar as CalendarIcon, Check, ChevronsUpDown } from 'lucide-svelte';
+	import { Calendar as CalendarIcon, Check, ChevronsUpDown, Lock } from 'lucide-svelte';
 	import {
 		type DateValue,
 		DateFormatter,
@@ -20,17 +20,16 @@
 	import { superForm, type SuperForm } from 'sveltekit-superforms/client';
 	import DatePicker from '$lib/components/atoms/DatePicker.svelte';
 	import type { FormOptions } from 'formsnap';
-	import EmployeeDropDown from '$lib/components/atoms/EmployeeDropDown.svelte';
+	import Combobox from '$lib/components/atoms/Combobox.svelte';
 	import { ZodObject } from 'zod';
 	import type { PageData } from './$types';
 	import * as Command from '$lib/components/ui/command';
 	import { onMount, tick } from 'svelte';
 	import { Skeleton } from '$lib/components/ui/skeleton';
-	import type { Tables } from '$lib/server/supabase.types';
 	import SkeletonForm from '$lib/components/molecules/SkeletonForm.svelte';
 	import { fade } from 'svelte/transition';
 	import { formatUSD } from '$lib/helpers';
-	import type { QueryData } from '@supabase/supabase-js';
+	import { Label } from '$lib/components/ui/label';
 
 	export let data: PageData;
 	let form: SuperValidated<ContractEntryForm> = $page.data.form;
@@ -53,14 +52,6 @@
 		// ...
 	};
 
-	// Update formstore on changing the datepicker value
-	$: $formStore.startDate = startDateValue
-		? new Date(startDateValue.toString())
-		: new Date(today.toString());
-	$: $formStore.endDate = endDateValue
-		? new Date(endDateValue.toString())
-		: new Date(today.toString());
-
 	const df = new DateFormatter('en-US', {
 		dateStyle: 'long'
 	});
@@ -73,38 +64,49 @@
 		});
 	}
 
-	let parentContractValue: string | undefined = $formStore.parentContract;
-	let startDateValue: DateValue | undefined = $formStore.startDate
-		? parseDate($formStore.startDate.toString())
+	let parentContractValue: string | undefined = $formStore.parent_contract;
+	let startDateValue: DateValue | undefined = $formStore.start_date
+		? parseDate($formStore.start_date.toString())
 		: undefined;
-	let endDateValue: DateValue | undefined = $formStore.endDate
-		? parseDate($formStore.endDate.toString())
+	let endDateValue: DateValue | undefined = $formStore.end_date
+		? parseDate($formStore.end_date.toString())
 		: undefined;
 
 	let startDatePlaceholder: DateValue = today(getLocalTimeZone());
 	let endDatePlaceholder: DateValue = today(getLocalTimeZone());
 
+	$: $formStore.start_date = startDateValue ? new Date(startDateValue.toString()) : undefined;
+	$: $formStore.end_date = endDateValue ? new Date(endDateValue.toString()) : undefined;
+
 	async function waitForRequiredData() {
 		const contractsWithVendor = await data.contractsWithVendors;
 		const organizationUsers = await data.organizationUsers;
+		const vendors = await data.vendors;
 
-		let organizationUsersParsed: { id: string; fullName: string }[] = organizationUsers.map(
-			(user) => ({
-				id: user.id,
-				fullName: user.full_name
-			})
-		);
+		let organizationUsersParsed = organizationUsers.map((user) => ({
+			value: user.id,
+			label: user.full_name
+		}));
 
 		let contractsParsed = contractsWithVendor.map((contract) => ({
-			label: `${contract.vendor_name} ${formatUSD(contract.amount)}`,
+			label: `${contract.vendor_name} | ${formatUSD(contract.amount)} | ${contract.start_date} | ${contract.end_date}`,
 			value: contract.id
 		}));
 
-		return { contracts: contractsParsed, organizationUsers: organizationUsersParsed };
+		let vendorsParsed = vendors.map((vendor) => ({
+			label: vendor.name,
+			value: vendor.id
+		}));
+
+		return {
+			contracts: contractsParsed,
+			organizationUsers: organizationUsersParsed,
+			vendors: vendorsParsed
+		};
 	}
 </script>
 
-<Card.Root class="m-4 h-full p-10">
+<Card.Root class=" h-full p-10">
 	<Card.Header
 		><Card.Title class="m-0 sm:m-0">Contract Entry Form</Card.Title>
 		<Card.Description class="m-0 sm:m-0"
@@ -114,7 +116,7 @@
 	<Card.Content>
 		{#await waitForRequiredData()}
 			<SkeletonForm />
-		{:then { contracts, organizationUsers }}
+		{:then { contracts, organizationUsers, vendors }}
 			<Form.Root
 				method="POST"
 				class="w-min space-y-6"
@@ -123,70 +125,23 @@
 				form={theForm}
 				let:config
 			>
-				<Form.Field {config} name="parentContract" let:setValue let:value={parentContractValue}>
+				<Form.Field {config} name="parent_contract" let:setValue let:value>
 					<Form.Item class="flex flex-col">
 						<Form.Label class="mb-2">Parent Contract</Form.Label>
-
-						<Popover.Root let:ids>
-							<Popover.Trigger asChild let:builder>
-								<Form.Control id={ids.trigger} let:attrs>
-									<Button
-										builders={[builder]}
-										{...attrs}
-										variant="outline"
-										role="combobox"
-										type="button"
-										class={cn(
-											'w-[200px] justify-between',
-											!parentContractValue && 'text-muted-foreground'
-										)}
-									>
-										{contracts.find((f) => f.label === parentContractValue)?.label ??
-											'Select language'}
-										<ChevronsUpDown class="ml-2 h-4 w-4 shrink-0 opacity-50" />
-									</Button>
-								</Form.Control>
-							</Popover.Trigger>
-							<Popover.Content class="w-[200px] p-0" side="right" align="start">
-								<Command.Root>
-									<Command.Input autofocus placeholder="Search language..." class="mt-2" />
-									<Command.Empty>No language found.</Command.Empty>
-									<Command.Group>
-										{#each contracts as contract}
-											<Command.Item
-												value={contract.value}
-												onSelect={() => {
-													setValue(contract.value);
-													closeAndFocusTrigger(ids.trigger);
-												}}
-											>
-												<Check
-													class={cn(
-														'mr-2 h-4 w-4',
-														contract.value !== parentContractValue && 'text-transparent'
-													)}
-												/>
-												{contract.label}
-											</Command.Item>
-										{/each}
-									</Command.Group>
-								</Command.Root>
-							</Popover.Content>
-						</Popover.Root>
-
+						<Combobox items={contracts} initialValue={userID} {setValue} />
 						<Form.Description>
 							Enter the parent contract number if this is a renewal or extension
 						</Form.Description>
 						<Form.Validation />
 					</Form.Item>
 				</Form.Field>
-				<Form.Field {config} name="startDate">
+				<Form.Field {config} name="start_date">
 					<Form.Item class="flex flex-col">
-						<Form.Label for="startDate" class="mb-2">Start Date</Form.Label>
+						<Form.Label for="start_date" class="mb-2">Start Date</Form.Label>
 						<Popover.Root>
-							<Form.Control id="startDate" let:attrs>
+							<Form.Control id="start_date" let:attrs>
 								<Popover.Trigger
-									id="startDate"
+									id="start_date"
 									{...attrs}
 									class={cn(
 										buttonVariants({ variant: 'outline' }),
@@ -210,13 +165,13 @@
 						<Form.Validation />
 					</Form.Item>
 				</Form.Field>
-				<Form.Field {config} name="endDate">
+				<Form.Field {config} name="end_date">
 					<Form.Item class="flex flex-col">
 						<Form.Label class="mb-2">End Date</Form.Label>
 						<Popover.Root>
-							<Form.Control id="endDate" let:attrs>
+							<Form.Control id="end_date" let:attrs>
 								<Popover.Trigger
-									id="endDate"
+									id="end_date"
 									{...attrs}
 									class={cn(
 										buttonVariants({ variant: 'outline' }),
@@ -251,27 +206,44 @@
 						<Form.Validation />
 					</Form.Item>
 				</Form.Field>
+				<Form.Field {config} name="vendor_id" let:setValue>
+					<Form.Item class="flex flex-col">
+						<Form.Label class="mb-2">Vendor</Form.Label>
+						<Combobox items={vendors} placeholder="Search for a vendor" {setValue} />
+						<Form.Description
+							>Select the owner of the contract, if it isn't yourself.</Form.Description
+						>
+						<Form.Validation />
+					</Form.Item>
+				</Form.Field>
 				<!--TODO project code input field-->
-				<Form.Field {config} name="owner">
+				<Form.Field {config} name="creator" let:setValue>
 					<Form.Item class="flex flex-col">
 						<Form.Label class="mb-2">Owner</Form.Label>
-						<EmployeeDropDown users={organizationUsers} initialValue={userID} />
+						<Combobox items={organizationUsers} initialValue={userID} {setValue} />
 						<Form.Description
 							>Select the owner of the contract, if it isn't yourself.</Form.Description
 						>
 						<Form.Validation />
 					</Form.Item>
 				</Form.Field>
-				<Form.Field {config} name="approver">
-					<Form.Item class="flex flex-col">
-						<Form.Label class="mb-2">Approver</Form.Label>
-						<EmployeeDropDown users={organizationUsers} initialValue={userID} />
-						<Form.Description
-							>Select the owner of the contract, if it isn't yourself.</Form.Description
-						>
-						<Form.Validation />
-					</Form.Item>
-				</Form.Field>
+				<div>
+					{#await $page.data.approversWithNames}
+						<div class="flex">
+							<Skeleton class="h-[40px] w-[200px] rounded-md" />
+							<Skeleton class="ml-2 h-[40px] w-[500px] rounded-md" />
+						</div>
+					{:then approvers}
+						<Label for="terms">Approvers <Lock class="mb-1 ml-1 inline-block h-4 w-4" /></Label>
+						<div class="flex max-w-xs flex-wrap gap-2">
+							{#each approvers as { name }}
+								<div class="mt-2 block w-fit rounded-md border">
+									<h6 class="not-prose whitespace-nowrap px-4 py-3 text-sm text-muted">{name}</h6>
+								</div>
+							{/each}
+						</div>
+					{/await}
+				</div>
 				<Form.Field {config} name="amount">
 					<Form.Item class="flex flex-col">
 						<Form.Label class="mb-2">Amount</Form.Label>
