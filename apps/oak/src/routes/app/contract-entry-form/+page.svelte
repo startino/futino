@@ -62,7 +62,6 @@
 		tick().then(() => {
 			document.getElementById(triggerId)?.focus();
 		});
-
 	}
 
 	let parentContractValue: string | undefined = $formStore.parent_contract;
@@ -84,12 +83,10 @@
 		const organizationUsers = await data.organizationUsers;
 		const vendors = await data.vendors;
 
-		let organizationUsersParsed = organizationUsers.map(
-			(user) => ({
-				value: user.id,
-				label: user.full_name
-			})
-		);
+		let organizationUsersParsed = organizationUsers.map((user) => ({
+			value: user.id,
+			label: user.full_name
+		}));
 
 		let contractsParsed = contractsWithVendor.map((contract) => ({
 			label: `${contract.vendor_name} | ${formatUSD(contract.amount)} | ${contract.start_date} | ${contract.end_date}`,
@@ -101,7 +98,11 @@
 			value: vendor.id
 		}));
 
-		return { contracts: contractsParsed, organizationUsers: organizationUsersParsed, vendors: vendorsParsed };
+		return {
+			contracts: contractsParsed,
+			organizationUsers: organizationUsersParsed,
+			vendors: vendorsParsed
+		};
 	}
 </script>
 
@@ -115,7 +116,7 @@
 	<Card.Content>
 		{#await waitForRequiredData()}
 			<SkeletonForm />
-		{:then { contracts, organizationUsers, vendors}}
+		{:then { contracts, organizationUsers, vendors }}
 			<Form.Root
 				method="POST"
 				class="w-min space-y-6"
@@ -134,7 +135,7 @@
 						<Form.Validation />
 					</Form.Item>
 				</Form.Field>
-				<Form.Field {config} name="start_date" >
+				<Form.Field {config} name="start_date">
 					<Form.Item class="flex flex-col">
 						<Form.Label for="start_date" class="mb-2">Start Date</Form.Label>
 						<Popover.Root>
@@ -208,7 +209,7 @@
 				<Form.Field {config} name="vendor_id" let:setValue>
 					<Form.Item class="flex flex-col">
 						<Form.Label class="mb-2">Vendor</Form.Label>
-						<Combobox items={vendors} placeholder="Search for a vendor" {setValue}/>
+						<Combobox items={vendors} placeholder="Search for a vendor" {setValue} />
 						<Form.Description
 							>Select the owner of the contract, if it isn't yourself.</Form.Description
 						>
@@ -216,7 +217,7 @@
 					</Form.Item>
 				</Form.Field>
 				<!--TODO project code input field-->
-				<Form.Field {config} name="creator" let:setValue >
+				<Form.Field {config} name="creator" let:setValue>
 					<Form.Item class="flex flex-col">
 						<Form.Label class="mb-2">Owner</Form.Label>
 						<Combobox items={organizationUsers} initialValue={userID} {setValue} />
@@ -228,19 +229,19 @@
 				</Form.Field>
 				<div>
 					{#await $page.data.approversWithNames}
-					<div class="flex">
-						<Skeleton class="w-[200px] h-[40px] rounded-md" />
-						<Skeleton class="w-[500px] h-[40px] rounded-md ml-2" />
-					</div>
-					{:then approvers}
-					<Label for="terms" >Approvers <Lock class="ml-1 inline-block h-4 w-4 mb-1" /></Label>
-					<div class="flex gap-2 max-w-xs flex-wrap">
-					{#each approvers as {name}}
-						<div class="block rounded-md border w-fit mt-2"> 
-							<h6 class="not-prose text-sm px-4 py-3 whitespace-nowrap text-muted">{name}</h6>
+						<div class="flex">
+							<Skeleton class="h-[40px] w-[200px] rounded-md" />
+							<Skeleton class="ml-2 h-[40px] w-[500px] rounded-md" />
 						</div>
-					{/each}
-				</div>
+					{:then approvers}
+						<Label for="terms">Approvers <Lock class="mb-1 ml-1 inline-block h-4 w-4" /></Label>
+						<div class="flex max-w-xs flex-wrap gap-2">
+							{#each approvers as { name }}
+								<div class="mt-2 block w-fit rounded-md border">
+									<h6 class="not-prose whitespace-nowrap px-4 py-3 text-sm text-muted">{name}</h6>
+								</div>
+							{/each}
+						</div>
 					{/await}
 				</div>
 				<Form.Field {config} name="amount">

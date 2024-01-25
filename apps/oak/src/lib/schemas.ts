@@ -3,7 +3,7 @@ import { z } from 'zod';
 export const companySchema = z.object({
 	name: z.string().min(3),
 	departments: z.array(z.object({ number: z.number().gt(0), name: z.string().min(1) })).min(1)
-})
+});
 
 export const registerUserSchema = z.object({
 	fullName: z.string().max(140, 'Name must be less than 140 characters.').min(3),

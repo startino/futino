@@ -13,11 +13,11 @@
 
 {#if $navigating}
 	<!-- Skeleton of the Shell.svelte layout-->
-	<div class="w-screen h-screen flex flex-row place-items-center m-4">
+	<div class="m-4 flex h-screen w-screen flex-row place-items-center">
 		<Skeleton class="h-full max-w-72 basis-full" />
-		<div class="flex flex-col h-full w-full ml-4 gap-y-4">
-			<Skeleton class="h-20 w-full mb-auto" />
-			<Skeleton class="h-full w-full mb-auto" />
+		<div class="ml-4 flex h-full w-full flex-col gap-y-4">
+			<Skeleton class="mb-auto h-20 w-full" />
+			<Skeleton class="mb-auto h-full w-full" />
 		</div>
 	</div>
 {:else}
@@ -27,7 +27,7 @@
 		slotPageHeader="my-4"
 		slotPageContent=""
 	>
-		<svelte:fragment slot="sidebarLeft" ><Sidebar class="" /></svelte:fragment>
+		<svelte:fragment slot="sidebarLeft"><Sidebar class="" /></svelte:fragment>
 		<svelte:fragment slot="pageHeader"><PageHeader class="" /></svelte:fragment>
 		<!-- Router Slot -->
 		<slot />

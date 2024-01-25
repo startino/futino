@@ -18,8 +18,7 @@
 	export let initialValue: string = '';
 	export let value = initialValue;
 
-	$: value =
-		items.find((f) => f.value === value)?.label ?? placeholder;
+	$: value = items.find((f) => f.value === value)?.label ?? placeholder;
 
 	// We want to refocus the trigger button when the user selects
 	// an item from the list so users can continue navigating the
@@ -55,10 +54,10 @@
 			<Command.Group>
 				{#each items as item}
 					<Command.Item
-					class="px-2 whitespace-nowrap"
+						class="whitespace-nowrap px-2"
 						value={item.value}
 						onSelect={(currentValue) => {
-							console.log("currentValue: ", currentValue);
+							console.log('currentValue: ', currentValue);
 							setValue(currentValue);
 							value = currentValue;
 							closeAndFocusTrigger(ids.trigger);

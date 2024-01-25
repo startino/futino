@@ -4,7 +4,6 @@ import { fail, redirect } from '@sveltejs/kit';
 import type { Actions, PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async () => {
-
 	return {
 		form: await superValidate(registerUserSchema)
 	};
@@ -19,7 +18,7 @@ export const actions: Actions = {
 				msg: form.errors,
 				form: form
 			});
-		}		
+		}
 
 		if (form.data.password !== form.data.confirmPassword) {
 			return setError(form, 'confirmPassword', 'Passwords do not match');

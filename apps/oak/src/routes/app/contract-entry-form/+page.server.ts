@@ -1,4 +1,4 @@
-import { contractEntrySchema, type ContractEntryForm} from '$lib/schemas';
+import { contractEntrySchema, type ContractEntryForm } from '$lib/schemas';
 import { redirect, fail, error } from '@sveltejs/kit';
 import type { Actions, PageServerLoad } from './$types';
 import { superValidate } from 'sveltekit-superforms/server';
@@ -14,8 +14,6 @@ export const load = async ({ locals: { getSession, supabase } }) => {
 	const form = await superValidate(contractEntrySchema);
 
 	const userID = await session?.user.id;
-
-	
 
 	const organizationID = await fetchUserOrgID(userID);
 
@@ -37,7 +35,6 @@ export const load = async ({ locals: { getSession, supabase } }) => {
 
 		return data;
 	}
-	
 
 	// Fetch all the contracts with vendor name attached that are in the same organization as the current user
 	async function getContractsWithVendors() {
@@ -48,7 +45,6 @@ export const load = async ({ locals: { getSession, supabase } }) => {
 			.from('contracts')
 			.select('*')
 			.eq('organization_id', organizationID);
-
 
 		if (contractsError) {
 			throw error(500, 'Error fetching contacts, please try again later.');
@@ -68,21 +64,18 @@ export const load = async ({ locals: { getSession, supabase } }) => {
 		return contractsWithVendors;
 	}
 
-
-
 	// Attach a name attribute to each approver
 	async function attachApproverNames() {
 		const orgUsers = await getOrgUsers();
 		const approvers = await getApprovers(userID);
-		const approversWithNames = 
-			approvers.map((approver) => {
-				const userName = orgUsers.find((user) => user.id === approver.approver_id)?.full_name;
-				
-				return {
-					...approver,
-					name: userName
-				};
-			});
+		const approversWithNames = approvers.map((approver) => {
+			const userName = orgUsers.find((user) => user.id === approver.approver_id)?.full_name;
+
+			return {
+				...approver,
+				name: userName
+			};
+		});
 		return approversWithNames;
 	}
 
@@ -106,8 +99,8 @@ export const actions: Actions = {
 
 		if (!form.valid) {
 			console.log('Form invalid: ', form.errors);
-			console.log('Form data: ', form.data)
-			console.log("event: ", event)
+			console.log('Form data: ', form.data);
+			console.log('event: ', event);
 			return fail(400, {
 				form
 			});
@@ -118,21 +111,20 @@ export const actions: Actions = {
 		// Parse the form data into a contract object
 		const contractForm = contractEntrySchema.parse(form.data);
 
-		const orgID = await fetchUserOrgID(user.id)
+		const orgID = await fetchUserOrgID(user.id);
 
 		//TODO I am already getting approvers once in load... is this method efficient enough / best practise?
-		const approverIds = (await getApprovers(user.id)).map(approver => approver.approver_id);
+		const approverIds = (await getApprovers(user.id)).map((approver) => approver.approver_id);
 
 		// Insert the contract using the formData into the contracts table
-		const { data, error } = await supabase.from('contracts').insert(
-			[{
+		const { data, error } = await supabase.from('contracts').insert([
+			{
 				...contractForm,
 				creator: user.id,
-				organization_id:orgID ,
-				approvers: approverIds,
-			},]
-			
-		);
+				organization_id: orgID,
+				approvers: approverIds
+			}
+		]);
 
 		if (error) {
 			console.log('Error inserting contract: ', error);

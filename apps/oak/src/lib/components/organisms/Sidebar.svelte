@@ -50,16 +50,14 @@
 					current: false
 				},
 				{ name: 'Contract Report', href: 'contract-report', icon: 'PieChart', current: false }
-			],
-		
+			]
 		},
 		{
 			name: 'Bill Management',
 			items: [
 				{ name: 'Bill Repository', href: 'bill-repository', icon: 'Table', current: false },
 				{ name: 'Bill Entry Form', href: 'bill-entry-form', icon: 'PlusCircle', current: false }
-			],
-			
+			]
 		},
 		{
 			name: 'Settings',
@@ -72,8 +70,7 @@
 				},
 				{ name: 'Company Account', href: 'company-account', icon: 'Building', current: false },
 				{ name: 'Logs', href: '#', icon: 'ScrollText', current: false }
-			],
-			
+			]
 		}
 	];
 	export let bottomNavigation = [
