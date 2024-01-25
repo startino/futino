@@ -30,7 +30,6 @@ export const contractEntrySchema = z.object({
 	description: z.string().optional(),
 	project: z.string().optional(),
 	creator: z.string(),
-	approvers: z.string(),
 	department: z.string().optional(),
 	amount: z.string(),
 	spendCategory: z.enum(['Testing', 'Manufacturing', 'Other']).optional()

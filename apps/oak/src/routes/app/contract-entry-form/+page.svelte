@@ -2,7 +2,7 @@
 	import * as Form from '$lib/components/ui/form';
 	import { contractEntrySchema, type ContractEntryForm } from '$lib/schemas';
 	import { navigating, page } from '$app/stores';
-	import { Calendar as CalendarIcon, Check, ChevronsUpDown } from 'lucide-svelte';
+	import { Calendar as CalendarIcon, Check, ChevronsUpDown, Lock } from 'lucide-svelte';
 	import {
 		type DateValue,
 		DateFormatter,
@@ -31,6 +31,8 @@
 	import { fade } from 'svelte/transition';
 	import { formatUSD } from '$lib/helpers';
 	import type { QueryData } from '@supabase/supabase-js';
+	import { Label } from '$lib/components/ui/label';
+	import LucideIcon from '$lib/components/atoms/LucideIcon.svelte';
 
 	export let data: PageData;
 	let form: SuperValidated<ContractEntryForm> = $page.data.form;
@@ -264,16 +266,23 @@
 						<Form.Validation />
 					</Form.Item>
 				</Form.Field>
-				<Form.Field {config} name="approvers">
-					<Form.Item class="flex flex-col">
-						<Form.Label class="mb-2">Approver</Form.Label>
-						<EmployeeDropDown users={organizationUsers} initialValue={userID} />
-						<Form.Description
-							>Select the owner of the contract, if it isn't yourself.</Form.Description
-						>
-						<Form.Validation />
-					</Form.Item>
-				</Form.Field>
+				<div>
+					{#await $page.data.approversWithNames}
+					<div class="flex">
+						<Skeleton class="w-[200px] h-[40px] rounded-md" />
+						<Skeleton class="w-[500px] h-[40px] rounded-md ml-2" />
+					</div>
+					{:then approvers}
+					<Label for="terms" >Approvers <Lock class="ml-1 inline-block h-4 w-4 mb-1" /></Label>
+					<div class="flex gap-2 max-w-xs flex-wrap">
+					{#each approvers as {name}}
+						<div class="block rounded-md border w-fit mt-2"> 
+							<h6 class="not-prose text-sm px-4 py-3 whitespace-nowrap text-muted">{name}</h6>
+						</div>
+					{/each}
+				</div>
+					{/await}
+				</div>
 				<Form.Field {config} name="amount">
 					<Form.Item class="flex flex-col">
 						<Form.Label class="mb-2">Amount</Form.Label>
