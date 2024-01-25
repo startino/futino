@@ -36,7 +36,7 @@ export const actions: Actions = {
 				});
 			}
 		} else {
-			throw redirect(302, '/home');
+			throw redirect(302, '/app');
 		}
 	}
 };
