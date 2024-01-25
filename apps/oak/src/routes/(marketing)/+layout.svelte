@@ -1,5 +1,5 @@
 <script>
-	import "$styling";
+	import '$styling';
 	import Shell from '$lib/components/organisms/Shell.svelte';
 
 	import Header from '$lib/components/molecules/Header.svelte';
@@ -17,7 +17,7 @@
 </script>
 
 <Shell
-	class="no-scroll prose-a:no-underline prose  prose-main sm:prose-base md:prose-lg lg:prose-xl xl:prose-2xl h-screen max-w-none overflow-hidden"
+	class="no-scroll prose prose-main  h-screen max-w-none overflow-hidden sm:prose-base md:prose-lg lg:prose-xl xl:prose-2xl prose-a:no-underline"
 >
 	<svelte:fragment slot="header">
 		<Header companyName="Oak" pages={navigation} {CTAButtons} />

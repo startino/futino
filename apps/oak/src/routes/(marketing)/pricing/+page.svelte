@@ -1,16 +1,16 @@
 <script lang="ts">
-		import PromotionToggle from "./PromotionToggle.svelte";
-		const promotions: {
-			label: string;
-			index: number;
-			for: string;
-			discount: string;
-		}[] = [
-			{ label: "Monthly", index: 0, for: "monthly", discount: "" },
-			{ label: "Anually", index: 1, for: "anually", discount: "" },
-		];
+	import PromotionToggle from './PromotionToggle.svelte';
+	const promotions: {
+		label: string;
+		index: number;
+		for: string;
+		discount: string;
+	}[] = [
+		{ label: 'Monthly', index: 0, for: 'monthly', discount: '' },
+		{ label: 'Anually', index: 1, for: 'anually', discount: '' }
+	];
 
-	  let cycle: string = "yearly";
+	let cycle: string = 'yearly';
 </script>
 
 <main class="my-32">
@@ -26,15 +26,15 @@
 
 			<PromotionToggle class="my-4" bind:cycle {promotions} />
 
-
-			<div
-				class="isolate mx-auto mt-16 max-w-md sm:mt-20 lg:mx-0 lg:max-w-none"
-			>
+			<div class="isolate mx-auto mt-16 max-w-md sm:mt-20 lg:mx-0 lg:max-w-none">
 				<div
-					class="mx-auto max-w-md flex flex-col justify-between rounded-3xl bg-card p-8 ring-1 ring-primary-500 lg:z-10 xl:p-10"
+					class="mx-auto flex max-w-md flex-col justify-between rounded-3xl bg-card p-8 ring-1 ring-primary-500 lg:z-10 xl:p-10"
 				>
 					<div>
-						<h3 id="tier-startup" class="text-lg !mt-0 !mb-6 font-semibold leading-8 text-primary-500">
+						<h3
+							id="tier-startup"
+							class="!mb-6 !mt-0 text-lg font-semibold leading-8 text-primary-500"
+						>
 							Standard
 						</h3>
 						<p class="mt-4 text-sm leading-6">
@@ -42,7 +42,9 @@
 						</p>
 						<p class="mt-6 flex items-baseline gap-x-1">
 							<span class="text-4xl font-bold tracking-tight text-white">$500</span>
-							<span class="text-sm font-semibold leading-6">/{cycle === 'yearly' ? 'year' : 'month'}/company</span>
+							<span class="text-sm font-semibold leading-6"
+								>/{cycle === 'yearly' ? 'year' : 'month'}/company</span
+							>
 						</p>
 						<ul role="list" class="mt-8 space-y-3 text-sm leading-6">
 							<li class="flex gap-x-3">
@@ -132,5 +134,4 @@
 			</div>
 		</div>
 	</div>
-
 </main>
