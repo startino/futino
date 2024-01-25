@@ -28,11 +28,12 @@ export const contractEntrySchema = z.object({
 	start_date: z.date(),
 	end_date: z.date(),
 	description: z.string().optional(),
+	vendor_id: z.string(),
 	project: z.string().optional(),
 	creator: z.string(),
 	department: z.string().optional(),
 	amount: z.string(),
-	spendCategory: z.enum(['Testing', 'Manufacturing', 'Other']).optional()
+	spend_category: z.string().optional()
 });
 
 export type ContractEntryForm = typeof contractEntrySchema;

@@ -44,7 +44,9 @@
 		--destructive-foreground: 249 249 249;
 		--border: 45 45 45;
 		--input: 30 41 59;
-		--ring: 123 123 123;
+		--ring: 45 45 45;
+
+		--radius: 0.5rem;
 	}
 }
 
@@ -52,6 +54,26 @@
 	* {
 		@apply border-border;
 	}
+
+    [type='text']:focus,
+    [type='email']:focus,
+    [type='url']:focus,
+    [type='password']:focus,
+    [type='number']:focus,
+    [type='date']:focus,
+    [type='datetime-local']:focus,
+    [type='month']:focus,
+    [type='search']:focus,
+    [type='tel']:focus,
+    [type='time']:focus,
+    [type='week']:focus,
+    [multiple]:focus,
+    textarea:focus,
+    select:focus {
+        --tw-ring-color: #00000000;
+        border-color: var(--tw-ring-color);
+    }
+
 	body {
 		@apply h-full overflow-hidden bg-background;
 	}

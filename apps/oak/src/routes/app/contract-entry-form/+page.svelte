@@ -20,19 +20,16 @@
 	import { superForm, type SuperForm } from 'sveltekit-superforms/client';
 	import DatePicker from '$lib/components/atoms/DatePicker.svelte';
 	import type { FormOptions } from 'formsnap';
-	import EmployeeDropDown from '$lib/components/atoms/EmployeeDropDown.svelte';
+	import Combobox from '$lib/components/atoms/Combobox.svelte';
 	import { ZodObject } from 'zod';
 	import type { PageData } from './$types';
 	import * as Command from '$lib/components/ui/command';
 	import { onMount, tick } from 'svelte';
 	import { Skeleton } from '$lib/components/ui/skeleton';
-	import type { Tables } from '$lib/server/supabase.types';
 	import SkeletonForm from '$lib/components/molecules/SkeletonForm.svelte';
 	import { fade } from 'svelte/transition';
 	import { formatUSD } from '$lib/helpers';
-	import type { QueryData } from '@supabase/supabase-js';
 	import { Label } from '$lib/components/ui/label';
-	import LucideIcon from '$lib/components/atoms/LucideIcon.svelte';
 
 	export let data: PageData;
 	let form: SuperValidated<ContractEntryForm> = $page.data.form;
@@ -54,14 +51,6 @@
 		}
 		// ...
 	};
-
-	// Update formstore on changing the datepicker value
-	$: $formStore.start_date = startDateValue
-		? new Date(startDateValue.toString())
-		: new Date(today.toString());
-	$: $formStore.end_date = endDateValue
-		? new Date(endDateValue.toString())
-		: new Date(today.toString());
 
 	const df = new DateFormatter('en-US', {
 		dateStyle: 'long'
@@ -87,14 +76,18 @@
 	let startDatePlaceholder: DateValue = today(getLocalTimeZone());
 	let endDatePlaceholder: DateValue = today(getLocalTimeZone());
 
+	$: $formStore.start_date = startDateValue ? new Date(startDateValue.toString()) : undefined;
+	$: $formStore.end_date = endDateValue ? new Date(endDateValue.toString()) : undefined;
+
 	async function waitForRequiredData() {
 		const contractsWithVendor = await data.contractsWithVendors;
 		const organizationUsers = await data.organizationUsers;
+		const vendors = await data.vendors;
 
-		let organizationUsersParsed: { id: string; fullName: string }[] = organizationUsers.map(
+		let organizationUsersParsed = organizationUsers.map(
 			(user) => ({
-				id: user.id,
-				fullName: user.full_name
+				value: user.id,
+				label: user.full_name
 			})
 		);
 
@@ -103,7 +96,12 @@
 			value: contract.id
 		}));
 
-		return { contracts: contractsParsed, organizationUsers: organizationUsersParsed };
+		let vendorsParsed = vendors.map((vendor) => ({
+			label: vendor.name,
+			value: vendor.id
+		}));
+
+		return { contracts: contractsParsed, organizationUsers: organizationUsersParsed, vendors: vendorsParsed };
 	}
 </script>
 
@@ -117,7 +115,7 @@
 	<Card.Content>
 		{#await waitForRequiredData()}
 			<SkeletonForm />
-		{:then { contracts, organizationUsers }}
+		{:then { contracts, organizationUsers, vendors}}
 			<Form.Root
 				method="POST"
 				class="w-min space-y-6"
@@ -129,62 +127,14 @@
 				<Form.Field {config} name="parent_contract" let:setValue let:value>
 					<Form.Item class="flex flex-col">
 						<Form.Label class="mb-2">Parent Contract</Form.Label>
-
-						<Popover.Root let:ids bind:open={parentContractOpen}>
-							<Popover.Trigger asChild let:builder>
-								<Form.Control id={ids.trigger} let:attrs>
-									<Button
-										builders={[builder]}
-										{...attrs}
-										variant="outline"
-										role="combobox"
-										type="button"
-										class={cn(
-											'w-[220px] justify-between',
-											!value && 'text-muted-foreground'
-										)}
-									>
-										{contracts.find((f) => f.value === value)?.value.substring(0, 10) ??
-											'Select Parent Contract'}
-										<ChevronsUpDown class="ml-2 h-4 w-4 shrink-0 opacity-50" />
-									</Button>
-								</Form.Control>
-							</Popover.Trigger>
-							<Popover.Content class="w-fit block p-0 px-2" side="right" align="start">
-								<Command.Root>
-									<Command.Input autofocus placeholder="Search for Contract..." class="mt-2" />
-									<Command.Empty>No Contract Found.</Command.Empty>
-									<Command.Group>
-										{#each contracts as contract}
-											<Command.Item
-												value={contract.value}
-												onSelect={() => {
-													console.log("help");
-													setValue(contract.value);
-													closeAndFocusTrigger(ids.trigger);
-												}}
-											>
-												<Check
-													class={cn(
-														'mr-2 h-4 w-4',
-														contract.value !== value && 'text-transparent'
-													)}
-												/>
-												{contract.label}
-											</Command.Item>
-										{/each}
-									</Command.Group>
-								</Command.Root>
-							</Popover.Content>
-						</Popover.Root>
-
+						<Combobox items={contracts} initialValue={userID} {setValue} />
 						<Form.Description>
 							Enter the parent contract number if this is a renewal or extension
 						</Form.Description>
 						<Form.Validation />
 					</Form.Item>
 				</Form.Field>
-				<Form.Field {config} name="start_date">
+				<Form.Field {config} name="start_date" >
 					<Form.Item class="flex flex-col">
 						<Form.Label for="start_date" class="mb-2">Start Date</Form.Label>
 						<Popover.Root>
@@ -255,11 +205,21 @@
 						<Form.Validation />
 					</Form.Item>
 				</Form.Field>
+				<Form.Field {config} name="vendor_id" let:setValue>
+					<Form.Item class="flex flex-col">
+						<Form.Label class="mb-2">Vendor</Form.Label>
+						<Combobox items={vendors} placeholder="Search for a vendor" {setValue}/>
+						<Form.Description
+							>Select the owner of the contract, if it isn't yourself.</Form.Description
+						>
+						<Form.Validation />
+					</Form.Item>
+				</Form.Field>
 				<!--TODO project code input field-->
-				<Form.Field {config} name="creator">
+				<Form.Field {config} name="creator" let:setValue >
 					<Form.Item class="flex flex-col">
 						<Form.Label class="mb-2">Owner</Form.Label>
-						<EmployeeDropDown users={organizationUsers} initialValue={userID} />
+						<Combobox items={organizationUsers} initialValue={userID} {setValue} />
 						<Form.Description
 							>Select the owner of the contract, if it isn't yourself.</Form.Description
 						>

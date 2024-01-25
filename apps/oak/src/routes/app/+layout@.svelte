@@ -22,7 +22,7 @@
 	</div>
 {:else}
 	<Shell
-		class="prose prose-main h-screen h-screen w-full max-w-none sm:prose-base md:prose-lg lg:prose-xl xl:prose-2xl prose-a:no-underline"
+		class="h-screen h-screen w-full max-w-none"
 		slotSidebarLeft="m-4"
 		slotPageHeader="my-4"
 		slotPageContent=""

@@ -65,7 +65,7 @@
 	bind:value
 	bind:placeholder
 >
-	<Calendar.Header>
+	<Calendar.Header >
 		<Calendar.Heading class="flex w-full items-center justify-between gap-2">
 			<Select.Root
 				selected={defaultMonth}
@@ -102,7 +102,7 @@
 				</Select.Trigger>
 				<Select.Content class="max-h-[200px] overflow-y-auto">
 					{#each yearOptions as { value, label }}
-						<Select.Item {value} {label} >
+						<Select.Item {value} {label}>
 							{label}
 						</Select.Item>
 					{/each}

@@ -6,29 +6,16 @@ import type { Tables } from '$lib/server/supabase.types';
 import type { PostgrestError, QueryData } from '@supabase/supabase-js';
 import { getVendorsInOrg } from '$lib/server/vendors';
 import { getApprovers } from '$lib/server/approvers';
+import { fetchUserOrgID } from '$lib/server/organization';
 
 export const load = async ({ locals: { getSession, supabase } }) => {
 	const session = await getSession();
 
 	const form = await superValidate(contractEntrySchema);
-	
+
 	const userID = await session?.user.id;
 
-	// Fetch the user's organization ID
-	async function fetchUserOrgID(userID: any): Promise<string> {
-		const { data, error: userError } = await supabase
-			.from('profiles')
-			.select('organization_id')
-			.eq('id', userID)
-			.single();
-
-		if (userError) {
-			console.log('User Error: ', userError);
-			throw fail(404, userError);
-		}
-
-		return data.organization_id;
-	}
+	
 
 	const organizationID = await fetchUserOrgID(userID);
 
@@ -105,6 +92,7 @@ export const load = async ({ locals: { getSession, supabase } }) => {
 		organizationUsers: getOrgUsers(),
 		contractsWithVendors: getContractsWithVendors(),
 		approversWithNames: attachApproverNames(),
+		vendors: getVendorsInOrg(organizationID)
 	};
 };
 
@@ -128,17 +116,22 @@ export const actions: Actions = {
 		}
 
 		// Parse the form data into a contract object
-		const contract = contractEntrySchema.parse(form.data);
+		const contractForm = contractEntrySchema.parse(form.data);
 
-		const approvers = getApprovers(user.id);
+		const orgID = await fetchUserOrgID(user.id)
+
+		//TODO I am already getting approvers once in load... is this method efficient enough / best practise?
+		const approverIds = (await getApprovers(user.id)).map(approver => approver.approver_id);
 
 		// Insert the contract using the formData into the contracts table
 		const { data, error } = await supabase.from('contracts').insert(
-			{
-				...contract,
-				organization_id: 'this-one',
-				approvers,
-			}
+			[{
+				...contractForm,
+				creator: user.id,
+				organization_id:orgID ,
+				approvers: approverIds,
+			},]
+			
 		);
 
 		if (error) {

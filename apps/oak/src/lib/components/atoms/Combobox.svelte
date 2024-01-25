@@ -8,15 +8,18 @@
 	import * as Form from '../ui/form';
 	import { string } from 'zod';
 
-	export let users: { id: string; fullName: string }[];
+	export let setValue;
+
+	export let items: { value: string; label: string }[];
+
+	export let placeholder: string = 'Select or search for an item...';
 
 	export let open = false;
 	export let initialValue: string = '';
-	export let value = '';
-	value = initialValue;
+	export let value = initialValue;
 
-	$: selectedValue =
-		users.find((f) => f.fullName === value)?.fullName ?? 'Select a company employee...';
+	$: value =
+		items.find((f) => f.value === value)?.label ?? placeholder;
 
 	// We want to refocus the trigger button when the user selects
 	// an item from the list so users can continue navigating the
@@ -38,28 +41,31 @@
 				variant="outline"
 				role="combobox"
 				type="button"
-				class={cn('mt-12 w-[350px] justify-between', !value && 'text-muted-foreground')}
+				class={cn('w-[400px] justify-between', !value && 'text-muted-foreground')}
 			>
-				{selectedValue}
+				{value}
 				<ChevronsUpDown class="ml-2 h-4 w-4 shrink-0 opacity-50" />
 			</Button>
 		</Form.Control>
 	</Popover.Trigger>
-	<Popover.Content class="w-[350px] pt-1">
+	<Popover.Content class="w-[400px] pt-1">
 		<Command.Root>
-			<Command.Input class="mt-2" placeholder="Search for a company employee..." />
-			<Command.Empty>No User Found.</Command.Empty>
+			<Command.Input class="mt-2" {placeholder} />
+			<Command.Empty>No Results Found.</Command.Empty>
 			<Command.Group>
-				{#each users as user}
+				{#each items as item}
 					<Command.Item
-						value={user.fullName}
+					class="px-2 whitespace-nowrap"
+						value={item.value}
 						onSelect={(currentValue) => {
+							console.log("currentValue: ", currentValue);
+							setValue(currentValue);
 							value = currentValue;
 							closeAndFocusTrigger(ids.trigger);
 						}}
 					>
-						<Check class={cn('mr-2 h-4 w-4', user.id !== value && 'text-transparent')} />
-						{user.fullName}
+						<Check class={cn('mr-2 h-4 w-4', item.value !== value && 'text-transparent')} />
+						{item.label}
 					</Command.Item>
 				{/each}
 			</Command.Group>
