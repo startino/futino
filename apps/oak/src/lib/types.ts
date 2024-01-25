@@ -1,4 +1,4 @@
-import type { Tables } from '$lib/server/types';
+import type { Tables } from '$lib/server/supabase.types';
 
 /**
  * This type alias is to identify CSS classes within component props,
@@ -33,11 +33,11 @@ export type TransitionOptions = {
 	delay?: number;
 	duration?: number;
 	fly?:
-	| {
-		x: number;
-		y: number;
-	}
-	| undefined;
+		| {
+				x: number;
+				y: number;
+		  }
+		| undefined;
 	axis?: 'x' | 'y';
 	threshold?: number;
 };
@@ -63,4 +63,7 @@ export type Contract = {
 	vendorName: string;
 };
 
-export type NestedContract = Omit<Tables<'contracts'>, 'vendor' | 'creator'> & { vendor: { full_name: string }, creator: { full_name: string } };
+export type NestedContract = Omit<Tables<'contracts'>, 'vendor' | 'creator'> & {
+	vendor: { full_name: string };
+	creator: { full_name: string };
+};

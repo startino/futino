@@ -9,69 +9,153 @@ export type Json =
 export interface Database {
   public: {
     Tables: {
+      "accounting-accounts": {
+        Row: {
+          id: string | null
+          number: number
+          organization_id: string
+        }
+        Insert: {
+          id?: string | null
+          number: number
+          organization_id: string
+        }
+        Update: {
+          id?: string | null
+          number?: number
+          organization_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "accounting-accounts_organization_id_fkey"
+            columns: ["organization_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
+      approvers: {
+        Row: {
+          approvee_id: string
+          approver_id: string
+          id: string
+        }
+        Insert: {
+          approvee_id: string
+          approver_id: string
+          id?: string
+        }
+        Update: {
+          approvee_id?: string
+          approver_id?: string
+          id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "approvers_approvee_id_fkey"
+            columns: ["approvee_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
+      "billed-customers": {
+        Row: {
+          cancel_at_period_end: boolean
+          current_period_end: string
+          current_period_start: string
+          metadata: Json
+          organization_id: string
+        }
+        Insert: {
+          cancel_at_period_end: boolean
+          current_period_end: string
+          current_period_start: string
+          metadata: Json
+          organization_id: string
+        }
+        Update: {
+          cancel_at_period_end?: boolean
+          current_period_end?: string
+          current_period_start?: string
+          metadata?: Json
+          organization_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "billed-customers_organization_id_fkey"
+            columns: ["organization_id"]
+            isOneToOne: true
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
       contracts: {
         Row: {
-          amount: unknown | null
-          approvers: string[] | null
+          amount: number
+          approvers: string[]
           attachment: string | null
-          created_at: string | null
-          creator: string | null
+          created_at: string
+          creator: string
           department: Database["public"]["Enums"]["contract_department"] | null
           description: string | null
-          end_date: string | null
+          end_date: string
           id: string
-          organization_id: string | null
+          organization_id: string
           parent_contract: string | null
           project_code: number | null
           spend_category:
             | Database["public"]["Enums"]["contract_spend_category"]
             | null
-          start_date: string | null
-          status: Database["public"]["Enums"]["contract_status"] | null
-          updated_at: string | null
-          vendor: string | null
+          start_date: string
+          status: Database["public"]["Enums"]["contract_status"]
+          updated_at: string
+          vendor_id: string
         }
         Insert: {
-          amount?: unknown | null
-          approvers?: string[] | null
+          amount?: number
+          approvers: string[]
           attachment?: string | null
-          created_at?: string | null
-          creator?: string | null
+          created_at?: string
+          creator: string
           department?: Database["public"]["Enums"]["contract_department"] | null
           description?: string | null
-          end_date?: string | null
+          end_date: string
           id: string
-          organization_id?: string | null
+          organization_id: string
           parent_contract?: string | null
           project_code?: number | null
           spend_category?:
             | Database["public"]["Enums"]["contract_spend_category"]
             | null
-          start_date?: string | null
-          status?: Database["public"]["Enums"]["contract_status"] | null
-          updated_at?: string | null
-          vendor?: string | null
+          start_date: string
+          status?: Database["public"]["Enums"]["contract_status"]
+          updated_at?: string
+          vendor_id: string
         }
         Update: {
-          amount?: unknown | null
-          approvers?: string[] | null
+          amount?: number
+          approvers?: string[]
           attachment?: string | null
-          created_at?: string | null
-          creator?: string | null
+          created_at?: string
+          creator?: string
           department?: Database["public"]["Enums"]["contract_department"] | null
           description?: string | null
-          end_date?: string | null
+          end_date?: string
           id?: string
-          organization_id?: string | null
+          organization_id?: string
           parent_contract?: string | null
           project_code?: number | null
           spend_category?:
             | Database["public"]["Enums"]["contract_spend_category"]
             | null
-          start_date?: string | null
-          status?: Database["public"]["Enums"]["contract_status"] | null
-          updated_at?: string | null
-          vendor?: string | null
+          start_date?: string
+          status?: Database["public"]["Enums"]["contract_status"]
+          updated_at?: string
+          vendor_id?: string
         }
         Relationships: [
           {
@@ -96,10 +180,39 @@ export interface Database {
             referencedColumns: ["id"]
           },
           {
-            foreignKeyName: "contracts_vendor_fkey"
-            columns: ["vendor"]
+            foreignKeyName: "contracts_vendor_id_fkey"
+            columns: ["vendor_id"]
             isOneToOne: false
             referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
+      departments: {
+        Row: {
+          id: string
+          name: string
+          number: number
+          organization_id: string
+        }
+        Insert: {
+          id?: string
+          name: string
+          number: number
+          organization_id: string
+        }
+        Update: {
+          id?: string
+          name?: string
+          number?: number
+          organization_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "departments_organization_id_fkey"
+            columns: ["organization_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
             referencedColumns: ["id"]
           }
         ]
@@ -108,16 +221,19 @@ export interface Database {
         Row: {
           created_at: string
           id: string
+          name: string
           updated_at: string
         }
         Insert: {
           created_at?: string
-          id: string
+          id?: string
+          name: string
           updated_at?: string
         }
         Update: {
           created_at?: string
           id?: string
+          name?: string
           updated_at?: string
         }
         Relationships: []
@@ -125,26 +241,26 @@ export interface Database {
       profiles: {
         Row: {
           approval_threshold: unknown | null
-          company_id: string | null
           created_at: string
           full_name: string | null
           id: string
+          organization_id: string | null
           updated_at: string
         }
         Insert: {
           approval_threshold?: unknown | null
-          company_id?: string | null
           created_at?: string
           full_name?: string | null
           id: string
+          organization_id?: string | null
           updated_at?: string
         }
         Update: {
           approval_threshold?: unknown | null
-          company_id?: string | null
           created_at?: string
           full_name?: string | null
           id?: string
+          organization_id?: string | null
           updated_at?: string
         }
         Relationships: [
@@ -154,32 +270,69 @@ export interface Database {
             isOneToOne: true
             referencedRelation: "users"
             referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "profiles_organization_id_fkey"
+            columns: ["organization_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
+      projects: {
+        Row: {
+          id: string
+          name: string
+          organization_id: string
+        }
+        Insert: {
+          id?: string
+          name: string
+          organization_id: string
+        }
+        Update: {
+          id?: string
+          name?: string
+          organization_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "projects_organization_id_fkey"
+            columns: ["organization_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
           }
         ]
       }
       vendors: {
         Row: {
-          department: string | null
+          department_id: string | null
           id: string
-          organization_id: string | null
-          vendor_id: string | null
-          vendor_name: string | null
+          name: string
+          organization_id: string
         }
         Insert: {
-          department?: string | null
+          department_id?: string | null
           id: string
-          organization_id?: string | null
-          vendor_id?: string | null
-          vendor_name?: string | null
+          name: string
+          organization_id: string
         }
         Update: {
-          department?: string | null
+          department_id?: string | null
           id?: string
-          organization_id?: string | null
-          vendor_id?: string | null
-          vendor_name?: string | null
+          name?: string
+          organization_id?: string
         }
         Relationships: [
+          {
+            foreignKeyName: "vendors_department_id_fkey"
+            columns: ["department_id"]
+            isOneToOne: false
+            referencedRelation: "departments"
+            referencedColumns: ["id"]
+          },
           {
             foreignKeyName: "vendors_organization_id_fkey"
             columns: ["organization_id"]

@@ -1,5 +1,9 @@
 import { PUBLIC_SUPABASE_URL, PUBLIC_SUPABASE_ANON_KEY } from '$env/static/public';
-import type { Database } from '$lib/server/types';
+
+import { SECRETE_STRIPE_KEY } from '$env/static/private';
+
+import { Stripe } from 'stripe';
+import type { Database } from '$lib/server/supabase.types.ts';
 import { createSupabaseServerClient } from '@supabase/auth-helpers-sveltekit';
 import type { PostgrestError } from '@supabase/supabase-js';
 import type { Handle } from '@sveltejs/kit';
@@ -10,6 +14,8 @@ export const handle: Handle = async ({ event, resolve }) => {
 		supabaseKey: PUBLIC_SUPABASE_ANON_KEY,
 		event
 	});
+
+	event.locals.stripe = new Stripe(SECRETE_STRIPE_KEY);
 
 	event.locals.getSession = async () => {
 		const {
