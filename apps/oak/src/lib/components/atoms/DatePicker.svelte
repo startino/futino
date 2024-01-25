@@ -74,6 +74,7 @@
 					if (!v || !placeholder) return;
 					if (v.value === placeholder?.month) return;
 					placeholder = placeholder.set({ month: v.value });
+		
 				}}
 			>
 				<Select.Trigger aria-label="Select month" class="w-[60%]">
@@ -81,7 +82,7 @@
 				</Select.Trigger>
 				<Select.Content class="max-h-[200px] overflow-y-auto">
 					{#each monthOptions as { value, label }}
-						<Select.Item {value} {label}>
+						<Select.Item {value} {label}  >
 							{label}
 						</Select.Item>
 					{/each}
@@ -101,7 +102,7 @@
 				</Select.Trigger>
 				<Select.Content class="max-h-[200px] overflow-y-auto">
 					{#each yearOptions as { value, label }}
-						<Select.Item {value} {label}>
+						<Select.Item {value} {label} >
 							{label}
 						</Select.Item>
 					{/each}

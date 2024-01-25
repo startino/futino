@@ -107,7 +107,7 @@ export const actions: Actions = {
 
 		const form = await superValidate(event, contractEntrySchema);
 
-		const formData = form.data;
+
 
 		if (!form.valid) {
 			console.log('Form invalid: ', form.errors);
@@ -117,6 +117,17 @@ export const actions: Actions = {
 		} else {
 			console.log('Form submitted successfully: ', form.data);
 		}
+
+		// Parse the form data into a contract object
+		const contract = contractEntrySchema.parse(form.data);
+
+		// Insert the contract using the formData into the contracts table
+		const { data, error } = await supabase.from('contracts').insert(
+			{
+				...contract,
+				organization_id: 'this-one'
+			}
+		);
 
 		return {
 			form

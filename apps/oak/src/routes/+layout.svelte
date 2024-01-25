@@ -5,8 +5,13 @@
 </script>
 
 {#if $navigating}
-	<div class="fixed inset-0 z-50 flex items-center justify-center">
-		<Skeleton class="h-24 w-24" />
+	<!-- Skeleton of the Shell.svelte layout-->
+	<div class="w-screen h-screen flex place-items-center p-6">
+		<Skeleton class="h-full w-72 rounded-3xl" />
+		<div class="flex flex-col h-full w-full mx-6 gap-y-6">
+			<Skeleton class="h-20 w-full mb-auto rounded-3xl" />
+			<Skeleton class="h-full w-full mb-auto rounded-3xl" />
+		</div>
 	</div>
 {:else}
 	<slot />

@@ -54,10 +54,10 @@
 	};
 
 	// Update formstore on changing the datepicker value
-	$: $formStore.startDate = startDateValue
+	$: $formStore.start_date = startDateValue
 		? new Date(startDateValue.toString())
 		: new Date(today.toString());
-	$: $formStore.endDate = endDateValue
+	$: $formStore.end_date = endDateValue
 		? new Date(endDateValue.toString())
 		: new Date(today.toString());
 
@@ -71,14 +71,15 @@
 		tick().then(() => {
 			document.getElementById(triggerId)?.focus();
 		});
+
 	}
 
-	let parentContractValue: string | undefined = $formStore.parentContract;
-	let startDateValue: DateValue | undefined = $formStore.startDate
-		? parseDate($formStore.startDate.toString())
+	let parentContractValue: string | undefined = $formStore.parent_contract;
+	let startDateValue: DateValue | undefined = $formStore.start_date
+		? parseDate($formStore.start_date.toString())
 		: undefined;
-	let endDateValue: DateValue | undefined = $formStore.endDate
-		? parseDate($formStore.endDate.toString())
+	let endDateValue: DateValue | undefined = $formStore.end_date
+		? parseDate($formStore.end_date.toString())
 		: undefined;
 
 	let startDatePlaceholder: DateValue = today(getLocalTimeZone());
@@ -96,7 +97,7 @@
 		);
 
 		let contractsParsed = contractsWithVendor.map((contract) => ({
-			label: `${contract.vendor_name} ${formatUSD(contract.amount)}`,
+			label: `${contract.vendor_name} | ${formatUSD(contract.amount)} | ${contract.start_date} | ${contract.end_date}`,
 			value: contract.id
 		}));
 
@@ -123,11 +124,11 @@
 				form={theForm}
 				let:config
 			>
-				<Form.Field {config} name="parentContract" let:setValue let:value={parentContractValue}>
+				<Form.Field {config} name="parent_contract" let:setValue let:value>
 					<Form.Item class="flex flex-col">
 						<Form.Label class="mb-2">Parent Contract</Form.Label>
 
-						<Popover.Root let:ids>
+						<Popover.Root let:ids bind:open={parentContractOpen}>
 							<Popover.Trigger asChild let:builder>
 								<Form.Control id={ids.trigger} let:attrs>
 									<Button
@@ -137,25 +138,26 @@
 										role="combobox"
 										type="button"
 										class={cn(
-											'w-[200px] justify-between',
-											!parentContractValue && 'text-muted-foreground'
+											'w-[220px] justify-between',
+											!value && 'text-muted-foreground'
 										)}
 									>
-										{contracts.find((f) => f.label === parentContractValue)?.label ??
-											'Select language'}
+										{contracts.find((f) => f.value === value)?.value.substring(0, 10) ??
+											'Select Parent Contract'}
 										<ChevronsUpDown class="ml-2 h-4 w-4 shrink-0 opacity-50" />
 									</Button>
 								</Form.Control>
 							</Popover.Trigger>
-							<Popover.Content class="w-[200px] p-0" side="right" align="start">
+							<Popover.Content class="w-fit block p-0 px-2" side="right" align="start">
 								<Command.Root>
-									<Command.Input autofocus placeholder="Search language..." class="mt-2" />
-									<Command.Empty>No language found.</Command.Empty>
+									<Command.Input autofocus placeholder="Search for Contract..." class="mt-2" />
+									<Command.Empty>No Contract Found.</Command.Empty>
 									<Command.Group>
 										{#each contracts as contract}
 											<Command.Item
 												value={contract.value}
 												onSelect={() => {
+													console.log("help");
 													setValue(contract.value);
 													closeAndFocusTrigger(ids.trigger);
 												}}
@@ -163,7 +165,7 @@
 												<Check
 													class={cn(
 														'mr-2 h-4 w-4',
-														contract.value !== parentContractValue && 'text-transparent'
+														contract.value !== value && 'text-transparent'
 													)}
 												/>
 												{contract.label}
@@ -180,13 +182,13 @@
 						<Form.Validation />
 					</Form.Item>
 				</Form.Field>
-				<Form.Field {config} name="startDate">
+				<Form.Field {config} name="start_date">
 					<Form.Item class="flex flex-col">
-						<Form.Label for="startDate" class="mb-2">Start Date</Form.Label>
+						<Form.Label for="start_date" class="mb-2">Start Date</Form.Label>
 						<Popover.Root>
-							<Form.Control id="startDate" let:attrs>
+							<Form.Control id="start_date" let:attrs>
 								<Popover.Trigger
-									id="startDate"
+									id="start_date"
 									{...attrs}
 									class={cn(
 										buttonVariants({ variant: 'outline' }),
@@ -210,13 +212,13 @@
 						<Form.Validation />
 					</Form.Item>
 				</Form.Field>
-				<Form.Field {config} name="endDate">
+				<Form.Field {config} name="end_date">
 					<Form.Item class="flex flex-col">
 						<Form.Label class="mb-2">End Date</Form.Label>
 						<Popover.Root>
-							<Form.Control id="endDate" let:attrs>
+							<Form.Control id="end_date" let:attrs>
 								<Popover.Trigger
-									id="endDate"
+									id="end_date"
 									{...attrs}
 									class={cn(
 										buttonVariants({ variant: 'outline' }),
@@ -252,7 +254,7 @@
 					</Form.Item>
 				</Form.Field>
 				<!--TODO project code input field-->
-				<Form.Field {config} name="owner">
+				<Form.Field {config} name="creator">
 					<Form.Item class="flex flex-col">
 						<Form.Label class="mb-2">Owner</Form.Label>
 						<EmployeeDropDown users={organizationUsers} initialValue={userID} />
@@ -262,7 +264,7 @@
 						<Form.Validation />
 					</Form.Item>
 				</Form.Field>
-				<Form.Field {config} name="approver">
+				<Form.Field {config} name="approvers">
 					<Form.Item class="flex flex-col">
 						<Form.Label class="mb-2">Approver</Form.Label>
 						<EmployeeDropDown users={organizationUsers} initialValue={userID} />
