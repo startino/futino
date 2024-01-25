@@ -105,7 +105,7 @@
 	}
 </script>
 
-<Card.Root class="m-4 h-full p-10">
+<Card.Root class=" h-full p-10">
 	<Card.Header
 		><Card.Title class="m-0 sm:m-0">Contract Entry Form</Card.Title>
 		<Card.Description class="m-0 sm:m-0"
