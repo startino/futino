@@ -69,7 +69,8 @@
 				{/if}
 			</label>
 		{/if}
-		<Button disabled={$submitting} type="submit" class="w-full mt-4 py-8"><h3 class="m-0 sm:m-0">{$submitting ? '........': 'Register'}</h3></Button
+		<Button disabled={$submitting} type="submit" class="mt-4 w-full py-8"
+			><h3 class="m-0 sm:m-0">{$submitting ? '........' : 'Register'}</h3></Button
 		>
 		<div class="text-sm font-medium text-gray-500 dark:text-gray-300">
 			{typeOfAuth == 'login' ? "Don't have an account yet?" : 'Already have an account?'}
