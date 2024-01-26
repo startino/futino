@@ -42,8 +42,8 @@
 
 	<Card.Content>
 		{#if stripe}
-			<form class="rounded-2xl bg-white p-6" on:submit|preventDefault={submit}>
-				<Elements {stripe} {clientSecret} bind:elements>
+			<form class="rounded-2xl p-6" on:submit|preventDefault={submit}>
+				<Elements theme="night" {stripe} {clientSecret} bind:elements>
 					<PaymentElement />
 				</Elements>
 
