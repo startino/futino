@@ -1,12 +1,12 @@
 import { PUBLIC_SUPABASE_URL, PUBLIC_SUPABASE_ANON_KEY } from '$env/static/public';
 
-import { SECRETE_STRIPE_KEY } from '$env/static/private';
+import { STRIPE_SECRET_KEY } from '$env/static/private';
 
 import { Stripe } from 'stripe';
 import type { Database } from '$lib/server/supabase.types.ts';
 import { createSupabaseServerClient } from '@supabase/auth-helpers-sveltekit';
-import type { PostgrestError, User } from '@supabase/supabase-js';
-import type { Handle, RequestEvent } from '@sveltejs/kit';
+import type { PostgrestError } from '@supabase/supabase-js';
+import { redirect, type Handle, type RequestEvent } from '@sveltejs/kit';
 
 async function createStripeCustomer(event: RequestEvent, email: string, fullName: string) {
 	const customer = await event.locals.stripe.customers.create({
@@ -25,28 +25,42 @@ export const handle: Handle = async ({ event, resolve }) => {
 		event
 	});
 
-	event.locals.stripe = new Stripe(SECRETE_STRIPE_KEY);
+	event.locals.stripe = new Stripe(STRIPE_SECRET_KEY);
 
 	event.locals.getSession = async () => {
 		const {
-			data: { session }
+			data: { session },
+			error
 		} = await event.locals.supabase.auth.getSession();
-		return session;
+		return error ? null : session;
 	};
 
-	const { user } = await event.locals.getSession();
-	const { data } = await event.locals.supabase.from('profiles').select().eq('id', user.id).single();
+	const session = await event.locals.getSession();
 
-	let customer: Stripe.Response<Stripe.Customer | Stripe.DeletedCustomer> | null = null;
-
-	try {
-		customer = await event.locals.stripe.customers.retrieve(event.cookies.get('stripeCustomerId'));
-		if (customer.deleted) {
-			customer = await createStripeCustomer(event, user.email, data.fullName);
+	if (!session) {
+		if (event.url.pathname.startsWith('/app')) {
+			throw redirect(303, '/login');
 		}
-	} catch (error) {
-		if (error.statusCode === 404) {
-			customer = await createStripeCustomer(event, user.email, data.fullName);
+	} else {
+		const { user } = session;
+
+		const { data } = await event.locals.supabase
+			.from('profiles')
+			.select()
+			.eq('id', user.id)
+			.single();
+
+		try {
+			let customer = await event.locals.stripe.customers.retrieve(
+				event.cookies.get('stripeCustomerId')
+			);
+			if (customer.deleted) {
+				customer = await createStripeCustomer(event, user.email, data.fullName);
+			}
+		} catch (error) {
+			if (error.statusCode === 404) {
+				await createStripeCustomer(event, user.email, data.fullName);
+			}
 		}
 	}
 
