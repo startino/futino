@@ -4,14 +4,22 @@
 	import { Button } from '$lib/components/ui/button';
 	import { Input } from '$lib/components/ui/input';
 	import Icon from '$lib/components/Icon.svelte';
+	import { InputField } from '$lib/components/ui/input-field';
+	import SuperDebug from 'sveltekit-superforms/client/SuperDebug.svelte';
 
 	export let data: PageData;
 
-	const { form, enhance, constraints, submitting } = superForm(data.form, { dataType: 'json' });
+	const { form, enhance, constraints, submitting, errors } = superForm(data.form, {
+		dataType: 'json'
+	});
 
 	const steps = ['Company Details', 'Admin Credentials'];
 
 	let currentStep = 0;
+
+	$: if ($errors.company && !$submitting) {
+		currentStep = 0;
+	}
 
 	const prev = () => --currentStep;
 	const next = () => ++currentStep;
@@ -20,7 +28,7 @@
 		form.update((values) => {
 			const items = [
 				...values.company[target],
-				target === 'departments' ? { name: '', number: 0 } : ''
+				target === 'departments' ? { name: '', number: 0 } : 0
 			];
 			return { ...values, company: { ...values.company, [target]: items } };
 		});
@@ -45,43 +53,41 @@
 		</div>
 
 		{#if currentStep === 0}
-			<div>
-				<label for="name">Company Name</label>
-				<Input type="text" name="name" bind:value={$form.company.name} id="name" />
-			</div>
-
+			<InputField
+				name="name"
+				labelText="Company Name"
+				error={$errors.company?.name}
+				bind:value={$form.company.name}
+				{...$constraints.company.name}
+			/>
 			<div class="grid gap-2">
 				<div class="items-heading">Departments (optional)</div>
 
 				{#each $form.company.departments as _, i}
 					<div class="flex gap-3">
 						<div class="flex-1">
-							<label for={`department-name-${i}`}>Name</label>
-							<Input
-								id={`department-name-${i}`}
-								type="text"
-								name={`department-${i}`}
+							<InputField
+								name={`department-name-${i}`}
+								labelText="Name"
+								error={$errors.company?.departments && $errors.company.departments[i].name}
 								bind:value={$form.company.departments[i].name}
 								{...$constraints.company.departments.name}
 							/>
 						</div>
 						<div>
-							<label for={`department-number-${i}`}>Number</label>
-
-							<Input
-								id={`department-number-${i}`}
-								type="number"
+							<InputField
 								name={`department-number-${i}`}
+								labelText="Number"
+								type="number"
+								error={$errors.company?.departments && $errors.company.departments[i].number}
 								on:change={(e) => {
 									$form.company.departments[i].number = +e.target.value;
 								}}
 								{...$constraints.company.departments.number}
 							/>
 						</div>
-						<button
-							type="button"
-							on:click={() => removeItem(i, 'departments')}
-							class="translate-y-1/2 self-center"><Icon name="Trash" /></button
+						<button type="button" on:click={() => removeItem(i, 'departments')}
+							><Icon name="Trash" /></button
 						>
 					</div>
 				{/each}
@@ -96,20 +102,17 @@
 				{#each $form.company.projects as _, i}
 					<div class="flex gap-3">
 						<div class="flex-1">
-							<label for={`project-name-${i}`}>Name</label>
-							<Input
-								id={`project-name-${i}`}
-								type="text"
-								name={`project-${i}`}
+							<InputField
+								name={`project-name-${i}`}
+								labelText="Name"
+								error={$errors.company?.projects && $errors.company.projects[i]}
 								bind:value={$form.company.projects[i]}
 								{...$constraints.company.projects}
 							/>
 						</div>
-						<button
-							type="button"
-							on:click={() => removeItem(i, 'projects')}
-							class="translate-y-1/2 self-center"><Icon name="Trash" /></button
-						>
+						<button type="button" on:click={() => removeItem(i, 'projects')}>
+							<Icon name="Trash" />
+						</button>
 					</div>
 				{/each}
 				<Button type="button" on:click={() => addItem('projects')} class="justify-self-start"
@@ -123,11 +126,11 @@
 				{#each $form.company.accounts as _, i}
 					<div class="flex gap-3">
 						<div class="flex-1">
-							<label for={`account-${i}`}>Number</label>
-							<Input
-								id={`account-${i}`}
-								type="number"
+							<InputField
 								name={`account-${i}`}
+								labelText="Number"
+								type="number"
+								error={$errors.company?.accounts && $errors.company.accounts[i]}
 								on:change={(e) => {
 									$form.company.accounts[i] = +e.target.value;
 								}}
@@ -146,37 +149,45 @@
 				>
 			</div>
 		{:else if currentStep === 1}
-			<label class="space-y-2" for="fullName">
-				<span>Full Name</span>
-				<Input
-					type="text"
-					name="fullName"
-					bind:value={$form.user.fullName}
-					data-testid="fullName"
-				/>
-			</label>
-			<label class="space-y-2" for="email">
-				<span>Email</span>
-				<Input type="email" name="email" bind:value={$form.user.email} data-testid="email" />
-			</label>
-			<label class="space-y-2" for="password">
-				<span>Password</span>
-				<Input
-					type="password"
-					name="password"
-					bind:value={$form.user.password}
-					data-testid="password"
-				/>
-			</label>
-			<label class="space-y-2" for="confirmPassword">
-				<span>Confirm Password</span>
-				<Input
-					type="password"
-					name="confirmPassword"
-					bind:value={$form.user.confirmPassword}
-					data-testid="confirmPassword"
-				/>
-			</label>
+			<InputField
+				name="fullName"
+				labelText="Full Name"
+				error={$errors.user?.fullName && $errors.user.fullName}
+				bind:value={$form.user.fullName}
+				{...$constraints.user.fullName}
+			/>
+
+			<InputField
+				name="email"
+				labelText="Email"
+				error={$errors.user?.email && $errors.user.email}
+				bind:value={$form.user.email}
+				{...$constraints.user.email}
+			/>
+
+			<InputField
+				type="password"
+				name="password"
+				labelText="Password"
+				error={$errors.user?.password && $errors.user.password}
+				bind:value={$form.user.password}
+				{...$constraints.user.password}
+			/>
+
+			<InputField
+				type="password"
+				name="confirmPassword"
+				labelText="Confirm Password"
+				error={$errors.user?.confirmPassword && $errors.user.confirmPassword}
+				bind:value={$form.user.confirmPassword}
+				{...$constraints.user.confirmPassword}
+			/>
+
+			{#if $errors?.user && $errors.user._errors}
+				<span class="tex-sm text-destructive">
+					{$errors.user._errors[0]}
+				</span>
+			{/if}
 		{/if}
 
 		<div class="flex justify-between">
@@ -190,15 +201,18 @@
 				disabled={currentStep === steps.length - 1}>Next</Button
 			>
 		</div>
-		<Button type="submit" disabled={currentStep !== steps.length - 1}>Submit</Button>
+		{#if $errors && $errors._errors}
+			<span class="tex-sm text-destructive">
+				{$errors._errors[0]}
+			</span>
+		{/if}
+		<Button type="submit" disabled={currentStep !== steps.length - 1 || $submitting}
+			>{$submitting ? 'submitting...' : 'Submit'}</Button
+		>
 	</form>
 </main>
 
 <style lang="postcss">
-	label {
-		@apply text-sm;
-	}
-
 	.items-heading {
 		@apply text-base font-bold;
 	}

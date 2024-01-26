@@ -1,10 +1,13 @@
 import { z } from 'zod';
 
-const departmentSchema = z.object({ number: z.number().gt(0), name: z.string().min(1) });
+const departmentSchema = z.object({
+	number: z.number().gt(0, 'Please enter a valid number'),
+	name: z.string().min(1, 'The deparment name is required')
+});
 
-const projectSchema = z.string().min(1).optional();
+const projectSchema = z.string().min(1, 'The project name is required');
 
-const accountSchema = z.number().min(1).optional();
+const accountSchema = z.number().gt(0, 'Please enter a valid number');
 
 const userSchema = z
 	.object({
@@ -24,7 +27,7 @@ const userSchema = z
 	});
 
 export const companySchema = z.object({
-	name: z.string().min(3),
+	name: z.string().min(1, 'The name of the company is required'),
 	departments: z.array(departmentSchema).optional().default([]),
 	accounts: z.array(accountSchema).optional().default([]),
 	projects: z.array(projectSchema).optional().default([])
