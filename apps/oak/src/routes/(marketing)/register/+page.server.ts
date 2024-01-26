@@ -14,7 +14,6 @@ export const actions: Actions = {
 		const form = await superValidate(event, registrationSchema);
 		const { user, company } = form.data;
 		const supabase = event.locals.supabase;
-		console.log(form.errors);
 
 		if (!form.valid) {
 			return fail(400, {
