@@ -5,8 +5,18 @@ import { SECRETE_STRIPE_KEY } from '$env/static/private';
 import { Stripe } from 'stripe';
 import type { Database } from '$lib/server/supabase.types.ts';
 import { createSupabaseServerClient } from '@supabase/auth-helpers-sveltekit';
-import type { PostgrestError } from '@supabase/supabase-js';
-import type { Handle } from '@sveltejs/kit';
+import type { PostgrestError, User } from '@supabase/supabase-js';
+import type { Handle, RequestEvent } from '@sveltejs/kit';
+
+async function createStripeCustomer(event: RequestEvent, email: string, fullName: string) {
+	const customer = await event.locals.stripe.customers.create({
+		email: email,
+		name: fullName
+	});
+	event.cookies.set('stripeCustomerId', customer.id, { path: '/' });
+
+	return customer;
+}
 
 export const handle: Handle = async ({ event, resolve }) => {
 	event.locals.supabase = createSupabaseServerClient<Database>({
@@ -23,6 +33,22 @@ export const handle: Handle = async ({ event, resolve }) => {
 		} = await event.locals.supabase.auth.getSession();
 		return session;
 	};
+
+	const { user } = await event.locals.getSession();
+	const { data } = await event.locals.supabase.from('profiles').select().eq('id', user.id).single();
+
+	let customer: Stripe.Response<Stripe.Customer | Stripe.DeletedCustomer> | null = null;
+
+	try {
+		customer = await event.locals.stripe.customers.retrieve(event.cookies.get('stripeCustomerId'));
+		if (customer.deleted) {
+			customer = await createStripeCustomer(event, user.email, data.fullName);
+		}
+	} catch (error) {
+		if (error.statusCode === 404) {
+			customer = await createStripeCustomer(event, user.email, data.fullName);
+		}
+	}
 
 	return resolve(event, {
 		filterSerializedResponseHeaders(name) {

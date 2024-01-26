@@ -69,7 +69,7 @@
 					current: false
 				},
 				{ name: 'Company Account', href: 'company-account', icon: 'Building', current: false },
-				{ name: 'Logs', href: '#', icon: 'ScrollText', current: false }
+				{ name: 'Subscription', href: '/subscription', icon: 'ReceiptText', current: false }
 			]
 		}
 	];
