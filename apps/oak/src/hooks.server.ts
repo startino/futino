@@ -6,17 +6,7 @@ import { Stripe } from 'stripe';
 import type { Database } from '$lib/server/supabase.types.ts';
 import { createSupabaseServerClient } from '@supabase/auth-helpers-sveltekit';
 import type { PostgrestError } from '@supabase/supabase-js';
-import { redirect, type Handle, type RequestEvent } from '@sveltejs/kit';
-
-async function createStripeCustomer(event: RequestEvent, email: string, fullName: string) {
-	const customer = await event.locals.stripe.customers.create({
-		email: email,
-		name: fullName
-	});
-	event.cookies.set('stripeCustomerId', customer.id, { path: '/' });
-
-	return customer;
-}
+import { redirect, type Handle } from '@sveltejs/kit';
 
 export const handle: Handle = async ({ event, resolve }) => {
 	event.locals.supabase = createSupabaseServerClient<Database>({
@@ -50,18 +40,7 @@ export const handle: Handle = async ({ event, resolve }) => {
 			.eq('id', user.id)
 			.single();
 
-		try {
-			let customer = await event.locals.stripe.customers.retrieve(
-				event.cookies.get('stripeCustomerId')
-			);
-			if (customer.deleted) {
-				customer = await createStripeCustomer(event, user.email, data.fullName);
-			}
-		} catch (error) {
-			if (error.statusCode === 404) {
-				await createStripeCustomer(event, user.email, data.fullName);
-			}
-		}
+		event.locals.stripeCustomerId = data.stripe_customer_id;
 	}
 
 	return resolve(event, {

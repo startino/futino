@@ -1,10 +1,9 @@
 import { PUBLIC_STRIPE_PRICE_ID, PUBLIC_BASE_URL } from '$env/static/public';
 
-export const load = async ({ cookies, locals: { stripe } }) => {
-	const customerId = cookies.get('stripeCustomerId');
+export const load = async ({ locals: { stripe, stripeCustomerId } }) => {
 	const priceId = PUBLIC_STRIPE_PRICE_ID;
 	const subscription = await stripe.subscriptions.create({
-		customer: customerId,
+		customer: stripeCustomerId,
 		items: [
 			{
 				price: priceId

@@ -22,12 +22,10 @@ export const actions: Actions = {
 			});
 		}
 
-		const { error: authError, data } = await event.locals.supabase.auth.signInWithPassword({
+		const { error: authError } = await event.locals.supabase.auth.signInWithPassword({
 			email: form.data.email,
 			password: form.data.password
 		});
-
-		console.log(data);
 
 		if (authError) {
 			if (authError instanceof AuthApiError && authError.status === 400) {
