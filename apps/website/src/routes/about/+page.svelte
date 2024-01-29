@@ -30,7 +30,7 @@
 			name: 'Jorge Lewis',
 			position: 'Chief Executive Officer, Lead Developer',
 			body: `Hey 👋. I've got over 6 years of programming experience under my belt, with an expertise in automation software and machine learning. 
-      I've found a passion in building both beautiful and highly-functional software to bring to life projects like your own through websites and custom software.`,
+      I've found a passion in building both beautiful and highly functional software to bring life to projects like your own through websites and custom software.`,
 			imgPath: 'people/jorge_1.jpg',
 			socialLinks: {
 				instagram: 'https://www.instagram.com/horhey_jorge',
@@ -43,9 +43,9 @@
 			name: 'Jonas Lindberg',
 			position: 'Chief Technologies Officer, Lead Developer',
 			body: `Hi there! With over 6 years of coding experience, I noticed that making a website was either too expensive (hiring someone) or too time
-					consuming (website builder) for everyone - individuals, startups, especially large
+					consuming (website builder) for everyone - individuals, startups, and especially large
 					businesses. I wanted to create a solution to these problems.
-          I specialize in DevOps and backend development to ensure our programing operations are fully optimised for speed and quality.`,
+          I specialize in DevOps and backend development to ensure our programming operations are fully optimised for speed and quality.`,
 			imgPath: 'people/jonas-linkedin-pfp.jpg',
 			socialLinks: {
 				linkedin: 'https://www.linkedin.com/in/eksno/',
