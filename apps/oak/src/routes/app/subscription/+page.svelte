@@ -47,7 +47,7 @@
 					<PaymentElement />
 				</Elements>
 
-				<Button class="mt-4 w-full">Pay</Button>
+				<Button type="submit" class="mt-4 w-full">Pay</Button>
 			</form>
 		{:else}
 			Loading Stripe...
