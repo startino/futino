@@ -41,6 +41,7 @@ export const handle: Handle = async ({ event, resolve }) => {
 			.single();
 
 		event.locals.stripeCustomerId = data.stripe_customer_id;
+		event.locals.subscriptionId = data.subscription_id;
 	}
 
 	return resolve(event, {

@@ -10,6 +10,7 @@ declare global {
 			supabase: SupabaseClient;
 			getSession(): Promise<Session | null>;
 			stripeCustomerId: string;
+			subscriptionId: string;
 		}
 		interface PageData {
 			session: Session | null;

@@ -8,7 +8,7 @@
 
 	export let data;
 
-	$: ({ clientSecret, returnUrl } = data);
+	$: ({ clientSecret, returnUrl, active } = data);
 
 	let stripe;
 
@@ -41,7 +41,7 @@
 	>
 
 	<Card.Content>
-		{#if stripe}
+		{#if stripe && !active}
 			<form class="rounded-2xl p-6" on:submit|preventDefault={submit}>
 				<Elements theme="night" {stripe} {clientSecret} bind:elements>
 					<PaymentElement />
@@ -50,7 +50,7 @@
 				<Button type="submit" class="mt-4 w-full">Pay</Button>
 			</form>
 		{:else}
-			Loading Stripe...
+			<p class="text-primary-500">Your subscription is active</p>
 		{/if}
 	</Card.Content>
 </Card.Root>
