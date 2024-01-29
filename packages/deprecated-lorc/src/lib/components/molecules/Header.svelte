@@ -160,9 +160,7 @@
   <div
     class="{classesBase} {activeheaderClass} z-40 relative transition transition-[padding] duration-400"
   >
-    <div
-      class="flex md:grid md:grid-cols-5 z-50 items-center w-full justify-center px-6 max-w-7xl mx-auto"
-    >
+    <div class="flex z-50 items-center justify-center px-6 max-w-7xl mx-auto">
       {#if logoPos == "leading"}
         <a class="flex gap-3 not-prose justify-self-start mr-auto" href="/">
           <Logo />
@@ -181,11 +179,7 @@
       <!-- Justify-between Header -->
       <!-- Loading classes for dynamic tw building of variable col number: grid-cols-1 grid-cols-2 grid-cols-3 grid-cols-4 grid-cols-5 grid-cols-6 grid-cols-7 -->
       <nav
-        class="hidden {logoPos == 'center'
-          ? `col-span-5 md:grid justify-between w-full h-full place-items-center grid-cols-${
-              Object.entries(pages).length + 1
-            }`
-          : `md:flex col-span-3 `} mx-auto {gap} justify-self-center"
+        class="hidden justify-between w-full h-full place-items-center mx-auto {gap} justify-self-center md:grid md:grid-cols-5"
       >
         {#each Object.entries(pages) as [name, href], i}
           <a class="text-center {typography}" {href}>

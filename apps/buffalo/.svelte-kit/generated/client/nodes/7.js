@@ -1,1 +1,0 @@
-export { default as component } from "../../../../src/routes/legal/t&c-and-waiver/+page.md";
