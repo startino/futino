@@ -22,7 +22,7 @@
 	</div>
 {:else}
 	<Shell
-		class="h-screen h-screen w-full max-w-none"
+		class="h-screen w-full max-w-none"
 		slotSidebarLeft="m-4"
 		slotPageHeader="my-4"
 		slotPageContent=""

@@ -5,7 +5,6 @@ import { STRIPE_SECRET_KEY } from '$env/static/private';
 import { Stripe } from 'stripe';
 import type { Database } from '$lib/server/supabase.types.ts';
 import { createSupabaseServerClient } from '@supabase/auth-helpers-sveltekit';
-import type { PostgrestError } from '@supabase/supabase-js';
 import { redirect, type Handle } from '@sveltejs/kit';
 
 export const handle: Handle = async ({ event, resolve }) => {
@@ -41,7 +40,32 @@ export const handle: Handle = async ({ event, resolve }) => {
 			.single();
 
 		event.locals.stripeCustomerId = data.stripe_customer_id;
-		event.locals.subscriptionId = data.subscription_id;
+
+		const { data: subscription } = await event.locals.supabase
+			.from('subscriptions')
+			.select()
+			.eq('profile_id', user.id)
+			.single();
+
+		if (subscription) {
+			try {
+				const sub = await event.locals.stripe.subscriptions.retrieve(
+					subscription.stripe_subscription_id
+				);
+				if (
+					sub.status === 'active' &&
+					(event.url.pathname.includes('/yearly') || event.url.pathname.includes('/monthly'))
+				) {
+					throw redirect(303, '/app/subscription');
+				}
+			} catch (error) {
+				return resolve(event, {
+					filterSerializedResponseHeaders(name) {
+						return name === 'content-range';
+					}
+				});
+			}
+		}
 	}
 
 	return resolve(event, {
@@ -51,6 +75,6 @@ export const handle: Handle = async ({ event, resolve }) => {
 	});
 };
 
-export function handleError({ event, error }: { event: any; error: PostgrestError }) {
-	console.error('Handle Error caught an error: ' + error.message);
-}
+// export function handleError({ event, error }: { event: any; error: PostgrestError }) {
+// 	console.error('Handle Error caught an error: ' + error.message);
+// }

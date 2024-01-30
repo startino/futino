@@ -1,56 +1,22 @@
 <script>
-	import { PUBLIC_STRIPE_KEY } from '$env/static/public';
-	import { onMount } from 'svelte';
-	import { loadStripe } from '@stripe/stripe-js';
-	import { Elements, PaymentElement } from 'svelte-stripe';
 	import * as Card from '$lib/components/ui/card';
 	import { Button } from '$lib/components/ui/button';
+	import Pricing from './pricing.svelte';
 
 	export let data;
-
-	$: ({ clientSecret, returnUrl, active } = data);
-
-	let stripe;
-
-	let elements;
-
-	onMount(async () => {
-		stripe = await loadStripe(PUBLIC_STRIPE_KEY);
-	});
-
-	async function submit() {
-		const { error } = await stripe.confirmPayment({
-			elements,
-			confirmParams: {
-				return_url: returnUrl
-			}
-		});
-
-		if (error) {
-			console.error(error);
-		}
-	}
 </script>
 
-<Card.Root>
-	<Card.Header
-		><Card.Title class="m-0 sm:m-0">Subscription</Card.Title>
-		<Card.Description class="m-0 sm:m-0">
-			<span class="text-2xl font-bold">$500</span>/month
-		</Card.Description></Card.Header
-	>
-
+<Card.Root class="p-10">
+	<Card.Header><Card.Title class="m-0 sm:m-0">Your Subscription</Card.Title></Card.Header>
 	<Card.Content>
-		{#if stripe && !active}
-			<form class="rounded-2xl p-6" on:submit|preventDefault={submit}>
-				<Elements theme="night" {stripe} {clientSecret} bind:elements>
-					<PaymentElement />
-				</Elements>
-
-				<Button type="submit" class="mt-4 w-full">Pay</Button>
-			</form>
+		{#if data.subscription.status === 'active'}
+			<p class="mb-10 text-primary-500">
+				Your {data.subscription.is_monthly ? 'monthly' : 'yearly'} subscription is active
+			</p>
 		{:else}
-			<p class="text-primary-500">Your subscription is active</p>
+			<Pricing />
+
+			<Button variant="destructive">Cancel Subscription</Button>
 		{/if}
 	</Card.Content>
 </Card.Root>

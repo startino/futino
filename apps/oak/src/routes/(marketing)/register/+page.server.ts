@@ -1,9 +1,7 @@
 import { setError, superValidate } from 'sveltekit-superforms/server';
 import { registrationSchema } from '$lib/schemas';
-import { fail, redirect } from '@sveltejs/kit';
+import { fail, redirect, type RequestEvent } from '@sveltejs/kit';
 import type { Actions, PageServerLoad } from './$types';
-import { type RequestEvent } from '@sveltejs/kit';
-import { PUBLIC_STRIPE_PRICE_ID } from '$env/static/public';
 
 export const load: PageServerLoad = async () => {
 	return {
@@ -79,21 +77,9 @@ export const actions: Actions = {
 			form.data.user.fullName
 		);
 
-		const subscription = await event.locals.stripe.subscriptions.create({
-			customer: customer.id,
-			items: [
-				{
-					price: PUBLIC_STRIPE_PRICE_ID
-				}
-			],
-			payment_behavior: 'default_incomplete',
-			payment_settings: { save_default_payment_method: 'on_subscription' },
-			expand: ['latest_invoice.payment_intent']
-		});
-
 		const { error: profileUpdateError } = await event.locals.supabase
 			.from('profiles')
-			.update({ stripe_customer_id: customer.id, subscription_id: subscription.id })
+			.update({ stripe_customer_id: customer.id })
 			.eq('id', signUpData.user.id);
 
 		console.log({ profileUpdateError });
