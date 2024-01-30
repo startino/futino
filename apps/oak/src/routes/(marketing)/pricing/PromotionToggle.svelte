@@ -45,7 +45,9 @@
 	}
 </script>
 
-<div class="{$$props.class} bg-surface flex justify-center rounded-lg border border-secondary/20">
+<div
+	class="{$$props.class} mx-auto flex max-w-fit justify-center rounded-lg border border-secondary/20"
+>
 	<div class="relative mx-1 my-2 flex flex-row items-center gap-1 text-center">
 		<div
 			class="absolute rounded-lg border-2 border-primary transition-all delay-75 duration-500 ease-in-out"
