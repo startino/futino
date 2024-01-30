@@ -7,7 +7,7 @@
 		discount: string;
 	}[] = [
 		{ label: 'Monthly', index: 0, for: 'monthly', discount: '' },
-		{ label: 'Anually', index: 1, for: 'anually', discount: '' }
+		{ label: 'Yearly', index: 1, for: 'yearly', discount: '' }
 	];
 
 	let cycle: string = 'yearly';
@@ -35,17 +35,25 @@
 							id="tier-startup"
 							class="!mb-6 !mt-0 text-lg font-semibold leading-8 text-primary-500"
 						>
-							Standard
+							Standard <span class="text-base">/ {cycle}</span>
 						</h3>
 						<p class="mt-4 text-sm leading-6">
 							A plan that scales with your rapidly growing business.
 						</p>
+
 						<p class="mt-6 flex items-baseline gap-x-1">
-							<span class="text-4xl font-bold tracking-tight text-white">$500</span>
-							<span class="text-sm font-semibold leading-6"
-								>/{cycle === 'yearly' ? 'year' : 'month'}/company</span
-							>
+							<span class="text-4xl font-bold tracking-tight text-white">
+								{cycle === 'yearly' ? '$450' : '$500'}
+							</span>
+							<span class="text-sm font-semibold leading-6">/month/company</span>
 						</p>
+						{#if cycle === 'yearly'}
+							<p
+								class="max-w-fit rounded-full bg-primary-foreground p-2 text-sm font-bold text-primary-500"
+							>
+								$5400 billed yearly (save 10% vs billed monthly)
+							</p>
+						{/if}
 						<ul role="list" class="mt-8 space-y-3 text-sm leading-6">
 							<li class="flex gap-x-3">
 								<svg
