@@ -14,7 +14,11 @@
 		{#if data.subscription && data.subscription.status === 'active'}
 			<p class="text-primary-500">
 				Your {data.subscription.is_monthly ? 'monthly' : 'yearly'} subscription is active
+				{#if data.paymentMethod}
+					with card: {data.paymentMethod.card.brand} ...{data.paymentMethod.card.last4}
+				{/if}
 			</p>
+
 			<p>
 				Renewal Date: {new Date(data.subscription.current_period_end * 1000).toLocaleDateString(
 					undefined,

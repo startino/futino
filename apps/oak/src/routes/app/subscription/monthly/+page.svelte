@@ -1,52 +1,22 @@
 <script lang="ts">
-	import { PUBLIC_STRIPE_KEY } from '$env/static/public';
-	import { Elements, PaymentElement } from 'svelte-stripe';
-	import { onMount } from 'svelte';
-	import { loadStripe } from '@stripe/stripe-js';
 	import { Button } from '$lib/components/ui/button';
 	import * as Card from '$lib/components/ui/card';
+	import { PaymentForm } from '$lib/components/ui/payment-form';
 
 	export let data;
 
-	$: ({ clientSecret, returnUrl } = data);
-
-	let stripe;
-
-	let elements;
-
-	onMount(async () => {
-		stripe = await loadStripe(PUBLIC_STRIPE_KEY);
-	});
-
-	async function submit() {
-		const { error } = await stripe.confirmPayment({
-			elements,
-			confirmParams: {
-				return_url: returnUrl
-			}
-		});
-
-		if (error) {
-			console.error(error);
-		}
-	}
+	$: ({ clientSecret, returnUrl, paymentMethod } = data);
 </script>
 
 <Card.Root class="p-10">
 	<Card.Header>
 		<Card.Title>Monthly Subscription</Card.Title>
-		<Card.Description>$450/month</Card.Description>
+		<Card.Description class="font-bold">$500/month</Card.Description>
 	</Card.Header>
 
 	<Card.Content>
-		<form class="rounded-2xl p-6" on:submit|preventDefault={submit}>
-			<Elements theme="night" {stripe} {clientSecret} bind:elements>
-				<PaymentElement />
-			</Elements>
-
-			<Button type="submit" class="mt-4 w-full">Pay</Button>
-		</form></Card.Content
-	>
+		<PaymentForm {paymentMethod} bind:clientSecret bind:returnUrl />
+	</Card.Content>
 	<Card.Footer>
 		<Button href="/app/subscription">Go Back</Button>
 	</Card.Footer>

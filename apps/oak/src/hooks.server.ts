@@ -6,6 +6,7 @@ import { Stripe } from 'stripe';
 import type { Database } from '$lib/server/supabase.types.ts';
 import { createSupabaseServerClient } from '@supabase/auth-helpers-sveltekit';
 import { redirect, type Handle } from '@sveltejs/kit';
+import { getUserSubscription } from '$lib/api-client';
 
 export const handle: Handle = async ({ event, resolve }) => {
 	event.locals.supabase = createSupabaseServerClient<Database>({
@@ -28,7 +29,7 @@ export const handle: Handle = async ({ event, resolve }) => {
 
 	if (!session) {
 		if (event.url.pathname.startsWith('/app')) {
-			throw redirect(303, '/login');
+			redirect(303, '/login');
 		}
 	} else {
 		const { user } = session;
@@ -41,11 +42,9 @@ export const handle: Handle = async ({ event, resolve }) => {
 
 		event.locals.stripeCustomerId = data.stripe_customer_id;
 
-		const { data: subscription } = await event.locals.supabase
-			.from('subscriptions')
-			.select()
-			.eq('profile_id', user.id)
-			.single();
+		const { data: subscription } = await getUserSubscription(event.locals.supabase, user);
+
+		let forbidSubscription = false;
 
 		if (subscription) {
 			try {
@@ -56,7 +55,7 @@ export const handle: Handle = async ({ event, resolve }) => {
 					sub.status === 'active' &&
 					(event.url.pathname.includes('/yearly') || event.url.pathname.includes('/monthly'))
 				) {
-					throw redirect(303, '/app/subscription');
+					forbidSubscription = true;
 				}
 			} catch (error) {
 				return resolve(event, {
@@ -65,6 +64,10 @@ export const handle: Handle = async ({ event, resolve }) => {
 					}
 				});
 			}
+		}
+
+		if (forbidSubscription) {
+			redirect(302, '/app/subscription');
 		}
 	}
 

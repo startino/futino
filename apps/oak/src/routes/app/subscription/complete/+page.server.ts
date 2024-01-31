@@ -1,7 +1,6 @@
 import { redirect } from '@sveltejs/kit';
-import type { PageServerLoad } from '../$types';
 
-export const load: PageServerLoad = async ({ url, locals: { stripe } }) => {
+export const load = async ({ url, locals: { stripe } }) => {
 	const id = url.searchParams.get('payment_intent');
 
 	if (!id) redirect(303, '/app/subscription');

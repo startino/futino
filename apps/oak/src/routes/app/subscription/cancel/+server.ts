@@ -1,12 +1,9 @@
 import { error, redirect } from '@sveltejs/kit';
+import { getUserSubscription } from '$lib/api-client.js';
 
 export const GET = async ({ locals: { stripe, getSession, supabase } }) => {
 	const { user } = await getSession();
-	const { data: subscription } = await supabase
-		.from('subscriptions')
-		.select()
-		.eq('profile_id', user.id)
-		.single();
+	const { data: subscription } = await getUserSubscription(supabase, user);
 
 	try {
 		await stripe.subscriptions.cancel(subscription.stripe_subscription_id);
