@@ -1,8 +1,6 @@
 import { join } from "path";
 import fColors from "../../legacy/futino-colors.cjs";
 
-const alpha = "<alpha-value>";
-
 const config = {
   content: [
     "./src/**/*.{html,js,svelte,ts}",

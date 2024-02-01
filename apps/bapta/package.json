@@ -37,6 +37,8 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@tailwindcss/forms": "^0.5.7",
+		"@tailwindcss/typography": "^0.5.10",
 		"bits-ui": "^0.14.0",
 		"clsx": "^2.1.0",
 		"lucide-svelte": "^0.319.0",
