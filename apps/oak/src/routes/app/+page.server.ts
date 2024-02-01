@@ -1,7 +1,7 @@
 import type { PageServerLoad } from './$types';
-import { redirect, fail } from '@sveltejs/kit';
+import { redirect } from '@sveltejs/kit';
 
-export const load: PageServerLoad = async ({ locals: { getSession, supabase } }) => {
+export const load: PageServerLoad = async ({ locals: { getSession } }) => {
 	const session = await getSession();
 
 	if (!session) {

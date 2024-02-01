@@ -1,12 +1,12 @@
 import { PUBLIC_SUPABASE_URL, PUBLIC_SUPABASE_ANON_KEY } from '$env/static/public';
 
-import { SECRETE_STRIPE_KEY } from '$env/static/private';
+import { STRIPE_SECRET_KEY } from '$env/static/private';
 
 import { Stripe } from 'stripe';
 import type { Database } from '$lib/server/supabase.types.ts';
 import { createSupabaseServerClient } from '@supabase/auth-helpers-sveltekit';
-import type { PostgrestError } from '@supabase/supabase-js';
-import type { Handle } from '@sveltejs/kit';
+import { redirect, type Handle } from '@sveltejs/kit';
+import { getUserSubscription } from '$lib/api-client';
 
 export const handle: Handle = async ({ event, resolve }) => {
 	event.locals.supabase = createSupabaseServerClient<Database>({
@@ -15,14 +15,61 @@ export const handle: Handle = async ({ event, resolve }) => {
 		event
 	});
 
-	event.locals.stripe = new Stripe(SECRETE_STRIPE_KEY);
+	event.locals.stripe = new Stripe(STRIPE_SECRET_KEY);
 
 	event.locals.getSession = async () => {
 		const {
-			data: { session }
+			data: { session },
+			error
 		} = await event.locals.supabase.auth.getSession();
-		return session;
+		return error ? null : session;
 	};
+
+	const session = await event.locals.getSession();
+
+	if (!session) {
+		if (event.url.pathname.startsWith('/app')) {
+			redirect(303, '/login');
+		}
+	} else {
+		const { user } = session;
+
+		const { data } = await event.locals.supabase
+			.from('profiles')
+			.select()
+			.eq('id', user.id)
+			.single();
+
+		event.locals.stripeCustomerId = data.stripe_customer_id;
+
+		const { data: subscription } = await getUserSubscription(event.locals.supabase, user);
+
+		let forbidSubscription = false;
+
+		if (subscription) {
+			try {
+				const sub = await event.locals.stripe.subscriptions.retrieve(
+					subscription.stripe_subscription_id
+				);
+				if (
+					sub.status === 'active' &&
+					(event.url.pathname.includes('/yearly') || event.url.pathname.includes('/monthly'))
+				) {
+					forbidSubscription = true;
+				}
+			} catch (error) {
+				return resolve(event, {
+					filterSerializedResponseHeaders(name) {
+						return name === 'content-range';
+					}
+				});
+			}
+		}
+
+		if (forbidSubscription) {
+			redirect(302, '/app/subscription');
+		}
+	}
 
 	return resolve(event, {
 		filterSerializedResponseHeaders(name) {
@@ -31,6 +78,6 @@ export const handle: Handle = async ({ event, resolve }) => {
 	});
 };
 
-export function handleError({ event, error }: { event: any; error: PostgrestError }) {
-	console.error('Handle Error caught an error: ' + error.message);
-}
+// export function handleError({ event, error }: { event: any; error: PostgrestError }) {
+// 	console.error('Handle Error caught an error: ' + error.message);
+// }

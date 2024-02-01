@@ -1,5 +1,4 @@
 <script>
-	import '$styling';
 	import Shell from '$lib/components/organisms/Shell.svelte';
 
 	import Header from '$lib/components/molecules/Header.svelte';

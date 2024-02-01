@@ -1,6 +1,6 @@
 import { setError, superValidate } from 'sveltekit-superforms/server';
 import { registrationSchema } from '$lib/schemas';
-import { fail, redirect } from '@sveltejs/kit';
+import { fail, redirect, type RequestEvent } from '@sveltejs/kit';
 import type { Actions, PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async () => {
@@ -22,10 +22,11 @@ export const actions: Actions = {
 			});
 		}
 
-		const { data, error: orgError } = await supabase
+		const { data: organization, error: orgError } = await supabase
 			.from('organizations')
 			.insert({ name: company.name })
-			.select();
+			.select()
+			.single();
 
 		console.log({ orgError });
 
@@ -33,7 +34,7 @@ export const actions: Actions = {
 			company.departments.map((d) => ({
 				name: d.name,
 				number: d.number,
-				organization_id: data[0].id
+				organization_id: organization.id
 			}))
 		);
 
@@ -42,7 +43,7 @@ export const actions: Actions = {
 		const { error: projectError } = await supabase.from('projects').insert(
 			company.projects.map((p) => ({
 				name: p,
-				organization_id: data[0].id
+				organization_id: organization.id
 			}))
 		);
 
@@ -51,29 +52,57 @@ export const actions: Actions = {
 		const { error: accountError } = await supabase.from('accounting-accounts').insert(
 			company.accounts.map((a) => ({
 				number: a,
-				organization_id: data[0].id
+				organization_id: organization.id
 			}))
 		);
 
 		console.log({ accountError });
 
-		const { error: authError } = await event.locals.supabase.auth.signUp({
+		const { data: signUpData, error: authError } = await event.locals.supabase.auth.signUp({
 			email: user.email,
 			password: user.password,
 			options: {
 				data: {
 					full_name: user.fullName,
-					organization_id: data[0].id
+					organization_id: organization.id
 				}
 			}
 		});
 
-		console.log({ ...authError });
+		console.log({ authError });
 
-		if (authError || orgError || departError || projectError || accountError) {
+		const customer = await createStripeCustomer(
+			event,
+			form.data.user.email,
+			form.data.user.fullName
+		);
+
+		const { error: profileUpdateError } = await event.locals.supabase
+			.from('profiles')
+			.update({ stripe_customer_id: customer.id })
+			.eq('id', signUpData.user.id);
+
+		console.log({ profileUpdateError });
+
+		if (
+			authError ||
+			orgError ||
+			departError ||
+			projectError ||
+			accountError ||
+			profileUpdateError
+		) {
 			return setError(form, 'An error occured while registering.');
 		} else {
 			redirect(300, '/login');
 		}
 	}
 };
+
+async function createStripeCustomer(event: RequestEvent, email: string, fullName: string) {
+	const customer = await event.locals.stripe.customers.create({
+		email: email,
+		name: fullName
+	});
+	return customer;
+}
