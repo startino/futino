@@ -2,36 +2,36 @@
 	import * as Form from '$lib/components/ui/form';
 	import { contractEntrySchema, type ContractEntryForm } from '$lib/schemas';
 	import { navigating, page } from '$app/stores';
-	import { Calendar as CalendarIcon, Check, ChevronsUpDown, Lock } from 'lucide-svelte';
+	import { Calendar as CalendarIcon, Check, ChevronsUpDown, Lock, Paperclip } from 'lucide-svelte';
+	import { Button } from '$lib/components/ui/button';
 	import {
 		type DateValue,
 		DateFormatter,
 		getLocalTimeZone,
 		parseDate,
-		CalendarDate,
 		today
 	} from '@internationalized/date';
 	import { cn } from '$lib/utils';
-	import { Button, buttonVariants } from '$lib/components/ui/button';
-	import { Calendar } from '$lib/components/ui/calendar';
+	import { buttonVariants } from '$lib/components/ui/button';
 	import * as Card from '$lib/components/ui/card';
 	import * as Popover from '$lib/components/ui/popover';
 	import type { SuperValidated } from 'sveltekit-superforms';
-	import { superForm, type SuperForm } from 'sveltekit-superforms/client';
+	import { superForm } from 'sveltekit-superforms/client';
 	import DatePicker from '$lib/components/atoms/DatePicker.svelte';
 	import type { FormOptions } from 'formsnap';
 	import Combobox from '$lib/components/atoms/Combobox.svelte';
-	import { ZodObject } from 'zod';
 	import type { PageData } from './$types';
-	import * as Command from '$lib/components/ui/command';
-	import { onMount, tick } from 'svelte';
+	import { tick } from 'svelte';
 	import { Skeleton } from '$lib/components/ui/skeleton';
 	import SkeletonForm from '$lib/components/molecules/SkeletonForm.svelte';
-	import { fade } from 'svelte/transition';
 	import { formatUSD } from '$lib/helpers';
 	import { Label } from '$lib/components/ui/label';
 
 	export let data: PageData;
+
+	const supabase = data.supabase;
+	let uploading = false;
+
 	let form: SuperValidated<ContractEntryForm> = $page.data.form;
 
 	const userID: string = $page.data.userID;
@@ -77,6 +77,27 @@
 
 	$: $formStore.start_date = startDateValue ? new Date(startDateValue.toString()) : undefined;
 	$: $formStore.end_date = endDateValue ? new Date(endDateValue.toString()) : undefined;
+
+	async function upload(e) {
+		uploading = true;
+		const file = e.target.files[0];
+		const name = `${crypto.randomUUID()}-${file.name}`;
+
+		const { error, data } = await supabase.storage
+			.from('contract-attachments')
+			.upload(`/${name}`, file, {
+				cacheControl: '3600',
+				upsert: false
+			});
+
+		if (error) {
+			console.log({ uploadError: error });
+		} else {
+			formStore.update((v) => ({ ...v, attachment: data.path }));
+		}
+
+		uploading = false;
+	}
 
 	async function waitForRequiredData() {
 		const contractsWithVendor = await data.contractsWithVendors;
@@ -258,7 +279,24 @@
 						<Form.Validation />
 					</Form.Item>
 				</Form.Field>
-				<Form.Button>Submit</Form.Button>
+				<Form.Field {config} name="attachment">
+					<Form.Item class="">
+						<Form.Label class="mb-2">Attachment</Form.Label>
+						<label class="mb-2 block cursor-pointer">
+							<input hidden type="file" on:input={upload} />
+							<div
+								class="flex w-fit items-center justify-start gap-4 rounded-md border border-input px-3 py-2"
+							>
+								{uploading ? 'Uploading...' : 'Upload File'}
+								<Paperclip />
+							</div>
+						</label>
+						<Form.Input class="hidden" />
+
+						<Form.Validation />
+					</Form.Item>
+				</Form.Field>
+				<Form.Button disabled={uploading}>Submit</Form.Button>
 			</Form.Root>
 		{/await}
 	</Card.Content>

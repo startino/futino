@@ -53,7 +53,8 @@ export const contractEntrySchema = z.object({
 	creator: z.string(),
 	department: z.string().optional(),
 	amount: z.string(),
-	spend_category: z.string().optional()
+	spend_category: z.string().optional(),
+	attachment: z.string()
 });
 
 export type ContractEntryForm = typeof contractEntrySchema;
