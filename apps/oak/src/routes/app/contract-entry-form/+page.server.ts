@@ -1,9 +1,9 @@
-import { contractEntrySchema, type ContractEntryForm } from '$lib/schemas';
-import { redirect, fail, error } from '@sveltejs/kit';
-import type { Actions, PageServerLoad } from './$types';
+import { contractEntrySchema } from '$lib/schemas';
+import { fail, error } from '@sveltejs/kit';
+import type { Actions } from './$types';
 import { superValidate } from 'sveltekit-superforms/server';
 import type { Tables } from '$lib/server/supabase.types';
-import type { PostgrestError, QueryData } from '@supabase/supabase-js';
+import type { PostgrestError } from '@supabase/supabase-js';
 import { getVendorsInOrg } from '$lib/server/vendors';
 import { getApprovers } from '$lib/server/approvers';
 import { fetchUserOrgID } from '$lib/server/organization';
@@ -117,9 +117,11 @@ export const actions: Actions = {
 		const approverIds = (await getApprovers(user.id)).map((approver) => approver.approver_id);
 
 		// Insert the contract using the formData into the contracts table
+		console.log({ orgID });
+
 		const { data, error } = await supabase.from('contracts').insert([
 			{
-				...contractForm,
+				...{ ...contractForm, vendor_id: 'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11' },
 				creator: user.id,
 				organization_id: orgID,
 				approvers: approverIds
@@ -128,7 +130,7 @@ export const actions: Actions = {
 
 		if (error) {
 			console.log('Error inserting contract: ', error);
-			return fail(500, error);
+			return fail(500, { error, form });
 		}
 
 		return {

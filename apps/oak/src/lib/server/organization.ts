@@ -2,7 +2,7 @@ import { fail } from '@sveltejs/kit';
 import { supabaseAdmin } from './supabase-admin';
 
 // Fetch the user's organization ID
-export async function fetchUserOrgID(userID: any): Promise<string> {
+export async function fetchUserOrgID(userID: string): Promise<string> {
 	const { data, error: userError } = await supabaseAdmin
 		.from('profiles')
 		.select('organization_id')
