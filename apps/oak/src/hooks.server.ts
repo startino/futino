@@ -6,7 +6,7 @@ import { Stripe } from 'stripe';
 import type { Database } from '$lib/server/supabase.types.ts';
 import { createSupabaseServerClient } from '@supabase/auth-helpers-sveltekit';
 import { redirect, type Handle } from '@sveltejs/kit';
-import { getUserSubscription } from '$lib/api-client';
+import { builApiClient, getUserSubscription } from '$lib/api-client';
 
 export const handle: Handle = async ({ event, resolve }) => {
 	event.locals.supabase = createSupabaseServerClient<Database>({
@@ -34,6 +34,10 @@ export const handle: Handle = async ({ event, resolve }) => {
 	} else {
 		const { user } = session;
 
+		event.locals.user = user;
+
+		event.locals.apiClient = builApiClient(event.locals);
+
 		const { data } = await event.locals.supabase
 			.from('profiles')
 			.select()
@@ -42,7 +46,10 @@ export const handle: Handle = async ({ event, resolve }) => {
 
 		event.locals.stripeCustomerId = data.stripe_customer_id;
 
-		const { data: subscription } = await getUserSubscription(event.locals.supabase, user);
+		const { data: subscription } = await getUserSubscription({
+			supabase: event.locals.supabase,
+			user
+		});
 
 		let forbidSubscription = false;
 

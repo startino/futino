@@ -2,7 +2,7 @@ import { getUserSubscription } from '$lib/api-client.js';
 
 export const load = async ({ locals: { stripe, getSession, supabase } }) => {
 	const { user } = await getSession();
-	const { data } = await getUserSubscription(supabase, user);
+	const { data } = await getUserSubscription({ supabase, user });
 
 	if (data) {
 		try {

@@ -48,7 +48,14 @@ export const contractEntrySchema = z.object({
 	start_date: z.date(),
 	end_date: z.date(),
 	description: z.string().optional(),
-	vendor_id: z.string(),
+	vendor_id: z.string().min(10),
+	new_vendor: z
+		.object({
+			name: z.string().min(1, 'The name is required'),
+			department_id: z.string().min(10).optional()
+		})
+		.optional()
+		.default({ name: '', department_id: '' }),
 	project: z.string().optional(),
 	creator: z.string(),
 	department: z.string().optional(),

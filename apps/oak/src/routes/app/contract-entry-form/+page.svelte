@@ -1,4 +1,5 @@
 <script lang="ts">
+	import SuperDebug from 'sveltekit-superforms/client/SuperDebug.svelte';
 	import * as Form from '$lib/components/ui/form';
 	import { contractEntrySchema, type ContractEntryForm } from '$lib/schemas';
 	import { navigating, page } from '$app/stores';
@@ -26,11 +27,15 @@
 	import SkeletonForm from '$lib/components/molecules/SkeletonForm.svelte';
 	import { formatUSD } from '$lib/helpers';
 	import { Label } from '$lib/components/ui/label';
-
+	import Input from '$lib/components/ui/input/input.svelte';
+	import { Item } from '$lib/components/ui/carousel';
+	import * as Dialog from '$lib/components/ui/dialog';
 	export let data: PageData;
 
 	const supabase = data.supabase;
-	let uploading = false;
+	let status: 'uploading' | 'submitting' | 'idle' = 'idle';
+	let vendorOption: 'search' | 'add' = 'search';
+	let fileName: string | null;
 
 	let form: SuperValidated<ContractEntryForm> = $page.data.form;
 
@@ -38,7 +43,8 @@
 
 	const theForm = superForm(form, {
 		validators: contractEntrySchema,
-		taintedMessage: null
+		taintedMessage: null,
+		dataType: 'json'
 	});
 
 	const { form: formStore } = theForm;
@@ -79,30 +85,36 @@
 	$: $formStore.end_date = endDateValue ? new Date(endDateValue.toString()) : undefined;
 
 	async function upload(e) {
-		uploading = true;
+		status = 'uploading';
 		const file = e.target.files[0];
-		const name = `${crypto.randomUUID()}-${file.name}`;
+		const path = `/${crypto.randomUUID()}-${file.name}`;
 
-		const { error, data } = await supabase.storage
-			.from('contract-attachments')
-			.upload(`/${name}`, file, {
-				cacheControl: '3600',
-				upsert: false
-			});
+		const { error, data } = await supabase.storage.from('contract-attachments').upload(path, file, {
+			cacheControl: '3600',
+			upsert: false
+		});
 
 		if (error) {
 			console.log({ uploadError: error });
+			fileName = null;
 		} else {
+			fileName = file.name;
 			formStore.update((v) => ({ ...v, attachment: data.path }));
 		}
 
-		uploading = false;
+		status = 'idle';
 	}
 
 	async function waitForRequiredData() {
 		const contractsWithVendor = await data.contractsWithVendors;
 		const organizationUsers = await data.organizationUsers;
 		const vendors = await data.vendors;
+		const departments = await data.departments;
+
+		const departmentsParsed = departments.map((department) => ({
+			value: department.id,
+			label: department.name
+		}));
 
 		let organizationUsersParsed = organizationUsers.map((user) => ({
 			value: user.id,
@@ -122,12 +134,14 @@
 		return {
 			contracts: contractsParsed,
 			organizationUsers: organizationUsersParsed,
-			vendors: vendorsParsed
+			vendors: vendorsParsed,
+			departments: departmentsParsed
 		};
 	}
 </script>
 
 <Card.Root class=" h-full p-10">
+	<SuperDebug data={$formStore} />
 	<Card.Header
 		><Card.Title class="m-0 sm:m-0">Contract Entry Form</Card.Title>
 		<Card.Description class="m-0 sm:m-0"
@@ -137,7 +151,7 @@
 	<Card.Content>
 		{#await waitForRequiredData()}
 			<SkeletonForm />
-		{:then { contracts, organizationUsers, vendors }}
+		{:then { contracts, organizationUsers, vendors, departments }}
 			<Form.Root
 				method="POST"
 				class="w-min space-y-6"
@@ -147,7 +161,7 @@
 				let:config
 			>
 				<Form.Field {config} name="parent_contract" let:setValue let:value>
-					<Form.Item class="flex flex-col">
+					<Form.Item class="grid">
 						<Form.Label class="mb-2">Parent Contract</Form.Label>
 						<Combobox items={contracts} initialValue={userID} {setValue} />
 						<Form.Description>
@@ -157,7 +171,7 @@
 					</Form.Item>
 				</Form.Field>
 				<Form.Field {config} name="start_date">
-					<Form.Item class="flex flex-col">
+					<Form.Item class="grid">
 						<Form.Label for="start_date" class="mb-2">Start Date</Form.Label>
 						<Popover.Root>
 							<Form.Control id="start_date" let:attrs>
@@ -187,7 +201,7 @@
 					</Form.Item>
 				</Form.Field>
 				<Form.Field {config} name="end_date">
-					<Form.Item class="flex flex-col">
+					<Form.Item class="grid">
 						<Form.Label class="mb-2">End Date</Form.Label>
 						<Popover.Root>
 							<Form.Control id="end_date" let:attrs>
@@ -217,7 +231,7 @@
 					</Form.Item>
 				</Form.Field>
 				<Form.Field {config} name="description">
-					<Form.Item class="flex flex-col">
+					<Form.Item class="grid">
 						<Form.Label class="mb-2">Description</Form.Label>
 						<Form.Textarea
 							placeholder="Free text field to describe the contract if needed."
@@ -228,18 +242,49 @@
 					</Form.Item>
 				</Form.Field>
 				<Form.Field {config} name="vendor_id" let:setValue>
-					<Form.Item class="flex flex-col">
+					<Form.Item class="grid">
 						<Form.Label class="mb-2">Vendor</Form.Label>
 						<Combobox items={vendors} placeholder="Search for a vendor" {setValue} />
-						<Form.Description
-							>Select the owner of the contract, if it isn't yourself.</Form.Description
-						>
 						<Form.Validation />
+
+						<Dialog.Root>
+							<Dialog.Trigger class={`${buttonVariants({ variant: 'default' })} justify-self-start`}
+								>Add new vendor</Dialog.Trigger
+							>
+							<Dialog.Content class="">
+								<Dialog.Header>
+									<Dialog.Title>Add new vender</Dialog.Title>
+								</Dialog.Header>
+								<div class="gap-4">
+									<Form.Field {config} name="new_vendor.name">
+										<Form.Item class="grow-1">
+											<Form.Label class="mb-2">Name</Form.Label>
+											<Form.Input placeholder="Name" />
+											<Form.Validation />
+										</Form.Item>
+									</Form.Field>
+									<Form.Field {config} name="new_vendor.department_id" let:setValue>
+										<Form.Item class="grow-0">
+											<Form.Label class="mb-2">Department</Form.Label>
+											<Combobox
+												items={departments}
+												placeholder="Search for a department"
+												{setValue}
+											/>
+										</Form.Item>
+									</Form.Field>
+								</div>
+								<Dialog.Footer>
+									<Button>add</Button>
+								</Dialog.Footer>
+							</Dialog.Content>
+						</Dialog.Root>
 					</Form.Item>
 				</Form.Field>
+
 				<!--TODO project code input field-->
 				<Form.Field {config} name="creator" let:setValue>
-					<Form.Item class="flex flex-col">
+					<Form.Item class="grid">
 						<Form.Label class="mb-2">Owner</Form.Label>
 						<Combobox items={organizationUsers} initialValue={userID} {setValue} />
 						<Form.Description
@@ -266,7 +311,7 @@
 					{/await}
 				</div>
 				<Form.Field {config} name="amount">
-					<Form.Item class="flex flex-col">
+					<Form.Item class="grid">
 						<Form.Label class="mb-2">Amount</Form.Label>
 						<div class="flex flex-row place-items-center gap-x-2">
 							<Form.Input />
@@ -287,7 +332,13 @@
 							<div
 								class="flex w-fit items-center justify-start gap-4 rounded-md border border-input px-3 py-2"
 							>
-								{uploading ? 'Uploading...' : 'Upload File'}
+								{#if status === 'uploading'}
+									Uploading...
+								{:else if fileName}
+									{fileName}
+								{:else}
+									Upload file
+								{/if}
 								<Paperclip />
 							</div>
 						</label>
@@ -296,7 +347,7 @@
 						<Form.Validation />
 					</Form.Item>
 				</Form.Field>
-				<Form.Button disabled={uploading}>Submit</Form.Button>
+				<Form.Button disabled={['uploading', 'submitting'].includes(status)}>Submit</Form.Button>
 			</Form.Root>
 		{/await}
 	</Card.Content>

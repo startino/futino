@@ -1,6 +1,7 @@
 // src/app.d.ts
 
-import { SupabaseClient, Session } from '@supabase/supabase-js';
+import type { ApiClient } from '$lib/api-client';
+import { SupabaseClient, Session, type User } from '@supabase/supabase-js';
 import { Stripe } from 'stripe';
 
 declare global {
@@ -10,6 +11,8 @@ declare global {
 			supabase: SupabaseClient;
 			getSession(): Promise<Session | null>;
 			stripeCustomerId: string;
+			user: User;
+			apiClient: ApiClient;
 		}
 		interface PageData {
 			session: Session | null;

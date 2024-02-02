@@ -17,6 +17,19 @@ export const load = async ({ locals: { getSession, supabase } }) => {
 
 	const organizationID = await fetchUserOrgID(userID);
 
+	async function getOrgDeparments(): Promise<{ id: string; name: string }[]> {
+		const { data, error: supabaseError } = await supabase
+			.from('departments')
+			.select('id, name')
+			.eq('organization_id', organizationID);
+
+		if (supabaseError) {
+			throw error(500, 'Error fetching contacts, please try again later.');
+		}
+
+		return data;
+	}
+
 	// Fetch all the users in the same organization as the current user
 	async function getOrgUsers(): Promise<
 		{
@@ -85,7 +98,8 @@ export const load = async ({ locals: { getSession, supabase } }) => {
 		organizationUsers: getOrgUsers(),
 		contractsWithVendors: getContractsWithVendors(),
 		approversWithNames: attachApproverNames(),
-		vendors: getVendorsInOrg(organizationID)
+		vendors: getVendorsInOrg(organizationID),
+		departments: getOrgDeparments()
 	};
 };
 
@@ -121,7 +135,7 @@ export const actions: Actions = {
 
 		const { data, error } = await supabase.from('contracts').insert([
 			{
-				...{ ...contractForm, vendor_id: 'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11' },
+				...{ ...contractForm, vendor_id: contractForm.vendor_id ? contractForm.vendor_id : null },
 				creator: user.id,
 				organization_id: orgID,
 				approvers: approverIds
