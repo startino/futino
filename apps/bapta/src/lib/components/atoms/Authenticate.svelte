@@ -1,7 +1,8 @@
 <script lang="ts">
-	import sha256 from 'crypto-js/sha256';
+	import crypto from 'crypto-js';
 	import Button from '$lib/components/atoms/Button.svelte';
 
+	const sha256 = crypto.SHA256;
 	// Double SHA256 hashed
 	const key = 'd17b0d9a8b44aaa69bcbd82285e67a30418a6c3dc38e16c02e64035386452580';
 
@@ -24,8 +25,12 @@
 		// the true key.
 		localStorage.setItem('key', sha256(prompt('Enter Key', '')?.replace(/\s+/g, '')));
 
-    // Log given hashes of input key.
-    console.debug(`SHA256: ${localStorage.getItem('key')}\nDouble SHA256: ${sha256(localStorage.getItem('key'))}`);
+		// Log given hashes of input key.
+		console.debug(
+			`SHA256: ${localStorage.getItem('key')}\nDouble SHA256: ${sha256(
+				localStorage.getItem('key')
+			)}`
+		);
 
 		// Perform second hashing only when checking to prevent user from edeting their
 		// localStorage to ensure they didn't copy paste the true key.
@@ -42,19 +47,19 @@
 </script>
 
 {#await verified}
-  <main class="h-screen grid grid-rows-3">
-    <div class="grid row-start-2 space-y-12 place-items-center">
-      <h1 class="text-6xl">Authenticating...</h1>
-    </div>
-  </main>
+	<main class="grid h-screen grid-rows-3">
+		<div class="row-start-2 grid place-items-center space-y-12">
+			<h1 class="text-6xl">Authenticating...</h1>
+		</div>
+	</main>
 {:then isVerified}
 	{#if isVerified}
-    <slot/>
+		<slot />
 	{:else}
-		<main class="h-screen grid grid-rows-3">
-			<div class="grid row-start-2 space-y-12 place-items-center">
+		<main class="grid h-screen grid-rows-3">
+			<div class="row-start-2 grid place-items-center space-y-12">
 				<h1 class="text-6xl">Failed authentication</h1>
-        <h2 class="text-2xl">Please Refresh Page and enter the right key</h2>
+				<h2 class="text-2xl">Please Refresh Page and enter the right key</h2>
 				<button on:click={reload}>
 					<Button>Refresh Page</Button>
 				</button>
@@ -62,4 +67,3 @@
 		</main>
 	{/if}
 {/await}
-
