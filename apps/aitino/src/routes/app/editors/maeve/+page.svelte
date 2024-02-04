@@ -9,13 +9,19 @@
 		type IsValidConnection,
 		getIncomers,
 		type Edge,
-		type Connection
+		type Connection,
+
+		Panel
+
 	} from '@xyflow/svelte';
 	import { get, writable } from 'svelte/store';
 	import AgentNode from './AgentNode.svelte';
+	import ContextMenu from '$lib/components/ContextMenu.svelte';
 
 	// 👇 always import the styles
 	import '@xyflow/svelte/dist/style.css';
+	import Sidebar from '$lib/components/RightEditorSidebar.svelte';
+	import RightEditorSidebar from '$lib/components/RightEditorSidebar.svelte';
 
 	const nodeDefaults = {
 		sourcePosition: Position.Left,
@@ -75,27 +81,61 @@
 
 		// Remove edges between the same two nodes
 		let filteredEdges = currentEdges.filter((edge, i) => {
-            const isLastNode = i == currentEdges.length -1;
-            if (((edge.source == source && edge.target == target) || (edge.target == source && edge.source == target))) {
-
-                if (isLastNode) {
-                    // This is the new edge
-                    return true;
-                }
-                
-                // Connection between the same nodes already exists
-                return false
-            }
-			
+			const isLastNode: boolean = i == currentEdges.length - 1;
+			if (
+				((edge.source == source && edge.target == target) ||
+					(edge.target == source && edge.source == target)) &&
+				!isLastNode
+			) {
+				// Connection between the same nodes already exists
+				return false;
+			} else {
+				return true;
+			}
 		});
 
-        console.log('filteredEdges', filteredEdges, 'currentEdges', currentEdges, 'source', source, 'target', target, 'connection', connection)
+		console.log(
+			'filteredEdges',
+			filteredEdges,
+			'currentEdges',
+			currentEdges,
+			'source',
+			source,
+			'target',
+			target,
+			'connection',
+			connection
+		);
 		// Update the edges store with the filtered list of edges
 		edges.set(filteredEdges);
 	};
+
+	let menu: { id: string; top?: number; left?: number; right?: number; bottom?: number } | null;
+	let width: number;
+	let height: number;
+
+	function handleContextMenu({ detail: { event, node } }) {
+		// Prevent native context menu from showing
+		event.preventDefault();
+
+		// Calculate position of the context menu. We want to make sure it
+		// doesn't get positioned off-screen.
+		menu = {
+			id: node.id,
+			top: event.clientY < height - 200 ? event.clientY : undefined,
+			left: event.clientX < width - 200 ? event.clientX : undefined,
+			right: event.clientX >= width - 200 ? width - event.clientX : undefined,
+			bottom: event.clientY >= height - 200 ? height - event.clientY : undefined
+		};
+	}
+
+	// Close the context menu if it's open whenever the window is clicked.
+	function handlePaneClick() {
+		menu = null;
+	}
 </script>
 
-<main class="h-screen">
+<main class="h-screen w-screen" bind:clientWidth={width} bind:clientHeight={height}>
 	<SvelteFlow
 		{nodes}
 		{edges}
@@ -103,10 +143,25 @@
 		onconnectstart={(connection) => console.log('edges: ', $edges, 'nodes: ', $nodes)}
 		connectionMode={ConnectionMode.Loose}
 		snapGrid={[20, 20]}
-		connectionRadius={50}
+		connectionRadius={75}
+        on:nodecontextmenu={handleContextMenu}
+        on:paneclick={handlePaneClick}
 		{onconnect}
 	>
 		<Background class="!bg-background" />
 		<Controls />
+		{#if menu}
+			<ContextMenu
+				onClick={handlePaneClick}
+				id={menu.id}
+				top={menu.top}
+				left={menu.left}
+				right={menu.right}
+				bottom={menu.bottom}
+			/>
+		{/if}
+		<Panel position="top-right">
+			<RightEditorSidebar />
+		</Panel>
 	</SvelteFlow>
 </main>
