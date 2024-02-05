@@ -7,15 +7,31 @@ export const maeves =
         "content": "this is the input's content. will usually be a task",
       },
     ],
-    "agents": [
+    "receiver": {
+      "id": "0",
+    },
+    "groups": [
       {
-        id: "0",
+        "receiver": 1,
+        "agents": [
+          {
+            id: "1",
+          },
+          {
+            id: "2",
+          }
+        ]
       },
       {
-        id: "1",
-      },
-      {
-        id: "2",
+      "receiver": 3,
+        "agents": [
+          {
+            id: "3",
+          },
+          {
+            id: "4",
+          }
+        ]
       }
     ], 
   }
