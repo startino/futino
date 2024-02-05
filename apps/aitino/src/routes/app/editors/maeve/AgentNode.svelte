@@ -17,7 +17,7 @@
 
 	type $$Props = NodeProps;
 
-	export let data: { agent_id: Writable<string> };
+	export let data: { agent_id: string,  };
 
 	const { agent_id } = data;
 
@@ -35,7 +35,7 @@
 
 	$: label = isTarget ? 'Drop it here' : 'Drag to connect';
 
-	const connections = useHandleConnections({ nodeId: $agent_id, type: 'source' });
+	const connections = useHandleConnections({ nodeId: agent_id, type: 'source' });
 
 	$: {
 		console.log('connections', $connections);
@@ -48,19 +48,23 @@
 		}
 	}
 	$: isConnectable = checkIfConnectable($connections);
+
 </script>
 
-<Card.Root class="{isTarget ? 'bg-card border-2 border-dashed' : ''} transition ">
+<Card.Root class="{isTarget ? 'bg-card border-2 border-dashed ' : ''} transition aspect-1 ">
 	<Card.Header>
 		<Card.Title>
-			{label}
-		</Card.Title>
+			Antonio Flores 
+		 </Card.Title>
 		<Card.Description>CEO, Founder</Card.Description>
 	</Card.Header>
-	<Card.Content>
-		<Handle id="top-{$agent_id}" position={Position.Top} isConnectable={() => isConnectable} />
-		<Handle id="bottom-{$agent_id}" position={Position.Bottom} {isConnectable} />
-		<Handle id="left-{$agent_id}" position={Position.Left} {isConnectable} />
-		<Handle id="right-{$agent_id}" position={Position.Right} {isConnectable} />
+	<Card.Content >
+		<h1 class="text-5xl">
+			😎
+		</h1>
+		<Handle id="top-{agent_id}" position={Position.Top} isConnectable={() => isConnectable} />
+		<Handle id="bottom-{agent_id}" position={Position.Bottom} {isConnectable} />
+		<Handle id="left-{agent_id}" position={Position.Left} {isConnectable} />
+		<Handle id="right-{agent_id}" position={Position.Right} {isConnectable} />
 	</Card.Content>
 </Card.Root>

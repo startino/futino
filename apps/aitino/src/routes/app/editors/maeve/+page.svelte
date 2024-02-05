@@ -33,14 +33,14 @@
 			id: '0',
 			type: 'agent',
 			position: { x: 0, y: 0 },
-			data: { agent_id: writable('0') },
+			data: { agent_id: '0' },
 			...nodeDefaults
 		},
 		{
 			id: '1',
 			type: 'agent',
 			position: { x: 300, y: 300 },
-			data: { agent_id: writable('1') },
+			data: { agent_id: '1' },
 
 			...nodeDefaults
 		},
@@ -48,7 +48,7 @@
 			id: '2',
 			type: 'agent',
 			position: { x: 500, y: 100 },
-			data: { agent_id: writable('2') },
+			data: { agent_id: '2' },
 			...nodeDefaults
 		}
 	]);

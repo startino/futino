@@ -3,8 +3,6 @@ import type { Actions, PageServerLoad } from './$types';
 import { AuthApiError } from '@supabase/supabase-js';
 
 export const load: PageServerLoad = async (event) => {
-	
-   
 
 	return {
 		
