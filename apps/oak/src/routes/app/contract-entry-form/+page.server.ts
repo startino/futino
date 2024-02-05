@@ -99,7 +99,8 @@ export const load = async ({ locals: { getSession, supabase } }) => {
 		contractsWithVendors: getContractsWithVendors(),
 		approversWithNames: attachApproverNames(),
 		vendors: getVendorsInOrg(organizationID),
-		departments: getOrgDeparments()
+		departments: getOrgDeparments(),
+		organization_id: organizationID
 	};
 };
 

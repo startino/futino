@@ -33,9 +33,16 @@
 	export let data: PageData;
 
 	const supabase = data.supabase;
-	let status: 'uploading' | 'submitting' | 'idle' = 'idle';
+	let status: 'uploading' | 'submitting' | 'idle' | 'adding-new-vendor' | 'error' = 'idle';
 	let vendorOption: 'search' | 'add' = 'search';
+
 	let fileName: string | null;
+	let contractsParsed = [];
+	let organizationUsersParsed = [];
+	let vendorsParsed = [];
+	let departmentsParsed = [];
+	let vendorDialogOpen = false;
+	let newVendorError = '';
 
 	let form: SuperValidated<ContractEntryForm> = $page.data.form;
 
@@ -105,28 +112,65 @@
 		status = 'idle';
 	}
 
+	async function addVendor(e) {
+		vendorDialogOpen = true;
+		status = 'adding-new-vendor';
+
+		const idError = await theForm.validate('new_vendor.department_id');
+		const nameError = await theForm.validate('new_vendor.name');
+
+		if (idError || nameError) {
+			console.error('Error adding new vendor');
+			status = 'idle';
+			return;
+		}
+
+		const response = await fetch('/api/vendor', {
+			method: 'POST',
+			body: JSON.stringify({ ...$formStore.new_vendor, organization_id: data.organization_id }),
+			headers: {
+				'Content-Type': 'application/json'
+			}
+		});
+
+		const { error, vendor } = await response.json();
+
+		status = 'idle';
+
+		if (error) {
+			newVendorError = 'Something went wrong...Please, try again';
+			return;
+		}
+
+		vendorsParsed = [{ label: vendor.name, value: vendor.id }, ...vendorsParsed];
+
+		formStore.update((v) => ({ ...v, vendor_id: vendor.id }));
+
+		vendorDialogOpen = false;
+	}
+
 	async function waitForRequiredData() {
 		const contractsWithVendor = await data.contractsWithVendors;
 		const organizationUsers = await data.organizationUsers;
 		const vendors = await data.vendors;
 		const departments = await data.departments;
 
-		const departmentsParsed = departments.map((department) => ({
+		departmentsParsed = departments.map((department) => ({
 			value: department.id,
 			label: department.name
 		}));
 
-		let organizationUsersParsed = organizationUsers.map((user) => ({
+		organizationUsersParsed = organizationUsers.map((user) => ({
 			value: user.id,
 			label: user.full_name
 		}));
 
-		let contractsParsed = contractsWithVendor.map((contract) => ({
+		contractsParsed = contractsWithVendor.map((contract) => ({
 			label: `${contract.vendor_name} | ${formatUSD(contract.amount)} | ${contract.start_date} | ${contract.end_date}`,
 			value: contract.id
 		}));
 
-		let vendorsParsed = vendors.map((vendor) => ({
+		vendorsParsed = vendors.map((vendor) => ({
 			label: vendor.name,
 			value: vendor.id
 		}));
@@ -141,7 +185,6 @@
 </script>
 
 <Card.Root class=" h-full p-10">
-	<SuperDebug data={$formStore} />
 	<Card.Header
 		><Card.Title class="m-0 sm:m-0">Contract Entry Form</Card.Title>
 		<Card.Description class="m-0 sm:m-0"
@@ -154,7 +197,7 @@
 		{:then { contracts, organizationUsers, vendors, departments }}
 			<Form.Root
 				method="POST"
-				class="w-min space-y-6"
+				class="max-w-xl space-y-6"
 				controlled
 				schema={contractEntrySchema}
 				form={theForm}
@@ -247,7 +290,7 @@
 						<Combobox items={vendors} placeholder="Search for a vendor" {setValue} />
 						<Form.Validation />
 
-						<Dialog.Root>
+						<Dialog.Root open={vendorDialogOpen} closeOnEscape>
 							<Dialog.Trigger class={`${buttonVariants({ variant: 'default' })} justify-self-start`}
 								>Add new vendor</Dialog.Trigger
 							>
@@ -257,14 +300,14 @@
 								</Dialog.Header>
 								<div class="gap-4">
 									<Form.Field {config} name="new_vendor.name">
-										<Form.Item class="grow-1">
+										<Form.Item class="grid">
 											<Form.Label class="mb-2">Name</Form.Label>
 											<Form.Input placeholder="Name" />
 											<Form.Validation />
 										</Form.Item>
 									</Form.Field>
 									<Form.Field {config} name="new_vendor.department_id" let:setValue>
-										<Form.Item class="grow-0">
+										<Form.Item class="grid">
 											<Form.Label class="mb-2">Department</Form.Label>
 											<Combobox
 												items={departments}
@@ -273,9 +316,15 @@
 											/>
 										</Form.Item>
 									</Form.Field>
+									<span class="text-destructive">{newVendorError}</span>
 								</div>
 								<Dialog.Footer>
-									<Button>add</Button>
+									<Button
+										type="button"
+										on:click={addVendor}
+										disabled={status === 'adding-new-vendor'}
+										>{status === 'adding-new-vendor' ? 'Adding...' : 'Add'}</Button
+									>
 								</Dialog.Footer>
 							</Dialog.Content>
 						</Dialog.Root>

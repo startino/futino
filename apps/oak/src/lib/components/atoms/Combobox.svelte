@@ -40,14 +40,14 @@
 				variant="outline"
 				role="combobox"
 				type="button"
-				class={cn('w-[400px] justify-between', !value && 'text-muted-foreground')}
+				class={cn('justify-between', !value && 'text-muted-foreground')}
 			>
 				{value}
 				<ChevronsUpDown class="ml-2 h-4 w-4 shrink-0 opacity-50" />
 			</Button>
 		</Form.Control>
 	</Popover.Trigger>
-	<Popover.Content class="w-[400px] pt-1">
+	<Popover.Content class="pt-1">
 		<Command.Root>
 			<Command.Input class="mt-2" {placeholder} />
 			<Command.Empty>No Results Found.</Command.Empty>

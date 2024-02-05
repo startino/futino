@@ -1,5 +1,6 @@
 import type { SupabaseClient, User } from '@supabase/supabase-js';
 import type Stripe from 'stripe';
+import type { TablesInsert } from './supabase.types';
 
 type ApiClientOption = {
 	supabase: SupabaseClient;
@@ -9,11 +10,22 @@ type ApiClientOption = {
 
 export type ApiClient = ReturnType<typeof builApiClient>;
 
-export const builApiClient = (option: ApiClientOption) => () => ({
+export const builApiClient = (option: ApiClientOption) => ({
 	getUserSubscription: () => getUserSubscription(option),
 	getUserProfile: () => getUserProfile(option),
-	getUserBillingMethod: () => getUserBillingMethod(option)
+	getUserBillingMethod: () => getUserBillingMethod(option),
+	createDepartment: (data: { organization_id: string; name: string; number: number }) =>
+		createDepartment(option, data),
+	createVendor: (data: TablesInsert<'vendors'>) => createVendor(option, data)
 });
+
+export const createVendor = async (option: ApiClientOption, data: TablesInsert<'vendors'>) =>
+	await option.supabase.from('vendors').insert(data).select().single();
+
+export const createDepartment = async (
+	option: ApiClientOption,
+	data: { organization_id: string; name: string; number: number }
+) => await option.supabase.from('departments').insert(data);
 
 export const getUserSubscription = async (option: Omit<ApiClientOption, 'stripe'>) =>
 	await option.supabase.from('subscriptions').select().eq('profile_id', option.user.id).single();
