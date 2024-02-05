@@ -42,7 +42,7 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"bits-ui": "^0.14.0",
+		"bits-ui": "^0.17.0",
 		"clsx": "^2.1.0",
 		"crypto-js": "^4.2.0",
 		"lucide-svelte": "^0.319.0",
