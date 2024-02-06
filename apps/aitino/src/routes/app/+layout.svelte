@@ -1,10 +1,9 @@
 <script lang="ts">
-	import * as Card from '$lib/components/ui/card';
 	import { Button } from '$lib/components/ui/button';
 	import * as Sheet from '$lib/components/ui/sheet';
-	import { Menu, X } from 'lucide-svelte';
+	import { Menu } from 'lucide-svelte';
 
-	let menuOpen = false;
+	let menuOpen = true;
 	let navGroups = [
 		{
 			name: 'Editors',
@@ -63,17 +62,10 @@
 	];
 </script>
 
-<Sheet.Root open={menuOpen}>
+<Sheet.Root open={menuOpen} onOpenChange={(open) => (menuOpen = open)}>
 	<Sheet.Trigger asChild let:builder>
-		<Button
-			builders={[builder]}
-			class="{menuOpen ? 'mb-4 mt-6' : 'mt-6'} fixed left-6 top-6 z-10 ml-auto block"
-		>
-			{#if menuOpen}
-				<X />
-			{:else}
-				<Menu />
-			{/if}
+		<Button builders={[builder]} class="fixed left-6 top-6 z-10 ml-auto block">
+			<Menu />
 		</Button>
 	</Sheet.Trigger>
 
@@ -88,7 +80,11 @@
 					{/if}
 					<ul class="grid gap-1">
 						{#each group.items as item}
-							<li><a href="{group.baseSrc}{item.src}">{item.label}</a></li>
+							<li>
+								<a href="{group.baseSrc}{item.src}" on:click={() => (menuOpen = false)}>
+									{item.label}
+								</a>
+							</li>
 						{/each}
 					</ul>
 				</div>
