@@ -1,17 +1,73 @@
 <script lang="ts">
 	import * as Card from '$lib/components/ui/card';
 	import { Button } from '$lib/components/ui/button';
+	import * as Sheet from '$lib/components/ui/sheet';
 	import { Menu, X } from 'lucide-svelte';
 
 	let menuOpen = false;
+	let navGroups = [
+		{
+			name: 'Editors',
+			baseSrc: '/app/editors',
+			items: [
+				{
+					label: 'Maeve',
+					src: '/maeve'
+				},
+				{
+					label: 'Agent',
+					src: '/agent'
+				},
+				{
+					label: 'Workflow',
+					src: '/workflow'
+				}
+			]
+		},
+		{
+			name: 'Libraries',
+			baseSrc: '/app/libraries',
+			items: [
+				{
+					label: 'Maeve',
+					src: '/maeve'
+				},
+				{
+					label: 'Agent',
+					src: '/agent'
+				},
+				{
+					label: 'Workflow',
+					src: '/workflow'
+				}
+			]
+		},
+		{
+			name: null,
+			baseSrc: '/app/',
+			items: [
+				{
+					label: 'Account',
+					src: '/account'
+				},
+				{
+					label: 'Settings',
+					src: '/settings'
+				},
+				{
+					label: 'Help',
+					src: '/help'
+				}
+			]
+		}
+	];
 </script>
 
-<Card.Root class="fixed left-6 top-6 z-10 shadow-2xl shadow-black">
-	<Card.Content class="h-full">
+<Sheet.Root open={menuOpen}>
+	<Sheet.Trigger asChild let:builder>
 		<Button
-			on:click={() => (menuOpen = !menuOpen)}
-			variant="outline"
-			class="{menuOpen ? 'mb-4 mt-6' : 'mt-6'} ml-auto block"
+			builders={[builder]}
+			class="{menuOpen ? 'mb-4 mt-6' : 'mt-6'} fixed left-6 top-6 z-10 ml-auto block"
 		>
 			{#if menuOpen}
 				<X />
@@ -19,37 +75,27 @@
 				<Menu />
 			{/if}
 		</Button>
+	</Sheet.Trigger>
 
-		{#if menuOpen}
-			<nav class="grid h-full w-[200px] justify-center gap-6 text-center">
+	<Sheet.Content side="left">
+		<nav class="grid justify-center gap-6 text-center">
+			{#each navGroups as group}
 				<div>
-					<h2 class="text-sm font-bold uppercase leading-relaxed text-accent-400">Editor</h2>
+					{#if group.name}
+						<h2 class="text-sm font-bold uppercase leading-relaxed text-accent-400">
+							{group.name}
+						</h2>
+					{/if}
 					<ul class="grid gap-1">
-						<li><a href="/app/editors/maeve">Maeve</a></li>
-						<li><a href="/app/editors/agent">Agent</a></li>
-						<li><a href="/app/editors/workflow">Workflow</a></li>
+						{#each group.items as item}
+							<li><a href="{group.baseSrc}{item.src}">{item.label}</a></li>
+						{/each}
 					</ul>
 				</div>
-
-				<div>
-					<h2 class="text-sm font-bold uppercase leading-relaxed text-accent-400">Libraries</h2>
-					<ul class="grid gap-1">
-						<li><a href="/app/libraries/maeves">Maeves</a></li>
-						<li><a href="/app/libraries/agents">Agents</a></li>
-						<li><a href="/app/libraries/workflows">Workflows</a></li>
-						<li><a href="/app/libraries/premade-inputs">Premade Inputs</a></li>
-					</ul>
-				</div>
-
-				<ul class="mt-auto grid gap-1">
-					<li><a href="/app/account">Account</a></li>
-					<li><a href="/app/settings">Settings</a></li>
-					<li><a href="/app/help">Help</a></li>
-				</ul>
-			</nav>
-		{/if}
-	</Card.Content>
-</Card.Root>
+			{/each}
+		</nav>
+	</Sheet.Content>
+</Sheet.Root>
 
 <main>
 	<slot />
