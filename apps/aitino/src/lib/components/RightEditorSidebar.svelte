@@ -3,20 +3,9 @@
 	import { page } from '$app/stores';
 	import { Button } from './ui/button';
 
-	export let navigations: {
+	export let actions: {
 		name: string;
-		items: {
-			name: string;
-			href: string;
-			icon: string;
-			current: boolean;
-			pendingCount?: number;
-		}[];
 	}[] = [];
-	export let bottomNavigation = [
-		{ name: 'Help', href: 'help', icon: 'HelpCircle', current: false },
-		{ name: 'Logout', href: 'logout', icon: 'LogOut', current: false }
-	];
 </script>
 
 <!-- Static sidebar for desktop -->
@@ -25,23 +14,12 @@
 >
 	<!-- Sidebar component, swap this element with another sidebar if you like -->
 	<ul role="list" class="grid w-full gap-4">
-		<li>
-			<Button class="w-full">Run</Button>
-		</li>
-		<li>
-			<Button class="w-full" variant="outline">Add Prompt</Button>
-		</li>
-		<li>
-			<Button class="w-full" variant="outline">Add Agent</Button>
-		</li>
-		<li>
-			<Button class="w-full" variant="outline">Add Meave</Button>
-		</li>
-		<li>
-			<Button class="w-full" variant="outline">Compile</Button>
-		</li>
-		<li>
-			<Button class="w-full" variant="outline">Sessions</Button>
-		</li>
+		{#each actions as action}
+			<li>
+				<Button variant="outline" class="w-full">
+					<slot {action} />
+				</Button>
+			</li>
+		{/each}
 	</ul>
 </div>

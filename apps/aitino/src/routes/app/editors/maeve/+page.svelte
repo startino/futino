@@ -18,7 +18,6 @@
 
 	// 👇 always import the styles
 	import '@xyflow/svelte/dist/style.css';
-	import Sidebar from '$lib/components/RightEditorSidebar.svelte';
 	import RightEditorSidebar from '$lib/components/RightEditorSidebar.svelte';
 
 	const nodeDefaults = {
@@ -131,6 +130,15 @@
 	function handlePaneClick() {
 		menu = null;
 	}
+
+	const actions = [
+		{ name: 'Run' },
+		{ name: 'Add Prompt' },
+		{ name: 'Add Agent' },
+		{ name: 'Add Meave' },
+		{ name: 'Compile' },
+		{ name: 'Sessions' }
+	];
 </script>
 
 <div class="h-screen w-screen" bind:clientWidth={width} bind:clientHeight={height}>
@@ -159,7 +167,9 @@
 			/>
 		{/if}
 		<Panel position="top-right">
-			<RightEditorSidebar />
+			<RightEditorSidebar {actions} let:action>
+				{action.name}
+			</RightEditorSidebar>
 		</Panel>
 	</SvelteFlow>
 </div>
