@@ -22,6 +22,7 @@
 	import '@xyflow/svelte/dist/style.css';
 	import RightEditorSidebar from '$lib/components/RightEditorSidebar.svelte';
 	import { MaeveLibrary } from '$lib/components/ui/maeve-library';
+	import { AgentLibrary } from '$lib/components/ui/agent-library';
 
 	const nodeDefaults = {
 		sourcePosition: Position.Left,
@@ -184,6 +185,17 @@
 						</Dialog.Trigger>
 						<Dialog.Content class="max-w-5xl">
 							<MaeveLibrary />
+						</Dialog.Content>
+					</Dialog.Root>
+				{:else if action.name === 'Add Agent'}
+					<Dialog.Root>
+						<Dialog.Trigger>
+							<Button variant="outline" class="w-full">
+								{action.name}
+							</Button>
+						</Dialog.Trigger>
+						<Dialog.Content class="max-w-5xl">
+							<AgentLibrary />
 						</Dialog.Content>
 					</Dialog.Root>
 				{:else}
