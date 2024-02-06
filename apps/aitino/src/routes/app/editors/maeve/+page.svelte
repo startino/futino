@@ -15,10 +15,13 @@
 	import { get, writable } from 'svelte/store';
 	import AgentNode from './AgentNode.svelte';
 	import ContextMenu from '$lib/components/ContextMenu.svelte';
+	import { Button } from '$lib/components/ui/button';
+	import * as Dialog from '$lib/components/ui/dialog';
 
 	// 👇 always import the styles
 	import '@xyflow/svelte/dist/style.css';
 	import RightEditorSidebar from '$lib/components/RightEditorSidebar.svelte';
+	import { MaeveLibrary } from '$lib/components/ui/maeve-library';
 
 	const nodeDefaults = {
 		sourcePosition: Position.Left,
@@ -168,7 +171,26 @@
 		{/if}
 		<Panel position="top-right">
 			<RightEditorSidebar {actions} let:action>
-				{action.name}
+				{#if action.name === 'Run'}
+					<Button>
+						{action.name}
+					</Button>
+				{:else if action.name === 'Add Meave'}
+					<Dialog.Root>
+						<Dialog.Trigger>
+							<Button variant="outline" class="w-full">
+								{action.name}
+							</Button>
+						</Dialog.Trigger>
+						<Dialog.Content class="max-w-5xl">
+							<MaeveLibrary />
+						</Dialog.Content>
+					</Dialog.Root>
+				{:else}
+					<Button variant="outline">
+						{action.name}
+					</Button>
+				{/if}
 			</RightEditorSidebar>
 		</Panel>
 	</SvelteFlow>
