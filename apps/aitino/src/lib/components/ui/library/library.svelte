@@ -4,6 +4,8 @@
 	import * as Avatar from '$lib/components/ui/avatar';
 	import { Input } from '$lib/components/ui/input';
 	import { Button } from '$lib/components/ui/button';
+
+	// export let name: 'maeve' | 'agent' | 'workflow';
 </script>
 
 <div class="py-4">
@@ -12,9 +14,8 @@
 			<Tabs.Trigger value="personal">Personal</Tabs.Trigger>
 			<Tabs.Trigger value="community">Community</Tabs.Trigger>
 		</Tabs.List>
-
+		<Input class="sticky my-6" placeholder="Search..." />
 		<Tabs.Content value="personal">
-			<Input class="sticky" placeholder="Search for a Maeve" />
 			<ul class="h-full py-6">
 				<li>
 					<article class="flex items-center gap-6 text-sm">
@@ -24,7 +25,7 @@
 								<Avatar.Fallback>CN</Avatar.Fallback>
 							</Avatar.Root>
 							<div class="grid">
-								<h2 class="font-bold">Name of Maeve</h2>
+								<h2 class="font-bold">Name</h2>
 								<p>
 									Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent suscipit
 									vestibulum metus et tempus. Curabitur convallis, lacus vitae pellentesque tempus,
@@ -41,9 +42,6 @@
 				</li>
 			</ul>
 		</Tabs.Content>
-		<Tabs.Content value="community">
-			<Input placeholder="Search for a Maeve" />
-			(same here...)
-		</Tabs.Content>
+		<Tabs.Content value="community">(same here...)</Tabs.Content>
 	</Tabs.Root>
 </div>

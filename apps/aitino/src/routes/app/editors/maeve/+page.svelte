@@ -21,8 +21,7 @@
 	// 👇 always import the styles
 	import '@xyflow/svelte/dist/style.css';
 	import RightEditorSidebar from '$lib/components/RightEditorSidebar.svelte';
-	import { MaeveLibrary } from '$lib/components/ui/maeve-library';
-	import { AgentLibrary } from '$lib/components/ui/agent-library';
+	import { Library } from '$lib/components/ui/library';
 
 	const nodeDefaults = {
 		sourcePosition: Position.Left,
@@ -139,7 +138,7 @@
 		{ name: 'Run' },
 		{ name: 'Add Prompt' },
 		{ name: 'Add Agent' },
-		{ name: 'Add Meave' },
+		{ name: 'Add Maeve' },
 		{ name: 'Compile' },
 		{ name: 'Sessions' }
 	];
@@ -176,7 +175,7 @@
 					<Button>
 						{action.name}
 					</Button>
-				{:else if action.name === 'Add Meave'}
+				{:else if ['Add Agent', 'Add Maeve'].includes(action.name)}
 					<Dialog.Root>
 						<Dialog.Trigger>
 							<Button variant="outline" class="w-full">
@@ -184,22 +183,11 @@
 							</Button>
 						</Dialog.Trigger>
 						<Dialog.Content class="max-w-5xl">
-							<MaeveLibrary />
-						</Dialog.Content>
-					</Dialog.Root>
-				{:else if action.name === 'Add Agent'}
-					<Dialog.Root>
-						<Dialog.Trigger>
-							<Button variant="outline" class="w-full">
-								{action.name}
-							</Button>
-						</Dialog.Trigger>
-						<Dialog.Content class="max-w-5xl">
-							<AgentLibrary />
+							<Library />
 						</Dialog.Content>
 					</Dialog.Root>
 				{:else}
-					<Button variant="outline">
+					<Button variant="outline" class="w-full">
 						{action.name}
 					</Button>
 				{/if}
