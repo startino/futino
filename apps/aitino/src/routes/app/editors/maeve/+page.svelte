@@ -10,9 +10,7 @@
 		getIncomers,
 		type Edge,
 		type Connection,
-
 		Panel
-
 	} from '@xyflow/svelte';
 	import { get, writable } from 'svelte/store';
 	import AgentNode from './AgentNode.svelte';
@@ -135,7 +133,7 @@
 	}
 </script>
 
-<main class="h-screen w-screen" bind:clientWidth={width} bind:clientHeight={height}>
+<div class="h-screen w-screen" bind:clientWidth={width} bind:clientHeight={height}>
 	<SvelteFlow
 		{nodes}
 		{edges}
@@ -144,8 +142,8 @@
 		connectionMode={ConnectionMode.Loose}
 		snapGrid={[20, 20]}
 		connectionRadius={75}
-        on:nodecontextmenu={handleContextMenu}
-        on:paneclick={handlePaneClick}
+		on:nodecontextmenu={handleContextMenu}
+		on:paneclick={handlePaneClick}
 		{onconnect}
 	>
 		<Background class="!bg-background" />
@@ -164,4 +162,4 @@
 			<RightEditorSidebar />
 		</Panel>
 	</SvelteFlow>
-</main>
+</div>

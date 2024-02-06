@@ -3,10 +3,10 @@
 	import { Button } from '$lib/components/ui/button';
 	import { Menu, X } from 'lucide-svelte';
 
-	let menuOpen = true;
+	let menuOpen = false;
 </script>
 
-<Card.Root class="fixed left-6 top-6">
+<Card.Root class="fixed left-6 top-6 z-10 shadow-2xl shadow-black">
 	<Card.Content class="h-full">
 		<Button
 			on:click={() => (menuOpen = !menuOpen)}
