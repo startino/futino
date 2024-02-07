@@ -135,12 +135,10 @@
 	}
 
 	const actions = [
-		{ name: 'Run' },
-		{ name: 'Add Prompt' },
-		{ name: 'Add Agent' },
-		{ name: 'Add Maeve' },
-		{ name: 'Compile' },
-		{ name: 'Sessions' }
+		{ name: 'Load Workflow' },
+		{ name: 'Add Input' },
+		{ name: 'Add Ouput' },
+		{ name: 'Save' }
 	];
 </script>
 
@@ -171,11 +169,11 @@
 		{/if}
 		<Panel position="top-right">
 			<RightEditorSidebar {actions} let:action>
-				{#if action.name === 'Run'}
-					<Button>
+				{#if action.name === 'Save'}
+					<Button disabled>
 						{action.name}
 					</Button>
-				{:else if ['Add Agent', 'Add Maeve'].includes(action.name)}
+				{:else if ['Load Workflow'].includes(action.name)}
 					<Dialog.Root>
 						<Dialog.Trigger>
 							<Button variant="outline" class="w-full">
