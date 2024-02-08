@@ -3,7 +3,7 @@
 	import * as Sheet from '$lib/components/ui/sheet';
 	import { Menu } from 'lucide-svelte';
 
-	let menuOpen = true;
+	let menuOpen = false;
 	let navGroups = [
 		{
 			name: 'Editors',

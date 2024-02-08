@@ -1,138 +1,26 @@
 <script lang="ts">
+	import { writable } from 'svelte/store';
+	import dagre from '@dagrejs/dagre';
 	import {
 		SvelteFlow,
 		Background,
-		Controls,
 		Position,
-		useEdges,
-		ConnectionMode,
-		type IsValidConnection,
-		getIncomers,
-		type Edge,
-		type Connection,
-		Panel
+		ConnectionLineType,
+		Panel,
+		type Node,
+		type Edge
 	} from '@xyflow/svelte';
-	import { get, writable } from 'svelte/store';
-	import AgentNode from '$lib/components/ui/AgentNode.svelte';
-	import ContextMenu from '$lib/components/ContextMenu.svelte';
+
+	import '@xyflow/svelte/dist/style.css';
+
+	import { initNodes, initEdges } from './nodes-and-edges';
+	import RightEditorSidebar from '$lib/components/RightEditorSidebar.svelte';
 	import { Button } from '$lib/components/ui/button';
 	import * as Dialog from '$lib/components/ui/dialog';
-
-	// 👇 always import the styles
-	import '@xyflow/svelte/dist/style.css';
-	import RightEditorSidebar from '$lib/components/RightEditorSidebar.svelte';
 	import { Library } from '$lib/components/ui/library';
+	import * as CustomNode from '$lib/components/ui/custom-node';
 
-	const nodeDefaults = {
-		sourcePosition: Position.Left,
-		targetPosition: Position.Right
-	};
-
-	const nodes = writable([
-		{
-			id: '0',
-			type: 'agent',
-			position: { x: 0, y: 0 },
-			data: { agent_id: '0' },
-			...nodeDefaults
-		},
-		{
-			id: '1',
-			type: 'agent',
-			position: { x: 300, y: 300 },
-			data: { agent_id: '1' },
-
-			...nodeDefaults
-		},
-		{
-			id: '2',
-			type: 'agent',
-			position: { x: 500, y: 100 },
-			data: { agent_id: '2' },
-			...nodeDefaults
-		}
-	]);
-	const edges = writable([
-		{
-			id: '0-1',
-			source: '0',
-			target: '1',
-			animated: true
-		}
-	]);
-
-	const nodeTypes = {
-		agent: AgentNode
-	};
-
-	type Connection = {
-		source: string;
-		target: string;
-		sourceHandle: string | null;
-		targetHandle: string | null;
-	};
-
-	const onconnect = (connection: Connection) => {
-		// Get the source and target from the connection
-		let { source, target } = connection;
-
-		// Get the current list of edges
-		let currentEdges = $edges;
-
-		// Remove edges between the same two nodes
-		let filteredEdges = currentEdges.filter((edge, i) => {
-			const isLastNode: boolean = i == currentEdges.length - 1;
-			if (
-				((edge.source == source && edge.target == target) ||
-					(edge.target == source && edge.source == target)) &&
-				!isLastNode
-			) {
-				// Connection between the same nodes already exists
-				return false;
-			} else {
-				return true;
-			}
-		});
-
-		console.log(
-			'filteredEdges',
-			filteredEdges,
-			'currentEdges',
-			currentEdges,
-			'source',
-			source,
-			'target',
-			target,
-			'connection',
-			connection
-		);
-		// Update the edges store with the filtered list of edges
-		edges.set(filteredEdges);
-	};
-
-	let menu: { id: string; top?: number; left?: number; right?: number; bottom?: number } | null;
-	let width: number;
-	let height: number;
-
-	function handleContextMenu({ detail: { event, node } }) {
-		// Prevent native context menu from showing
-		event.preventDefault();
-
-		// Calculate position of the context menu. We want to make sure it
-		// doesn't get positioned off-screen.
-		menu = {
-			id: node.id,
-			top: event.clientY < height - 200 ? event.clientY : undefined,
-			left: event.clientX < width - 200 ? event.clientX : undefined,
-			right: event.clientX >= width - 200 ? width - event.clientX : undefined,
-			bottom: event.clientY >= height - 200 ? height - event.clientY : undefined
-		};
-	}
-
-	// Close the context menu if it's open whenever the window is clicked.
-	function handlePaneClick() {
-		menu = null;
-	}
+	console.log({ initNodes, initEdges });
 
 	const actions = [
 		{ name: 'Run' },
@@ -142,40 +30,85 @@
 		{ name: 'Compile' },
 		{ name: 'Sessions' }
 	];
+
+	const nodeTypes = {
+		agent: CustomNode.Agent,
+		prompt: CustomNode.Prompt
+	};
+
+	const dagreGraph = new dagre.graphlib.Graph();
+	dagreGraph.setDefaultEdgeLabel(() => ({}));
+
+	const nodeWidth = 300;
+	const nodeHeight = 300;
+
+	function getLayoutedElements(nodes: Node[], edges: Edge[], direction = 'TB') {
+		const isHorizontal = direction === 'LR';
+		dagreGraph.setGraph({ rankdir: direction });
+
+		nodes.forEach((node) => {
+			dagreGraph.setNode(node.id, { width: nodeWidth, height: nodeHeight });
+		});
+
+		edges.forEach((edge) => {
+			dagreGraph.setEdge(edge.source, edge.target);
+		});
+
+		dagre.layout(dagreGraph);
+
+		nodes.forEach((node) => {
+			const nodeWithPosition = dagreGraph.node(node.id);
+			node.targetPosition = isHorizontal ? Position.Left : Position.Top;
+			node.sourcePosition = isHorizontal ? Position.Right : Position.Bottom;
+
+			// We are shifting the dagre node position (anchor=center center) to the top left
+			// so it matches the React Flow node anchor point (top left).
+			node.position = {
+				x: nodeWithPosition.x - nodeWidth / 2,
+				y: nodeWithPosition.y - nodeHeight / 2
+			};
+		});
+
+		return { nodes, edges };
+	}
+
+	const { nodes: layoutedNodes, edges: layoutedEdges } = getLayoutedElements(initNodes, initEdges);
+
+	const nodes = writable<Node[]>(layoutedNodes);
+	const edges = writable<Edge[]>(layoutedEdges);
+
+	function onLayout(direction: string) {
+		const layoutedElements = getLayoutedElements($nodes, $edges, direction);
+
+		$nodes = layoutedElements.nodes;
+		$edges = layoutedElements.edges;
+		// nodes.set(layoutedElements.nodes);
+		// edges.set(layoutedElements.edges);
+	}
 </script>
 
-<div class="h-screen w-screen" bind:clientWidth={width} bind:clientHeight={height}>
+<div style="height:100vh;">
 	<SvelteFlow
 		{nodes}
 		{edges}
 		{nodeTypes}
-		onconnectstart={(connection) => console.log('edges: ', $edges, 'nodes: ', $nodes)}
-		connectionMode={ConnectionMode.Loose}
-		snapGrid={[20, 20]}
-		connectionRadius={75}
-		on:nodecontextmenu={handleContextMenu}
-		on:paneclick={handlePaneClick}
-		{onconnect}
+		fitView
+		connectionLineType={ConnectionLineType.SmoothStep}
+		defaultEdgeOptions={{ type: 'smoothstep', animated: true }}
 	>
 		<Background class="!bg-background" />
-		<Controls />
-		{#if menu}
-			<ContextMenu
-				onClick={handlePaneClick}
-				id={menu.id}
-				top={menu.top}
-				left={menu.left}
-				right={menu.right}
-				bottom={menu.bottom}
-			/>
-		{/if}
+
 		<Panel position="top-right">
 			<RightEditorSidebar {actions} let:action>
 				{#if action.name === 'Run'}
 					<Button>
 						{action.name}
 					</Button>
-				{:else if ['Add Agent', 'Add Maeve'].includes(action.name)}
+				{:else if action.name === 'Add Prompt'}
+					<Button variant="outline" class="w-full">
+						{action.name}
+					</Button>
+				{:else if ['Add Maeve'].includes(action.name)}
 					<Dialog.Root>
 						<Dialog.Trigger>
 							<Button variant="outline" class="w-full">
