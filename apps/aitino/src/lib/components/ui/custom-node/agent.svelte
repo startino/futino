@@ -5,18 +5,19 @@
 		useHandleConnections,
 		type Connection,
 		getConnectedEdges,
+		useSvelteFlow,
 		useConnection
 	} from '@xyflow/svelte';
-	import { writable, type Writable } from 'svelte/store';
-	import Handle from '$lib/components/Handle.svelte';
+	import { type Writable } from 'svelte/store';
+	import { X } from 'lucide-svelte';
 
 	// 👇 always import the styles
 	import '@xyflow/svelte/dist/style.css';
 	import * as Card from '$lib/components/ui/card';
 	import * as Select from '$lib/components/ui/select';
 	import { Input } from '$lib/components/ui/input';
-	import { Checkbox } from '$lib/components/ui/checkbox';
-	import { Label } from '$lib/components/ui/label';
+	import { Button } from '$lib/components/ui/button';
+	import Handle from '$lib/components/Handle.svelte';
 	import Textarea from '../textarea/textarea.svelte';
 	import { getContext } from '$lib/utils';
 
@@ -51,6 +52,7 @@
 	$: label = isTarget ? 'Drop it here' : 'Drag to connect';
 
 	const connections = useHandleConnections({ nodeId: id, type: 'source' });
+	const { deleteElements } = useSvelteFlow();
 </script>
 
 <Card.Root
@@ -58,7 +60,18 @@
 		? 'bg-primary-950'
 		: ''} aspect-1transition"
 >
-	<Card.Header>
+	<button
+		on:click={() => {
+			deleteElements({ nodes: [{ id }] });
+			if (isReceiver) {
+				$receiver = null;
+			}
+		}}
+		aria-label="delete agent"
+		class="absolute right-2 top-2"><X /></button
+	>
+
+	<Card.Header class="flex">
 		<Card.Title>
 			Agent
 			{#if isReceiver}
