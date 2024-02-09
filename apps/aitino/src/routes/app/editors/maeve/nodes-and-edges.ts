@@ -4,7 +4,7 @@ import { writable } from 'svelte/store';
 const position = { x: 0, y: 0 };
 const edgeType = 'smoothstep';
 
-const data = {
+export const data = {
 	instance_id: '0',
 	composition: {
 		prompts: [
@@ -155,7 +155,9 @@ export const initNodes: Node[] = [
 						data: {
 							full_name: writable(a.full_name),
 							job_title: writable(a.job_title),
-							model: writable(a.model)
+							model: writable(a.model),
+							unique_id: a.unique_id,
+							instance_id: a.instance_id
 						}
 					};
 				})

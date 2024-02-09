@@ -17,17 +17,18 @@
 	import { Input } from '$lib/components/ui/input';
 	import { Checkbox } from '$lib/components/ui/checkbox';
 	import { Label } from '$lib/components/ui/label';
+	import Textarea from '../textarea/textarea.svelte';
 
 	type $$Props = NodeProps;
 
 	export let data: {
-		agent_id: string;
+		prompt: Writable<string>;
 		full_name: Writable<string>;
 		job_title: Writable<string>;
 		model: Writable<string>;
 	};
 
-	const { agent_id, full_name, job_title, model } = data;
+	const { full_name, job_title, model, prompt } = data;
 
 	const modals = [
 		{ label: 'modal-a', value: 'modal-a' },
@@ -51,6 +52,7 @@
 
 <Card.Root class="{isTarget ? 'border-2 border-dashed bg-card ' : ''} aspect-1 pt-6 transition">
 	<Card.Content class="grid gap-2">
+		<Textarea placeholder="Prompt..." bind:value={$prompt} />
 		<Input placeholder="Full name" bind:value={$full_name} />
 		<Input placeholder="Job title" bind:value={$job_title} />
 		<Select.Root selected={{ label: $model, value: $model }}>

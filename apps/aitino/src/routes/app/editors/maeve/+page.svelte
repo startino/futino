@@ -7,6 +7,7 @@
 		Position,
 		ConnectionLineType,
 		Panel,
+		useSvelteFlow,
 		type Node,
 		type Edge
 	} from '@xyflow/svelte';
@@ -19,8 +20,7 @@
 	import * as Dialog from '$lib/components/ui/dialog';
 	import { Library } from '$lib/components/ui/library';
 	import * as CustomNode from '$lib/components/ui/custom-node';
-
-	console.log({ initNodes, initEdges });
+	import { getContext } from '$lib/utils';
 
 	const actions = [
 		{ name: 'Run' },
@@ -36,11 +36,17 @@
 		prompt: CustomNode.Prompt
 	};
 
+	const { receiver } = getContext('maeve');
+
+	$: console.log($receiver);
+
 	const dagreGraph = new dagre.graphlib.Graph();
 	dagreGraph.setDefaultEdgeLabel(() => ({}));
 
 	const nodeWidth = 300;
 	const nodeHeight = 300;
+
+	const { deleteElements, getNodes } = useSvelteFlow();
 
 	function getLayoutedElements(nodes: Node[], edges: Edge[], direction = 'TB') {
 		const isHorizontal = direction === 'LR';
@@ -74,16 +80,43 @@
 
 	const { nodes: layoutedNodes, edges: layoutedEdges } = getLayoutedElements(initNodes, initEdges);
 
-	const nodes = writable<Node[]>(layoutedNodes);
-	const edges = writable<Edge[]>(layoutedEdges);
+	const nodes = writable<Node[]>([]);
+	const edges = writable<Edge[]>([]);
 
-	function onLayout(direction: string) {
-		const layoutedElements = getLayoutedElements($nodes, $edges, direction);
+	function addNewAgent() {
+		nodes.update((v) => [
+			...v,
+			{
+				id: crypto.randomUUID(),
+				type: 'agent',
+				position: { x: 0, y: 0 },
+				selectable: false,
+				data: {
+					prompt: writable(''),
+					full_name: writable(''),
+					job_title: writable(''),
+					model: writable('model-a'),
+					unique_id: crypto.randomUUID(),
+					instance_id: crypto.randomUUID()
+				}
+			}
+		]);
+	}
 
-		$nodes = layoutedElements.nodes;
-		$edges = layoutedElements.edges;
-		// nodes.set(layoutedElements.nodes);
-		// edges.set(layoutedElements.edges);
+	function addNewPrompt() {
+		nodes.update((v) => [
+			...v,
+			{
+				id: crypto.randomUUID(),
+				type: 'prompt',
+				selectable: false,
+				position: { x: 0, y: 0 },
+				data: {
+					title: writable(''),
+					content: writable('')
+				}
+			}
+		]);
 	}
 </script>
 
@@ -95,6 +128,33 @@
 		fitView
 		connectionLineType={ConnectionLineType.SmoothStep}
 		defaultEdgeOptions={{ type: 'smoothstep', animated: true }}
+		on:edgeclick={(e) => {
+			const edge = e.detail.edge;
+			deleteElements({ edges: [{ id: edge.id }] });
+
+			if ($receiver && edge.target === $receiver.node.id) {
+				$receiver.targetCount--;
+				$receiver.targetCount === 0 && ($receiver = null);
+			}
+		}}
+		onedgecreate={(c) => {
+			const [source, target] = getNodes([c.source, c.target]);
+			if (source.type === 'prompt' && target.type === 'agent') {
+				if ($receiver) {
+					if (target.id !== $receiver.node.id) {
+						return;
+					} else {
+						$receiver.targetCount++;
+					}
+				} else {
+					$receiver = { node: target, targetCount: 1 };
+				}
+			}
+			return c;
+		}}
+		ondelete={({ edges }) => {
+			console.log('hey');
+		}}
 	>
 		<Background class="!bg-background" />
 
@@ -104,8 +164,12 @@
 					<Button>
 						{action.name}
 					</Button>
+				{:else if action.name === 'Add Agent'}
+					<Button on:click={addNewAgent} variant="outline" class="w-full">
+						{action.name}
+					</Button>
 				{:else if action.name === 'Add Prompt'}
-					<Button variant="outline" class="w-full">
+					<Button on:click={addNewPrompt} variant="outline" class="w-full">
 						{action.name}
 					</Button>
 				{:else if ['Add Maeve'].includes(action.name)}

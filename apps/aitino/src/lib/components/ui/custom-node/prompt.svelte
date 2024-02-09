@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { Writable } from 'svelte/store';
-	import { Position, type NodeProps } from '@xyflow/svelte';
+	import { Position, useHandleConnections, useConnection, type NodeProps } from '@xyflow/svelte';
 
 	import * as Card from '$lib/components/ui/card';
 	import { Textarea } from '$lib/components/ui/textarea';
@@ -13,6 +13,11 @@
 	export let id: $$Props['id'];
 
 	const { content, title } = data;
+
+	const connects = useHandleConnections({ nodeId: id, type: 'source' });
+	const connection = useConnection();
+
+	$: isConnectable = $connects.length === 0;
 </script>
 
 <Card.Root>
@@ -23,6 +28,19 @@
 	<Card.Content class="grid gap-2">
 		<Input bind:value={$title} />
 		<Textarea bind:value={$content} />
-		<Handle type="source" id="bottom-{id}" position={Position.Bottom} />
+		<Handle
+			type="source"
+			id="bottom-{id}"
+			position={Position.Bottom}
+			onconnect={(c) => {
+				if (c.length >= 1) {
+					isConnectable = false;
+				}
+			}}
+			ondisconnect={(c) => {
+				isConnectable = true;
+			}}
+			{isConnectable}
+		/>
 	</Card.Content>
 </Card.Root>
