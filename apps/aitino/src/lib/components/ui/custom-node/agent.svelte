@@ -18,8 +18,11 @@
 	import { Checkbox } from '$lib/components/ui/checkbox';
 	import { Label } from '$lib/components/ui/label';
 	import Textarea from '../textarea/textarea.svelte';
+	import { getContext } from '$lib/utils';
 
 	type $$Props = NodeProps;
+
+	const { receiver } = getContext('maeve');
 
 	export let data: {
 		prompt: Writable<string>;
@@ -44,13 +47,25 @@
 
 	$: isConnecting = !!$connection.startHandle?.nodeId;
 	$: isTarget = !!$connection.startHandle && $connection.startHandle?.nodeId !== id;
-
+	$: isReceiver = $receiver?.node.id === id;
 	$: label = isTarget ? 'Drop it here' : 'Drag to connect';
 
 	const connections = useHandleConnections({ nodeId: id, type: 'source' });
 </script>
 
-<Card.Root class="{isTarget ? 'border-2 border-dashed bg-card ' : ''} aspect-1 pt-6 transition">
+<Card.Root
+	class="{isTarget ? 'border-2 border-dashed bg-card ' : ''} {isReceiver
+		? 'bg-primary-950'
+		: ''} aspect-1transition"
+>
+	<Card.Header>
+		<Card.Title>
+			Agent
+			{#if isReceiver}
+				(receiver)
+			{/if}
+		</Card.Title>
+	</Card.Header>
 	<Card.Content class="grid gap-2">
 		<Textarea placeholder="Prompt..." bind:value={$prompt} />
 		<Input placeholder="Full name" bind:value={$full_name} />
