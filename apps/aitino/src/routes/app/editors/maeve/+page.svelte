@@ -21,14 +21,15 @@
 	import { Library } from '$lib/components/ui/library';
 	import * as CustomNode from '$lib/components/ui/custom-node';
 	import { getContext } from '$lib/utils';
+	import type { PanelAction } from '$lib/types';
 
-	const actions = [
-		{ name: 'Run' },
-		{ name: 'Add Prompt' },
-		{ name: 'Add Agent' },
-		{ name: 'Add Maeve' },
-		{ name: 'Compile' },
-		{ name: 'Sessions' }
+	const actions: PanelAction[] = [
+		{ name: 'Run', buttonVariant: 'default' },
+		{ name: 'Add Prompt', buttonVariant: 'outline', onclick: addNewPrompt },
+		{ name: 'Add Agent', buttonVariant: 'outline', onclick: addNewAgent },
+		{ name: 'Add Maeve', buttonVariant: 'outline', isCustom: true },
+		{ name: 'Compile', buttonVariant: 'outline' },
+		{ name: 'Sessions', buttonVariant: 'outline' }
 	];
 
 	const nodeTypes = {
@@ -157,22 +158,10 @@
 
 		<Panel position="top-right">
 			<RightEditorSidebar {actions} let:action>
-				{#if action.name === 'Run'}
-					<Button>
-						{action.name}
-					</Button>
-				{:else if action.name === 'Add Agent'}
-					<Button on:click={addNewAgent} variant="outline" class="w-full">
-						{action.name}
-					</Button>
-				{:else if action.name === 'Add Prompt'}
-					<Button on:click={addNewPrompt} variant="outline" class="w-full">
-						{action.name}
-					</Button>
-				{:else if ['Add Maeve'].includes(action.name)}
+				{#if action.isCustom}
 					<Dialog.Root>
 						<Dialog.Trigger>
-							<Button variant="outline" class="w-full">
+							<Button variant={action.buttonVariant} class="w-full">
 								{action.name}
 							</Button>
 						</Dialog.Trigger>
@@ -180,10 +169,6 @@
 							<Library />
 						</Dialog.Content>
 					</Dialog.Root>
-				{:else}
-					<Button variant="outline" class="w-full">
-						{action.name}
-					</Button>
 				{/if}
 			</RightEditorSidebar>
 		</Panel>

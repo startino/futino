@@ -1,6 +1,15 @@
 import type { Node } from '@xyflow/svelte';
 import type { Writable } from 'svelte/store';
 
+import type { Variant } from '$lib/components/ui/button';
+
+export type PanelAction = {
+	name: string;
+	buttonVariant: Variant;
+	onclick?: (e: Event) => void;
+	isCustom?: boolean;
+};
+
 export type ContextKey = keyof ContextMap;
 
 export interface ContextMap {
