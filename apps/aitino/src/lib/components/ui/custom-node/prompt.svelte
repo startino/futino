@@ -1,11 +1,13 @@
 <script lang="ts">
 	import type { Writable } from 'svelte/store';
-	import { Position, useHandleConnections, useConnection, type NodeProps } from '@xyflow/svelte';
+	import { Position, useHandleConnections, useSvelteFlow, type NodeProps } from '@xyflow/svelte';
+	import { X } from 'lucide-svelte';
 
 	import * as Card from '$lib/components/ui/card';
 	import { Textarea } from '$lib/components/ui/textarea';
 	import { Input } from '$lib/components/ui/input';
 	import Handle from '$lib/components/Handle.svelte';
+	import { getContext } from '$lib/utils';
 
 	type $$Props = NodeProps;
 
@@ -14,13 +16,25 @@
 
 	const { content, title } = data;
 
+	const { receiver } = getContext('maeve');
 	const connects = useHandleConnections({ nodeId: id, type: 'source' });
-	const connection = useConnection();
+	const { deleteElements } = useSvelteFlow();
 
 	$: isConnectable = $connects.length === 0;
 </script>
 
 <Card.Root>
+	<button
+		on:click={() => {
+			deleteElements({ nodes: [{ id }] });
+			if ($receiver) {
+				$receiver.targetCount--;
+				$receiver.targetCount === 0 && ($receiver = null);
+			}
+		}}
+		aria-label="delete agent"
+		class="absolute right-2 top-2"><X /></button
+	>
 	<Card.Header>
 		<Card.Title>Prompt</Card.Title>
 	</Card.Header>

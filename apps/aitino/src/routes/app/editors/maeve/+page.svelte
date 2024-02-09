@@ -152,9 +152,6 @@
 			}
 			return c;
 		}}
-		ondelete={({ edges }) => {
-			console.log('hey');
-		}}
 	>
 		<Background class="!bg-background" />
 
