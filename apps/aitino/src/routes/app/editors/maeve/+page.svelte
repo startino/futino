@@ -141,6 +141,10 @@
 		meave.composition.groups = groups;
 
 		localStorage.setItem('maeve', JSON.stringify(meave));
+
+		const layoutedElements = getLayoutedElements($nodes, $edges);
+		$nodes = layoutedElements.nodes;
+		$edges = layoutedElements.edges;
 	}
 
 	function addNewAgent() {
