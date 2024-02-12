@@ -29,7 +29,15 @@
 		{ name: 'Add Prompt', buttonVariant: 'outline', onclick: addNewPrompt },
 		{ name: 'Add Agent', buttonVariant: 'outline', onclick: addNewAgent },
 		{ name: 'Add Maeve', buttonVariant: 'outline', isCustom: true },
-		{ name: 'Compile', buttonVariant: 'outline', onclick: compile },
+		{
+			name: 'Compile',
+			buttonVariant: 'outline',
+			onclick: () => {
+				const meave = compile();
+				saveMeave(meave);
+				layout();
+			}
+		},
 		{ name: 'Sessions', buttonVariant: 'outline' }
 	];
 
@@ -140,8 +148,14 @@
 		meave.composition.prompts = prompts;
 		meave.composition.groups = groups;
 
-		localStorage.setItem('maeve', JSON.stringify(meave));
+		return meave;
+	}
 
+	function saveMeave(maeve: Maeve) {
+		localStorage.setItem('maeve', JSON.stringify(maeve));
+	}
+
+	function layout() {
 		const layoutedElements = getLayoutedElements($nodes, $edges);
 		$nodes = layoutedElements.nodes;
 		$edges = layoutedElements.edges;
