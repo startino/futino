@@ -503,8 +503,8 @@ importers:
   apps/template:
     dependencies:
       bits-ui:
-        specifier: ^0.14.0
-        version: 0.14.0(svelte@5.0.0-next.31)
+        specifier: ^0.17.0
+        version: 0.17.0(svelte@5.0.0-next.31)
       clsx:
         specifier: ^2.1.0
         version: 2.1.0
