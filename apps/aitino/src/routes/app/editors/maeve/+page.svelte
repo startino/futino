@@ -37,7 +37,7 @@
 			onclick: () => {
 				const meave = compile();
 				maeveErrors = validateMaeve(meave);
-				if (maeveErrors) status = 'maeve-error';
+				maeveErrors ? (status = 'maeve-error') : (status = 'compilation-success');
 				saveMaeve(meave);
 				layout();
 			}
@@ -45,7 +45,7 @@
 		{ name: 'Sessions', buttonVariant: 'outline' }
 	];
 
-	let status: 'maeve-error' | 'idle' = 'idle';
+	let status: 'maeve-error' | 'compilation-success' | 'idle' = 'idle';
 	let maeveErrors: string[] | null = null;
 
 	const nodeTypes = {
@@ -239,10 +239,10 @@
 	}
 </script>
 
-<AlertDialog.Root open={status === 'maeve-error'}>
+<AlertDialog.Root open={['maeve-error', 'compilation-success'].includes(status)}>
 	<AlertDialog.Content>
 		<AlertDialog.Header>
-			<AlertDialog.Title>Maeve Errors</AlertDialog.Title>
+			<AlertDialog.Title>Maeve Status</AlertDialog.Title>
 			<AlertDialog.Description>
 				{#if maeveErrors}
 					<ul class="my-6 ml-6 list-disc text-destructive [&>li]:mt-2">
@@ -250,6 +250,8 @@
 							<li>{error}</li>
 						{/each}
 					</ul>
+				{:else}
+					<p class="text-primary">Compilation succeded!</p>
 				{/if}
 			</AlertDialog.Description>
 		</AlertDialog.Header>
