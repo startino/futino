@@ -1,9 +1,13 @@
 <script lang="ts">
+	import { SvelteFlowProvider } from '@xyflow/svelte';
+	import { Menu } from 'lucide-svelte';
+	import { writable } from 'svelte/store';
+
 	import { Button } from '$lib/components/ui/button';
 	import * as Sheet from '$lib/components/ui/sheet';
-	import { Menu } from 'lucide-svelte';
+	import { setContext } from '$lib/utils';
 
-	let menuOpen = true;
+	let menuOpen = false;
 	let navGroups = [
 		{
 			name: 'Editors',
@@ -60,6 +64,10 @@
 			]
 		}
 	];
+
+	setContext('maeve', {
+		receiver: writable(null)
+	});
 </script>
 
 <Sheet.Root open={menuOpen} onOpenChange={(open) => (menuOpen = open)}>
@@ -94,5 +102,7 @@
 </Sheet.Root>
 
 <main>
-	<slot />
+	<SvelteFlowProvider>
+		<slot />
+	</SvelteFlowProvider>
 </main>

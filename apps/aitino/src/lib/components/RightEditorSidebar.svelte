@@ -1,10 +1,8 @@
 <script lang="ts">
-	import LucideIcon from '$lib/components/LucideIcon.svelte';
-	import { page } from '$app/stores';
+	import type { PanelAction } from '$lib/types';
+	import { Button } from '$lib/components/ui/button';
 
-	export let actions: {
-		name: string;
-	}[] = [];
+	export let actions: PanelAction[] = [];
 </script>
 
 <!-- Static sidebar for desktop -->
@@ -12,10 +10,18 @@
 	class="hidden h-full overflow-y-clip rounded-2xl border bg-primary-900/50 p-6 lg:z-50 lg:grid lg:w-72"
 >
 	<!-- Sidebar component, swap this element with another sidebar if you like -->
-	<ul role="list" class="grid w-full gap-4">
+	<ul role="list" class="grid w-full gap-2">
 		{#each actions as action}
 			<li class="grid">
-				<slot {action} />
+				{#if action.isCustom}
+					<slot {action}>
+						{action.name}
+					</slot>
+				{:else}
+					<Button on:click={action.onclick} variant={action.buttonVariant} class="w-full">
+						{action.name}
+					</Button>
+				{/if}
 			</li>
 		{/each}
 	</ul>

@@ -1,184 +1,303 @@
 <script lang="ts">
+	import { writable, get } from 'svelte/store';
+	import dagre from '@dagrejs/dagre';
 	import {
 		SvelteFlow,
 		Background,
-		Controls,
 		Position,
-		useEdges,
-		ConnectionMode,
-		type IsValidConnection,
+		ConnectionLineType,
+		Panel,
+		useSvelteFlow,
 		getIncomers,
+		type Node,
 		type Edge,
-		type Connection,
-		Panel
+		getOutgoers
 	} from '@xyflow/svelte';
-	import { get, writable } from 'svelte/store';
-	import AgentNode from '$lib/components/ui/AgentNode.svelte';
-	import ContextMenu from '$lib/components/ContextMenu.svelte';
+	import { toast } from 'svelte-sonner';
+
+	import '@xyflow/svelte/dist/style.css';
+
+	import RightEditorSidebar from '$lib/components/RightEditorSidebar.svelte';
 	import { Button } from '$lib/components/ui/button';
 	import * as Dialog from '$lib/components/ui/dialog';
-
-	// 👇 always import the styles
-	import '@xyflow/svelte/dist/style.css';
-	import RightEditorSidebar from '$lib/components/RightEditorSidebar.svelte';
 	import { Library } from '$lib/components/ui/library';
+	import * as CustomNode from '$lib/components/ui/custom-node';
+	import { getContext, getInitialEdges, getInitialNodes, getLocalMaeve } from '$lib/utils';
+	import type { Maeve, MaeveGroup, MaevePrompt, PanelAction } from '$lib/types';
 
-	const nodeDefaults = {
-		sourcePosition: Position.Left,
-		targetPosition: Position.Right
-	};
-
-	const nodes = writable([
+	const actions: PanelAction[] = [
+		{ name: 'Run', buttonVariant: 'default' },
+		{ name: 'Add Prompt', buttonVariant: 'outline', onclick: addNewPrompt },
+		{ name: 'Add Agent', buttonVariant: 'outline', onclick: addNewAgent },
+		{ name: 'Add Maeve', buttonVariant: 'outline', isCustom: true },
 		{
-			id: '0',
-			type: 'agent',
-			position: { x: 0, y: 0 },
-			data: { agent_id: '0' },
-			...nodeDefaults
+			name: 'Compile',
+			buttonVariant: 'outline',
+			onclick: () => {
+				const meave = compile();
+				maeveErrors = validateMaeve(meave);
+				maeveErrors
+					? toast.error(maeveErrors[0])
+					: toast.success('Maeve has been successfuly compile');
+
+				saveMaeve(meave);
+				layout();
+			}
 		},
-		{
-			id: '1',
-			type: 'agent',
-			position: { x: 300, y: 300 },
-			data: { agent_id: '1' },
+		{ name: 'Sessions', buttonVariant: 'outline' }
+	];
 
-			...nodeDefaults
-		},
-		{
-			id: '2',
-			type: 'agent',
-			position: { x: 500, y: 100 },
-			data: { agent_id: '2' },
-			...nodeDefaults
-		}
-	]);
-	const edges = writable([
-		{
-			id: '0-1',
-			source: '0',
-			target: '1',
-			animated: true
-		}
-	]);
+	let maeveErrors: string[] | null = null;
 
 	const nodeTypes = {
-		agent: AgentNode
+		agent: CustomNode.Agent,
+		prompt: CustomNode.Prompt
 	};
 
-	type Connection = {
-		source: string;
-		target: string;
-		sourceHandle: string | null;
-		targetHandle: string | null;
-	};
+	const localMaeve = getLocalMaeve();
+	const [initEdges, initNodes] = localMaeve
+		? [getInitialEdges(localMaeve), getInitialNodes(localMaeve)]
+		: [[], []];
 
-	const onconnect = (connection: Connection) => {
-		// Get the source and target from the connection
-		let { source, target } = connection;
+	const { receiver } = getContext('maeve');
 
-		// Get the current list of edges
-		let currentEdges = $edges;
+	const dagreGraph = new dagre.graphlib.Graph();
+	dagreGraph.setDefaultEdgeLabel(() => ({}));
 
-		// Remove edges between the same two nodes
-		let filteredEdges = currentEdges.filter((edge, i) => {
-			const isLastNode: boolean = i == currentEdges.length - 1;
-			if (
-				((edge.source == source && edge.target == target) ||
-					(edge.target == source && edge.source == target)) &&
-				!isLastNode
-			) {
-				// Connection between the same nodes already exists
-				return false;
+	const nodeWidth = 400;
+	const nodeHeight = 400;
+
+	const { deleteElements, getNodes, getViewport, setCenter } = useSvelteFlow();
+
+	function getLayoutedElements(nodes: Node[], edges: Edge[], direction = 'TB') {
+		const isHorizontal = direction === 'LR';
+		dagreGraph.setGraph({ rankdir: direction });
+
+		if (nodes.length > 0) {
+			nodes.forEach((node) => {
+				dagreGraph.setNode(node.id, { width: nodeWidth, height: nodeHeight });
+			});
+		}
+
+		if (edges.length > 0) {
+			edges.forEach((edge) => {
+				dagreGraph.setEdge(edge.source, edge.target);
+			});
+		}
+
+		if (nodes.length > 0) {
+			dagre.layout(dagreGraph);
+
+			nodes.forEach((node) => {
+				const nodeWithPosition = dagreGraph.node(node.id);
+				node.targetPosition = isHorizontal ? Position.Left : Position.Top;
+				node.sourcePosition = isHorizontal ? Position.Right : Position.Bottom;
+
+				// We are shifting the dagre node position (anchor=center center) to the top left
+				// so it matches the React Flow node anchor point (top left).
+				node.position = {
+					x: nodeWithPosition.x - nodeWidth / 2,
+					y: nodeWithPosition.y - nodeHeight / 2
+				};
+			});
+		}
+
+		return { nodes, edges };
+	}
+
+	const { nodes: layoutedNodes, edges: layoutedEdges } = getLayoutedElements(initNodes, initEdges);
+
+	const nodes = writable<Node[]>(layoutedNodes);
+	const edges = writable<Edge[]>(layoutedEdges);
+
+	function compile() {
+		let meave: Maeve = {
+			instance_id: '0',
+			composition: {
+				receiver: $receiver ? { instance_id: $receiver.node.id } : null,
+				groups: [],
+				prompts: []
+			}
+		};
+
+		let groups: MaeveGroup[] = [];
+		let prompts: MaevePrompt[] = [];
+
+		$nodes.forEach((node) => {
+			if (node.type === 'prompt') {
+				const { title, content } = node.data;
+				prompts.push({
+					...node.data,
+					title: get(title),
+					content: get(content),
+					position: node.position
+				});
 			} else {
-				return true;
+				let agents = [node, ...getOutgoers(node, $nodes, $edges)].map((n) => {
+					const { prompt, full_name, job_title, model } = n.data;
+					return {
+						...n.data,
+						prompt: get(prompt),
+						full_name: get(full_name),
+						job_title: get(job_title),
+						model: get(model),
+						position: n.position
+					};
+				});
+				const communicator = node.id;
+
+				groups.push({
+					communicator,
+					agents
+				});
 			}
 		});
 
-		console.log(
-			'filteredEdges',
-			filteredEdges,
-			'currentEdges',
-			currentEdges,
-			'source',
-			source,
-			'target',
-			target,
-			'connection',
-			connection
-		);
-		// Update the edges store with the filtered list of edges
-		edges.set(filteredEdges);
-	};
+		meave.composition.prompts = prompts;
+		meave.composition.groups = groups;
 
-	let menu: { id: string; top?: number; left?: number; right?: number; bottom?: number } | null;
-	let width: number;
-	let height: number;
-
-	function handleContextMenu({ detail: { event, node } }) {
-		// Prevent native context menu from showing
-		event.preventDefault();
-
-		// Calculate position of the context menu. We want to make sure it
-		// doesn't get positioned off-screen.
-		menu = {
-			id: node.id,
-			top: event.clientY < height - 200 ? event.clientY : undefined,
-			left: event.clientX < width - 200 ? event.clientX : undefined,
-			right: event.clientX >= width - 200 ? width - event.clientX : undefined,
-			bottom: event.clientY >= height - 200 ? height - event.clientY : undefined
-		};
+		return meave;
 	}
 
-	// Close the context menu if it's open whenever the window is clicked.
-	function handlePaneClick() {
-		menu = null;
+	function saveMaeve(maeve: Maeve) {
+		localStorage.setItem('maeve', JSON.stringify(maeve));
 	}
 
-	const actions = [
-		{ name: 'Run' },
-		{ name: 'Add Prompt' },
-		{ name: 'Add Agent' },
-		{ name: 'Add Maeve' },
-		{ name: 'Compile' },
-		{ name: 'Sessions' }
-	];
+	function validateMaeve(maeve: Maeve) {
+		const errors: string[] = [];
+		const prompts = $nodes.filter((node) => node.type === 'prompt');
+		if (prompts.length === 0) {
+			errors.push('A maeve must have at least one prompt');
+		} else {
+			if ($receiver) {
+				const incommers = getIncomers({ id: $receiver.node.id }, $nodes, $edges);
+
+				incommers.length !== prompts.length &&
+					errors.push('All the prompts must be connected to the receiver');
+			}
+		}
+
+		if (!$receiver) {
+			errors.push('A receiver, which is an agent directly connected to the prompts, is required.');
+		} else {
+			const outgoers = getOutgoers({ id: $receiver.node.id }, $nodes, $edges);
+
+			outgoers.length === 0 &&
+				errors.push('At least one agent should be connected to the receiver');
+		}
+
+		return errors[0] ? errors : null;
+	}
+
+	function layout() {
+		const layoutedElements = getLayoutedElements($nodes, $edges);
+		$nodes = layoutedElements.nodes;
+		$edges = layoutedElements.edges;
+	}
+
+	function addNewAgent() {
+		const uuid = crypto.randomUUID();
+		const instance_id = crypto.randomUUID();
+		const position = { ...getViewport() };
+
+		setCenter(position.x, position.y, { zoom: position.zoom });
+
+		nodes.update((v) => [
+			...v,
+			{
+				id: instance_id,
+				type: 'agent',
+				position,
+				selectable: false,
+				data: {
+					prompt: writable(''),
+					full_name: writable(''),
+					job_title: writable(''),
+					model: writable('model-a'),
+					unique_id: uuid,
+					instance_id,
+					position
+				}
+			}
+		]);
+	}
+
+	function addNewPrompt() {
+		const id = crypto.randomUUID();
+		const position = { ...getViewport() };
+		setCenter(position.x, position.y, { zoom: position.zoom });
+
+		nodes.update((v) => [
+			...v,
+			{
+				id,
+				type: 'prompt',
+				selectable: false,
+				position,
+				data: {
+					id,
+					title: writable(''),
+					content: writable(''),
+					position
+				}
+			}
+		]);
+	}
 </script>
 
-<div class="h-screen w-screen" bind:clientWidth={width} bind:clientHeight={height}>
+<div style="height:100vh;">
 	<SvelteFlow
 		{nodes}
 		{edges}
 		{nodeTypes}
-		onconnectstart={(connection) => console.log('edges: ', $edges, 'nodes: ', $nodes)}
-		connectionMode={ConnectionMode.Loose}
-		snapGrid={[20, 20]}
-		connectionRadius={75}
-		on:nodecontextmenu={handleContextMenu}
-		on:paneclick={handlePaneClick}
-		{onconnect}
+		fitView
+		oninit={() => {
+			if (!localMaeve) return;
+			const recv = localMaeve.composition.receiver;
+			if (!recv) return;
+			const node = getNodes([recv.instance_id])[0];
+			const incommers = getIncomers(node, initNodes, initEdges);
+			receiver.set({ node, targetCount: incommers.length });
+		}}
+		connectionLineType={ConnectionLineType.SmoothStep}
+		defaultEdgeOptions={{ type: 'smoothstep', animated: true }}
+		on:edgeclick={(e) => {
+			const edge = e.detail.edge;
+			deleteElements({ edges: [{ id: edge.id }] });
+
+			if ($receiver && edge.target === $receiver.node.id) {
+				$receiver.targetCount--;
+				$receiver.targetCount === 0 && ($receiver = null);
+			}
+		}}
+		onedgecreate={(c) => {
+			const [source, target] = getNodes([c.source, c.target]);
+			if (source.type === 'prompt' && target.type === 'agent') {
+				if ($receiver) {
+					if (target.id !== $receiver.node.id) {
+						return;
+					} else {
+						$receiver.targetCount++;
+					}
+				} else {
+					$receiver = { node: target, targetCount: 1 };
+				}
+			}
+
+			if (source.type === 'agent' && target.type === 'agent' && $receiver?.node.id === target.id) {
+				return;
+			}
+			return c;
+		}}
 	>
 		<Background class="!bg-background" />
-		<Controls />
-		{#if menu}
-			<ContextMenu
-				onClick={handlePaneClick}
-				id={menu.id}
-				top={menu.top}
-				left={menu.left}
-				right={menu.right}
-				bottom={menu.bottom}
-			/>
-		{/if}
+
 		<Panel position="top-right">
 			<RightEditorSidebar {actions} let:action>
-				{#if action.name === 'Run'}
-					<Button>
-						{action.name}
-					</Button>
-				{:else if ['Add Agent', 'Add Maeve'].includes(action.name)}
+				{#if action.isCustom}
 					<Dialog.Root>
 						<Dialog.Trigger>
-							<Button variant="outline" class="w-full">
+							<Button variant={action.buttonVariant} class="w-full">
 								{action.name}
 							</Button>
 						</Dialog.Trigger>
@@ -186,10 +305,6 @@
 							<Library />
 						</Dialog.Content>
 					</Dialog.Root>
-				{:else}
-					<Button variant="outline" class="w-full">
-						{action.name}
-					</Button>
 				{/if}
 			</RightEditorSidebar>
 		</Panel>

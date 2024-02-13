@@ -1,17 +1,9 @@
 <script lang="ts">
-    import { Handle, Position, type Connection } from '@xyflow/svelte';
+	import { Handle, Position, type Connection, type HandleComponentProps } from '@xyflow/svelte';
 
-    export let position: Position;
-    export let id: string;
-
-
+	type $$Props = HandleComponentProps;
+	export let id: $$Props['id'] = undefined;
+	export let type: $$Props['type'];
 </script>
-     
 
-<Handle
-{id}
-class="!w-5 !h-5 rounded-none border-none !bg-teal-500"
-{...$$restProps}
-type="source"
-position={position}
-/>
+<Handle {id} class="!h-5 !w-5 rounded-none border-none !bg-teal-500" {type} {...$$restProps} />

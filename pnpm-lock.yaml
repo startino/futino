@@ -26,6 +26,9 @@ importers:
 
   apps/aitino:
     dependencies:
+      '@dagrejs/dagre':
+        specifier: ^1.0.4
+        version: 1.0.4
       '@supabase/supabase-js':
         specifier: ^2.39.3
         version: 2.39.3
@@ -1271,6 +1274,17 @@ packages:
       '@babel/helper-validator-identifier': 7.22.20
       to-fast-properties: 2.0.0
     dev: true
+
+  /@dagrejs/dagre@1.0.4:
+    resolution: {integrity: sha512-jrEore+HhW1yg1Rsd9H1PPMcoEOD4bVh0WCXc6GqzyzubnJj4GaWGg8ETOrskTd/3n/g5LOzumGM4CCgpNLJNw==}
+    dependencies:
+      '@dagrejs/graphlib': 2.1.13
+    dev: false
+
+  /@dagrejs/graphlib@2.1.13:
+    resolution: {integrity: sha512-calbMa7Gcyo+/t23XBaqQqon8LlgE9regey4UVoikoenKBXvUnCUL3s9RP6USCxttfr0XWVICtYUuKMdehKqMw==}
+    engines: {node: '>17.0.0'}
+    dev: false
 
   /@esbuild/aix-ppc64@0.19.11:
     resolution: {integrity: sha512-FnzU0LyE3ySQk7UntJO4+qIiQgI7KoODnZg5xzXIrFJlKd2P2gwHsHY4927xj9y5PJmJSzULiUCWmv7iWnNa7g==}
