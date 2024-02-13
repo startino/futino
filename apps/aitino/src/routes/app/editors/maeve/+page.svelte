@@ -47,7 +47,6 @@
 		{ name: 'Sessions', buttonVariant: 'outline' }
 	];
 
-	let status: 'maeve-error' | 'idle' = 'idle';
 	let maeveErrors: string[] | null = null;
 
 	const nodeTypes = {
@@ -68,7 +67,7 @@
 	const nodeWidth = 400;
 	const nodeHeight = 400;
 
-	const { deleteElements, getNodes } = useSvelteFlow();
+	const { deleteElements, getNodes, getViewport, setCenter } = useSvelteFlow();
 
 	function getLayoutedElements(nodes: Node[], edges: Edge[], direction = 'TB') {
 		const isHorizontal = direction === 'LR';
@@ -199,13 +198,16 @@
 	function addNewAgent() {
 		const uuid = crypto.randomUUID();
 		const instance_id = crypto.randomUUID();
+		const position = { ...getViewport() };
+
+		setCenter(position.x, position.y, { zoom: position.zoom });
 
 		nodes.update((v) => [
 			...v,
 			{
 				id: instance_id,
 				type: 'agent',
-				position: { x: 0, y: 0 },
+				position,
 				selectable: false,
 				data: {
 					prompt: writable(''),
@@ -214,7 +216,7 @@
 					model: writable('model-a'),
 					unique_id: uuid,
 					instance_id,
-					position: { x: 0, y: 0 }
+					position
 				}
 			}
 		]);
@@ -222,6 +224,8 @@
 
 	function addNewPrompt() {
 		const id = crypto.randomUUID();
+		const position = { ...getViewport() };
+		setCenter(position.x, position.y, { zoom: position.zoom });
 
 		nodes.update((v) => [
 			...v,
@@ -229,12 +233,12 @@
 				id,
 				type: 'prompt',
 				selectable: false,
-				position: { x: 0, y: 0 },
+				position,
 				data: {
 					id,
 					title: writable(''),
 					content: writable(''),
-					position: { x: 0, y: 0 }
+					position
 				}
 			}
 		]);
