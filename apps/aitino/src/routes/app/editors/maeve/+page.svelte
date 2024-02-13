@@ -11,9 +11,9 @@
 		getIncomers,
 		type Node,
 		type Edge,
-		getOutgoers,
-		getConnectedEdges
+		getOutgoers
 	} from '@xyflow/svelte';
+	import { toast } from 'svelte-sonner';
 
 	import '@xyflow/svelte/dist/style.css';
 
@@ -22,7 +22,6 @@
 	import * as Dialog from '$lib/components/ui/dialog';
 	import { Library } from '$lib/components/ui/library';
 	import * as CustomNode from '$lib/components/ui/custom-node';
-	import * as AlertDialog from '$lib/components/ui/alert-dialog';
 	import { getContext, getInitialEdges, getInitialNodes, getLocalMaeve } from '$lib/utils';
 	import type { Maeve, MaeveGroup, MaevePrompt, PanelAction } from '$lib/types';
 
@@ -37,7 +36,10 @@
 			onclick: () => {
 				const meave = compile();
 				maeveErrors = validateMaeve(meave);
-				maeveErrors ? (status = 'maeve-error') : (status = 'compilation-success');
+				maeveErrors
+					? toast.error(maeveErrors[0])
+					: toast.success('Maeve has been successfuly compile');
+
 				saveMaeve(meave);
 				layout();
 			}
@@ -45,7 +47,7 @@
 		{ name: 'Sessions', buttonVariant: 'outline' }
 	];
 
-	let status: 'maeve-error' | 'compilation-success' | 'idle' = 'idle';
+	let status: 'maeve-error' | 'idle' = 'idle';
 	let maeveErrors: string[] | null = null;
 
 	const nodeTypes = {
@@ -239,27 +241,6 @@
 	}
 </script>
 
-<AlertDialog.Root open={['maeve-error', 'compilation-success'].includes(status)}>
-	<AlertDialog.Content>
-		<AlertDialog.Header>
-			<AlertDialog.Title>Maeve Status</AlertDialog.Title>
-			<AlertDialog.Description>
-				{#if maeveErrors}
-					<ul class="my-6 ml-6 list-disc text-destructive [&>li]:mt-2">
-						{#each maeveErrors as error}
-							<li>{error}</li>
-						{/each}
-					</ul>
-				{:else}
-					<p class="text-primary">Compilation succeded!</p>
-				{/if}
-			</AlertDialog.Description>
-		</AlertDialog.Header>
-		<AlertDialog.Footer>
-			<AlertDialog.Cancel on:click={() => (status = 'idle')}>Go it</AlertDialog.Cancel>
-		</AlertDialog.Footer>
-	</AlertDialog.Content>
-</AlertDialog.Root>
 <div style="height:100vh;">
 	<SvelteFlow
 		{nodes}
