@@ -11,7 +11,8 @@
 		getIncomers,
 		type Node,
 		type Edge,
-		getOutgoers
+		getOutgoers,
+		getConnectedEdges
 	} from '@xyflow/svelte';
 
 	import '@xyflow/svelte/dist/style.css';
@@ -21,6 +22,7 @@
 	import * as Dialog from '$lib/components/ui/dialog';
 	import { Library } from '$lib/components/ui/library';
 	import * as CustomNode from '$lib/components/ui/custom-node';
+	import * as AlertDialog from '$lib/components/ui/alert-dialog';
 	import { getContext, getInitialEdges, getInitialNodes, getLocalMaeve } from '$lib/utils';
 	import type { Maeve, MaeveGroup, MaevePrompt, PanelAction } from '$lib/types';
 
@@ -34,12 +36,17 @@
 			buttonVariant: 'outline',
 			onclick: () => {
 				const meave = compile();
-				saveMeave(meave);
+				maeveErrors = validateMaeve(meave);
+				if (maeveErrors) status = 'maeve-error';
+				saveMaeve(meave);
 				layout();
 			}
 		},
 		{ name: 'Sessions', buttonVariant: 'outline' }
 	];
+
+	let status: 'maeve-error' | 'idle' = 'idle';
+	let maeveErrors: string[] | null = null;
 
 	const nodeTypes = {
 		agent: CustomNode.Agent,
@@ -151,8 +158,34 @@
 		return meave;
 	}
 
-	function saveMeave(maeve: Maeve) {
+	function saveMaeve(maeve: Maeve) {
 		localStorage.setItem('maeve', JSON.stringify(maeve));
+	}
+
+	function validateMaeve(maeve: Maeve) {
+		const errors: string[] = [];
+		const prompts = $nodes.filter((node) => node.type === 'prompt');
+		if (prompts.length === 0) {
+			errors.push('A maeve must have at least one prompt');
+		} else {
+			if ($receiver) {
+				const incommers = getIncomers({ id: $receiver.node.id }, $nodes, $edges);
+
+				incommers.length !== prompts.length &&
+					errors.push('All the prompts must be connected to the receiver');
+			}
+		}
+
+		if (!$receiver) {
+			errors.push('A receiver, which is an agent directly connected to the prompts, is required.');
+		} else {
+			const outgoers = getOutgoers({ id: $receiver.node.id }, $nodes, $edges);
+
+			outgoers.length === 0 &&
+				errors.push('At least one agent should be connected to the receiver');
+		}
+
+		return errors[0] ? errors : null;
 	}
 
 	function layout() {
@@ -206,6 +239,25 @@
 	}
 </script>
 
+<AlertDialog.Root open={status === 'maeve-error'}>
+	<AlertDialog.Content>
+		<AlertDialog.Header>
+			<AlertDialog.Title>Maeve Errors</AlertDialog.Title>
+			<AlertDialog.Description>
+				{#if maeveErrors}
+					<ul class="my-6 ml-6 list-disc text-destructive [&>li]:mt-2">
+						{#each maeveErrors as error}
+							<li>{error}</li>
+						{/each}
+					</ul>
+				{/if}
+			</AlertDialog.Description>
+		</AlertDialog.Header>
+		<AlertDialog.Footer>
+			<AlertDialog.Cancel on:click={() => (status = 'idle')}>Go it</AlertDialog.Cancel>
+		</AlertDialog.Footer>
+	</AlertDialog.Content>
+</AlertDialog.Root>
 <div style="height:100vh;">
 	<SvelteFlow
 		{nodes}
@@ -243,6 +295,10 @@
 				} else {
 					$receiver = { node: target, targetCount: 1 };
 				}
+			}
+
+			if (source.type === 'agent' && target.type === 'agent' && $receiver?.node.id === target.id) {
+				return;
 			}
 			return c;
 		}}
