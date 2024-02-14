@@ -33,30 +33,26 @@
 			placeholder="Enter your email..."
 			name="email"
 			id="email"
-			class="py-2 font-bold border-none w-full font-roboto bg-[#17151c]  outline-none focus:outline-none shadow-lg shadow-[#17151c]"
+			class="p-6 font-bold border-none w-full font-roboto bg-[#17151c]  outline-[#45dfa4] focus:outline focus-within:outline-[#45dfa4] "
 			required
 		/>
 	</div>
-	<div class="p-1 w-full">
+	<div class="p-1 w-full border-none">
 		<!-- svelte-ignore missing-declaration -->
 		<Button
 			type="submit"
-			class="w-full flex gap-8 relative  text-lg -ml-1 bg-[#17151c] hover:bg-[#45dfa4] "
+			class="border-none w-full flex gap-8 relative text-[#45dfa4]  text-lg -ml-1 bg-[#17151c] hover:bg-[#45dfa4] transition-all duration-300 ease-in-out"
 			variant="outline"
-			on:click={() =>
-				toast.success('Event has been created', {
-					description: 'Sunday, December 03, 2023 at 9:00 AM',
-					action: {
-						label: 'Undo',
-						onClick: () => console.log('Undo')
-					}
-				})}>Join Waitlist <i class="fas fa-arrow-right absolute right-2"></i></Button
+			>Join the waitlist <i class="fas fa-arrow-right absolute right-8"></i></Button
 		>
 	</div>
 
-	<div class="flex justify-between w-full items-center">
+	<div class="flex justify-between w-full items-center p-4">
 		<div class="flex">
-			<Button class="p-8 bg-transparent" href="x.com/@futino">
+			<Button
+				class="p-8 bg-transparent hover:scale-95 hover:bg-[#45dfa4] hover:text-[#17151c] font-bold transition-all duration-300 ease-in-out"
+				href="x.com/@futino"
+			>
 				<i class="fa-brands fa-twitter text-2xl pr-2"></i>
 				<div class="flex flex-col">
 					<p class="px-4 py-4 text-base">
@@ -68,13 +64,16 @@
 			</Button>
 		</div>
 		<div class="flex">
-			<Button class="p-8 bg-transparent" href="youtube.com/@futino">
+			<Button
+				class="p-8 bg-transparent hover:scale-95 hover:bg-[#45dfa4] hover:text-[#17151c] font-bold transition-all duration-300 ease-in-out"
+				href="youtube.com/@futino"
+			>
 				<i class="fa-brands fa-youtube text-xl"></i>
 				<div class="flex flex-col">
 					<p class="px-4 py-4 text-base">
 						Youtube
 						<br />
-						@fitino
+						@futino
 					</p>
 				</div>
 			</Button>
