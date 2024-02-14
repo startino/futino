@@ -9,16 +9,7 @@
   box-sizing: border-box;
 }
 
-body {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  width: 100%;
-  overflow: auto;
-  /* background-color: #212b3e; */
-  background-color: #0a0d0c;
-}
+
 
 @layer base {
   :root {

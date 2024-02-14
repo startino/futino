@@ -47,7 +47,7 @@
 		>
 	</div>
 
-	<div class="flex justify-between w-full items-center p-4">
+	<div class="flex justify-between w-full items-center md:p-4">
 		<div class="flex">
 			<Button
 				class="p-8 bg-transparent hover:scale-95 hover:bg-[#45dfa4] hover:text-[#17151c] font-bold transition-all duration-300 ease-in-out"

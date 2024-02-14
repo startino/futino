@@ -10,9 +10,6 @@
 	export function toggleModal() {
 		dispatch('toggleModal');
 	}
-
-
-
 </script>
 
 <h1 class="text-2xl md:text-3xl lg:text-7xl text-center">
@@ -24,11 +21,9 @@
 	to help entrepreneurs and businesses automate tasks and solve complex problems.
 </p>
 
-<FormItem
-	
-/>
+<FormItem />
 
 <Button
-	class="block lg:absolute lg:right-6 overflow-auto bg-purple-600 md:absolute md:bottom-0 md:-right-8 lg:bottom-0 hover:bg-[#003825]"
+	class="block lg:absolute lg:-bottom-1/4 lg:right-6 text-base bg-purple-600 md:absolute md:bottom-0 md:-right-8  hover:bg-[#003825] "
 	on:click={() => toggleModal()}>Contact Us</Button
 >

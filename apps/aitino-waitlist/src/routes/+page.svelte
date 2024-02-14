@@ -5,6 +5,7 @@
 	import { toast } from 'svelte-sonner';
 	$: showModal = false;
 	export let form;
+	$: console.log(showModal);
 
 	$: showAlert = false;
 	afterUpdate(() => {
@@ -34,4 +35,3 @@
 		<Contact on:closeModal={() => (showModal = false)} />
 	</div>
 {/if}
-
