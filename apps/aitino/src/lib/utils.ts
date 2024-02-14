@@ -11,6 +11,37 @@ import { browser } from '$app/environment';
 const position = { x: 0, y: 0 };
 const edgeType = 'smoothstep';
 
+export function getPremadeInputsMap() {
+	if (browser) {
+		const inputStr = localStorage.getItem('premade-inputs');
+
+		if (inputStr) {
+			return JSON.parse(inputStr) as Record<string, string>;
+		}
+	}
+
+	return null;
+}
+
+export function injectPremadeValues(str: string) {
+	let result = str;
+	const premadeInputsMap = getPremadeInputsMap();
+
+	if (premadeInputsMap) {
+		const matches = str.match(/\{\{(.*?)\}\}/g);
+
+		if (!matches) return result;
+
+		matches.forEach((m) => {
+			if (Object.hasOwn(premadeInputsMap, m)) {
+				result = result.replace(m, premadeInputsMap[m]);
+			}
+		});
+
+		return result;
+	}
+}
+
 export function getLocalMaeve() {
 	let maeveStr: string | null = null;
 	if (browser) {

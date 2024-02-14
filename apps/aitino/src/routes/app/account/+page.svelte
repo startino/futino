@@ -8,14 +8,15 @@
 	import { Input } from '$lib/components/ui/input';
 	import { Button } from '$lib/components/ui/button';
 	import { browser } from '$app/environment';
+	import { getPremadeInputsMap } from '$lib/utils';
 
 	let inputs: { name: string; value: string }[] = [];
 
 	onMount(() => {
-		const inputStr = localStorage.getItem('premade-inputs');
+		const premadeInputsMap = getPremadeInputsMap();
 
-		if (inputStr) {
-			inputs = Object.entries(JSON.parse(inputStr)).map(([name, value]) => ({ [name]: value })) as {
+		if (premadeInputsMap) {
+			inputs = Object.entries(premadeInputsMap).map(([name, value]) => ({ name, value })) as {
 				name: string;
 				value: string;
 			}[];
@@ -33,15 +34,17 @@
 	}
 
 	$: {
-		const inputMap = inputs.reduce((prev, curr) => {
-			if (!curr.name) return prev;
-			return {
-				...prev,
-				[curr.name]: curr.value
-			};
-		}, {});
+		if (browser && inputs.length > 0) {
+			const inputMap = inputs.reduce((prev, curr) => {
+				if (!curr.name) return prev;
+				return {
+					...prev,
+					[curr.name.trim()]: curr.value
+				};
+			}, {});
 
-		browser && localStorage.setItem('premade-inputs', JSON.stringify(inputMap));
+			localStorage.setItem('premade-inputs', JSON.stringify(inputMap));
+		}
 	}
 </script>
 
