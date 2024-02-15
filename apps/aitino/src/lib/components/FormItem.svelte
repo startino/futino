@@ -36,16 +36,21 @@
 		<!-- svelte-ignore missing-declaration -->
 		<Button
 			type="submit"
-			class="relative -ml-1 flex w-full gap-8 text-lg transition-all duration-300 ease-in-out"
+			class="relative -ml-1  flex  w-full gap-8 text-lg transition-all duration-300 ease-in-out"
 			on:click={async () => {
 				if (form?.success) {
 					toast.success(form.message);
+					isLoading = false;
 				} else {
 					toast.error(form?.error);
+					isLoading = false;
 				}
 			}}
 		>
-			Join the waitlist<ArrowRight />
+			{#if isLoading}
+				<Loader />
+			{:else}
+				Join the waitlist<ArrowRight class="absolute right-4" />{/if}
 		</Button>
 	</div>
 
