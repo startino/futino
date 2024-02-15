@@ -13,11 +13,11 @@
 </script>
 
 <h1 class="text-2xl md:text-3xl lg:text-7xl text-center">
-	Join The Waitlist For Early Access To <span class="text-[#45dfa4] border-none">AITINO </span>
+	Join The Waitlist For Early Access To <span class="text-primary border-none">AITINO </span>
 </h1>
 
 <p class="text-center text-lg my-8">
-	<span class="text-[#45dfa4]">Aitino </span> is a SaaS platform powered by multi-agent LLMs designed
+	<span class="text-primary">Aitino </span> is a SaaS platform powered by multi-agent LLMs designed
 	to help entrepreneurs and businesses automate tasks and solve complex problems.
 </p>
 
