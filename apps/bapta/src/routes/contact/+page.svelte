@@ -44,7 +44,7 @@
 		<h1 class="display-medium font-bold text-primary">Connect With Bapta</h1>
 		<h1 class="body-large pb-4">Bapta at Your Service, to Provide the Best Service</h1>
 
-		<div class=" mx-auto">
+		<div class="mx-auto">
 			<OutlineButton href="/contact#form">
 				<h1 class="title-medium md:title-large px-4 py-2">Contact Us</h1>
 			</OutlineButton>
@@ -52,23 +52,19 @@
 	</div>
 </div>
 
-<div
-	class="absolute mx-auto mt-14 aspect-video w-full max-w-screen-md md:rounded-lg"
-	bind:this={mapContainer}
-/>
-
 <div id="form" class="inner-section border-b border-primary/40 shadow-2xl">
 	<!--Contact Section-->
-	<div class="xs:mx-4 mx-10 my-20 flex flex-col space-x-12 sm:mx-10 md:mx-20 md:flex-row lg:mx-32">
+	<div class="xs:mx-4 mx-10 my-20 grid gap-6 sm:mx-10 md:mx-20 md:grid-cols-2 lg:mx-32">
 		<div class="flex max-w-xl flex-col space-y-6 self-start rounded-xl bg-surface px-10 py-10">
 			<h3 class="headline-medium text-left font-bold text-primary">Get in touch.</h3>
 			<h4 class=" my-auto text-left text-lg font-thin text-secondary">
 				Feel free to contact us regarding any questions or requests. We'll get back to you shortly.
 			</h4>
 		</div>
-		<div class="w-full">
+		<div class="w-full md:row-span-2">
 			<ContactForm />
 		</div>
+		<div class="absolute mx-auto aspect-video w-full rounded-lg" bind:this={mapContainer} />
 	</div>
 </div>
 
