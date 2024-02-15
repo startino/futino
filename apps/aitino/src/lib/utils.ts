@@ -26,21 +26,21 @@ export function getPremadeInputsMap() {
 export function injectPremadeValues(str: string) {
 	let result = str;
 	const premadeInputsMap = getPremadeInputsMap();
-
+  
 	if (premadeInputsMap) {
-		const matches = str.match(/\{\{(.*?)\}\}/g);
-
-		if (!matches) return result;
-
-		matches.forEach((m) => {
-			if (Object.hasOwn(premadeInputsMap, m)) {
-				result = result.replace(m, premadeInputsMap[m]);
-			}
-		});
-
-		return result;
+	  const matches = str.match(/\{\{(\w*?)\}\}/g);
+  
+	  if (!matches) return result;
+  
+	  matches.forEach((m) => {
+		if (Object.hasOwn(premadeInputsMap, m)) {
+		  result = result.replace(m, premadeInputsMap[m]);
+		}
+	  });
+  
+	  return result;
 	}
-}
+  }
 
 export function getLocalMaeve() {
 	let maeveStr: string | null = null;
