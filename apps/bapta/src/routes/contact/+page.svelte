@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { onMount, onDestroy } from 'svelte';
 	import mapbox from 'mapbox-gl';
+	import { MessageCircle } from 'lucide-svelte';
 	import '../../../node_modules/mapbox-gl/dist/mapbox-gl.css';
 
 	import OutlineButton from '$lib/components/molecules/OutlineButton.svelte';
@@ -44,10 +45,16 @@
 		<h1 class="display-medium font-bold text-primary">Connect With Bapta</h1>
 		<h1 class="body-large pb-4">Bapta at Your Service, to Provide the Best Service</h1>
 
-		<div class="mx-auto">
+		<div class="mx-auto grid justify-items-center gap-4">
 			<OutlineButton href="/contact#form">
 				<h1 class="title-medium md:title-large px-4 py-2">Contact Us</h1>
 			</OutlineButton>
+			<a
+				href="https://wa.me/+255757755174"
+				class="flex items-center gap-2 text-secondary hover:underline"
+			>
+				Text Us On WhatsApp <MessageCircle />
+			</a>
 		</div>
 	</div>
 </div>

@@ -2,6 +2,8 @@
 	import FAQCard from '../molecules/FAQCard.svelte';
 	import OutlineButton from '../molecules/OutlineButton.svelte';
 	import SearchBox from '../molecules/SearchBox.svelte';
+	import { MessageCircle } from 'lucide-svelte';
+	
 	// Gets the Frequently Asked Questions by parent component
 	export let faqs: {
 		index: number;
@@ -45,6 +47,12 @@
 			<OutlineButton href="/contact" class="py-2">
 				<h1 class="font-bold title-small">Contact us</h1>
 			</OutlineButton>
+			<a
+				href="https://wa.me/+255757755174"
+				class="flex items-center gap-2 text-secondary hover:underline"
+			>
+				Text Us On WhatsApp <MessageCircle />
+			</a>
 		</div>
 		<div class="flex flex-col gap-4 h-screen col-span-2 items-center">
 			<SearchBox class="w-full mb-4" bind:searchInput on:input={searchPhotos} />
