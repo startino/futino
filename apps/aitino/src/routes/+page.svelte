@@ -15,16 +15,19 @@
 </script>
 
 <div class="flex h-full flex-col justify-evenly py-6">
-
-	<div class="relative mx-auto flex flex-col place-items-center gap-y-4 md:gap-y-12 text-foreground lg:gap-y-4">
-		<h1 class="text-center text-2xl md:text-4xl lg:text-6xl xl:text-7xl m-0 sm:m-0">
+	<div
+		class="text-foreground relative mx-auto flex flex-col place-items-center gap-y-4 md:gap-y-12 lg:gap-y-4"
+	>
+		<h1 class="m-0 text-center text-2xl sm:m-0 md:text-4xl lg:text-6xl xl:text-7xl">
 			Join the Future of AI<br /> with Exclusive Early Access to
-			<span class="text-primary border-none">Aitino</span>
+			<span class="text-primary typewriter border-none">
+				<span class="mx-au inline-block overflow-hidden whitespace-nowrap">Aitino</span></span
+			>
 		</h1>
 
-		<h2 class="mx-auto mt-2 text-center prose text-foreground m-0 sm:m-0">
-			<span class="text-primary">Aitino </span> is a platform powered by multi-agent LLMs designed
-			to help entrepreneurs and businesses automate tasks and solve complex problems.
+		<h2 class="prose text-foreground m-0 mx-auto mt-2 text-center sm:m-0">
+			<span class="text-primary">Aitino </span> is a platform powered by multi-agent LLMs designed to
+			help entrepreneurs and businesses automate tasks and solve complex problems.
 		</h2>
 
 		<FormItem class="mt-10" {form} />
@@ -36,3 +39,26 @@
 		</div>
 	{/if}
 </div>
+
+<style>
+	.typewriter span {
+		overflow: hidden;
+		white-space: nowrap;
+		margin: auto;
+		letter-spacing: 0.15em;
+		margin-bottom: -0.39rem;
+		animation:
+			typing 3.5s steps(40, end),
+			blink-caret 0.75s step-end infinite;
+	}
+
+	/* The typing effect */
+	@keyframes typing {
+		from {
+			width: 0;
+		}
+		to {
+			width: 20%;
+		}
+	}
+</style>

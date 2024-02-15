@@ -96,7 +96,7 @@
 
 	<div class=" mx-auto flex w-full items-center justify-between md:p-4">
 		<Button
-			class="hover:bg-primary flex justify-between bg-transparent py-4 font-bold transition-all duration-300 ease-in-out hover:scale-95 hover:text-[#17151c]"
+			class="hover:bg-primary bg-transparent p-8 font-bold transition-all duration-300 ease-in-out hover:scale-95 hover:text-background"
 			href="https://x.com/@futino"
 		>
 			<Twitter size="28" />
@@ -110,7 +110,7 @@
 		</Button>
 
 		<Button
-			class="hover:bg-primary bg-transparent p-8 font-bold transition-all duration-300 ease-in-out hover:scale-95 hover:text-[#17151c]"
+			class="hover:bg-primary bg-transparent p-8 font-bold transition-all duration-300 ease-in-out hover:scale-95 hover:text-background"
 			href="https://youtube.com/@futino"
 		>
 			<Youtube size="28" />
