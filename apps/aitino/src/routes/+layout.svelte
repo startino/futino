@@ -9,6 +9,6 @@
 
 <Toaster />
 
-<div class="container bg-transparent flex flex-col font-roboto h-screen w-screen justify-center">
+<div class="container bg-transparent flex flex-col font-roboto h-screen w-screen justify-center border">
 	<slot />
 </div>
