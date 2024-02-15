@@ -19,7 +19,7 @@
 <form
 	action="?/register"
 	method="POST"
-	class="flex flex-col justify-center gap-y-6 w-full max-w-sm lg:max-w-lg items-center space-x-2 mx-auto"
+	class="flex flex-col justify-center gap-y-4 w-full max-w-sm lg:max-w-lg items-center space-x-2 mx-auto"
 	use:enhance={() => {
 		return async ({ result }) => {
 			invalidateAll();
@@ -28,13 +28,12 @@
 	}}
 >
 	<div class="p-1 w-full">
-		<Input
-			type="email"
-			placeholder="Enter your email..."
-			name="email"
+		<input
+			class="flex  h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
 			id="email"
-			class="p-6 font-bold border-none w-full font-roboto bg-[#17151c]  outline-[#45dfa4] focus:outline focus-within:outline-[#45dfa4] "
-			required
+			type="email"
+			name="email"
+			placeholder="jane@example.com"
 		/>
 	</div>
 	<div class="p-1 w-full border-none">
