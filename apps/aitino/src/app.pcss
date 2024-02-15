@@ -1,0 +1,61 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+	:root {
+		--background: 255 255 255;
+		--foreground: 13 13 13;
+		--card: 206 249 236;
+		--card-foreground: 13 13 13;
+		--popover: 255 255 255;
+		--popover-foreground: 13 13 13;
+		--primary: 25 159 132;
+		--primary-foreground: 249 249 249;
+		--secondary: 52 133 253;
+		--secondary-foreground: 29 29 29;
+		--muted: 245 245 245;
+		--muted-foreground: 119 119 119;
+		--accent: 177 148 112;
+		--accent-foreground: 29 29 29;
+		--destructive: 130 0 0;
+		--destructive-foreground: 249 249 249;
+		--border: 233 233 233;
+		--input: 233 233 233;
+		--ring: 136 135 135;
+		--radius: 0.5rem;
+	}
+	.dark {
+		--background: 9 16 16;
+		--foreground: 248 250 252;
+		--card: 13 13 13;
+		--card-foreground: 249 249 249;
+		--popover: 13 13 13;
+		--popover-foreground: 249 249 249;
+		--primary: 19 142 120;
+		--primary-foreground: 248 250 252;
+		--secondary: 52 133 253;
+		--secondary-foreground: 249 249 249;
+		--muted: 45 45 45;
+		--muted-foreground: 166 166 166;
+		--accent: 177 148 112;
+		--accent-foreground: 249 249 249;
+		--destructive: 251 113 133;
+		--destructive-foreground: 249 249 249;
+		--border: 45 45 45;
+		--input: 30 41 59;
+		--ring: 123 123 123;
+	}
+}
+
+@layer base {
+	* {
+		@apply border-border;
+	}
+	body {
+		@apply text-accent-50 h-full overflow-hidden bg-background;
+	}
+	html body {
+		@apply h-full overflow-hidden;
+	}
+}
