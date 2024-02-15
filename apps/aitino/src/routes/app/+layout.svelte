@@ -47,15 +47,11 @@
 		},
 		{
 			name: null,
-			baseSrc: '/app/',
+			baseSrc: '/app',
 			items: [
 				{
 					label: 'Account',
 					src: '/account'
-				},
-				{
-					label: 'Settings',
-					src: '/settings'
 				},
 				{
 					label: 'Help',
