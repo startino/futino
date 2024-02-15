@@ -5,7 +5,7 @@
 	import { Label } from '$lib/components/ui/label';
 	import Textarea from '$lib/components/ui/textarea/textarea.svelte';
 	import { createEventDispatcher } from 'svelte';
-
+import { X } from 'lucide-svelte';
 	const dispatch = createEventDispatcher();
 
 	export function closeModal() {
@@ -22,7 +22,9 @@
 >
 	<Button
 		class="absolute right-0 rounded-lg bg-transparent hover:scale-95 hover:bg-transparent"
-		on:click={() => closeModal()}><i class="fas fa-times"></i></Button
+		on:click={() => closeModal()}>
+		<X class="hover:text-"/>
+		</Button
 	>
 	<Card.Header class="space-y-1 mt-4">
 		<Card.Title class="text-4xl">Contact Us</Card.Title>
