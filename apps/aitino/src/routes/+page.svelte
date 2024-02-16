@@ -10,6 +10,7 @@
 	import { Label } from '$lib/components/ui/label';
 	import { Textarea } from '$lib/components/ui/textarea';
 	import { SplitTest } from 'svelte-split-testing';
+	import { Toaster } from '$lib/components/ui/sonner';
 
 	export let form;
 
@@ -32,33 +33,45 @@
 	$: console.log(showModal);
 </script>
 
-<div class="flex h-full flex-col justify-evenly py-6">
-	<div class="text-foreground relative mx-auto flex flex-col place-items-center gap-y-4 sm:gap-y-8">
-		<img src="logo_nobg.png" alt="Aitino Logo" class="h-20 w-20" />
-		<h1
-			class="tracking-loose m-0 text-center text-3xl font-semibold sm:m-0 sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl"
+<div
+	class="pointer-events-none absolute inset-0 h-full w-full bg-inherit bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:150px_150px]"
+></div>
+
+<Toaster />
+
+<div
+	class="font-roboto container flex h-screen w-screen flex-col justify-center border bg-transparent"
+>
+	<div class="flex h-full flex-col justify-evenly py-6">
+		<div
+			class="text-foreground relative mx-auto flex flex-col place-items-center gap-y-4 sm:gap-y-8"
 		>
-			<SplitTest key="Title Test" variants={Object.keys(titleVariants)} let:variant>
-				{@html titleVariants[0]}
-			</SplitTest>
-		</h1>
+			<img src="logo_nobg.png" alt="Aitino Logo" class="h-20 w-20" />
+			<h1
+				class="tracking-loose m-0 text-center text-3xl font-semibold sm:m-0 sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl"
+			>
+				<SplitTest key="Title Test" variants={Object.keys(titleVariants)} let:variant>
+					{@html titleVariants[0]}
+				</SplitTest>
+			</h1>
 
-		<h3
-			class="text-foreground m-0 mx-auto mt-2 max-w-3xl text-balance text-center text-sm brightness-75 sm:m-0 sm:text-lg md:text-lg lg:text-xl xl:text-2xl"
-		>
-			<SplitTest key="Subtitle Test" variants={Object.keys(subtitleVariants)} let:variant>
-				{@html subtitleVariants[variant]}
-			</SplitTest>
-		</h3>
+			<h3
+				class="text-foreground m-0 mx-auto mt-2 max-w-3xl text-balance text-center text-sm brightness-75 sm:m-0 sm:text-lg md:text-lg lg:text-xl xl:text-2xl"
+			>
+				<SplitTest key="Subtitle Test" variants={Object.keys(subtitleVariants)} let:variant>
+					{@html subtitleVariants[variant]}
+				</SplitTest>
+			</h3>
 
-		<FormItem class="mt-10" {form} />
-	</div>
-
-	{#if showModal}
-		<div class="absolute left-0 top-0 h-full w-full bg-zinc-800/50">
-			<Contact on:closeModal={() => (showModal = false)} />
+			<FormItem class="mt-10" {form} />
 		</div>
-	{/if}
+
+		{#if showModal}
+			<div class="absolute left-0 top-0 h-full w-full bg-zinc-800/50">
+				<Contact on:closeModal={() => (showModal = false)} />
+			</div>
+		{/if}
+	</div>
 </div>
 
 <style>
