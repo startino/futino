@@ -16,29 +16,34 @@
 	import * as Card from '$lib/components/ui/card';
 	import * as Select from '$lib/components/ui/select';
 	import { Input } from '$lib/components/ui/input';
-	import { Button } from '$lib/components/ui/button';
 	import Handle from '$lib/components/Handle.svelte';
 	import Textarea from '../textarea/textarea.svelte';
 	import { getContext } from '$lib/utils';
 
 	type $$Props = NodeProps;
 
-	const { receiver } = getContext('maeve');
+	const { receiver, count } = getContext('maeve');
 
 	export let data: {
 		prompt: Writable<string>;
-		full_name: Writable<string>;
 		job_title: Writable<string>;
-		model: Writable<string>;
+		name: Writable<string>;
+		modal: Writable<{ label: string; value: string }>;
 	};
 
-	const { full_name, job_title, model, prompt } = data;
+	const { name, modal, prompt, job_title } = data;
 
 	const modals = [
-		{ label: 'modal-a', value: 'modal-a' },
-		{ label: 'modal-b', value: 'modal-b' },
-		{ label: 'modal-c', value: 'modal-c' }
+		{
+			label: 'GPT-4-Turbo',
+			value: 'GPT-4-Turbo'
+		},
+		{
+			label: 'GPT-3.5-Turbo',
+			value: 'GPT-3.5-Turbo'
+		}
 	];
+
 	export let id: NodeProps['id'];
 
 	const connection = useConnection();
@@ -49,9 +54,7 @@
 	$: isConnecting = !!$connection.startHandle?.nodeId;
 	$: isTarget = !!$connection.startHandle && $connection.startHandle?.nodeId !== id;
 	$: isReceiver = $receiver?.node.id === id;
-	$: label = isTarget ? 'Drop it here' : 'Drag to connect';
 
-	const connections = useHandleConnections({ nodeId: id, type: 'source' });
 	const { deleteElements } = useSvelteFlow();
 </script>
 
@@ -63,6 +66,8 @@
 	<button
 		on:click={() => {
 			deleteElements({ nodes: [{ id }] });
+			$count.agents--;
+
 			if (isReceiver) {
 				$receiver = null;
 			}
@@ -80,10 +85,10 @@
 		</Card.Title>
 	</Card.Header>
 	<Card.Content class="grid gap-2">
+		<Input placeholder="Name..." bind:value={$name} />
+		<Input placeholder="Job title..." bind:value={$job_title} />
 		<Textarea placeholder="Prompt..." bind:value={$prompt} />
-		<Input placeholder="Full name" bind:value={$full_name} />
-		<Input placeholder="Job title" bind:value={$job_title} />
-		<Select.Root selected={{ label: $model, value: $model }}>
+		<Select.Root bind:selected={$modal}>
 			<Select.Trigger>
 				<Select.Value placeholder="Select a model" />
 			</Select.Trigger>

@@ -2,6 +2,7 @@ import { type ClassValue, clsx } from 'clsx';
 import type { Edge, Node } from '@xyflow/svelte';
 import { twMerge } from 'tailwind-merge';
 import { cubicOut } from 'svelte/easing';
+import type { RequestEvent } from '@sveltejs/kit';
 import type { TransitionConfig } from 'svelte/transition';
 import { getContext as getSvelteContext, setContext as setSvelteContext } from 'svelte';
 import { writable } from 'svelte/store';
@@ -10,6 +11,30 @@ import { browser } from '$app/environment';
 
 const position = { x: 0, y: 0 };
 const edgeType = 'smoothstep';
+
+export const authenticateUser = ({ cookies, locals }: RequestEvent) => {
+	const currentUserId = cookies.get('userId');
+
+	if (currentUserId) {
+		locals.userId = currentUserId;
+		return;
+	}
+
+	const userId = crypto.randomUUID();
+
+	const expirationDate = new Date();
+	expirationDate.setMonth(expirationDate.getMonth() + 1);
+
+	cookies.set('userId', userId, {
+		path: '/',
+		httpOnly: true,
+		sameSite: 'strict',
+		secure: process.env.NODE_ENV === 'production',
+		expires: expirationDate
+	});
+
+	locals.userId = userId;
+};
 
 export function getPremadeInputsMap() {
 	if (browser) {
@@ -26,21 +51,21 @@ export function getPremadeInputsMap() {
 export function injectPremadeValues(str: string) {
 	let result = str;
 	const premadeInputsMap = getPremadeInputsMap();
-  
+
 	if (premadeInputsMap) {
-	  const matches = str.match(/\{\{(\w*?)\}\}/g);
-  
-	  if (!matches) return result;
-  
-	  matches.forEach((m) => {
-		if (Object.hasOwn(premadeInputsMap, m)) {
-		  result = result.replace(m, premadeInputsMap[m]);
-		}
-	  });
-  
-	  return result;
+		const matches = str.match(/\{\{(\w*?)\}\}/g);
+
+		if (!matches) return result;
+
+		matches.forEach((m) => {
+			if (Object.hasOwn(premadeInputsMap, m)) {
+				result = result.replace(m, premadeInputsMap[m]);
+			}
+		});
+
+		return result;
 	}
-  }
+}
 
 export function getLocalMaeve() {
 	let maeveStr: string | null = null;
