@@ -16,7 +16,7 @@
 
 	const { content, title } = data;
 
-	const { receiver } = getContext('maeve');
+	const { receiver, count } = getContext('maeve');
 	const connects = useHandleConnections({ nodeId: id, type: 'source' });
 	const { deleteElements } = useSvelteFlow();
 
@@ -27,6 +27,8 @@
 	<button
 		on:click={() => {
 			deleteElements({ nodes: [{ id }] });
+			$count.prompts--;
+
 			if ($receiver) {
 				$receiver.targetCount--;
 				$receiver.targetCount === 0 && ($receiver = null);
@@ -40,8 +42,8 @@
 	</Card.Header>
 
 	<Card.Content class="grid gap-2">
-		<Input bind:value={$title} />
-		<Textarea bind:value={$content} />
+		<Input bind:value={$title} placeholder="Title..." />
+		<Textarea bind:value={$content} placeholder="Content..." />
 		<Handle
 			type="source"
 			id="bottom-{id}"
