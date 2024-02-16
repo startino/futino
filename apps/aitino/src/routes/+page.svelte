@@ -1,5 +1,8 @@
 <script lang="ts">
 	import Contact from '$lib/components/Contact.svelte';
+
+	import { toast } from 'svelte-sonner';
+
 	import FormItem from '$lib/components/FormItem.svelte';
 	import Button from '$lib/components/ui/button/button.svelte';
 	import * as Dialog from '$lib/components/ui/dialog';

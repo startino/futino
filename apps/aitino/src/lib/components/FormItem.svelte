@@ -6,6 +6,7 @@
 	import { ArrowRight, Loader, Twitter, X, Youtube } from 'lucide-svelte';
 	import Input from './ui/input/input.svelte';
 	import { toast } from 'svelte-sonner';
+
 	import * as Dialog from './ui/dialog';
 	import { Label } from './ui/label';
 	import { Textarea } from './ui/textarea';
@@ -36,6 +37,8 @@
 		/>
 		<Button
 			type="submit"
+			<<<<<<<
+			HEAD
 			class="text-md relative flex w-full gap-x-3 transition-all duration-300 ease-in-out sm:w-fit"
 			on:click={async () => {
 				if (form?.success) {
