@@ -49,5 +49,29 @@ export const actions = {
 			success: true,
 			message: 'You have successfuly joined the waitlist. See you Soon 👋'
 		};
+	},
+	contactUs: async ({ request }) => {
+		const { name, email, description } = Object.fromEntries(await request.formData()) as {
+			name: string;
+			email: string;
+			description: string;
+		};
+
+		console.log(name, email, description);
+
+		const { data, error } = await supabase
+			.from('contact_form')
+			.insert([{ name: name, email: email, description: description }])
+			.select();
+
+		if (error) {
+			return fail(400, {
+				invalid: true
+			});
+		}
+
+		return {
+			success: true
+		};
 	}
 } satisfies Actions;

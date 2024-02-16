@@ -65,6 +65,7 @@
 			<Dialog.Header class="mt-4 space-y-1">
 				<Dialog.Title class="text-4xl">Contact Us</Dialog.Title>
 			</Dialog.Header>
+			<form action="?/contactUs" method="POST" class="space-y-4">
 			<div class="grid gap-2">
 				<Label for="name">Name</Label>
 				<Input
@@ -72,6 +73,7 @@
 					id="name"
 					type="name"
 					name="name"
+					required
 				/>
 			</div>
 			<div class="grid gap-2">
@@ -80,18 +82,20 @@
 					class="border-input placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border bg-transparent px-3 py-1 text-sm shadow-sm ring-offset-0 transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50 "
 					id="email"
 					type="email"
+					required
 					name="email"
 				/>
 			</div>
 			<div class="grid gap-2">
 				<Label for="email">Description</Label>
 				<Textarea
-					class="border-input placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border bg-transparent px-3 py-1 text-sm shadow-sm ring-offset-0 transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50 "
+				name="description"	class="border-input placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border bg-transparent px-3 py-1 text-sm shadow-sm ring-offset-0 transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50 "
 				/>
 			</div>
 			<Dialog.Footer>
 				<Button type="submit">Submit</Button>
 			</Dialog.Footer>
+		</form>
 		</Dialog.Content>
 	</Dialog.Root>
 
