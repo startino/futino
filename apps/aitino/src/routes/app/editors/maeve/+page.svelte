@@ -24,6 +24,10 @@
 	import * as CustomNode from '$lib/components/ui/custom-node';
 	import { getContext, getInitialEdges, getInitialNodes, getLocalMaeve } from '$lib/utils';
 	import type { Maeve, MaeveGroup, MaevePrompt, PanelAction } from '$lib/types';
+	import { Input } from '$lib/components/ui/input';
+	import { Label } from '$lib/components/ui/label';
+	import { Textarea } from '$lib/components/ui/textarea';
+	import ChatRoom from '$lib/components/ChatRoom.svelte';
 
 	const actions: PanelAction[] = [
 		{ name: 'Run', buttonVariant: 'default' },
@@ -310,3 +314,13 @@
 		</Panel>
 	</SvelteFlow>
 </div>
+
+
+<Dialog.Root>
+	<Dialog.Trigger class="mt-4">
+		<Button class="block text-base">Chat</Button>
+	</Dialog.Trigger>
+	<Dialog.Content class="sm:max-w-full">
+		<ChatRoom/>
+	</Dialog.Content>
+</Dialog.Root>
