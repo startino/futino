@@ -28,10 +28,10 @@
 		prompt: Writable<string>;
 		job_title: Writable<string>;
 		name: Writable<string>;
-		modal: Writable<{ label: string; value: string }>;
+		model: Writable<{ label: string; value: string }>;
 	};
 
-	const { name, modal, prompt, job_title } = data;
+	const { name, model, prompt, job_title } = data;
 
 	const modals = [
 		{
@@ -88,7 +88,7 @@
 		<Input placeholder="Name..." bind:value={$name} />
 		<Input placeholder="Job title..." bind:value={$job_title} />
 		<Textarea placeholder="Prompt..." bind:value={$prompt} />
-		<Select.Root bind:selected={$modal}>
+		<Select.Root bind:selected={$model}>
 			<Select.Trigger>
 				<Select.Value placeholder="Select a model" />
 			</Select.Trigger>

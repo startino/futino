@@ -1,5 +1,5 @@
 import { type ClassValue, clsx } from 'clsx';
-import type { Edge, Node } from '@xyflow/svelte';
+import type { Node } from '@xyflow/svelte';
 import { twMerge } from 'tailwind-merge';
 import { cubicOut } from 'svelte/easing';
 import type { RequestEvent } from '@sveltejs/kit';
@@ -8,9 +8,6 @@ import { getContext as getSvelteContext, setContext as setSvelteContext } from '
 import { writable } from 'svelte/store';
 import type { ContextKey, ContextMap, Maeve } from '$lib/types';
 import { browser } from '$app/environment';
-
-const position = { x: 0, y: 0 };
-const edgeType = 'smoothstep';
 
 export const authenticateUser = ({ cookies, locals }: RequestEvent) => {
 	const currentUserId = cookies.get('userId');
@@ -77,83 +74,25 @@ export function getLocalMaeve() {
 	return JSON.parse(maeveStr) as Maeve;
 }
 
-export function getInitialNodes(maeve: Maeve): Node[] {
-	const agentEncounter: Record<string, boolean> = {};
-
+export function getInitialNodes(nodes: Node[]): Node[] {
 	return [
-		...maeve.composition.prompts.map((v) => ({
-			id: v.id,
-			position,
-			type: 'prompt',
-			data: { ...v, title: writable(v.title), content: writable(v.content) }
-		})),
-		...maeve.composition.groups
-			.map((g) => [
-				...g.agents
-					.filter((a) => !agentEncounter[a.instance_id])
-					.map((a) => {
-						agentEncounter[a.instance_id] = true;
-						return {
-							id: a.instance_id,
-							type: 'agent',
-							position,
-							data: {
-								...a,
-								prompt: writable(a.prompt),
-								full_name: writable(a.full_name),
-								job_title: writable(a.job_title),
-								model: writable(a.model)
-							}
-						};
-					})
-			])
-			.flat()
-	];
-}
-
-export function getInitialEdges(maeve: Maeve): Edge[] {
-	let edgeId = -1;
-	const receiver = maeve.composition.receiver;
-	return [
-		...maeve.composition.prompts.reduce((ac: Edge[], p) => {
-			const edges: Edge[] = [...ac];
-			edgeId++;
-			if (receiver) {
-				edges.push({
-					id: 'e' + edgeId.toString(),
-					source: p.id,
-					target: receiver.instance_id,
-					type: edgeType,
-					animated: true
-				});
-			}
-			return edges;
-		}, []),
-		...maeve.composition.groups.reduce((ac: Edge[], g) => {
-			const edges: Edge[] = [...ac];
-
-			g.agents.forEach((aSource) => {
-				if (aSource.instance_id === g.communicator) {
-					edgeId++;
-					edges.push(
-						...g.agents
-							.filter((aTarget) => aSource.instance_id !== aTarget.instance_id)
-							.map((aTarget) => {
-								edgeId++;
-								return {
-									id: 'e' + edgeId.toString(),
-									source: aSource.instance_id,
-									target: aTarget.instance_id,
-									type: edgeType,
-									animated: true
-								};
-							})
-					);
+		...nodes
+			.filter((n) => n.type === 'prompt')
+			.map((n) => ({
+				...n,
+				data: { title: writable(n.data.title), content: writable(n.data.content) }
+			})),
+		...nodes
+			.filter((n) => n.type === 'agent')
+			.map((n) => ({
+				...n,
+				data: {
+					prompt: writable(n.data.prompt),
+					name: writable(n.data.name),
+					job_title: writable(n.data.job_title),
+					model: writable(n.data.model)
 				}
-			});
-
-			return edges;
-		}, [])
+			}))
 	];
 }
 
