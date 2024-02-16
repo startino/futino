@@ -44,7 +44,7 @@
 		<div
 			class="text-foreground relative mx-auto flex flex-col place-items-center gap-y-4 sm:gap-y-8"
 		>
-			<img src="logo_nobg.png" alt="Aitino Logo" class="h-20 w-20" />
+			<img src="logo_nobg.png" alt="Aitino Logo" class="h-20 w-20 mt-4" />
 			<h1
 				class="tracking-loose m-0 text-center text-3xl font-semibold sm:m-0 sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl"
 			>
