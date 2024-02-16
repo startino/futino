@@ -3,7 +3,7 @@
 	import { invalidateAll } from '$app/navigation';
 	import { Button } from '$lib/components/ui/button';
 
-	import { ArrowRight, Loader, Twitter, X, Youtube } from 'lucide-svelte';
+	import { ArrowRight, Loader, Github, X, Youtube } from 'lucide-svelte';
 	import Input from './ui/input/input.svelte';
 	import { toast } from 'svelte-sonner';
 
@@ -37,8 +37,6 @@
 		/>
 		<Button
 			type="submit"
-			<<<<<<<
-			HEAD
 			class="text-md relative flex w-full gap-x-3 transition-all duration-300 ease-in-out sm:w-fit"
 			on:click={async () => {
 				if (form?.success) {
@@ -60,8 +58,8 @@
 	<!-- svelte-ignore missing-declaration -->
 
 	<Dialog.Root>
-		<Dialog.Trigger class="mt-4">
-			<Button class="block text-base" variant="outline">Contact Us</Button>
+		<Dialog.Trigger class="mt-4 md:mt-6 xl:mt-8">
+			<Button class=" text-base" variant="outline">Contact Us</Button>
 		</Dialog.Trigger>
 		<Dialog.Content class="sm:max-w-[425px]">
 			<Dialog.Header class="mt-4 space-y-1">
@@ -97,15 +95,15 @@
 		</Dialog.Content>
 	</Dialog.Root>
 
-	<div class=" mx-auto flex w-full items-center justify-between md:p-4">
+	<div class="mx-auto flex w-full items-center justify-between md:p-4">
 		<Button
-			class="hover:bg-primary bg-transparent p-8 font-bold transition-all duration-300 ease-in-out hover:scale-95 hover:text-background"
-			href="https://x.com/@futino"
+			class="hover:bg-primary text-accent hover:text-primary-foreground bg-transparent p-8 font-bold transition-all duration-300 ease-in-out hover:scale-95 "
+			href="https://github.com/Futino/"
 		>
-			<Twitter size="28" />
+			<Github size="28" />
 			<div class="flex flex-col py-4">
 				<p class="px-4 py-4 text-base">
-					Twitter
+					Github
 					<br />
 					@futino
 				</p>
@@ -113,7 +111,7 @@
 		</Button>
 
 		<Button
-			class="hover:bg-primary bg-transparent p-8 font-bold transition-all duration-300 ease-in-out hover:scale-95 hover:text-background"
+			class="hover:bg-primary text-accent hover:text-primary-foreground bg-transparent p-8 font-bold transition-all duration-300 ease-in-out hover:scale-95"
 			href="https://youtube.com/@futino"
 		>
 			<Youtube size="28" />
