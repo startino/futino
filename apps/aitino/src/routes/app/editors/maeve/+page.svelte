@@ -22,6 +22,9 @@
 	import * as Dialog from '$lib/components/ui/dialog';
 	import { Library } from '$lib/components/ui/library';
 	import * as CustomNode from '$lib/components/ui/custom-node';
+	import { saveMaeveNodes } from '$lib/api-client';
+
+	export let data;
 	import { getContext, getInitialEdges, getInitialNodes, getLocalMaeve } from '$lib/utils';
 	import type { Maeve, MaeveGroup, MaevePrompt, PanelAction } from '$lib/types';
 	import { Input } from '$lib/components/ui/input';
@@ -35,16 +38,10 @@
 		{ name: 'Add Agent', buttonVariant: 'outline', onclick: addNewAgent },
 		{ name: 'Add Maeve', buttonVariant: 'outline', isCustom: true },
 		{
-			name: 'Compile',
+			name: 'Save',
 			buttonVariant: 'outline',
-			onclick: () => {
-				const meave = compile();
-				maeveErrors = validateMaeve(meave);
-				maeveErrors
-					? toast.error(maeveErrors[0])
-					: toast.success('Maeve has been successfuly compile');
-
-				saveMaeve(meave);
+			onclick: async () => {
+				await compile();
 				layout();
 			}
 		},
@@ -58,12 +55,7 @@
 		prompt: CustomNode.Prompt
 	};
 
-	const localMaeve = getLocalMaeve();
-	const [initEdges, initNodes] = localMaeve
-		? [getInitialEdges(localMaeve), getInitialNodes(localMaeve)]
-		: [[], []];
-
-	const { receiver } = getContext('maeve');
+	const { receiver, count } = getContext('maeve');
 
 	const dagreGraph = new dagre.graphlib.Graph();
 	dagreGraph.setDefaultEdgeLabel(() => ({}));
@@ -81,15 +73,11 @@
 			nodes.forEach((node) => {
 				dagreGraph.setNode(node.id, { width: nodeWidth, height: nodeHeight });
 			});
-		}
 
-		if (edges.length > 0) {
 			edges.forEach((edge) => {
 				dagreGraph.setEdge(edge.source, edge.target);
 			});
-		}
 
-		if (nodes.length > 0) {
 			dagre.layout(dagreGraph);
 
 			nodes.forEach((node) => {
@@ -109,58 +97,52 @@
 		return { nodes, edges };
 	}
 
-	const { nodes: layoutedNodes, edges: layoutedEdges } = getLayoutedElements(initNodes, initEdges);
+	// const { nodes: layoutedNodes, edges: layoutedEdges } = getLayoutedElements(initNodes, initEdges);
 
-	const nodes = writable<Node[]>(layoutedNodes);
-	const edges = writable<Edge[]>(layoutedEdges);
+	const nodes = writable<Node[]>([]);
+	const edges = writable<Edge[]>([]);
 
-	function compile() {
-		let meave: Maeve = {
-			instance_id: '0',
-			composition: {
-				receiver: $receiver ? { instance_id: $receiver.node.id } : null,
-				groups: [],
-				prompts: []
-			}
-		};
-
-		let groups: MaeveGroup[] = [];
-		let prompts: MaevePrompt[] = [];
-
-		$nodes.forEach((node) => {
-			if (node.type === 'prompt') {
-				const { title, content } = node.data;
-				prompts.push({
-					...node.data,
-					title: get(title),
-					content: get(content),
-					position: node.position
-				});
-			} else {
-				let agents = [node, ...getOutgoers(node, $nodes, $edges)].map((n) => {
-					const { prompt, full_name, job_title, model } = n.data;
-					return {
-						...n.data,
+	async function compile() {
+		const agents = $nodes
+			.filter((n) => n.type === 'agent')
+			.map((n) => {
+				const { prompt, full_name, job_title, model } = n.data;
+				return {
+					...n,
+					data: {
 						prompt: get(prompt),
 						full_name: get(full_name),
 						job_title: get(job_title),
-						model: get(model),
-						position: n.position
-					};
-				});
-				const communicator = node.id;
+						model: get(model)
+					}
+				};
+			});
 
-				groups.push({
-					communicator,
-					agents
-				});
-			}
+		const prompts = $nodes
+			.filter((n) => n.type === 'prompt')
+			.map((n) => {
+				const { title, content } = n.data;
+				return {
+					...n,
+					data: {
+						title: get(title),
+						content: get(content)
+					}
+				};
+			});
+
+		const { error } = await saveMaeveNodes({
+			user_id: data.userId,
+			nodes: [...prompts, ...agents],
+			edges: $edges
 		});
 
-		meave.composition.prompts = prompts;
-		meave.composition.groups = groups;
+		if (error) {
+			toast.error('Something went wrong when saving the nodes..');
+			return;
+		}
 
-		return meave;
+		toast.success('Nodes successfully saved!');
 	}
 
 	function saveMaeve(maeve: Maeve) {
@@ -200,8 +182,8 @@
 	}
 
 	function addNewAgent() {
-		const uuid = crypto.randomUUID();
-		const instance_id = crypto.randomUUID();
+		if ($count.agents > 9) return;
+
 		const position = { ...getViewport() };
 
 		setCenter(position.x, position.y, { zoom: position.zoom });
@@ -209,43 +191,43 @@
 		nodes.update((v) => [
 			...v,
 			{
-				id: instance_id,
+				id: crypto.randomUUID(),
 				type: 'agent',
 				position,
 				selectable: false,
 				data: {
-					prompt: writable(''),
-					full_name: writable(''),
+					name: writable(''),
 					job_title: writable(''),
-					model: writable('model-a'),
-					unique_id: uuid,
-					instance_id,
-					position
+					prompt: writable(''),
+					modal: writable({ label: '', value: '' })
 				}
 			}
 		]);
+
+		$count.agents++;
 	}
 
 	function addNewPrompt() {
-		const id = crypto.randomUUID();
+		if ($count.prompts > 0) return;
+
 		const position = { ...getViewport() };
 		setCenter(position.x, position.y, { zoom: position.zoom });
 
 		nodes.update((v) => [
 			...v,
 			{
-				id,
+				id: crypto.randomUUID(),
 				type: 'prompt',
 				selectable: false,
 				position,
 				data: {
-					id,
 					title: writable(''),
-					content: writable(''),
-					position
+					content: writable('')
 				}
 			}
 		]);
+
+		$count.prompts++;
 	}
 </script>
 
@@ -256,12 +238,12 @@
 		{nodeTypes}
 		fitView
 		oninit={() => {
-			if (!localMaeve) return;
-			const recv = localMaeve.composition.receiver;
-			if (!recv) return;
-			const node = getNodes([recv.instance_id])[0];
-			const incommers = getIncomers(node, initNodes, initEdges);
-			receiver.set({ node, targetCount: incommers.length });
+			// if (!localMaeve) return;
+			// const recv = localMaeve.composition.receiver;
+			// if (!recv) return;
+			// const node = getNodes([recv.instance_id])[0];
+			// const incommers = getIncomers(node, initNodes, initEdges);
+			// receiver.set({ node, targetCount: incommers.length });
 		}}
 		connectionLineType={ConnectionLineType.SmoothStep}
 		defaultEdgeOptions={{ type: 'smoothstep', animated: true }}
@@ -315,12 +297,11 @@
 	</SvelteFlow>
 </div>
 
-
 <Dialog.Root>
 	<Dialog.Trigger class="mt-4">
 		<Button class="block text-base">Chat</Button>
 	</Dialog.Trigger>
 	<Dialog.Content class="sm:max-w-full">
-		<ChatRoom/>
+		<ChatRoom />
 	</Dialog.Content>
 </Dialog.Root>

@@ -55,4 +55,5 @@ export interface ContextMap {
 
 export interface MaeveContext {
 	receiver: Writable<{ node: Node; targetCount: number } | null>;
+	count: Writable<{ agents: number; prompts: number }>;
 }

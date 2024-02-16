@@ -7,9 +7,9 @@
 
 <div class="relative mx-auto flex w-full flex-col gap-y-12 text-white lg:gap-y-4">
 	
-	<h1 class="text-center text-2xl md:text-4xl lg:text-6xl xl:text-7xl">
+	<h1 class="text-center prose-sm  text-balance">
 		Join the Future of AI<br /> with Exclusive Early Access to
-		<span class="border-none text-primary">Aitino</span>
+		<span class="inline-block border-none text-primary">Aitino</span>
 	</h1>
 
 	<p class="mx-auto max-w-3xl text-center text-lg mt-2">
