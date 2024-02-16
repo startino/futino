@@ -5,7 +5,9 @@
 	import { Label } from '$lib/components/ui/label';
 	import Textarea from '$lib/components/ui/textarea/textarea.svelte';
 	import { createEventDispatcher } from 'svelte';
+
 	import { X } from 'lucide-svelte';
+
 	const dispatch = createEventDispatcher();
 
 	export function closeModal() {
