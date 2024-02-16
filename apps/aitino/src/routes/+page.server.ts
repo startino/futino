@@ -1,7 +1,7 @@
 import { fail, type Actions } from '@sveltejs/kit';
 import { supabase } from '$lib/supabase';
-// import type { LayoutServerLoad } from './$types';
 import { randomBytes } from 'crypto';
+import { toast } from 'svelte-sonner';
 
 export const actions = {
 	register: async ({ request }) => {
@@ -48,6 +48,33 @@ export const actions = {
 		return {
 			success: true,
 			message: 'You have successfuly joined the waitlist. See you Soon 👋'
+		};
+	},
+	contactUs: async ({ request }) => {
+
+		toast.error('Error');
+
+		const { name, email, description } = Object.fromEntries(await request.formData()) as {
+			name: string;
+			email: string;
+			description: string;
+		};
+
+		console.log(name, email, description);
+
+		const { data, error } = await supabase
+			.from('contact_form')
+			.insert([{ name: name, email: email, description: description }])
+			.select();
+
+		if (error) {
+			return fail(400, {
+				invalid: true
+			});
+		}
+
+		return {
+			success: true
 		};
 	}
 } satisfies Actions;

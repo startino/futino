@@ -62,7 +62,8 @@
 	];
 
 	setContext('maeve', {
-		receiver: writable(null)
+		receiver: writable(null),
+		count: writable({ agents: 0, prompts: 0 })
 	});
 </script>
 
