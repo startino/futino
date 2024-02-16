@@ -64,6 +64,7 @@
 			<Dialog.Header class="mt-4 space-y-1">
 				<Dialog.Title class="text-4xl">Contact Us</Dialog.Title>
 			</Dialog.Header>
+			<form action="?/contactUs" method="POST" class="space-y-4">
 			<div class="grid gap-2">
 				<Label for="name">Name</Label>
 				<Input
@@ -71,6 +72,7 @@
 					id="name"
 					type="name"
 					name="name"
+					required
 				/>
 			</div>
 			<div class="grid gap-2">
@@ -79,24 +81,26 @@
 					class="border-input placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border bg-transparent px-3 py-1 text-sm shadow-sm ring-offset-0 transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50 "
 					id="email"
 					type="email"
+					required
 					name="email"
 				/>
 			</div>
 			<div class="grid gap-2">
 				<Label for="email">Description</Label>
 				<Textarea
-					class="border-input placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border bg-transparent px-3 py-1 text-sm shadow-sm ring-offset-0 transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50 "
+				name="description"	class="border-input placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border bg-transparent px-3 py-1 text-sm shadow-sm ring-offset-0 transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50 "
 				/>
 			</div>
 			<Dialog.Footer>
 				<Button type="submit">Submit</Button>
 			</Dialog.Footer>
+		</form>
 		</Dialog.Content>
 	</Dialog.Root>
 
 	<div class=" mx-auto flex w-full items-center justify-between md:p-4">
 		<Button
-			class="hover:bg-primary bg-transparent p-8 font-bold transition-all duration-300 ease-in-out hover:scale-95 hover:text-background"
+			class="hover:bg-primary hover:text-background bg-transparent p-8 font-bold transition-all duration-300 ease-in-out hover:scale-95"
 			href="https://x.com/@futino"
 		>
 			<Twitter size="28" />
@@ -110,7 +114,7 @@
 		</Button>
 
 		<Button
-			class="hover:bg-primary bg-transparent p-8 font-bold transition-all duration-300 ease-in-out hover:scale-95 hover:text-background"
+			class="hover:bg-primary hover:text-background bg-transparent p-8 font-bold transition-all duration-300 ease-in-out hover:scale-95"
 			href="https://youtube.com/@futino"
 		>
 			<Youtube size="28" />
