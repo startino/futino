@@ -28,7 +28,7 @@
 	};
 
 	const subtitleVariants = {
-		'0': 'Aitino is a platform powered by multi-agent LLMs designed to help entrepreneurs and businesses automate tasks and solve complex problems using a node-editor to create teams of AI Agents.'
+		'0': "Aitino is a platform that allows for the creation of teams of AI Agents to help you automate tasks and solve complex problems. It's made easily customizable through a node-editor."
 	};
 	$: console.log(showModal);
 </script>
@@ -39,9 +39,7 @@
 
 <Toaster />
 
-<div
-	class="font-roboto container flex h-screen w-screen flex-col justify-center bg-transparent"
->
+<div class="font-roboto container flex h-screen w-screen flex-col justify-center bg-transparent">
 	<div class="flex h-full flex-col justify-evenly py-6">
 		<div
 			class="text-foreground relative mx-auto flex flex-col place-items-center gap-y-4 sm:gap-y-8"
