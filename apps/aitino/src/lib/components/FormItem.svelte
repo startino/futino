@@ -116,7 +116,7 @@
 
 		<Button
 			class="hover:bg-primary text-accent hover:text-primary-foreground bg-transparent p-8 font-bold transition-all duration-300 ease-in-out hover:scale-95"
-			href="https://youtube.com/@futino"
+			href="https://www.youtube.com/@futinolimited"
 		>
 			<Youtube size="28" />
 			<div class="flex flex-col">

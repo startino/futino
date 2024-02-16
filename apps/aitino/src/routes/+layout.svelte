@@ -8,3 +8,4 @@
 	setContext('splitTestIdentifier', data?.splitTestIdentifier);
 </script>
 
+<slot />

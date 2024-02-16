@@ -40,7 +40,7 @@
 <Toaster />
 
 <div
-	class="font-roboto container flex h-screen w-screen flex-col justify-center border bg-transparent"
+	class="font-roboto container flex h-screen w-screen flex-col justify-center bg-transparent"
 >
 	<div class="flex h-full flex-col justify-evenly py-6">
 		<div
