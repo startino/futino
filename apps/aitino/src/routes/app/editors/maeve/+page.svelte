@@ -18,7 +18,7 @@
 	import '@xyflow/svelte/dist/style.css';
 
 	import RightEditorSidebar from '$lib/components/RightEditorSidebar.svelte';
-	import { Button } from '$lib/components/ui/button';
+	import { Button, buttonVariants } from '$lib/components/ui/button';
 	import * as Dialog from '$lib/components/ui/dialog';
 	import { Library } from '$lib/components/ui/library';
 	import * as CustomNode from '$lib/components/ui/custom-node';
@@ -232,6 +232,15 @@
 </script>
 
 <div style="height:100vh;">
+	<Dialog.Root>
+		<Dialog.Trigger class="">
+			<Button class="block text-base">Chat</Button>
+		</Dialog.Trigger>
+		<Dialog.Content class="sm:max-w-full">
+			<ChatRoom />
+		</Dialog.Content>
+	</Dialog.Root>
+	
 	<SvelteFlow
 		{nodes}
 		{edges}
@@ -297,11 +306,3 @@
 	</SvelteFlow>
 </div>
 
-<Dialog.Root>
-	<Dialog.Trigger class="mt-4">
-		<Button class="block text-base">Chat</Button>
-	</Dialog.Trigger>
-	<Dialog.Content class="sm:max-w-full">
-		<ChatRoom />
-	</Dialog.Content>
-</Dialog.Root>
