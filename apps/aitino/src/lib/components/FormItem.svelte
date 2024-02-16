@@ -105,7 +105,7 @@
 		</Dialog.Content>
 	</Dialog.Root>
 
-	<div class="mx-auto flex w-full items-center justify-between md:p-4">
+	<div class="mx-auto flex w-full flex-col sm:flex-row gap-2 items-center justify-between md:p-4">
 		<Button
 			class="hover:bg-primary text-accent hover:text-primary-foreground bg-transparent p-8 font-bold transition-all duration-300 ease-in-out hover:scale-95 "
 			href="https://github.com/Futino/"
