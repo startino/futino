@@ -25,7 +25,7 @@
 </script>
 
 <Card.Root
-	class="bg-card border-primary text-primary absolute left-1/2  top-1/2 w-full max-w-xl  -translate-x-1/2 -translate-y-1/2 border font-bold transition-all duration-300 ease-in-out"
+	class="bg-card border-primary text-primary absolute left-1/2  top-1/2 w-full max-w-xl -translate-x-1/2 -translate-y-1/2 border font-bold transition-all duration-300 ease-in-out"
 >
 	<Button
 		class="absolute right-0 rounded-lg bg-transparent hover:scale-95 hover:bg-transparent"
