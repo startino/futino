@@ -39,10 +39,10 @@
 
 <Toaster />
 
-<div class="font-roboto container flex h-screen w-screen flex-col justify-center bg-transparent">
-	<div class="flex h-full flex-col justify-evenly py-6">
+<div class="font-roboto flex h-screen w-screen flex-col justify-center bg-transparent">
+	<div class="flex h-full flex-col justify-evenly py-6 w-screen mt-4">
 		<div
-			class="text-foreground relative mx-auto flex flex-col place-items-center gap-y-4 sm:gap-y-8"
+			class="text-foreground mx-auto flex flex-col w-full px-2  place-items-center gap-y-4 sm:gap-y-8"
 		>
 			<img src="logo_nobg.png" alt="Aitino Logo" class="h-20 w-20 mt-4" />
 			<h1
