@@ -8,7 +8,6 @@
 		ConnectionLineType,
 		Panel,
 		useSvelteFlow,
-		getIncomers,
 		type Node,
 		type Edge,
 		getOutgoers
@@ -24,13 +23,13 @@
 	import * as CustomNode from '$lib/components/ui/custom-node';
 	import { saveMaeveNodes } from '$lib/api-client';
 
-	export let data;
-	import { getContext, getInitialEdges, getInitialNodes, getLocalMaeve } from '$lib/utils';
-	import type { Maeve, MaeveGroup, MaevePrompt, PanelAction } from '$lib/types';
-	import { Input } from '$lib/components/ui/input';
-	import { Label } from '$lib/components/ui/label';
-	import { Textarea } from '$lib/components/ui/textarea';
+	import { getContext, getInitialNodes } from '$lib/utils';
+	import type { PanelAction } from '$lib/types';
 	import ChatRoom from '$lib/components/ChatRoom.svelte';
+
+	export let data;
+
+	const { receiver, count } = getContext('maeve');
 
 	const actions: PanelAction[] = [
 		{ name: 'Run', buttonVariant: 'default' },
@@ -41,21 +40,17 @@
 			name: 'Save',
 			buttonVariant: 'outline',
 			onclick: async () => {
-				await compile();
 				layout();
+				await compile();
 			}
 		},
 		{ name: 'Sessions', buttonVariant: 'outline' }
 	];
 
-	let maeveErrors: string[] | null = null;
-
 	const nodeTypes = {
 		agent: CustomNode.Agent,
 		prompt: CustomNode.Prompt
 	};
-
-	const { receiver, count } = getContext('maeve');
 
 	const dagreGraph = new dagre.graphlib.Graph();
 	dagreGraph.setDefaultEdgeLabel(() => ({}));
@@ -99,19 +94,19 @@
 
 	// const { nodes: layoutedNodes, edges: layoutedEdges } = getLayoutedElements(initNodes, initEdges);
 
-	const nodes = writable<Node[]>([]);
-	const edges = writable<Edge[]>([]);
+	const nodes = writable<Node[]>(getInitialNodes(data.nodes));
+	const edges = writable<Edge[]>(data.edges);
 
 	async function compile() {
 		const agents = $nodes
 			.filter((n) => n.type === 'agent')
 			.map((n) => {
-				const { prompt, full_name, job_title, model } = n.data;
+				const { prompt, name, job_title, model } = n.data;
 				return {
 					...n,
 					data: {
 						prompt: get(prompt),
-						full_name: get(full_name),
+						name: get(name),
 						job_title: get(job_title),
 						model: get(model)
 					}
@@ -132,6 +127,7 @@
 			});
 
 		const { error } = await saveMaeveNodes({
+			id: data.id,
 			user_id: data.userId,
 			nodes: [...prompts, ...agents],
 			edges: $edges
@@ -143,36 +139,6 @@
 		}
 
 		toast.success('Nodes successfully saved!');
-	}
-
-	function saveMaeve(maeve: Maeve) {
-		localStorage.setItem('maeve', JSON.stringify(maeve));
-	}
-
-	function validateMaeve(maeve: Maeve) {
-		const errors: string[] = [];
-		const prompts = $nodes.filter((node) => node.type === 'prompt');
-		if (prompts.length === 0) {
-			errors.push('A maeve must have at least one prompt');
-		} else {
-			if ($receiver) {
-				const incommers = getIncomers({ id: $receiver.node.id }, $nodes, $edges);
-
-				incommers.length !== prompts.length &&
-					errors.push('All the prompts must be connected to the receiver');
-			}
-		}
-
-		if (!$receiver) {
-			errors.push('A receiver, which is an agent directly connected to the prompts, is required.');
-		} else {
-			const outgoers = getOutgoers({ id: $receiver.node.id }, $nodes, $edges);
-
-			outgoers.length === 0 &&
-				errors.push('At least one agent should be connected to the receiver');
-		}
-
-		return errors[0] ? errors : null;
 	}
 
 	function layout() {
@@ -199,7 +165,7 @@
 					name: writable(''),
 					job_title: writable(''),
 					prompt: writable(''),
-					modal: writable({ label: '', value: '' })
+					model: writable({ label: '', value: '' })
 				}
 			}
 		]);
@@ -247,12 +213,15 @@
 		{nodeTypes}
 		fitView
 		oninit={() => {
-			// if (!localMaeve) return;
-			// const recv = localMaeve.composition.receiver;
-			// if (!recv) return;
-			// const node = getNodes([recv.instance_id])[0];
-			// const incommers = getIncomers(node, initNodes, initEdges);
-			// receiver.set({ node, targetCount: incommers.length });
+			count.set(data.count);
+
+			const prompt = $nodes.find((n) => n.type === 'prompt');
+
+			if (prompt) {
+				const outgoers = getOutgoers(prompt, $nodes, $edges);
+
+				outgoers[0] && ($receiver = { node: outgoers[0], targetCount: 1 });
+			}
 		}}
 		connectionLineType={ConnectionLineType.SmoothStep}
 		defaultEdgeOptions={{ type: 'smoothstep', animated: true }}
