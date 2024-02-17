@@ -53,6 +53,9 @@ importers:
       force:
         specifier: ^0.0.3
         version: 0.0.3
+      formsnap:
+        specifier: ^0.4.2
+        version: 0.4.2(svelte@4.2.9)(sveltekit-superforms@1.13.3)(zod@3.22.4)
       lucide-svelte:
         specifier: ^0.321.0
         version: 0.321.0(svelte@4.2.9)
@@ -62,6 +65,9 @@ importers:
       svelte-sonner:
         specifier: ^0.3.11
         version: 0.3.11(svelte@4.2.9)
+      sveltekit-superforms:
+        specifier: ^1.13.2
+        version: 1.13.3(@sveltejs/kit@2.5.0)(svelte@4.2.9)(zod@3.22.4)
       tailwind-merge:
         specifier: ^2.2.0
         version: 2.2.0
@@ -71,6 +77,9 @@ importers:
       uuid:
         specifier: ^9.0.1
         version: 9.0.1
+      zod:
+        specifier: ^3.22.4
+        version: 3.22.4
     devDependencies:
       '@sveltejs/adapter-auto':
         specifier: ^3.0.0
