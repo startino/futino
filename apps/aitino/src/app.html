@@ -2,10 +2,11 @@
 <html lang="en" class="dark">
 	<head>
 		<meta charset="utf-8" />
-		<title>
-			Aitino
-		</title>
-		<meta name="description" content="The world's leading web platform in pairing modern AI models with highly effective multi-agent technologies. By taking the form of node-editors, Aitino harnesses the ability to create teams of AI agents that collaborate to solve complex tasks in real-time." />
+		<title>Aitino</title>
+		<meta
+			name="description"
+			content="The world's leading web platform in pairing modern AI models with highly effective multi-agent technologies. By taking the form of node-editors, Aitino harnesses the ability to create teams of AI agents that collaborate to solve complex tasks in real-time."
+		/>
 		<link rel="icon" href="%sveltekit.assets%/favicon.png" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		%sveltekit.head%
@@ -25,7 +26,7 @@
 		</script>
 		<!-- End Google Tag Manager -->
 	</head>
-	<body data-sveltekit-preload-data="hover">
+	<body data-sveltekit-preload-data="hover" class="dark:bg-background">
 		<!-- Google Tag Manager (noscript) -->
 		<noscript
 			><iframe
@@ -37,6 +38,7 @@
 			></iframe
 		></noscript>
 		<!-- End Google Tag Manager (noscript) -->
-		<div style="display: contents">%sveltekit.body%</div>
+
+		<div style="display: contents" class="h-full overflow-hidden">%sveltekit.body%</div>
 	</body>
 </html>
