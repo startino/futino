@@ -39,12 +39,26 @@
 
 <Toaster />
 
+<svelte:head>
+	<script type="text/javascript">
+		window.$crisp = [];
+		window.CRISP_WEBSITE_ID = 'd8b6e215-1bae-470a-b3c4-0e227902e47a';
+		(function () {
+			d = document;
+			s = d.createElement('script');
+			s.src = 'https://client.crisp.chat/l.js';
+			s.async = 1;
+			d.getElementsByTagName('head')[0].appendChild(s);
+		})();
+	</script>
+</svelte:head>
+
 <div class="font-roboto flex h-screen w-screen flex-col justify-center bg-transparent">
-	<div class="flex h-full flex-col justify-evenly py-6 w-screen mt-4">
+	<div class="mt-4 flex h-full w-screen flex-col justify-evenly py-6">
 		<div
-			class="text-foreground mx-auto flex flex-col w-full px-2  place-items-center gap-y-4 sm:gap-y-8"
+			class="text-foreground mx-auto flex w-full flex-col place-items-center gap-y-4 px-2 sm:gap-y-8"
 		>
-			<img src="logo_nobg.png" alt="Aitino Logo" class="h-20 w-20 mt-4" />
+			<img src="favicon.png" alt="Aitino Logo" class="mt-4 h-20 w-20 z-10" />
 			<h1
 				class="tracking-loose m-0 text-center text-3xl font-semibold sm:m-0 sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl"
 			>
