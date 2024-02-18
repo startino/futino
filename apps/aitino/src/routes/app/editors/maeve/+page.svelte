@@ -198,15 +198,6 @@
 </script>
 
 <div style="height:100vh;">
-	<Dialog.Root>
-		<Dialog.Trigger class="">
-			<Button class="block text-base">Chat</Button>
-		</Dialog.Trigger>
-		<Dialog.Content class="sm:max-w-full">
-			<ChatRoom />
-		</Dialog.Content>
-	</Dialog.Root>
-	
 	<SvelteFlow
 		{nodes}
 		{edges}
@@ -273,5 +264,14 @@
 			</RightEditorSidebar>
 		</Panel>
 	</SvelteFlow>
+	<Panel position="bottom-right" >
+		<Dialog.Root>
+			<Dialog.Trigger class="">
+				<Button class="block text-base">Chat</Button>
+			</Dialog.Trigger>
+			<Dialog.Content class="sm:max-w-full mt-3">
+				<ChatRoom />
+			</Dialog.Content>
+		</Dialog.Root>
+	</Panel>
 </div>
-

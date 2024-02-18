@@ -1,21 +1,12 @@
 <script lang="ts">
-	import Contact from '$lib/components/Contact.svelte';
-
-	import { toast } from 'svelte-sonner';
-
-	import FormItem from '$lib/components/FormItem.svelte';
-	import Button from '$lib/components/ui/button/button.svelte';
-	import * as Dialog from '$lib/components/ui/dialog';
-	import { Input } from '$lib/components/ui/input';
-	import { Label } from '$lib/components/ui/label';
-	import { Textarea } from '$lib/components/ui/textarea';
 	import { SplitTest } from 'svelte-split-testing';
 	import { Toaster } from '$lib/components/ui/sonner';
+	import FormItem from '$lib/components/FormItem.svelte';
+	import type { PageData } from './$types';
+	import { superForm } from 'sveltekit-superforms/client';
 
 	export let form;
-
-	let showModal = false;
-
+	export let data: PageData;
 	const titleVariants = {
 		'0': 'Join the Future of AI<br /> with Exclusive Early Access to <span class="bg-gradient-to-b from-primary to-background from-50% bg-clip-text text-transparent">Aitino</span>'
 		// '1': 'Create Solutions Like <br /> Never Before with <span class="bg-gradient-to-r from-primary to-danger bg-clip-text text-transparent">Aitino</span>',
@@ -30,7 +21,8 @@
 	const subtitleVariants = {
 		'0': "Aitino is a platform that allows for the creation of teams of AI Agents to help you automate tasks and solve complex problems. It's made easily customizable through a node-editor."
 	};
-	$: console.log(showModal);
+
+	
 </script>
 
 <div
@@ -40,11 +32,11 @@
 <Toaster />
 
 <div class="font-roboto flex h-screen w-screen flex-col justify-center bg-transparent">
-	<div class="flex h-full flex-col justify-evenly py-6 w-screen mt-4">
+	<div class="mt-4 flex h-full w-screen flex-col justify-evenly py-6">
 		<div
-			class="text-foreground mx-auto flex flex-col w-full px-2  place-items-center gap-y-4 sm:gap-y-8"
+			class="text-foreground mx-auto flex w-full flex-col place-items-center gap-y-4 px-2 sm:gap-y-8"
 		>
-			<img src="logo_nobg.png" alt="Aitino Logo" class="h-20 w-20 mt-4" />
+			<img src="logo_nobg.png" alt="Aitino Logo" class="mt-4 h-20 w-20" />
 			<h1
 				class="tracking-loose m-0 text-center text-3xl font-semibold sm:m-0 sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl"
 			>
@@ -61,36 +53,9 @@
 				</SplitTest>
 			</h3>
 
-			<FormItem class="mt-10" {form} />
+			<FormItem class="mt-10" mainform={form} notform={data} />
 		</div>
-
-		{#if showModal}
-			<div class="absolute left-0 top-0 h-full w-full bg-zinc-800/50">
-				<Contact on:closeModal={() => (showModal = false)} />
-			</div>
-		{/if}
 	</div>
 </div>
 
-<style>
-	.typewriter span {
-		overflow: hidden;
-		white-space: nowrap;
-		margin: auto;
-		letter-spacing: 0.15em;
-		margin-bottom: -0.39rem;
-		animation:
-			typing 3.5s steps(40, end),
-			blink-caret 0.75s step-end infinite;
-	}
 
-	/* The typing effect */
-	@keyframes typing {
-		from {
-			width: 0;
-		}
-		to {
-			width: 20%;
-		}
-	}
-</style>

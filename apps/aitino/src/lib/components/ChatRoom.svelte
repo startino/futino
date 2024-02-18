@@ -1,24 +1,36 @@
 <script lang="ts">
-	import { ArrowRight, Loader, MessageCircleDashed, Send, User } from 'lucide-svelte';
+	import { ArrowDown, Loader, Send, User } from 'lucide-svelte';
 	import { Input } from './ui/input';
 	import { Button } from './ui/button';
 	import * as Card from '$lib/components/ui/card';
+	import { afterUpdate, onMount } from 'svelte';
+
 	let messages = [
 		{
 			unique_id: '0004',
 			content:
-				'Aitino is a SaaS idea of Futino. Aitino will be the ultimate business partner and business tool. Aitino will be able to help both entrepreneurs and larger corporations by harnessing the power of multi-LLM-agent environments and advanced integration with other business systems. It will be able to train off of its use-case data day in and day out, improving the software just by getting more data. Aitino will have the capability to replace entire teams of beginner to intermediate-experienced employees and also assist by saving the very expensive time of the experts within companies with their tasks.',
+				'Aitino will be the ultimate business partner and business tool. Aitino will be able to help both entrepreneurs and larger corporations by harnessing the power of multi-LLM-agent environments and advanced integration with other business systems.',
 			time: '10:46:45 pm',
-			fromUser: true,
+			fromUser: false,
 			instance_id: '4',
-			full_name: 'Michael Smith',
+			full_name: 'Michael',
+			job_title: 'Graphic Designer',
+			model: 'model-b'
+		},
+		{
+			unique_id: '0004',
+			content: 'The waitlist for aitino is live go check it out at aiti.no 😀',
+			time: '10:46:45 pm',
+			fromUser: false,
+			instance_id: '4',
+			full_name: 'Michael',
 			job_title: 'Graphic Designer',
 			model: 'model-b'
 		},
 		{
 			content: 'Generate a 1 min video with a short description about Aitino.',
 			time: '11:20:45 pm',
-			fromUser: false,
+			fromUser: true,
 			unique_id: '0001',
 			instance_id: '1',
 			full_name: 'Alice Johnson',
@@ -27,7 +39,11 @@
 		}
 	];
 
-	let inputText = '';
+	function handleKeyDown(event: { key: string }) {
+		if (event.key === 'Enter') {
+			sendMessage();
+		}
+	}
 
 	function handleInputChange(event: { target: { value: string } }) {
 		newMessageContent = event.target.value;
@@ -48,43 +64,57 @@
 			newMessageContent = '';
 		}
 	};
+
+	let chatContainerElement: HTMLDivElement;
+	
+
+	afterUpdate(() => {
+		if (chatContainerElement) {
+			chatContainerElement.scrollTop = chatContainerElement.scrollHeight;
+		}
+	});
 </script>
 
-<div class="container max-w-7xl space-y-3">
-	<div class="5 chat-container min-h-96 space-y-8 overflow-auto">
-		<!--  the above div is Wrapper for the messages -->
-		<!-- Chat messages -->
+<div class="container flex h-screen max-w-6xl flex-col justify-end p-6">
+	<div class="no-scrollbar max-h-full overflow-y-auto" bind:this={chatContainerElement}>
+		<!-- add scroll to the bottom of the chat  -->
 		{#each messages as message}
 			<div>
-				{#if message.fromUser}
+				{#if !message.fromUser}
 					<div class="space-y-2">
-						<Card.Root class=" max-w-2xl rounded-bl-3xl">
+						<Card.Root class="border-secondary-500 max-w-2xl border">
 							<Card.Content class="grid gap-4 p-6">
-								<p class="text-sm font-medium leading-none">{message.content}</p>
+								<p class="prose text-sm font-medium leading-5 tracking-widest">{message.content}</p>
 							</Card.Content>
 						</Card.Root>
-						<Card.Root class="max-w-2xl border-none bg-transparent">
+						<Card.Root class="bg-background max-w-2xl border-none">
 							<Card.Content class="grid w-full grid-cols-2 items-center justify-between gap-4">
 								<div class="flex items-center gap-4">
-									<p class="text-sm font-medium leading-none"><User /></p>
+									<p class="prose text-xs font-medium leading-none"><User size="16" /></p>
 
-									<p class="text-sm font-medium leading-none">{message.full_name}</p>
+									<p class="prose text-xs font-medium leading-none tracking-widest">
+										{message.full_name} - Agent
+									</p>
 								</div>
-								<p class="text-sm font-medium leading-none">SENT: {message.time}</p>
+								<p class="prose text-sm font-medium">
+									sent: {message.time}
+								</p>
 							</Card.Content>
 						</Card.Root>
 					</div>
 				{:else}
 					<div class="space-y-2">
-						<Card.Root class="ml-auto max-w-2xl rounded-bl-3xl">
+						<Card.Root class="border-secondary ml-auto max-w-2xl rounded-bl-3xl border">
 							<Card.Content class="grid gap-4 p-6">
-								<p class="text-sm font-medium leading-none">{message.content}</p>
+								<p class="prose text-sm font-medium leading-5 tracking-widest">{message.content}</p>
 							</Card.Content>
 						</Card.Root>
 						<Card.Root class="ml-auto max-w-2xl border-none bg-transparent">
 							<Card.Content class="grid w-full grid-cols-2 items-center justify-between gap-4">
-								<p class="text-sm font-medium leading-none">You</p>
-								<p class="text-sm font-medium leading-none">SENT: {message.time}</p>
+								<p class="prose text-sm font-medium leading-8 tracking-widest">you</p>
+								<p class="prose text-sm font-medium leading-8 tracking-widest">
+									sent: {message.time}
+								</p>
 							</Card.Content>
 						</Card.Root>
 					</div>
@@ -93,12 +123,14 @@
 		{/each}
 	</div>
 
-	<div class="space-y-8">
-		<Card.Root class="max-w-full">
+	<div class="mb-2 space-y-16">
+		<Card.Root class="border-secondary mt-4 max-w-full border">
 			<Card.Content class="grid gap-4 p-2">
 				<div class="flex justify-between">
-					<p class="text-sm font-medium leading-none">Waiting on your response...</p>
-					<Loader />
+					<p class="prose text-sm font-medium leading-8 tracking-widest">
+						Waiting on your response...
+					</p>
+					<Loader class="prose" />
 				</div>
 			</Card.Content>
 		</Card.Root>
@@ -107,6 +139,7 @@
 			<Input
 				bind:value={newMessageContent}
 				on:input={handleInputChange}
+				on:keydown={handleKeyDown}
 				class="border-input  placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border bg-transparent px-3 py-6 text-sm shadow-sm ring-offset-0 transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50"
 				placeholder="Join the conversation by typing a message..."
 			/>

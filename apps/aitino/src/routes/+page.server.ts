@@ -1,20 +1,35 @@
 import { fail, type Actions } from '@sveltejs/kit';
 import { supabase } from '$lib/supabase';
 import { randomBytes } from 'crypto';
-import { toast } from 'svelte-sonner';
+import { z } from 'zod';
+import { superValidate } from 'sveltekit-superforms/server';
+import { formSchema } from './schema';
+
+const waitlistSchema = z.object({
+	email: z.string().email({ message: 'Invalid email address' })
+});
+
+export const load = async () => {
+	const form = await superValidate(formSchema);
+	const waitlistForm = await superValidate(waitlistSchema);
+
+	// Always return { form } in load and form actions.
+	return { form, waitlistForm };
+};
 
 export const actions = {
 	register: async ({ request }) => {
-		const { email } = Object.fromEntries(await request.formData()) as {
-			email: string;
-		};
+		const waitlistForm = await superValidate(request, waitlistSchema);
 
-		if (!email || email.length === 0) {
+		console.log(waitlistForm, 'from backend');
+
+		if (!waitlistForm.valid) {
 			return fail(400, {
-				invalid: true,
-				error: 'Email is required'
+				waitlistForm
 			});
 		}
+
+		const { email } = waitlistForm.data;
 
 		// check if user already register
 
@@ -23,8 +38,6 @@ export const actions = {
 			.select('*')
 			.eq('email', email)
 			.single();
-
-		const selectAll = await supabase.from('waitlist_users').select('*');
 
 		if (check_if_user_already_register && check_if_user_already_register.data !== null) {
 			return fail(400, {
@@ -51,16 +64,19 @@ export const actions = {
 		};
 	},
 	contactUs: async ({ request }) => {
+		const form = await superValidate(request, formSchema);
 
-		toast.error('Error');
+		console.log(form, 'from backend');
 
-		const { name, email, description } = Object.fromEntries(await request.formData()) as {
-			name: string;
-			email: string;
-			description: string;
-		};
+		if (!form.valid) {
+			return fail(400, {
+				form
+			});
+		}
 
-		console.log(name, email, description);
+		const { name, email, description } = form.data;
+
+		console.log(form.data.name, form.data.email, form.data.description);
 
 		const { data, error } = await supabase
 			.from('contact_form')
