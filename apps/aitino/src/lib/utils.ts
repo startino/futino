@@ -8,6 +8,12 @@ import { getContext as getSvelteContext, setContext as setSvelteContext } from '
 import { writable } from 'svelte/store';
 import type { ContextKey, ContextMap, Maeve } from '$lib/types';
 import { browser } from '$app/environment';
+import { AVATARS } from '$lib/avatars';
+
+export function pickRandomAvatar() {
+	const randomIndex = Math.floor(Math.random() * AVATARS.length);
+	return AVATARS[randomIndex];
+}
 
 export const authenticateUser = ({ cookies, locals }: RequestEvent) => {
 	const currentUserId = cookies.get('userId');
@@ -87,6 +93,7 @@ export function getInitialNodes(nodes: Node[]): Node[] {
 			.map((n) => ({
 				...n,
 				data: {
+					...n.data,
 					prompt: writable(n.data.prompt),
 					name: writable(n.data.name),
 					job_title: writable(n.data.job_title),
