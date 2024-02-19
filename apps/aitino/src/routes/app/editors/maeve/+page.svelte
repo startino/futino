@@ -23,7 +23,7 @@
 	import * as CustomNode from '$lib/components/ui/custom-node';
 	import { saveMaeveNodes } from '$lib/api-client';
 
-	import { getContext, getInitialNodes, pickRandomAvatar } from '$lib/utils';
+	import { getContext, getInitialNodes, pickRandomAvatar, pickRandomName } from '$lib/utils';
 	import type { PanelAction } from '$lib/types';
 	import ChatRoom from '$lib/components/ChatRoom.svelte';
 	import { AGENT_LIMIT, PROMPT_LIMIT } from '$lib/config.js';
@@ -155,6 +155,12 @@
 
 		const position = { ...getViewport() };
 
+		let name = '';
+
+		do {
+			name = pickRandomName();
+		} while (Boolean($nodes.find((n) => n.type === 'agent' && n.data.name === name)));
+
 		setCenter(position.x, position.y, { zoom: position.zoom });
 
 		nodes.update((v) => [
@@ -165,7 +171,7 @@
 				position,
 				selectable: false,
 				data: {
-					name: writable(''),
+					name: writable(name),
 					job_title: writable(''),
 					prompt: writable(''),
 					model: writable({ label: '', value: '' }),
