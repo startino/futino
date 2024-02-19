@@ -25,13 +25,14 @@
 	const { receiver, count } = getContext('maeve');
 
 	export let data: {
+		avatar: string;
 		prompt: Writable<string>;
 		job_title: Writable<string>;
 		name: Writable<string>;
 		model: Writable<{ label: string; value: string }>;
 	};
 
-	const { name, model, prompt, job_title } = data;
+	const { name, model, prompt, job_title, avatar } = data;
 
 	const modals = [
 		{
@@ -85,6 +86,9 @@
 		</Card.Title>
 	</Card.Header>
 	<Card.Content class="grid gap-2">
+		{#if avatar}
+			<img class="mx-auto max-w-[90px]" src="/avatars/{avatar}" alt="" />
+		{/if}
 		<Input placeholder="Name..." bind:value={$name} />
 		<Input placeholder="Job title..." bind:value={$job_title} />
 		<Textarea placeholder="Prompt..." bind:value={$prompt} />

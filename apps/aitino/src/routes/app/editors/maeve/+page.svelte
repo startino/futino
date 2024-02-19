@@ -23,7 +23,7 @@
 	import * as CustomNode from '$lib/components/ui/custom-node';
 	import { saveMaeveNodes } from '$lib/api-client';
 
-	import { getContext, getInitialNodes } from '$lib/utils';
+	import { getContext, getInitialNodes, pickRandomAvatar } from '$lib/utils';
 	import type { PanelAction } from '$lib/types';
 	import ChatRoom from '$lib/components/ChatRoom.svelte';
 	import { AGENT_LIMIT, PROMPT_LIMIT } from '$lib/config.js';
@@ -106,6 +106,7 @@
 				return {
 					...n,
 					data: {
+						...n.data,
 						prompt: get(prompt),
 						name: get(name),
 						job_title: get(job_title),
@@ -167,7 +168,8 @@
 					name: writable(''),
 					job_title: writable(''),
 					prompt: writable(''),
-					model: writable({ label: '', value: '' })
+					model: writable({ label: '', value: '' }),
+					avatar: pickRandomAvatar()
 				}
 			}
 		]);
