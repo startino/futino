@@ -11,8 +11,13 @@ import { browser } from '$app/environment';
 import { AVATARS } from '$lib/avatars';
 
 export function pickRandomAvatar() {
-	const randomIndex = Math.floor(Math.random() * AVATARS.length);
-	return AVATARS[randomIndex];
+	return AVATARS[getRandomIndex(AVATARS)];
+}
+
+function getRandomIndex(array: Array<unknown>) {
+	const randomArray = new Uint32Array(1);
+	crypto.getRandomValues(randomArray);
+	return randomArray[0] % array.length;
 }
 
 export const authenticateUser = ({ cookies, locals }: RequestEvent) => {
