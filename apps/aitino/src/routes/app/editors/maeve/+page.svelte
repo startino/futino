@@ -35,7 +35,7 @@
 		{ name: 'Run', buttonVariant: 'default' },
 		{ name: 'Add Prompt', buttonVariant: 'outline', onclick: addNewPrompt },
 		{ name: 'Add Agent', buttonVariant: 'outline', onclick: addNewAgent },
-		{ name: 'Add Maeve', buttonVariant: 'outline', isCustom: true },
+		{ name: 'Load Maeve', buttonVariant: 'outline', isCustom: true },
 		{
 			name: 'Save',
 			buttonVariant: 'outline',
@@ -206,7 +206,7 @@
 			<ChatRoom />
 		</Dialog.Content>
 	</Dialog.Root>
-	
+
 	<SvelteFlow
 		{nodes}
 		{edges}
@@ -274,4 +274,3 @@
 		</Panel>
 	</SvelteFlow>
 </div>
-
