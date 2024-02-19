@@ -2,6 +2,7 @@
 	import { getContext } from '$lib/utils';
 	import type { PanelAction } from '$lib/types';
 	import { Button } from '$lib/components/ui/button';
+	import { AGENT_LIMIT, PROMPT_LIMIT } from '$lib/config';
 
 	export let actions: PanelAction[] = [];
 
@@ -30,7 +31,7 @@
 	</ul>
 
 	<ul>
-		<li>{$count.prompts} / 1 prompts</li>
-		<li>{$count.agents} / 10 agents</li>
+		<li>{$count.prompts} / {PROMPT_LIMIT} prompts</li>
+		<li>{$count.agents} / {AGENT_LIMIT} agents</li>
 	</ul>
 </div>
