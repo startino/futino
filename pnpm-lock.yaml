@@ -175,8 +175,8 @@ importers:
         specifier: ^2.2.0
         version: 2.2.0
       tailwind-variants:
-        specifier: ^0.1.20
-        version: 0.1.20(tailwindcss@3.4.1)
+        specifier: ^0.2.0
+        version: 0.2.0(tailwindcss@3.4.1)
     devDependencies:
       '@sveltejs/adapter-vercel':
         specifier: ^4.0.4
@@ -192,10 +192,10 @@ importers:
         version: 8.56.2
       '@typescript-eslint/eslint-plugin':
         specifier: ^7.0.1
-        version: 7.0.1(@typescript-eslint/parser@6.17.0)(eslint@8.56.0)(typescript@5.3.3)
+        version: 7.0.1(@typescript-eslint/parser@7.0.1)(eslint@8.56.0)(typescript@5.3.3)
       '@typescript-eslint/parser':
-        specifier: ^6.0.0
-        version: 6.17.0(eslint@8.56.0)(typescript@5.3.3)
+        specifier: ^7.0.1
+        version: 7.0.1(eslint@8.56.0)(typescript@5.3.3)
       autoprefixer:
         specifier: ^10.4.16
         version: 10.4.16(postcss@8.4.33)
@@ -676,8 +676,8 @@ importers:
         specifier: 8.56.2
         version: 8.56.2
       '@typescript-eslint/eslint-plugin':
-        specifier: ^6.0.0
-        version: 6.17.0(@typescript-eslint/parser@7.0.1)(eslint@8.56.0)(typescript@5.3.3)
+        specifier: ^7.0.1
+        version: 7.0.1(@typescript-eslint/parser@7.0.1)(eslint@8.56.0)(typescript@5.3.3)
       '@typescript-eslint/parser':
         specifier: ^7.0.1
         version: 7.0.1(eslint@8.56.0)(typescript@5.3.3)
@@ -730,8 +730,8 @@ importers:
   apps/website:
     dependencies:
       '@stripe/stripe-js':
-        specifier: ^2.3.0
-        version: 2.3.0
+        specifier: ^3.0.3
+        version: 3.0.3
       '@types/gtag.js':
         specifier: ^0.0.19
         version: 0.0.19
@@ -788,8 +788,8 @@ importers:
         specifier: 8.56.2
         version: 8.56.2
       '@typescript-eslint/eslint-plugin':
-        specifier: ^6.0.0
-        version: 6.17.0(@typescript-eslint/parser@7.0.1)(eslint@8.56.0)(typescript@5.3.3)
+        specifier: ^7.0.1
+        version: 7.0.1(@typescript-eslint/parser@7.0.1)(eslint@8.56.0)(typescript@5.3.3)
       '@typescript-eslint/parser':
         specifier: ^7.0.1
         version: 7.0.1(eslint@8.56.0)(typescript@5.3.3)
@@ -904,10 +904,10 @@ importers:
         version: 8.56.2
       '@typescript-eslint/eslint-plugin':
         specifier: ^7.0.1
-        version: 7.0.1(@typescript-eslint/parser@6.17.0)(eslint@8.56.0)(typescript@5.3.3)
+        version: 7.0.1(@typescript-eslint/parser@7.0.1)(eslint@8.56.0)(typescript@5.3.3)
       '@typescript-eslint/parser':
-        specifier: ^6.0.0
-        version: 6.17.0(eslint@8.56.0)(typescript@5.3.3)
+        specifier: ^7.0.1
+        version: 7.0.1(eslint@8.56.0)(typescript@5.3.3)
       autoprefixer:
         specifier: ^10.4.16
         version: 10.4.16(postcss@8.4.33)
@@ -1940,8 +1940,9 @@ packages:
     resolution: {integrity: sha512-+Fj43pSMwJs4KRrH/938Uf+uAELIgVBmQzg/q1YG10djyfA3TnrU8N8XzqCh/okZdszqBQTZf96idMfE5lnwTA==}
     dev: true
 
-  /@stripe/stripe-js@2.3.0:
-    resolution: {integrity: sha512-iTwzjw1ORUR+1pH21+C/M05w+Jh5hAuE4QUei7Gnku65N7QpEaHtyVszYMYDBs6iNyLrD1tfQTSrjD6NkOA/ww==}
+  /@stripe/stripe-js@3.0.3:
+    resolution: {integrity: sha512-UrHQ0hvDCZzpJEaOLbTRme1jREFzCuBe6eeHzowLtsS65Ah9pM+8bivXAyQUGHaAE2nPLu4lDvuDHPStPlrZUQ==}
+    engines: {node: '>=12.16'}
     dev: false
 
   /@supabase/auth-helpers-shared@0.6.3(@supabase/supabase-js@2.39.3):
@@ -2529,35 +2530,6 @@ packages:
       - supports-color
     dev: true
 
-  /@typescript-eslint/eslint-plugin@6.17.0(@typescript-eslint/parser@7.0.1)(eslint@8.56.0)(typescript@5.3.3):
-    resolution: {integrity: sha512-Vih/4xLXmY7V490dGwBQJTpIZxH4ZFH6eCVmQ4RFkB+wmaCTDAx4dtgoWwMNGKLkqRY1L6rPqzEbjorRnDo4rQ==}
-    engines: {node: ^16.0.0 || >=18.0.0}
-    peerDependencies:
-      '@typescript-eslint/parser': ^6.0.0 || ^6.0.0-alpha
-      eslint: ^7.0.0 || ^8.0.0
-      typescript: '*'
-    peerDependenciesMeta:
-      typescript:
-        optional: true
-    dependencies:
-      '@eslint-community/regexpp': 4.10.0
-      '@typescript-eslint/parser': 7.0.1(eslint@8.56.0)(typescript@5.3.3)
-      '@typescript-eslint/scope-manager': 6.17.0
-      '@typescript-eslint/type-utils': 6.17.0(eslint@8.56.0)(typescript@5.3.3)
-      '@typescript-eslint/utils': 6.17.0(eslint@8.56.0)(typescript@5.3.3)
-      '@typescript-eslint/visitor-keys': 6.17.0
-      debug: 4.3.4
-      eslint: 8.56.0
-      graphemer: 1.4.0
-      ignore: 5.3.0
-      natural-compare: 1.4.0
-      semver: 7.5.4
-      ts-api-utils: 1.0.2(typescript@5.3.3)
-      typescript: 5.3.3
-    transitivePeerDependencies:
-      - supports-color
-    dev: true
-
   /@typescript-eslint/eslint-plugin@6.19.0(@typescript-eslint/parser@6.19.0)(eslint@8.56.0)(typescript@5.3.3):
     resolution: {integrity: sha512-DUCUkQNklCQYnrBSSikjVChdc84/vMPDQSgJTHBZ64G9bA9w0Crc0rd2diujKbTdp6w2J47qkeHQLoi0rpLCdg==}
     engines: {node: ^16.0.0 || >=18.0.0}
@@ -2587,7 +2559,7 @@ packages:
       - supports-color
     dev: true
 
-  /@typescript-eslint/eslint-plugin@7.0.1(@typescript-eslint/parser@6.17.0)(eslint@8.56.0)(typescript@5.3.3):
+  /@typescript-eslint/eslint-plugin@7.0.1(@typescript-eslint/parser@7.0.1)(eslint@8.56.0)(typescript@5.3.3):
     resolution: {integrity: sha512-OLvgeBv3vXlnnJGIAgCLYKjgMEU+wBGj07MQ/nxAaON+3mLzX7mJbhRYrVGiVvFiXtwFlkcBa/TtmglHy0UbzQ==}
     engines: {node: ^16.0.0 || >=18.0.0}
     peerDependencies:
@@ -2599,7 +2571,7 @@ packages:
         optional: true
     dependencies:
       '@eslint-community/regexpp': 4.10.0
-      '@typescript-eslint/parser': 6.17.0(eslint@8.56.0)(typescript@5.3.3)
+      '@typescript-eslint/parser': 7.0.1(eslint@8.56.0)(typescript@5.3.3)
       '@typescript-eslint/scope-manager': 7.0.1
       '@typescript-eslint/type-utils': 7.0.1(eslint@8.56.0)(typescript@5.3.3)
       '@typescript-eslint/utils': 7.0.1(eslint@8.56.0)(typescript@5.3.3)
