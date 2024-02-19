@@ -8,8 +8,11 @@ import { getContext as getSvelteContext, setContext as setSvelteContext } from '
 import { writable } from 'svelte/store';
 import type { ContextKey, ContextMap, Maeve } from '$lib/types';
 import { browser } from '$app/environment';
-import { AVATARS } from '$lib/avatars';
+import { AVATARS, SAMPLE_FULL_NAMES } from '$lib/config';
 
+export function pickRandomName() {
+	return SAMPLE_FULL_NAMES[getRandomIndex(SAMPLE_FULL_NAMES)];
+}
 export function pickRandomAvatar() {
 	return AVATARS[getRandomIndex(AVATARS)];
 }
