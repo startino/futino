@@ -129,6 +129,7 @@
 		const { error } = await saveMaeveNodes({
 			id: data.id,
 			user_id: data.userId,
+			receiver_id: $receiver?.node.id ?? null,
 			nodes: [...prompts, ...agents],
 			edges: $edges
 		});
@@ -206,7 +207,7 @@
 			<ChatRoom />
 		</Dialog.Content>
 	</Dialog.Root>
-	
+
 	<SvelteFlow
 		{nodes}
 		{edges}
@@ -274,4 +275,3 @@
 		</Panel>
 	</SvelteFlow>
 </div>
-
