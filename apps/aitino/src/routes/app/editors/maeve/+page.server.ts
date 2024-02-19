@@ -51,7 +51,7 @@ export const actions = {
 
 	try {
 		// Assuming fileToUpload is a path to the file
-		let content = fileToUpload.text;
+		let content = await fileToUpload.text();
 		//let rawData = readFileSync(, 'utf8');
 		//let jsonData = JSON.parse(rawData);
 		console.log(content);
