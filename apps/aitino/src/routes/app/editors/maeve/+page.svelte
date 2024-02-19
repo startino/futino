@@ -17,7 +17,7 @@
 	import '@xyflow/svelte/dist/style.css';
 
 	import RightEditorSidebar from '$lib/components/RightEditorSidebar.svelte';
-	import { Button, buttonVariants } from '$lib/components/ui/button';
+	import { Button } from '$lib/components/ui/button';
 	import * as Dialog from '$lib/components/ui/dialog';
 	import { Library } from '$lib/components/ui/library';
 	import * as CustomNode from '$lib/components/ui/custom-node';

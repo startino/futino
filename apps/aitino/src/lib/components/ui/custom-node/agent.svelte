@@ -34,14 +34,14 @@
 
 	const { name, model, prompt, job_title, avatar } = data;
 
-	const modals = [
+	const models = [
 		{
-			label: 'GPT-4-Turbo',
-			value: 'GPT-4-Turbo'
+			label: 'GPT-4 Turbo',
+			value: 'gpt-4-turbo-preview'
 		},
 		{
-			label: 'GPT-3.5-Turbo',
-			value: 'GPT-3.5-Turbo'
+			label: 'GPT-3.5 Turbo',
+			value: 'gpt-3.5-turbo'
 		}
 	];
 
@@ -98,7 +98,7 @@
 			</Select.Trigger>
 			<Select.Content>
 				<Select.Group>
-					{#each modals as { value, label }}
+					{#each models as { value, label }}
 						<Select.Item {value} {label}>
 							{label}
 						</Select.Item>
