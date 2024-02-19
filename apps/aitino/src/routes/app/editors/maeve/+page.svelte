@@ -26,6 +26,7 @@
 	import { getContext, getInitialNodes } from '$lib/utils';
 	import type { PanelAction } from '$lib/types';
 	import ChatRoom from '$lib/components/ChatRoom.svelte';
+	import { AGENT_LIMIT, PROMPT_LIMIT } from '$lib/config.js';
 
 	export let data;
 
@@ -149,7 +150,7 @@
 	}
 
 	function addNewAgent() {
-		if ($count.agents > 9) return;
+		if ($count.agents >= AGENT_LIMIT) return;
 
 		const position = { ...getViewport() };
 
@@ -175,7 +176,7 @@
 	}
 
 	function addNewPrompt() {
-		if ($count.prompts > 0) return;
+		if ($count.prompts >= PROMPT_LIMIT) return;
 
 		const position = { ...getViewport() };
 		setCenter(position.x, position.y, { zoom: position.zoom });
