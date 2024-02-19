@@ -2,6 +2,7 @@ import { getMaeveNodes } from '$lib/api-client';
 import type { Edge, Node } from '@xyflow/svelte';
 import { writeFileSync, readFile, readFileSync} from 'fs';
 import { fail } from '@sveltejs/kit';
+import type { Maeve } from '$lib/types.js';
 
 export const load = async ({ locals: { userId } }) => {
 	const { data } = await getMaeveNodes(userId);
@@ -28,12 +29,9 @@ export const load = async ({ locals: { userId } }) => {
 
 
 export const actions = {
-  loadMaeve: async ({ request }) => {
+  loadMaeveFile: async ({ request }) => {
 	
-
     const formData = Object.fromEntries(await request.formData());
-
- 
 
     if ( !(formData.fileToUpload as File).name || (formData.fileToUpload as File).name === 'undefined' ) {
 
@@ -50,10 +48,8 @@ export const actions = {
     const { fileToUpload } = formData as { fileToUpload: File };
 
 	try {
-		// Assuming fileToUpload is a path to the file
 		let content = await fileToUpload.text();
-		//let rawData = readFileSync(, 'utf8');
-		//let jsonData = JSON.parse(rawData);
+		let maeve = JSON.parse(content) as Maeve;
 		console.log(content);
 	} 
 	catch (error) {
@@ -65,7 +61,7 @@ export const actions = {
 	}
 
     return {
-      success: true
+      success: true,
     };
 
 

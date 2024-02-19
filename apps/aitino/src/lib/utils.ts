@@ -78,6 +78,7 @@ export function injectPremadeValues(str: string) {
 	}
 }
 
+// Get Maeve from localStorage
 export function getLocalMaeve() {
 	let maeveStr: string | null = null;
 	if (browser) {
@@ -87,6 +88,8 @@ export function getLocalMaeve() {
 
 	return JSON.parse(maeveStr) as Maeve;
 }
+
+
 
 export function getInitialNodes(nodes: Node[]): Node[] {
 	return [

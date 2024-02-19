@@ -8,6 +8,9 @@
 	import { Label } from '$lib/components/ui/label';
 
 	import { enhance } from '$app/forms';
+
+	export let action: undefined | { success: boolean, name: string};
+
 </script>
 
 <div class="py-4">
@@ -21,9 +24,8 @@
 			<ul class="h-full space-y-4 py-6">
 				<form
 					method="POST"
-					use:enhance
 					action="?/loadMaeve"
-					enctype="multipart/form-data"
+					use:enhance
 					class="grid grid-cols-8 rounded-md border border-border bg-card p-6"
 				>
 					<div class="col-span-7 grid w-full max-w-sm items-center gap-1.5">
@@ -33,7 +35,6 @@
 							id="file"
 							accept=".json"
 							type="file"
-							name="fileToUpload"
 							class="border border-border bg-foreground/10"
 						/>
 					</div>
