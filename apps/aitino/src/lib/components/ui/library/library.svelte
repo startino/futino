@@ -7,10 +7,9 @@
 	import { maevePresets } from '$lib/dummy-data/maevePresets';
 	import { Label } from '$lib/components/ui/label';
 
-	import { enhance } from '$app/forms';
-
-	export let action: undefined | { success: boolean, name: string};
-
+	function handleMaeveJSON(e) {
+		console.log({ e });
+	}
 </script>
 
 <div class="py-4">
@@ -24,9 +23,8 @@
 			<ul class="h-full space-y-4 py-6">
 				<form
 					method="POST"
-					action="?/loadMaeve"
-					use:enhance
 					class="grid grid-cols-8 rounded-md border border-border bg-card p-6"
+					on:submit|preventDefault={handleMaeveJSON}
 				>
 					<div class="col-span-7 grid w-full max-w-sm items-center gap-1.5">
 						<Label for="file">Upload a Maeve from a file with the button below</Label>
