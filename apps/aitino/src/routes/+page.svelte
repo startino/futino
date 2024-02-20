@@ -7,7 +7,6 @@
 
 	export let form: ActionData;
 
-	console.log(form, 'action data');
 	export let data: PageData;
 	const titleVariants = {
 		'0': 'Join the Future of AI<br /> with Exclusive Early Access to <span class="bg-gradient-to-b from-primary to-background from-50% bg-clip-text text-transparent">Aitino</span>'
@@ -73,7 +72,7 @@
 				</SplitTest>
 			</h3>
 
-			<FormItem class="mt-10" mainform={form} notform={data} />
+			<FormItem mainform={form} notform={data} />
 		</div>
 	</div>
 </div>

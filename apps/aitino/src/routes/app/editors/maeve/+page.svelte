@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { writable, get } from "svelte/store";
+  import { writable } from "svelte/store";
   import dagre from "@dagrejs/dagre";
   import {
     SvelteFlow,
@@ -39,6 +39,9 @@
 
   const { receiver, count } = getContext("maeve");
 
+  let title = data.title;
+  let description = data.description;
+
   const actions: PanelAction[] = [
     { name: "Run", buttonVariant: "default" },
     { name: "Add Prompt", buttonVariant: "outline", onclick: addNewPrompt },
@@ -49,7 +52,13 @@
       buttonVariant: "outline",
       onclick: () => {
         const jsonString = JSON.stringify(
-          { nodes: getCleanNodes($nodes), edges: $edges },
+          {
+            nodes: getCleanNodes($nodes),
+            edges: $edges,
+            title,
+            description,
+            receiver_id: $receiver?.node.id ?? null,
+          },
           null,
           2
         );
@@ -126,7 +135,9 @@
   async function save() {
     const { error } = await saveMaeveNodes({
       id: data.id,
-      user_id: data.userId,
+      user_id: data.user_id,
+      title,
+      description,
       receiver_id: $receiver?.node.id ?? null,
       nodes: getCleanNodes($nodes),
       edges: $edges,
@@ -138,6 +149,14 @@
     }
 
     toast.success("Nodes successfully saved!");
+  }
+
+  function setReceiver(id: string | null | undefined) {
+    if (!id) {
+      return;
+    }
+    const revr = getNodes([id])[0];
+    $receiver = { node: revr, targetCount: 1 };
   }
 
   function layout() {
@@ -223,13 +242,7 @@
     oninit={() => {
       count.set(data.count);
 
-      const prompt = $nodes.find((n) => n.type === "prompt");
-
-      if (prompt) {
-        const outgoers = getOutgoers(prompt, $nodes, $edges);
-
-        outgoers[0] && ($receiver = { node: outgoers[0], targetCount: 1 });
-      }
+      setReceiver(data.receiver_id);
     }}
     connectionLineType={ConnectionLineType.SmoothStep}
     defaultEdgeOptions={{ type: "smoothstep", animated: true }}
@@ -269,7 +282,7 @@
     <Background class="!bg-background" />
 
     <Panel position="top-right">
-      <RightEditorSidebar {actions} let:action>
+      <RightEditorSidebar bind:description bind:title {actions} let:action>
         {#if action.isCustom}
           <Dialog.Root
             open={libraryOpen}
@@ -288,6 +301,8 @@
                   nodes.set(getWritableNodes(maeve.nodes));
                   edges.set(maeve.edges);
                   libraryOpen = false;
+
+                  setReceiver(maeve.receiver_id);
                 }}
               />
             </Dialog.Content>

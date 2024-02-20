@@ -1,14 +1,7 @@
-import { type Node, type Edge } from '@xyflow/svelte';
-
 import { supabase } from '$lib/supabase';
+import type { TablesInsert } from '$lib/supabase.types';
 
-export async function saveMaeveNodes(data: {
-	id?: string;
-	user_id: string;
-	receiver_id: string | null;
-	nodes: Node[];
-	edges: Edge[];
-}) {
+export async function saveMaeveNodes(data: TablesInsert<'maeve_nodes'>) {
 	return supabase.from('maeve_nodes').upsert(data);
 }
 
