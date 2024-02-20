@@ -68,21 +68,13 @@
 
 	let chatContainerElement: HTMLDivElement;
 
-	// afterUpdate(() => {
-	// 	if (chatContainerElement) {
-	// 		chatContainerElement.scrollTop = chatContainerElement.scrollHeight;
+	afterUpdate(() => {
+		if (chatContainerElement) {
+			chatContainerElement.scrollTop = chatContainerElement.scrollHeight;
 			
-	// 	}
-	// });
+		}
+	});
 
-	function scrollToBottom() {
-        chatContainerElement.scrollTo({
-            top: chatContainerElement.scrollHeight,
-            behavior: 'smooth'
-        });
-    }
-
-    afterUpdate(scrollToBottom);
 </script>
 
 <div class="container -mb-6 flex h-screen max-w-6xl flex-col justify-end p-6">
@@ -125,7 +117,7 @@
 						>
 							<Card.Content class="grid gap-4 p-6 prose">
 								{#if message.content.startsWith('```') || message.content.includes('<')}
-									<SvelteMarkdown source={message.content}/>
+									<SvelteMarkdown source={message.content} />
 								{:else}
 									<p class="prose text-sm font-medium leading-5 tracking-widest">
 										{message.content}
