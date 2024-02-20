@@ -1,21 +1,13 @@
 <script lang="ts">
-	import Contact from '$lib/components/Contact.svelte';
-
-	import { toast } from 'svelte-sonner';
-
-	import FormItem from '$lib/components/FormItem.svelte';
-	import Button from '$lib/components/ui/button/button.svelte';
-	import * as Dialog from '$lib/components/ui/dialog';
-	import { Input } from '$lib/components/ui/input';
-	import { Label } from '$lib/components/ui/label';
-	import { Textarea } from '$lib/components/ui/textarea';
 	import { SplitTest } from 'svelte-split-testing';
 	import { Toaster } from '$lib/components/ui/sonner';
+	import FormItem from '$lib/components/FormItem.svelte';
+	import type { ActionData, PageData } from './$types';
 
-	export let form;
+	export let form: ActionData;
 
-	let showModal = false;
-
+	console.log(form, 'action data');
+	export let data: PageData;
 	const titleVariants = {
 		'0': 'Join the Future of AI<br /> with Exclusive Early Access to <span class="bg-gradient-to-b from-primary to-background from-50% bg-clip-text text-transparent">Aitino</span>'
 		// '1': 'Create Solutions Like <br /> Never Before with <span class="bg-gradient-to-r from-primary to-danger bg-clip-text text-transparent">Aitino</span>',
@@ -30,8 +22,8 @@
 	const subtitleVariants = {
 		'0': "Aitino is a platform that allows for the creation of teams of AI Agents to help you automate tasks and solve complex problems. It's made easily customizable through a node-editor."
 	};
-	$: console.log(showModal);
 </script>
+
 
 <div
 	class="pointer-events-none absolute inset-0 h-full w-full bg-inherit bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:150px_150px]"
@@ -75,36 +67,7 @@
 				</SplitTest>
 			</h3>
 
-			<FormItem class="mt-10" {form} />
+			<FormItem class="mt-10" mainform={form} notform={data} />
 		</div>
-
-		{#if showModal}
-			<div class="absolute left-0 top-0 h-full w-full bg-zinc-800/50">
-				<Contact on:closeModal={() => (showModal = false)} />
-			</div>
-		{/if}
 	</div>
 </div>
-
-<style>
-	.typewriter span {
-		overflow: hidden;
-		white-space: nowrap;
-		margin: auto;
-		letter-spacing: 0.15em;
-		margin-bottom: -0.39rem;
-		animation:
-			typing 3.5s steps(40, end),
-			blink-caret 0.75s step-end infinite;
-	}
-
-	/* The typing effect */
-	@keyframes typing {
-		from {
-			width: 0;
-		}
-		to {
-			width: 20%;
-		}
-	}
-</style>

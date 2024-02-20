@@ -2,19 +2,33 @@
 	import { applyAction, enhance } from '$app/forms';
 	import { invalidateAll } from '$app/navigation';
 	import { Button } from '$lib/components/ui/button';
-
 	import { ArrowRight, Loader, Github, X, Youtube } from 'lucide-svelte';
 	import Input from './ui/input/input.svelte';
 	import { toast } from 'svelte-sonner';
-
 	import * as Dialog from './ui/dialog';
 	import { Label } from './ui/label';
 	import { Textarea } from './ui/textarea';
+	import { superForm } from 'sveltekit-superforms/client';
+	import SuperDebug from 'sveltekit-superforms/client/SuperDebug.svelte';
+	import * as Form from '$lib/components/ui/form';
+	import { formSchema, waitlistSchema, type FormSchema } from '../../routes/schema';
+	import type { ActionData } from '../../routes/$types';
 
-	export let form: any = {};
+	export let mainform: ActionData;
+	export let notform: any;
+
+	console.log(mainform, 'mainform data');
+	let input = '';
 
 	let isLoading = false;
+
+	const { form, errors } = superForm(notform.contactForm);
+	const { form: join_waitlist_Form, errors: join_waitlist_Error } = superForm(notform.waitlistForm);
 </script>
+
+<!-- Uncomment this to debug the superform and zod -->
+<!-- <SuperDebug data={notform.contactForm} /> -->
+<!-- <SuperDebug data={notform.waitlistForm} /> -->
 
 <form
 	action="?/register"
@@ -23,91 +37,136 @@
 	class="mx-auto flex w-full max-w-sm flex-col items-center justify-center gap-4 space-x-2 lg:max-w-lg {$$props.class}"
 	use:enhance={() => {
 		return async ({ result }) => {
-			invalidateAll();
 			await applyAction(result);
 		};
 	}}
 >
-	<div class="flex w-full h-fit flex-col gap-4 p-1 sm:flex-row">
-		<Input
-			class="border-input placeholder:text-muted-foreground focus-visible:ring-ring flex w-full rounded-md border bg-transparent px-3 py-1 text-sm shadow-sm ring-offset-0 transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50 "
-			id="email"
-			type="email"
-			name="email"
-			placeholder="jorge.lewis@futi.no"
-		/>
+	<div class="flex h-fit w-full flex-col gap-4 p-1 sm:flex-row">
+		<div class="flex w-full flex-col justify-between">
+			<Input
+				class="border-input placeholder:text-muted-foreground focus-visible:ring-ring flex w-full rounded-md border bg-transparent px-3 py-1 text-sm shadow-sm ring-offset-0 transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50 "
+				id="email"
+				type="email"
+				name="email"
+				placeholder="jorge.lewis@futi.no"
+				bind:value={$join_waitlist_Form.email}
+			/>
+
+			{#if $join_waitlist_Error.email}
+				<p class="block w-full max-w-lg text-red-500">
+					{$join_waitlist_Error.email}
+				</p>
+			{/if}
+		</div>
+
 		<Button
 			type="submit"
 			class="text-md relative flex w-full gap-x-3 transition-all duration-300 ease-in-out sm:w-fit"
 			on:click={async () => {
-				if (form) {
-					if (form?.success) {
-						toast.success(form.message);
-						isLoading = false;
+				isLoading = true;
+				setTimeout(() => {
+					// if (($join_waitlist_Error.email === null || undefined)) {
+					if (mainform) {
+						if (mainform?.message) {
+							toast.success(mainform?.message);
+							document.getElementById('email').value = ' ';
+							console.log(' from message');
+							isLoading = false;
+						} else if (mainform?.invalid) {
+							toast.error(mainform?.error);
+							console.log(' from error');
+							isLoading = false;
+							document.getElementById('email').value = ' ';
+						}
 					} else {
-						toast.error(form?.error);
-						isLoading = false;
+						console.log('no form');
+						toast.error('An error occurred. Please try again in 3 seconds...');
 					}
-				} else {
-					console.log('no form');
-					toast.error('An error occurred. Please try again in 3 seconds...');
-				}
+					// }
+					isLoading = false;
+				}, 1000);
 			}}
 		>
 			{#if isLoading}
-				<Loader />
+				<Loader class="duration-3000 animate-spin transition-all ease-in-out" />
 			{:else}
 				Join the Waitlist<ArrowRight class="" />{/if}
 		</Button>
 	</div>
-
-	<!-- svelte-ignore missing-declaration -->
-
-	<Dialog.Root>
-		<Dialog.Trigger class="mt-4 md:mt-6 xl:mt-8">
-			<Button class=" text-base" variant="outline">Contact Us</Button>
-		</Dialog.Trigger>
-		<Dialog.Content class="sm:max-w-[425px]">
-			<Dialog.Header class="mt-4 space-y-1">
-				<Dialog.Title class="text-4xl">Contact Us</Dialog.Title>
-			</Dialog.Header>
-			<form action="?/contactUs" method="POST" class="space-y-4">
-				<div class="grid gap-2">
-					<Label for="name">Name</Label>
-					<Input
-						class="border-input placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border bg-transparent px-3 py-1 text-sm shadow-sm ring-offset-0 transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50 "
-						id="name"
-						type="name"
-						name="name"
-						required
-					/>
-				</div>
-				<div class="grid gap-2">
-					<Label for="email">Email</Label>
-					<Input
-						class="border-input placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border bg-transparent px-3 py-1 text-sm shadow-sm ring-offset-0 transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50 "
-						id="email"
-						type="email"
-						required
-						name="email"
-					/>
-				</div>
-				<div class="grid gap-2">
-					<Label for="email">Description</Label>
-					<Textarea
-						name="description"
-						class="border-input placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border bg-transparent px-3 py-1 text-sm shadow-sm ring-offset-0 transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50 "
-					/>
-				</div>
-				<Dialog.Footer>
-					<Button type="submit">Submit</Button>
-				</Dialog.Footer>
-			</form>
-		</Dialog.Content>
-	</Dialog.Root>
 </form>
 
-<div class="mx-auto flex w-fit h-fit flex-wrap-reverse mt-6 items-center justify-between gap-2 sm:flex-row md:p-4">
+<Dialog.Root>
+	<Dialog.Trigger class="mt-4 md:mt-6 xl:mt-8">
+		<Button class=" text-base" variant="outline">Contact Us</Button>
+	</Dialog.Trigger>
+	<Dialog.Content class="sm:max-w-[425px]">
+		<Dialog.Header class="mt-4 space-y-1">
+			<Dialog.Title class="text-4xl">Contact Us</Dialog.Title>
+		</Dialog.Header>
+		<Form.Root
+			method="POST"
+			class="space-y-8"
+			let:config
+			schema={formSchema}
+			action="?/contactUs"
+			form={notform.contactForm}
+		>
+			<Form.Item>
+				<Form.Field name="name" {config}>
+					<Form.Label>Name</Form.Label>
+					<Form.Input
+						placeholder="Your name"
+						class="border-input placeholder:text-muted-foreground focus-visible:ring-ring flex w-full rounded-md border bg-transparent px-3 py-1 text-sm shadow-sm ring-offset-0 transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50 "
+					/>
+					<Form.Validation />
+				</Form.Field>
+			</Form.Item>
+			<Form.Item>
+				<Form.Field name="email" {config}>
+					<Form.Label>Email</Form.Label>
+					<Form.Input
+						placeholder="Your email"
+						class="border-input placeholder:text-muted-foreground focus-visible:ring-ring flex w-full rounded-md border bg-transparent px-3 py-1 text-sm shadow-sm ring-offset-0 transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50 "
+					/>
+					<Form.Validation />
+				</Form.Field>
+			</Form.Item>
+			<Form.Item>
+				<Form.Field name="description" {config}>
+					<Form.Label>Description</Form.Label>
+					<Form.Textarea
+						placeholder="Your description"
+						class="border-input placeholder:text-muted-foreground focus-visible:ring-ring flex w-full rounded-md border bg-transparent px-3 py-1 text-sm shadow-sm ring-offset-0 transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50 "
+					/>
+					<Form.Validation />
+				</Form.Field>
+			</Form.Item>
+			<Form.Button
+				on:click={() => {
+					console.log($errors, 'errors from form button');
+
+					let hasErrors = Object.keys($errors).length > 0;
+					console.log(hasErrors, Object.keys($errors).length, 'has errors');
+
+					if (hasErrors) {
+						console.log('has error, from toast error', hasErrors);
+						toast.error('Please fill the form correctly');
+					} else {
+						console.log('has error, from toast success', hasErrors);
+						toast.success(
+							'We got your message and will get back to you as soon as possible! Thank you!'
+						);
+					}
+				}}>Submit</Form.Button
+			>
+		</Form.Root>
+	</Dialog.Content>
+	<Dialog.Footer></Dialog.Footer>
+</Dialog.Root>
+
+<div
+	class="mx-auto mt-6 flex h-fit w-fit flex-wrap-reverse items-center justify-between gap-2 sm:flex-row md:p-4"
+>
 	<Button
 		class="hover:bg-primary text-accent hover:text-primary-foreground bg-transparent p-6 font-bold transition-all duration-300 ease-in-out hover:scale-95 "
 		href="https://github.com/Futino/"
