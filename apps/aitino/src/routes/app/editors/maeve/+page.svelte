@@ -25,7 +25,8 @@
 
   import {
     getContext,
-    getInitialNodes,
+    getWritableNodes,
+    getCleanNodes,
     pickRandomAvatar,
     pickRandomName,
   } from "$lib/utils";
@@ -47,7 +48,7 @@
       buttonVariant: "outline",
       onclick: () => {
         const jsonString = JSON.stringify(
-          { nodes: $nodes, edges: $edges },
+          { nodes: getCleanNodes($nodes), edges: $edges },
           null,
           2
         );
@@ -65,11 +66,9 @@
     {
       name: "Save",
       buttonVariant: "outline",
-      onclick: async () => {
-        layout();
-        await compile();
-      },
+      onclick: async () => await save(),
     },
+    { name: "Layout", buttonVariant: "outline", onclick: layout },
     { name: "Sessions", buttonVariant: "outline" },
   ];
 
@@ -78,11 +77,13 @@
     prompt: CustomNode.Prompt,
   };
 
+  let libraryOpen = false;
+
   const dagreGraph = new dagre.graphlib.Graph();
   dagreGraph.setDefaultEdgeLabel(() => ({}));
 
   const nodeWidth = 400;
-  const nodeHeight = 400;
+  const nodeHeight = 500;
 
   const { deleteElements, getNodes, getViewport, setCenter } = useSvelteFlow();
 
@@ -118,12 +119,10 @@
     return { nodes, edges };
   }
 
-  // const { nodes: layoutedNodes, edges: layoutedEdges } = getLayoutedElements(initNodes, initEdges);
-
-  const nodes = writable<Node[]>(getInitialNodes(data.nodes));
+  const nodes = writable<Node[]>(getWritableNodes(data.nodes));
   const edges = writable<Edge[]>(data.edges);
 
-  async function compile() {
+  async function save() {
     const agents = $nodes
       .filter((n) => n.type === "agent")
       .map((n) => {
@@ -300,14 +299,25 @@
     <Panel position="top-right">
       <RightEditorSidebar {actions} let:action>
         {#if action.isCustom}
-          <Dialog.Root>
+          <Dialog.Root
+            open={libraryOpen}
+            onOpenChange={(o) => (libraryOpen = o)}
+          >
             <Dialog.Trigger>
               <Button variant={action.buttonVariant} class="w-full">
                 {action.name}
               </Button>
             </Dialog.Trigger>
             <Dialog.Content class="max-w-5xl">
-              <Library />
+              <Library
+                on:maeve-load={(e) => {
+                  const maeve = e.detail.maeve;
+                  nodes.set(getWritableNodes(maeve.nodes));
+                  edges.set(maeve.edges);
+
+                  libraryOpen = false;
+                }}
+              />
             </Dialog.Content>
           </Dialog.Root>
         {/if}

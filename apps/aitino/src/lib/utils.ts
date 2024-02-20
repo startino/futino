@@ -1,4 +1,5 @@
 import { type ClassValue, clsx } from 'clsx';
+import { get } from 'svelte/store';
 import type { Node } from '@xyflow/svelte';
 import { twMerge } from 'tailwind-merge';
 import { cubicOut } from 'svelte/easing';
@@ -89,9 +90,42 @@ export function getLocalMaeve() {
 	return JSON.parse(maeveStr) as Maeve;
 }
 
+// creates an array of nodes without the stores
+export function getCleanNodes(nodes: Node[]): Node[] {
+	const agents = nodes
+		.filter((n) => n.type === 'agent')
+		.map((n) => {
+			const { prompt, name, job_title, model } = n.data;
+			return {
+				...n,
+				data: {
+					...n.data,
+					prompt: get(prompt),
+					name: get(name),
+					job_title: get(job_title),
+					model: get(model)
+				}
+			};
+		});
 
+	const prompts = nodes
+		.filter((n) => n.type === 'prompt')
+		.map((n) => {
+			const { title, content } = n.data;
+			return {
+				...n,
+				data: {
+					title: get(title),
+					content: get(content)
+				}
+			};
+		});
 
-export function getInitialNodes(nodes: Node[]): Node[] {
+	return [...prompts, ...agents];
+}
+
+// creates an array of writable nodes
+export function getWritableNodes(nodes: Node[]): Node[] {
 	return [
 		...nodes
 			.filter((n) => n.type === 'prompt')
