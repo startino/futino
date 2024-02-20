@@ -77,11 +77,11 @@
 		'p-4 rounded-md bg-vscode-dark text-white font-mono relative overflow-x-auto';
 	const lineNumberStyle = 'flex-shrink-0 mr-4 text-gray-400';
 
-	function formatCode(content) {
+	function formatCode(content: string) {
 		const lines = content.split(/\r?\n|\s{4,}/);
 
 		const indentation = 4; 
-		const formattedLines = lines.map((line, index) => {
+		const formattedLines = lines.map((line: string, index: number) => {
 			const lineNumber = index + 1;
 			const formattedLine = `${lineNumber.toString().padStart(3, ' ')} | ${line.repeat(indentation)}`;
 			return formattedLine;
@@ -91,7 +91,7 @@
 	}
 </script>
 
-<div class="container flex h-screen max-w-6xl flex-col justify-end p-6">
+<div class="container flex h-screen max-w-6xl flex-col justify-end p-6 -mb-6">
 	<div class="no-scrollbar max-h-full overflow-y-auto" bind:this={chatContainerElement}>
 		<!-- add scroll to the bottom of the chat  -->
 		{#each messages as message}
