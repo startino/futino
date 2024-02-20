@@ -25,22 +25,23 @@
 	const { receiver, count } = getContext('maeve');
 
 	export let data: {
+		avatar: string;
 		prompt: Writable<string>;
 		job_title: Writable<string>;
 		name: Writable<string>;
 		model: Writable<{ label: string; value: string }>;
 	};
 
-	const { name, model, prompt, job_title } = data;
+	const { name, model, prompt, job_title, avatar } = data;
 
-	const modals = [
+	const models = [
 		{
-			label: 'GPT-4-Turbo',
-			value: 'GPT-4-Turbo'
+			label: 'GPT-4 Turbo',
+			value: 'gpt-4-turbo-preview'
 		},
 		{
-			label: 'GPT-3.5-Turbo',
-			value: 'GPT-3.5-Turbo'
+			label: 'GPT-3.5 Turbo',
+			value: 'gpt-3.5-turbo'
 		}
 	];
 
@@ -85,6 +86,9 @@
 		</Card.Title>
 	</Card.Header>
 	<Card.Content class="grid gap-2">
+		{#if avatar}
+			<img class="mx-auto max-w-[90px]" src="/avatars/{avatar}" alt="" />
+		{/if}
 		<Input placeholder="Name..." bind:value={$name} />
 		<Input placeholder="Job title..." bind:value={$job_title} />
 		<Textarea placeholder="Prompt..." bind:value={$prompt} />
@@ -94,7 +98,7 @@
 			</Select.Trigger>
 			<Select.Content>
 				<Select.Group>
-					{#each modals as { value, label }}
+					{#each models as { value, label }}
 						<Select.Item {value} {label}>
 							{label}
 						</Select.Item>

@@ -5,6 +5,7 @@ import { supabase } from '$lib/supabase';
 export async function saveMaeveNodes(data: {
 	id?: string;
 	user_id: string;
+	receiver_id: string | null;
 	nodes: Node[];
 	edges: Edge[];
 }) {

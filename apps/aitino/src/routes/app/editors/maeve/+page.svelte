@@ -17,15 +17,16 @@
 	import '@xyflow/svelte/dist/style.css';
 
 	import RightEditorSidebar from '$lib/components/RightEditorSidebar.svelte';
-	import { Button, buttonVariants } from '$lib/components/ui/button';
+	import { Button } from '$lib/components/ui/button';
 	import * as Dialog from '$lib/components/ui/dialog';
 	import { Library } from '$lib/components/ui/library';
 	import * as CustomNode from '$lib/components/ui/custom-node';
 	import { saveMaeveNodes } from '$lib/api-client';
 
-	import { getContext, getInitialNodes } from '$lib/utils';
+	import { getContext, getInitialNodes, pickRandomAvatar, pickRandomName } from '$lib/utils';
 	import type { PanelAction } from '$lib/types';
 	import ChatRoom from '$lib/components/ChatRoom.svelte';
+	import { AGENT_LIMIT, PROMPT_LIMIT } from '$lib/config.js';
 
 	export let data;
 
@@ -105,6 +106,7 @@
 				return {
 					...n,
 					data: {
+						...n.data,
 						prompt: get(prompt),
 						name: get(name),
 						job_title: get(job_title),
@@ -129,6 +131,7 @@
 		const { error } = await saveMaeveNodes({
 			id: data.id,
 			user_id: data.userId,
+			receiver_id: $receiver?.node.id ?? null,
 			nodes: [...prompts, ...agents],
 			edges: $edges
 		});
@@ -148,9 +151,15 @@
 	}
 
 	function addNewAgent() {
-		if ($count.agents > 9) return;
+		if ($count.agents >= AGENT_LIMIT) return;
 
 		const position = { ...getViewport() };
+
+		let name = '';
+
+		do {
+			name = pickRandomName();
+		} while (Boolean($nodes.find((n) => n.type === 'agent' && n.data.name === name)));
 
 		setCenter(position.x, position.y, { zoom: position.zoom });
 
@@ -162,10 +171,11 @@
 				position,
 				selectable: false,
 				data: {
-					name: writable(''),
+					name: writable(name),
 					job_title: writable(''),
 					prompt: writable(''),
-					model: writable({ label: '', value: '' })
+					model: writable({ label: '', value: '' }),
+					avatar: pickRandomAvatar()
 				}
 			}
 		]);
@@ -174,7 +184,7 @@
 	}
 
 	function addNewPrompt() {
-		if ($count.prompts > 0) return;
+		if ($count.prompts >= PROMPT_LIMIT) return;
 
 		const position = { ...getViewport() };
 		setCenter(position.x, position.y, { zoom: position.zoom });
@@ -198,6 +208,17 @@
 </script>
 
 <div style="height:100vh;">
+
+	<Dialog.Root>
+		<Dialog.Trigger class="">
+			<Button class="block text-base">Chat</Button>
+		</Dialog.Trigger>
+		<Dialog.Content class="sm:max-w-full">
+			<ChatRoom />
+		</Dialog.Content>
+	</Dialog.Root>
+
+
 	<SvelteFlow
 		{nodes}
 		{edges}
