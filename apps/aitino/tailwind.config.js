@@ -35,32 +35,7 @@ const config = {
 				...typographyConfig(colors, alpha),
 				...{
 					DEFAULT: {
-						css: {
-							h1: {
-								fontWeight: 'bold'
-							},
-							h2: {
-								fontWeight: 'normal'
-							},
-							h3: {
-								fontWeight: 'normal'
-							},
-							h4: {
-								fontWeight: 'normal'
-							},
-							h5: {
-								fontWeight: 'normal'
-							},
-
-							h6: {
-								fontWeight: 'normal'
-							},
-							p: {
-								letterSpacing: '0.5',
-								lineHeight: '1.5',
-								opacity: '0.75'
-							}
-						}
+						
 					}
 				}
 			})

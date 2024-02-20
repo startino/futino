@@ -1,3 +1,4 @@
+import type { Post } from '$lib/types'
 import { error } from '@sveltejs/kit'
 
 export async function load({ params }) {
@@ -5,6 +6,7 @@ export async function load({ params }) {
 		const post = await import(`../../../../lib/blog/posts/${params.slug}.md`)
 
 		return {
+			slug: params.slug,
 			content: post.default,
 			meta: post.metadata
 		}

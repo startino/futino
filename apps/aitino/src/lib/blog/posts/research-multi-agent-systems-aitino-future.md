@@ -1,10 +1,12 @@
 ---
 title: Research Multi Agent Systems Aitino Future
 description: First post.
-date: '2024-2-20'
+date: '2024-2-21'
 categories:
-  - sveltekit
-  - svelte
+  - multi-agents
+  - automation
+  - ai
+  - problem-solving
 published: true
 ---
 

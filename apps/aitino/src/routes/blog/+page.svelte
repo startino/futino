@@ -1,13 +1,17 @@
 <script lang="ts">
 	import { formatDate } from '$lib/utils'
 	import * as config from '$lib/config'
+	import SEO from '$lib/components/SEO/index.svelte'
 
 	export let data
 </script>
 
-<svelte:head>
-	<title>{config.title}</title>
-</svelte:head>
+<SEO
+	slug="blog"
+	title="Aitino's Blogs"
+	metadescription="This is a collection of blogs written by Aitino to raise awareness of the capabilities of multi-agent systems, especially in this modern age of powerful AI models."
+/>
+
 
 <section>
 	<ul class="posts">
