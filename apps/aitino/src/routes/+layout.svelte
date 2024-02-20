@@ -8,4 +8,5 @@
 	setContext('splitTestIdentifier', data?.splitTestIdentifier);
 </script>
 
+<Toaster />
 <slot />
