@@ -4,6 +4,7 @@
 	import { Button } from './ui/button';
 	import * as Card from '$lib/components/ui/card';
 	import { afterUpdate, onMount } from 'svelte';
+	import SvelteMarkdown from 'svelte-markdown';
 
 	let messages = [
 		{
@@ -67,58 +68,51 @@
 
 	let chatContainerElement: HTMLDivElement;
 
-	afterUpdate(() => {
-		if (chatContainerElement) {
-			chatContainerElement.scrollTop = chatContainerElement.scrollHeight;
-		}
-	});
+	// afterUpdate(() => {
+	// 	if (chatContainerElement) {
+	// 		chatContainerElement.scrollTop = chatContainerElement.scrollHeight;
+			
+	// 	}
+	// });
 
-	const codeBlockStyle =
-		'p-4 rounded-md bg-vscode-dark text-white font-mono relative overflow-x-auto';
-	const lineNumberStyle = 'flex-shrink-0 mr-4 text-gray-400';
+	function scrollToBottom() {
+        chatContainerElement.scrollTo({
+            top: chatContainerElement.scrollHeight,
+            behavior: 'smooth'
+        });
+    }
 
-	function formatCode(content: string) {
-		const lines = content.split(/\r?\n|\s{4,}/);
-
-		const indentation = 4; 
-		const formattedLines = lines.map((line: string, index: number) => {
-			const lineNumber = index + 1;
-			const formattedLine = `${lineNumber.toString().padStart(3, ' ')} | ${line.repeat(indentation)}`;
-			return formattedLine;
-		});
-
-		return formattedLines.join('\n');
-	}
+    afterUpdate(scrollToBottom);
 </script>
 
-<div class="container flex h-screen max-w-6xl flex-col justify-end p-6 -mb-6">
+<div class="container -mb-6 flex h-screen max-w-6xl flex-col justify-end p-6">
 	<div class="no-scrollbar max-h-full overflow-y-auto" bind:this={chatContainerElement}>
 		<!-- add scroll to the bottom of the chat  -->
 		{#each messages as message}
 			<div>
 				{#if !message.fromUser}
-					<div class="space-y-2">
-						<Card.Root class="border-secondary-500 max-w-2xl border">
+					<div class="space-y-2 border-none">
+						<Card.Root class="border-none max-w-2xl">
 							<Card.Content class="grid gap-4 p-6">
 								{#if message.content.startsWith('```') || message.content.includes('<')}
-									<pre class={codeBlockStyle}>{formatCode(message.content)}</pre>
+									<SvelteMarkdown source={message.content} />
 								{:else}
-									<p class="prose text-sm font-medium leading-5 tracking-widest">
+									<p class="prose text-sm font-medium leading-5 tracking-widest ">
 										{message.content}
 									</p>
 								{/if}
 							</Card.Content>
 						</Card.Root>
 						<Card.Root class="bg-background max-w-2xl border-none">
-							<Card.Content class="grid w-full grid-cols-2 items-center justify-between gap-4">
+							<Card.Content class="grid w-full grid-cols-2 items-center justify-between gap-4 ">
 								<div class="flex items-center gap-4">
-									<p class="prose text-xs font-medium leading-none"><User size="16" /></p>
+									<p class="prose text-xs font-medium leading-none dark:text-blue-950"><User size="16" /></p>
 
-									<p class="prose text-xs font-medium leading-none tracking-widest">
+									<p class="prose text-xs font-medium leading-none tracking-widest dark:text-blue-950">
 										{message.full_name} - Agent
 									</p>
 								</div>
-								<p class="prose text-sm font-medium">
+								<p class="prose text-sm font-medium dark:text-blue-950">
 									sent: {message.time}
 								</p>
 							</Card.Content>
@@ -127,11 +121,11 @@
 				{:else}
 					<div class="space-y-2">
 						<Card.Root
-							class="border-secondary ml-auto flex max-w-2xl flex-wrap rounded-bl-3xl border"
+							class="border-none ml-auto flex max-w-2xl flex-wrap rounded-bl-3xl border"
 						>
-							<Card.Content class="grid gap-4 p-6">
+							<Card.Content class="grid gap-4 p-6 prose">
 								{#if message.content.startsWith('```') || message.content.includes('<')}
-									<pre class="{codeBlockStyle} self-end">{formatCode(message.content)}</pre>
+									<SvelteMarkdown source={message.content}/>
 								{:else}
 									<p class="prose text-sm font-medium leading-5 tracking-widest">
 										{message.content}
@@ -141,8 +135,8 @@
 						</Card.Root>
 						<Card.Root class="ml-auto max-w-2xl border-none bg-transparent">
 							<Card.Content class="grid w-full grid-cols-2 items-center justify-between gap-4">
-								<p class="prose text-sm font-medium leading-8 tracking-widest">you</p>
-								<p class="prose text-sm font-medium leading-8 tracking-widest">
+								<p class="prose text-xs font-medium leading-8 dark:text-green-300">you</p>
+								<p class="prose text-xs font-medium leading-8 dark:text-green-300">
 									sent: {message.time}
 								</p>
 							</Card.Content>

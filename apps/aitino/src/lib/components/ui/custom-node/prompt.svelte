@@ -25,14 +25,7 @@
 
 	let showAll = false;
 	const previewLength = 250;
-	let dummyText = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ullamcorper mauris 
-  at ligula faucibus sollicitudin. Integer non bibendum lorem. Vivamus et massa massa. Curabitur eleifend 
-  risus in mi feugiat, non ullamcorper tortor dignissim. Integer condimentum, nisi quis viverra elementum, 
-  enim augue fringilla mi, id porttitor massa nisi quis purus. Cras id commodo ligula, eu tincidunt ligula. 
-  Praesent at justo condimentum, volutpat lorem eget, tristique nisl. Nunc eget vestibulum lorem. 
-  Sed nec eros suscipit, bibendum ex id, bibendum metus. Donec consectetur nisl nulla, et pharetra enim 
-  volutpat in. Suspendisse potenti. Integer ut dolor quis lorem egestas pharetra eu dapibus mauris. 
-  Sed at iaculis est. Ut nec posuere.`;
+	let prompt = '';
 
 	function toggleContent() {
 		showAll = !showAll;
@@ -61,29 +54,38 @@
 		<Input bind:value={$title} placeholder="Title..." />
 		{#if showAll}
 			<Textarea
-				bind:value={dummyText}
-				class="content border-input placeholder:text-muted-foreground focus-visible:ring-ring flex min-h-32  w-96 min-w-max max-w-lg overflow-y-auto text-wrap rounded-md border bg-transparent px-3 py-1 text-sm shadow-sm ring-offset-0 transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50"
+				bind:value={prompt}
+				class="content border-input placeholder:text-muted-foreground focus-visible:ring-ring flex min-h-32  w-96 min-w-max max-w-lg overflow-y-auto text-pretty rounded-md border bg-transparent py-1 text-left text-sm shadow-sm ring-offset-0 transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50"
 			/>
 			<div class="flex flex-col gap-2">
 				<Button on:click={toggleContent}>Show Less</Button>
-				<Button>Improve Prompt</Button>
 			</div>
 		{:else}
 			<!-- svelte-ignore a11y-click-events-have-key-events -->
 			<!-- svelte-ignore a11y-no-static-element-interactions -->
-			<div
-				class="content no-scrollbar w-full max-w-lg overflow-auto text-wrap"
-				on:click={toggleContent}
-			>
-				{dummyText.slice(0, previewLength)}
-			</div>
+			{#if prompt.length > 0}
+				<div
+					class="content no-scrollbar h-16 w-full max-w-lg overflow-auto text-wrap"
+					placeholder="Please enter you prompt here..."
+					on:click={toggleContent}
+				>
+					{prompt.slice(0, previewLength)}
+				</div>
+			{:else}
+				<Textarea
+					bind:value={prompt}
+					class="content border-input placeholder:text-muted-foreground focus-visible:ring-ring flex min-h-32  w-96 min-w-max max-w-lg overflow-y-auto text-pretty rounded-md border bg-transparent py-1 text-left text-sm shadow-sm ring-offset-0 transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50"
+				/>
+			{/if}
 			<div class="flex flex-col gap-2">
-				{#if dummyText.length > previewLength}
+				{#if prompt.length > previewLength}
 					<Button on:click={toggleContent}>Load All</Button>
 				{/if}
-				<Button>Improve Prompt</Button>
 			</div>
 		{/if}
+		<form action="?/ImprovePrompt&prompt={prompt}" method="post">
+			<Button class="w-full">Improve Prompt</Button>
+		</form>
 		<Handle
 			type="source"
 			id="bottom-{id}"
