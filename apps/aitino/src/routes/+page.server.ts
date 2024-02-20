@@ -50,13 +50,12 @@ export const actions = {
 			});
 		}
 
+
 		const { data, error } = await supabase
 			.from('waitlist_users')
 			.insert([{ email: email }])
 			.select();
 
-		// console.log(data, 'data');
-		// console.log(error, 'error');
 		if (error) {
 			return fail(400, {
 				invalid: true,

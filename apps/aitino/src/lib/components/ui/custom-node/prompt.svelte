@@ -24,8 +24,7 @@
 	$: isConnectable = $connects.length === 0;
 
 	let showAll = false;
-	const previewLength = 200; // Define how much text to show in the preview
-
+	const previewLength = 250;
 	let dummyText = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ullamcorper mauris 
   at ligula faucibus sollicitudin. Integer non bibendum lorem. Vivamus et massa massa. Curabitur eleifend 
   risus in mi feugiat, non ullamcorper tortor dignissim. Integer condimentum, nisi quis viverra elementum, 
@@ -35,22 +34,8 @@
   volutpat in. Suspendisse potenti. Integer ut dolor quis lorem egestas pharetra eu dapibus mauris. 
   Sed at iaculis est. Ut nec posuere.`;
 
-	let contentPreview = dummyText.slice(0, previewLength);
-
-	let contentDiv: HTMLDivElement;
-
 	function toggleContent() {
-		if (!contentDiv) {
-			console.error('Content div element is not bound!');
-			return;
-		}
-
 		showAll = !showAll;
-		if (showAll) {
-			contentDiv.style.height = contentDiv.scrollHeight + 'rem';
-		} else {
-			contentDiv.style.height = previewLength + 'rem';
-		}
 	}
 </script>
 
@@ -75,29 +60,29 @@
 	<Card.Content class="grid gap-2">
 		<Input bind:value={$title} placeholder="Title..." />
 		{#if showAll}
-			<!-- svelte-ignore a11y-click-events-have-key-events -->
-			<!-- svelte-ignore a11y-no-static-element-interactions -->
-			<div
-				bind:this={contentDiv}
-				class="content no-scrollbar min-h-full w-full max-w-lg text-wrap"
-				on:click={toggleContent}
-			>
-				{dummyText}
+			<Textarea
+				bind:value={dummyText}
+				class="content border-input placeholder:text-muted-foreground focus-visible:ring-ring flex min-h-32  w-96 min-w-max max-w-lg overflow-y-auto text-wrap rounded-md border bg-transparent px-3 py-1 text-sm shadow-sm ring-offset-0 transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50"
+			/>
+			<div class="flex flex-col gap-2">
+				<Button on:click={toggleContent}>Show Less</Button>
+				<Button>Improve Prompt</Button>
 			</div>
-			<Button on:click={toggleContent}>Show Less</Button>
 		{:else}
-			<!-- svelte-ignore a11y-no-static-element-interactions -->
 			<!-- svelte-ignore a11y-click-events-have-key-events -->
+			<!-- svelte-ignore a11y-no-static-element-interactions -->
 			<div
-				bind:this={contentDiv}
-				class="content no-scrollbar min-h-full w-full max-w-lg text-wrap"
+				class="content no-scrollbar w-full max-w-lg overflow-auto text-wrap"
 				on:click={toggleContent}
 			>
-				{contentPreview}
+				{dummyText.slice(0, previewLength)}
 			</div>
-			{#if dummyText.length > previewLength}
-				<Button on:click={toggleContent}>Load All</Button>
-			{/if}
+			<div class="flex flex-col gap-2">
+				{#if dummyText.length > previewLength}
+					<Button on:click={toggleContent}>Load All</Button>
+				{/if}
+				<Button>Improve Prompt</Button>
+			</div>
 		{/if}
 		<Handle
 			type="source"

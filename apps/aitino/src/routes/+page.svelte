@@ -6,7 +6,6 @@
 
 	export let form: ActionData;
 
-	console.log(form, 'action data');
 	export let data: PageData;
 	const titleVariants = {
 		'0': 'Join the Future of AI<br /> with Exclusive Early Access to <span class="bg-gradient-to-b from-primary to-background from-50% bg-clip-text text-transparent">Aitino</span>'
@@ -50,7 +49,7 @@
 		<div
 			class="text-foreground mx-auto flex w-full flex-col place-items-center gap-y-4 px-2 sm:gap-y-8"
 		>
-			<img src="favicon.png" alt="Aitino Logo" class="mt-4 h-20 w-20 z-10" />
+			<img src="logo_nobg.png" alt="Aitino Logo" class="mt-4 h-20 w-20" />
 			<h1
 				class="tracking-loose m-0 text-center text-3xl font-semibold sm:m-0 sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl"
 			>
@@ -67,7 +66,7 @@
 				</SplitTest>
 			</h3>
 
-			<FormItem class="mt-10" mainform={form} notform={data} />
+			<FormItem mainform={form} notform={data} />
 		</div>
 	</div>
 </div>
