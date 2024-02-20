@@ -1,5 +1,6 @@
-import { getMaeveNodes } from '$lib/api-client';
 import type { Edge, Node } from '@xyflow/svelte';
+
+import { getMaeveNodes } from '$lib/api-client';
 
 export const load = async ({ locals: { userId } }) => {
 	const { data } = await getMaeveNodes(userId);
