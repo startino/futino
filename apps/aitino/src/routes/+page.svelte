@@ -3,6 +3,7 @@
 	import { Toaster } from '$lib/components/ui/sonner';
 	import FormItem from '$lib/components/FormItem.svelte';
 	import type { ActionData, PageData } from './$types';
+	import SEO from '$lib/components/SEO/index.svelte';
 
 	export let form: ActionData;
 
@@ -22,7 +23,6 @@
 		'0': "Aitino is a platform that allows for the creation of teams of AI Agents to help you automate tasks and solve complex problems. It's made easily customizable through a node-editor."
 	};
 </script>
-
 
 <div
 	class="pointer-events-none absolute inset-0 h-full w-full bg-inherit bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:150px_150px]"
@@ -44,12 +44,18 @@
 	</script>
 </svelte:head>
 
+<SEO
+	slug="early-access"
+	title="Aitino Early Access"
+	metadescription="The world's leading web platform in pairing modern AI models with highly effective multi-agent technologies. By taking the form of node-editors, Aitino harnesses the ability to create teams of AI agents that collaborate to solve complex tasks in real-time."
+/>
+
 <div class="font-roboto flex h-screen w-screen flex-col justify-center bg-transparent">
 	<div class="mt-4 flex h-full w-screen flex-col justify-evenly py-6">
 		<div
-			class="text-foreground mx-auto flex w-full flex-col place-items-center gap-y-4 px-2 sm:gap-y-8"
+			class="mx-auto flex w-full flex-col place-items-center gap-y-4 px-2 text-foreground sm:gap-y-8"
 		>
-			<img src="logo_nobg.png" alt="Aitino Logo" class="mt-4 h-20 w-20" />
+			<img src="favicon.png" alt="Aitino Logo" class="z-10 mt-4 h-20 w-20" />
 			<h1
 				class="tracking-loose m-0 text-center text-3xl font-semibold sm:m-0 sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl"
 			>
@@ -59,7 +65,7 @@
 			</h1>
 
 			<h3
-				class="text-foreground m-0 mx-auto mt-2 max-w-3xl text-balance text-center text-sm brightness-75 sm:m-0 sm:text-lg md:text-lg lg:text-xl xl:text-2xl"
+				class="m-0 mx-auto mt-2 max-w-3xl text-balance text-center text-sm text-foreground brightness-75 sm:m-0 sm:text-lg md:text-lg lg:text-xl xl:text-2xl"
 			>
 				<SplitTest key="Subtitle Test" variants={Object.keys(subtitleVariants)} let:variant>
 					{@html subtitleVariants[variant]}

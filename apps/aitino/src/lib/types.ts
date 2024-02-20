@@ -23,3 +23,25 @@ export interface MaeveContext {
 	receiver: Writable<{ node: Node; targetCount: number } | null>;
 	count: Writable<{ agents: number; prompts: number }>;
 }
+
+export type Categories = 'multi-agents' | 'automation' | 'ai' | 'problem-solving'
+
+export type Post = {
+	title: string
+	slug: string
+	description: string
+	date: string
+	categories: Categories[]
+	published: boolean
+}
+
+export type MarkdownMetadata = {
+    title?: string;
+    date?: string;
+    description?: string;
+    tags?: string[];
+    author?: string;
+	published?: boolean;
+	timeToRead?: number;
+
+}
