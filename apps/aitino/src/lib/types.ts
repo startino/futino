@@ -57,3 +57,14 @@ export interface MaeveContext {
 	receiver: Writable<{ node: Node; targetCount: number } | null>;
 	count: Writable<{ agents: number; prompts: number }>;
 }
+
+export type Categories = 'sveltekit' | 'svelte'
+
+export type Post = {
+	title: string
+	slug: string
+	description: string
+	date: string
+	categories: Categories[]
+	published: boolean
+}

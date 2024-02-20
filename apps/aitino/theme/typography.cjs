@@ -4,7 +4,7 @@ const typography = (colors, alpha) => {
   return {
     main: {
       css: {
-        "--tw-prose-body": colorConfig.foreground.replace(') )', ") / 0.8 )"), // SUPER UNSTABLE METHOD! TODO: find a better way to do this using <alpha-value>
+        "--tw-prose-body": colorConfig.foreground.replace(') )', ") / 0.8 )"), // UNSTABLE METHOD! find a better way to do this using <alpha-value>
         "--tw-prose-headings": colorConfig.foreground,
         "--tw-prose-lead": colors.neutral[400],
         "--tw-prose-links": colorConfig.accent.DEFAULT,

@@ -55,6 +55,7 @@
 		"force": "^0.0.3",
 		"formsnap": "^0.4.2",
 		"lucide-svelte": "^0.321.0",
+		"mdsvex": "^0.11.0",
 		"mode-watcher": "^0.2.0",
 		"svelte-sonner": "^0.3.11",
 		"tailwind-merge": "^2.2.0",
