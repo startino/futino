@@ -2,7 +2,7 @@ const facebookPageName = 'example_facebook_page';
 const facebookAuthorPageName = 'example_facebook_author_page';
 
 const website = {
-    author: 'Jorge Lewis',
+    author: 'Aitino',
     ogLanguage: 'en_GB',
     siteLanguage: 'en-GB',
     siteTitle: 'Aitino - Create Teams of AI',
