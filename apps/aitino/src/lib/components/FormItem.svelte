@@ -70,26 +70,26 @@
 			class="text-md relative flex w-full gap-x-3 transition-all duration-300 ease-in-out sm:w-fit"
 			on:click={async () => {
 				isLoading = true;
-					setTimeout(() => {
-						// if (($join_waitlist_Error.email === null || undefined)) {
-						if (mainform) {
+				setTimeout(() => {
+					// if (($join_waitlist_Error.email === null || undefined)) {
+					if (mainform) {
+						$join_waitlist_Error = {};
+						if (mainform?.message) {
+							toast.success(mainform?.message);
+							document.getElementById('email').value = ' ';
+							console.log(' from message');
+							isLoading = false;
 							$join_waitlist_Error = {};
-							if (mainform?.message) {
-								toast.success(mainform?.message);
-								document.getElementById('email').value = ' ';
-								console.log(' from message');
-								isLoading = false;
-								$join_waitlist_Error = {};
-							} else if (mainform?.invalid) {
-								$join_waitlist_Error = {};
-								toast.error(mainform?.error);
-								console.log(' from error');
-								isLoading = false;
-								document.getElementById('email').value = ' ';
-							}
+						} else if (mainform?.invalid) {
+							$join_waitlist_Error = {};
+							toast.error(mainform?.error);
+							console.log(' from error');
+							isLoading = false;
+							document.getElementById('email').value = ' ';
 						}
-						isLoading = false;
-					}, 2000);
+					}
+					isLoading = false;
+				}, 2000);
 			}}
 		>
 			{#if isLoading}
