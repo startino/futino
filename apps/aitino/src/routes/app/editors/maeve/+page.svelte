@@ -52,7 +52,13 @@
       buttonVariant: "outline",
       onclick: () => {
         const jsonString = JSON.stringify(
-          { nodes: getCleanNodes($nodes), edges: $edges, title, description },
+          {
+            nodes: getCleanNodes($nodes),
+            edges: $edges,
+            title,
+            description,
+            receiver_id: $receiver?.node.id ?? null,
+          },
           null,
           2
         );
@@ -129,7 +135,7 @@
   async function save() {
     const { error } = await saveMaeveNodes({
       id: data.id,
-      user_id: data.userId,
+      user_id: data.user_id,
       title,
       description,
       receiver_id: $receiver?.node.id ?? null,
@@ -143,6 +149,14 @@
     }
 
     toast.success("Nodes successfully saved!");
+  }
+
+  function setReceiver(id: string | null | undefined) {
+    if (!id) {
+      return;
+    }
+    const revr = getNodes([id])[0];
+    $receiver = { node: revr, targetCount: 1 };
   }
 
   function layout() {
@@ -228,13 +242,7 @@
     oninit={() => {
       count.set(data.count);
 
-      const prompt = $nodes.find((n) => n.type === "prompt");
-
-      if (prompt) {
-        const outgoers = getOutgoers(prompt, $nodes, $edges);
-
-        outgoers[0] && ($receiver = { node: outgoers[0], targetCount: 1 });
-      }
+      setReceiver(data.receiver_id);
     }}
     connectionLineType={ConnectionLineType.SmoothStep}
     defaultEdgeOptions={{ type: "smoothstep", animated: true }}
@@ -293,6 +301,8 @@
                   nodes.set(getWritableNodes(maeve.nodes));
                   edges.set(maeve.edges);
                   libraryOpen = false;
+
+                  setReceiver(maeve.receiver_id);
                 }}
               />
             </Dialog.Content>
