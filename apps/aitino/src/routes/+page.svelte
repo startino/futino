@@ -2,10 +2,11 @@
 	import { SplitTest } from 'svelte-split-testing';
 	import { Toaster } from '$lib/components/ui/sonner';
 	import FormItem from '$lib/components/FormItem.svelte';
-	import type { PageData } from './$types';
-	import { superForm } from 'sveltekit-superforms/client';
+	import type { ActionData, PageData } from './$types';
 
-	export let form;
+	export let form: ActionData;
+
+	console.log(form, 'action data');
 	export let data: PageData;
 	const titleVariants = {
 		'0': 'Join the Future of AI<br /> with Exclusive Early Access to <span class="bg-gradient-to-b from-primary to-background from-50% bg-clip-text text-transparent">Aitino</span>'
@@ -21,9 +22,8 @@
 	const subtitleVariants = {
 		'0': "Aitino is a platform that allows for the creation of teams of AI Agents to help you automate tasks and solve complex problems. It's made easily customizable through a node-editor."
 	};
-
-	
 </script>
+
 
 <div
 	class="pointer-events-none absolute inset-0 h-full w-full bg-inherit bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:150px_150px]"
@@ -57,5 +57,3 @@
 		</div>
 	</div>
 </div>
-
-

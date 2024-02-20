@@ -12,22 +12,22 @@
 	import SuperDebug from 'sveltekit-superforms/client/SuperDebug.svelte';
 	import * as Form from '$lib/components/ui/form';
 	import { formSchema, waitlistSchema, type FormSchema } from '../../routes/schema';
+	import type { ActionData } from '../../routes/$types';
 
-	export let mainform: any;
+	export let mainform: ActionData;
 	export let notform: any;
 
+	console.log(mainform, 'mainform data');
 	let input = '';
 
 	let isLoading = false;
 
-	console.log(notform, 'notform');
-
-	const { form, errors } = superForm(notform.form);
+	const { form, errors } = superForm(notform.contactForm);
 	const { form: join_waitlist_Form, errors: join_waitlist_Error } = superForm(notform.waitlistForm);
 </script>
 
 <!-- Uncomment this to debug the superform and zod -->
-<!-- <SuperDebug data={notform.form} /> -->
+<!-- <SuperDebug data={notform.contactForm} /> -->
 <!-- <SuperDebug data={notform.waitlistForm} /> -->
 
 <form
@@ -35,7 +35,11 @@
 	id="waitlist-signup"
 	method="POST"
 	class="mx-auto flex w-full max-w-sm flex-col items-center justify-center gap-4 space-x-2 lg:max-w-lg {$$props.class}"
-	use:enhance
+	use:enhance={() => {
+		return async ({ result }) => {
+			await applyAction(result);
+		};
+	}}
 >
 	<div class="flex h-fit w-full flex-col gap-4 p-1 sm:flex-row">
 		<div class="flex w-full flex-col justify-between">
@@ -61,103 +65,104 @@
 			on:click={async () => {
 				isLoading = true;
 				setTimeout(() => {
-					if (!join_waitlist_Error) {
-						if (mainform) {
-							if (mainform?.success) {
-								toast.success(mainform.message);
-								document.getElementById('email').value = ' ';
-								isLoading = false;
-							} else {
-								toast.error(mainform?.error);
-								isLoading = false;
-								document.getElementById('email').value = ' ';
-							}
-						} else {
-							console.log('no form');
-							toast.error('An error occurred. Please try again in 3 seconds...');
+					// if (($join_waitlist_Error.email === null || undefined)) {
+					if (mainform) {
+						if (mainform?.message) {
+							toast.success(mainform?.message);
+							document.getElementById('email').value = ' ';
+							console.log(' from message');
+							isLoading = false;
+						} else if (mainform?.invalid) {
+							toast.error(mainform?.error);
+							console.log(' from error');
+							isLoading = false;
+							document.getElementById('email').value = ' ';
 						}
+					} else {
+						console.log('no form');
+						toast.error('An error occurred. Please try again in 3 seconds...');
 					}
+					// }
 					isLoading = false;
 				}, 1000);
 			}}
 		>
 			{#if isLoading}
-				<Loader class="duration-3000 transition-all ease-in-out" />
+				<Loader class="duration-3000 animate-spin transition-all ease-in-out" />
 			{:else}
 				Join the Waitlist<ArrowRight class="" />{/if}
 		</Button>
 	</div>
-
-	<Dialog.Root>
-		<Dialog.Trigger class="mt-4 md:mt-6 xl:mt-8">
-			<Button class=" text-base" variant="outline">Contact Us</Button>
-		</Dialog.Trigger>
-		<Dialog.Content class="sm:max-w-[425px]">
-			<Dialog.Header class="mt-4 space-y-1">
-				<Dialog.Title class="text-4xl">Contact Us</Dialog.Title>
-			</Dialog.Header>
-			<Form.Root
-				method="POST"
-				class="space-y-8"
-				let:config
-				schema={formSchema}
-				action="?/contactUs"
-				form={notform.form}
-				errors={notform.errors}
-			>
-				<Form.Item>
-					<Form.Field name="name" {config}>
-						<Form.Label>Name</Form.Label>
-						<Form.Input
-							placeholder="Your name"
-							class="border-input placeholder:text-muted-foreground focus-visible:ring-ring flex w-full rounded-md border bg-transparent px-3 py-1 text-sm shadow-sm ring-offset-0 transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50 "
-						/>
-						<Form.Validation />
-					</Form.Field>
-				</Form.Item>
-				<Form.Item>
-					<Form.Field name="email" {config}>
-						<Form.Label>Email</Form.Label>
-						<Form.Input
-							placeholder="Your email"
-							class="border-input placeholder:text-muted-foreground focus-visible:ring-ring flex w-full rounded-md border bg-transparent px-3 py-1 text-sm shadow-sm ring-offset-0 transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50 "
-						/>
-						<Form.Validation />
-					</Form.Field>
-				</Form.Item>
-				<Form.Item>
-					<Form.Field name="description" {config}>
-						<Form.Label>Description</Form.Label>
-						<Form.Textarea
-							placeholder="Your description"
-							class="border-input placeholder:text-muted-foreground focus-visible:ring-ring flex w-full rounded-md border bg-transparent px-3 py-1 text-sm shadow-sm ring-offset-0 transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50 "
-						/>
-						<Form.Validation />
-					</Form.Field>
-				</Form.Item>
-				<Form.Button
-					on:click={async () => {
-						isLoading = true;
-						setTimeout(() => {
-							if (!($errors.name || $errors.email || $errors.description)) {
-								toast.success(
-									'We got your message and will get back to you as soon as possible!. Thankyou'
-								);
-							}
-							isLoading = false;
-						}, 1000);
-					}}
-					>{#if isLoading}
-						<Loader class="duration-3000 transition-all ease-in-out" />
-					{:else}
-						Submit
-					{/if}</Form.Button
-				>
-			</Form.Root>
-		</Dialog.Content>
-		<Dialog.Footer></Dialog.Footer>
-	</Dialog.Root>
 </form>
+
+<Dialog.Root>
+	<Dialog.Trigger class="mt-4 md:mt-6 xl:mt-8">
+		<Button class=" text-base" variant="outline">Contact Us</Button>
+	</Dialog.Trigger>
+	<Dialog.Content class="sm:max-w-[425px]">
+		<Dialog.Header class="mt-4 space-y-1">
+			<Dialog.Title class="text-4xl">Contact Us</Dialog.Title>
+		</Dialog.Header>
+		<Form.Root
+			method="POST"
+			class="space-y-8"
+			let:config
+			schema={formSchema}
+			action="?/contactUs"
+			form={notform.contactForm}
+		>
+			<Form.Item>
+				<Form.Field name="name" {config}>
+					<Form.Label>Name</Form.Label>
+					<Form.Input
+						placeholder="Your name"
+						class="border-input placeholder:text-muted-foreground focus-visible:ring-ring flex w-full rounded-md border bg-transparent px-3 py-1 text-sm shadow-sm ring-offset-0 transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50 "
+					/>
+					<Form.Validation />
+				</Form.Field>
+			</Form.Item>
+			<Form.Item>
+				<Form.Field name="email" {config}>
+					<Form.Label>Email</Form.Label>
+					<Form.Input
+						placeholder="Your email"
+						class="border-input placeholder:text-muted-foreground focus-visible:ring-ring flex w-full rounded-md border bg-transparent px-3 py-1 text-sm shadow-sm ring-offset-0 transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50 "
+					/>
+					<Form.Validation />
+				</Form.Field>
+			</Form.Item>
+			<Form.Item>
+				<Form.Field name="description" {config}>
+					<Form.Label>Description</Form.Label>
+					<Form.Textarea
+						placeholder="Your description"
+						class="border-input placeholder:text-muted-foreground focus-visible:ring-ring flex w-full rounded-md border bg-transparent px-3 py-1 text-sm shadow-sm ring-offset-0 transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50 "
+					/>
+					<Form.Validation />
+				</Form.Field>
+			</Form.Item>
+			<Form.Button
+				on:click={() => {
+					console.log($errors, 'errors from form button');
+
+					let hasErrors = Object.keys($errors).length > 0;
+					console.log(hasErrors, Object.keys($errors).length, 'has errors');
+
+					if (hasErrors) {
+						console.log('has error, from toast error', hasErrors);
+						toast.error('Please fill the form correctly');
+					} else {
+						console.log('has error, from toast success', hasErrors);
+						toast.success(
+							'We got your message and will get back to you as soon as possible! Thank you!'
+						);
+					}
+				}}>Submit</Form.Button
+			>
+		</Form.Root>
+	</Dialog.Content>
+	<Dialog.Footer></Dialog.Footer>
+</Dialog.Root>
 
 <div
 	class="mx-auto mt-6 flex h-fit w-fit flex-wrap-reverse items-center justify-between gap-2 sm:flex-row md:p-4"

@@ -9,19 +9,19 @@ const waitlistSchema = z.object({
 	email: z.string().email({ message: 'Invalid email address' })
 });
 
-export const load = async () => {
-	const form = await superValidate(formSchema);
+export const load = async (event) => {
+	const contactForm = await superValidate(formSchema);
 	const waitlistForm = await superValidate(waitlistSchema);
 
+	const session = await event.locals.getSession();
+
 	// Always return { form } in load and form actions.
-	return { form, waitlistForm };
+	return { contactForm, waitlistForm };
 };
 
 export const actions = {
 	register: async ({ request }) => {
 		const waitlistForm = await superValidate(request, waitlistSchema);
-
-		console.log(waitlistForm, 'from backend');
 
 		if (!waitlistForm.valid) {
 			return fail(400, {
@@ -33,12 +33,16 @@ export const actions = {
 
 		// check if user already register
 
+		const selectAll = await supabase.from('waitlist_users').select('*').eq('email', email).single();
+		// console.log(selectAll, 'all emails');
+
 		const check_if_user_already_register = await supabase
 			.from('waitlist_users')
 			.select('*')
 			.eq('email', email)
 			.single();
 
+		// console.log(check_if_user_already_register, 'check if user already register');
 		if (check_if_user_already_register && check_if_user_already_register.data !== null) {
 			return fail(400, {
 				invalid: true,
@@ -51,6 +55,8 @@ export const actions = {
 			.insert([{ email: email }])
 			.select();
 
+		// console.log(data, 'data');
+		// console.log(error, 'error');
 		if (error) {
 			return fail(400, {
 				invalid: true,

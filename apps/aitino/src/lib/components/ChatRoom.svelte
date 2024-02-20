@@ -66,13 +66,29 @@
 	};
 
 	let chatContainerElement: HTMLDivElement;
-	
 
 	afterUpdate(() => {
 		if (chatContainerElement) {
 			chatContainerElement.scrollTop = chatContainerElement.scrollHeight;
 		}
 	});
+
+	const codeBlockStyle =
+		'p-4 rounded-md bg-vscode-dark text-white font-mono relative overflow-x-auto';
+	const lineNumberStyle = 'flex-shrink-0 mr-4 text-gray-400';
+
+	function formatCode(content) {
+		const lines = content.split(/\r?\n|\s{4,}/);
+
+		const indentation = 4; 
+		const formattedLines = lines.map((line, index) => {
+			const lineNumber = index + 1;
+			const formattedLine = `${lineNumber.toString().padStart(3, ' ')} | ${line.repeat(indentation)}`;
+			return formattedLine;
+		});
+
+		return formattedLines.join('\n');
+	}
 </script>
 
 <div class="container flex h-screen max-w-6xl flex-col justify-end p-6">
@@ -84,7 +100,13 @@
 					<div class="space-y-2">
 						<Card.Root class="border-secondary-500 max-w-2xl border">
 							<Card.Content class="grid gap-4 p-6">
-								<p class="prose text-sm font-medium leading-5 tracking-widest">{message.content}</p>
+								{#if message.content.startsWith('```') || message.content.includes('<')}
+									<pre class={codeBlockStyle}>{formatCode(message.content)}</pre>
+								{:else}
+									<p class="prose text-sm font-medium leading-5 tracking-widest">
+										{message.content}
+									</p>
+								{/if}
 							</Card.Content>
 						</Card.Root>
 						<Card.Root class="bg-background max-w-2xl border-none">
@@ -104,9 +126,17 @@
 					</div>
 				{:else}
 					<div class="space-y-2">
-						<Card.Root class="border-secondary ml-auto max-w-2xl rounded-bl-3xl border">
+						<Card.Root
+							class="border-secondary ml-auto flex max-w-2xl flex-wrap rounded-bl-3xl border"
+						>
 							<Card.Content class="grid gap-4 p-6">
-								<p class="prose text-sm font-medium leading-5 tracking-widest">{message.content}</p>
+								{#if message.content.startsWith('```') || message.content.includes('<')}
+									<pre class="{codeBlockStyle} self-end">{formatCode(message.content)}</pre>
+								{:else}
+									<p class="prose text-sm font-medium leading-5 tracking-widest">
+										{message.content}
+									</p>
+								{/if}
 							</Card.Content>
 						</Card.Root>
 						<Card.Root class="ml-auto max-w-2xl border-none bg-transparent">
