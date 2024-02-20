@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { writable, get } from "svelte/store";
+  import { writable } from "svelte/store";
   import dagre from "@dagrejs/dagre";
   import {
     SvelteFlow,
@@ -39,6 +39,9 @@
 
   const { receiver, count } = getContext("maeve");
 
+  let title = data.title;
+  let description = data.description;
+
   const actions: PanelAction[] = [
     { name: "Run", buttonVariant: "default" },
     { name: "Add Prompt", buttonVariant: "outline", onclick: addNewPrompt },
@@ -49,7 +52,7 @@
       buttonVariant: "outline",
       onclick: () => {
         const jsonString = JSON.stringify(
-          { nodes: getCleanNodes($nodes), edges: $edges },
+          { nodes: getCleanNodes($nodes), edges: $edges, title, description },
           null,
           2
         );
@@ -127,6 +130,8 @@
     const { error } = await saveMaeveNodes({
       id: data.id,
       user_id: data.userId,
+      title,
+      description,
       receiver_id: $receiver?.node.id ?? null,
       nodes: getCleanNodes($nodes),
       edges: $edges,
@@ -269,7 +274,7 @@
     <Background class="!bg-background" />
 
     <Panel position="top-right">
-      <RightEditorSidebar {actions} let:action>
+      <RightEditorSidebar bind:description bind:title {actions} let:action>
         {#if action.isCustom}
           <Dialog.Root
             open={libraryOpen}

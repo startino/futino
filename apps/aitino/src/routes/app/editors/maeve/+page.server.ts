@@ -16,6 +16,8 @@ export const load = async ({ locals: { userId } }) => {
 	return {
 		id: data ? data.id : undefined,
 		userId,
+		title: data.title as string,
+		description: data.description as string,
 		nodes,
 		edges,
 		count: getNodesCount(nodes)
