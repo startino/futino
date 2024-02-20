@@ -29,6 +29,9 @@ importers:
       '@dagrejs/dagre':
         specifier: ^1.0.4
         version: 1.0.4
+      '@supabase/auth-helpers-sveltekit':
+        specifier: ^0.10.7
+        version: 0.10.7(@supabase/supabase-js@2.39.3)(@sveltejs/kit@2.5.0)
       '@supabase/supabase-js':
         specifier: ^2.39.3
         version: 2.39.3
