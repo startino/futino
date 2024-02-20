@@ -2,7 +2,7 @@
 	import { applyAction, enhance } from '$app/forms';
 	import { invalidateAll } from '$app/navigation';
 	import { Button } from '$lib/components/ui/button';
-	import { ArrowRight, Loader, Github, X, Youtube } from 'lucide-svelte';
+	import { ArrowRight, Loader, Github, X, Youtube, Loader2 } from 'lucide-svelte';
 	import Input from './ui/input/input.svelte';
 	import { toast } from 'svelte-sonner';
 	import * as Dialog from './ui/dialog';
@@ -24,6 +24,11 @@
 
 	const { form, errors } = superForm(notform.contactForm);
 	const { form: join_waitlist_Form, errors: join_waitlist_Error } = superForm(notform.waitlistForm);
+
+	$: console.log('Form values:', $join_waitlist_Form);
+	$: console.log('Form errors:', $join_waitlist_Error);
+	$: console.log('Form errors contact:', $errors);
+	$: console.log('Form form contact:', $form);
 </script>
 
 <!-- Uncomment this to debug the superform and zod -->
@@ -51,11 +56,12 @@
 				placeholder="jorge.lewis@futi.no"
 				bind:value={$join_waitlist_Form.email}
 			/>
-
-			{#if $join_waitlist_Error.email}
-				<p class="block w-full max-w-lg text-red-500">
-					{$join_waitlist_Error.email}
-				</p>
+			{#if !mainform?.success}
+				{#if $join_waitlist_Error.email}
+					<p class="block w-full max-w-lg text-red-500">
+						{$join_waitlist_Error.email}
+					</p>
+				{/if}
 			{/if}
 		</div>
 
@@ -64,33 +70,32 @@
 			class="text-md relative flex w-full gap-x-3 transition-all duration-300 ease-in-out sm:w-fit"
 			on:click={async () => {
 				isLoading = true;
-				setTimeout(() => {
-					// if (($join_waitlist_Error.email === null || undefined)) {
-					if (mainform) {
-						if (mainform?.message) {
-							toast.success(mainform?.message);
-							document.getElementById('email').value = ' ';
-							console.log(' from message');
-							isLoading = false;
-						} else if (mainform?.invalid) {
-							toast.error(mainform?.error);
-							console.log(' from error');
-							isLoading = false;
-							document.getElementById('email').value = ' ';
+					setTimeout(() => {
+						// if (($join_waitlist_Error.email === null || undefined)) {
+						if (mainform) {
+							$join_waitlist_Error = {};
+							if (mainform?.message) {
+								toast.success(mainform?.message);
+								document.getElementById('email').value = ' ';
+								console.log(' from message');
+								isLoading = false;
+								$join_waitlist_Error = {};
+							} else if (mainform?.invalid) {
+								$join_waitlist_Error = {};
+								toast.error(mainform?.error);
+								console.log(' from error');
+								isLoading = false;
+								document.getElementById('email').value = ' ';
+							}
 						}
-					} else {
-						console.log('no form');
-						toast.error('An error occurred. Please try again in 3 seconds...');
-					}
-					// }
-					isLoading = false;
-				}, 1000);
+						isLoading = false;
+					}, 2000);
 			}}
 		>
 			{#if isLoading}
 				<Loader class="duration-3000 animate-spin transition-all ease-in-out" />
 			{:else}
-				Join the Waitlist<ArrowRight class="" />{/if}
+				Join the Waitlist<ArrowRight />{/if}
 		</Button>
 	</div>
 </form>
@@ -144,19 +149,26 @@
 			<Form.Button
 				on:click={() => {
 					console.log($errors, 'errors from form button');
+					console.log($form, ' form button');
 
-					let hasErrors = Object.keys($errors).length > 0;
-					console.log(hasErrors, Object.keys($errors).length, 'has errors');
+					$errors = {};
+					setTimeout(() => {
+						// console.log($errors, 'errors 2 from form button');
 
-					if (hasErrors) {
-						console.log('has error, from toast error', hasErrors);
-						toast.error('Please fill the form correctly');
-					} else {
-						console.log('has error, from toast success', hasErrors);
-						toast.success(
-							'We got your message and will get back to you as soon as possible! Thank you!'
-						);
-					}
+						// let hasErrors = Object.keys($errors).length > 0;
+						// console.log(hasErrors, Object.keys($errors).length, 'has errors');
+						if (Object.keys($errors).length > 0) {
+							console.log('has error, from toast error', $errors);
+							$errors = {};
+
+							toast.error('Please fill the form correctly');
+						} else {
+							console.log('has error, from toast success', $errors);
+							toast.success(
+								'We got your message and will get back to you as soon as possible! Thank you!'
+							);
+						}
+					}, 1000);
 				}}>Submit</Form.Button
 			>
 		</Form.Root>
