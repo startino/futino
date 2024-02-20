@@ -1,6 +1,7 @@
 import type { Edge, Node } from '@xyflow/svelte';
 
 import { getMaeveNodes } from '$lib/api-client';
+import { getNodesCount } from '$lib/utils.js';
 
 export const load = async ({ locals: { userId } }) => {
 	const { data } = await getMaeveNodes(userId);
@@ -17,9 +18,6 @@ export const load = async ({ locals: { userId } }) => {
 		userId,
 		nodes,
 		edges,
-		count: {
-			agents: nodes.filter((n) => n.type === 'agent').length,
-			prompts: nodes.filter((n) => n.type === 'prompt').length
-		}
+		count: getNodesCount(nodes)
 	};
 };

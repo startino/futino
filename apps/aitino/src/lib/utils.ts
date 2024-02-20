@@ -11,6 +11,13 @@ import type { ContextKey, ContextMap, Maeve } from '$lib/types';
 import { browser } from '$app/environment';
 import { AVATARS, SAMPLE_FULL_NAMES } from '$lib/config';
 
+export function getNodesCount(nodes: Node[]) {
+	return {
+		agents: nodes.filter((n) => n.type === 'agent').length,
+		prompts: nodes.filter((n) => n.type === 'prompt').length
+	};
+}
+
 export function pickRandomName() {
 	return SAMPLE_FULL_NAMES[getRandomIndex(SAMPLE_FULL_NAMES)];
 }

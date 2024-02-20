@@ -29,6 +29,7 @@
     getCleanNodes,
     pickRandomAvatar,
     pickRandomName,
+    getNodesCount,
   } from "$lib/utils";
   import type { PanelAction } from "$lib/types";
   import ChatRoom from "$lib/components/ChatRoom.svelte";
@@ -123,40 +124,11 @@
   const edges = writable<Edge[]>(data.edges);
 
   async function save() {
-    const agents = $nodes
-      .filter((n) => n.type === "agent")
-      .map((n) => {
-        const { prompt, name, job_title, model } = n.data;
-        return {
-          ...n,
-          data: {
-            ...n.data,
-            prompt: get(prompt),
-            name: get(name),
-            job_title: get(job_title),
-            model: get(model),
-          },
-        };
-      });
-
-    const prompts = $nodes
-      .filter((n) => n.type === "prompt")
-      .map((n) => {
-        const { title, content } = n.data;
-        return {
-          ...n,
-          data: {
-            title: get(title),
-            content: get(content),
-          },
-        };
-      });
-
     const { error } = await saveMaeveNodes({
       id: data.id,
       user_id: data.userId,
       receiver_id: $receiver?.node.id ?? null,
-      nodes: [...prompts, ...agents],
+      nodes: getCleanNodes($nodes),
       edges: $edges,
     });
 
@@ -312,9 +284,9 @@
               <Library
                 on:maeve-load={(e) => {
                   const maeve = e.detail.maeve;
+                  $count = getNodesCount(maeve.nodes);
                   nodes.set(getWritableNodes(maeve.nodes));
                   edges.set(maeve.edges);
-
                   libraryOpen = false;
                 }}
               />
