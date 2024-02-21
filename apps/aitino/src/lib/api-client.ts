@@ -6,5 +6,5 @@ export async function saveMaeveNodes(data: TablesInsert<'maeve_nodes'>) {
 }
 
 export async function getMaeveNodes(userId: string) {
-	return supabase.from('maeve_nodes').select('*').eq('user_id', userId).single();
+	return await supabase.from('maeve_nodes').select('*').eq('user_id', userId);
 }

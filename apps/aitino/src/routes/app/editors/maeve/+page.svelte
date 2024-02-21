@@ -301,7 +301,8 @@
                   nodes.set(getWritableNodes(maeve.nodes));
                   edges.set(maeve.edges);
                   libraryOpen = false;
-
+                  title = maeve.title;
+                  description = maeve.description;
                   setReceiver(maeve.receiver_id);
                 }}
               />

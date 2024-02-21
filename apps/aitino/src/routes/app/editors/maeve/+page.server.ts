@@ -6,17 +6,30 @@ import { error } from '@sveltejs/kit';
 
 export const load = async ({ locals: { userId } }) => {
 	const { data, error: err } = await getMaeveNodes(userId);
-
 	if (err) {
 		throw error(500, 'something went wrong');
 	}
 
-	const nodes = data.nodes as Node[];
+	if (data.length === 0) {
+		return {
+			user_id: userId,
+			title: 'Untitled maeve',
+			description: 'No description',
+			nodes: [],
+			edges: [],
+			count: {
+				agents: 0,
+				prompts: 0
+			}
+		};
+	}
+
+	const nodes = data[0].nodes as Node[];
 
 	return {
-		...data,
+		...data[0],
 		nodes,
-		edges: data.edges as Edge[],
+		edges: data[0].edges as Edge[],
 		count: getNodesCount(nodes)
 	};
 };
