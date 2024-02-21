@@ -147,7 +147,7 @@
 			<Dialog.Content class="h-full max-h-dvh w-full max-w-7xl">
 				<Dialog.Header>
 					<Dialog.Title class="-mt-2 text-center"
-						><form action="?/ImprovePrompt&prompt={prompt}" method="post" use:enhance>
+						><form action="?/ImprovePrompt&prompt={prompt}" method="GET">
 							<Button>Improve Prompt With AI</Button>
 						</form></Dialog.Title
 					>

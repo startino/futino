@@ -99,34 +99,11 @@ export const actions = {
 		};
 	},
 	ImprovePrompt: async ({ request, url }) => {
-		// const form = await superValidate(request, formSchema);
-		let workdLimit = 200;
-
 		console.log('from backend');
 		const prompt = url.searchParams.get('prompt');
 		const response = await axios.get(
-			`https://api.aiti.no/improve?word_limit=${wordLimit}&prompt=${prompt}}`
+			`https://api.aiti.no/improve?word_limit=300&prompt=${prompt}}`
 		);
-		// if (!form.valid) {
-		// 	return fail(400, {
-		// 		form
-		// 	});
-		// }
-
-		// const { name, email, description } = form.data;
-
-		// console.log(form.data.name, form.data.email, form.data.description);
-
-		// const { data, error } = await supabase
-		// 	.from('contact_form')
-		// 	.insert([{ name: name, email: email, description: description }])
-		// 	.select();
-
-		// if (error) {
-		// 	return fail(400, {
-		// 		invalid: true
-		// 	});
-		// }
 
 		return {
 			success: true,

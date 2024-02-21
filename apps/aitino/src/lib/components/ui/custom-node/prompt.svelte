@@ -76,7 +76,7 @@
 		{:else}
 			<!-- svelte-ignore a11y-click-events-have-key-events -->
 			<!-- svelte-ignore a11y-no-static-element-interactions -->
-			{#if $content.length > 0}
+			{#if $content.length > 0 && $content.length > previewLength}
 				<div
 					class="content no-scrollbar h-16 w-full max-w-lg overflow-auto text-wrap"
 					placeholder="Please enter you prompt here..."
@@ -104,8 +104,7 @@
 					<Dialog.Title class="-mt-2 text-center"
 						><form
 							action="?/ImprovePrompt&prompt={encodeURIComponent($content)}"
-							method="POST"
-							use:enhance
+							method="GET"
 						>
 							<Button type="submit">Improve Prompt With AI</Button>
 						</form></Dialog.Title
