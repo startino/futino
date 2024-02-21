@@ -7,22 +7,22 @@
 		getConnectedEdges,
 		useSvelteFlow,
 		useConnection
-	} from '@xyflow/svelte';
-	import { type Writable } from 'svelte/store';
-	import { X } from 'lucide-svelte';
+	} from "@xyflow/svelte";
+	import { type Writable } from "svelte/store";
+	import { X } from "lucide-svelte";
 
 	// 👇 always import the styles
-	import '@xyflow/svelte/dist/style.css';
-	import * as Card from '$lib/components/ui/card';
-	import * as Select from '$lib/components/ui/select';
-	import { Input } from '$lib/components/ui/input';
-	import Handle from '$lib/components/Handle.svelte';
-	import Textarea from '../textarea/textarea.svelte';
-	import { getContext } from '$lib/utils';
+	import "@xyflow/svelte/dist/style.css";
+	import * as Card from "$lib/components/ui/card";
+	import * as Select from "$lib/components/ui/select";
+	import { Input } from "$lib/components/ui/input";
+	import Handle from "$lib/components/Handle.svelte";
+	import Textarea from "../textarea/textarea.svelte";
+	import { getContext } from "$lib/utils";
 
 	type $$Props = NodeProps;
 
-	const { receiver, count } = getContext('maeve');
+	const { receiver, count } = getContext("maeve");
 
 	export let data: {
 		avatar: string;
@@ -36,16 +36,16 @@
 
 	const models = [
 		{
-			label: 'GPT-4 Turbo',
-			value: 'gpt-4-turbo-preview'
+			label: "GPT-4 Turbo",
+			value: "gpt-4-turbo-preview"
 		},
 		{
-			label: 'GPT-3.5 Turbo',
-			value: 'gpt-3.5-turbo'
+			label: "GPT-3.5 Turbo",
+			value: "gpt-3.5-turbo"
 		}
 	];
 
-	export let id: NodeProps['id'];
+	export let id: NodeProps["id"];
 
 	const connection = useConnection();
 

@@ -1,8 +1,8 @@
-import { authenticateUser } from '$lib/utils';
-import { PUBLIC_SUPABASE_URL, PUBLIC_SUPABASE_ANON_KEY } from '$env/static/public';
-import { createSupabaseServerClient } from '@supabase/auth-helpers-sveltekit';
+import { authenticateUser } from "$lib/utils";
+import { PUBLIC_SUPABASE_URL, PUBLIC_SUPABASE_ANON_KEY } from "$env/static/public";
+import { createSupabaseServerClient } from "@supabase/auth-helpers-sveltekit";
 
-import type { Handle } from '@sveltejs/kit';
+import type { Handle } from "@sveltejs/kit";
 
 export const handle: Handle = async ({ event, resolve }) => {
 	authenticateUser(event);
@@ -26,7 +26,7 @@ export const handle: Handle = async ({ event, resolve }) => {
 	};
 	return await resolve(event, {
 		filterSerializedResponseHeaders(name) {
-			return name === 'content-range';
+			return name === "content-range";
 		}
 	});
 };

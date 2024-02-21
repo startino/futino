@@ -1,24 +1,24 @@
 <script lang="ts">
-	import type { Writable } from 'svelte/store';
-	import { Position, useHandleConnections, useSvelteFlow, type NodeProps } from '@xyflow/svelte';
-	import { X } from 'lucide-svelte';
+	import type { Writable } from "svelte/store";
+	import { Position, useHandleConnections, useSvelteFlow, type NodeProps } from "@xyflow/svelte";
+	import { X } from "lucide-svelte";
 
-	import * as Card from '$lib/components/ui/card';
-	import { Textarea } from '$lib/components/ui/textarea';
-	import { Input } from '$lib/components/ui/input';
-	import Handle from '$lib/components/Handle.svelte';
-	import { getContext } from '$lib/utils';
-	import Button from '../button/button.svelte';
+	import * as Card from "$lib/components/ui/card";
+	import { Textarea } from "$lib/components/ui/textarea";
+	import { Input } from "$lib/components/ui/input";
+	import Handle from "$lib/components/Handle.svelte";
+	import { getContext } from "$lib/utils";
+	import Button from "../button/button.svelte";
 
 	type $$Props = NodeProps;
 
 	export let data: { title: Writable<string>; content: Writable<string> };
-	export let id: $$Props['id'];
+	export let id: $$Props["id"];
 
 	const { content, title } = data;
 
-	const { receiver, count } = getContext('maeve');
-	const connects = useHandleConnections({ nodeId: id, type: 'source' });
+	const { receiver, count } = getContext("maeve");
+	const connects = useHandleConnections({ nodeId: id, type: "source" });
 	const { deleteElements } = useSvelteFlow();
 
 	$: isConnectable = $connects.length === 0;
@@ -62,7 +62,7 @@
 		{#if showAll}
 			<Textarea
 				bind:value={dummyText}
-				class="content border-input placeholder:text-muted-foreground focus-visible:ring-ring flex min-h-32  w-96 min-w-max max-w-lg overflow-y-auto text-wrap rounded-md border bg-transparent px-3 py-1 text-sm shadow-sm ring-offset-0 transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50"
+				class="content flex min-h-32 w-96 min-w-max max-w-lg  overflow-y-auto text-wrap rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm ring-offset-0 transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring focus-visible:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50"
 			/>
 			<div class="flex flex-col gap-2">
 				<Button on:click={toggleContent}>Show Less</Button>

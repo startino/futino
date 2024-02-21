@@ -1,20 +1,20 @@
-import { type ClassValue, clsx } from 'clsx';
-import { get } from 'svelte/store';
-import type { Node } from '@xyflow/svelte';
-import { twMerge } from 'tailwind-merge';
-import { cubicOut } from 'svelte/easing';
-import type { RequestEvent } from '@sveltejs/kit';
-import type { TransitionConfig } from 'svelte/transition';
-import { getContext as getSvelteContext, setContext as setSvelteContext } from 'svelte';
-import { writable } from 'svelte/store';
-import type { ContextKey, ContextMap, Maeve, MarkdownMetadata } from '$lib/types';
-import { browser } from '$app/environment';
-import { AVATARS, SAMPLE_FULL_NAMES } from '$lib/config';
+import { type ClassValue, clsx } from "clsx";
+import { get } from "svelte/store";
+import type { Node } from "@xyflow/svelte";
+import { twMerge } from "tailwind-merge";
+import { cubicOut } from "svelte/easing";
+import type { RequestEvent } from "@sveltejs/kit";
+import type { TransitionConfig } from "svelte/transition";
+import { getContext as getSvelteContext, setContext as setSvelteContext } from "svelte";
+import { writable } from "svelte/store";
+import type { ContextKey, ContextMap, Maeve, MarkdownMetadata } from "$lib/types";
+import { browser } from "$app/environment";
+import { AVATARS, SAMPLE_FULL_NAMES } from "$lib/config";
 
 export function getNodesCount(nodes: Node[]) {
 	return {
-		agents: nodes.filter((n) => n.type === 'agent').length,
-		prompts: nodes.filter((n) => n.type === 'prompt').length
+		agents: nodes.filter((n) => n.type === "agent").length,
+		prompts: nodes.filter((n) => n.type === "prompt").length
 	};
 }
 
@@ -32,7 +32,7 @@ function getRandomIndex(array: Array<unknown>) {
 }
 
 export const authenticateUser = ({ cookies, locals }: RequestEvent) => {
-	const currentUserId = cookies.get('userId');
+	const currentUserId = cookies.get("userId");
 
 	if (currentUserId) {
 		locals.userId = currentUserId;
@@ -44,11 +44,11 @@ export const authenticateUser = ({ cookies, locals }: RequestEvent) => {
 	const expirationDate = new Date();
 	expirationDate.setMonth(expirationDate.getMonth() + 1);
 
-	cookies.set('userId', userId, {
-		path: '/',
+	cookies.set("userId", userId, {
+		path: "/",
 		httpOnly: true,
-		sameSite: 'strict',
-		secure: process.env.NODE_ENV === 'production',
+		sameSite: "strict",
+		secure: process.env.NODE_ENV === "production",
 		expires: expirationDate
 	});
 
@@ -57,7 +57,7 @@ export const authenticateUser = ({ cookies, locals }: RequestEvent) => {
 
 export function getPremadeInputsMap() {
 	if (browser) {
-		const inputStr = localStorage.getItem('premade-inputs');
+		const inputStr = localStorage.getItem("premade-inputs");
 
 		if (inputStr) {
 			return JSON.parse(inputStr) as Record<string, string>;
@@ -90,7 +90,7 @@ export function injectPremadeValues(str: string) {
 export function getLocalMaeve() {
 	let maeveStr: string | null = null;
 	if (browser) {
-		maeveStr = localStorage.getItem('maeve');
+		maeveStr = localStorage.getItem("maeve");
 	}
 	if (!maeveStr) return null;
 
@@ -100,7 +100,7 @@ export function getLocalMaeve() {
 // creates an array of nodes without the stores
 export function getCleanNodes(nodes: Node[]): Node[] {
 	const agents = nodes
-		.filter((n) => n.type === 'agent')
+		.filter((n) => n.type === "agent")
 		.map((n) => {
 			const { prompt, name, job_title, model } = n.data;
 			return {
@@ -116,7 +116,7 @@ export function getCleanNodes(nodes: Node[]): Node[] {
 		});
 
 	const prompts = nodes
-		.filter((n) => n.type === 'prompt')
+		.filter((n) => n.type === "prompt")
 		.map((n) => {
 			const { title, content } = n.data;
 			return {
@@ -135,13 +135,13 @@ export function getCleanNodes(nodes: Node[]): Node[] {
 export function getWritableNodes(nodes: Node[]): Node[] {
 	return [
 		...nodes
-			.filter((n) => n.type === 'prompt')
+			.filter((n) => n.type === "prompt")
 			.map((n) => ({
 				...n,
 				data: { title: writable(n.data.title), content: writable(n.data.content) }
 			})),
 		...nodes
-			.filter((n) => n.type === 'agent')
+			.filter((n) => n.type === "agent")
 			.map((n) => ({
 				...n,
 				data: {
@@ -179,7 +179,7 @@ export const flyAndScale = (
 	params: FlyAndScaleParams = { y: -8, x: 0, start: 0.95, duration: 150 }
 ): TransitionConfig => {
 	const style = getComputedStyle(node);
-	const transform = style.transform === 'none' ? '' : style.transform;
+	const transform = style.transform === "none" ? "" : style.transform;
 
 	const scaleConversion = (valueA: number, scaleA: [number, number], scaleB: [number, number]) => {
 		const [minA, maxA] = scaleA;
@@ -195,7 +195,7 @@ export const flyAndScale = (
 		return Object.keys(style).reduce((str, key) => {
 			if (style[key] === undefined) return str;
 			return str + `${key}:${style[key]};`;
-		}, '');
+		}, "");
 	};
 
 	return {
@@ -215,11 +215,11 @@ export const flyAndScale = (
 	};
 };
 
-type DateStyle = Intl.DateTimeFormatOptions['dateStyle']
+type DateStyle = Intl.DateTimeFormatOptions["dateStyle"];
 
-export function formatDate(date: string, dateStyle: DateStyle = 'medium', locales = 'en') {
-	const formatter = new Intl.DateTimeFormat(locales, { dateStyle })
-	return formatter.format(new Date(date))
+export function formatDate(date: string, dateStyle: DateStyle = "medium", locales = "en") {
+	const formatter = new Intl.DateTimeFormat(locales, { dateStyle });
+	return formatter.format(new Date(date));
 }
 
 // Markdown
@@ -231,9 +231,9 @@ export function extractFrontmatter(markdown: string) {
 	const frontmatter = match[1];
 	const body = markdown.slice(match[0].length);
 
-	let metadata: MarkdownMetadata = {title: "", description: ""};
-	frontmatter.split('\n').forEach((pair) => {
-		const [key, value] = pair.split(':').map((x) => x.trim());
+	let metadata: MarkdownMetadata = { title: "", description: "" };
+	frontmatter.split("\n").forEach((pair) => {
+		const [key, value] = pair.split(":").map((x) => x.trim());
 		if (key && value) metadata[key] = removeQuotes(value);
 	});
 
@@ -241,5 +241,5 @@ export function extractFrontmatter(markdown: string) {
 }
 
 export function removeQuotes(text: string) {
-	return text.replace(/"/g, '');
+	return text.replace(/"/g, "");
 }

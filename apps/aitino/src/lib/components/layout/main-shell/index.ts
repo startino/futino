@@ -1,1 +1,1 @@
-export { default as MainShell } from './main-shell.svelte';
+export { default as MainShell } from "./main-shell.svelte";

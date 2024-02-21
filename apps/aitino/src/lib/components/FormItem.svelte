@@ -1,34 +1,34 @@
 <script lang="ts">
-	import { applyAction, enhance } from '$app/forms';
-	import { invalidateAll } from '$app/navigation';
-	import { Button } from '$lib/components/ui/button';
-	import { ArrowRight, Loader, Github, X, Youtube, Loader2 } from 'lucide-svelte';
-	import Input from './ui/input/input.svelte';
-	import { toast } from 'svelte-sonner';
-	import * as Dialog from './ui/dialog';
-	import { Label } from './ui/label';
-	import { Textarea } from './ui/textarea';
-	import { superForm } from 'sveltekit-superforms/client';
-	import SuperDebug from 'sveltekit-superforms/client/SuperDebug.svelte';
-	import * as Form from '$lib/components/ui/form';
-	import { formSchema, waitlistSchema, type FormSchema } from '../../routes/schema';
-	import type { ActionData } from '../../routes/$types';
+	import { applyAction, enhance } from "$app/forms";
+	import { invalidateAll } from "$app/navigation";
+	import { Button } from "$lib/components/ui/button";
+	import { ArrowRight, Loader, Github, X, Youtube, Loader2 } from "lucide-svelte";
+	import Input from "./ui/input/input.svelte";
+	import { toast } from "svelte-sonner";
+	import * as Dialog from "./ui/dialog";
+	import { Label } from "./ui/label";
+	import { Textarea } from "./ui/textarea";
+	import { superForm } from "sveltekit-superforms/client";
+	import SuperDebug from "sveltekit-superforms/client/SuperDebug.svelte";
+	import * as Form from "$lib/components/ui/form";
+	import { formSchema, waitlistSchema, type FormSchema } from "../../routes/schema";
+	import type { ActionData } from "../../routes/$types";
 
 	export let mainform: ActionData;
 	export let notform: any;
 
-	console.log(mainform, 'mainform data');
-	let input = '';
+	console.log(mainform, "mainform data");
+	let input = "";
 
 	let isLoading = false;
 
 	const { form, errors } = superForm(notform.contactForm);
 	const { form: join_waitlist_Form, errors: join_waitlist_Error } = superForm(notform.waitlistForm);
 
-	$: console.log('Form values:', $join_waitlist_Form);
-	$: console.log('Form errors:', $join_waitlist_Error);
-	$: console.log('Form errors contact:', $errors);
-	$: console.log('Form form contact:', $form);
+	$: console.log("Form values:", $join_waitlist_Form);
+	$: console.log("Form errors:", $join_waitlist_Error);
+	$: console.log("Form errors contact:", $errors);
+	$: console.log("Form form contact:", $form);
 </script>
 
 <!-- Uncomment this to debug the superform and zod -->
@@ -49,7 +49,7 @@
 	<div class="flex h-fit w-full flex-col gap-4 p-1 sm:flex-row">
 		<div class="flex w-full flex-col justify-between">
 			<Input
-				class="border-input placeholder:text-muted-foreground focus-visible:ring-ring flex w-full rounded-md border bg-transparent px-3 py-1 text-sm shadow-sm ring-offset-0 transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50 "
+				class="flex w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm ring-offset-0 transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring focus-visible:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50 "
 				id="email"
 				type="email"
 				name="email"
@@ -76,16 +76,16 @@
 						$join_waitlist_Error = {};
 						if (mainform?.message) {
 							toast.success(mainform?.message);
-							document.getElementById('email').value = ' ';
-							console.log(' from message');
+							document.getElementById("email").value = " ";
+							console.log(" from message");
 							isLoading = false;
 							$join_waitlist_Error = {};
 						} else if (mainform?.invalid) {
 							$join_waitlist_Error = {};
 							toast.error(mainform?.error);
-							console.log(' from error');
+							console.log(" from error");
 							isLoading = false;
-							document.getElementById('email').value = ' ';
+							document.getElementById("email").value = " ";
 						}
 					}
 					isLoading = false;
@@ -121,7 +121,7 @@
 					<Form.Label>Name</Form.Label>
 					<Form.Input
 						placeholder="Your name"
-						class="border-input placeholder:text-muted-foreground focus-visible:ring-ring flex w-full rounded-md border bg-transparent px-3 py-1 text-sm shadow-sm ring-offset-0 transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50 "
+						class="flex w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm ring-offset-0 transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring focus-visible:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50 "
 					/>
 					<Form.Validation />
 				</Form.Field>
@@ -131,7 +131,7 @@
 					<Form.Label>Email</Form.Label>
 					<Form.Input
 						placeholder="Your email"
-						class="border-input placeholder:text-muted-foreground focus-visible:ring-ring flex w-full rounded-md border bg-transparent px-3 py-1 text-sm shadow-sm ring-offset-0 transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50 "
+						class="flex w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm ring-offset-0 transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring focus-visible:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50 "
 					/>
 					<Form.Validation />
 				</Form.Field>
@@ -141,15 +141,15 @@
 					<Form.Label>Description</Form.Label>
 					<Form.Textarea
 						placeholder="Your description"
-						class="border-input placeholder:text-muted-foreground focus-visible:ring-ring flex w-full rounded-md border bg-transparent px-3 py-1 text-sm shadow-sm ring-offset-0 transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50 "
+						class="flex w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm ring-offset-0 transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring focus-visible:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50 "
 					/>
 					<Form.Validation />
 				</Form.Field>
 			</Form.Item>
 			<Form.Button
 				on:click={() => {
-					console.log($errors, 'errors from form button');
-					console.log($form, ' form button');
+					console.log($errors, "errors from form button");
+					console.log($form, " form button");
 
 					$errors = {};
 					setTimeout(() => {
@@ -158,14 +158,14 @@
 						// let hasErrors = Object.keys($errors).length > 0;
 						// console.log(hasErrors, Object.keys($errors).length, 'has errors');
 						if (Object.keys($errors).length > 0) {
-							console.log('has error, from toast error', $errors);
+							console.log("has error, from toast error", $errors);
 							$errors = {};
 
-							toast.error('Please fill the form correctly');
+							toast.error("Please fill the form correctly");
 						} else {
-							console.log('has error, from toast success', $errors);
+							console.log("has error, from toast success", $errors);
 							toast.success(
-								'We got your message and will get back to you as soon as possible! Thank you!'
+								"We got your message and will get back to you as soon as possible! Thank you!"
 							);
 						}
 					}, 1000);
@@ -180,7 +180,7 @@
 	class="mx-auto mt-6 flex h-fit w-fit flex-wrap-reverse items-center justify-between gap-2 sm:flex-row md:p-4"
 >
 	<Button
-		class="hover:bg-primary text-accent hover:text-primary-foreground bg-transparent p-6 font-bold transition-all duration-300 ease-in-out hover:scale-95 "
+		class="bg-transparent p-6 font-bold text-accent transition-all duration-300 ease-in-out hover:scale-95 hover:bg-primary hover:text-primary-foreground "
 		href="https://github.com/Futino/"
 		target="_blank"
 	>
@@ -195,7 +195,7 @@
 	</Button>
 
 	<Button
-		class="hover:bg-primary text-accent hover:text-primary-foreground bg-transparent p-6 font-bold transition-all duration-300 ease-in-out hover:scale-95"
+		class="bg-transparent p-6 font-bold text-accent transition-all duration-300 ease-in-out hover:scale-95 hover:bg-primary hover:text-primary-foreground"
 		href="https://www.youtube.com/@futinolimited"
 		target="_blank"
 	>
@@ -209,7 +209,7 @@
 		</div>
 	</Button>
 	<Button
-		class="hover:bg-primary text-accent hover:text-primary-foreground bg-transparent p-6 font-bold transition-all duration-300 ease-in-out hover:scale-95"
+		class="bg-transparent p-6 font-bold text-accent transition-all duration-300 ease-in-out hover:scale-95 hover:bg-primary hover:text-primary-foreground"
 		href="https://discord.gg/6M3dSFnufV"
 		target="_blank"
 	>
