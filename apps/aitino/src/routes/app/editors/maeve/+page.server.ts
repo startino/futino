@@ -12,6 +12,7 @@ export const load = async ({ locals: { userId } }) => {
 
 	if (data.length === 0) {
 		return {
+			user_id: userId,
 			title: 'Untitled maeve',
 			description: 'No description',
 			nodes: [],
