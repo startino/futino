@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { writable } from "svelte/store";
+  import { writable, get } from "svelte/store";
   import dagre from "@dagrejs/dagre";
   import {
     SvelteFlow,
@@ -174,9 +174,7 @@
 
     do {
       name = pickRandomName();
-    } while (
-      Boolean($nodes.find((n) => n.type === "agent" && n.data.name === name))
-    );
+    } while ($nodes.find((n) => n.type === "agent" && get(n.data.name) === name));
 
     setCenter(position.x, position.y, { zoom: position.zoom });
 
