@@ -1,4 +1,4 @@
-<script lang="ts">
+<!-- <script lang="ts">
 	import { createTable, Subscribe, Render, createRender } from 'svelte-headless-table';
 	import {
 		addSortBy,
@@ -273,4 +273,4 @@
 			on:click={() => ($pageIndex = $pageIndex + 1)}>Next</Button
 		>
 	</div>
-</div>
+</div> -->
