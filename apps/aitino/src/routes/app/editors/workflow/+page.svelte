@@ -12,7 +12,7 @@
 		type Connection,
 		Panel
 	} from '@xyflow/svelte';
-	import { get, writable } from 'svelte/store'
+	import { get, writable } from 'svelte/store';
 	import ContextMenu from '$lib/components/ContextMenu.svelte';
 	import { Button } from '$lib/components/ui/button';
 	import * as Dialog from '$lib/components/ui/dialog';

@@ -49,7 +49,7 @@
 	<div class="flex h-fit w-full flex-col gap-4 p-1 sm:flex-row">
 		<div class="flex w-full flex-col justify-between">
 			<Input
-				class="border-input placeholder:text-muted-foreground focus-visible:ring-ring flex w-full rounded-md border bg-transparent px-3 py-1 text-sm shadow-sm ring-offset-0 transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50 "
+				class="flex w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm ring-offset-0 transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring focus-visible:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50 "
 				id="email"
 				type="email"
 				name="email"
@@ -121,7 +121,7 @@
 					<Form.Label>Name</Form.Label>
 					<Form.Input
 						placeholder="Your name"
-						class="border-input placeholder:text-muted-foreground focus-visible:ring-ring flex w-full rounded-md border bg-transparent px-3 py-1 text-sm shadow-sm ring-offset-0 transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50 "
+						class="flex w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm ring-offset-0 transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring focus-visible:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50 "
 					/>
 					<Form.Validation />
 				</Form.Field>
@@ -131,7 +131,7 @@
 					<Form.Label>Email</Form.Label>
 					<Form.Input
 						placeholder="Your email"
-						class="border-input placeholder:text-muted-foreground focus-visible:ring-ring flex w-full rounded-md border bg-transparent px-3 py-1 text-sm shadow-sm ring-offset-0 transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50 "
+						class="flex w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm ring-offset-0 transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring focus-visible:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50 "
 					/>
 					<Form.Validation />
 				</Form.Field>
@@ -141,7 +141,7 @@
 					<Form.Label>Description</Form.Label>
 					<Form.Textarea
 						placeholder="Your description"
-						class="border-input placeholder:text-muted-foreground focus-visible:ring-ring flex w-full rounded-md border bg-transparent px-3 py-1 text-sm shadow-sm ring-offset-0 transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50 "
+						class="flex w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm ring-offset-0 transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring focus-visible:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50 "
 					/>
 					<Form.Validation />
 				</Form.Field>
@@ -180,7 +180,7 @@
 	class="mx-auto mt-6 flex h-fit w-fit flex-wrap-reverse items-center justify-between gap-2 sm:flex-row md:p-4"
 >
 	<Button
-		class="hover:bg-primary text-accent hover:text-primary-foreground bg-transparent p-6 font-bold transition-all duration-300 ease-in-out hover:scale-95 "
+		class="bg-transparent p-6 font-bold text-accent transition-all duration-300 ease-in-out hover:scale-95 hover:bg-primary hover:text-primary-foreground "
 		href="https://github.com/Futino/"
 		target="_blank"
 	>
@@ -195,7 +195,7 @@
 	</Button>
 
 	<Button
-		class="hover:bg-primary text-accent hover:text-primary-foreground bg-transparent p-6 font-bold transition-all duration-300 ease-in-out hover:scale-95"
+		class="bg-transparent p-6 font-bold text-accent transition-all duration-300 ease-in-out hover:scale-95 hover:bg-primary hover:text-primary-foreground"
 		href="https://www.youtube.com/@futinolimited"
 		target="_blank"
 	>
@@ -209,7 +209,7 @@
 		</div>
 	</Button>
 	<Button
-		class="hover:bg-primary text-accent hover:text-primary-foreground bg-transparent p-6 font-bold transition-all duration-300 ease-in-out hover:scale-95"
+		class="bg-transparent p-6 font-bold text-accent transition-all duration-300 ease-in-out hover:scale-95 hover:bg-primary hover:text-primary-foreground"
 		href="https://discord.gg/6M3dSFnufV"
 		target="_blank"
 	>

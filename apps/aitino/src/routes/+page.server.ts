@@ -50,7 +50,6 @@ export const actions = {
 			});
 		}
 
-
 		const { data, error } = await supabase
 			.from('waitlist_users')
 			.insert([{ email: email }])

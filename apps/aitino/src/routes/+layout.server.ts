@@ -1,9 +1,9 @@
-import { serverGetSplitTestIdentifier } from 'svelte-split-testing'
+import { serverGetSplitTestIdentifier } from 'svelte-split-testing';
 
 export async function load({ cookies }) {
-  const splitTestIdentifier = serverGetSplitTestIdentifier(cookies)
+	const splitTestIdentifier = serverGetSplitTestIdentifier(cookies);
 
-  return {
-    splitTestIdentifier,
-  }
+	return {
+		splitTestIdentifier
+	};
 }

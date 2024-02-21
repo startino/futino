@@ -80,7 +80,7 @@
 	function formatCode(content: string) {
 		const lines = content.split(/\r?\n|\s{4,}/);
 
-		const indentation = 4; 
+		const indentation = 4;
 		const formattedLines = lines.map((line: string, index: number) => {
 			const lineNumber = index + 1;
 			const formattedLine = `${lineNumber.toString().padStart(3, ' ')} | ${line.repeat(indentation)}`;
@@ -91,14 +91,14 @@
 	}
 </script>
 
-<div class="container flex h-screen max-w-6xl flex-col justify-end p-6 -mb-6">
+<div class="container -mb-6 flex h-screen max-w-6xl flex-col justify-end p-6">
 	<div class="no-scrollbar max-h-full overflow-y-auto" bind:this={chatContainerElement}>
 		<!-- add scroll to the bottom of the chat  -->
 		{#each messages as message}
 			<div>
 				{#if !message.fromUser}
 					<div class="space-y-2">
-						<Card.Root class="border-secondary-500 max-w-2xl border">
+						<Card.Root class="max-w-2xl border border-secondary-500">
 							<Card.Content class="grid gap-4 p-6">
 								{#if message.content.startsWith('```') || message.content.includes('<')}
 									<pre class={codeBlockStyle}>{formatCode(message.content)}</pre>
@@ -109,7 +109,7 @@
 								{/if}
 							</Card.Content>
 						</Card.Root>
-						<Card.Root class="bg-background max-w-2xl border-none">
+						<Card.Root class="max-w-2xl border-none bg-background">
 							<Card.Content class="grid w-full grid-cols-2 items-center justify-between gap-4">
 								<div class="flex items-center gap-4">
 									<p class="prose text-xs font-medium leading-none"><User size="16" /></p>
@@ -127,7 +127,7 @@
 				{:else}
 					<div class="space-y-2">
 						<Card.Root
-							class="border-secondary ml-auto flex max-w-2xl flex-wrap rounded-bl-3xl border"
+							class="ml-auto flex max-w-2xl flex-wrap rounded-bl-3xl border border-secondary"
 						>
 							<Card.Content class="grid gap-4 p-6">
 								{#if message.content.startsWith('```') || message.content.includes('<')}
@@ -154,7 +154,7 @@
 	</div>
 
 	<div class="mb-2 space-y-16">
-		<Card.Root class="border-secondary mt-4 max-w-full border">
+		<Card.Root class="mt-4 max-w-full border border-secondary">
 			<Card.Content class="grid gap-4 p-2">
 				<div class="flex justify-between">
 					<p class="prose text-sm font-medium leading-8 tracking-widest">
@@ -170,7 +170,7 @@
 				bind:value={newMessageContent}
 				on:input={handleInputChange}
 				on:keydown={handleKeyDown}
-				class="border-input  placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border bg-transparent px-3 py-6 text-sm shadow-sm ring-offset-0 transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50"
+				class="flex  h-9 w-full rounded-md border border-input bg-transparent px-3 py-6 text-sm shadow-sm ring-offset-0 transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring focus-visible:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50"
 				placeholder="Join the conversation by typing a message..."
 			/>
 			<Button

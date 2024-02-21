@@ -34,9 +34,7 @@ const config = {
 			typography: ({ colors }) => ({
 				...typographyConfig(colors, alpha),
 				...{
-					DEFAULT: {
-						
-					}
+					DEFAULT: {}
 				}
 			})
 		}

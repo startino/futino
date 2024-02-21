@@ -24,5 +24,20 @@ export interface MaeveContext {
 	count: Writable<{ agents: number; prompts: number }>;
 }
 
-export type Categories = 'multi-agents' | 'automation' | 'tutorial' | 'reviews' | 'top-softwares' | 'ai' | 'learning' | 'mathematics' | 'engineering' | 'computer-science' | 'economics' | 'business' | 'art' | 'music' | 'technology' | 'science-fiction'
-
+export type Categories =
+	| 'multi-agents'
+	| 'automation'
+	| 'tutorial'
+	| 'reviews'
+	| 'top-softwares'
+	| 'ai'
+	| 'learning'
+	| 'mathematics'
+	| 'engineering'
+	| 'computer-science'
+	| 'economics'
+	| 'business'
+	| 'art'
+	| 'music'
+	| 'technology'
+	| 'science-fiction';

@@ -17,7 +17,10 @@
 	{#each data.posts as post}
 		{#if !post.draft}
 			<a class="no-underline" href="/blog/{post.slug}" title="Read the article »">
-				<article class="prose prose-blog rounded-md border border-border p-6" data-pubdate={post.date}>
+				<article
+					class="prose prose-blog rounded-md border border-border p-6"
+					data-pubdate={post.date}
+				>
 					<h2>{post.title}</h2>
 					<h6>Published {post.date}</h6>
 					<p>{post.description}</p>

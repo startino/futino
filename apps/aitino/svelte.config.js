@@ -1,6 +1,6 @@
 import adapter from '@sveltejs/adapter-vercel';
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
-import {mdsvex} from 'mdsvex';
+import { mdsvex } from 'mdsvex';
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -11,7 +11,8 @@ const config = {
 		vitePreprocess(),
 		mdsvex({
 			extensions: ['.md']
-		})],
+		})
+	],
 
 	kit: {
 		// adapter-auto only supports some environments, see https://kit.svelte.dev/docs/adapter-auto for a list.
@@ -21,8 +22,7 @@ const config = {
 		alias: {
 			$styling: './src/app.pcss'
 		}
-	},
-
+	}
 };
 
 export default config;

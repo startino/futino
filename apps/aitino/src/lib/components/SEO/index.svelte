@@ -23,8 +23,8 @@
 	} = website;
 
 	export let article = false;
-	export let lastUpdated = "";
-	export let datePublished = "";
+	export let lastUpdated = '';
+	export let datePublished = '';
 	export let metadescription: string;
 	export let slug;
 	export let timeToRead = 0;

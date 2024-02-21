@@ -3,7 +3,7 @@
 
 	const {
 		status,
-		error: { message },
+		error: { message }
 	} = $page;
 	const title = `${status}: ${message}`;
 </script>

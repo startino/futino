@@ -1,7 +1,7 @@
 // @ts-check
 import { extractFrontmatter } from '$lib/utils';
 import { CONTENT_BASE_PATHS } from '../../../constants';
-import {Carta} from 'carta-md';
+import { Carta } from 'carta-md';
 import type { BlogData, BlogPost } from './types';
 import type { SvelteComponent } from 'svelte';
 import type { MarkdownMetadata } from '$lib/types';
@@ -9,7 +9,7 @@ import { error } from '@sveltejs/kit';
 import { base } from '$app/paths';
 
 export async function get_blog_post(pathname: string) {
-	const pages = import.meta.glob("../../../../../documentation/blog/*.md");
+	const pages = import.meta.glob('../../../../../documentation/blog/*.md');
 	const path = pathname.slice(base.length).slice(1).split('/').pop();
 	const match = pages[`../../../../../documentation/blog/${path}.md`];
 	if (!match) throw error(404, "Could not find the blog post you're looking for.");
@@ -21,7 +21,10 @@ export async function get_blog_post(pathname: string) {
 	return Markdown;
 }
 
-export async function get_processed_blog_post(blog_data: BlogData, slug: string): Promise<BlogPost | null>{
+export async function get_processed_blog_post(
+	blog_data: BlogData,
+	slug: string
+): Promise<BlogPost | null> {
 	const carta = new Carta({});
 	for (const post of blog_data) {
 		if (post.slug === slug) {
@@ -60,13 +63,12 @@ export async function get_blog_data(base = CONTENT_BASE_PATHS.BLOG): Promise<Blo
 			author: {
 				name: metadata.author,
 				url: metadata.authorURL
-			},
+			}
 		});
 	}
 
 	return blog_posts;
 }
-
 
 export function get_blog_list(blog_data: BlogData) {
 	return blog_data.map(({ slug, date, title, description, draft }) => ({

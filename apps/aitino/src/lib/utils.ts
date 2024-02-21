@@ -215,11 +215,11 @@ export const flyAndScale = (
 	};
 };
 
-type DateStyle = Intl.DateTimeFormatOptions['dateStyle']
+type DateStyle = Intl.DateTimeFormatOptions['dateStyle'];
 
 export function formatDate(date: string, dateStyle: DateStyle = 'medium', locales = 'en') {
-	const formatter = new Intl.DateTimeFormat(locales, { dateStyle })
-	return formatter.format(new Date(date))
+	const formatter = new Intl.DateTimeFormat(locales, { dateStyle });
+	return formatter.format(new Date(date));
 }
 
 // Markdown
@@ -231,7 +231,7 @@ export function extractFrontmatter(markdown: string) {
 	const frontmatter = match[1];
 	const body = markdown.slice(match[0].length);
 
-	let metadata: MarkdownMetadata = {title: "", description: ""};
+	let metadata: MarkdownMetadata = { title: '', description: '' };
 	frontmatter.split('\n').forEach((pair) => {
 		const [key, value] = pair.split(':').map((x) => x.trim());
 		if (key && value) metadata[key] = removeQuotes(value);

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { SEOImage } from "./types";
+	import type { SEOImage } from './types';
 
 	export let article = false;
 	export let datePublished: string;
@@ -7,7 +7,7 @@
 	export let facebookAuthorPage = '';
 	export let facebookPage = '';
 	export let image: SEOImage | null;
-	export let squareImage: SEOImage| null;
+	export let squareImage: SEOImage | null;
 	export let metadescription: string;
 	export let ogLanguage: string;
 	export let pageTitle: string;
