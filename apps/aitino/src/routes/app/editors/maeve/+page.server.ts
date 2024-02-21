@@ -2,22 +2,34 @@ import type { Edge, Node } from "@xyflow/svelte";
 
 import { getMaeveNodes } from "$lib/api-client";
 import { getNodesCount } from "$lib/utils.js";
+import { error } from "@sveltejs/kit";
 
 export const load = async ({ locals: { userId } }) => {
-	const { data } = await getMaeveNodes(userId);
-
-	let [nodes, edges]: [Node[], Edge[]] = [[], []];
-
-	if (data) {
-		nodes = data.nodes;
-		edges = data.edges;
+	const { data, error: err } = await getMaeveNodes(userId);
+	if (err) {
+		throw error(500, "something went wrong");
 	}
 
+	if (data.length === 0) {
+		return {
+			user_id: userId,
+			title: "Untitled maeve",
+			description: "No description",
+			nodes: [],
+			edges: [],
+			count: {
+				agents: 0,
+				prompts: 0
+			}
+		};
+	}
+
+	const nodes = data[0].nodes as Node[];
+
 	return {
-		id: data ? data.id : undefined,
-		userId,
+		...data[0],
 		nodes,
-		edges,
+		edges: data[0].edges as Edge[],
 		count: getNodesCount(nodes)
 	};
 };

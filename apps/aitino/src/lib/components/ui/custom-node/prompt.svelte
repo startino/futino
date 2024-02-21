@@ -38,7 +38,6 @@
 
 	let showAll = false;
 	const previewLength = 250;
-	let prompt = "";
 
 	function toggleContent() {
 		showAll = !showAll;

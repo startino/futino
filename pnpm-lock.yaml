@@ -41,6 +41,9 @@ importers:
       '@sveltejs/adapter-vercel':
         specifier: ^4.0.4
         version: 4.0.4(@sveltejs/kit@2.5.0)
+      '@sveltejs/site-kit':
+        specifier: ^5.2.2
+        version: 5.2.2(@sveltejs/kit@2.5.0)(svelte@4.2.9)
       '@types/wicg-file-system-access':
         specifier: ^2023.10.4
         version: 2023.10.4
@@ -74,12 +77,18 @@ importers:
       lucide-svelte:
         specifier: ^0.321.0
         version: 0.321.0(svelte@4.2.9)
+      mdsvex:
+        specifier: ^0.11.0
+        version: 0.11.0(svelte@4.2.9)
       mode-watcher:
         specifier: ^0.2.0
         version: 0.2.0(svelte@4.2.9)
       svelte-markdown:
         specifier: ^0.4.1
         version: 0.4.1(svelte@4.2.9)
+      object-hash:
+        specifier: ^3.0.0
+        version: 3.0.0
       svelte-sonner:
         specifier: ^0.3.11
         version: 0.3.11(svelte@4.2.9)
@@ -2094,7 +2103,7 @@ packages:
     peerDependencies:
       '@sveltejs/kit': ^2.0.0
     dependencies:
-      '@sveltejs/kit': 2.5.0(@sveltejs/vite-plugin-svelte@3.0.1)(svelte@4.2.9)(vite@5.0.12)
+      '@sveltejs/kit': 2.5.0(@sveltejs/vite-plugin-svelte@3.0.1)(svelte@5.0.0-next.31)(vite@5.0.12)
       import-meta-resolve: 4.0.0
     dev: true
 
@@ -2103,7 +2112,7 @@ packages:
     peerDependencies:
       '@sveltejs/kit': ^2.0.0
     dependencies:
-      '@sveltejs/kit': 2.5.0(@sveltejs/vite-plugin-svelte@3.0.1)(svelte@4.2.9)(vite@5.0.12)
+      '@sveltejs/kit': 2.5.0(@sveltejs/vite-plugin-svelte@3.0.1)(svelte@5.0.0-next.31)(vite@5.0.12)
       '@vercel/nft': 0.26.2
       esbuild: 0.19.11
     transitivePeerDependencies:
@@ -2161,7 +2170,18 @@ packages:
       svelte: 5.0.0-next.31
       tiny-glob: 0.2.9
       vite: 5.0.12
-    dev: true
+
+  /@sveltejs/site-kit@5.2.2(@sveltejs/kit@2.5.0)(svelte@4.2.9):
+    resolution: {integrity: sha512-XLLxVUV/dYytCsUeODAkjtzlaIBSn1kdcH5U36OuN7gMsPEHDy5L/dsWjf1/vDln3JStH5lqZPEN8Fovm33KhA==}
+    peerDependencies:
+      '@sveltejs/kit': ^1.0.0
+      svelte: ^3.54.0
+    dependencies:
+      '@sveltejs/kit': 2.5.0(@sveltejs/vite-plugin-svelte@3.0.1)(svelte@4.2.9)(vite@5.0.12)
+      esm-env: 1.0.0
+      svelte: 4.2.9
+      svelte-local-storage-store: 0.4.0(svelte@4.2.9)
+    dev: false
 
   /@sveltejs/vite-plugin-svelte-inspector@2.0.0(@sveltejs/vite-plugin-svelte@3.0.1)(svelte@4.2.9)(vite@5.0.12):
     resolution: {integrity: sha512-gjr9ZFg1BSlIpfZ4PRewigrvYmHWbDrq2uvvPB1AmTWKuM+dI1JXQSUu2pIrYLb/QncyiIGkFDFKTwJ0XqQZZg==}
@@ -2192,7 +2212,6 @@ packages:
       vite: 5.0.12
     transitivePeerDependencies:
       - supports-color
-    dev: true
 
   /@sveltejs/vite-plugin-svelte@3.0.1(svelte@4.2.9)(vite@5.0.12):
     resolution: {integrity: sha512-CGURX6Ps+TkOovK6xV+Y2rn8JKa8ZPUHPZ/NKgCxAmgBrXReavzFl8aOSCj3kQ1xqT7yGJj53hjcV/gqwDAaWA==}
@@ -2231,7 +2250,6 @@ packages:
       vitefu: 0.2.5(vite@5.0.12)
     transitivePeerDependencies:
       - supports-color
-    dev: true
 
   /@swc/helpers@0.5.3:
     resolution: {integrity: sha512-FaruWX6KdudYloq1AHD/4nU+UsMTdNE8CKyrseXWEcgjDAbvkwJg2QGPAnfIJLIWsjZOSPLOAykK6fuYp4vp4A==}
@@ -7535,7 +7553,6 @@ packages:
       svelte: ^3.19.0 || ^4.0.0
     dependencies:
       svelte: 5.0.0-next.31
-    dev: true
 
   /svelte-inview@4.0.2(svelte@5.0.0-next.31):
     resolution: {integrity: sha512-saJp2QRCUEBletGPnI3utxROHqruDGRPfPhtdpNYQwD97P2oCKiVIlZE3tFNEiC7h3nCvU+8czaKWcH1o/axrA==}
@@ -7560,6 +7577,13 @@ packages:
     dependencies:
       '@types/marked': 5.0.2
       marked: 5.1.2
+      
+  /svelte-local-storage-store@0.4.0(svelte@4.2.9):
+    resolution: {integrity: sha512-ctPykTt4S3BE5bF0mfV0jKiUR1qlmqLvnAkQvYHLeb9wRyO1MdIFDVI23X+TZEFleATHkTaOpYZswIvf3b2tWA==}
+    engines: {node: '>=0.14'}
+    peerDependencies:
+      svelte: ^3.48.0
+    dependencies:
       svelte: 4.2.9
     dev: false
 

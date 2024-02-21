@@ -39,6 +39,9 @@
 
 	const { receiver, count } = getContext("maeve");
 
+	let title = data.title;
+	let description = data.description;
+
 	const actions: PanelAction[] = [
 		{ name: "Run", buttonVariant: "default" },
 		{ name: "Add Prompt", buttonVariant: "outline", onclick: addNewPrompt },
@@ -48,7 +51,17 @@
 			name: "Export",
 			buttonVariant: "outline",
 			onclick: () => {
-				const jsonString = JSON.stringify({ nodes: getCleanNodes($nodes), edges: $edges }, null, 2);
+				const jsonString = JSON.stringify(
+					{
+						nodes: getCleanNodes($nodes),
+						edges: $edges,
+						title,
+						description,
+						receiver_id: $receiver?.node.id ?? null
+					},
+					null,
+					2
+				);
 				const blob = new Blob([jsonString], { type: "application/json" });
 				const url = window.URL.createObjectURL(blob);
 				const a = document.createElement("a");
@@ -122,7 +135,9 @@
 	async function save() {
 		const { error } = await saveMaeveNodes({
 			id: data.id,
-			user_id: data.userId,
+			user_id: data.user_id,
+			title,
+			description,
 			receiver_id: $receiver?.node.id ?? null,
 			nodes: getCleanNodes($nodes),
 			edges: $edges
@@ -134,6 +149,14 @@
 		}
 
 		toast.success("Nodes successfully saved!");
+	}
+
+	function setReceiver(id: string | null | undefined) {
+		if (!id) {
+			return;
+		}
+		const revr = getNodes([id])[0];
+		$receiver = { node: revr, targetCount: 1 };
 	}
 
 	function layout() {
@@ -151,7 +174,7 @@
 
 		do {
 			name = pickRandomName();
-		} while (Boolean($nodes.find((n) => n.type === "agent" && n.data.name === name)));
+		} while ($nodes.find((n) => n.type === "agent" && get(n.data.name) === name));
 
 		setCenter(position.x, position.y, { zoom: position.zoom });
 
@@ -207,14 +230,7 @@
 		fitView
 		oninit={() => {
 			count.set(data.count);
-
-			const prompt = $nodes.find((n) => n.type === "prompt");
-
-			if (prompt) {
-				const outgoers = getOutgoers(prompt, $nodes, $edges);
-
-				outgoers[0] && ($receiver = { node: outgoers[0], targetCount: 1 });
-			}
+			setReceiver(data.receiver_id);
 		}}
 		connectionLineType={ConnectionLineType.SmoothStep}
 		defaultEdgeOptions={{ type: "smoothstep", animated: true }}
@@ -250,7 +266,7 @@
 		<Background class="!bg-background" />
 
 		<Panel position="top-right">
-			<RightEditorSidebar {actions} let:action>
+			<RightEditorSidebar bind:description bind:title {actions} let:action>
 				{#if action.isCustom}
 					<Dialog.Root open={libraryOpen} onOpenChange={(o) => (libraryOpen = o)}>
 						<Dialog.Trigger>
@@ -266,6 +282,9 @@
 									nodes.set(getWritableNodes(maeve.nodes));
 									edges.set(maeve.edges);
 									libraryOpen = false;
+									title = maeve.title;
+									description = maeve.description;
+									setReceiver(maeve.receiver_id);
 								}}
 							/>
 						</Dialog.Content>
