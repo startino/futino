@@ -1,19 +1,11 @@
 <script lang="ts">
-
-
-	export let data
+	export let data;
 </script>
 
 <div class="layout">
-
-
 	<main>
-		
-			<slot />
-		
+		<slot />
 	</main>
-
-
 </div>
 
 <style>
