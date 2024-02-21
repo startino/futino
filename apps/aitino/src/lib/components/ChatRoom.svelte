@@ -71,10 +71,8 @@
 	afterUpdate(() => {
 		if (chatContainerElement) {
 			chatContainerElement.scrollTop = chatContainerElement.scrollHeight;
-			
 		}
 	});
-
 </script>
 
 <div class="container -mb-6 flex h-screen max-w-6xl flex-col justify-end p-6">
@@ -84,12 +82,12 @@
 			<div>
 				{#if !message.fromUser}
 					<div class="space-y-2 border-none">
-						<Card.Root class="border-none max-w-2xl">
+						<Card.Root class=" max-w-2xl">
 							<Card.Content class="grid gap-4 p-6">
 								{#if message.content.startsWith('```') || message.content.includes('<')}
 									<SvelteMarkdown source={message.content} />
 								{:else}
-									<p class="prose text-sm font-medium leading-5 tracking-widest ">
+									<p class="prose text-sm font-medium leading-5 tracking-widest">
 										{message.content}
 									</p>
 								{/if}
@@ -98,9 +96,13 @@
 						<Card.Root class="bg-background max-w-2xl border-none">
 							<Card.Content class="grid w-full grid-cols-2 items-center justify-between gap-4 ">
 								<div class="flex items-center gap-4">
-									<p class="prose text-xs font-medium leading-none dark:text-blue-950"><User size="16" /></p>
+									<p class="prose text-xs font-medium leading-none dark:text-blue-950">
+										<User size="16" />
+									</p>
 
-									<p class="prose text-xs font-medium leading-none tracking-widest dark:text-blue-950">
+									<p
+										class="prose text-xs font-medium leading-none tracking-widest dark:text-blue-950"
+									>
 										{message.full_name} - Agent
 									</p>
 								</div>
@@ -112,10 +114,8 @@
 					</div>
 				{:else}
 					<div class="space-y-2">
-						<Card.Root
-							class="border-none ml-auto flex max-w-2xl flex-wrap rounded-bl-3xl border"
-						>
-							<Card.Content class="grid gap-4 p-6 prose">
+						<Card.Root class=" ml-auto flex max-w-2xl flex-wrap rounded-bl-3xl border">
+							<Card.Content class="prose grid gap-4 p-6">
 								{#if message.content.startsWith('```') || message.content.includes('<')}
 									<SvelteMarkdown source={message.content} />
 								{:else}

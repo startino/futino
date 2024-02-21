@@ -9,6 +9,19 @@
 	import Handle from '$lib/components/Handle.svelte';
 	import { getContext } from '$lib/utils';
 	import Button from '../button/button.svelte';
+	import * as Dialog from '$lib/components/ui/dialog';
+	import { Carta, CartaEditor } from 'carta-md';
+	import 'carta-md/default.css'; /* Default theme */
+	import 'carta-md/light.css'; /* Markdown input theme */
+	import { enhance } from '$app/forms';
+
+	const carta = new Carta({
+		// Remember to use a sanitizer to prevent XSS attacks!
+		// More on that below
+		// sanitizer: ...
+	});
+
+	let value = '';
 
 	type $$Props = NodeProps;
 
@@ -54,7 +67,7 @@
 		<Input bind:value={$title} placeholder="Title..." />
 		{#if showAll}
 			<Textarea
-				bind:value={prompt}
+				bind:value={$content}
 				class="content border-input placeholder:text-muted-foreground focus-visible:ring-ring flex min-h-32  w-96 min-w-max max-w-lg overflow-y-auto text-pretty rounded-md border bg-transparent py-1 text-left text-sm shadow-sm ring-offset-0 transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50"
 			/>
 			<div class="flex flex-col gap-2">
@@ -63,29 +76,46 @@
 		{:else}
 			<!-- svelte-ignore a11y-click-events-have-key-events -->
 			<!-- svelte-ignore a11y-no-static-element-interactions -->
-			{#if prompt.length > 0}
+			{#if $content.length > 0}
 				<div
 					class="content no-scrollbar h-16 w-full max-w-lg overflow-auto text-wrap"
 					placeholder="Please enter you prompt here..."
 					on:click={toggleContent}
 				>
-					{prompt.slice(0, previewLength)}
+					{$content.slice(0, previewLength)}
 				</div>
 			{:else}
 				<Textarea
-					bind:value={prompt}
+					bind:value={$content}
 					class="content border-input placeholder:text-muted-foreground focus-visible:ring-ring flex min-h-32  w-96 min-w-max max-w-lg overflow-y-auto text-pretty rounded-md border bg-transparent py-1 text-left text-sm shadow-sm ring-offset-0 transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50"
 				/>
 			{/if}
 			<div class="flex flex-col gap-2">
-				{#if prompt.length > previewLength}
+				{#if $content.length > previewLength}
 					<Button on:click={toggleContent}>Load All</Button>
 				{/if}
 			</div>
 		{/if}
-		<form action="?/ImprovePrompt&prompt={prompt}" method="post">
-			<Button class="w-full">Improve Prompt</Button>
-		</form>
+
+		<Dialog.Root>
+			<Dialog.Trigger><Button class="w-full">Prompt Editor</Button></Dialog.Trigger>
+			<Dialog.Content class="h-full max-h-dvh w-full max-w-7xl">
+				<Dialog.Header>
+					<Dialog.Title class="-mt-2 text-center"
+						><form
+							action="?/ImprovePrompt&prompt={encodeURIComponent($content)}"
+							method="POST"
+							use:enhance
+						>
+							<Button type="submit">Improve Prompt With AI</Button>
+						</form></Dialog.Title
+					>
+					<Dialog.Description class="h-full w-full border p-8">
+						<CartaEditor {carta} bind:value={$content} />
+					</Dialog.Description>
+				</Dialog.Header>
+			</Dialog.Content>
+		</Dialog.Root>
 		<Handle
 			type="source"
 			id="bottom-{id}"

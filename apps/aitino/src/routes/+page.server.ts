@@ -4,6 +4,7 @@ import { randomBytes } from 'crypto';
 import { z } from 'zod';
 import { superValidate } from 'sveltekit-superforms/server';
 import { formSchema } from './schema';
+import axios from 'axios';
 
 const waitlistSchema = z.object({
 	email: z.string().email({ message: 'Invalid email address' })
@@ -50,7 +51,6 @@ export const actions = {
 			});
 		}
 
-
 		const { data, error } = await supabase
 			.from('waitlist_users')
 			.insert([{ email: email }])
@@ -96,6 +96,41 @@ export const actions = {
 
 		return {
 			success: true
+		};
+	},
+	ImprovePrompt: async ({ request, url }) => {
+		// const form = await superValidate(request, formSchema);
+		let workdLimit = 200;
+
+		console.log('from backend');
+		const prompt = url.searchParams.get('prompt');
+		const response = await axios.get(
+			`https://api.aiti.no/improve?word_limit=${wordLimit}&prompt=${prompt}}`
+		);
+		// if (!form.valid) {
+		// 	return fail(400, {
+		// 		form
+		// 	});
+		// }
+
+		// const { name, email, description } = form.data;
+
+		// console.log(form.data.name, form.data.email, form.data.description);
+
+		// const { data, error } = await supabase
+		// 	.from('contact_form')
+		// 	.insert([{ name: name, email: email, description: description }])
+		// 	.select();
+
+		// if (error) {
+		// 	return fail(400, {
+		// 		invalid: true
+		// 	});
+		// }
+
+		return {
+			success: true,
+			message: 'this is a test success'
 		};
 	}
 } satisfies Actions;
