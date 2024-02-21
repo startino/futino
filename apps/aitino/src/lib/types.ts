@@ -24,24 +24,5 @@ export interface MaeveContext {
 	count: Writable<{ agents: number; prompts: number }>;
 }
 
-export type Categories = 'multi-agents' | 'automation' | 'ai' | 'problem-solving'
+export type Categories = 'multi-agents' | 'automation' | 'tutorial' | 'reviews' | 'top-softwares' | 'ai' | 'learning' | 'mathematics' | 'engineering' | 'computer-science' | 'economics' | 'business' | 'art' | 'music' | 'technology' | 'science-fiction'
 
-export type Post = {
-	title: string
-	slug: string
-	description: string
-	date: string
-	categories: Categories[]
-	published: boolean
-}
-
-export type MarkdownMetadata = {
-    title?: string;
-    date?: string;
-    description?: string;
-    tags?: string[];
-    author?: string;
-	published?: boolean;
-	timeToRead?: number;
-
-}

@@ -55,7 +55,7 @@
 		<div
 			class="mx-auto flex w-full flex-col place-items-center gap-y-4 px-2 text-foreground sm:gap-y-8"
 		>
-			<img src="favicon.png" alt="Aitino Logo" class="z-10 mt-4 h-20 w-20" />
+			<img src="logo_rounded_200px.png" alt="Aitino Logo" class="z-10 mt-4 h-20 w-20" />
 			<h1
 				class="tracking-loose m-0 text-center text-3xl font-semibold sm:m-0 sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl"
 			>

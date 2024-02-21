@@ -1,36 +1,29 @@
 <script lang="ts">
-	import { formatDate } from '$lib/utils';
+	import { onMount, type SvelteComponent } from 'svelte';
 	import SEO from '$lib/components/SEO/index.svelte';
+	import { page } from '$app/stores';
+
+	import { base } from '$app/paths';
 
 	export let data;
 
-	const { content, meta, slug } = data;
-
-	let title = meta.title;
+	const { post } = data;
 </script>
 
 <SEO
 	article
-	{slug}
-	{title}
-	datePublished={meta.date}
-	metadescription={meta.description}
-	timeToRead={meta.timeToRead}
-	lastUpdated={meta.date}
+	slug={post.slug}
+	title={post.title}
+	datePublished={post.date}
+	metadescription={post.description}
+	timeToRead={post.timeToRead}
+	lastUpdated={post.date}
 />
 
-<article class="prose sm:prose-md md:prose-lg xl:prose-xl prose-blog mx-auto px-4">
-	<hgroup>
-		<h1>{data.meta.title}</h1>
-		<p>Published on {formatDate(data.meta.date)}</p>
-	</hgroup>
-
-	<!-- Hide the hashtags for now. I don't think they add trust.-->
-	<!-- <div>
-		{#each data.meta.categories as category}
-			<span class="surface-4 text-accent">&num;{category} </span>
-		{/each}
-	</div> -->
-
-	<svelte:component this={data.content} />
+<article
+	class="sm:prose-md prose prose-blog mx-auto px-4 md:prose-lg xl:prose-xl"
+	data-pubdate={post.date}
+>
+	<!-- eslint-disable-next-line svelte/no-at-html-tags -->
+	{@html post.content}
 </article>
