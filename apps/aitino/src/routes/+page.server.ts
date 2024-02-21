@@ -4,6 +4,7 @@ import { randomBytes } from "crypto";
 import { z } from "zod";
 import { superValidate } from "sveltekit-superforms/server";
 import { formSchema } from "./schema";
+import axios from "axios";
 
 const waitlistSchema = z.object({
 	email: z.string().email({ message: "Invalid email address" })
@@ -95,6 +96,18 @@ export const actions = {
 
 		return {
 			success: true
+		};
+	},
+	ImprovePrompt: async ({ request, url }) => {
+		console.log("from backend");
+		const prompt = url.searchParams.get("prompt");
+		const response = await axios.get(
+			`https://api.aiti.no/improve?word_limit=300&prompt=${prompt}}`
+		);
+
+		return {
+			success: true,
+			message: "this is a test success"
 		};
 	}
 } satisfies Actions;

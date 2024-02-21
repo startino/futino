@@ -93,7 +93,13 @@
 			}}
 		>
 			{#if isLoading}
-				<Loader class="duration-3000 animate-spin transition-all ease-in-out" />
+				<Button
+					disabled
+					class="text-md relative flex w-full gap-x-3 transition-all duration-300 ease-in-out sm:w-fit"
+				>
+					<Loader2 class="mr-2 h-4 w-4 animate-spin" />
+					Please wait
+				</Button>
 			{:else}
 				Join the Waitlist<ArrowRight />{/if}
 		</Button>

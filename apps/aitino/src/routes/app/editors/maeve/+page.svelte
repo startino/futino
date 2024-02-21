@@ -223,15 +223,6 @@
 </script>
 
 <div style="height:100vh;">
-	<Dialog.Root>
-		<Dialog.Trigger class="">
-			<Button class="block text-base">Chat</Button>
-		</Dialog.Trigger>
-		<Dialog.Content class="sm:max-w-full">
-			<ChatRoom />
-		</Dialog.Content>
-	</Dialog.Root>
-
 	<SvelteFlow
 		{nodes}
 		{edges}
@@ -239,7 +230,6 @@
 		fitView
 		oninit={() => {
 			count.set(data.count);
-
 			setReceiver(data.receiver_id);
 		}}
 		connectionLineType={ConnectionLineType.SmoothStep}
@@ -301,6 +291,16 @@
 					</Dialog.Root>
 				{/if}
 			</RightEditorSidebar>
+		</Panel>
+		<Panel position="bottom-right">
+			<Dialog.Root>
+				<Dialog.Trigger>
+					<Button class="block text-base">Chat</Button>
+				</Dialog.Trigger>
+				<Dialog.Content class="sm:max-w-full">
+					<ChatRoom />
+				</Dialog.Content>
+			</Dialog.Root>
 		</Panel>
 	</SvelteFlow>
 </div>
