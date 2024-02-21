@@ -1,12 +1,12 @@
 <script lang="ts">
-	import { getContext } from '$lib/utils';
-	import type { PanelAction } from '$lib/types';
-	import { Button } from '$lib/components/ui/button';
-	import { AGENT_LIMIT, PROMPT_LIMIT } from '$lib/config';
+	import { getContext } from "$lib/utils";
+	import type { PanelAction } from "$lib/types";
+	import { Button } from "$lib/components/ui/button";
+	import { AGENT_LIMIT, PROMPT_LIMIT } from "$lib/config";
 
 	export let actions: PanelAction[] = [];
 
-	const { count } = getContext('maeve');
+	const { count } = getContext("maeve");
 </script>
 
 <!-- Static sidebar for desktop -->

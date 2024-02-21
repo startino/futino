@@ -1,67 +1,67 @@
 <script lang="ts">
-	import { SvelteFlowProvider } from '@xyflow/svelte';
-	import { Menu } from 'lucide-svelte';
-	import { writable } from 'svelte/store';
+	import { SvelteFlowProvider } from "@xyflow/svelte";
+	import { Menu } from "lucide-svelte";
+	import { writable } from "svelte/store";
 
-	import { Button } from '$lib/components/ui/button';
-	import * as Sheet from '$lib/components/ui/sheet';
-	import { setContext } from '$lib/utils';
+	import { Button } from "$lib/components/ui/button";
+	import * as Sheet from "$lib/components/ui/sheet";
+	import { setContext } from "$lib/utils";
 
 	let menuOpen = false;
 	let navGroups = [
 		{
-			name: 'Editors',
-			baseSrc: '/app/editors',
+			name: "Editors",
+			baseSrc: "/app/editors",
 			items: [
 				{
-					label: 'Maeve',
-					src: '/maeve'
+					label: "Maeve",
+					src: "/maeve"
 				},
 				{
-					label: 'Agent',
-					src: '/agent'
+					label: "Agent",
+					src: "/agent"
 				},
 				{
-					label: 'Workflow',
-					src: '/workflow'
+					label: "Workflow",
+					src: "/workflow"
 				}
 			]
 		},
 		{
-			name: 'Libraries',
-			baseSrc: '/app/libraries',
+			name: "Libraries",
+			baseSrc: "/app/libraries",
 			items: [
 				{
-					label: 'Maeve',
-					src: '/maeve'
+					label: "Maeve",
+					src: "/maeve"
 				},
 				{
-					label: 'Agent',
-					src: '/agent'
+					label: "Agent",
+					src: "/agent"
 				},
 				{
-					label: 'Workflow',
-					src: '/workflow'
+					label: "Workflow",
+					src: "/workflow"
 				}
 			]
 		},
 		{
 			name: null,
-			baseSrc: '/app',
+			baseSrc: "/app",
 			items: [
 				{
-					label: 'Account',
-					src: '/account'
+					label: "Account",
+					src: "/account"
 				},
 				{
-					label: 'Help',
-					src: '/help'
+					label: "Help",
+					src: "/help"
 				}
 			]
 		}
 	];
 
-	setContext('maeve', {
+	setContext("maeve", {
 		receiver: writable(null),
 		count: writable({ agents: 0, prompts: 0 })
 	});

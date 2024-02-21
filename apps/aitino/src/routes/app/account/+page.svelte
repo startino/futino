@@ -1,14 +1,14 @@
 <script lang="ts">
-	import { Plus, XCircle } from 'lucide-svelte';
-	import { onMount } from 'svelte';
+	import { Plus, XCircle } from "lucide-svelte";
+	import { onMount } from "svelte";
 
-	import { MainShell } from '$lib/components/layout/main-shell';
-	import * as Card from '$lib/components/ui/card';
-	import * as Tabs from '$lib/components/ui/tabs';
-	import { Input } from '$lib/components/ui/input';
-	import { Button } from '$lib/components/ui/button';
-	import { browser } from '$app/environment';
-	import { getPremadeInputsMap } from '$lib/utils';
+	import { MainShell } from "$lib/components/layout/main-shell";
+	import * as Card from "$lib/components/ui/card";
+	import * as Tabs from "$lib/components/ui/tabs";
+	import { Input } from "$lib/components/ui/input";
+	import { Button } from "$lib/components/ui/button";
+	import { browser } from "$app/environment";
+	import { getPremadeInputsMap } from "$lib/utils";
 
 	let inputs: { name: string; value: string }[] = [];
 
@@ -24,7 +24,7 @@
 	});
 
 	function addInput() {
-		inputs.push({ name: '', value: '' });
+		inputs.push({ name: "", value: "" });
 		inputs = inputs;
 	}
 
@@ -43,7 +43,7 @@
 				};
 			}, {});
 
-			localStorage.setItem('premade-inputs', JSON.stringify(inputMap));
+			localStorage.setItem("premade-inputs", JSON.stringify(inputMap));
 		}
 	}
 </script>

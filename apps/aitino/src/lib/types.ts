@@ -1,7 +1,7 @@
-import type { Node } from '@xyflow/svelte';
-import type { Writable } from 'svelte/store';
+import type { Node } from "@xyflow/svelte";
+import type { Writable } from "svelte/store";
 
-import type { Variant } from '$lib/components/ui/button';
+import type { Variant } from "$lib/components/ui/button";
 
 export interface Maeve {
 	instance_id: string;

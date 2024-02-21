@@ -7,28 +7,28 @@
 		getConnectedEdges,
 		useSvelteFlow,
 		useConnection
-	} from '@xyflow/svelte';
-	import { type Writable } from 'svelte/store';
-	import { X } from 'lucide-svelte';
+	} from "@xyflow/svelte";
+	import { type Writable } from "svelte/store";
+	import { X } from "lucide-svelte";
 
 	// 👇 always import the styles
-	import '@xyflow/svelte/dist/style.css';
-	import * as Card from '$lib/components/ui/card';
-	import * as Select from '$lib/components/ui/select';
-	import { Input } from '$lib/components/ui/input';
-	import Handle from '$lib/components/Handle.svelte';
-	import Textarea from '../textarea/textarea.svelte';
-	import { getContext } from '$lib/utils';
-	import * as Dialog from '$lib/components/ui/dialog';
-	import { Button } from '$lib/components/ui/button';
-	import { Carta, CartaEditor } from 'carta-md';
-	import 'carta-md/default.css'; /* Default theme */
-	import 'carta-md/light.css'; /* Markdown input theme */
-	import { enhance } from '$app/forms';
+	import "@xyflow/svelte/dist/style.css";
+	import * as Card from "$lib/components/ui/card";
+	import * as Select from "$lib/components/ui/select";
+	import { Input } from "$lib/components/ui/input";
+	import Handle from "$lib/components/Handle.svelte";
+	import Textarea from "../textarea/textarea.svelte";
+	import { getContext } from "$lib/utils";
+	import * as Dialog from "$lib/components/ui/dialog";
+	import { Button } from "$lib/components/ui/button";
+	import { Carta, CartaEditor } from "carta-md";
+	import "carta-md/default.css"; /* Default theme */
+	import "carta-md/light.css"; /* Markdown input theme */
+	import { enhance } from "$app/forms";
 
 	type $$Props = NodeProps;
 
-	const { receiver, count } = getContext('maeve');
+	const { receiver, count } = getContext("maeve");
 
 	export let data: {
 		avatar: string;
@@ -42,16 +42,16 @@
 
 	const models = [
 		{
-			label: 'GPT-4 Turbo',
-			value: 'gpt-4-turbo-preview'
+			label: "GPT-4 Turbo",
+			value: "gpt-4-turbo-preview"
 		},
 		{
-			label: 'GPT-3.5 Turbo',
-			value: 'gpt-3.5-turbo'
+			label: "GPT-3.5 Turbo",
+			value: "gpt-3.5-turbo"
 		}
 	];
 
-	export let id: NodeProps['id'];
+	export let id: NodeProps["id"];
 
 	const connection = useConnection();
 
@@ -79,7 +79,7 @@
 </script>
 
 <Card.Root
-	class="{isTarget ? 'bg-card border-2 border-dashed ' : ''} {isReceiver
+	class="{isTarget ? 'border-2 border-dashed bg-card ' : ''} {isReceiver
 		? 'bg-primary-950'
 		: ''} aspect-1transition"
 >
@@ -114,7 +114,7 @@
 		{#if showAll}
 			<Textarea
 				bind:value={$prompt}
-				class="content border-input placeholder:text-muted-foreground focus-visible:ring-ring flex min-h-32  w-96 min-w-max max-w-lg overflow-y-auto text-pretty rounded-md border bg-transparent py-1 text-left text-sm shadow-sm ring-offset-0 transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50"
+				class="content flex min-h-32 w-96 min-w-max max-w-lg  overflow-y-auto text-pretty rounded-md border border-input bg-transparent py-1 text-left text-sm shadow-sm ring-offset-0 transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring focus-visible:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50"
 			/>
 			<div class="flex flex-col gap-2">
 				<Button on:click={toggleContent}>Show Less</Button>
@@ -133,7 +133,7 @@
 			{:else}
 				<Textarea
 					bind:value={$prompt}
-					class="content border-input placeholder:text-muted-foreground focus-visible:ring-ring flex min-h-32  w-96 min-w-max max-w-lg overflow-y-auto text-pretty rounded-md border bg-transparent py-1 text-left text-sm shadow-sm ring-offset-0 transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50"
+					class="content flex min-h-32 w-96 min-w-max max-w-lg  overflow-y-auto text-pretty rounded-md border border-input bg-transparent py-1 text-left text-sm shadow-sm ring-offset-0 transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring focus-visible:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50"
 				/>
 			{/if}
 			<div class="flex flex-col gap-2">

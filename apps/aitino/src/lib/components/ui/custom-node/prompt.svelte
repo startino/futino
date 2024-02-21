@@ -68,7 +68,7 @@
 		{#if showAll}
 			<Textarea
 				bind:value={$content}
-				class="content border-input placeholder:text-muted-foreground focus-visible:ring-ring flex min-h-32  w-96 min-w-max max-w-lg overflow-y-auto text-pretty rounded-md border bg-transparent py-1 text-left text-sm shadow-sm ring-offset-0 transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50"
+				class="content flex min-h-32 w-96 min-w-max max-w-lg  overflow-y-auto text-pretty rounded-md border border-input bg-transparent py-1 text-left text-sm shadow-sm ring-offset-0 transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring focus-visible:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50"
 			/>
 			<div class="flex flex-col gap-2">
 				<Button on:click={toggleContent}>Show Less</Button>
@@ -96,7 +96,7 @@
 				{:else}
 					<Textarea
 						bind:value={$content}
-						class="content border-input placeholder:text-muted-foreground focus-visible:ring-ring flex min-h-32  w-96 min-w-max max-w-lg overflow-y-auto text-pretty rounded-md border bg-transparent py-1 text-left text-sm shadow-sm ring-offset-0 transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50"
+						class="content flex min-h-32 w-96 min-w-max max-w-lg  overflow-y-auto text-pretty rounded-md border border-input bg-transparent py-1 text-left text-sm shadow-sm ring-offset-0 transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring focus-visible:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50"
 					/>
 				{/if}
 				<div class="flex flex-col gap-2">
