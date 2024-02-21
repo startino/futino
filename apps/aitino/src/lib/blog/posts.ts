@@ -1,5 +1,5 @@
 // Import the markdown files for each post
-const imports = import.meta.glob('./posts/*.md', { eager: true });
+const imports = import.meta.glob("./posts/*.md", { eager: true });
 
 const posts = [];
 for (const path in imports) {

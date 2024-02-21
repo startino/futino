@@ -1,12 +1,12 @@
 <script lang="ts">
-	import { createEventDispatcher } from 'svelte';
+	import { createEventDispatcher } from "svelte";
 
-	import * as Tabs from '$lib/components/ui/tabs';
-	import * as Avatar from '$lib/components/ui/avatar';
-	import { Input } from '$lib/components/ui/input';
-	import { Button } from '$lib/components/ui/button';
-	import { maevePresets } from '$lib/dummy-data/maevePresets';
-	import { Label } from '$lib/components/ui/label';
+	import * as Tabs from "$lib/components/ui/tabs";
+	import * as Avatar from "$lib/components/ui/avatar";
+	import { Input } from "$lib/components/ui/input";
+	import { Button } from "$lib/components/ui/button";
+	import { maevePresets } from "$lib/dummy-data/maevePresets";
+	import { Label } from "$lib/components/ui/label";
 
 	const dispatch = createEventDispatcher();
 </script>
@@ -30,11 +30,11 @@
 
 						try {
 							const text = await file.text();
-							dispatch('maeve-load', {
+							dispatch("maeve-load", {
 								maeve: JSON.parse(text)
 							});
 						} catch (error) {
-							console.error('Error parsing JSON:', error);
+							console.error("Error parsing JSON:", error);
 						}
 					}}
 				>

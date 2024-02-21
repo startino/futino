@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { writable, get } from 'svelte/store';
-	import dagre from '@dagrejs/dagre';
+	import { writable, get } from "svelte/store";
+	import dagre from "@dagrejs/dagre";
 	import {
 		SvelteFlow,
 		Background,
@@ -11,17 +11,17 @@
 		type Node,
 		type Edge,
 		getOutgoers
-	} from '@xyflow/svelte';
-	import { toast } from 'svelte-sonner';
+	} from "@xyflow/svelte";
+	import { toast } from "svelte-sonner";
 
-	import '@xyflow/svelte/dist/style.css';
+	import "@xyflow/svelte/dist/style.css";
 
-	import RightEditorSidebar from '$lib/components/RightEditorSidebar.svelte';
-	import { Button } from '$lib/components/ui/button';
-	import * as Dialog from '$lib/components/ui/dialog';
-	import { Library } from '$lib/components/ui/library';
-	import * as CustomNode from '$lib/components/ui/custom-node';
-	import { saveMaeveNodes } from '$lib/api-client';
+	import RightEditorSidebar from "$lib/components/RightEditorSidebar.svelte";
+	import { Button } from "$lib/components/ui/button";
+	import * as Dialog from "$lib/components/ui/dialog";
+	import { Library } from "$lib/components/ui/library";
+	import * as CustomNode from "$lib/components/ui/custom-node";
+	import { saveMaeveNodes } from "$lib/api-client";
 
 	import {
 		getContext,
@@ -30,26 +30,26 @@
 		pickRandomAvatar,
 		pickRandomName,
 		getNodesCount
-	} from '$lib/utils';
-	import type { PanelAction } from '$lib/types';
-	import ChatRoom from '$lib/components/ChatRoom.svelte';
-	import { AGENT_LIMIT, PROMPT_LIMIT } from '$lib/config.js';
+	} from "$lib/utils";
+	import type { PanelAction } from "$lib/types";
+	import ChatRoom from "$lib/components/ChatRoom.svelte";
+	import { AGENT_LIMIT, PROMPT_LIMIT } from "$lib/config.js";
 
 	export let data;
 
-	const { receiver, count } = getContext('maeve');
+	const { receiver, count } = getContext("maeve");
 
 	let title = data.title;
 	let description = data.description;
 
 	const actions: PanelAction[] = [
-		{ name: 'Run', buttonVariant: 'default' },
-		{ name: 'Add Prompt', buttonVariant: 'outline', onclick: addNewPrompt },
-		{ name: 'Add Agent', buttonVariant: 'outline', onclick: addNewAgent },
-		{ name: 'Load Maeve', buttonVariant: 'outline', isCustom: true },
+		{ name: "Run", buttonVariant: "default" },
+		{ name: "Add Prompt", buttonVariant: "outline", onclick: addNewPrompt },
+		{ name: "Add Agent", buttonVariant: "outline", onclick: addNewAgent },
+		{ name: "Load Maeve", buttonVariant: "outline", isCustom: true },
 		{
-			name: 'Export',
-			buttonVariant: 'outline',
+			name: "Export",
+			buttonVariant: "outline",
 			onclick: () => {
 				const jsonString = JSON.stringify(
 					{
@@ -62,11 +62,11 @@
 					null,
 					2
 				);
-				const blob = new Blob([jsonString], { type: 'application/json' });
+				const blob = new Blob([jsonString], { type: "application/json" });
 				const url = window.URL.createObjectURL(blob);
-				const a = document.createElement('a');
+				const a = document.createElement("a");
 				a.href = url;
-				a.download = 'maeve.json';
+				a.download = "maeve.json";
 				document.body.appendChild(a);
 				a.click();
 				window.URL.revokeObjectURL(url);
@@ -74,12 +74,12 @@
 			}
 		},
 		{
-			name: 'Save',
-			buttonVariant: 'outline',
+			name: "Save",
+			buttonVariant: "outline",
 			onclick: async () => await save()
 		},
-		{ name: 'Layout', buttonVariant: 'outline', onclick: layout },
-		{ name: 'Sessions', buttonVariant: 'outline' }
+		{ name: "Layout", buttonVariant: "outline", onclick: layout },
+		{ name: "Sessions", buttonVariant: "outline" }
 	];
 
 	const nodeTypes = {
@@ -97,8 +97,8 @@
 
 	const { deleteElements, getNodes, getViewport, setCenter } = useSvelteFlow();
 
-	function getLayoutedElements(nodes: Node[], edges: Edge[], direction = 'TB') {
-		const isHorizontal = direction === 'LR';
+	function getLayoutedElements(nodes: Node[], edges: Edge[], direction = "TB") {
+		const isHorizontal = direction === "LR";
 		dagreGraph.setGraph({ rankdir: direction });
 
 		if (nodes.length > 0) {
@@ -144,11 +144,11 @@
 		});
 
 		if (error) {
-			toast.error('Something went wrong when saving the nodes..');
+			toast.error("Something went wrong when saving the nodes..");
 			return;
 		}
 
-		toast.success('Nodes successfully saved!');
+		toast.success("Nodes successfully saved!");
 	}
 
 	function setReceiver(id: string | null | undefined) {
@@ -170,11 +170,11 @@
 
 		const position = { ...getViewport() };
 
-		let name = '';
+		let name = "";
 
 		do {
 			name = pickRandomName();
-		} while ($nodes.find((n) => n.type === 'agent' && get(n.data.name) === name));
+		} while ($nodes.find((n) => n.type === "agent" && get(n.data.name) === name));
 
 		setCenter(position.x, position.y, { zoom: position.zoom });
 
@@ -182,14 +182,14 @@
 			...v,
 			{
 				id: crypto.randomUUID(),
-				type: 'agent',
+				type: "agent",
 				position,
 				selectable: false,
 				data: {
 					name: writable(name),
-					job_title: writable(''),
-					prompt: writable(''),
-					model: writable({ label: '', value: '' }),
+					job_title: writable(""),
+					prompt: writable(""),
+					model: writable({ label: "", value: "" }),
 					avatar: pickRandomAvatar()
 				}
 			}
@@ -208,12 +208,12 @@
 			...v,
 			{
 				id: crypto.randomUUID(),
-				type: 'prompt',
+				type: "prompt",
 				selectable: false,
 				position,
 				data: {
-					title: writable(''),
-					content: writable('')
+					title: writable(""),
+					content: writable("")
 				}
 			}
 		]);
@@ -243,7 +243,7 @@
 			setReceiver(data.receiver_id);
 		}}
 		connectionLineType={ConnectionLineType.SmoothStep}
-		defaultEdgeOptions={{ type: 'smoothstep', animated: true }}
+		defaultEdgeOptions={{ type: "smoothstep", animated: true }}
 		on:edgeclick={(e) => {
 			const edge = e.detail.edge;
 			deleteElements({ edges: [{ id: edge.id }] });
@@ -255,7 +255,7 @@
 		}}
 		onedgecreate={(c) => {
 			const [source, target] = getNodes([c.source, c.target]);
-			if (source.type === 'prompt' && target.type === 'agent') {
+			if (source.type === "prompt" && target.type === "agent") {
 				if ($receiver) {
 					if (target.id !== $receiver.node.id) {
 						return;
@@ -267,7 +267,7 @@
 				}
 			}
 
-			if (source.type === 'agent' && target.type === 'agent' && $receiver?.node.id === target.id) {
+			if (source.type === "agent" && target.type === "agent" && $receiver?.node.id === target.id) {
 				return;
 			}
 			return c;

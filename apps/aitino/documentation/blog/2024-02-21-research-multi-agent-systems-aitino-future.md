@@ -1,7 +1,7 @@
 ---
 title: "Unveiling the Future: How Aitino's Multi-Agent Systems Are Redefining Innovation"
 description: Explore how cutting-edge research validates the pivotal role of multi-agent systems in shaping our future. Dive into insights and breakthroughs in this thought-provoking exploration.
-date: '2024-2-21'
+date: "2024-2-21"
 categories:
   - multi-agents
   - automation

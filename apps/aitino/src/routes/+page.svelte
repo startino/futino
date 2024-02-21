@@ -1,15 +1,15 @@
 <script lang="ts">
-	import { SplitTest } from 'svelte-split-testing';
-	import { Toaster } from '$lib/components/ui/sonner';
-	import FormItem from '$lib/components/FormItem.svelte';
-	import type { ActionData, PageData } from './$types';
-	import SEO from '$lib/components/SEO/index.svelte';
+	import { SplitTest } from "svelte-split-testing";
+	import { Toaster } from "$lib/components/ui/sonner";
+	import FormItem from "$lib/components/FormItem.svelte";
+	import type { ActionData, PageData } from "./$types";
+	import SEO from "$lib/components/SEO/index.svelte";
 
 	export let form: ActionData;
 
 	export let data: PageData;
 	const titleVariants = {
-		'0': 'Join the Future of AI<br /> with Exclusive Early Access to <span class="bg-gradient-to-b from-primary to-background from-50% bg-clip-text text-transparent">Aitino</span>'
+		"0": 'Join the Future of AI<br /> with Exclusive Early Access to <span class="bg-gradient-to-b from-primary to-background from-50% bg-clip-text text-transparent">Aitino</span>'
 		// '1': 'Create Solutions Like <br /> Never Before with <span class="bg-gradient-to-r from-primary to-danger bg-clip-text text-transparent">Aitino</span>',
 		// '2': 'Automate Your Business <br /> with <span class="bg-gradient-to-r from-primary to-danger bg-clip-text text-transparent">Aitino</span>',
 		// '3': 'Create teams of  AI Agents <br/> to solve any task.',
@@ -20,7 +20,7 @@
 	};
 
 	const subtitleVariants = {
-		'0': "Aitino is a platform that allows for the creation of teams of AI Agents to help you automate tasks and solve complex problems. It's made easily customizable through a node-editor."
+		"0": "Aitino is a platform that allows for the creation of teams of AI Agents to help you automate tasks and solve complex problems. It's made easily customizable through a node-editor."
 	};
 </script>
 
@@ -33,13 +33,13 @@
 <svelte:head>
 	<script type="text/javascript">
 		window.$crisp = [];
-		window.CRISP_WEBSITE_ID = 'd8b6e215-1bae-470a-b3c4-0e227902e47a';
+		window.CRISP_WEBSITE_ID = "d8b6e215-1bae-470a-b3c4-0e227902e47a";
 		(function () {
 			d = document;
-			s = d.createElement('script');
-			s.src = 'https://client.crisp.chat/l.js';
+			s = d.createElement("script");
+			s.src = "https://client.crisp.chat/l.js";
 			s.async = 1;
-			d.getElementsByTagName('head')[0].appendChild(s);
+			d.getElementsByTagName("head")[0].appendChild(s);
 		})();
 	</script>
 </svelte:head>

@@ -1,10 +1,10 @@
-import type { Node } from '@xyflow/svelte';
-import type { Writable } from 'svelte/store';
+import type { Node } from "@xyflow/svelte";
+import type { Writable } from "svelte/store";
 
-import type { Variant } from '$lib/components/ui/button';
-import type { Tables } from '$lib/supabase.types';
+import type { Variant } from "$lib/components/ui/button";
+import type { Tables } from "$lib/supabase.types";
 
-export type Maeve = Tables<'maeve_nodes'>;
+export type Maeve = Tables<"maeve_nodes">;
 
 export type PanelAction = {
 	name: string;
@@ -25,19 +25,19 @@ export interface MaeveContext {
 }
 
 export type Categories =
-	| 'multi-agents'
-	| 'automation'
-	| 'tutorial'
-	| 'reviews'
-	| 'top-softwares'
-	| 'ai'
-	| 'learning'
-	| 'mathematics'
-	| 'engineering'
-	| 'computer-science'
-	| 'economics'
-	| 'business'
-	| 'art'
-	| 'music'
-	| 'technology'
-	| 'science-fiction';
+	| "multi-agents"
+	| "automation"
+	| "tutorial"
+	| "reviews"
+	| "top-softwares"
+	| "ai"
+	| "learning"
+	| "mathematics"
+	| "engineering"
+	| "computer-science"
+	| "economics"
+	| "business"
+	| "art"
+	| "music"
+	| "technology"
+	| "science-fiction";

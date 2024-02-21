@@ -1,12 +1,12 @@
-import { fail, type Actions } from '@sveltejs/kit';
-import { supabase } from '$lib/supabase';
-import { randomBytes } from 'crypto';
-import { z } from 'zod';
-import { superValidate } from 'sveltekit-superforms/server';
-import { formSchema } from './schema';
+import { fail, type Actions } from "@sveltejs/kit";
+import { supabase } from "$lib/supabase";
+import { randomBytes } from "crypto";
+import { z } from "zod";
+import { superValidate } from "sveltekit-superforms/server";
+import { formSchema } from "./schema";
 
 const waitlistSchema = z.object({
-	email: z.string().email({ message: 'Invalid email address' })
+	email: z.string().email({ message: "Invalid email address" })
 });
 
 export const load = async (event) => {
@@ -33,25 +33,25 @@ export const actions = {
 
 		// check if user already register
 
-		const selectAll = await supabase.from('waitlist_users').select('*').eq('email', email).single();
+		const selectAll = await supabase.from("waitlist_users").select("*").eq("email", email).single();
 		// console.log(selectAll, 'all emails');
 
 		const check_if_user_already_register = await supabase
-			.from('waitlist_users')
-			.select('*')
-			.eq('email', email)
+			.from("waitlist_users")
+			.select("*")
+			.eq("email", email)
 			.single();
 
 		// console.log(check_if_user_already_register, 'check if user already register');
 		if (check_if_user_already_register && check_if_user_already_register.data !== null) {
 			return fail(400, {
 				invalid: true,
-				error: 'You have already joined the waitlist. See you Soon 👋'
+				error: "You have already joined the waitlist. See you Soon 👋"
 			});
 		}
 
 		const { data, error } = await supabase
-			.from('waitlist_users')
+			.from("waitlist_users")
 			.insert([{ email: email }])
 			.select();
 
@@ -64,13 +64,13 @@ export const actions = {
 
 		return {
 			success: true,
-			message: 'You have successfuly joined the waitlist. See you Soon 👋'
+			message: "You have successfuly joined the waitlist. See you Soon 👋"
 		};
 	},
 	contactUs: async ({ request }) => {
 		const form = await superValidate(request, formSchema);
 
-		console.log(form, 'from backend');
+		console.log(form, "from backend");
 
 		if (!form.valid) {
 			return fail(400, {
@@ -83,7 +83,7 @@ export const actions = {
 		console.log(form.data.name, form.data.email, form.data.description);
 
 		const { data, error } = await supabase
-			.from('contact_form')
+			.from("contact_form")
 			.insert([{ name: name, email: email, description: description }])
 			.select();
 

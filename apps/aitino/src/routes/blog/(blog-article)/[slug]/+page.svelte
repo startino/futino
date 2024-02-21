@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { onMount, type SvelteComponent } from 'svelte';
-	import SEO from '$lib/components/SEO/index.svelte';
-	import { page } from '$app/stores';
+	import { onMount, type SvelteComponent } from "svelte";
+	import SEO from "$lib/components/SEO/index.svelte";
+	import { page } from "$app/stores";
 
-	import { base } from '$app/paths';
+	import { base } from "$app/paths";
 
 	export let data;
 
