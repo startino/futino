@@ -13,12 +13,12 @@
 />
 
 
-<div class="bg-background py-24 sm:py-32">
+<div class="bg-background py-36 sm:py-32 md:py">
 	<div class="mx-auto max-w-7xl px-6 lg:px-8">
 		<div class="mx-auto max-w-2xl lg:max-w-4xl">
-			<h2 class="text-3xl font-bold tracking-tight text-center text-foreground sm:text-4xl">From the blog</h2>
+			<h2 class="text-3xl font-bold tracking-tight text-center sm:text-4xl bg-gradient-to-b from-foreground to-primary bg-clip-text text-transparent">Blog</h2>
 			<p class="mt-2 text-lg leading-8 text-foreground/80 text-center">
-				Learn about the capabilities of multi-agent systems, especially in this modern age of powerful AI models.
+				
 			</p>
 			<div class="mt-16 space-y-20 lg:mt-20 lg:space-y-20">
 				{#each data.posts as post}
