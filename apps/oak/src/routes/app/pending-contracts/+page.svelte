@@ -1,12 +1,13 @@
-<!-- <script lang="ts">
-	import { createTable, Subscribe, Render, createRender } from 'svelte-headless-table';
+<script lang="ts">
+	import { Render, createRender } from '$lib/svelte-render';
+	import { createTable, Subscribe } from '$lib/svelte-headless-table';
 	import {
 		addSortBy,
 		addPagination,
 		addTableFilter,
 		addSelectedRows,
 		addHiddenColumns
-	} from 'svelte-headless-table/plugins';
+	} from '$lib/svelte-headless-table/plugins';
 	import { readable } from 'svelte/store';
 	import * as Table from '$lib/components/ui/table';
 	import Actions from '$lib/components/ui/data-table/data-table-actions.svelte';
@@ -103,10 +104,10 @@
 				}
 			}
 		}),
-		table.column({
-			header: 'Project Code',
-			accessor: 'project_code'
-		}),
+		// table.column({
+		// 	header: 'Project Code',
+		// 	accessor: 'project_code'
+		// }),
 		table.column({
 			header: 'Vendor Name',
 			accessor: 'vendor',
@@ -273,4 +274,4 @@
 			on:click={() => ($pageIndex = $pageIndex + 1)}>Next</Button
 		>
 	</div>
-</div> -->
+</div>
