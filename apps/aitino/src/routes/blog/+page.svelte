@@ -1,55 +1,31 @@
 <script lang="ts">
-	import { formatDate } from '$lib/utils'
-	import * as config from '$lib/config'
-	import SEO from '$lib/components/SEO/index.svelte'
+	import { formatDate } from "$lib/utils";
+	import * as config from "$lib/config";
+	import SEO from "$lib/components/SEO/index.svelte";
 
-	export let data
+	export let data;
 </script>
 
 <SEO
 	slug="blog"
-	title="Aitino's Blogs"
+	title="Blog • Aitino"
 	metadescription="This is a collection of blogs written by Aitino to raise awareness of the capabilities of multi-agent systems, especially in this modern age of powerful AI models."
 />
 
-
-<section>
-	<ul class="posts">
-		{#each data.posts as post}
-			<li class="post">
-				<a href={post.slug} class="title">{post.title}</a>
-				<p class="date">{formatDate(post.date)}</p>
-				<p class="description">{post.description}</p>
-			</li>
-		{/each}
-	</ul>
-</section>
-
-<style>
-	.posts {
-		display: grid;
-		gap: var(--size-7);
-	}
-
-	.post {
-		max-inline-size: var(--size-content-3);
-	}
-
-	.post:not(:last-child) {
-		border-bottom: 1px solid var(--border);
-		padding-bottom: var(--size-7);
-	}
-
-	.title {
-		font-size: var(--font-size-fluid-3);
-		text-transform: capitalize;
-	}
-
-	.date {
-		color: var(--text-2);
-	}
-
-	.description {
-		margin-top: var(--size-3);
-	}
-</style>
+<h1 class="text-4xl">Blog</h1>
+<div class="">
+	{#each data.posts as post}
+		{#if !post.draft}
+			<a class="no-underline" href="/blog/{post.slug}" title="Read the article »">
+				<article
+					class="prose prose-blog rounded-md border border-border p-6"
+					data-pubdate={post.date}
+				>
+					<h2>{post.title}</h2>
+					<h6>Published {post.date}</h6>
+					<p>{post.description}</p>
+				</article>
+			</a>
+		{/if}
+	{/each}
+</div>

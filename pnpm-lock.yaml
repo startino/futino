@@ -26,6 +26,9 @@ importers:
 
   apps/aitino:
     dependencies:
+      '@cartamd/plugin-code':
+        specifier: ^3.0.1
+        version: 3.0.1(carta-md@3.5.0)(marked@9.1.6)
       '@dagrejs/dagre':
         specifier: ^1.0.4
         version: 1.0.4
@@ -38,15 +41,24 @@ importers:
       '@sveltejs/adapter-vercel':
         specifier: ^4.0.4
         version: 4.0.4(@sveltejs/kit@2.5.0)
+      '@sveltejs/site-kit':
+        specifier: ^5.2.2
+        version: 5.2.2(@sveltejs/kit@2.5.0)(svelte@4.2.9)
       '@types/wicg-file-system-access':
         specifier: ^2023.10.4
         version: 2023.10.4
       '@xyflow/svelte':
         specifier: ^0.0.35
         version: 0.0.35(svelte@4.2.9)
+      axios:
+        specifier: ^1.6.7
+        version: 1.6.7
       bits-ui:
         specifier: ^0.16.0
         version: 0.16.0(svelte@4.2.9)
+      carta-md:
+        specifier: ^3.5.0
+        version: 3.5.0(svelte@4.2.9)
       clsx:
         specifier: ^2.1.0
         version: 2.1.0
@@ -71,6 +83,9 @@ importers:
       mode-watcher:
         specifier: ^0.2.0
         version: 0.2.0(svelte@4.2.9)
+      svelte-markdown:
+        specifier: ^0.4.1
+        version: 0.4.1(svelte@4.2.9)
       object-hash:
         specifier: ^3.0.0
         version: 3.0.0
@@ -1335,6 +1350,17 @@ packages:
       to-fast-properties: 2.0.0
     dev: true
 
+  /@cartamd/plugin-code@3.0.1(carta-md@3.5.0)(marked@9.1.6):
+    resolution: {integrity: sha512-xV9qxNtfYwg/ge84An64GwTKriKo1bL/CuYu31aX+dsOYXRvUOdCn9Sv9doTJYFOimGVTOmalvcFR+6jruEoHA==}
+    peerDependencies:
+      carta-md: ^3.0.0
+    dependencies:
+      carta-md: 3.5.0(svelte@4.2.9)
+      marked-highlight: 2.1.1(marked@9.1.6)
+    transitivePeerDependencies:
+      - marked
+    dev: false
+
   /@dagrejs/dagre@1.0.4:
     resolution: {integrity: sha512-jrEore+HhW1yg1Rsd9H1PPMcoEOD4bVh0WCXc6GqzyzubnJj4GaWGg8ETOrskTd/3n/g5LOzumGM4CCgpNLJNw==}
     dependencies:
@@ -1975,6 +2001,9 @@ packages:
 
   /@stripe/stripe-js@2.4.0:
     resolution: {integrity: sha512-WFkQx1mbs2b5+7looI9IV1BLa3bIApuN3ehp9FP58xGg7KL9hCHDECgW3BwO9l9L+xBPVAD7Yjn1EhGe6EDTeA==}
+
+  /@speed-highlight/core@1.2.2:
+    resolution: {integrity: sha512-Yb3ewAUq7QwLbU+vF28dxkOmBJG5bHUVWZWQBnUt2GIhVWdiShKcE6kBMsCRXvD8AuK7gy0rR4qNckqZnCzEFw==}
     dev: false
 
   /@stripe/stripe-js@3.0.3:
@@ -2165,6 +2194,18 @@ packages:
       svelte: 5.0.0-next.31
       tiny-glob: 0.2.9
       vite: 5.0.12
+
+  /@sveltejs/site-kit@5.2.2(@sveltejs/kit@2.5.0)(svelte@4.2.9):
+    resolution: {integrity: sha512-XLLxVUV/dYytCsUeODAkjtzlaIBSn1kdcH5U36OuN7gMsPEHDy5L/dsWjf1/vDln3JStH5lqZPEN8Fovm33KhA==}
+    peerDependencies:
+      '@sveltejs/kit': ^1.0.0
+      svelte: ^3.54.0
+    dependencies:
+      '@sveltejs/kit': 2.5.0(@sveltejs/vite-plugin-svelte@3.0.1)(svelte@4.2.9)(vite@5.0.12)
+      esm-env: 1.0.0
+      svelte: 4.2.9
+      svelte-local-storage-store: 0.4.0(svelte@4.2.9)
+    dev: false
 
   /@sveltejs/vite-plugin-svelte-inspector@2.0.0(@sveltejs/vite-plugin-svelte@3.0.1)(svelte@4.2.9)(vite@5.0.12):
     resolution: {integrity: sha512-gjr9ZFg1BSlIpfZ4PRewigrvYmHWbDrq2uvvPB1AmTWKuM+dI1JXQSUu2pIrYLb/QncyiIGkFDFKTwJ0XqQZZg==}
@@ -2501,6 +2542,10 @@ packages:
     dependencies:
       '@types/geojson': 7946.0.14
     dev: true
+
+  /@types/marked@5.0.2:
+    resolution: {integrity: sha512-OucS4KMHhFzhz27KxmWg7J+kIYqyqoW5kdIEI319hqARQQUTqhao3M/F+uFnDXD0Rg72iDDZxZNxq5gvctmLlg==}
+    dev: false
 
   /@types/node@20.11.5:
     resolution: {integrity: sha512-g557vgQjUUfN76MZAN/dt1z3dzcUsimuysco0KeluHgrPdJXkP/XdAURgyO2W9fZWHRtRBiVKzKn8vyOAwlG+w==}
@@ -3420,6 +3465,16 @@ packages:
     engines: {node: '>=4'}
     dev: true
 
+  /axios@1.6.7:
+    resolution: {integrity: sha512-/hDJGff6/c7u0hDkvkGxR/oy6CbCs8ziCsC7SqmhjfozqiJGc8Z11wrv9z9lYfY4K8l+H9TpjcMDX0xOZmx+RA==}
+    dependencies:
+      follow-redirects: 1.15.5
+      form-data: 4.0.0
+      proxy-from-env: 1.1.0
+    transitivePeerDependencies:
+      - debug
+    dev: false
+
   /axobject-query@3.2.1:
     resolution: {integrity: sha512-jsyHu61e6N4Vbz/v18DHwWYKK0bSWLqn47eeDSKPB7m8tqMHF9YJ+mhIk2lVteyZrY8tnSj/jHOv4YiTCuCJgg==}
     dependencies:
@@ -3652,6 +3707,16 @@ packages:
   /caniuse-lite@1.0.30001579:
     resolution: {integrity: sha512-u5AUVkixruKHJjw/pj9wISlcMpgFWzSrczLZbrqBSxukQixmg0SJ5sZTpvaFvxU0HoQKd4yoyAogyrAz9pzJnA==}
     dev: true
+
+  /carta-md@3.5.0(svelte@4.2.9):
+    resolution: {integrity: sha512-Jar5LfaG+Pw1pjWg7p8pNtOORzpSQC4LtX2zFhcpmBdaXpLKtl8ClAVAjLyveT6t5mmqjosA6K3WaFwR7+LVOg==}
+    peerDependencies:
+      svelte: ^3.54.0 || ^4.0.0
+    dependencies:
+      '@speed-highlight/core': 1.2.2
+      marked: 9.1.6
+      svelte: 4.2.9
+    dev: false
 
   /caseless@0.12.0:
     resolution: {integrity: sha512-4tYFyifaFfGacoiObjJegolkwSU4xQNGbVgUiNYVUxbQ2x2lUsFvY4hVgVzGiIe6WLOPqycWXA40l+PWsxthUw==}
@@ -4956,6 +5021,16 @@ packages:
       tabbable: 6.2.0
     dev: false
 
+  /follow-redirects@1.15.5:
+    resolution: {integrity: sha512-vSFWUON1B+yAw1VN4xMfxgn5fTUiaOzAJCKBwIIgT/+7CuGy9+r+5gITvP62j3RmaD5Ph65UaERdOSRGUzZtgw==}
+    engines: {node: '>=4.0'}
+    peerDependencies:
+      debug: '*'
+    peerDependenciesMeta:
+      debug:
+        optional: true
+    dev: false
+
   /for-each@0.3.3:
     resolution: {integrity: sha512-jqYfLp7mo9vIyQf8ykW2v7A+2N4QjeCeI5+Dz9XraiO1ign81wjiH7Fb9vSOWvQfNtmSa4H2RoQTrrXivdUZmw==}
     dependencies:
@@ -4996,6 +5071,15 @@ packages:
     dependencies:
       fetch-blob: 3.2.0
     dev: true
+
+  /form-data@4.0.0:
+    resolution: {integrity: sha512-ETEklSGi5t0QMZuiXoA/Q6vcnxcLQP5vdugSpuAyi6SVGi2clPPp+xgEhuMaHC+zGgn31Kd235W35f7Hykkaww==}
+    engines: {node: '>= 6'}
+    dependencies:
+      asynckit: 0.4.0
+      combined-stream: 1.0.8
+      mime-types: 2.1.35
+    dev: false
 
   /formsnap@0.4.2(svelte@4.2.9)(sveltekit-superforms@1.13.3)(zod@3.22.4):
     resolution: {integrity: sha512-iUhGDUcjUW9tCOYLZ1rbNR1wkjtEbrXDxhUnl7+zPKjP5K8ikDfhZWH1cquKdUcHJoSE7M/Rruvg0fNQMjSNtA==}
@@ -5925,6 +6009,26 @@ packages:
       vt-pbf: 3.1.3
     dev: false
 
+  /marked-highlight@2.1.1(marked@9.1.6):
+    resolution: {integrity: sha512-ktdqwtBne8rim5mb+vvZ9FzElGFb+CHCgkx/g6DSzTjaSrVnxsJdSzB5YgCkknFrcOW+viocM1lGyIjC0oa3fg==}
+    peerDependencies:
+      marked: '>=4 <13'
+    dependencies:
+      marked: 9.1.6
+    dev: false
+
+  /marked@5.1.2:
+    resolution: {integrity: sha512-ahRPGXJpjMjwSOlBoTMZAK7ATXkli5qCPxZ21TG44rx1KEo44bii4ekgTDQPNRQ4Kh7JMb9Ub1PVk1NxRSsorg==}
+    engines: {node: '>= 16'}
+    hasBin: true
+    dev: false
+
+  /marked@9.1.6:
+    resolution: {integrity: sha512-jcByLnIFkd5gSXZmjNvS1TlmRhCXZjIzHYlaGkPlLIekG55JDR2Z4va9tZwCiP+/RDERiNhMOFu01xd6O5ct1Q==}
+    engines: {node: '>= 16'}
+    hasBin: true
+    dev: false
+
   /mdn-data@2.0.30:
     resolution: {integrity: sha512-GaqWWShW4kv/G9IEucWScBx9G1/vsFZZJUO+tD26M8J8z3Kw5RDQjaoZe03YAClgeS/SWPOcb4nkFBTEi5DUEA==}
 
@@ -6810,6 +6914,10 @@ packages:
     resolution: {integrity: sha512-TdDRD+/QNdrCGCE7v8340QyuXd4kIWIgapsE2+n/SaGiSSbomYl4TjHlvIoCWRpE7wFt02EpB35VVA2ImcBVqw==}
     dev: false
 
+  /proxy-from-env@1.1.0:
+    resolution: {integrity: sha512-D+zkORCbA9f1tdWRK0RaCR3GPv50cMxcrz4X8k5LTSUD1Dkw47mKJEZQNunItRTkWwgtaUSo1RVFRIG9ZXiFYg==}
+    dev: false
+
   /psl@1.9.0:
     resolution: {integrity: sha512-E/ZsdU4HLs/68gYzgGTkMicWTLPdAftJLfJFlLUAAKZGkStNU72sZjT66SnMDVOfOWY/YAoiD7Jxa9iHvngcag==}
     dev: false
@@ -7581,6 +7689,23 @@ packages:
     dependencies:
       svelte: 4.2.9
     dev: true
+
+  /svelte-markdown@0.4.1(svelte@4.2.9):
+    resolution: {integrity: sha512-pOlLY6EruKJaWI9my/2bKX8PdTeP5CM0s4VMmwmC2prlOkjAf+AOmTM4wW/l19Y6WZ87YmP8+ZCJCCwBChWjYw==}
+    peerDependencies:
+      svelte: ^4.0.0
+    dependencies:
+      '@types/marked': 5.0.2
+      marked: 5.1.2
+      
+  /svelte-local-storage-store@0.4.0(svelte@4.2.9):
+    resolution: {integrity: sha512-ctPykTt4S3BE5bF0mfV0jKiUR1qlmqLvnAkQvYHLeb9wRyO1MdIFDVI23X+TZEFleATHkTaOpYZswIvf3b2tWA==}
+    engines: {node: '>=0.14'}
+    peerDependencies:
+      svelte: ^3.48.0
+    dependencies:
+      svelte: 4.2.9
+    dev: false
 
   /svelte-particles@2.12.0(svelte@5.0.0-next.31):
     resolution: {integrity: sha512-DISZn5RNIt7hP9SORogWmXyIA/MCha6kkcwRCa7fl3leD1+GFHeNMSjdmyhqlfgip82g17WUFxwyA8n/8EM5KQ==}

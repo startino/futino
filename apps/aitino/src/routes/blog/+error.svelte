@@ -1,9 +1,9 @@
 <script>
-	import { page } from '$app/stores';
+	import { page } from "$app/stores";
 
 	const {
 		status,
-		error: { message },
+		error: { message }
 	} = $page;
 	const title = `${status}: ${message}`;
 </script>
