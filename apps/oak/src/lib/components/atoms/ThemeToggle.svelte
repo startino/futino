@@ -1,18 +1,18 @@
 <script lang="ts">
-    let darkMode = false;
-    function handleSwitchDarkMode() {
-        darkMode = !darkMode;
+	let darkMode = false;
+	function handleSwitchDarkMode() {
+		darkMode = !darkMode;
 
-        darkMode
-            ? document.documentElement.classList.add('dark')
-            : document.documentElement.classList.remove('dark');
-    }
+		darkMode
+			? document.documentElement.classList.add('dark')
+			: document.documentElement.classList.remove('dark');
+	}
 </script>
 
 <button
 	type="button"
 	id="headlessui-listbox-button-:r3:"
-    on:click={handleSwitchDarkMode}
+	on:click={handleSwitchDarkMode}
 	aria-haspopup="true"
 	aria-expanded="false"
 	data-headlessui-state=""

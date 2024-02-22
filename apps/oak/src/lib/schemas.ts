@@ -1,16 +1,41 @@
 import { z } from 'zod';
 
-export const registerUserSchema = z.object({
-	fullName: z.string().max(140, 'Name must be less than 140 characters.'),
-	email: z.string().email('Invalid email address'),
-	password: z
-		.string()
-		.max(96, 'Password must be less than 96 characters')
-		.min(6, 'Password must be at least 6 characters.'),
-	confirmPassword: z
-		.string()
-		.max(96, 'Password must be less than 96 characters')
-		.min(6, 'Password must be at least 6 characters.')
+const departmentSchema = z.object({
+	number: z.number().gt(0, 'Please enter a valid number'),
+	name: z.string().min(1, 'The deparment name is required')
+});
+
+const projectSchema = z.string().min(1, 'The project name is required');
+
+const accountSchema = z.number().gt(0, 'Please enter a valid number');
+
+const userSchema = z
+	.object({
+		fullName: z.string().max(140, 'Name must be less than 140 characters.').min(3),
+		email: z.string().email('Invalid email address'),
+		password: z
+			.string()
+			.max(96, 'Password must be less than 96 characters')
+			.min(6, 'Password must be at least 6 characters.'),
+		confirmPassword: z
+			.string()
+			.max(96, 'Password must be less than 96 characters')
+			.min(6, 'Password must be at least 6 characters.')
+	})
+	.refine(({ password, confirmPassword }) => password === confirmPassword, {
+		message: 'The passwords did not match'
+	});
+
+export const companySchema = z.object({
+	name: z.string().min(1, 'The name of the company is required'),
+	departments: z.array(departmentSchema).optional().default([]),
+	accounts: z.array(accountSchema).optional().default([]),
+	projects: z.array(projectSchema).optional().default([])
+});
+
+export const registrationSchema = z.object({
+	company: companySchema,
+	user: userSchema
 });
 
 export const loginUserSchema = z.object({
@@ -19,16 +44,17 @@ export const loginUserSchema = z.object({
 });
 
 export const contractEntrySchema = z.object({
-	parentContract: z.string().optional(),
-	startDate: z.date(),
-	endDate: z.date().optional(),
+	parent_contract: z.string().optional(),
+	start_date: z.date(),
+	end_date: z.date(),
 	description: z.string().optional(),
-	projectCode: z.string().optional(),
-	owner: z.string(),
-	approver: z.string().optional(),
+	vendor_id: z.string(),
+	project: z.string().optional(),
+	creator: z.string(),
 	department: z.string().optional(),
-	amount: z.string().optional(),
-	spendCategory: z.enum(['Contract', 'Clinical', 'Other']).optional()
+	amount: z.string(),
+	spend_category: z.string().optional(),
+	attachment: z.string()
 });
 
 export type ContractEntryForm = typeof contractEntrySchema;
