@@ -4,6 +4,7 @@
 	import FormItem from "$lib/components/FormItem.svelte";
 	import type { ActionData, PageData } from "./$types";
 	import SEO from "$lib/components/SEO/index.svelte";
+	import { Logo } from "$lib/components/ui/logo";
 
 	export let form: ActionData;
 
@@ -50,12 +51,13 @@
 	metadescription="The world's leading web platform in pairing modern AI models with highly effective multi-agent technologies. By taking the form of node-editors, Aitino harnesses the ability to create teams of AI agents that collaborate to solve complex tasks in real-time."
 />
 
-<div class="font-roboto flex h-screen w-screen flex-col justify-center bg-transparent">
-	<div class="mt-4 flex h-full w-screen flex-col justify-evenly py-6">
+<div class="flex h-screen w-screen flex-col justify-center bg-transparent">
+	<div class="mt-32 md:mt-48 lg:mt-64 flex w-screen flex-col justify-evenly py-6">
 		<div
 			class="mx-auto flex w-full flex-col place-items-center gap-y-4 px-2 text-foreground sm:gap-y-8"
 		>
-			<img src="logo_rounded_200px.png" alt="Aitino Logo" class="z-10 mt-4 h-20 w-20" />
+			
+			<Logo height="h-16" class="rounded-xl hidden lg:flex" />
 			<h1
 				class="tracking-loose m-0 text-center text-3xl font-semibold sm:m-0 sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl"
 			>
