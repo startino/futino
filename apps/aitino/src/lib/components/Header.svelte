@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onMount } from "svelte";
-	import { fade, slide } from "svelte/transition";
+	import { fade, fly, slide } from "svelte/transition";
 	import { Button } from "$lib/components/ui/button";
 	import Logo from "./ui/logo/logo.svelte";
 
@@ -10,8 +10,8 @@
 			href: "/"
 		},
 		{
-			name: "About",
-			href: "/about"
+			name: "Blog",
+			href: "/blog"
 		}
 	];
 	/** Labels and hrefs of CTA buttons on the hero. Recommended 1-2.*/
@@ -30,7 +30,6 @@
 	// Variables
 	let activeheaderClass = largeHeaderClass;
 	let menuOpen = false;
-	let flyAmount: number;
 
 	function toggleMenu() {
 		menuOpen = !menuOpen;
@@ -43,68 +42,69 @@
 	});
 </script>
 
-<header
-	class="fixed left-1/2 mt-6 w-[90%] max-w-7xl -translate-x-1/2 rounded-3xl bg-card text-card-foreground"
+<nav
+	class="fixed left-1/2 mt-6 w-[90%] max-w-7xl -translate-x-1/2 items-center justify-between rounded-3xl bg-card p-6 text-card-foreground lg:px-8 lg:flex {menuOpen ? "hidden" : "flex"}"
+	aria-label="Global"
 >
-	<nav
-		class="items-center justify-between p-6 lg:px-8 {menuOpen ? 'hidden' : 'flex'}"
-		aria-label="Global"
-	>
-		<a href="/" class="-m-1.5 p-1.5">
-			<span class="sr-only">Aitino</span>
-			<Logo label={true} />
-		</a>
-		<div class="flex lg:hidden">
-			<button
-				type="button"
-				on:click={toggleMenu}
-				class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
+	<a href="/" class="-m-1.5 p-1.5">
+		<span class="sr-only">Aitino</span>
+		<Logo label />
+	</a>
+
+	<div class="flex lg:hidden">
+		<button
+			type="button"
+			on:click={toggleMenu}
+			class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
+		>
+			<span class="sr-only">Open main menu</span>
+			<svg
+				class="h-6 w-6"
+				fill="none"
+				viewBox="0 0 24 24"
+				stroke-width="1.5"
+				stroke="currentColor"
+				aria-hidden="true"
 			>
-				<span class="sr-only">Open main menu</span>
-				<svg
-					class="h-6 w-6"
-					fill="none"
-					viewBox="0 0 24 24"
-					stroke-width="1.5"
-					stroke="currentColor"
-					aria-hidden="true"
-				>
-					<path
-						stroke-linecap="round"
-						stroke-linejoin="round"
-						d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
-					/>
-				</svg>
-			</button>
-		</div>
-		<div class="hidden place-items-center lg:flex lg:gap-x-12">
-			{#each pages as { name, href }}
-				<a
-					{href}
-					class="m-0 text-sm font-semibold leading-6 text-card-foreground hover:text-accent sm:m-0"
-					>{name}</a
-				>
+				<path
+					stroke-linecap="round"
+					stroke-linejoin="round"
+					d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+				/>
+			</svg>
+		</button>
+	</div>
+
+	<div class="hidden place-items-center lg:flex lg:gap-x-12">
+		{#each pages as { name, href }}
+			<a
+				{href}
+				class="text-md m-0 font-semibold leading-6 text-card-foreground hover:text-accent sm:m-0"
+				>{name}</a
+			>
+		{/each}
+		<div class="grid grid-cols-2 gap-x-4">
+			{#each Object.entries(CTAButtons) as [name, { href, highlight }]}
+				<Button {href} class="w-full">
+					{name}
+				</Button>
 			{/each}
-			<div class="grid grid-cols-2 gap-x-4">
-				{#each Object.entries(CTAButtons) as [name, { href, highlight }]}
-					<Button {href} class="w-full">
-						{name}
-					</Button>
-				{/each}
-			</div>
 		</div>
-	</nav>
+	</div>
+</nav>
+
+{#if menuOpen}
 	<!-- Mobile menu, show/hide based on menu open state. -->
-	<div class="lg:hidden {menuOpen ? '' : 'hidden'}" role="dialog" aria-modal="true">
+	<div class="lg:hidden" role="dialog" aria-modal="true">
 		<!-- Background backdrop, show/hide based on slide-over state. -->
-		<div class="fixed inset-0 z-10"></div>
+		<div class="fixed inset-0 z-10" />
 		<div
-			class="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-card px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10"
+			class="fixed inset-y-0 right-0 z-50 w-full bg-card px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10"
+			transition:fly={{ x: 400, y: 0, opacity:1 }}
 		>
 			<div class="flex items-center justify-between">
 				<a href="/" class="-m-1.5 p-1.5">
-					<span class="sr-only">Aitino</span>
-					<img src="logo_nobg.png" alt="Aitino Logo" class="h-8 w-8" />
+					<Logo label />
 				</a>
 				<button type="button" on:click={toggleMenu} class="-m-2.5 rounded-md p-2.5 text-gray-700">
 					<span class="sr-only">Close menu</span>
@@ -142,4 +142,4 @@
 			</div>
 		</div>
 	</div>
-</header>
+{/if}

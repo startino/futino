@@ -20,7 +20,7 @@
 		// '7': 'Automate Your Business <br/>  with <span class="bg-gradient-to-r from-primary to-danger bg-clip-text text-transparent">Aitino</span>'
 	};
 
-	const subtitleVariants = {
+	const subtitleVariants: Record<string, string> = {
 		"0": "Aitino is a platform that allows for the creation of teams of AI Agents to help you automate tasks and solve complex problems. It's made easily customizable through a node-editor."
 	};
 </script>
@@ -52,7 +52,7 @@
 />
 
 <div class="flex h-screen w-screen flex-col justify-center bg-transparent">
-	<div class="mt-32 md:mt-48 lg:mt-64 flex w-screen flex-col justify-evenly py-6">
+	<div class="mt-32 md:mt-24 lg:mt-28 xl:mt-32 flex w-screen flex-col justify-evenly py-6">
 		<div
 			class="mx-auto flex w-full flex-col place-items-center gap-y-4 px-2 text-foreground sm:gap-y-8"
 		>
