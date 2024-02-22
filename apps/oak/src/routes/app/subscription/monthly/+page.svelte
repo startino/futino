@@ -5,7 +5,7 @@
 
 	export let data;
 
-	$: ({ clientSecret, returnUrl, paymentMethod } = data);
+	$: ({ clientSecret, paymentMethod } = data);
 </script>
 
 <Card.Root class="p-10">
@@ -15,7 +15,11 @@
 	</Card.Header>
 
 	<Card.Content>
-		<PaymentForm {paymentMethod} bind:clientSecret bind:returnUrl />
+		<PaymentForm
+			{paymentMethod}
+			bind:clientSecret
+			returnUrl={`${window.location.origin}/app/subscription/complete`}
+		/>
 	</Card.Content>
 	<Card.Footer>
 		<Button href="/app/subscription">Go Back</Button>
