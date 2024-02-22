@@ -9,7 +9,7 @@
 		useConnection
 	} from "@xyflow/svelte";
 	import { type Writable } from "svelte/store";
-	import { X } from "lucide-svelte";
+	import { Loader2, X } from "lucide-svelte";
 
 	// 👇 always import the styles
 	import "@xyflow/svelte/dist/style.css";
@@ -25,6 +25,7 @@
 	import "carta-md/default.css"; /* Default theme */
 	import "carta-md/light.css"; /* Markdown input theme */
 	import { enhance } from "$app/forms";
+	import { browser } from "$app/environment";
 
 	type $$Props = NodeProps;
 
@@ -71,15 +72,49 @@
 	});
 	let showAll = false;
 	const previewLength = 100;
+	let isLoading = false;
 	// let prompt = '';
 
 	function toggleContent() {
 		showAll = !showAll;
 	}
+
+	const isClient = browser;
+
+	const handleSubmit = async () => {
+		if (isClient && $prompt) {
+			console.log("Sending GET request to improve prompt");
+			try {
+				const queryParams = new URLSearchParams({ prompt: $prompt }).toString();
+				const response = await fetch(`/api/v1/prompt?${queryParams}`);
+
+				console.log(response, "from handlesubmit");
+				if (response.ok) {
+					const data = await response.json();
+					console.log(data);
+					isLoading = false;
+					if (data.success) {
+						let improvedPrompt = data.improvedPrompt;
+						if (improvedPrompt.startsWith("```markdown")) {
+							improvedPrompt = improvedPrompt.substring(11); // Remove the starting ```markdown
+							improvedPrompt = improvedPrompt.substring(0, improvedPrompt.lastIndexOf("```")); // Remove the closing ```
+						}
+						$prompt = improvedPrompt;
+					}
+				} else {
+					isLoading = false;
+					throw new Error(`HTTP error! status: ${response.status}`);
+				}
+			} catch (error) {
+				isLoading = false;
+				console.error("Error fetching improved prompt:", error);
+			}
+		}
+	};
 </script>
 
 <Card.Root
-	class="{isTarget ? 'border-2 border-dashed bg-card ' : ''} {isReceiver
+	class="{isTarget ? 'bg-card border-2 border-dashed ' : ''} {isReceiver
 		? 'bg-primary-950'
 		: ''} aspect-1transition"
 >
@@ -110,49 +145,34 @@
 		{/if}
 		<Input placeholder="Name..." bind:value={$name} />
 		<Input placeholder="Job title..." bind:value={$job_title} />
-		<!-- <Textarea placeholder="Prompt..." bind:value={$prompt} /> -->
-		{#if showAll}
-			<Textarea
-				bind:value={$prompt}
-				class="content flex min-h-32 w-96 min-w-max max-w-lg  overflow-y-auto text-pretty rounded-md border border-input bg-transparent py-1 text-left text-sm shadow-sm ring-offset-0 transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring focus-visible:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50"
-			/>
-			<div class="flex flex-col gap-2">
-				<Button on:click={toggleContent}>Show Less</Button>
-			</div>
-		{:else}
-			<!-- svelte-ignore a11y-click-events-have-key-events -->
-			<!-- svelte-ignore a11y-no-static-element-interactions -->
-			{#if $prompt.length > 0}
-				<div
-					class="content no-scrollbar h-16 w-full max-w-lg overflow-auto"
-					placeholder="Please enter you prompt here..."
-					on:click={toggleContent}
-				>
-					{$prompt.slice(0, previewLength)}
-				</div>
-			{:else}
-				<Textarea
-					bind:value={$prompt}
-					class="content flex min-h-32 w-96 min-w-max max-w-lg  overflow-y-auto text-pretty rounded-md border border-input bg-transparent py-1 text-left text-sm shadow-sm ring-offset-0 transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring focus-visible:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50"
-				/>
-			{/if}
-			<div class="flex flex-col gap-2">
-				{#if $prompt.length > previewLength}
-					<Button on:click={toggleContent}>Load All</Button>
-				{/if}
-			</div>
-		{/if}
+		<!-- svelte-ignore a11y-click-events-have-key-events -->
+		<!-- svelte-ignore a11y-no-static-element-interactions -->
+
+		<div
+			class="content no-scrollbar border-input placeholder:text-muted-foreground focus-visible:ring-ring flex h-12 w-full max-w-lg overflow-auto text-wrap rounded-md border bg-transparent px-3 py-1 text-sm shadow-sm ring-offset-0 transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50"
+			placeholder="Please enter you prompt here..."
+			on:click={toggleContent}
+		>
+			{$prompt.slice(0, previewLength)}
+		</div>
 		<Dialog.Root>
 			<Dialog.Trigger><Button class="w-full">Prompt Editor</Button></Dialog.Trigger>
-			<Dialog.Content class="h-full max-h-dvh w-full max-w-7xl">
+			<Dialog.Content class="mx-auto h-full max-h-dvh w-full max-w-full border-none">
 				<Dialog.Header>
 					<Dialog.Title class="-mt-2 text-center"
-						><form action="?/ImprovePrompt&prompt={prompt}" method="GET">
-							<Button>Improve Prompt With AI</Button>
+						><form
+							on:submit|preventDefault={handleSubmit}
+							class="flex items-center justify-center gap-2"
+						>
+							<Button type="submit" on:click={() => (isLoading = true)}
+								>Improve Prompt With AI{#if isLoading}
+									<Loader2 class="ml-2 w-4 animate-spin" />
+								{/if}</Button
+							>
 						</form></Dialog.Title
 					>
-					<Dialog.Description class="h-full w-full border p-8">
-						<CartaEditor {carta} bind:value={$prompt} />
+					<Dialog.Description class="mx-auto w-full max-w-7xl p-4">
+						<CartaEditor {carta} bind:value={$prompt} mode="auto" theme="default" />
 					</Dialog.Description>
 				</Dialog.Header>
 			</Dialog.Content>

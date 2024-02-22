@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { Writable } from "svelte/store";
 	import { Position, useHandleConnections, useSvelteFlow, type NodeProps } from "@xyflow/svelte";
-	import { X } from "lucide-svelte";
+	import { Loader2, X } from "lucide-svelte";
 
 	import * as Card from "$lib/components/ui/card";
 	import { Textarea } from "$lib/components/ui/textarea";
@@ -11,14 +11,18 @@
 	import Button from "../button/button.svelte";
 	import * as Dialog from "$lib/components/ui/dialog";
 	import { Carta, CartaEditor } from "carta-md";
-	import "carta-md/default.css"; /* Default theme */
-	import "carta-md/light.css"; /* Markdown input theme */
+	import { browser } from "$app/environment";
+	import { code } from "@cartamd/plugin-code";
+	import "carta-md/light.css";
+	import "carta-md/default-theme.css";
 	import { enhance } from "$app/forms";
 
 	const carta = new Carta({
-		// Remember to use a sanitizer to prevent XSS attacks!
-		// More on that below
-		// sanitizer: ...
+		extensions: [
+			code({
+				lineNumbering: true
+			})
+		]
 	});
 
 	let value = "";
@@ -37,12 +41,43 @@
 	$: isConnectable = $connects.length === 0;
 
 	let showAll = false;
+	let isLoading = false;
 	const previewLength = 250;
-	let prompt = "";
 
 	function toggleContent() {
 		showAll = !showAll;
 	}
+
+	const isClient = browser;
+
+	const handleSubmit = async () => {
+		console.log("Sending GET request to improve prompt");
+		try {
+			const queryParams = new URLSearchParams({ prompt: $content }).toString();
+			const response = await fetch(`/api/v1/prompt?${queryParams}`);
+
+			console.log(response, "from handlesubmit");
+			if (response.ok) {
+				const data = await response.json();
+				console.log(data);
+				isLoading = false;
+				if (data.success) {
+					let improvedPrompt = data.improvedPrompt;
+					if (improvedPrompt.startsWith("```markdown")) {
+						improvedPrompt = improvedPrompt.substring(11); // Remove the starting ```markdown
+						improvedPrompt = improvedPrompt.substring(0, improvedPrompt.lastIndexOf("```")); // Remove the closing ```
+					}
+					$content = improvedPrompt;
+				}
+			} else {
+				isLoading = false;
+				throw new Error(`HTTP error! status: ${response.status}`);
+			}
+		} catch (error) {
+			isLoading = false;
+			console.error("Error fetching improved prompt:", error);
+		}
+	};
 </script>
 
 <Card.Root>
@@ -65,68 +100,41 @@
 
 	<Card.Content class="grid gap-2">
 		<Input bind:value={$title} placeholder="Title..." />
-		{#if showAll}
-			<Textarea
-				bind:value={$content}
-				class="content flex min-h-32 w-96 min-w-max max-w-lg  overflow-y-auto text-pretty rounded-md border border-input bg-transparent py-1 text-left text-sm shadow-sm ring-offset-0 transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring focus-visible:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50"
-			/>
-			<div class="flex flex-col gap-2">
-				<Button on:click={toggleContent}>Show Less</Button>
-			</div>
-		{:else}
-			<!-- svelte-ignore a11y-click-events-have-key-events -->
-			<!-- svelte-ignore a11y-no-static-element-interactions -->
-			{#if $content.length > 0 && $content.length > previewLength}
-				<div
-					class="content no-scrollbar h-16 w-full max-w-lg overflow-auto text-wrap"
-					placeholder="Please enter you prompt here..."
-					on:click={toggleContent}
-				>
-					{$content.slice(0, previewLength)}
-				</div>
-			{:else}
-				{#if $content.length > 0}
-					<div
-						class="content no-scrollbar h-16 w-full max-w-lg overflow-auto"
-						placeholder="Please enter you prompt here..."
-						on:click={toggleContent}
-					>
-						{$content.slice(0, previewLength)}
-					</div>
-				{:else}
-					<Textarea
-						bind:value={$content}
-						class="content flex min-h-32 w-96 min-w-max max-w-lg  overflow-y-auto text-pretty rounded-md border border-input bg-transparent py-1 text-left text-sm shadow-sm ring-offset-0 transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring focus-visible:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50"
-					/>
-				{/if}
-				<div class="flex flex-col gap-2">
-					{#if $content.length > previewLength}
-						<Button on:click={toggleContent}>Load All</Button>
-					{/if}
-				</div>
-			{/if}
-			<div class="flex flex-col gap-2">
-				{#if $content.length > previewLength}
-					<Button on:click={toggleContent}>Load All</Button>
-				{/if}
-			</div>
-		{/if}
+		<!-- svelte-ignore a11y-click-events-have-key-events -->
+		<!-- svelte-ignore a11y-no-static-element-interactions -->
+
+		<div
+			class="content no-scrollbar border-input placeholder:text-muted-foreground focus-visible:ring-ring flex h-12 w-full max-w-lg overflow-auto text-wrap rounded-md border bg-transparent px-3 py-1 text-sm shadow-sm ring-offset-0 transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50"
+			placeholder="Please enter you prompt here..."
+			on:click={toggleContent}
+		>
+			{$content.slice(0, previewLength)}
+		</div>
+		<!-- {/if} -->
 
 		<Dialog.Root>
 			<Dialog.Trigger><Button class="w-full">Prompt Editor</Button></Dialog.Trigger>
-			<Dialog.Content class="h-full max-h-dvh w-full max-w-7xl">
+			<Dialog.Content class="mx-auto h-full max-h-dvh w-full max-w-full border-none">
 				<Dialog.Header>
 					<Dialog.Title class="-mt-2 text-center"
-						><form action="?/ImprovePrompt&prompt={encodeURIComponent($content)}" method="GET">
-							<Button type="submit">Improve Prompt With AI</Button>
+						><form
+							on:submit|preventDefault={handleSubmit}
+							class="flex items-center justify-center gap-2"
+						>
+							<Button type="submit" on:click={() => (isLoading = true)}
+								>Improve Prompt With AI{#if isLoading}
+									<Loader2 class="ml-2 w-4 animate-spin" />
+								{/if}</Button
+							>
 						</form></Dialog.Title
 					>
-					<Dialog.Description class="h-full w-full border p-8">
-						<CartaEditor {carta} bind:value={$content} />
+					<Dialog.Description class="mx-auto w-full max-w-7xl p-4">
+						<CartaEditor {carta} bind:value={$content} mode="auto" theme="default" />
 					</Dialog.Description>
 				</Dialog.Header>
 			</Dialog.Content>
 		</Dialog.Root>
+
 		<Handle
 			type="source"
 			id="bottom-{id}"
@@ -143,3 +151,6 @@
 		/>
 	</Card.Content>
 </Card.Root>
+
+<style global>
+</style>
