@@ -6,6 +6,10 @@ import type { Tables } from "$lib/supabase.types";
 
 export type Maeve = Tables<"maeve_nodes">;
 
+export type SvelteEvent<E extends Event = Event, T extends EventTarget = Element> = E & {
+	currentTarget: EventTarget & T;
+};
+
 export type PanelAction = {
 	name: string;
 	buttonVariant: Variant;

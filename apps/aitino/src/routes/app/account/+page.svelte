@@ -2,7 +2,7 @@
 	import { Plus, XCircle } from "lucide-svelte";
 	import { onMount } from "svelte";
 
-	import { MainShell } from "$lib/components/layout/main-shell";
+	import { AppShell } from "$lib/components/layout/shell";
 	import * as Card from "$lib/components/ui/card";
 	import * as Tabs from "$lib/components/ui/tabs";
 	import { Input } from "$lib/components/ui/input";
@@ -48,7 +48,7 @@
 	}
 </script>
 
-<MainShell>
+<AppShell>
 	<Tabs.Root value="profile">
 		<Tabs.List class="grid w-full grid-cols-2">
 			<Tabs.Trigger value="profile">Profile</Tabs.Trigger>
@@ -91,4 +91,4 @@
 			</Card.Root>
 		</Tabs.Content>
 	</Tabs.Root>
-</MainShell>
+</AppShell>
