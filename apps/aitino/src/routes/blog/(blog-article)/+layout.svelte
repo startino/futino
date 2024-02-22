@@ -2,7 +2,7 @@
 	export let data;
 </script>
 
-<div class="layout">
+<div class="layout mt-32">
 	<main>
 		<slot />
 	</main>

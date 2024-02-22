@@ -222,24 +222,3 @@ export function formatDate(date: string, dateStyle: DateStyle = "medium", locale
 	return formatter.format(new Date(date));
 }
 
-// Markdown
-
-export function extractFrontmatter(markdown: string) {
-	const match = /---\r?\n([\s\S]+?)\r?\n---/.exec(markdown);
-	if (!match) return { metadata: {}, body: markdown };
-
-	const frontmatter = match[1];
-	const body = markdown.slice(match[0].length);
-
-	let metadata: MarkdownMetadata = { title: "", description: "" };
-	frontmatter.split("\n").forEach((pair) => {
-		const [key, value] = pair.split(":").map((x) => x.trim());
-		if (key && value) metadata[key] = removeQuotes(value);
-	});
-
-	return { metadata, body };
-}
-
-export function removeQuotes(text: string) {
-	return text.replace(/"/g, "");
-}

@@ -43,7 +43,7 @@
 				id="name"
 				type="text"
 				placeholder="John Doe"
-				class="font-roboto w-full border-none bg-[#17151c] p-6 font-bold  outline-primary focus-within:outline-primary focus:outline"
+				class=" w-full border-none bg-[#17151c] p-6 font-bold  outline-primary focus-within:outline-primary focus:outline"
 			/>
 		</div>
 		<div class="grid gap-2">
@@ -52,7 +52,7 @@
 				id="email"
 				type="email"
 				placeholder="example@example.com"
-				class="font-roboto w-full border-none bg-[#17151c] p-6 font-bold  outline-primary focus-within:outline-primary focus:outline"
+				class=" w-full border-none bg-[#17151c] p-6 font-bold  outline-primary focus-within:outline-primary focus:outline"
 			/>
 		</div>
 		<div class="grid gap-2">
@@ -60,7 +60,7 @@
 			<Textarea
 				id="description"
 				placeholder="description..."
-				class="font-roboto w-full border-none bg-[#17151c] p-6 font-bold  outline-primary focus-within:outline-primary focus:outline"
+				class=" w-full border-none bg-[#17151c] p-6 font-bold  outline-primary focus-within:outline-primary focus:outline"
 			/>
 		</div>
 	</Card.Content>

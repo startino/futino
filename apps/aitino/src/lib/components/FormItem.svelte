@@ -39,7 +39,7 @@
 	action="?/register"
 	id="waitlist-signup"
 	method="POST"
-	class="mx-auto flex w-full max-w-sm flex-col items-center justify-center gap-4 space-x-2 lg:max-w-lg {$$props.class}"
+	class="mx-auto flex w-full max-w-sm sm:max-w-md md:max-w-lg flex-col items-center justify-center gap-4 space-x-2 lg:max-w-lg {$$props.class}"
 	use:enhance={() => {
 		return async ({ result }) => {
 			await applyAction(result);
@@ -101,11 +101,11 @@
 					Please wait
 				</Button>
 			{:else}
-				Join the Waitlist<ArrowRight />{/if}
+				Join Early Access<ArrowRight />{/if}
 		</Button>
 	</div>
 </form>
-
+<!-- 
 <Dialog.Root>
 	<Dialog.Trigger class="mt-4 md:mt-6 xl:mt-8">
 		<Button class=" text-base" variant="outline">Contact Us</Button>
@@ -180,10 +180,10 @@
 		</Form.Root>
 	</Dialog.Content>
 	<Dialog.Footer></Dialog.Footer>
-</Dialog.Root>
+</Dialog.Root> -->
 
 <div
-	class="mx-auto mt-6 flex h-fit w-fit flex-wrap-reverse items-center justify-between gap-2 sm:flex-row md:p-4"
+	class="mx-auto flex h-fit w-fit flex-wrap-reverse items-center justify-between gap-2 sm:flex-row md:p-4 mt-2 lg:mt-6 xl:mt-12"
 >
 	<Button
 		class="bg-transparent p-6 font-bold text-accent transition-all duration-300 ease-in-out hover:scale-95 hover:bg-primary hover:text-primary-foreground "

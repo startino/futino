@@ -23,3 +23,13 @@ export interface BlogPostSummary {
 	date: string;
 	draft: boolean;
 }
+
+export type MarkdownMetadata = {
+    title?: string;
+    date?: string;
+    description?: string;
+    tags?: string[];
+    author?: string;
+	published?: boolean;
+	timeToRead?: number;
+}

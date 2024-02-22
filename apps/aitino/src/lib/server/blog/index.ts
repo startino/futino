@@ -1,10 +1,8 @@
 // @ts-check
-import { extractFrontmatter } from "$lib/utils";
 import { CONTENT_BASE_PATHS } from "../../../constants";
 import { Carta } from "carta-md";
-import type { BlogData, BlogPost } from "./types";
+import type { BlogData, BlogPost, MarkdownMetadata} from "./types";
 import type { SvelteComponent } from "svelte";
-import type { MarkdownMetadata } from "$lib/types";
 import { error } from "@sveltejs/kit";
 import { base } from "$app/paths";
 
@@ -93,3 +91,24 @@ export function get_date_and_slug(filename: string) {
 }
 
 const months = "Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec".split(" ");
+
+// Markdown
+export function extractFrontmatter(markdown: string) {
+	const match = /---\r?\n([\s\S]+?)\r?\n---/.exec(markdown);
+	if (!match) return { metadata: {}, body: markdown };
+
+	const frontmatter = match[1];
+	const body = markdown.slice(match[0].length);
+
+	let metadata: MarkdownMetadata = { title: "", description: "" };
+	frontmatter.split("\n").forEach((pair) => {
+		const [key, value] = pair.split(":").map((x) => x.trim());
+		if (key && value) metadata[key] = removeQuotes(value);
+	});
+
+	return { metadata, body };
+}
+
+export function removeQuotes(text: string) {
+	return text.replace(/"/g, "");
+}
