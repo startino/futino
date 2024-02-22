@@ -1,17 +1,6 @@
 export interface BlogPost {
-	title: string;
-	description: string;
-	date: string;
-	date_formatted: string;
-	slug: string;
-	file: string;
-	author: {
-		name: string;
-		url?: string;
-	};
-	draft: boolean;
+	metadata: MarkdownMetadata;
 	content: string;
-	timeToRead: number;
 }
 
 export type BlogData = BlogPost[];
@@ -25,11 +14,15 @@ export interface BlogPostSummary {
 }
 
 export type MarkdownMetadata = {
-    title?: string;
-    date?: string;
-    description?: string;
-    tags?: string[];
-    author?: string;
-	published?: boolean;
-	timeToRead?: number;
+	title: string;
+	description: string;
+	date: string;
+	date_formatted: string;
+	slug: string;
+	file: string;
+	author: {
+		name: string;
+		url?: string;
+	};
+	draft: boolean;
 }

@@ -12,14 +12,15 @@
 	metadescription="This is a collection of blogs written by Aitino to raise awareness of the capabilities of multi-agent systems, especially in this modern age of powerful AI models."
 />
 
-
-<div class="bg-background py-36 sm:py-32 md:py">
+<div class="md:py bg-background py-36 sm:py-32">
 	<div class="mx-auto max-w-7xl px-6 lg:px-8">
 		<div class="mx-auto max-w-2xl lg:max-w-4xl">
-			<h2 class="text-3xl font-bold tracking-tight text-center sm:text-4xl bg-gradient-to-b from-foreground to-primary bg-clip-text text-transparent">Blog</h2>
-			<p class="mt-2 text-lg leading-8 text-foreground/80 text-center">
-				
-			</p>
+			<h2
+				class="bg-gradient-to-b from-foreground to-primary bg-clip-text text-center text-3xl font-bold tracking-tight text-transparent sm:text-4xl"
+			>
+				Blog
+			</h2>
+			<p class="mt-2 text-center text-lg leading-8 text-foreground/80"></p>
 			<div class="mt-16 space-y-20 lg:mt-20 lg:space-y-20">
 				{#each data.posts as post}
 					{#if !post.draft}
@@ -42,10 +43,10 @@
 								</div>
 								<div>
 									<div class="flex items-center gap-x-4 text-xs">
-										<time datetime="2020-03-16" class="text-foreground/70">Mar 16, 2020</time>
+										<time datetime={post.date} class="text-foreground/70">{post.date}</time>
 										<a
 											href="#"
-											class="relative z-10 rounded-full bg-primary px-3 py-1.5 font-medium text-primary-foreground hover:bg-"
+											class="hover:bg- relative z-10 rounded-full bg-primary px-3 py-1.5 font-medium text-primary-foreground"
 											>Marketing</a
 										>
 									</div>

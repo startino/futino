@@ -7,23 +7,22 @@
 
 	export let data;
 
-	const { post } = data;
+	const { post: {metadata, content} } = data;
 </script>
 
 <SEO
 	article
-	slug={post.slug}
-	title={post.title}
-	datePublished={post.date}
-	metadescription={post.description}
-	timeToRead={post.timeToRead}
-	lastUpdated={post.date}
+	slug={metadata.slug}
+	title={metadata.title}
+	datePublished={metadata.date}
+	metadescription={metadata.description}
+	lastUpdated={metadata.date}
 />
 
 <article
 	class="sm:prose-md prose prose-blog mx-auto px-4 md:prose-lg xl:prose-xl"
-	data-pubdate={post.date}
+	data-pubdate={metadata.date}
 >
 	<!-- eslint-disable-next-line svelte/no-at-html-tags -->
-	{@html post.content}
+	{@html content}
 </article>

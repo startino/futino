@@ -7,7 +7,7 @@ import type { RequestEvent } from "@sveltejs/kit";
 import type { TransitionConfig } from "svelte/transition";
 import { getContext as getSvelteContext, setContext as setSvelteContext } from "svelte";
 import { writable } from "svelte/store";
-import type { ContextKey, ContextMap, Maeve, MarkdownMetadata } from "$lib/types";
+import type { ContextKey, ContextMap, Maeve } from "$lib/types";
 import { browser } from "$app/environment";
 import { AVATARS, SAMPLE_FULL_NAMES } from "$lib/config";
 
