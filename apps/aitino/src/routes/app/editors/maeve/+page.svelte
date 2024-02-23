@@ -224,6 +224,7 @@
 
 <div style="height:100vh;">
 	<SvelteFlow
+		minZoom={0.1}
 		{nodes}
 		{edges}
 		{nodeTypes}
