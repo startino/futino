@@ -29,7 +29,6 @@ export const load = async ({ locals: { stripe, stripeCustomerId, supabase, getSe
 	}
 
 	return {
-		clientSecret: subscription.latest_invoice.payment_intent.client_secret,
-		returnUrl: new URL('/app/subscription/complete', PUBLIC_BASE_URL).toString()
+		clientSecret: subscription.latest_invoice.payment_intent.client_secret
 	};
 };

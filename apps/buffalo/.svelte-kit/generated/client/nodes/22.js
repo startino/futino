@@ -1,1 +1,0 @@
-export { default as component } from "../../../../src/routes/products/shutter-doors/fire/+page.svelte";

@@ -1,0 +1,74 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+	:root {
+		--background: 255 255 255;
+		--foreground: 13 13 13;
+		--card: 206 249 236;
+		--card-foreground: 13 13 13;
+		--popover: 255 255 255;
+		--popover-foreground: 13 13 13;
+		--primary: 25 159 132;
+		--primary-foreground: 249 249 249;
+		--secondary: 52 133 253;
+		--secondary-foreground: 29 29 29;
+		--muted: 245 245 245;
+		--muted-foreground: 119 119 119;
+		--accent: 177 148 112;
+		--accent-foreground: 29 29 29;
+		--destructive: 130 0 0;
+		--destructive-foreground: 249 249 249;
+		--border: 233 233 233;
+		--input: 233 233 233;
+		--ring: 136 135 135;
+		--radius: 0.5rem;
+	}
+	.dark {
+		--background: 9 16 16;
+		--foreground: 248 250 252;
+		--card: 13 13 13;
+		--card-foreground: 249 249 249;
+		--popover: 13 13 13;
+		--popover-foreground: 249 249 249;
+		--primary: 69 223 164;
+		--primary-foreground: 0 56 37;
+		--secondary: 60 221 199;
+		--secondary-foreground: 249 249 249;
+		--muted: 45 45 45;
+		--muted-foreground: 166 166 166;
+		--accent: 255 175 211;
+		--accent-foreground: 98 0 64;
+		--destructive: 251 113 133;
+		--destructive-foreground: 249 249 249;
+		--border: 45 45 45;
+		--input: 30 41 59;
+		--ring: 123 123 123;
+		--radius: 0.5rem;
+	}
+}
+
+@layer base {
+	* {
+		@apply border-border;
+	}
+	body {
+		@apply h-full bg-background  text-accent-50;
+	}
+	html body {
+		@apply h-full;
+	}
+}
+
+@layer utilities {
+	/* Hide scrollbar for Chrome, Safari and Opera */
+	.no-scrollbar::-webkit-scrollbar {
+		display: none;
+	}
+	/* Hide scrollbar for IE, Edge and Firefox */
+	.no-scrollbar {
+		-ms-overflow-style: none; /* IE and Edge */
+		scrollbar-width: none; /* Firefox */
+	}
+}
