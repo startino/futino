@@ -1,9 +1,8 @@
 import { fail, type Actions } from "@sveltejs/kit";
 import { supabase } from "$lib/supabase";
-import { randomBytes } from "crypto";
 import { z } from "zod";
 import { superValidate } from "sveltekit-superforms/server";
-import { formSchema } from "./schema";
+import { formSchema } from "../schema";
 import axios from "axios";
 
 const waitlistSchema = z.object({

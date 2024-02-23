@@ -15,7 +15,13 @@ At the heart of the technological revolution are multi-agent systems (MAS) – a
 
 ## The Research Backing Multi-Agent Systems
 
-The future of AI is increasingly being shaped by multi-agent systems, which consist of multiple decision-making agents interacting in a shared environment to achieve common or conflicting goals [2](#citations). Research in this field spans a range of technical problems, such as designing MAS to incentivize certain behaviors in agents, enabling agents to achieve specified goals, and how information is communicated and propagated among agents [2](#citations). 
+The future of AI is increasingly being shaped by multi-agent systems, 
+which consist of multiple decision-making agents interacting in a shared 
+environment to achieve common or conflicting goals [2](#citations). Research in 
+this field spans a range of technical problems, such as designing MAS to 
+incentivize certain behaviors in agents, enabling agents to achieve specified
+goals, and how information is communicated and propagated among 
+agents [2](#citations). 
 
 A study from MIT's Computer Science and Artificial Intelligence Laboratory (CSAIL) has shown that multiple AI language models engaging in collaborative debates can enhance their problem-solving abilities, verify the precision of their responses, and improve their factuality and reasoning autonomously [3](#citations).
 

@@ -21,8 +21,9 @@
 				Blog
 			</h2>
 			<p class="mt-2 text-center text-lg leading-8 text-foreground/80"></p>
-			<div class="mt-16 space-y-20 lg:mt-20 lg:space-y-20">
-				{#each data.posts as post}
+			<div class="mx-auto mt-16 space-y-20 text-center lg:mt-20 lg:space-y-20">
+				Coming Soon
+				<!-- {#each data.posts as post}
 					{#if post.published}
 						<a href="/blog/{post.slug}" class="group">
 							<article
@@ -76,9 +77,7 @@
 							</article>
 						</a>
 					{/if}
-				{/each}
-
-				<!-- More posts... -->
+				{/each} -->
 			</div>
 		</div>
 	</div>
