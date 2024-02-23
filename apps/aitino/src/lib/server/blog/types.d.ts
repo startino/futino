@@ -10,7 +10,10 @@ export interface BlogPostSummary {
 	title: string;
 	description: string;
 	date: string;
-	draft: boolean;
+	date_formatted: string;
+	published: boolean;
+	thumbnail: string;
+	author: string;
 }
 
 export type MarkdownMetadata = {
@@ -20,9 +23,7 @@ export type MarkdownMetadata = {
 	date_formatted: string;
 	slug: string;
 	file: string;
-	author: {
-		name: string;
-		url?: string;
-	};
-	draft: boolean;
+	author: string;
+	published: boolean = false;
+	thumbnail: string;
 }

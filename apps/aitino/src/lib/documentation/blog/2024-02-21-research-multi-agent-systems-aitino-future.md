@@ -7,8 +7,10 @@ categories:
   - automation
   - ai
   - problem-solving
-published: true
+published: false
 timeToRead: 3
+thumbnail: "/blog/low_res_n_00014_.png"
+author: Jorge Lewis
 ---
 
 ### The Dawn of a New Technological Era: Multi-Agent Systems at the Forefront

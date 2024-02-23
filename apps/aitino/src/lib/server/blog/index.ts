@@ -55,14 +55,12 @@ export async function get_blog_data(base = BLOG_PATH): Promise<BlogData> {
 			date,
 			date_formatted,
 			description: metadata?.description ?? "",
-			draft: Boolean((metadata?.draft ?? "true")),
+			published: metadata?.published ?? false,
 			slug,
 			title: metadata?.title ?? "",
 			file,
-			author: {
-				name: metadata?.author.name ?? "Aitino",
-				url: metadata?.author.url ?? ""
-			}
+			author: metadata?.author ?? "Aitino",
+			thumbnail: metadata?.thumbnail ?? "favicon.png",
 		},
 		content: body
 	}
@@ -73,12 +71,16 @@ export async function get_blog_data(base = BLOG_PATH): Promise<BlogData> {
 }
 
 export function get_blog_list(blog_data: BlogData) {
-	return blog_data.map(({metadata:{ slug, date, title, description, draft }}) => ({
+	console.log("blog_data", blog_data);
+	return blog_data.map(({metadata:{ slug, date, title, description, published, thumbnail, date_formatted, author}}) => ({
 		slug,
 		date,
 		title,
 		description,
-		draft
+		published,
+		thumbnail,
+		date_formatted,
+		author,
 	}));
 }
 
@@ -88,9 +90,8 @@ export function get_date_and_slug(filename: string) {
 
 	const [, date, slug] = match;
 	const [y, m, d] = date.split("-");
-	const date_formatted = `${months[+m - 1]} ${+d} ${y}`;
+	const date_formatted = `${months[+m - 1]} ${+d}, ${y}`;
 
-	console.log("date_formatted", date_formatted, "slug", slug);
 	return { date, date_formatted, slug };
 }
 
@@ -110,9 +111,8 @@ export function extractFrontmatter(markdown: string) {
 
 		const items = pair.split(":");
 		const [key, value] = [items[0], items.slice(1).join(":")];
-		
 		if (key && value) {
-			metadata[key] = removeQuotes(value)
+			metadata[key] = removeQuotes(value).trim()
 		};
 	});
 
