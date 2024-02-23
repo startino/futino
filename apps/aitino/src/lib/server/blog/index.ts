@@ -72,7 +72,7 @@ export async function get_blog_data(base = BLOG_PATH): Promise<BlogData> {
 
 export function get_blog_list(blog_data: BlogData) {
 	console.log("blog_data", blog_data);
-	return blog_data.map(({metadata:{ slug, date, title, description, published, thumbnail, date_formatted, author}}) => ({
+	return blog_data.map(({metadata:{ slug, date, title, description, published, thumbnail, date_formatted, author, category}}) => ({
 		slug,
 		date,
 		title,
@@ -81,6 +81,7 @@ export function get_blog_list(blog_data: BlogData) {
 		thumbnail,
 		date_formatted,
 		author,
+		category
 	}));
 }
 

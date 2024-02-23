@@ -43,7 +43,7 @@
 </script>
 
 <nav
-	class="fixed left-1/2 mt-6 w-[90%] max-w-7xl -translate-x-1/2 items-center justify-between rounded-3xl bg-card p-6 text-card-foreground lg:px-8 lg:flex {menuOpen ? "hidden" : "flex"}"
+	class="fixed left-1/2 mt-6 w-[90%] max-w-7xl -translate-x-1/2 items-center justify-between rounded-3xl bg-card px-6 py-3 text-card-foreground lg:px-8 lg:flex {menuOpen ? "hidden" : "flex"}"
 	aria-label="Global"
 >
 	<a href="/" class="-m-1.5 p-1.5">

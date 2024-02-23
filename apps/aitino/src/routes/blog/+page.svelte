@@ -12,7 +12,7 @@
 	metadescription="This is a collection of blogs written by Aitino to raise awareness of the capabilities of multi-agent systems, especially in this modern age of powerful AI models."
 />
 
-<div class="md:py bg-background py-36 sm:py-32">
+<div class="md:py py-36 sm:py-32">
 	<div class="mx-auto max-w-7xl px-6 lg:px-8">
 		<div class="mx-auto max-w-2xl lg:max-w-4xl">
 			<h2
@@ -47,7 +47,7 @@
 										<a
 											href="#"
 											class="hover:bg- relative z-10 rounded-full bg-primary px-3 py-1.5 font-medium text-primary-foreground"
-											>Marketing</a
+											>{post.category}</a
 										>
 									</div>
 									<div class="group relative max-w-xl">
