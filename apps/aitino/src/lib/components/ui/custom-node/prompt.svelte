@@ -21,13 +21,6 @@
 	const { deleteElements } = useSvelteFlow();
 
 	$: isConnectable = $connects.length === 0;
-
-	let showAll = false;
-	const previewLength = 250;
-
-	function toggleContent() {
-		showAll = !showAll;
-	}
 </script>
 
 <Card.Root>

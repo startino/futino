@@ -83,9 +83,6 @@
 		{/if}
 		<Input placeholder="Name..." bind:value={$name} />
 		<Input placeholder="Job title..." bind:value={$job_title} />
-
-		<PromptEditor bind:value={$prompt} />
-
 		<Select.Root bind:selected={$model}>
 			<Select.Trigger>
 				<Select.Value placeholder="Select a model" />
@@ -100,6 +97,7 @@
 				</Select.Group>
 			</Select.Content>
 		</Select.Root>
+		<PromptEditor bind:value={$prompt} />
 		<Handle type="target" id="top-{id}" position={Position.Top} />
 		<Handle type="source" id="bottom-{id}" position={Position.Bottom} />
 	</Card.Content>

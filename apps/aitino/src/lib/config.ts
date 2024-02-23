@@ -1,6 +1,8 @@
 export const AGENT_LIMIT = 5;
 export const PROMPT_LIMIT = 1;
 
+export const API_BASE_URL = "https://api.aiti.no";
+
 export const SAMPLE_FULL_NAMES = [
 	"Alice Smith",
 	"Bob Johnson",
