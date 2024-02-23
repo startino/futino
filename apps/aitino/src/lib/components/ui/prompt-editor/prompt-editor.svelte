@@ -48,7 +48,12 @@
 		<Dialog.Trigger class="w-full text-left">
 			<div class="grid gap-2">
 				{#if value.length > 0}
-					<p class="rounded-md border p-2 text-gray-400">{value.slice(0, 50)}...</p>
+					<p
+						class="line-clamp-2 text-ellipsis rounded-md border border-dashed px-2 py-1 text-gray-400"
+					>
+						<span class="font-bold text-accent">prompt:</span>
+						{value}
+					</p>
 				{/if}
 				<Button class="w-full">Prompt Editor</Button>
 			</div>
