@@ -1,6 +1,4 @@
 // In your main file
-import Logo from './logo.svelte';
+import Logo from "./logo.svelte";
 
-export {
-    Logo 
-} 
+export { Logo };

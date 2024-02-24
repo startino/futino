@@ -24,6 +24,6 @@ export type MarkdownMetadata = {
 	slug: string;
 	file: string;
 	author: string;
-	published: boolean = false;
+	published: boolean;
 	thumbnail: string;
-}
+};

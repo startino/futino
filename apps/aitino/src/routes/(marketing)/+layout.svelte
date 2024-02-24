@@ -12,16 +12,14 @@
 
 <Toaster />
 
-<Shell
-	class=""
->
+<Shell class="">
 	<svelte:fragment slot="header">
 		<Header />
 	</svelte:fragment>
 	<svelte:fragment slot="sidebarLeft"></svelte:fragment>
 	<svelte:fragment slot="pageHeader"></svelte:fragment>
 	<!-- Router Slot -->
-	<slot/>
+	<slot />
 	<!-- ---- / ---- -->
 	<svelte:fragment slot="pageFooter"></svelte:fragment>
 	<!-- (footer) -->

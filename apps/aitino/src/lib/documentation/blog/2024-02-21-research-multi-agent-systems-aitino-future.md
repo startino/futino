@@ -15,36 +15,35 @@ At the heart of the technological revolution are multi-agent systems (MAS) – a
 
 ## The Research Backing Multi-Agent Systems
 
-The future of AI is increasingly being shaped by multi-agent systems, 
-which consist of multiple decision-making agents interacting in a shared 
-environment to achieve common or conflicting goals [2](#citations). Research in 
-this field spans a range of technical problems, such as designing MAS to 
+The future of AI is increasingly being shaped by multi-agent systems,
+which consist of multiple decision-making agents interacting in a shared
+environment to achieve common or conflicting goals [2](#citations). Research in
+this field spans a range of technical problems, such as designing MAS to
 incentivize certain behaviors in agents, enabling agents to achieve specified
-goals, and how information is communicated and propagated among 
-agents [2](#citations). 
+goals, and how information is communicated and propagated among
+agents [2](#citations).
 
 A study from MIT's Computer Science and Artificial Intelligence Laboratory (CSAIL) has shown that multiple AI language models engaging in collaborative debates can enhance their problem-solving abilities, verify the precision of their responses, and improve their factuality and reasoning autonomously [3](#citations).
 
 Additionally, a survey on context-aware multi-agent systems discusses the existing challenges and provides future research directions in this field [4](#citations).
 
-Furthermore, a paper on deep multi-agent reinforcement learning highlights the challenges inherent in dealing with multiple agents, such as computational complexity, nonstationarity, partial observability, and credit assignment, and discusses how current deep learning approaches address these challenges [5](#citations). 
+Furthermore, a paper on deep multi-agent reinforcement learning highlights the challenges inherent in dealing with multiple agents, such as computational complexity, nonstationarity, partial observability, and credit assignment, and discusses how current deep learning approaches address these challenges [5](#citations).
 
 These sources provide valuable insights into the growing importance of multi-agent systems in the future of AI.
 
 ## The Impact of Multi-Agent Systems on the Future
 
-Multi-agent systems are set to transform industries by enhancing efficiency, creativity, and problem-solving capabilities. The ability to automate tasks and solve complex problems through collaboration opens up new horizons for innovation in every field. A platform like Aitino aims to have such versatility that everyone can use it to solve their problems, from small businesses to large corporations, from students to researchers. 
+Multi-agent systems are set to transform industries by enhancing efficiency, creativity, and problem-solving capabilities. The ability to automate tasks and solve complex problems through collaboration opens up new horizons for innovation in every field. A platform like Aitino aims to have such versatility that everyone can use it to solve their problems, from small businesses to large corporations, from students to researchers.
 
 Aitino will stay at the forefront of technology, alongside the newest of AI models (LMs, LAMs, SDMs), by exponentially improving their capabilities by enabling them to collaborate and solve problems that are out of reach for single agents. (I'm sure you've noticed that ChatGPT isn't capable of solving big tasks)
 
 ## Conclusion: The Future is in Multi-Agent Systems
 
-The journey of multi-agent systems, epitomized with the help of platforms like Aitino, signifies a leap towards a more collaborative, innovative, and efficient future. As research and open-source development continues to unveil the potential of MAS, platforms like Aitino are crucial for translating these findings into tangible benefits for society. Why have one, when you can have many? 
+The journey of multi-agent systems, epitomized with the help of platforms like Aitino, signifies a leap towards a more collaborative, innovative, and efficient future. As research and open-source development continues to unveil the potential of MAS, platforms like Aitino are crucial for translating these findings into tangible benefits for society. Why have one, when you can have many?
 
 Aitino is not just pioneering a new way of solving problems; We're hoping to set the stage for the future of task-solving for the average Joe. As we stand on the brink of this new era, it's clear that multi-agent systems, powered by platforms like Aitino, are not just the future; they are the present.
 
-
-<a id="citations" > </a> 
+<a id="citations" > </a>
 
 ### Citations:
 

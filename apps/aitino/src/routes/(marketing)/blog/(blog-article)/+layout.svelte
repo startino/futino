@@ -7,4 +7,3 @@
 		<slot />
 	</main>
 </div>
-

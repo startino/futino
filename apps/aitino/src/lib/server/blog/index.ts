@@ -1,5 +1,5 @@
 import { Carta } from "carta-md";
-import type { BlogData, BlogPost, MarkdownMetadata} from "./types";
+import type { BlogData, BlogPost, MarkdownMetadata } from "./types";
 import type { SvelteComponent } from "svelte";
 import { error } from "@sveltejs/kit";
 import { base } from "$app/paths";
@@ -49,22 +49,20 @@ export async function get_blog_data(base = BLOG_PATH): Promise<BlogData> {
 		const { date, date_formatted, slug } = get_date_and_slug(file);
 		const { metadata, body } = extractFrontmatter(await readFile(`${base}/${file}`, "utf-8"));
 
-		blog_posts.push(
-			{
+		blog_posts.push({
 			metadata: {
-			date,
-			date_formatted,
-			description: metadata?.description ?? "",
-			published: metadata?.published ?? false,
-			slug,
-			title: metadata?.title ?? "",
-			file,
-			author: metadata?.author ?? "Aitino",
-			thumbnail: metadata?.thumbnail ?? "favicon.png",
-		},
-		content: body
-	}
-		);
+				date,
+				date_formatted,
+				description: metadata?.description ?? "",
+				published: metadata?.published ?? false,
+				slug,
+				title: metadata?.title ?? "",
+				file,
+				author: metadata?.author ?? "Aitino",
+				thumbnail: metadata?.thumbnail ?? "favicon.png"
+			},
+			content: body
+		});
 	}
 
 	return blog_posts;
@@ -72,17 +70,31 @@ export async function get_blog_data(base = BLOG_PATH): Promise<BlogData> {
 
 export function get_blog_list(blog_data: BlogData) {
 	console.log("blog_data", blog_data);
-	return blog_data.map(({metadata:{ slug, date, title, description, published, thumbnail, date_formatted, author, category}}) => ({
-		slug,
-		date,
-		title,
-		description,
-		published,
-		thumbnail,
-		date_formatted,
-		author,
-		category
-	}));
+	return blog_data.map(
+		({
+			metadata: {
+				slug,
+				date,
+				title,
+				description,
+				published,
+				thumbnail,
+				date_formatted,
+				author,
+				category
+			}
+		}) => ({
+			slug,
+			date,
+			title,
+			description,
+			published,
+			thumbnail,
+			date_formatted,
+			author,
+			category
+		})
+	);
 }
 
 export function get_date_and_slug(filename: string) {
@@ -109,12 +121,11 @@ export function extractFrontmatter(markdown: string) {
 	let metadata: MarkdownMetadata = {} as MarkdownMetadata;
 
 	frontmatter.split("\n").forEach((pair) => {
-
 		const items = pair.split(":");
 		const [key, value] = [items[0], items.slice(1).join(":")];
 		if (key && value) {
-			metadata[key] = removeQuotes(value).trim()
-		};
+			metadata[key] = removeQuotes(value).trim();
+		}
 	});
 
 	return { metadata, body };

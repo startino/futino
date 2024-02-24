@@ -43,7 +43,9 @@
 </script>
 
 <nav
-	class="fixed left-1/2 mt-6 w-[90%] max-w-7xl -translate-x-1/2 items-center justify-between rounded-3xl bg-card px-6 py-3 text-card-foreground lg:px-8 lg:flex {menuOpen ? "hidden" : "flex"}"
+	class="fixed left-1/2 mt-6 w-[90%] max-w-7xl -translate-x-1/2 items-center justify-between rounded-3xl bg-card px-6 py-3 text-card-foreground lg:flex lg:px-8 {menuOpen
+		? 'hidden'
+		: 'flex'}"
 	aria-label="Global"
 >
 	<a href="/" class="-m-1.5 p-1.5">
@@ -100,7 +102,7 @@
 		<div class="fixed inset-0 z-10" />
 		<div
 			class="fixed inset-y-0 right-0 z-50 w-full bg-card px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10"
-			transition:fly={{ x: 400, y: 0, opacity:1 }}
+			transition:fly={{ x: 400, y: 0, opacity: 1 }}
 		>
 			<div class="flex items-center justify-between">
 				<a href="/" class="-m-1.5 p-1.5">
