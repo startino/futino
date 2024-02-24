@@ -1,15 +1,15 @@
-// @ts-check
-import { CONTENT_BASE_PATHS } from "../../../constants";
 import { Carta } from "carta-md";
-import type { BlogData, BlogPost, MarkdownMetadata} from "./types";
+import type { BlogData, BlogPost, MarkdownMetadata } from "./types";
 import type { SvelteComponent } from "svelte";
 import { error } from "@sveltejs/kit";
 import { base } from "$app/paths";
 
+const BLOG_PATH = `./src/lib/documentation/blog`;
+
 export async function get_blog_post(pathname: string) {
-	const pages = import.meta.glob("../../../../../documentation/blog/*.md");
+	const pages = import.meta.glob("./src/lib/documentation/blog/*.md");
 	const path = pathname.slice(base.length).slice(1).split("/").pop();
-	const match = pages[`../../../../../documentation/blog/${path}.md`];
+	const match = pages[`./src/lib/documentation/blog/${path}.md`];
 	if (!match) throw error(404, "Could not find the blog post you're looking for.");
 
 	const Markdown = (await match()) as {
@@ -25,7 +25,7 @@ export async function get_processed_blog_post(
 ): Promise<BlogPost | null> {
 	const carta = new Carta({});
 	for (const post of blog_data) {
-		if (post.slug === slug) {
+		if (post.metadata.slug === slug) {
 			return {
 				...post,
 				content: await carta.render(post.content)
@@ -38,7 +38,7 @@ export async function get_processed_blog_post(
 
 const BLOG_NAME_REGEX = /^(\d{4}-\d{2}-\d{2})-(.+)\.md$/;
 
-export async function get_blog_data(base = CONTENT_BASE_PATHS.BLOG): Promise<BlogData> {
+export async function get_blog_data(base = BLOG_PATH): Promise<BlogData> {
 	const { readdir, readFile } = await import("node:fs/promises");
 
 	const blog_posts: BlogData = [];
@@ -50,18 +50,18 @@ export async function get_blog_data(base = CONTENT_BASE_PATHS.BLOG): Promise<Blo
 		const { metadata, body } = extractFrontmatter(await readFile(`${base}/${file}`, "utf-8"));
 
 		blog_posts.push({
-			date,
-			date_formatted,
-			content: body,
-			description: metadata.description,
-			draft: metadata.draft === "true",
-			slug,
-			title: metadata.title,
-			file,
-			author: {
-				name: metadata.author,
-				url: metadata.authorURL
-			}
+			metadata: {
+				date,
+				date_formatted,
+				description: metadata?.description ?? "",
+				published: metadata?.published ?? false,
+				slug,
+				title: metadata?.title ?? "",
+				file,
+				author: metadata?.author ?? "Aitino",
+				thumbnail: metadata?.thumbnail ?? "favicon.png"
+			},
+			content: body
 		});
 	}
 
@@ -69,13 +69,32 @@ export async function get_blog_data(base = CONTENT_BASE_PATHS.BLOG): Promise<Blo
 }
 
 export function get_blog_list(blog_data: BlogData) {
-	return blog_data.map(({ slug, date, title, description, draft }) => ({
-		slug,
-		date,
-		title,
-		description,
-		draft
-	}));
+	console.log("blog_data", blog_data);
+	return blog_data.map(
+		({
+			metadata: {
+				slug,
+				date,
+				title,
+				description,
+				published,
+				thumbnail,
+				date_formatted,
+				author,
+				category
+			}
+		}) => ({
+			slug,
+			date,
+			title,
+			description,
+			published,
+			thumbnail,
+			date_formatted,
+			author,
+			category
+		})
+	);
 }
 
 export function get_date_and_slug(filename: string) {
@@ -84,9 +103,8 @@ export function get_date_and_slug(filename: string) {
 
 	const [, date, slug] = match;
 	const [y, m, d] = date.split("-");
-	const date_formatted = `${months[+m - 1]} ${+d} ${y}`;
+	const date_formatted = `${months[+m - 1]} ${+d}, ${y}`;
 
-	console.log("date_formatted", date_formatted, "slug", slug);
 	return { date, date_formatted, slug };
 }
 
@@ -95,15 +113,19 @@ const months = "Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec".split(" ");
 // Markdown
 export function extractFrontmatter(markdown: string) {
 	const match = /---\r?\n([\s\S]+?)\r?\n---/.exec(markdown);
-	if (!match) return { metadata: {}, body: markdown };
+	if (!match) return { metadata: null, body: markdown };
 
 	const frontmatter = match[1];
 	const body = markdown.slice(match[0].length);
 
-	let metadata: MarkdownMetadata = { title: "", description: "" };
+	let metadata: MarkdownMetadata = {} as MarkdownMetadata;
+
 	frontmatter.split("\n").forEach((pair) => {
-		const [key, value] = pair.split(":").map((x) => x.trim());
-		if (key && value) metadata[key] = removeQuotes(value);
+		const items = pair.split(":");
+		const [key, value] = [items[0], items.slice(1).join(":")];
+		if (key && value) {
+			metadata[key] = removeQuotes(value).trim();
+		}
 	});
 
 	return { metadata, body };
