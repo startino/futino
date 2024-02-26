@@ -2,10 +2,13 @@ import { json } from "@sveltejs/kit";
 import { API_BASE_URL } from "$lib/config";
 
 export const GET = async ({ url }) => {
-	const id = url.searchParams.get("id");
+	const session_id = url.searchParams.get("session_id");
+	const id = url.searchParams.get("meave_id");
 	const reply = url.searchParams.get("replay");
+	// const params = url.searchParams.get("params");
 
-    console.log(id, reply, 'from replay api');
+    console.log(url, 'from replay api');
+    console.log(id, session_id,reply, 'from replay id api');
 
 	if (!id || !reply) {
 		return json({ error: "No id provided" }, { status: 400 });
@@ -14,7 +17,9 @@ export const GET = async ({ url }) => {
 	//api.aiti.no/maeve?id={maeve_id}&session_id={session_id}&reply={reply}
 	//api.aiti.no/maeve?id={maeve_id}&session_id={f3e7ba39-e06e-4c24-a4f2-4a03c2de4453}&reply={make}
 
-	const apiUrl = `${API_BASE_URL}/maeve?id={maeve_id}&session_id=${id}&reply=${reply}`;
+	const apiUrl = `${API_BASE_URL}/maeve?id=${id}&session_id=${session_id}&reply=${('reply')}`;
+
+	console.log(apiUrl, "api url");
 
 	try {
 		const response = await fetch(apiUrl);
@@ -24,6 +29,8 @@ export const GET = async ({ url }) => {
 				{ status: 500 }
 			);
 		}
+
+		console.log(response, "response from ba");
 
 		let data = [];
 		const reader = response.body.getReader();
@@ -52,6 +59,8 @@ export const GET = async ({ url }) => {
 		}
 
 		const responseData = new TextDecoder().decode(buffer);
+
+		console.log(responseData, "res data");
 		return json({ content: responseData });
 	} catch (error) {
 		console.error("Error calling external API:", error);

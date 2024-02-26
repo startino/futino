@@ -100,28 +100,38 @@
 
 		console.log(id, replay, "id, replay respectively");
 
+		let encodedId = encodeURIComponent(id);
+		let encodedReply = encodeURIComponent(replay);
+
+		const paramsUrl = {
+			meave_id: "dfb9ede1-3c08-462f-af73-94cf6aa9185a",
+			session_id: id,
+			replay
+		};
+
 		const queryParams = new URLSearchParams({
-			id: id,
-			replay: replay
+			meave_id: "dfb9ede1-3c08-462f-af73-94cf6aa9185a",
+			session_id: id,
+			replay
 		}).toString();
 		try {
 			const response = await fetch(`/api/v1/replay?${queryParams}`);
 			console.log(response);
-			// const data = await response.json();
-			// const jsonResponseString = data.content;
+			const data = await response.json();
+			const jsonResponseString = data.content;
+			console.log(data.content, "from replay update");
+			const jsonStrings = jsonResponseString
+				.split("}}\n")
+				.map((str: string) => (str.endsWith("}") ? str : str + "}}"));
 
-			// const jsonStrings = jsonResponseString
-			// 	.split("}}\n")
-			// 	.map((str: string) => (str.endsWith("}") ? str : str + "}}"));
-
-			// // Parsing each string to JSON, filtering out the 'done' message or any non-JSON strings
-			// const jsonObjects = jsonStrings
-			// 	.filter((str: string) => str.trim() && !str.includes('"status": "success", "data": "done"'))
-			// 	.map((str: string) => JSON.parse(str));
-
-			// // Adding parsed objects to the messages array
-			// messages = [...messages, ...jsonObjects];
-			// console.log(messages, "updated messages");
+			// Parsing each string to JSON, filtering out the 'done' message or any non-JSON strings
+			const jsonObjects = jsonStrings
+				.filter((str: string) => str.trim() && !str.includes('"status": "success", "data": "done"'))
+				.map((str: string) => JSON.parse(str));
+			console.log(jsonObjects, "from replay message");
+			// Adding parsed objects to the messages array
+			messages = [...messages, ...jsonObjects];
+			console.log(messages, "updated messages from replay");
 		} catch (error) {
 			console.error("Error fetching chat maeave:", error);
 		}
