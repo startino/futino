@@ -6,7 +6,6 @@
 	import { cn } from '$lib/utils';
 	import { tick } from 'svelte';
 	import * as Form from '../ui/form';
-	import { string } from 'zod';
 
 	export let setValue;
 
@@ -15,10 +14,10 @@
 	export let placeholder: string = 'Select or search for an item...';
 
 	export let open = false;
-	export let initialValue: string = '';
-	export let value = initialValue;
+	export let value = '';
+	export let label = '';
 
-	$: value = items.find((f) => f.value === value)?.label ?? placeholder;
+	$: label = items.find((f) => f.value === value)?.label ?? placeholder;
 
 	// We want to refocus the trigger button when the user selects
 	// an item from the list so users can continue navigating the
@@ -40,9 +39,9 @@
 				variant="outline"
 				role="combobox"
 				type="button"
-				class={cn('justify-between', !value && 'text-muted-foreground')}
+				class={cn('justify-between', !label && 'text-muted-foreground')}
 			>
-				{value}
+				{label}
 				<ChevronsUpDown class="ml-2 h-4 w-4 shrink-0 opacity-50" />
 			</Button>
 		</Form.Control>

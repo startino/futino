@@ -2,8 +2,8 @@
 	import SuperDebug from 'sveltekit-superforms/client/SuperDebug.svelte';
 	import * as Form from '$lib/components/ui/form';
 	import { contractEntrySchema, type ContractEntryForm } from '$lib/schemas';
-	import { navigating, page } from '$app/stores';
-	import { Calendar as CalendarIcon, Check, ChevronsUpDown, Lock, Paperclip } from 'lucide-svelte';
+	import { page } from '$app/stores';
+	import { Calendar as CalendarIcon, Lock, Paperclip } from 'lucide-svelte';
 	import { Button } from '$lib/components/ui/button';
 	import {
 		type DateValue,
@@ -27,8 +27,6 @@
 	import SkeletonForm from '$lib/components/molecules/SkeletonForm.svelte';
 	import { formatUSD } from '$lib/helpers';
 	import { Label } from '$lib/components/ui/label';
-	import Input from '$lib/components/ui/input/input.svelte';
-	import { Item } from '$lib/components/ui/carousel';
 	import * as Dialog from '$lib/components/ui/dialog';
 	export let data: PageData;
 
@@ -53,6 +51,8 @@
 		taintedMessage: null,
 		dataType: 'json'
 	});
+
+	const submitting = theForm.submitting;
 
 	const { form: formStore } = theForm;
 
@@ -186,15 +186,15 @@
 
 <Card.Root class=" h-full p-10">
 	<Card.Header
-		><Card.Title class="m-0 sm:m-0">Contract Entry Form</Card.Title>
-		<Card.Description class="m-0 sm:m-0"
+		><Card.Title class="m-0">Contract Entry Form</Card.Title>
+		<Card.Description class="m-0"
 			>Enter the contract details. Once complete this item will be sent for approval.</Card.Description
 		></Card.Header
 	>
 	<Card.Content>
 		{#await waitForRequiredData()}
 			<SkeletonForm />
-		{:then { contracts, organizationUsers, vendors, departments }}
+		{:then { contracts, organizationUsers, departments }}
 			<Form.Root
 				method="POST"
 				class="max-w-xl space-y-6"
@@ -203,10 +203,10 @@
 				form={theForm}
 				let:config
 			>
-				<Form.Field {config} name="parent_contract" let:setValue let:value>
+				<Form.Field {config} name="parent_contract" let:setValue>
 					<Form.Item class="grid">
 						<Form.Label class="mb-2">Parent Contract</Form.Label>
-						<Combobox items={contracts} initialValue={userID} {setValue} />
+						<Combobox items={contracts} value={userID} {setValue} />
 						<Form.Description>
 							Enter the parent contract number if this is a renewal or extension
 						</Form.Description>
@@ -287,13 +287,20 @@
 				<Form.Field {config} name="vendor_id" let:setValue>
 					<Form.Item class="grid">
 						<Form.Label class="mb-2">Vendor</Form.Label>
-						<Combobox items={vendors} placeholder="Search for a vendor" {setValue} />
+						<Combobox
+							items={vendorsParsed}
+							bind:value={$formStore.vendor_id}
+							placeholder="Search for a vendor"
+							{setValue}
+						/>
 						<Form.Validation />
 
 						<Dialog.Root open={vendorDialogOpen} closeOnEscape>
-							<Dialog.Trigger class={`${buttonVariants({ variant: 'default' })} justify-self-start`}
-								>Add new vendor</Dialog.Trigger
+							<Dialog.Trigger
+								class={`${buttonVariants({ variant: 'default' })} justify-self-start`}
 							>
+								Add new vendor
+							</Dialog.Trigger>
 							<Dialog.Content class="">
 								<Dialog.Header>
 									<Dialog.Title>Add new vender</Dialog.Title>
@@ -335,7 +342,7 @@
 				<Form.Field {config} name="creator" let:setValue>
 					<Form.Item class="grid">
 						<Form.Label class="mb-2">Owner</Form.Label>
-						<Combobox items={organizationUsers} initialValue={userID} {setValue} />
+						<Combobox items={organizationUsers} value={userID} {setValue} />
 						<Form.Description
 							>Select the owner of the contract, if it isn't yourself.</Form.Description
 						>
@@ -396,7 +403,7 @@
 						<Form.Validation />
 					</Form.Item>
 				</Form.Field>
-				<Form.Button disabled={['uploading', 'submitting'].includes(status)}>Submit</Form.Button>
+				<Form.Button disabled={status === 'uploading' || $submitting}>Submit</Form.Button>
 			</Form.Root>
 		{/await}
 	</Card.Content>

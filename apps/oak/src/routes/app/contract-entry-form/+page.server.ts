@@ -133,7 +133,7 @@ export const actions: Actions = {
 
 		// Insert the contract using the formData into the contracts table
 		console.log({ orgID });
-
+		delete contractForm.new_vendor;
 		const { data, error } = await supabase.from('contracts').insert([
 			{
 				...{ ...contractForm, vendor_id: contractForm.vendor_id ? contractForm.vendor_id : null },
