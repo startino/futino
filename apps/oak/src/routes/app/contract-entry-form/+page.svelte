@@ -13,6 +13,7 @@
 		today
 	} from '@internationalized/date';
 	import { cn } from '$lib/utils';
+	import { Badge } from '$lib/components/ui/badge';
 	import { buttonVariants } from '$lib/components/ui/button';
 	import * as Card from '$lib/components/ui/card';
 	import * as Popover from '$lib/components/ui/popover';
@@ -360,17 +361,17 @@
 						</div>
 					{:then approvers}
 						<Label for="terms">Approvers <Lock class="mb-1 ml-1 inline-block h-4 w-4" /></Label>
-						<div class="flex max-w-xs flex-wrap gap-2">
-							{#if approvers[0]}
+						{#if approvers[0]}
+							<ul class="flex flex-wrap gap-2">
 								{#each approvers as { name }}
-									<div class="mt-2 block w-fit rounded-md border">
-										<h6 class="not-prose whitespace-nowrap px-4 py-3 text-sm text-muted">{name}</h6>
-									</div>
+									<li>
+										<Badge variant="outline">{name}</Badge>
+									</li>
 								{/each}
-							{:else}
-								<p class="text-destructive">No approvers</p>
-							{/if}
-						</div>
+							</ul>
+						{:else}
+							<p class="text-destructive">No approvers</p>
+						{/if}
 					{/await}
 				</div>
 				<Form.Field {config} name="amount">
