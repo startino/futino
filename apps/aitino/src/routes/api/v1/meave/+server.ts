@@ -20,16 +20,15 @@ export const GET = async ({ url }) => {
 
 		let data = [];
 		const reader = response.body.getReader();
-		let responseData;
 
 		try {
 			while (true) {
 				const { done, value } = await reader.read();
-				responseData = new TextDecoder().decode(value);
-				console.log(responseData, "res data 0");
+				// responseData = new TextDecoder().decode(value);
+				// console.log(responseData, "res data 0");
 
-				console.log(value, "value");
-				console.log(done, "done");
+				// console.log(value, "value");
+				// console.log(done, "done");
 				if (done) break;
 				data.push(value);
 			}
@@ -47,9 +46,7 @@ export const GET = async ({ url }) => {
 
 		console.log(buffer, "buffer is from");
 
-		responseData = new TextDecoder().decode(buffer);
-		console.log(responseData, "res data 1");
-		console.log(data, " data 1");
+		const responseData = new TextDecoder().decode(buffer);
 		return json({ content: responseData });
 	} catch (error) {
 		console.error("Error calling external API:", error);
