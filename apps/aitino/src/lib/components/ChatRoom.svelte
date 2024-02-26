@@ -73,6 +73,23 @@
 			chatContainerElement.scrollTop = chatContainerElement.scrollHeight;
 		}
 	});
+
+	const handeNewMessage = async () => {
+		const queryParams = new URLSearchParams({
+			id: "dfb9ede1-3c08-462f-af73-94cf6aa9185a"
+		}).toString();
+		console.log(queryParams, "query params");
+
+
+		try {
+			const response = await fetch(`/api/v1/meave?${queryParams}`);
+			
+			
+			console.log(response  , 'from chat maeave');
+		} catch (error) {
+			console.error("Error fetching chat maeave:", error);
+		}
+	};
 </script>
 
 <div class="container -mb-6 flex h-screen max-w-6xl flex-col justify-end p-6">
@@ -93,7 +110,7 @@
 								{/if}
 							</Card.Content>
 						</Card.Root>
-						<Card.Root class="max-w-2xl border-none bg-background">
+						<Card.Root class="bg-background max-w-2xl border-none">
 							<Card.Content class="grid w-full grid-cols-2 items-center justify-between gap-4 ">
 								<div class="flex items-center gap-4">
 									<p class="prose text-xs font-medium leading-none dark:text-blue-950">
@@ -140,7 +157,7 @@
 	</div>
 
 	<div class="mb-2 space-y-16">
-		<Card.Root class="mt-4 max-w-full border border-secondary">
+		<Card.Root class="border-secondary mt-4 max-w-full border">
 			<Card.Content class="grid gap-4 p-2">
 				<div class="flex justify-between">
 					<p class="prose text-sm font-medium leading-8 tracking-widest">
@@ -151,12 +168,12 @@
 			</Card.Content>
 		</Card.Root>
 
-		<div class="relative flex w-full max-w-full items-center">
+		<form class="relative flex w-full max-w-full items-center" on:submit={handeNewMessage}>
 			<Input
 				bind:value={newMessageContent}
 				on:input={handleInputChange}
 				on:keydown={handleKeyDown}
-				class="flex  h-9 w-full rounded-md border border-input bg-transparent px-3 py-6 text-sm shadow-sm ring-offset-0 transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring focus-visible:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50"
+				class="border-input  placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border bg-transparent px-3 py-6 text-sm shadow-sm ring-offset-0 transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50"
 				placeholder="Join the conversation by typing a message..."
 			/>
 			<Button
@@ -167,6 +184,6 @@
 			>
 				<Send class="hover:text-primary" />
 			</Button>
-		</div>
+		</form>
 	</div>
 </div>
