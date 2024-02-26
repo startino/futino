@@ -7,6 +7,10 @@ export const GET = async ({ url }) => {
 		return json({ error: "No id provided" }, { status: 400 });
 	}
 
+
+	//api.aiti.no/maeve?id={maeve_id}&session_id={session_id}&reply={reply}
+	//api.aiti.no/maeve?id={maeve_id}&session_id={f3e7ba39-e06e-4c24-a4f2-4a03c2de4453}&reply={make}
+
 	const apiUrl = `${API_BASE_URL}/maeve?id=${id}`;
 
 	try {
@@ -43,8 +47,6 @@ export const GET = async ({ url }) => {
 			buffer.set(chunk, position);
 			position += chunk.length;
 		}
-
-		console.log(buffer, "buffer is from");
 
 		const responseData = new TextDecoder().decode(buffer);
 		return json({ content: responseData });
