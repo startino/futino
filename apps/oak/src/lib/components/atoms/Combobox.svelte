@@ -14,8 +14,10 @@
 	export let placeholder: string = 'Select or search for an item...';
 
 	export let open = false;
-	export let value = '';
+	export let value: string | undefined = undefined;
 	export let label = '';
+
+	setValue(value);
 
 	$: label = items.find((f) => f.value === value)?.label ?? placeholder;
 

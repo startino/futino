@@ -53,6 +53,9 @@
 	});
 
 	const submitting = theForm.submitting;
+	const error = theForm.errors;
+
+	$: console.log($error);
 
 	const { form: formStore } = theForm;
 
@@ -184,7 +187,7 @@
 	}
 </script>
 
-<Card.Root class=" h-full p-10">
+<Card.Root class="h-full p-10">
 	<Card.Header
 		><Card.Title class="m-0">Contract Entry Form</Card.Title>
 		<Card.Description class="m-0"
@@ -206,7 +209,7 @@
 				<Form.Field {config} name="parent_contract" let:setValue>
 					<Form.Item class="grid">
 						<Form.Label class="mb-2">Parent Contract</Form.Label>
-						<Combobox items={contracts} value={userID} {setValue} />
+						<Combobox items={contracts} {setValue} />
 						<Form.Description>
 							Enter the parent contract number if this is a renewal or extension
 						</Form.Description>
@@ -339,13 +342,13 @@
 				</Form.Field>
 
 				<!--TODO project code input field-->
-				<Form.Field {config} name="creator" let:setValue>
+				<Form.Field {config} name="owner" let:setValue>
 					<Form.Item class="grid">
 						<Form.Label class="mb-2">Owner</Form.Label>
 						<Combobox items={organizationUsers} value={userID} {setValue} />
-						<Form.Description
-							>Select the owner of the contract, if it isn't yourself.</Form.Description
-						>
+						<Form.Description>
+							Select the owner of the contract, if it isn't yourself.
+						</Form.Description>
 						<Form.Validation />
 					</Form.Item>
 				</Form.Field>
@@ -358,11 +361,15 @@
 					{:then approvers}
 						<Label for="terms">Approvers <Lock class="mb-1 ml-1 inline-block h-4 w-4" /></Label>
 						<div class="flex max-w-xs flex-wrap gap-2">
-							{#each approvers as { name }}
-								<div class="mt-2 block w-fit rounded-md border">
-									<h6 class="not-prose whitespace-nowrap px-4 py-3 text-sm text-muted">{name}</h6>
-								</div>
-							{/each}
+							{#if approvers[0]}
+								{#each approvers as { name }}
+									<div class="mt-2 block w-fit rounded-md border">
+										<h6 class="not-prose whitespace-nowrap px-4 py-3 text-sm text-muted">{name}</h6>
+									</div>
+								{/each}
+							{:else}
+								<p class="text-destructive">No approvers</p>
+							{/if}
 						</div>
 					{/await}
 				</div>
@@ -370,7 +377,7 @@
 					<Form.Item class="grid">
 						<Form.Label class="mb-2">Amount</Form.Label>
 						<div class="flex flex-row place-items-center gap-x-2">
-							<Form.Input />
+							<Form.Input type="number" />
 							<Form.Label
 								class="flex h-[40px] max-h-[300px] place-items-center rounded-md border border-input px-2"
 								>USD</Form.Label
@@ -403,7 +410,9 @@
 						<Form.Validation />
 					</Form.Item>
 				</Form.Field>
-				<Form.Button disabled={status === 'uploading' || $submitting}>Submit</Form.Button>
+				<Form.Button type="submit" disabled={status === 'uploading' || $submitting}
+					>Submit</Form.Button
+				>
 			</Form.Root>
 		{/await}
 	</Card.Content>

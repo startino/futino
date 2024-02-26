@@ -63,7 +63,7 @@ export const load = async ({ locals: { getSession, supabase } }) => {
 			throw error(500, 'Error fetching contacts, please try again later.');
 		}
 
-		const vendors: Tables<'vendors'>[] = await getVendorsInOrg(organizationID);
+		const vendors = await getVendorsInOrg(organizationID);
 
 		// Append the vendors name to the contracts objects
 		const contractsWithVendors = contracts.map((contract) => {
@@ -128,18 +128,15 @@ export const actions: Actions = {
 
 		const orgID = await fetchUserOrgID(user.id);
 
-		//TODO I am already getting approvers once in load... is this method efficient enough / best practise?
-		const approverIds = (await getApprovers(user.id)).map((approver) => approver.approver_id);
-
 		// Insert the contract using the formData into the contracts table
 		console.log({ orgID });
 		delete contractForm.new_vendor;
+		console.log({ contractForm });
+
 		const { data, error } = await supabase.from('contracts').insert([
 			{
 				...{ ...contractForm, vendor_id: contractForm.vendor_id ? contractForm.vendor_id : null },
-				creator: user.id,
-				organization_id: orgID,
-				approvers: approverIds
+				organization_id: orgID
 			}
 		]);
 

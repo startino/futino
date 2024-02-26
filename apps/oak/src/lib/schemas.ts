@@ -52,14 +52,13 @@ export const contractEntrySchema = z.object({
 	new_vendor: z
 		.object({
 			name: z.string().min(1, 'The name is required'),
-			department_id: z.string().min(10).optional()
+			department_id: z.string().min(1).optional()
 		})
-		.optional()
-		.default({ name: '', department_id: '' }),
+		.optional(),
 	project: z.string().optional(),
-	creator: z.string(),
+	owner: z.string(),
 	department: z.string().optional(),
-	amount: z.string(),
+	amount: z.string().min(1),
 	spend_category: z.string().optional(),
 	attachment: z.string()
 });

@@ -1,6 +1,6 @@
 import { supabaseAdmin } from '$lib/server/supabase-admin';
-import type { Database, Tables } from '$lib/server/supabase.types'; // replace with the actual path to your types
-import type { QueryResult, QueryData, QueryError, PostgrestError } from '@supabase/supabase-js';
+import type { Tables } from '$lib/server/supabase.types'; // replace with the actual path to your types
+import type { PostgrestError } from '@supabase/supabase-js';
 
 export async function getVendorsInOrg(orgID: string): Promise<Tables<'vendors'>[]> {
 	const { data, error }: { data: Tables<'vendors'>[]; error: PostgrestError } = await supabaseAdmin
