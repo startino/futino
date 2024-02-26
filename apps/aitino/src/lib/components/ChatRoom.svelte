@@ -1,13 +1,12 @@
 <script lang="ts">
-	import { ArrowDown, Loader, Send, User } from "lucide-svelte";
+	import { ArrowDown, ChevronDown, Loader, Send, User } from "lucide-svelte";
 	import { Input } from "./ui/input";
 	import { Button } from "./ui/button";
 	import * as Card from "$lib/components/ui/card";
 	import { afterUpdate, onMount } from "svelte";
 	import SvelteMarkdown from "svelte-markdown";
 
-	
-	let messages = [];
+	let messages: string | any[] = [];
 
 	function handleKeyDown(event: { key: string }) {
 		if (event.key === "Enter") {
@@ -40,6 +39,17 @@
 		}
 	};
 
+	let showReplyField = false;
+
+	const toggleReplyField = () => {
+		showReplyField = !showReplyField;
+	};
+
+	function formatDate(dateString) {
+		const date = new Date(dateString);
+		return date.toLocaleDateString("en-US");
+	}
+
 	let chatContainerElement: HTMLDivElement;
 
 	afterUpdate(() => {
@@ -63,16 +73,55 @@
 			// Ensure to add back the removed characters that are required for valid JSON syntax.
 			const jsonStrings = jsonResponseString
 				.split("}}\n")
-				.map((str) => (str.endsWith("}") ? str : str + "}}"));
+				.map((str: string) => (str.endsWith("}") ? str : str + "}}"));
 
 			// Parsing each string to JSON, filtering out the 'done' message or any non-JSON strings
 			const jsonObjects = jsonStrings
-				.filter((str) => str.trim() && !str.includes('"status": "success", "data": "done"'))
-				.map((str) => JSON.parse(str));
+				.filter((str: string) => str.trim() && !str.includes('"status": "success", "data": "done"'))
+				.map((str: string) => JSON.parse(str));
 
 			// Adding parsed objects to the messages array
 			messages = [...messages, ...jsonObjects];
 			console.log(messages, "updated messages");
+		} catch (error) {
+			console.error("Error fetching chat maeave:", error);
+		}
+	};
+
+	let replayMessage = "";
+
+	function handleInputChangeReplay(event: { target: { value: string } }) {
+		replayMessage = event.target.value;
+	}
+
+	const handleReplay = async () => {
+		const id = messages[0].data.session_id;
+		const replay = replayMessage;
+
+		console.log(id, replay, "id, replay respectively");
+
+		const queryParams = new URLSearchParams({
+			id: id,
+			replay: replay
+		}).toString();
+		try {
+			const response = await fetch(`/api/v1/replay?${queryParams}`);
+			console.log(response);
+			// const data = await response.json();
+			// const jsonResponseString = data.content;
+
+			// const jsonStrings = jsonResponseString
+			// 	.split("}}\n")
+			// 	.map((str: string) => (str.endsWith("}") ? str : str + "}}"));
+
+			// // Parsing each string to JSON, filtering out the 'done' message or any non-JSON strings
+			// const jsonObjects = jsonStrings
+			// 	.filter((str: string) => str.trim() && !str.includes('"status": "success", "data": "done"'))
+			// 	.map((str: string) => JSON.parse(str));
+
+			// // Adding parsed objects to the messages array
+			// messages = [...messages, ...jsonObjects];
+			// console.log(messages, "updated messages");
 		} catch (error) {
 			console.error("Error fetching chat maeave:", error);
 		}
@@ -88,7 +137,26 @@
 					<div class="space-y-2 border-none">
 						<Card.Root class=" max-w-2xl">
 							<Card.Content class="grid gap-4 p-6">
-								{#if message.data.content.startsWith("```") || message.data.content.includes("<")}
+								{#if message.data && "content" in message.data && message.data.content === "CONTINUE"}
+									{#if !showReplyField}
+										{message.data.content}
+										<Button on:click={toggleReplyField} class="flex items-center justify-center">
+											replay
+										</Button>{/if}
+									{#if showReplyField}
+										<form class="mt-2 flex flex-col gap-y-6" on:submit={handleReplay}>
+											<Input
+												on:input={handleInputChangeReplay}
+												placeholder="Type your reply..."
+												class="border-input  placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border bg-transparent px-3 py-6 text-sm shadow-sm ring-offset-0 transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50"
+											/>
+											<div class="align-center mx-auto flex justify-between gap-2">
+												<Button variant="primary" type="submit">Send Reply</Button>
+												<Button variant="primary" on:click={toggleReplyField}>Cancel</Button>
+											</div>
+										</form>
+									{/if}
+								{:else if message.data.content.startsWith("```") || message.data.content.includes("<")}
 									<SvelteMarkdown source={message.data.content} />
 								{:else}
 									<p
@@ -113,7 +181,7 @@
 									</p>
 								</div>
 								<p class="prose text-sm font-medium dark:text-blue-950">
-									sent: {message.data.created_at}
+									sent: {formatDate(message.data.created_at)}
 								</p>
 							</Card.Content>
 						</Card.Root>
