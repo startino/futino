@@ -47,7 +47,7 @@ export const GET = async ({ url }) => {
 
 		console.log(buffer, "buffer is from");
 
-		// const responseData = new TextDecoder().decode(buffer);
+		responseData = new TextDecoder().decode(buffer);
 		console.log(responseData, "res data 1");
 		console.log(data, " data 1");
 		return json({ content: responseData });
