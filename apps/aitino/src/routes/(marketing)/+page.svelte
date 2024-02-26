@@ -52,12 +52,11 @@
 />
 
 <div class="flex h-screen w-screen flex-col justify-center bg-transparent">
-	<div class="mt-32 md:mt-24 lg:mt-28 xl:mt-32 flex w-screen flex-col justify-evenly py-6">
+	<div class="mt-32 flex w-screen flex-col justify-evenly py-6 md:mt-24 lg:mt-28 xl:mt-32">
 		<div
 			class="mx-auto flex w-full flex-col place-items-center gap-y-4 px-2 text-foreground sm:gap-y-8"
 		>
-			
-			<Logo height="h-16" class="rounded-xl hidden lg:flex" />
+			<Logo height="h-16" class="hidden rounded-xl lg:flex" />
 			<h1
 				class="tracking-loose m-0 text-center text-3xl font-semibold sm:m-0 sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl"
 			>

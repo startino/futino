@@ -39,7 +39,7 @@
 	action="?/register"
 	id="waitlist-signup"
 	method="POST"
-	class="mx-auto flex w-full max-w-sm sm:max-w-md md:max-w-lg flex-col items-center justify-center gap-4 space-x-2 lg:max-w-lg {$$props.class}"
+	class="mx-auto flex w-full max-w-sm flex-col items-center justify-center gap-4 space-x-2 sm:max-w-md md:max-w-lg lg:max-w-lg {$$props.class}"
 	use:enhance={() => {
 		return async ({ result }) => {
 			await applyAction(result);
@@ -183,7 +183,7 @@
 </Dialog.Root> -->
 
 <div
-	class="mx-auto flex h-fit w-fit flex-wrap-reverse items-center justify-between gap-2 sm:flex-row md:p-4 mt-2 lg:mt-6 xl:mt-12"
+	class="mx-auto mt-2 flex h-fit w-fit flex-wrap-reverse items-center justify-between gap-2 sm:flex-row md:p-4 lg:mt-6 xl:mt-12"
 >
 	<Button
 		class="bg-transparent p-6 font-bold text-accent transition-all duration-300 ease-in-out hover:scale-95 hover:bg-primary hover:text-primary-foreground "
