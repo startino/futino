@@ -17,7 +17,7 @@ export const GET = async ({ url }) => {
 	//api.aiti.no/maeve?id={maeve_id}&session_id={session_id}&reply={reply}
 	//api.aiti.no/maeve?id={maeve_id}&session_id={f3e7ba39-e06e-4c24-a4f2-4a03c2de4453}&reply={make}
 
-	const apiUrl = `${API_BASE_URL}/maeve?id=${id}&session_id=${session_id}&reply=${"reply"}`;
+	const apiUrl = `${API_BASE_URL}/maeve?id=${id}&session_id=${session_id}&reply=${encodeURIComponent(reply)}`;
 
 	console.log(apiUrl, "api url");
 
