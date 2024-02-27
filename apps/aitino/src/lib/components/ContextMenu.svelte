@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { useEdges, useNodes } from '@xyflow/svelte';
-	import * as Select from './ui/select';
+	import { useEdges, useNodes } from "@xyflow/svelte";
+	import * as Select from "./ui/select";
 
 	export let onClick: () => void;
 	export let id: string;
@@ -38,12 +38,12 @@
 <!-- svelte-ignore a11y-no-static-element-interactions -->
 <div
 	style="top: {top}px; left: {left}px; right: {right}px; bottom: {bottom}px;"
-	class="border-2 border-border bg-card flex gap-3 flex-col p-4 absolute z-10 text-card-foreground text-left items-start rounded-md"
+	class="absolute z-10 flex flex-col items-start gap-3 rounded-md border-2 border-border bg-card p-4 text-left text-card-foreground"
 	on:click={onClick}
 >
-	<h3 class="text-xl pb-2">
+	<h3 class="pb-2 text-xl">
 		NODE: {id}
-    </h3>
+	</h3>
 	<button on:click={duplicateNode}>Duplicate</button>
 	<button on:click={deleteNode}>Delete</button>
 </div>

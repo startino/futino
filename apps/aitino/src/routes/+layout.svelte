@@ -1,11 +1,5 @@
 <script lang="ts">
-	import { Toaster } from 'svelte-sonner';
-	import '$styling';
-	import { setContext } from 'svelte';
-
-	export let data;
-
-	setContext('splitTestIdentifier', data?.splitTestIdentifier);
+	import "$styling";
 </script>
 
 <slot />
