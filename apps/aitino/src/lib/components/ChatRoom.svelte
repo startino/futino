@@ -6,11 +6,17 @@
 	import { afterUpdate, onMount } from "svelte";
 	import SvelteMarkdown from "svelte-markdown";
 
-	let maeveId: String;
+	let maeveId: string;
 
 	onMount(() => {
-		maeveId = localStorage.getItem("currentMeaveId");
-		console.log(maeveId, 'maeveId');
+		const _id: string | null = localStorage.getItem("currentMeaveId");
+		if (_id == null) {
+			console.error("No maeve id found");
+			return;
+		}
+
+		maeveId = _id;
+		console.log(maeveId, "maeveId");
 	});
 
 	let messages: string | any[] = [];
@@ -49,7 +55,7 @@
 		showReplyField = !showReplyField;
 	};
 
-	function formatDate(dateString) {
+	function formatDate(dateString: string) {
 		const date = new Date(dateString);
 		return date.toLocaleDateString("en-US");
 	}
@@ -73,7 +79,7 @@
 
 			console.log(data, "data from frontend");
 			const jsonResponseString = data.content;
- 
+
 			// const jsonStrings = jsonResponseString
 			// 	.split("}}\n")
 			// 	.map((str: string) => (str.endsWith("}") ? str : str + "}}"));
@@ -131,9 +137,6 @@
 			console.error("Error fetching chat maeave:", error);
 		}
 	};
-
-
-	
 </script>
 
 <div class="container -mb-6 flex h-screen max-w-6xl flex-col justify-end p-6">
@@ -156,7 +159,7 @@
 											<Input
 												on:input={handleInputChangeReply}
 												placeholder="Type your reply..."
-												class="border-input  placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border bg-transparent px-3 py-6 text-sm shadow-sm ring-offset-0 transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50"
+												class="flex  h-9 w-full rounded-md border border-input bg-transparent px-3 py-6 text-sm shadow-sm ring-offset-0 transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring focus-visible:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50"
 											/>
 											<div class="align-center mx-auto flex justify-between gap-2">
 												<Button variant="primary" type="submit">Send Reply</Button>
@@ -178,7 +181,7 @@
 								{/if}
 							</Card.Content>
 						</Card.Root>
-						<Card.Root class="bg-background max-w-2xl border-none">
+						<Card.Root class="max-w-2xl border-none bg-background">
 							<Card.Content class="grid w-full grid-cols-2 items-center justify-between gap-4 ">
 								<div class="flex items-center gap-4">
 									<p class="prose text-xs font-medium leading-none dark:text-blue-950">
@@ -229,7 +232,7 @@
 	</div>
 
 	<div class="mb-2 space-y-16">
-		<Card.Root class="border-secondary mt-4 max-w-full border">
+		<Card.Root class="mt-4 max-w-full border border-secondary">
 			<Card.Content class="grid gap-4 p-2">
 				<div class="flex justify-between">
 					<p class="prose text-sm font-medium leading-8 tracking-widest">
@@ -245,7 +248,7 @@
 				bind:value={newMessageContent}
 				on:input={handleInputChange}
 				on:keydown={handleKeyDown}
-				class="border-input  placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border bg-transparent px-3 py-6 text-sm shadow-sm ring-offset-0 transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50"
+				class="flex  h-9 w-full rounded-md border border-input bg-transparent px-3 py-6 text-sm shadow-sm ring-offset-0 transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring focus-visible:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50"
 				placeholder="Join the conversation by typing a message..."
 			/>
 			<Button

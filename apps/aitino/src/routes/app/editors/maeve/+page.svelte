@@ -9,8 +9,7 @@
 		Panel,
 		useSvelteFlow,
 		type Node,
-		type Edge,
-		getOutgoers
+		type Edge
 	} from "@xyflow/svelte";
 	import { toast } from "svelte-sonner";
 
@@ -86,8 +85,7 @@
 			buttonVariant: "outline",
 			onclick: async () => await save()
 		},
-		{ name: "Layout", buttonVariant: "outline", onclick: layout },
-		{ name: "Sessions", buttonVariant: "outline" }
+		{ name: "Layout", buttonVariant: "outline", onclick: layout }
 	];
 
 	const nodeTypes = {
@@ -151,14 +149,20 @@
 			edges: $edges
 		});
 
+		if (!data.id) {
+			console.error("no data id");
+			toast.error("Something went wrong when saving the nodes.");
+			return;
+		}
+		if (error) {
+			console.error(error);
+			toast.error("Something went wrong when saving the nodes.");
+			return;
+		}
+
 		console.log(data.id, "from save node");
 
 		localStorage.setItem("currentMeaveId", data.id);
-
-		if (error) {
-			toast.error("Something went wrong when saving the nodes..");
-			return;
-		}
 
 		toast.success("Nodes successfully saved!");
 	}
@@ -188,7 +192,7 @@
 			name = pickRandomName();
 		} while ($nodes.find((n) => n.type === "agent" && get(n.data.name) === name));
 
-		setCenter(position.x, position.y, { zoom: position.zoom });
+		// setCenter(position.x, position.y, { zoom: position.zoom });
 
 		nodes.update((v) => [
 			...v,
