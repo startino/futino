@@ -1,11 +1,14 @@
 <script lang="ts">
-	import * as Card from '$lib/components/ui/card';
-	import * as Tabs from '$lib/components/ui/tabs';
-	import * as Avatar from '$lib/components/ui/avatar';
-	import { Input } from '$lib/components/ui/input';
-	import { Button } from '$lib/components/ui/button';
+	import { createEventDispatcher } from "svelte";
 
-	// export let name: 'maeve' | 'agent' | 'workflow';
+	import * as Tabs from "$lib/components/ui/tabs";
+	import * as Avatar from "$lib/components/ui/avatar";
+	import { Input } from "$lib/components/ui/input";
+	import { Button } from "$lib/components/ui/button";
+	import { maevePresets } from "$lib/dummy-data/maevePresets";
+	import { Label } from "$lib/components/ui/label";
+
+	const dispatch = createEventDispatcher();
 </script>
 
 <div class="py-4">
@@ -16,32 +19,61 @@
 		</Tabs.List>
 		<Input class="sticky my-6" placeholder="Search..." />
 		<Tabs.Content value="personal">
-			<ul class="h-full py-6">
-				<li>
-					<article class="flex items-center gap-6 text-sm">
-						<div class="flex items-center gap-4">
-							<Avatar.Root>
+			<ul class="h-full space-y-4 py-6">
+				<form
+					method="POST"
+					class="grid grid-cols-8 rounded-md border border-border bg-card p-6"
+					on:submit|preventDefault={async (e) => {
+						const file = e.target[0].files[0];
+
+						if (!file) return;
+
+						try {
+							const text = await file.text();
+							dispatch("maeve-load", {
+								maeve: JSON.parse(text)
+							});
+						} catch (error) {
+							console.error("Error parsing JSON:", error);
+						}
+					}}
+				>
+					<div class="col-span-7 grid w-full max-w-sm items-center gap-1.5">
+						<Label for="file">Upload a Maeve from a file with the button below</Label>
+
+						<Input
+							id="file"
+							accept=".json"
+							type="file"
+							class="border border-border bg-foreground/10"
+						/>
+					</div>
+					<div class="col-span-1 ml-auto">
+						<Button variant="outline" type="submit">Load</Button>
+					</div>
+				</form>
+
+				{#each maevePresets as preset}
+					<li class="w-full gap-2">
+						<div class="grid grid-cols-8 rounded-md border border-border bg-card p-6">
+							<Avatar.Root class="mr-auto">
 								<Avatar.Image src="https://github.com/shadcn.png" alt="@shadcn" />
 								<Avatar.Fallback>CN</Avatar.Fallback>
 							</Avatar.Root>
-							<div class="grid">
-								<h2 class="font-bold">Name</h2>
-								<p>
-									Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent suscipit
-									vestibulum metus et tempus. Curabitur convallis, lacus vitae pellentesque tempus,
-									ligula urna pulvinar lorem, eu porttitor quam sapien quis velit.
-								</p>
+							<div class="col-span-3">
+								<h3 class="text-lg font-bold">{preset.instance_id}</h3>
+							</div>
+							<div class="col-span-3">
+								<p>{preset.instance_id}</p>
+							</div>
+							<div class="col-span-1 ml-auto">
+								<Button variant="outline">Load</Button>
 							</div>
 						</div>
-						<p>
-							Lorem ipsum (i), Dolor Sit (i), Consectetur Adipiscing (i), Praesent Suscipit (i),
-							Vestibulum Metus (i), Curabitur Convallis (i),
-						</p>
-						<Button>LOAD</Button>
-					</article>
-				</li>
+					</li>
+				{/each}
 			</ul>
 		</Tabs.Content>
-		<Tabs.Content value="community">(same here...)</Tabs.Content>
+		<Tabs.Content value="community">COMING SOON!</Tabs.Content>
 	</Tabs.Root>
 </div>

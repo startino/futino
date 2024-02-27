@@ -1,3 +1,5 @@
+import type { Tables } from '$lib/server/supabase.types';
+
 /**
  * This type alias is to identify CSS classes within component props,
  * which enables Tailwind IntelliSense
@@ -44,3 +46,24 @@ export enum Animation {
 	flyIn,
 	SomeOtherAnimation
 }
+
+export type Contract = {
+	id: string;
+	amount: number;
+	status: 'Pending' | 'Active' | 'Paid' | 'Partially';
+	department: 'Accounting' | 'IT' | 'Legal';
+	startDate: string;
+	endDate: string;
+	spendCategory: 'Testing' | 'Manufacturing' | 'Legal';
+	attachment: string;
+	projectCode: number;
+	creator: string;
+	approver: string;
+	description: string;
+	vendorName: string;
+};
+
+export type NestedContract = Omit<Tables<'contracts'>, 'vendor' | 'creator'> & {
+	vendor: { full_name: string };
+	creator: { full_name: string };
+};

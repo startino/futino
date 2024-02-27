@@ -132,6 +132,6 @@
 	}
 
 	input {
-		display: none;
+	display: none;
 	}
 </style>

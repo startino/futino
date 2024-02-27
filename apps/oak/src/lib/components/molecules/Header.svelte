@@ -3,7 +3,7 @@
 	import { onMount } from 'svelte';
 	import { fade, slide } from 'svelte/transition';
 	import { Button } from '$lib/components/ui/button';
-  import ThemeToggle from '$lib/components/atoms/ThemeToggle.svelte';
+	import ThemeToggle from '$lib/components/atoms/ThemeToggle.svelte';
 
 	// Types to get TailwindCSS Intellisense
 	import type { CssClasses, StyleVariants } from '../../types.ts';
@@ -59,8 +59,13 @@
 	});
 </script>
 
-<header class="bg-card text-card-foreground rounded-3xl mt-6 fixed w-[90%] max-w-7xl left-1/2 -translate-x-1/2 ">
-	<nav class="items-center justify-between p-6 lg:px-8 {menuOpen ? "hidden" : 'flex'}" aria-label="Global">
+<header
+	class="fixed left-1/2 mt-6 w-[90%] max-w-7xl -translate-x-1/2 rounded-3xl bg-card text-card-foreground"
+>
+	<nav
+		class="items-center justify-between p-6 lg:px-8 {menuOpen ? 'hidden' : 'flex'}"
+		aria-label="Global"
+	>
 		<a href="#" class="-m-1.5 p-1.5">
 			<span class="sr-only">Your Company</span>
 			<Logo />
@@ -68,7 +73,7 @@
 		<div class="flex lg:hidden">
 			<button
 				type="button"
-        on:click={toggleMenu}
+				on:click={toggleMenu}
 				class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
 			>
 				<span class="sr-only">Open main menu</span>
@@ -88,24 +93,28 @@
 				</svg>
 			</button>
 		</div>
-		<div class="hidden lg:flex lg:gap-x-12 place-items-center">
+		<div class="hidden place-items-center lg:flex lg:gap-x-12">
 			{#each pages as { name, href }}
-				<a {href} class="m-0 text-sm font-semibold leading-6 text-card-foreground hover:text-accent sm:m-0">{name}</a>
+				<a
+					{href}
+					class="m-0 text-sm font-semibold leading-6 text-card-foreground hover:text-accent sm:m-0"
+					>{name}</a
+				>
 			{/each}
-      <div class="grid grid-cols-2 gap-x-4">
-			{#each Object.entries(CTAButtons) as [name, { href, highlight }]}
-				<Button {href} class="w-full">
-					{name}
-				</Button>
-			{/each}
-    </div>
-      <ThemeToggle />
+			<div class="grid grid-cols-2 gap-x-4">
+				{#each Object.entries(CTAButtons) as [name, { href, highlight }]}
+					<Button {href} class="w-full">
+						{name}
+					</Button>
+				{/each}
+			</div>
+			<ThemeToggle />
 		</div>
 	</nav>
 	<!-- Mobile menu, show/hide based on menu open state. -->
 	<div class="lg:hidden {menuOpen ? '' : 'hidden'}" role="dialog" aria-modal="true">
 		<!-- Background backdrop, show/hide based on slide-over state. -->
-		<div class="fixed inset-0 z-10 "></div>
+		<div class="fixed inset-0 z-10"></div>
 		<div
 			class="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-card px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10"
 		>
@@ -138,18 +147,18 @@
 						{#each pages as { name, href }}
 							<a
 								{href}
-								class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-card-foreground hover:text-accent-foreground hover:bg-accent"
+								class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-card-foreground hover:bg-accent hover:text-accent-foreground"
 								>{name}</a
 							>
 						{/each}
 					</div>
-					<div class="py-6 grid grid-cols-2 gap-x-4">
-            {#each Object.entries(CTAButtons) as [name, { href, highlight }]}
-              <Button {href} class="w-full">
-                {name}
-              </Button>
-            {/each}
-          </div>
+					<div class="grid grid-cols-2 gap-x-4 py-6">
+						{#each Object.entries(CTAButtons) as [name, { href, highlight }]}
+							<Button {href} class="w-full">
+								{name}
+							</Button>
+						{/each}
+					</div>
 				</div>
 			</div>
 		</div>

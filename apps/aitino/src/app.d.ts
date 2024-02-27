@@ -5,8 +5,12 @@ declare global {
 		// interface Error {}
 		interface Locals {
 			userId: string;
+			supabase: SupabaseClient;
+			getSession(): Promise<Session | null>;
 		}
-		// interface PageData {}
+		interface PageData {
+			session: Session | null;
+		}
 		// interface PageState {}
 		// interface Platform {}
 	}
