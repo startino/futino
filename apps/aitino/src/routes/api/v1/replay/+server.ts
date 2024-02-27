@@ -4,11 +4,11 @@ import { API_BASE_URL } from "$lib/config";
 export const GET = async ({ url }) => {
 	const session_id = url.searchParams.get("session_id");
 	const id = url.searchParams.get("meave_id");
-	const reply = url.searchParams.get("replay");
+	const reply = url.searchParams.get("reply");
 	// const params = url.searchParams.get("params");
 
-    console.log(url, 'from replay api');
-    console.log(id, session_id,reply, 'from replay id api');
+	console.log(url, "from reply api");
+	console.log(id, session_id, reply, "from reply id api");
 
 	if (!id || !reply) {
 		return json({ error: "No id provided" }, { status: 400 });
@@ -17,7 +17,7 @@ export const GET = async ({ url }) => {
 	//api.aiti.no/maeve?id={maeve_id}&session_id={session_id}&reply={reply}
 	//api.aiti.no/maeve?id={maeve_id}&session_id={f3e7ba39-e06e-4c24-a4f2-4a03c2de4453}&reply={make}
 
-	const apiUrl = `${API_BASE_URL}/maeve?id=${id}&session_id=${session_id}&reply=${('reply')}`;
+	const apiUrl = `${API_BASE_URL}/maeve?id=${id}&session_id=${session_id}&reply=${"reply"}`;
 
 	console.log(apiUrl, "api url");
 
@@ -32,7 +32,7 @@ export const GET = async ({ url }) => {
 
 		console.log(response, "response from ba");
 
-		let data = [];
+		const data = [];
 		const reader = response.body.getReader();
 
 		try {
