@@ -41,9 +41,16 @@
 
 	let title = data.title;
 	let description = data.description;
+	let isChatDialogOpen = false;
 
 	const actions: PanelAction[] = [
-		{ name: "Run", buttonVariant: "default" },
+		{
+			name: "Run",
+			buttonVariant: "default",
+			onclick: () => {
+				isChatDialogOpen = true;
+			}
+		},
 		{ name: "Add Prompt", buttonVariant: "outline", onclick: addNewPrompt },
 		{ name: "Add Agent", buttonVariant: "outline", onclick: addNewAgent },
 		{ name: "Load Maeve", buttonVariant: "outline", isCustom: true },
@@ -294,14 +301,17 @@
 			</RightEditorSidebar>
 		</Panel>
 		<Panel position="bottom-right">
-			<Dialog.Root>
-				<Dialog.Trigger>
-					<Button class="block text-base">Chat</Button>
-				</Dialog.Trigger>
-				<Dialog.Content class="sm:max-w-full">
-					<ChatRoom />
-				</Dialog.Content>
-			</Dialog.Root>
+				<Dialog.Root
+					open={isChatDialogOpen}
+					onOpenChange={() => {
+						isChatDialogOpen = false;
+						console.log("close");
+					}}
+				>
+					<Dialog.Content class="sm:max-w-full">
+						<ChatRoom />
+					</Dialog.Content>
+				</Dialog.Root>
 		</Panel>
 	</SvelteFlow>
 </div>
