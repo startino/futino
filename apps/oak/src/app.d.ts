@@ -1,6 +1,6 @@
 // src/app.d.ts
 
-import type { ApiClient } from '$lib/server/api-client';
+import type { ApiClient } from '$lib/api-client';
 import { SupabaseClient, Session, type User } from '@supabase/supabase-js';
 import { Stripe } from 'stripe';
 

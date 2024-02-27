@@ -381,7 +381,7 @@ export interface Database {
 				};
 				Insert: {
 					department_id?: string | null;
-					id: string;
+					id?: string;
 					name: string;
 					organization_id: string;
 				};

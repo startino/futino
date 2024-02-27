@@ -29,9 +29,10 @@
 	import { formatUSD } from '$lib/helpers';
 	import { Label } from '$lib/components/ui/label';
 	import * as Dialog from '$lib/components/ui/dialog';
+
 	export let data: PageData;
 
-	const supabase = data.supabase;
+	const apiClient = data.apiClient;
 	let status: 'uploading' | 'submitting' | 'idle' | 'adding-new-vendor' | 'error' = 'idle';
 	let vendorOption: 'search' | 'add' = 'search';
 
@@ -100,10 +101,12 @@
 		const file = e.target.files[0];
 		const path = `/${crypto.randomUUID()}-${file.name}`;
 
-		const { error, data } = await supabase.storage.from('contract-attachments').upload(path, file, {
-			cacheControl: '3600',
-			upsert: false
-		});
+		const { error, data } = await apiClient.supabase.storage
+			.from('contract-attachments')
+			.upload(path, file, {
+				cacheControl: '3600',
+				upsert: false
+			});
 
 		if (error) {
 			console.log({ uploadError: error });
@@ -116,7 +119,7 @@
 		status = 'idle';
 	}
 
-	async function addVendor(e) {
+	async function addVendor() {
 		vendorDialogOpen = true;
 		status = 'adding-new-vendor';
 
@@ -129,15 +132,11 @@
 			return;
 		}
 
-		const response = await fetch('/api/vendor', {
-			method: 'POST',
-			body: JSON.stringify({ ...$formStore.new_vendor, organization_id: data.organization_id }),
-			headers: {
-				'Content-Type': 'application/json'
-			}
+		const { data: vendor, error } = await apiClient.createVendor({
+			...$formStore.new_vendor,
+			name: $formStore.new_vendor.name as string,
+			organization_id: data.organization_id
 		});
-
-		const { error, vendor } = await response.json();
 
 		status = 'idle';
 
