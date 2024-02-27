@@ -6,7 +6,7 @@
 	import { afterUpdate, onMount } from "svelte";
 	import SvelteMarkdown from "svelte-markdown";
 
-	let maeveId;
+	let maeveId: String;
 
 	onMount(() => {
 		maeveId = localStorage.getItem("currentMeaveId");
@@ -64,25 +64,27 @@
 
 	const handeNewMessage = async () => {
 		const queryParams = new URLSearchParams({
-			id: "dfb9ede1-3c08-462f-af73-94cf6aa9185a"
+			id: maeveId
 		}).toString();
 
 		try {
 			const response = await fetch(`/api/v1/meave?${queryParams}`);
 			const data = await response.json();
+
+			console.log(data, "data from frontend");
 			const jsonResponseString = data.content;
  
-			const jsonStrings = jsonResponseString
-				.split("}}\n")
-				.map((str: string) => (str.endsWith("}") ? str : str + "}}"));
+			// const jsonStrings = jsonResponseString
+			// 	.split("}}\n")
+			// 	.map((str: string) => (str.endsWith("}") ? str : str + "}}"));
 
-			// Parsing each string to JSON, filtering out the 'done' message or any non-JSON strings
-			const jsonObjects = jsonStrings
-				.filter((str: string) => str.trim() && !str.includes('"status": "success", "data": "done"'))
-				.map((str: string) => JSON.parse(str));
+			// // Parsing each string to JSON, filtering out the 'done' message or any non-JSON strings
+			// const jsonObjects = jsonStrings
+			// 	.filter((str: string) => str.trim() && !str.includes('"status": "success", "data": "done"'))
+			// 	.map((str: string) => JSON.parse(str));
 
-			// Adding parsed objects to the messages array
-			messages = [...messages, ...jsonObjects];
+			// // Adding parsed objects to the messages array
+			// messages = [...messages, ...jsonObjects];
 		} catch (error) {
 			console.error("Error fetching chat maeave:", error);
 		}
