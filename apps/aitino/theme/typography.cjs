@@ -4,13 +4,13 @@ const typography = (colors, alpha) => {
 	return {
 		main: {
 			css: {
-				"--tw-prose-body": colorConfig.foreground.replace(")", ") / 0.8 )"), // UNSTABLE METHOD! find a better way to do this using <alpha-value>
-				"--tw-prose-headings": colorConfig.foreground,
+				"--tw-prose-body": colors.neutral[300],
+				"--tw-prose-headings": colors.white,
 				"--tw-prose-lead": colors.neutral[400],
-				"--tw-prose-links": colorConfig.accent.DEFAULT,
+				"--tw-prose-links": colorConfig.tertiary.DEFAULT.replace(alpha, 1),
 				"--tw-prose-bold": colors.white,
 				"--tw-prose-counters": colors.neutral[400],
-				"--tw-prose-bullets": colorConfig.secondary.DEFAULT.replace(alpha, 0.4),
+				"--tw-prose-bullets": colorConfig.nsecondary.DEFAULT.replace(alpha, 0.4),
 				"--tw-prose-hr": colors.neutral[700],
 				"--tw-prose-quotes": colors.neutral[100],
 				"--tw-prose-quote-borders": colorConfig.secondary.DEFAULT.replace(alpha, 0.3),
