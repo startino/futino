@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { ArrowDown, ChevronDown, Loader, Send, User } from "lucide-svelte";
+	import { ArrowDown, ChevronDown, Loader, Loader2, Send, User } from "lucide-svelte";
 	import { Input } from "./ui/input";
 	import { Button } from "./ui/button";
 	import * as Card from "$lib/components/ui/card";
@@ -62,15 +62,12 @@
 		const queryParams = new URLSearchParams({
 			id: "dfb9ede1-3c08-462f-af73-94cf6aa9185a"
 		}).toString();
-		console.log(queryParams, "query params");
 
 		try {
 			const response = await fetch(`/api/v1/meave?${queryParams}`);
 			const data = await response.json();
 			const jsonResponseString = data.content;
 
-			// Splitting the string on '}}\n' to handle multiple JSON objects concatenated together.
-			// Ensure to add back the removed characters that are required for valid JSON syntax.
 			const jsonStrings = jsonResponseString
 				.split("}}\n")
 				.map((str: string) => (str.endsWith("}") ? str : str + "}}"));
@@ -82,32 +79,22 @@
 
 			// Adding parsed objects to the messages array
 			messages = [...messages, ...jsonObjects];
-			console.log(messages, "updated messages");
 		} catch (error) {
 			console.error("Error fetching chat maeave:", error);
 		}
 	};
 
 	let replyMessage = "";
+	let state: "loading" | "success" | "error" | "idle" = "idle";
 
 	function handleInputChangeReply(event: { target: { value: string } }) {
 		replyMessage = event.target.value;
 	}
 
 	const handleReply = async () => {
+		state = "loading";
 		const id = messages[0].data.session_id;
 		const reply = replyMessage;
-
-		console.log(id, reply, "id, reply respectively");
-
-		let encodedId = encodeURIComponent(id);
-		let encodedReply = encodeURIComponent(reply);
-
-		const paramsUrl = {
-			meave_id: "dfb9ede1-3c08-462f-af73-94cf6aa9185a",
-			session_id: id,
-			reply
-		};
 
 		const queryParams = new URLSearchParams({
 			meave_id: "dfb9ede1-3c08-462f-af73-94cf6aa9185a",
@@ -116,10 +103,8 @@
 		}).toString();
 		try {
 			const response = await fetch(`/api/v1/reply?${queryParams}`);
-			console.log(response);
 			const data = await response.json();
 			const jsonResponseString = data.content;
-			console.log(data.content, "from reply update");
 			const jsonStrings = jsonResponseString
 				.split("}}\n")
 				.map((str: string) => (str.endsWith("}") ? str : str + "}}"));
@@ -128,11 +113,15 @@
 			const jsonObjects = jsonStrings
 				.filter((str: string) => str.trim() && !str.includes('"status": "success", "data": "done"'))
 				.map((str: string) => JSON.parse(str));
-			console.log(jsonObjects, "from reply message");
 			// Adding parsed objects to the messages array
 			messages = [...messages, ...jsonObjects];
-			console.log(messages, "updated messages from reply");
+			state = "success";
+			replyMessage = "";
+			showReplyField = false;
 		} catch (error) {
+			state = "error";
+			replyMessage = "";
+			showReplyField = false;
 			console.error("Error fetching chat maeave:", error);
 		}
 	};
@@ -158,10 +147,13 @@
 											<Input
 												on:input={handleInputChangeReply}
 												placeholder="Type your reply..."
-												class="flex  h-9 w-full rounded-md border border-input bg-transparent px-3 py-6 text-sm shadow-sm ring-offset-0 transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring focus-visible:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50"
+												class="border-input  placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border bg-transparent px-3 py-6 text-sm shadow-sm ring-offset-0 transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50"
 											/>
 											<div class="align-center mx-auto flex justify-between gap-2">
 												<Button variant="primary" type="submit">Send Reply</Button>
+												{#if state !== "idle"}
+													<Loader2 class="ml-2 w-4 animate-spin" />
+												{/if}
 												<Button variant="primary" on:click={toggleReplyField}>Cancel</Button>
 											</div>
 										</form>
@@ -177,7 +169,7 @@
 								{/if}
 							</Card.Content>
 						</Card.Root>
-						<Card.Root class="max-w-2xl border-none bg-background">
+						<Card.Root class="bg-background max-w-2xl border-none">
 							<Card.Content class="grid w-full grid-cols-2 items-center justify-between gap-4 ">
 								<div class="flex items-center gap-4">
 									<p class="prose text-xs font-medium leading-none dark:text-blue-950">
@@ -228,7 +220,7 @@
 	</div>
 
 	<div class="mb-2 space-y-16">
-		<Card.Root class="mt-4 max-w-full border border-secondary">
+		<Card.Root class="border-secondary mt-4 max-w-full border">
 			<Card.Content class="grid gap-4 p-2">
 				<div class="flex justify-between">
 					<p class="prose text-sm font-medium leading-8 tracking-widest">
@@ -244,7 +236,7 @@
 				bind:value={newMessageContent}
 				on:input={handleInputChange}
 				on:keydown={handleKeyDown}
-				class="flex  h-9 w-full rounded-md border border-input bg-transparent px-3 py-6 text-sm shadow-sm ring-offset-0 transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring focus-visible:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50"
+				class="border-input  placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border bg-transparent px-3 py-6 text-sm shadow-sm ring-offset-0 transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50"
 				placeholder="Join the conversation by typing a message..."
 			/>
 			<Button

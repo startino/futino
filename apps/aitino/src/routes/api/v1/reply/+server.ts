@@ -5,21 +5,15 @@ export const GET = async ({ url }) => {
 	const session_id = url.searchParams.get("session_id");
 	const id = url.searchParams.get("meave_id");
 	const reply = url.searchParams.get("reply");
-	// const params = url.searchParams.get("params");
 
-	console.log(url, "from reply api");
-	console.log(id, session_id, reply, "from reply id api");
 
 	if (!id || !reply) {
 		return json({ error: "No id provided" }, { status: 400 });
 	}
 
-	//api.aiti.no/maeve?id={maeve_id}&session_id={session_id}&reply={reply}
-	//api.aiti.no/maeve?id={maeve_id}&session_id={f3e7ba39-e06e-4c24-a4f2-4a03c2de4453}&reply={make}
 
 	const apiUrl = `${API_BASE_URL}/maeve?id=${id}&session_id=${session_id}&reply=${encodeURIComponent(reply)}`;
 
-	console.log(apiUrl, "api url");
 
 	try {
 		const response = await fetch(apiUrl);
@@ -38,8 +32,8 @@ export const GET = async ({ url }) => {
 		try {
 			while (true) {
 				const { done, value } = await reader.read();
-				// responseData = new TextDecoder().decode(value);
-				// console.log(responseData, "res data 0");
+				// let notVal = new TextDecoder().decode(value);
+				// console.log(notVal, "res data 0");
 
 				// console.log(value, "value");
 				// console.log(done, "done");
@@ -60,7 +54,7 @@ export const GET = async ({ url }) => {
 
 		const responseData = new TextDecoder().decode(buffer);
 
-		console.log(responseData, "res data");
+		// console.log(responseData, "res data");
 		return json({ content: responseData });
 	} catch (error) {
 		console.error("Error calling external API:", error);
