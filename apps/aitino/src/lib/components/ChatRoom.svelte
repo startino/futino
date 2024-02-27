@@ -90,11 +90,11 @@
 
 	let replyMessage = "";
 
-	function handleInputChangeReplay(event: { target: { value: string } }) {
+	function handleInputChangeReply(event: { target: { value: string } }) {
 		replyMessage = event.target.value;
 	}
 
-	const handleReplay = async () => {
+	const handleReply = async () => {
 		const id = messages[0].data.session_id;
 		const reply = replyMessage;
 
@@ -154,9 +154,9 @@
 											reply
 										</Button>{/if}
 									{#if showReplyField}
-										<form class="mt-2 flex flex-col gap-y-6" on:submit={handleReplay}>
+										<form class="mt-2 flex flex-col gap-y-6" on:submit={handleReply}>
 											<Input
-												on:input={handleInputChangeReplay}
+												on:input={handleInputChangeReply}
 												placeholder="Type your reply..."
 												class="flex  h-9 w-full rounded-md border border-input bg-transparent px-3 py-6 text-sm shadow-sm ring-offset-0 transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring focus-visible:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50"
 											/>
