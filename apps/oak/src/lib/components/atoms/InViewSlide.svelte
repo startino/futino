@@ -14,7 +14,7 @@
 	const options: Options = {
 		rootMargin: `${top} 0px ${bottom} 0px`,
 		threshold: 0.5,
-		unobserveOnEnter: once,
+		unobserveOnEnter: once
 	};
 
 	const handleChange = ({ detail }: CustomEvent<ObserverEventDetails>) => {
