@@ -8,8 +8,8 @@
 	let searchBarValue: string = '';
 </script>
 
-<header class="antialiased">
-	<nav class="bg-card border rounded-2xl m-4 px-4 py-4 ">
+<header class="antialiased {$$props.class}">
+	<nav class=" rounded-2xl border bg-card px-4 py-4">
 		<div class="flex flex-wrap items-center justify-between">
 			<div class="flex items-center justify-start">
 				<!-- <button
@@ -58,20 +58,20 @@
 				<Command.Root>
 					<Command.Input placeholder="Type a command or search..." />
 					<Command.List class="hidden">
-					  <Command.Empty>No results found.</Command.Empty>
-					  <Command.Group heading="Suggestions">
-						<Command.Item>Calendar</Command.Item>
-						<Command.Item>Search Emoji</Command.Item>
-						<Command.Item>Calculator</Command.Item>
-					  </Command.Group>
-					  <Command.Separator />
-					  <Command.Group heading="Settings">
-						<Command.Item>Profile</Command.Item>
-						<Command.Item>Billing</Command.Item>
-						<Command.Item>Settings</Command.Item>
-					  </Command.Group>
+						<Command.Empty>No results found.</Command.Empty>
+						<Command.Group heading="Suggestions">
+							<Command.Item>Calendar</Command.Item>
+							<Command.Item>Search Emoji</Command.Item>
+							<Command.Item>Calculator</Command.Item>
+						</Command.Group>
+						<Command.Separator />
+						<Command.Group heading="Settings">
+							<Command.Item>Profile</Command.Item>
+							<Command.Item>Billing</Command.Item>
+							<Command.Item>Settings</Command.Item>
+						</Command.Group>
 					</Command.List>
-				  </Command.Root>
+				</Command.Root>
 			</div>
 			<div class="flex items-center gap-x-4 lg:order-2">
 				<div class="grid grid-cols-2 gap-x-4">

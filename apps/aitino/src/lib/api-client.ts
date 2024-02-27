@@ -1,11 +1,10 @@
-import { type Node, type Edge } from '@xyflow/svelte';
+import { supabase } from "$lib/supabase";
+import type { TablesInsert } from "$lib/supabase.types";
 
-import { supabase } from '$lib/supabase';
-
-export async function saveMaeveNodes(data: { user_id: string; nodes: Node[]; edges: Edge[] }) {
-	return supabase.from('maeve_nodes').upsert(data);
+export async function saveMaeveNodes(data: TablesInsert<"maeve_nodes">) {
+	return supabase.from("maeve_nodes").upsert(data);
 }
 
-export async function getMeaveNodes(userId: string) {
-	return supabase.from('maeve_nodes').select('*').eq('user_id', userId).single();
+export async function getMaeveNodes(userId: string) {
+	return await supabase.from("maeve_nodes").select("*").eq("user_id", userId);
 }

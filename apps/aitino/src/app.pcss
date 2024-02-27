@@ -45,6 +45,7 @@
 		--border: 45 45 45;
 		--input: 30 41 59;
 		--ring: 123 123 123;
+		--radius: 0.5rem;
 	}
 }
 
@@ -53,9 +54,21 @@
 		@apply border-border;
 	}
 	body {
-		@apply text-accent-50 h-full overflow-hidden bg-background;
+		@apply h-full bg-background  text-accent-50;
 	}
 	html body {
-		@apply h-full overflow-hidden;
+		@apply h-full;
+	}
+}
+
+@layer utilities {
+	/* Hide scrollbar for Chrome, Safari and Opera */
+	.no-scrollbar::-webkit-scrollbar {
+		display: none;
+	}
+	/* Hide scrollbar for IE, Edge and Firefox */
+	.no-scrollbar {
+		-ms-overflow-style: none; /* IE and Edge */
+		scrollbar-width: none; /* Firefox */
 	}
 }

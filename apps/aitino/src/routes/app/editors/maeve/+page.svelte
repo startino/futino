@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { writable, get } from 'svelte/store';
-	import dagre from '@dagrejs/dagre';
+	import { writable, get } from "svelte/store";
+	import dagre from "@dagrejs/dagre";
 	import {
 		SvelteFlow,
 		Background,
@@ -8,65 +8,97 @@
 		ConnectionLineType,
 		Panel,
 		useSvelteFlow,
-		getIncomers,
 		type Node,
 		type Edge,
 		getOutgoers
-	} from '@xyflow/svelte';
-	import { toast } from 'svelte-sonner';
+	} from "@xyflow/svelte";
+	import { toast } from "svelte-sonner";
 
-	import '@xyflow/svelte/dist/style.css';
+	import "@xyflow/svelte/dist/style.css";
 
-	import RightEditorSidebar from '$lib/components/RightEditorSidebar.svelte';
-	import { Button } from '$lib/components/ui/button';
-	import * as Dialog from '$lib/components/ui/dialog';
-	import { Library } from '$lib/components/ui/library';
-	import * as CustomNode from '$lib/components/ui/custom-node';
-	import { saveMaeveNodes } from '$lib/api-client';
+	import RightEditorSidebar from "$lib/components/RightEditorSidebar.svelte";
+	import { Button } from "$lib/components/ui/button";
+	import * as Dialog from "$lib/components/ui/dialog";
+	import { Library } from "$lib/components/ui/library";
+	import * as CustomNode from "$lib/components/ui/custom-node";
+	import { saveMaeveNodes } from "$lib/api-client";
+
+	import {
+		getContext,
+		getWritableNodes,
+		getCleanNodes,
+		pickRandomAvatar,
+		pickRandomName,
+		getNodesCount
+	} from "$lib/utils";
+	import type { PanelAction } from "$lib/types";
+	import ChatRoom from "$lib/components/ChatRoom.svelte";
+	import { AGENT_LIMIT, PROMPT_LIMIT } from "$lib/config.js";
 
 	export let data;
-	import { getContext, getInitialEdges, getInitialNodes, getLocalMaeve } from '$lib/utils';
-	import type { Maeve, MaeveGroup, MaevePrompt, PanelAction } from '$lib/types';
-	import { Input } from '$lib/components/ui/input';
-	import { Label } from '$lib/components/ui/label';
-	import { Textarea } from '$lib/components/ui/textarea';
-	import ChatRoom from '$lib/components/ChatRoom.svelte';
+
+	const { receiver, count } = getContext("maeve");
+
+	let title = data.title;
+	let description = data.description;
 
 	const actions: PanelAction[] = [
-		{ name: 'Run', buttonVariant: 'default' },
-		{ name: 'Add Prompt', buttonVariant: 'outline', onclick: addNewPrompt },
-		{ name: 'Add Agent', buttonVariant: 'outline', onclick: addNewAgent },
-		{ name: 'Add Maeve', buttonVariant: 'outline', isCustom: true },
+		{ name: "Run", buttonVariant: "default" },
+		{ name: "Add Prompt", buttonVariant: "outline", onclick: addNewPrompt },
+		{ name: "Add Agent", buttonVariant: "outline", onclick: addNewAgent },
+		{ name: "Load Maeve", buttonVariant: "outline", isCustom: true },
 		{
-			name: 'Save',
-			buttonVariant: 'outline',
-			onclick: async () => {
-				await compile();
-				layout();
+			name: "Export",
+			buttonVariant: "outline",
+			onclick: () => {
+				const jsonString = JSON.stringify(
+					{
+						nodes: getCleanNodes($nodes),
+						edges: $edges,
+						title,
+						description,
+						receiver_id: $receiver?.node.id ?? null
+					},
+					null,
+					2
+				);
+				const blob = new Blob([jsonString], { type: "application/json" });
+				const url = window.URL.createObjectURL(blob);
+				const a = document.createElement("a");
+				a.href = url;
+				a.download = "maeve.json";
+				document.body.appendChild(a);
+				a.click();
+				window.URL.revokeObjectURL(url);
+				document.body.removeChild(a);
 			}
 		},
-		{ name: 'Sessions', buttonVariant: 'outline' }
+		{
+			name: "Save",
+			buttonVariant: "outline",
+			onclick: async () => await save()
+		},
+		{ name: "Layout", buttonVariant: "outline", onclick: layout },
+		{ name: "Sessions", buttonVariant: "outline" }
 	];
-
-	let maeveErrors: string[] | null = null;
 
 	const nodeTypes = {
 		agent: CustomNode.Agent,
 		prompt: CustomNode.Prompt
 	};
 
-	const { receiver, count } = getContext('maeve');
+	let libraryOpen = false;
 
 	const dagreGraph = new dagre.graphlib.Graph();
 	dagreGraph.setDefaultEdgeLabel(() => ({}));
 
 	const nodeWidth = 400;
-	const nodeHeight = 400;
+	const nodeHeight = 500;
 
 	const { deleteElements, getNodes, getViewport, setCenter } = useSvelteFlow();
 
-	function getLayoutedElements(nodes: Node[], edges: Edge[], direction = 'TB') {
-		const isHorizontal = direction === 'LR';
+	function getLayoutedElements(nodes: Node[], edges: Edge[], direction = "TB") {
+		const isHorizontal = direction === "LR";
 		dagreGraph.setGraph({ rankdir: direction });
 
 		if (nodes.length > 0) {
@@ -97,82 +129,34 @@
 		return { nodes, edges };
 	}
 
-	// const { nodes: layoutedNodes, edges: layoutedEdges } = getLayoutedElements(initNodes, initEdges);
+	const nodes = writable<Node[]>(getWritableNodes(data.nodes));
+	const edges = writable<Edge[]>(data.edges);
 
-	const nodes = writable<Node[]>([]);
-	const edges = writable<Edge[]>([]);
-
-	async function compile() {
-		const agents = $nodes
-			.filter((n) => n.type === 'agent')
-			.map((n) => {
-				const { prompt, full_name, job_title, model } = n.data;
-				return {
-					...n,
-					data: {
-						prompt: get(prompt),
-						full_name: get(full_name),
-						job_title: get(job_title),
-						model: get(model)
-					}
-				};
-			});
-
-		const prompts = $nodes
-			.filter((n) => n.type === 'prompt')
-			.map((n) => {
-				const { title, content } = n.data;
-				return {
-					...n,
-					data: {
-						title: get(title),
-						content: get(content)
-					}
-				};
-			});
-
+	async function save() {
 		const { error } = await saveMaeveNodes({
-			user_id: data.userId,
-			nodes: [...prompts, ...agents],
+			id: data.id,
+			user_id: data.user_id,
+			title,
+			description,
+			receiver_id: $receiver?.node.id ?? null,
+			nodes: getCleanNodes($nodes),
 			edges: $edges
 		});
 
 		if (error) {
-			toast.error('Something went wrong when saving the nodes..');
+			toast.error("Something went wrong when saving the nodes..");
 			return;
 		}
 
-		toast.success('Nodes successfully saved!');
+		toast.success("Nodes successfully saved!");
 	}
 
-	function saveMaeve(maeve: Maeve) {
-		localStorage.setItem('maeve', JSON.stringify(maeve));
-	}
-
-	function validateMaeve(maeve: Maeve) {
-		const errors: string[] = [];
-		const prompts = $nodes.filter((node) => node.type === 'prompt');
-		if (prompts.length === 0) {
-			errors.push('A maeve must have at least one prompt');
-		} else {
-			if ($receiver) {
-				const incommers = getIncomers({ id: $receiver.node.id }, $nodes, $edges);
-
-				incommers.length !== prompts.length &&
-					errors.push('All the prompts must be connected to the receiver');
-			}
+	function setReceiver(id: string | null | undefined) {
+		if (!id) {
+			return;
 		}
-
-		if (!$receiver) {
-			errors.push('A receiver, which is an agent directly connected to the prompts, is required.');
-		} else {
-			const outgoers = getOutgoers({ id: $receiver.node.id }, $nodes, $edges);
-
-			outgoers.length === 0 &&
-				errors.push('At least one agent should be connected to the receiver');
-		}
-
-		return errors[0] ? errors : null;
+		const revr = getNodes([id])[0];
+		$receiver = { node: revr, targetCount: 1 };
 	}
 
 	function layout() {
@@ -182,9 +166,15 @@
 	}
 
 	function addNewAgent() {
-		if ($count.agents > 9) return;
+		if ($count.agents >= AGENT_LIMIT) return;
 
 		const position = { ...getViewport() };
+
+		let name = "";
+
+		do {
+			name = pickRandomName();
+		} while ($nodes.find((n) => n.type === "agent" && get(n.data.name) === name));
 
 		setCenter(position.x, position.y, { zoom: position.zoom });
 
@@ -192,14 +182,15 @@
 			...v,
 			{
 				id: crypto.randomUUID(),
-				type: 'agent',
+				type: "agent",
 				position,
 				selectable: false,
 				data: {
-					name: writable(''),
-					job_title: writable(''),
-					prompt: writable(''),
-					modal: writable({ label: '', value: '' })
+					name: writable(name),
+					job_title: writable(""),
+					prompt: writable(""),
+					model: writable({ label: "", value: "" }),
+					avatar: pickRandomAvatar()
 				}
 			}
 		]);
@@ -208,7 +199,7 @@
 	}
 
 	function addNewPrompt() {
-		if ($count.prompts > 0) return;
+		if ($count.prompts >= PROMPT_LIMIT) return;
 
 		const position = { ...getViewport() };
 		setCenter(position.x, position.y, { zoom: position.zoom });
@@ -217,12 +208,12 @@
 			...v,
 			{
 				id: crypto.randomUUID(),
-				type: 'prompt',
+				type: "prompt",
 				selectable: false,
 				position,
 				data: {
-					title: writable(''),
-					content: writable('')
+					title: writable(""),
+					content: writable("")
 				}
 			}
 		]);
@@ -233,20 +224,17 @@
 
 <div style="height:100vh;">
 	<SvelteFlow
+		minZoom={0.1}
 		{nodes}
 		{edges}
 		{nodeTypes}
 		fitView
 		oninit={() => {
-			// if (!localMaeve) return;
-			// const recv = localMaeve.composition.receiver;
-			// if (!recv) return;
-			// const node = getNodes([recv.instance_id])[0];
-			// const incommers = getIncomers(node, initNodes, initEdges);
-			// receiver.set({ node, targetCount: incommers.length });
+			count.set(data.count);
+			setReceiver(data.receiver_id);
 		}}
 		connectionLineType={ConnectionLineType.SmoothStep}
-		defaultEdgeOptions={{ type: 'smoothstep', animated: true }}
+		defaultEdgeOptions={{ type: "smoothstep", animated: true }}
 		on:edgeclick={(e) => {
 			const edge = e.detail.edge;
 			deleteElements({ edges: [{ id: edge.id }] });
@@ -258,7 +246,7 @@
 		}}
 		onedgecreate={(c) => {
 			const [source, target] = getNodes([c.source, c.target]);
-			if (source.type === 'prompt' && target.type === 'agent') {
+			if (source.type === "prompt" && target.type === "agent") {
 				if ($receiver) {
 					if (target.id !== $receiver.node.id) {
 						return;
@@ -270,7 +258,7 @@
 				}
 			}
 
-			if (source.type === 'agent' && target.type === 'agent' && $receiver?.node.id === target.id) {
+			if (source.type === "agent" && target.type === "agent" && $receiver?.node.id === target.id) {
 				return;
 			}
 			return c;
@@ -279,29 +267,41 @@
 		<Background class="!bg-background" />
 
 		<Panel position="top-right">
-			<RightEditorSidebar {actions} let:action>
+			<RightEditorSidebar bind:description bind:title {actions} let:action>
 				{#if action.isCustom}
-					<Dialog.Root>
+					<Dialog.Root open={libraryOpen} onOpenChange={(o) => (libraryOpen = o)}>
 						<Dialog.Trigger>
 							<Button variant={action.buttonVariant} class="w-full">
 								{action.name}
 							</Button>
 						</Dialog.Trigger>
 						<Dialog.Content class="max-w-5xl">
-							<Library />
+							<Library
+								on:maeve-load={(e) => {
+									const maeve = e.detail.maeve;
+									$count = getNodesCount(maeve.nodes);
+									nodes.set(getWritableNodes(maeve.nodes));
+									edges.set(maeve.edges);
+									libraryOpen = false;
+									title = maeve.title;
+									description = maeve.description;
+									setReceiver(maeve.receiver_id);
+								}}
+							/>
 						</Dialog.Content>
 					</Dialog.Root>
 				{/if}
 			</RightEditorSidebar>
 		</Panel>
+		<Panel position="bottom-right">
+			<Dialog.Root>
+				<Dialog.Trigger>
+					<Button class="block text-base">Chat</Button>
+				</Dialog.Trigger>
+				<Dialog.Content class="sm:max-w-full">
+					<ChatRoom />
+				</Dialog.Content>
+			</Dialog.Root>
+		</Panel>
 	</SvelteFlow>
 </div>
-
-<Dialog.Root>
-	<Dialog.Trigger class="mt-4">
-		<Button class="block text-base">Chat</Button>
-	</Dialog.Trigger>
-	<Dialog.Content class="sm:max-w-full">
-		<ChatRoom />
-	</Dialog.Content>
-</Dialog.Root>
