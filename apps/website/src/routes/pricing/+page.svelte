@@ -95,22 +95,22 @@
 										class="text-primary display-large font-extrabold leading-none tracking-tighter"
 									>
 										{cycle == 'yearly'
-											? formatter.format(((cost * 10) / 12) * 0.7)
-											: formatter.format(cost * 0.7)}
+											? formatter.format(((cost * 10) / 12) * 0.997)
+											: formatter.format(cost)}
 									</h1>
 								</div>
-								<div
+								<!-- <div
 									class="text-outline relative flex w-fit flex-row place-items-center overflow-hidden px-0.5 py-1"
 								>
 									<span
 										class="border-outline absolute right-0 top-1/2 w-full rotate-45 border-t-2 content-['']"
 									/>
 									<h1 class="headline-medium font-extrabold leading-none tracking-tighter">
-										{cycle == 'yearly'
-											? formatter.format((cost * 10) / 12)
+										{cycle == 'monthly'
+											? formatter.format((cost))
 											: formatter.format(cost)}
 									</h1>
-								</div>
+								</div> -->
 							</div>
 							<div class="my-2 flex flex-row place-items-center gap-2 text-center">
 								<h2 class="title-medium my-auto text-left">for first year</h2>
