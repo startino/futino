@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { Toaster } from "svelte-sonner";
 	import "$styling";
 	import { setContext } from "svelte";
 	import { Shell } from "$lib/components/layout/shell";
@@ -9,8 +8,6 @@
 
 	setContext("splitTestIdentifier", data?.splitTestIdentifier);
 </script>
-
-<Toaster />
 
 <Shell class="">
 	<svelte:fragment slot="header">
