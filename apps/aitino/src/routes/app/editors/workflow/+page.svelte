@@ -11,17 +11,16 @@
 		type Edge,
 		type Connection,
 		Panel
-	} from '@xyflow/svelte';
-	import { get, writable } from 'svelte/store';
-	import AgentNode from '$lib/components/ui/AgentNode.svelte';
-	import ContextMenu from '$lib/components/ContextMenu.svelte';
-	import { Button } from '$lib/components/ui/button';
-	import * as Dialog from '$lib/components/ui/dialog';
+	} from "@xyflow/svelte";
+	import { get, writable } from "svelte/store";
+	import ContextMenu from "$lib/components/ContextMenu.svelte";
+	import { Button } from "$lib/components/ui/button";
+	import * as Dialog from "$lib/components/ui/dialog";
 
 	// 👇 always import the styles
-	import '@xyflow/svelte/dist/style.css';
-	import RightEditorSidebar from '$lib/components/RightEditorSidebar.svelte';
-	import { Library } from '$lib/components/ui/library';
+	import "@xyflow/svelte/dist/style.css";
+	import RightEditorSidebar from "$lib/components/RightEditorSidebar.svelte";
+	import { Library } from "$lib/components/ui/library";
 
 	const nodeDefaults = {
 		sourcePosition: Position.Left,
@@ -30,33 +29,33 @@
 
 	const nodes = writable([
 		{
-			id: '0',
-			type: 'agent',
+			id: "0",
+			type: "agent",
 			position: { x: 0, y: 0 },
-			data: { agent_id: '0' },
+			data: { agent_id: "0" },
 			...nodeDefaults
 		},
 		{
-			id: '1',
-			type: 'agent',
+			id: "1",
+			type: "agent",
 			position: { x: 300, y: 300 },
-			data: { agent_id: '1' },
+			data: { agent_id: "1" },
 
 			...nodeDefaults
 		},
 		{
-			id: '2',
-			type: 'agent',
+			id: "2",
+			type: "agent",
 			position: { x: 500, y: 100 },
-			data: { agent_id: '2' },
+			data: { agent_id: "2" },
 			...nodeDefaults
 		}
 	]);
 	const edges = writable([
 		{
-			id: '0-1',
-			source: '0',
-			target: '1',
+			id: "0-1",
+			source: "0",
+			target: "1",
 			animated: true
 		}
 	]);
@@ -95,15 +94,15 @@
 		});
 
 		console.log(
-			'filteredEdges',
+			"filteredEdges",
 			filteredEdges,
-			'currentEdges',
+			"currentEdges",
 			currentEdges,
-			'source',
+			"source",
 			source,
-			'target',
+			"target",
 			target,
-			'connection',
+			"connection",
 			connection
 		);
 		// Update the edges store with the filtered list of edges
@@ -135,10 +134,10 @@
 	}
 
 	const actions = [
-		{ name: 'Load Workflow' },
-		{ name: 'Add Input' },
-		{ name: 'Add Ouput' },
-		{ name: 'Save' }
+		{ name: "Load Workflow" },
+		{ name: "Add Input" },
+		{ name: "Add Ouput" },
+		{ name: "Save" }
 	];
 </script>
 
@@ -147,7 +146,7 @@
 		{nodes}
 		{edges}
 		{nodeTypes}
-		onconnectstart={(connection) => console.log('edges: ', $edges, 'nodes: ', $nodes)}
+		onconnectstart={(connection) => console.log("edges: ", $edges, "nodes: ", $nodes)}
 		connectionMode={ConnectionMode.Loose}
 		snapGrid={[20, 20]}
 		connectionRadius={75}
@@ -169,11 +168,11 @@
 		{/if}
 		<Panel position="top-right">
 			<RightEditorSidebar {actions} let:action>
-				{#if action.name === 'Save'}
+				{#if action.name === "Save"}
 					<Button disabled>
 						{action.name}
 					</Button>
-				{:else if ['Load Workflow'].includes(action.name)}
+				{:else if ["Load Workflow"].includes(action.name)}
 					<Dialog.Root>
 						<Dialog.Trigger>
 							<Button variant="outline" class="w-full">

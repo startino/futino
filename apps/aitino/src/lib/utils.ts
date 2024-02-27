@@ -1,19 +1,63 @@
-import { type ClassValue, clsx } from 'clsx';
-import type { Edge, Node } from '@xyflow/svelte';
-import { twMerge } from 'tailwind-merge';
-import { cubicOut } from 'svelte/easing';
-import type { TransitionConfig } from 'svelte/transition';
-import { getContext as getSvelteContext, setContext as setSvelteContext } from 'svelte';
-import { writable } from 'svelte/store';
-import type { ContextKey, ContextMap, Maeve } from '$lib/types';
-import { browser } from '$app/environment';
+import { type ClassValue, clsx } from "clsx";
+import { get } from "svelte/store";
+import type { Node } from "@xyflow/svelte";
+import { twMerge } from "tailwind-merge";
+import { cubicOut } from "svelte/easing";
+import type { RequestEvent } from "@sveltejs/kit";
+import type { TransitionConfig } from "svelte/transition";
+import { getContext as getSvelteContext, setContext as setSvelteContext } from "svelte";
+import { writable } from "svelte/store";
+import type { ContextKey, ContextMap, Maeve } from "$lib/types";
+import { browser } from "$app/environment";
+import { AVATARS, SAMPLE_FULL_NAMES } from "$lib/config";
 
-const position = { x: 0, y: 0 };
-const edgeType = 'smoothstep';
+export function getNodesCount(nodes: Node[]) {
+	return {
+		agents: nodes.filter((n) => n.type === "agent").length,
+		prompts: nodes.filter((n) => n.type === "prompt").length
+	};
+}
+
+export function pickRandomName() {
+	return SAMPLE_FULL_NAMES[getRandomIndex(SAMPLE_FULL_NAMES)];
+}
+export function pickRandomAvatar() {
+	return AVATARS[getRandomIndex(AVATARS)];
+}
+
+function getRandomIndex(array: Array<unknown>) {
+	const randomArray = new Uint32Array(1);
+	crypto.getRandomValues(randomArray);
+	return randomArray[0] % array.length;
+}
+
+export const authenticateUser = ({ cookies, locals }: RequestEvent) => {
+	const currentUserId = cookies.get("userId");
+
+	if (currentUserId) {
+		locals.userId = currentUserId;
+		return;
+	}
+
+	const userId = crypto.randomUUID();
+
+	const expirationDate = new Date();
+	expirationDate.setMonth(expirationDate.getMonth() + 1);
+
+	cookies.set("userId", userId, {
+		path: "/",
+		httpOnly: true,
+		sameSite: "strict",
+		secure: process.env.NODE_ENV === "production",
+		expires: expirationDate
+	});
+
+	locals.userId = userId;
+};
 
 export function getPremadeInputsMap() {
 	if (browser) {
-		const inputStr = localStorage.getItem('premade-inputs');
+		const inputStr = localStorage.getItem("premade-inputs");
 
 		if (inputStr) {
 			return JSON.parse(inputStr) as Record<string, string>;
@@ -26,109 +70,88 @@ export function getPremadeInputsMap() {
 export function injectPremadeValues(str: string) {
 	let result = str;
 	const premadeInputsMap = getPremadeInputsMap();
-  
-	if (premadeInputsMap) {
-	  const matches = str.match(/\{\{(\w*?)\}\}/g);
-  
-	  if (!matches) return result;
-  
-	  matches.forEach((m) => {
-		if (Object.hasOwn(premadeInputsMap, m)) {
-		  result = result.replace(m, premadeInputsMap[m]);
-		}
-	  });
-  
-	  return result;
-	}
-  }
 
+	if (premadeInputsMap) {
+		const matches = str.match(/\{\{(\w*?)\}\}/g);
+
+		if (!matches) return result;
+
+		matches.forEach((m) => {
+			if (Object.hasOwn(premadeInputsMap, m)) {
+				result = result.replace(m, premadeInputsMap[m]);
+			}
+		});
+
+		return result;
+	}
+}
+
+// Get Maeve from localStorage
 export function getLocalMaeve() {
 	let maeveStr: string | null = null;
 	if (browser) {
-		maeveStr = localStorage.getItem('maeve');
+		maeveStr = localStorage.getItem("maeve");
 	}
 	if (!maeveStr) return null;
 
 	return JSON.parse(maeveStr) as Maeve;
 }
 
-export function getInitialNodes(maeve: Maeve): Node[] {
-	const agentEncounter: Record<string, boolean> = {};
+// creates an array of nodes without the stores
+export function getCleanNodes(nodes: Node[]): Node[] {
+	const agents = nodes
+		.filter((n) => n.type === "agent")
+		.map((n) => {
+			const { prompt, name, job_title, model } = n.data;
+			return {
+				...n,
+				data: {
+					...n.data,
+					prompt: get(prompt),
+					name: get(name),
+					job_title: get(job_title),
+					model: get(model)
+				}
+			};
+		});
 
-	return [
-		...maeve.composition.prompts.map((v) => ({
-			id: v.id,
-			position,
-			type: 'prompt',
-			data: { ...v, title: writable(v.title), content: writable(v.content) }
-		})),
-		...maeve.composition.groups
-			.map((g) => [
-				...g.agents
-					.filter((a) => !agentEncounter[a.instance_id])
-					.map((a) => {
-						agentEncounter[a.instance_id] = true;
-						return {
-							id: a.instance_id,
-							type: 'agent',
-							position,
-							data: {
-								...a,
-								prompt: writable(a.prompt),
-								full_name: writable(a.full_name),
-								job_title: writable(a.job_title),
-								model: writable(a.model)
-							}
-						};
-					})
-			])
-			.flat()
-	];
+	const prompts = nodes
+		.filter((n) => n.type === "prompt")
+		.map((n) => {
+			const { title, content } = n.data;
+			return {
+				...n,
+				data: {
+					title: get(title),
+					content: get(content)
+				}
+			};
+		});
+
+	return [...prompts, ...agents];
 }
 
-export function getInitialEdges(maeve: Maeve): Edge[] {
-	let edgeId = -1;
-	const receiver = maeve.composition.receiver;
+// creates an array of writable nodes
+export function getWritableNodes(nodes: Node[]): Node[] {
 	return [
-		...maeve.composition.prompts.reduce((ac: Edge[], p) => {
-			const edges: Edge[] = [...ac];
-			edgeId++;
-			if (receiver) {
-				edges.push({
-					id: 'e' + edgeId.toString(),
-					source: p.id,
-					target: receiver.instance_id,
-					type: edgeType,
-					animated: true
-				});
-			}
-			return edges;
-		}, []),
-		...maeve.composition.groups.reduce((ac: Edge[], g) => {
-			const edges: Edge[] = [...ac];
-
-			g.agents.forEach((aSource) => {
-				if (aSource.instance_id === g.communicator) {
-					edgeId++;
-					edges.push(
-						...g.agents
-							.filter((aTarget) => aSource.instance_id !== aTarget.instance_id)
-							.map((aTarget) => {
-								edgeId++;
-								return {
-									id: 'e' + edgeId.toString(),
-									source: aSource.instance_id,
-									target: aTarget.instance_id,
-									type: edgeType,
-									animated: true
-								};
-							})
-					);
+		...nodes
+			.filter((n) => n.type === "prompt")
+			.map((n) => ({
+				...n,
+				data: { title: writable(n.data.title), content: writable(n.data.content) }
+			})),
+		...nodes
+			.filter((n) => n.type === "agent")
+			.map((n) => ({
+				...n,
+				data: {
+					...n.data,
+					prompt: writable(n.data.prompt),
+					name: writable(n.data.name),
+					job_title: writable(n.data.job_title),
+					model: writable(n.data.model)
 				}
-			});
-
-			return edges;
-		}, [])
+			}))
 	];
 }
 
@@ -156,7 +179,7 @@ export const flyAndScale = (
 	params: FlyAndScaleParams = { y: -8, x: 0, start: 0.95, duration: 150 }
 ): TransitionConfig => {
 	const style = getComputedStyle(node);
-	const transform = style.transform === 'none' ? '' : style.transform;
+	const transform = style.transform === "none" ? "" : style.transform;
 
 	const scaleConversion = (valueA: number, scaleA: [number, number], scaleB: [number, number]) => {
 		const [minA, maxA] = scaleA;
@@ -172,7 +195,7 @@ export const flyAndScale = (
 		return Object.keys(style).reduce((str, key) => {
 			if (style[key] === undefined) return str;
 			return str + `${key}:${style[key]};`;
-		}, '');
+		}, "");
 	};
 
 	return {
@@ -191,3 +214,10 @@ export const flyAndScale = (
 		easing: cubicOut
 	};
 };
+
+type DateStyle = Intl.DateTimeFormatOptions["dateStyle"];
+
+export function formatDate(date: string, dateStyle: DateStyle = "medium", locales = "en") {
+	const formatter = new Intl.DateTimeFormat(locales, { dateStyle });
+	return formatter.format(new Date(date));
+}

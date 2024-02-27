@@ -1,45 +1,43 @@
 <script lang="ts">
-	import {
-		Position,
-		type NodeProps,
-		useHandleConnections,
-		type Connection,
-		getConnectedEdges,
-		useSvelteFlow,
-		useConnection
-	} from '@xyflow/svelte';
-	import { type Writable } from 'svelte/store';
-	import { X } from 'lucide-svelte';
+	import { Position, type NodeProps, useSvelteFlow, useConnection } from "@xyflow/svelte";
+	import { type Writable } from "svelte/store";
+	import { X } from "lucide-svelte";
 
 	// 👇 always import the styles
-	import '@xyflow/svelte/dist/style.css';
-	import * as Card from '$lib/components/ui/card';
-	import * as Select from '$lib/components/ui/select';
-	import { Input } from '$lib/components/ui/input';
-	import { Button } from '$lib/components/ui/button';
-	import Handle from '$lib/components/Handle.svelte';
-	import Textarea from '../textarea/textarea.svelte';
-	import { getContext } from '$lib/utils';
+	import "@xyflow/svelte/dist/style.css";
+	import * as Card from "$lib/components/ui/card";
+	import * as Select from "$lib/components/ui/select";
+	import { Input } from "$lib/components/ui/input";
+	import Handle from "$lib/components/Handle.svelte";
+	import { getContext } from "$lib/utils";
+	import { PromptEditor } from "$lib/components/ui/prompt-editor";
 
 	type $$Props = NodeProps;
 
-	const { receiver } = getContext('maeve');
+	const { receiver, count } = getContext("maeve");
 
 	export let data: {
+		avatar: string;
 		prompt: Writable<string>;
-		full_name: Writable<string>;
 		job_title: Writable<string>;
-		model: Writable<string>;
+		name: Writable<string>;
+		model: Writable<{ label: string; value: string }>;
 	};
 
-	const { full_name, job_title, model, prompt } = data;
+	const { name, model, prompt, job_title, avatar } = data;
 
-	const modals = [
-		{ label: 'modal-a', value: 'modal-a' },
-		{ label: 'modal-b', value: 'modal-b' },
-		{ label: 'modal-c', value: 'modal-c' }
+	const models = [
+		{
+			label: "GPT-4 Turbo",
+			value: "gpt-4-turbo-preview"
+		},
+		{
+			label: "GPT-3.5 Turbo",
+			value: "gpt-3.5-turbo"
+		}
 	];
-	export let id: NodeProps['id'];
+
+	export let id: NodeProps["id"];
 
 	const connection = useConnection();
 
@@ -49,9 +47,7 @@
 	$: isConnecting = !!$connection.startHandle?.nodeId;
 	$: isTarget = !!$connection.startHandle && $connection.startHandle?.nodeId !== id;
 	$: isReceiver = $receiver?.node.id === id;
-	$: label = isTarget ? 'Drop it here' : 'Drag to connect';
 
-	const connections = useHandleConnections({ nodeId: id, type: 'source' });
 	const { deleteElements } = useSvelteFlow();
 </script>
 
@@ -63,6 +59,8 @@
 	<button
 		on:click={() => {
 			deleteElements({ nodes: [{ id }] });
+			$count.agents--;
+
 			if (isReceiver) {
 				$receiver = null;
 			}
@@ -79,17 +77,19 @@
 			{/if}
 		</Card.Title>
 	</Card.Header>
-	<Card.Content class="grid gap-2">
-		<Textarea placeholder="Prompt..." bind:value={$prompt} />
-		<Input placeholder="Full name" bind:value={$full_name} />
-		<Input placeholder="Job title" bind:value={$job_title} />
-		<Select.Root selected={{ label: $model, value: $model }}>
+	<Card.Content class="grid w-[300px] gap-2">
+		{#if avatar}
+			<img class="mx-auto max-w-[90px]" src="/avatars/{avatar}" alt="" />
+		{/if}
+		<Input placeholder="Name..." bind:value={$name} />
+		<Input placeholder="Job title..." bind:value={$job_title} />
+		<Select.Root bind:selected={$model}>
 			<Select.Trigger>
 				<Select.Value placeholder="Select a model" />
 			</Select.Trigger>
 			<Select.Content>
 				<Select.Group>
-					{#each modals as { value, label }}
+					{#each models as { value, label }}
 						<Select.Item {value} {label}>
 							{label}
 						</Select.Item>
@@ -97,6 +97,7 @@
 				</Select.Group>
 			</Select.Content>
 		</Select.Root>
+		<PromptEditor bind:value={$prompt} />
 		<Handle type="target" id="top-{id}" position={Position.Top} />
 		<Handle type="source" id="bottom-{id}" position={Position.Bottom} />
 	</Card.Content>
