@@ -6,6 +6,13 @@
 	import { afterUpdate, onMount } from "svelte";
 	import SvelteMarkdown from "svelte-markdown";
 
+	let maeveId;
+
+	onMount(() => {
+		maeveId = localStorage.getItem("currentMeaveId");
+		console.log(maeveId, 'maeveId');
+	});
+
 	let messages: string | any[] = [];
 
 	function handleKeyDown(event: { key: string }) {
@@ -25,9 +32,6 @@
 				id: messages.length + 1,
 				status: "success",
 				data: {
-					id: "599bd33b-2b24-437a-89c5-54c998c87598",
-					session_id: "76e4f0cf-4678-4ace-8d90-75815d5df78b",
-					recipient: "SocialMediaManager-OliviaHarris",
 					content: newMessageContent,
 					role: "not user",
 					name: "new user",
@@ -67,7 +71,7 @@
 			const response = await fetch(`/api/v1/meave?${queryParams}`);
 			const data = await response.json();
 			const jsonResponseString = data.content;
-
+ 
 			const jsonStrings = jsonResponseString
 				.split("}}\n")
 				.map((str: string) => (str.endsWith("}") ? str : str + "}}"));
@@ -125,6 +129,9 @@
 			console.error("Error fetching chat maeave:", error);
 		}
 	};
+
+
+	
 </script>
 
 <div class="container -mb-6 flex h-screen max-w-6xl flex-col justify-end p-6">

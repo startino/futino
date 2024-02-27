@@ -5,7 +5,9 @@ export const GET = async ({ url }) => {
 	const session_id = url.searchParams.get("session_id");
 	const id = url.searchParams.get("meave_id");
 	const reply = url.searchParams.get("reply");
+	// const params = url.searchParams.get("params");
 
+	console.log(id, session_id, reply, "from reply id api");
 
 	if (!id || !reply) {
 		return json({ error: "No id provided" }, { status: 400 });

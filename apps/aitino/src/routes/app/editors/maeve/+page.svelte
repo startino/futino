@@ -47,8 +47,9 @@
 		{
 			name: "Run",
 			buttonVariant: "default",
-			onclick: () => {
+			onclick: async () => {
 				isChatDialogOpen = true;
+				await save();
 			}
 		},
 		{ name: "Add Prompt", buttonVariant: "outline", onclick: addNewPrompt },
@@ -150,6 +151,10 @@
 			edges: $edges
 		});
 
+		console.log(data.id, "from save node");
+
+		localStorage.setItem("currentMeaveId", data.id);
+
 		if (error) {
 			toast.error("Something went wrong when saving the nodes..");
 			return;
@@ -227,6 +232,8 @@
 
 		$count.prompts++;
 	}
+
+	console.log(data.id, "from save node 0");
 </script>
 
 <div style="height:100vh;">
@@ -301,17 +308,17 @@
 			</RightEditorSidebar>
 		</Panel>
 		<Panel position="bottom-right">
-				<Dialog.Root
-					open={isChatDialogOpen}
-					onOpenChange={() => {
-						isChatDialogOpen = false;
-						console.log("close");
-					}}
-				>
-					<Dialog.Content class="sm:max-w-full">
-						<ChatRoom />
-					</Dialog.Content>
-				</Dialog.Root>
+			<Dialog.Root
+				open={isChatDialogOpen}
+				onOpenChange={() => {
+					isChatDialogOpen = false;
+					console.log("close");
+				}}
+			>
+				<Dialog.Content class="sm:max-w-full">
+					<ChatRoom />
+				</Dialog.Content>
+			</Dialog.Root>
 		</Panel>
 	</SvelteFlow>
 </div>

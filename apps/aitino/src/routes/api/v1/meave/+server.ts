@@ -7,11 +7,13 @@ export const GET = async ({ url }) => {
 		return json({ error: "No id provided" }, { status: 400 });
 	}
 
+	console.log(id, 'from get meave');
 
 	//api.aiti.no/maeve?id={maeve_id}&session_id={session_id}&reply={reply}
 	//api.aiti.no/maeve?id={maeve_id}&session_id={f3e7ba39-e06e-4c24-a4f2-4a03c2de4453}&reply={make}
 
 	const apiUrl = `${API_BASE_URL}/maeve?id=${id}`;
+	console.log(apiUrl, "api url");
 
 	try {
 		const response = await fetch(apiUrl);
@@ -22,14 +24,16 @@ export const GET = async ({ url }) => {
 			);
 		}
 
+		console.log(response, "response from backend");
+
 		let data = [];
 		const reader = response.body.getReader();
 
 		try {
 			while (true) {
 				const { done, value } = await reader.read();
-				// responseData = new TextDecoder().decode(value);
-				// console.log(responseData, "res data 0");
+				letnotVal = new TextDecoder().decode(value);
+				console.log(notVal, "res data 0");
 
 				// console.log(value, "value");
 				// console.log(done, "done");
