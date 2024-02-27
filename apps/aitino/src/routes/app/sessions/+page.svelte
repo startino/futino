@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { ArrowDown, ChevronDown, Loader, Loader2, Send, User } from "lucide-svelte";
-	import { Input } from "./ui/input";
-	import { Button } from "./ui/button";
+	import { Loader, Loader2, Send, User } from "lucide-svelte";
+	import { Input } from "$lib/components/ui/input";
+	import { Button } from "$lib/components/ui/button";
 	import * as Card from "$lib/components/ui/card";
 	import { afterUpdate, onMount } from "svelte";
 	import SvelteMarkdown from "svelte-markdown";
@@ -120,49 +120,21 @@
 					<div class="space-y-2 border-none">
 						<Card.Root class=" max-w-2xl">
 							<Card.Content class="grid gap-4 p-6">
-								{#if message.data && "content" in message.data && message.data.content === "CONTINUE"}
-									{#if !showReplyField}
-										{message.data.content}
-										<Button on:click={toggleReplyField} class="flex items-center justify-center">
-											reply
-										</Button>{/if}
-									{#if showReplyField}
-										<form class="mt-2 flex flex-col gap-y-6" on:submit={handleReply}>
-											<Input
-												on:input={handleInputChangeReply}
-												placeholder="Type your reply..."
-												class="flex  h-9 w-full rounded-md border border-input bg-transparent px-3 py-6 text-sm shadow-sm ring-offset-0 transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring focus-visible:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50"
-											/>
-											<div class="align-center mx-auto flex justify-between gap-2">
-												<Button variant="primary" type="submit">Send Reply</Button>
-												{#if state !== "idle"}
-													<Loader2 class="ml-2 w-4 animate-spin" />
-												{/if}
-												<Button variant="primary" on:click={toggleReplyField}>Cancel</Button>
-											</div>
-										</form>
-									{/if}
-								{:else if message.data.content.startsWith("```") || message.data.content.includes("<")}
+								<p
+									class="prose prose-main max-w-2xl break-words text-sm font-medium leading-5 tracking-widest"
+								>
 									<SvelteMarkdown source={message.data.content} />
-								{:else}
-									<p
-										class="prose max-w-2xl break-words text-sm font-medium leading-5 tracking-widest"
-									>
-										{message.data.content}
-									</p>
-								{/if}
+								</p>
 							</Card.Content>
 						</Card.Root>
 						<Card.Root class="max-w-2xl border-none bg-background">
 							<Card.Content class="grid w-full grid-cols-2 items-center justify-between gap-4 ">
 								<div class="flex items-center gap-4">
-									<p class="prose text-xs font-medium leading-none dark:text-blue-950">
+									<p class="prose text-xs font-medium leading-none">
 										<User size="16" />
 									</p>
 
-									<p
-										class="prose text-xs font-medium leading-none tracking-widest dark:text-blue-950"
-									>
+									<p class="prose prose-main text-xs font-medium leading-none tracking-widest">
 										{message.data.name} - Agent
 									</p>
 								</div>
@@ -207,7 +179,9 @@
 		<Card.Root class="mt-4 max-w-full border border-secondary">
 			<Card.Content class="grid gap-4 p-2">
 				<div class="flex justify-between">
-					<p class="prose text-sm font-medium leading-8 tracking-widest">
+					<p
+						class="text-background-on prose prose-main text-sm font-medium leading-8 tracking-widest"
+					>
 						Waiting on your response...
 					</p>
 					<Loader class="prose" />
