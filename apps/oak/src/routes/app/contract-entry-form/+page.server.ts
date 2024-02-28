@@ -60,6 +60,10 @@ export const load = async ({ locals: { apiClient } }) => {
 			const { data } = await apiClient.getOrgUsers(organizationID);
 			return data;
 		})(),
+		organizationProjects: (async () => {
+			const { data } = await apiClient.getOrgProjects(organizationID);
+			return data;
+		})(),
 		contractsWithVendors: getContractsWithVendors(),
 		approversWithNames: attachApproverNames(),
 		vendors: (async () => {
@@ -91,12 +95,10 @@ export const actions: Actions = {
 			console.info('Contract Form submitted successfully: ', form.data);
 		}
 
-		// Parse the form data into a contract object
 		const data = form.data;
 
 		const orgID = await fetchUserOrgID(apiClient.user.id);
 
-		// Insert the contract using the formData into the contracts table
 		delete data.new_vendor;
 
 		const { error } = await apiClient.supabase.from('contracts').insert([

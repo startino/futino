@@ -41,6 +41,7 @@
 	let organizationUsersParsed = [];
 	let vendorsParsed = [];
 	let departmentsParsed = [];
+	let organizationProjectsParsed = [];
 	let vendorDialogOpen = false;
 	let newVendorError = '';
 
@@ -157,6 +158,12 @@
 		const organizationUsers = await data.organizationUsers;
 		const vendors = await data.vendors;
 		const departments = await data.departments;
+		const organizationProjects = await data.organizationProjects;
+
+		organizationProjectsParsed = organizationProjects.map((project) => ({
+			value: project.id,
+			label: project.name
+		}));
 
 		departmentsParsed = departments.map((department) => ({
 			value: department.id,
@@ -365,7 +372,20 @@
 					</Form.Item>
 				</Form.Field>
 
-				<!--TODO project code input field-->
+				<Form.Field {config} name="project_id" let:setValue let:value>
+					<Form.Item class="grid">
+						<Form.Label class="mb-2">Project</Form.Label>
+						<Combobox
+							items={organizationProjectsParsed}
+							{value}
+							placeholder="Search for a project"
+							{setValue}
+						/>
+						<Form.Validation />
+						<Form.Validation />
+					</Form.Item>
+				</Form.Field>
+
 				<Form.Field {config} name="owner" let:setValue>
 					<Form.Item class="grid">
 						<Form.Label class="mb-2">Owner</Form.Label>

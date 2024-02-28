@@ -23,6 +23,10 @@ export class ApiClient {
 		this.userAccesToken = arg.userAccessToken;
 	}
 
+	async getOrgProjects(organizationId: string) {
+		return await this.supabase.from('projects').select('*').eq('organization_id', organizationId);
+	}
+
 	async getOrgDeparments(organizationId: string) {
 		return await this.supabase
 			.from('departments')
