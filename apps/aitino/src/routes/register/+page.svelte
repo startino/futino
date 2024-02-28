@@ -24,7 +24,6 @@
 		validators: formSchema
 	});
 
-	console.log(form, "form from action data not load function of register");
 </script>
 
 <div class="max-w-screen bg-card mx-auto flex h-screen items-center justify-center">
@@ -126,11 +125,13 @@
 					class="w-full"
 					type="submit"
 					on:click={() => {
-						if (form?.success) {
-							toast.success("Your account has been created", {
-								description: "Check your email to activate your account"
-							});
-						}
+						setTimeout(() => {
+							if (!($errors.display_name || $errors.email || $errors.password)) {
+								toast.success("Your account has been created", {
+									description: "Check your email to activate your account"
+								});
+							}
+						}, 1000);
 					}}>Create account</Button
 				>
 			</form>

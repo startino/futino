@@ -13,13 +13,11 @@ export const load = (async () => {
 export const actions: Actions = {
 	register: async ({ request, locals, url }) => {
 		const provider = url.searchParams.get("provider") as Provider;
-		console.log(provider, "provider");
 		if (provider) {
 			const { data, error: err } = await locals.supabase.auth.signInWithOAuth({
 				provider: provider
 			});
 
-			console.log(data, "data from provider");
 
 			if (err) {
 				console.log(err);
@@ -34,12 +32,12 @@ export const actions: Actions = {
 		const body = Object.fromEntries(await request.formData());
 		// const form = await superValidate(request, );
 		const form = await superValidate(body, formSchema);
-		console.log(form, "form zod supervalidate");
-		console.log(body, "from register server");
 
 		if (!form.valid) {
 			return fail(400, {
-				form
+				form,
+				success: false,
+				errors: form.errors
 			});
 		}
 
@@ -48,17 +46,11 @@ export const actions: Actions = {
 			password: body.password as string
 		});
 
-		console.log(data, "data", err, "error");
 
 		if (err) {
 			if (err instanceof AuthApiError && err.status === 400) {
-				return fail(400, {
-					error: "Invalid credentials"
-				});
+				throw redirect(307, '/login');
 			}
-			return fail(500, {
-				message: "Server error. Please try again later."
-			});
 		}
 
 		// const user = data.user;
@@ -74,9 +66,6 @@ export const actions: Actions = {
 		// 	}
 		// }
 
-		return {
-			success: true,
-			message: "Check your email for the verification link"
-		};
+		throw redirect(301, "/");
 	}
 };

@@ -9,13 +9,10 @@ export const load = (async () => {
 export const actions: Actions = {
 	login: async ({ request, locals, cookies, url }) => {
 		const provider = url.searchParams.get("provider") as Provider;
-		console.log(provider, "provider");
 		if (provider) {
 			const { data, error: err } = await locals.supabase.auth.signInWithOAuth({
 				provider: provider
 			});
-
-			console.log(data, "data from provider");
 
 			if (err) {
 				console.log(err);
@@ -27,7 +24,6 @@ export const actions: Actions = {
 			throw redirect(307, data.url);
 		}
 		const body = Object.fromEntries(await request.formData());
-		console.log(body, "from login server");
 
 		const { data, error } = await locals.supabase.auth.signInWithPassword({
 			email: body.email as string,
@@ -47,9 +43,6 @@ export const actions: Actions = {
 				error: error.message
 			});
 		}
-
-		console.log(data, " supabase success ");
-		console.log(error, " supabase error ");
 
 		throw redirect(307, "/");
 	}
