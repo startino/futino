@@ -1,5 +1,4 @@
 <script lang="ts">
-	import SuperDebug from 'sveltekit-superforms/client/SuperDebug.svelte';
 	import * as Form from '$lib/components/ui/form';
 	import { contractEntrySchema, type ContractEntryForm } from '$lib/schemas';
 	import { page } from '$app/stores';
@@ -43,7 +42,7 @@
 	let organizationProjectsParsed = [];
 	let newVendorDialog = false;
 	let newProjectDialog = false;
-	let newError = '';
+	let newRessourceError = '';
 
 	let form: SuperValidated<ContractEntryForm> = $page.data.form;
 
@@ -54,6 +53,10 @@
 		taintedMessage: null,
 		dataType: 'json'
 	});
+
+	const formErrors = theForm.errors;
+
+	$: console.log({ formErrors: $formErrors });
 
 	const submitting = theForm.submitting;
 
@@ -123,7 +126,7 @@
 		if (error) {
 			console.log(error);
 
-			newError = 'Something went wrong...Please, try again';
+			newRessourceError = 'Something went wrong...Please, try again';
 			return;
 		}
 
@@ -334,7 +337,7 @@
 										</Form.Item>
 									</Form.Field>
 									{#if newVendorDialog}
-										<span class="text-destructive">{newError}</span>
+										<span class="text-destructive">{newRessourceError}</span>
 									{/if}
 								</div>
 								<Dialog.Footer>
@@ -393,7 +396,7 @@
 										</Form.Item>
 									</Form.Field>
 									{#if newProjectDialog}
-										<span class="text-destructive">{newError}</span>
+										<span class="text-destructive">{newRessourceError}</span>
 									{/if}
 								</div>
 								<Dialog.Footer>
@@ -493,6 +496,9 @@
 				<Form.Button type="submit" disabled={status === 'uploading' || $submitting}
 					>Submit</Form.Button
 				>
+				{#if Object.entries($formErrors).length > 0}
+					<p class="text-destructive">Please fill out the form with the required data</p>
+				{/if}
 			</Form.Root>
 		{/await}
 	</Card.Content>
