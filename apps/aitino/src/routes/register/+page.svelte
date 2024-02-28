@@ -5,11 +5,27 @@
 	import { Label } from "$lib/components/ui/label";
 	import { Input } from "$lib/components/ui/input";
 	import { Github } from "lucide-svelte";
-	import { enhance } from "$app/forms";
-	import AlertCircle from "lucide-svelte/icons/alert-circle";
+	// import { enhance } from "$app/forms";
 	import * as Alert from "$lib/components/ui/alert";
+	import * as Form from "$lib/components/ui/form";
+	import { formSchema, type FormSchema } from "$lib/schma";
+	import type { SuperValidated } from "sveltekit-superforms";
+	import { superForm } from "sveltekit-superforms/client";
+	import { toast } from "svelte-sonner";
+
 	export let data: PageData;
+
+	const {
+		form: formRegister,
+		errors,
+		enhance
+	} = superForm(data.form, {
+		validators: formSchema
+	});
+
 	export let form;
+
+	console.log(form, "form from action data not load function of register");
 </script>
 
 <div class="max-w-screen bg-card mx-auto flex h-screen items-center justify-center">
@@ -64,8 +80,14 @@
 						name="display_name"
 						type="display_name"
 						placeholder="Display name"
+						bind:value={$formRegister.display_name}
 						class="border-input  placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border bg-transparent px-3 py-6 text-sm shadow-sm ring-offset-0 transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50"
 					/>
+					{#if $errors.display_name}
+						<Alert.Root variant="destructive" class="border-none p-0">
+							<Alert.Description>{$errors.display_name}</Alert.Description>
+						</Alert.Root>
+					{/if}
 				</div>
 				<div class="grid gap-2">
 					<Label for="email">Email</Label>
@@ -74,8 +96,14 @@
 						type="email"
 						name="email"
 						placeholder="minilik@gmail.com"
+						bind:value={$formRegister.email}
 						class="border-input  placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border bg-transparent px-3 py-6 text-sm shadow-sm ring-offset-0 transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50"
 					/>
+					{#if $errors.email}
+						<Alert.Root variant="destructive" class="border-none p-0">
+							<Alert.Description>{$errors.email}</Alert.Description>
+						</Alert.Root>
+					{/if}
 				</div>
 				<div class="grid gap-2">
 					<Label for="password">Password</Label>
@@ -83,18 +111,49 @@
 						id="password"
 						type="password"
 						name="password"
+						placeholder="********"
+						bind:value={$formRegister.password}
 						class="border-input  placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border bg-transparent px-3 py-6 text-sm shadow-sm ring-offset-0 transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50"
 					/>
+					{#if $errors.password}
+						<Alert.Root variant="destructive" class="border-none p-0">
+							<Alert.Description class="p-0">{$errors.password}</Alert.Description>
+						</Alert.Root>
+					{/if}
 				</div>
-				<Button class="w-full" type="submit">Create account</Button>
+				<Button
+					class="w-full"
+					type="submit"
+					on:click={() => {
+						if (form?.success) {
+							toast.success("Your account has been created", {
+								description: "Check your email to activate your account"
+							});
+						}
+					}}>Create account</Button
+				>
 			</form>
 			{#if form?.error}
-				<Alert.Root variant="destructive">
-					<AlertCircle class="h-4 w-4" />
-					<Alert.Title>Error</Alert.Title>
+				<Alert.Root variant="destructive" class="border-none p-0">
 					<Alert.Description>{form?.error}</Alert.Description>
 				</Alert.Root>
 			{/if}
 		</Card.Content>
 	</Card.Root>
 </div>
+
+{#if form?.success}
+	<p>{form?.message}</p>
+{:else if form?.error}
+	<p>{form?.error}</p>
+{/if}
+<!-- 
+<AlertDialog.Root open={form?.success}>
+	<AlertDialog.Content>
+		<AlertDialog.Header>
+			<AlertDialog.Description>
+				{form?.message}
+			</AlertDialog.Description>
+		</AlertDialog.Header>
+	</AlertDialog.Content>
+</AlertDialog.Root> -->
