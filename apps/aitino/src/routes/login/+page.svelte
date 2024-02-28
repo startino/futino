@@ -5,15 +5,21 @@
 	import { Label } from "$lib/components/ui/label";
 	import { Input } from "$lib/components/ui/input";
 	import { Github } from "lucide-svelte";
+	import * as Alert from "$lib/components/ui/alert";
+	import { toast } from "svelte-sonner";
+	import { enhance } from "$app/forms";
+	import Footer from "$lib/components/Footer.svelte";
 
 	export let data: PageData;
+
+	export let form;
 </script>
 
 <div class="max-w-screen bg-card mx-auto flex h-screen items-center justify-center">
 	<Card.Root>
 		<Card.Header class="space-y-1">
-			<Card.Title class="text-2xl">Create an account</Card.Title>
-			<Card.Description>Enter your email below to create your account</Card.Description>
+			<Card.Title class="text-2xl">Login</Card.Title>
+			<Card.Description>Login to your account</Card.Description>
 		</Card.Header>
 		<Card.Content class="grid gap-4">
 			<div class="grid grid-cols-2 gap-6">
@@ -53,7 +59,7 @@
 					<span class="bg-card text-muted-foreground px-2"> Or continue with </span>
 				</div>
 			</div>
-			<form action="?/login" method="POST" class="space-y-4">
+			<form action="?/login" method="POST" class="space-y-4" use:enhance>
 				<div class="grid gap-2">
 					<Label for="email">Email</Label>
 					<Input
@@ -73,8 +79,29 @@
 						class="border-input  placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border bg-transparent px-3 py-6 text-sm shadow-sm ring-offset-0 transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50"
 					/>
 				</div>
-				<Button class="w-full" type="submit">Login</Button>
+				<!-- {#if form?.error}
+					<Alert.Root variant="destructive" class="border-none p-0">
+						<Alert.Description>{form?.error}</Alert.Description>
+					</Alert.Root>
+				{/if} -->
+				<Button
+					class="w-full"
+					type="submit"
+					on:click={() => {
+						if (form?.error) {
+							toast.error(form?.error);
+						}
+					}}>Login</Button
+				>
 			</form>
 		</Card.Content>
+		<Card.Footer class="block  p-0 ">
+			<Button
+				href="/register"
+				variant="outline"
+				class="text-primary-foreground block border-none bg-transparent p-0 text-end hover:bg-transparent"
+				>Don't have an account, register</Button
+			>
+		</Card.Footer>
 	</Card.Root>
 </div>

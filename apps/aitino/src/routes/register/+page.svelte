@@ -139,21 +139,13 @@
 				</Alert.Root>
 			{/if}
 		</Card.Content>
+		<Card.Footer class="block  p-0 ">
+			<Button
+				href="/login"
+				variant="outline"
+				class="text-primary-foreground block border-none bg-transparent p-0 text-end hover:bg-transparent"
+				>Already have an account, login</Button
+			>
+		</Card.Footer>
 	</Card.Root>
 </div>
-
-{#if form?.success}
-	<p>{form?.message}</p>
-{:else if form?.error}
-	<p>{form?.error}</p>
-{/if}
-<!-- 
-<AlertDialog.Root open={form?.success}>
-	<AlertDialog.Content>
-		<AlertDialog.Header>
-			<AlertDialog.Description>
-				{form?.message}
-			</AlertDialog.Description>
-		</AlertDialog.Header>
-	</AlertDialog.Content>
-</AlertDialog.Root> -->

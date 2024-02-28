@@ -44,13 +44,14 @@ export const actions: Actions = {
 		// }
 
 		if (error) {
-			return fail(500, {
+			return {
 				error: error.message
-			});
+			};
 		}
 
-		return fail(200, {
+		return {
 			success: true,
-		})
+			message: "Check your email for the verification link"
+		};
 	}
 };
