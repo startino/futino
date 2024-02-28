@@ -5,6 +5,11 @@
 	import type { ActionData, PageData } from "./$types";
 	import SEO from "$lib/components/SEO/index.svelte";
 	import { Logo } from "$lib/components/ui/logo";
+	import * as Tabs from "$lib/components/ui/tabs";
+	import * as Card from "$lib/components/ui/card";
+	import { Button } from "$lib/components/ui/button";
+	import { Input } from "$lib/components/ui/input";
+	import { Label } from "$lib/components/ui/label";
 
 	export let form: ActionData;
 
@@ -23,10 +28,42 @@
 	const subtitleVariants: Record<string, string> = {
 		"0": "Aitino is a platform that allows for the creation of teams of AI Agents to help you automate tasks and solve complex problems. It's made easily customizable through a node-editor."
 	};
+
+	let selectedIndex: number = 0;
+
+	const features = [
+		{
+			title: "Teams of AI Agents",
+			description:
+				"Harness the collective intelligence of AI teams designed to collaborate and amplify problem-solving capabilities. Experience the synergy of multiple AI agents working in concert to tackle complex tasks efficiently.",
+			image: "/screenshots/maeve_editor_1.png"
+		},
+		{
+			title: "Fully Custom Agents",
+			description:
+				"Tailor your AI agents to meet unique business needs with fully customizable solutions. Create bespoke agents that align perfectly with your workflow and industry-specific challenges.	",
+			image: "/screenshots/agent_node_horizontal.png"
+		},
+		{
+			title: "Community Libraries",
+			description:
+				"Tap into a wealth of knowledge with our community-driven libraries, where shared insights fuel innovation. Benefit from a repository of resources that grows smarter through collective contributions.",
+			image: "/screenshots/vat-returns.png"
+		},
+		{
+			title: "Multi-modal Task Solving",
+			description:
+				"Address a diverse range of problems with AI agents capable of multi-modal task solving. Whether it's text, image, or data-centric challenges, our versatile agents adapt to deliver results.",
+			image: "/screenshots/reporting.png"
+		}
+	];
+	function selectFeature(index: number) {
+		selectedIndex = index;
+	}
 </script>
 
 <div
-	class="pointer-events-none absolute inset-0 h-full w-full bg-inherit bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:150px_150px]"
+	class="pointer-events-none absolute inset-0 h-[50000px] w-full bg-inherit bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:150px_150px]"
 ></div>
 
 <Toaster />
@@ -51,7 +88,7 @@
 	metadescription="The world's leading web platform in pairing modern AI models with highly effective multi-agent technologies. By taking the form of node-editors, Aitino harnesses the ability to create teams of AI agents that collaborate to solve complex tasks in real-time."
 />
 
-<div class="flex h-screen w-screen flex-col justify-center bg-transparent">
+<section class="flex h-screen w-screen flex-col justify-center">
 	<div class="mt-32 flex w-screen flex-col justify-evenly py-6 md:mt-24 lg:mt-28 xl:mt-32">
 		<div
 			class="mx-auto flex w-full flex-col place-items-center gap-y-4 px-2 text-foreground sm:gap-y-8"
@@ -76,4 +113,52 @@
 			<FormItem mainform={form} notform={data} />
 		</div>
 	</div>
-</div>
+</section>
+
+<section
+	id="features"
+	aria-label="Features for running your books"
+	class="relative overflow-hidden pb-28 pt-20 sm:py-32"
+>
+	<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+		<div class="mb-8 max-w-2xl md:mx-auto md:text-center xl:max-w-none">
+			<h2 class="font-display text-3xl tracking-tight text-foreground sm:text-4xl md:text-5xl">
+				Become a more efficient entrepreneur
+			</h2>
+			<p class="mt-6 text-lg tracking-tight text-foreground/80">
+				Here's a list of Aitino's features that will save you time and money.
+			</p>
+		</div>
+
+		<Tabs.Root value="0" class="">
+			<Tabs.List class="grid w-full grid-cols-4">
+				{#each features as feature, value}
+					<Tabs.Trigger value={value.toString()}>{feature.title}</Tabs.Trigger>
+				{/each}
+			</Tabs.List>
+			{#each features as feature, value}
+				<Tabs.Content value={value.toString()}>
+					<Card.Root class="p-8">
+						<Card.Header class="text-center">
+							<Card.Title class="text-3xl">{feature.title}</Card.Title>
+							<Card.Description class="text-md mx-auto max-w-sm">
+								{feature.description}
+							</Card.Description>
+						</Card.Header>
+						<Card.Content class="space-y-2">
+							<img
+								class="mx-auto max-h-96 w-full max-w-3xl rounded-xl border border-border object-contain"
+								src={feature.image}
+								alt="screenshot of the feature of {feature.title}"
+								sizes="(min-width: 1024px) 67.8125rem, (min-width: 640px) 100vw, 45rem"
+							/>
+						</Card.Content>
+						<Card.Footer>
+							<Button>Save changes</Button>
+						</Card.Footer>
+					</Card.Root>
+				</Tabs.Content>
+			{/each}
+		</Tabs.Root>
+	</div>
+</section>
