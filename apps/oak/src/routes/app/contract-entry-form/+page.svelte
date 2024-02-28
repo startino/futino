@@ -33,7 +33,7 @@
 	export let data: PageData;
 
 	const apiClient = data.apiClient;
-	let status: 'uploading' | 'submitting' | 'idle' | 'adding-new' | 'error' = 'idle';
+	let status: 'uploading' | 'submitting' | 'idle' | 'adding-new-ressource' | 'error' = 'idle';
 
 	let fileName: string | null;
 	let contractsParsed = [];
@@ -41,7 +41,8 @@
 	let vendorsParsed = [];
 	let departmentsParsed = [];
 	let organizationProjectsParsed = [];
-	let dialogOpen: 'new-vendor' | 'new-project' | 'none' = 'none';
+	let newVendorDialog = false;
+	let newProjectDialog = false;
 	let newError = '';
 
 	let form: SuperValidated<ContractEntryForm> = $page.data.form;
@@ -55,34 +56,13 @@
 	});
 
 	const submitting = theForm.submitting;
-	const error = theForm.errors;
-
-	$: console.log($error);
 
 	const { form: formStore } = theForm;
-
-	const options: FormOptions<typeof contractEntrySchema> = {
-		validators: contractEntrySchema,
-		onSubmit: () => {},
-		onError: () => {
-			// do something else
-		}
-		// ...
-	};
 
 	const df = new DateFormatter('en-US', {
 		dateStyle: 'long'
 	});
 
-	let parentContractOpen = false;
-	function closeAndFocusTrigger(triggerId: string) {
-		parentContractOpen = false;
-		tick().then(() => {
-			document.getElementById(triggerId)?.focus();
-		});
-	}
-
-	let parentContractValue: string | undefined = $formStore.parent_contract;
 	let startDateValue: DateValue | undefined = $formStore.start_date
 		? parseDate($formStore.start_date.toString())
 		: undefined;
@@ -119,73 +99,50 @@
 		status = 'idle';
 	}
 
-	async function addVendor() {
-		dialogOpen = 'new-vendor';
-		status = 'adding-new';
+	async function addResource(formKey: 'vendor' | 'project', createFunction, updateFunction) {
+		status = 'adding-new-ressource';
 
-		const idError = await theForm.validate('new_vendor.department_id');
-		const nameError = await theForm.validate('new_vendor.name');
+		const idError = await theForm.validate(
+			formKey === 'vendor' ? `new_${formKey}.department_id` : `new_${formKey}.description`
+		);
+		const nameError = await theForm.validate(`new_${formKey}.name`);
 
 		if (idError || nameError) {
-			console.error('Error adding new vendor');
+			console.error(`Error adding new ${formKey}`);
 			status = 'idle';
 			return;
 		}
-
-		const { data: vendor, error } = await apiClient.createVendor({
-			...$formStore.new_vendor,
-			name: $formStore.new_vendor.name as string,
+		const { data: resource, error } = await createFunction({
+			...$formStore[`new_${formKey}`],
+			name: $formStore[`new_${formKey}`].name as string,
 			organization_id: data.organization_id
 		});
 
 		status = 'idle';
 
 		if (error) {
+			console.log(error);
+
 			newError = 'Something went wrong...Please, try again';
 			return;
 		}
 
-		vendorsParsed = [{ label: vendor.name, value: vendor.id }, ...vendorsParsed];
+		const newParsedValue = { label: resource.name, value: resource.id };
+		formKey == 'vendor'
+			? (vendorsParsed = [newParsedValue, ...vendorsParsed])
+			: (organizationProjectsParsed = [newParsedValue, ...organizationProjectsParsed]);
 
-		formStore.update((v) => ({ ...v, vendor_id: vendor.id }));
+		updateFunction((v) => ({ ...v, [`${formKey}_id`]: resource.id }));
+	}
 
-		dialogOpen = 'none';
+	async function addVendor() {
+		await addResource('vendor', async (v) => await apiClient.createVendor(v), formStore.update);
+		newVendorDialog = false;
 	}
 
 	async function addProject() {
-		dialogOpen = 'new-project';
-		status = 'adding-new';
-
-		const idError = await theForm.validate('new_project.description');
-		const nameError = await theForm.validate('new_project.name');
-
-		if (idError || nameError) {
-			console.error('Error adding new project');
-			status = 'idle';
-			return;
-		}
-
-		const { data: project, error } = await apiClient.createProject({
-			...$formStore.new_project,
-			name: $formStore.new_project.name as string,
-			organization_id: data.organization_id
-		});
-
-		status = 'idle';
-
-		if (error) {
-			newError = 'Something went wrong...Please, try again';
-			return;
-		}
-
-		organizationProjectsParsed = [
-			{ label: project.name, value: project.id },
-			...organizationProjectsParsed
-		];
-
-		formStore.update((v) => ({ ...v, project_id: project.id }));
-
-		dialogOpen = 'none';
+		await addResource('project', async (v) => await apiClient.createProject(v), formStore.update);
+		newProjectDialog = false;
 	}
 
 	async function waitForRequiredData() {
@@ -341,13 +298,11 @@
 						<Form.Validation />
 
 						<Dialog.Root
-							open={dialogOpen === 'new-vendor'}
+							bind:open={newVendorDialog}
 							onOpenChange={(open) => {
 								if (open) {
 									$formStore.new_vendor = { name: '', department_id: '' };
-									return;
 								}
-								$formStore.new_vendor = undefined;
 							}}
 							closeOnEscape
 						>
@@ -378,31 +333,20 @@
 											/>
 										</Form.Item>
 									</Form.Field>
-									{#if newError && dialogOpen == 'new-vendor'}
+									{#if newVendorDialog}
 										<span class="text-destructive">{newError}</span>
 									{/if}
 								</div>
 								<Dialog.Footer>
-									<Button type="button" on:click={addVendor} disabled={status === 'adding-new'}
-										>{status === 'adding-new' ? 'Adding...' : 'Add'}</Button
+									<Button
+										type="button"
+										on:click={addVendor}
+										disabled={status === 'adding-new-ressource'}
+										>{status === 'adding-new-ressource' ? 'Adding...' : 'Add'}</Button
 									>
 								</Dialog.Footer>
 							</Dialog.Content>
 						</Dialog.Root>
-					</Form.Item>
-				</Form.Field>
-
-				<Form.Field {config} name="department_id" let:setValue let:value>
-					<Form.Item class="grid">
-						<Form.Label class="mb-2">Department</Form.Label>
-						<Combobox
-							items={departmentsParsed}
-							{value}
-							placeholder="Search for a department"
-							{setValue}
-						/>
-						<Form.Validation />
-						<Form.Validation />
 					</Form.Item>
 				</Form.Field>
 
@@ -417,13 +361,11 @@
 						/>
 						<Form.Validation />
 						<Dialog.Root
-							open={dialogOpen === 'new-project'}
+							bind:open={newProjectDialog}
 							onOpenChange={(open) => {
 								if (open) {
 									$formStore.new_project = { name: '', description: undefined };
-									return;
 								}
-								$formStore.new_project = undefined;
 							}}
 							closeOnEscape
 						>
@@ -450,13 +392,16 @@
 											<Form.Textarea />
 										</Form.Item>
 									</Form.Field>
-									{#if newError && dialogOpen == 'new-project'}
+									{#if newProjectDialog}
 										<span class="text-destructive">{newError}</span>
 									{/if}
 								</div>
 								<Dialog.Footer>
-									<Button type="button" on:click={addProject} disabled={status === 'adding-new'}
-										>{status === 'adding-new' ? 'Adding...' : 'Add'}</Button
+									<Button
+										type="button"
+										on:click={addProject}
+										disabled={status === 'adding-new-ressource'}
+										>{status === 'adding-new-ressource' ? 'Adding...' : 'Add'}</Button
 									>
 								</Dialog.Footer>
 							</Dialog.Content>
@@ -495,6 +440,19 @@
 						{/if}
 					{/await}
 				</div>
+				<Form.Field {config} name="department_id" let:setValue let:value>
+					<Form.Item class="grid">
+						<Form.Label class="mb-2">Department</Form.Label>
+						<Combobox
+							items={departmentsParsed}
+							{value}
+							placeholder="Search for a department"
+							{setValue}
+						/>
+						<Form.Validation />
+						<Form.Validation />
+					</Form.Item>
+				</Form.Field>
 				<Form.Field {config} name="amount">
 					<Form.Item class="grid">
 						<Form.Label class="mb-2">Amount</Form.Label>
