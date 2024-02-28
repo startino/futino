@@ -298,7 +298,17 @@
 						/>
 						<Form.Validation />
 
-						<Dialog.Root open={vendorDialogOpen} closeOnEscape>
+						<Dialog.Root
+							open={vendorDialogOpen}
+							onOpenChange={(open) => {
+								if (open) {
+									$formStore.new_vendor = { name: '', department_id: '' };
+									return;
+								}
+								$formStore.new_vendor = undefined;
+							}}
+							closeOnEscape
+						>
 							<Dialog.Trigger
 								class={`${buttonVariants({ variant: 'default' })} justify-self-start`}
 							>
@@ -338,6 +348,20 @@
 								</Dialog.Footer>
 							</Dialog.Content>
 						</Dialog.Root>
+					</Form.Item>
+				</Form.Field>
+
+				<Form.Field {config} name="department_id" let:setValue let:value>
+					<Form.Item class="grid">
+						<Form.Label class="mb-2">Department</Form.Label>
+						<Combobox
+							items={departmentsParsed}
+							{value}
+							placeholder="Search for a department"
+							{setValue}
+						/>
+						<Form.Validation />
+						<Form.Validation />
 					</Form.Item>
 				</Form.Field>
 

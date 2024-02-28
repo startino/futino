@@ -1,6 +1,9 @@
 import { STRIPE_SECRET_KEY } from '$env/static/private';
 
-export const load = async ({ locals: { getSession, user } }) => {
-	const session = await getSession();
-	return { userAccessToken: session.access_token, stripeKey: STRIPE_SECRET_KEY, user };
+export const load = async ({ locals: { apiClient } }) => {
+	return {
+		userAccessToken: apiClient.userAccesToken,
+		stripeKey: STRIPE_SECRET_KEY,
+		user: apiClient.user
+	};
 };

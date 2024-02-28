@@ -1,17 +1,11 @@
 // src/app.d.ts
 
 import type { ApiClient } from '$lib/api-client';
-import { SupabaseClient, Session, type User } from '@supabase/supabase-js';
-import { Stripe } from 'stripe';
+import { SupabaseClient, Session } from '@supabase/supabase-js';
 
 declare global {
 	namespace App {
 		interface Locals {
-			stripe: Stripe;
-			supabase: SupabaseClient;
-			getSession(): Promise<Session | null>;
-			stripeCustomerId: string;
-			user: User;
 			apiClient: ApiClient;
 		}
 		interface PageData {

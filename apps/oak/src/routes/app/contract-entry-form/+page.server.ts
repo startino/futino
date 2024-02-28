@@ -2,68 +2,29 @@ import { contractEntrySchema } from '$lib/schemas';
 import { fail, error } from '@sveltejs/kit';
 import type { Actions } from './$types';
 import { superValidate } from 'sveltekit-superforms/server';
-import type { Tables } from '$lib/server/supabase.types';
-import type { PostgrestError } from '@supabase/supabase-js';
-import { getVendorsInOrg } from '$lib/server/vendors';
-import { getApprovers } from '$lib/server/approvers';
 import { fetchUserOrgID } from '$lib/server/organization';
+import type { TablesInsert } from '$lib/server/supabase.types';
 
-export const load = async ({ locals: { getSession, supabase } }) => {
-	const session = await getSession();
-
+export const load = async ({ locals: { apiClient } }) => {
 	const form = await superValidate(contractEntrySchema);
 
-	const userID = await session?.user.id;
-
+	const userID = apiClient.user.id;
 	const organizationID = await fetchUserOrgID(userID);
-
-	async function getOrgDeparments(): Promise<{ id: string; name: string }[]> {
-		const { data, error: supabaseError } = await supabase
-			.from('departments')
-			.select('id, name')
-			.eq('organization_id', organizationID);
-
-		if (supabaseError) {
-			throw error(500, 'Error fetching contacts, please try again later.');
-		}
-
-		return data;
-	}
-
-	// Fetch all the users in the same organization as the current user
-	async function getOrgUsers(): Promise<
-		{
-			id: string;
-			full_name: string;
-		}[]
-	> {
-		const { data, error: supabaseError } = await supabase
-			.from('profiles')
-			.select('id, full_name')
-			.eq('organization_id', organizationID);
-
-		if (supabaseError) {
-			throw error(500, 'Error fetching contacts, please try again later.');
-		}
-
-		return data;
-	}
 
 	// Fetch all the contracts with vendor name attached that are in the same organization as the current user
 	async function getContractsWithVendors() {
-		const {
-			data: contracts,
-			error: contractsError
-		}: { data: Tables<'contracts'>[]; error: PostgrestError } = await supabase
-			.from('contracts')
-			.select('*')
-			.eq('organization_id', organizationID);
+		const { data: contracts, error: contractsError } =
+			await apiClient.getOrgContracts(organizationID);
 
 		if (contractsError) {
-			throw error(500, 'Error fetching contacts, please try again later.');
+			return error(500, 'Error fetching contacts, please try again later.');
 		}
 
-		const vendors = await getVendorsInOrg(organizationID);
+		const { data: vendors, error: vendorError } = await apiClient.getOrgVendors(organizationID);
+
+		if (vendorError) {
+			return error(500, 'Error fetching vendor, please try again later.');
+		}
 
 		// Append the vendors name to the contracts objects
 		const contractsWithVendors = contracts.map((contract) => {
@@ -79,8 +40,8 @@ export const load = async ({ locals: { getSession, supabase } }) => {
 
 	// Attach a name attribute to each approver
 	async function attachApproverNames() {
-		const orgUsers = await getOrgUsers();
-		const approvers = await getApprovers(userID);
+		const { data: orgUsers } = await apiClient.getOrgUsers(organizationID);
+		const { data: approvers } = await apiClient.getApprovers(userID);
 		const approversWithNames = approvers.map((approver) => {
 			const userName = orgUsers.find((user) => user.id === approver.approver_id)?.full_name;
 
@@ -95,49 +56,58 @@ export const load = async ({ locals: { getSession, supabase } }) => {
 	return {
 		form: form,
 		userID: userID,
-		organizationUsers: getOrgUsers(),
+		organizationUsers: (async () => {
+			const { data } = await apiClient.getOrgUsers(organizationID);
+			return data;
+		})(),
 		contractsWithVendors: getContractsWithVendors(),
 		approversWithNames: attachApproverNames(),
-		vendors: getVendorsInOrg(organizationID),
-		departments: getOrgDeparments(),
+		vendors: (async () => {
+			const { data, error: err } = await apiClient.getOrgVendors(organizationID);
+			if (err) throw error(500, 'Error fetching vendors. Please try again later');
+			return data;
+		})(),
+		departments: (async () => {
+			const { data } = await apiClient.getOrgDeparments(organizationID);
+			return data;
+		})(),
 		organization_id: organizationID
 	};
 };
 
 export const actions: Actions = {
 	default: async (event) => {
-		const supabase = event.locals.supabase;
-		const session = await event.locals.getSession();
-		const user = session?.user;
-
+		const {
+			locals: { apiClient }
+		} = event;
 		const form = await superValidate(event, contractEntrySchema);
 
 		if (!form.valid) {
-			console.log('Form invalid: ', form.errors);
-			console.log('Form data: ', form.data);
-			console.log('event: ', event);
+			console.error('Form invalid: ', form.errors);
 			return fail(400, {
 				form
 			});
 		} else {
-			console.log('Form submitted successfully: ', form.data);
+			console.info('Contract Form submitted successfully: ', form.data);
 		}
 
 		// Parse the form data into a contract object
-		const contractForm = contractEntrySchema.parse(form.data);
+		const data = form.data;
 
-		const orgID = await fetchUserOrgID(user.id);
+		const orgID = await fetchUserOrgID(apiClient.user.id);
 
 		// Insert the contract using the formData into the contracts table
-		console.log({ orgID });
-		delete contractForm.new_vendor;
-		console.log({ contractForm });
+		delete data.new_vendor;
 
-		const { data, error } = await supabase.from('contracts').insert([
+		const { error } = await apiClient.supabase.from('contracts').insert([
 			{
-				...{ ...contractForm, vendor_id: contractForm.vendor_id ? contractForm.vendor_id : null },
+				...data,
+				amount: Number(data.amount),
+				start_date: data.start_date.toISOString(),
+				end_date: data.end_date.toISOString(),
+				vendor_id: data.vendor_id ? data.vendor_id : null,
 				organization_id: orgID
-			}
+			} as TablesInsert<'contracts'>
 		]);
 
 		if (error) {
