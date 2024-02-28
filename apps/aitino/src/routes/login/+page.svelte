@@ -101,7 +101,7 @@
 			<Button
 				href="/register"
 				variant="outline"
-				class="text-primary-foreground block border-none bg-transparent p-0 text-end hover:bg-transparent"
+				class="text-primary-foreground block border-none bg-transparent p-0 px-4 text-end hover:bg-transparent"
 				>Don't have an account, register</Button
 			>
 		</Card.Footer>

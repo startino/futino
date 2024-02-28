@@ -144,7 +144,7 @@
 			<Button
 				href="/login"
 				variant="outline"
-				class="text-primary-foreground block border-none bg-transparent p-0 text-end hover:bg-transparent"
+				class="text-primary-foreground block border-none bg-transparent p-0 px-4 text-end hover:bg-transparent"
 				>Already have an account, login</Button
 			>
 		</Card.Footer>
