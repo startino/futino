@@ -57,6 +57,10 @@ export class ApiClient {
 		return await this.supabase.from('vendors').insert(data).select().single();
 	}
 
+	async createProject(data: TablesInsert<'projects'>) {
+		return await this.supabase.from('projects').insert(data).select().single();
+	}
+
 	async createDepartment(data: TablesInsert<'departments'>) {
 		return await this.supabase.from('departments').insert(data);
 	}

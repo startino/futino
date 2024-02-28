@@ -33,8 +33,7 @@
 	export let data: PageData;
 
 	const apiClient = data.apiClient;
-	let status: 'uploading' | 'submitting' | 'idle' | 'adding-new-vendor' | 'error' = 'idle';
-	let vendorOption: 'search' | 'add' = 'search';
+	let status: 'uploading' | 'submitting' | 'idle' | 'adding-new' | 'error' = 'idle';
 
 	let fileName: string | null;
 	let contractsParsed = [];
@@ -42,8 +41,8 @@
 	let vendorsParsed = [];
 	let departmentsParsed = [];
 	let organizationProjectsParsed = [];
-	let vendorDialogOpen = false;
-	let newVendorError = '';
+	let dialogOpen: 'new-vendor' | 'new-project' | 'none' = 'none';
+	let newError = '';
 
 	let form: SuperValidated<ContractEntryForm> = $page.data.form;
 
@@ -121,8 +120,8 @@
 	}
 
 	async function addVendor() {
-		vendorDialogOpen = true;
-		status = 'adding-new-vendor';
+		dialogOpen = 'new-vendor';
+		status = 'adding-new';
 
 		const idError = await theForm.validate('new_vendor.department_id');
 		const nameError = await theForm.validate('new_vendor.name');
@@ -142,7 +141,7 @@
 		status = 'idle';
 
 		if (error) {
-			newVendorError = 'Something went wrong...Please, try again';
+			newError = 'Something went wrong...Please, try again';
 			return;
 		}
 
@@ -150,7 +149,43 @@
 
 		formStore.update((v) => ({ ...v, vendor_id: vendor.id }));
 
-		vendorDialogOpen = false;
+		dialogOpen = 'none';
+	}
+
+	async function addProject() {
+		dialogOpen = 'new-project';
+		status = 'adding-new';
+
+		const idError = await theForm.validate('new_project.description');
+		const nameError = await theForm.validate('new_project.name');
+
+		if (idError || nameError) {
+			console.error('Error adding new project');
+			status = 'idle';
+			return;
+		}
+
+		const { data: project, error } = await apiClient.createProject({
+			...$formStore.new_project,
+			name: $formStore.new_project.name as string,
+			organization_id: data.organization_id
+		});
+
+		status = 'idle';
+
+		if (error) {
+			newError = 'Something went wrong...Please, try again';
+			return;
+		}
+
+		organizationProjectsParsed = [
+			{ label: project.name, value: project.id },
+			...organizationProjectsParsed
+		];
+
+		formStore.update((v) => ({ ...v, project_id: project.id }));
+
+		dialogOpen = 'none';
 	}
 
 	async function waitForRequiredData() {
@@ -306,7 +341,7 @@
 						<Form.Validation />
 
 						<Dialog.Root
-							open={vendorDialogOpen}
+							open={dialogOpen === 'new-vendor'}
 							onOpenChange={(open) => {
 								if (open) {
 									$formStore.new_vendor = { name: '', department_id: '' };
@@ -343,14 +378,13 @@
 											/>
 										</Form.Item>
 									</Form.Field>
-									<span class="text-destructive">{newVendorError}</span>
+									{#if newError && dialogOpen == 'new-vendor'}
+										<span class="text-destructive">{newError}</span>
+									{/if}
 								</div>
 								<Dialog.Footer>
-									<Button
-										type="button"
-										on:click={addVendor}
-										disabled={status === 'adding-new-vendor'}
-										>{status === 'adding-new-vendor' ? 'Adding...' : 'Add'}</Button
+									<Button type="button" on:click={addVendor} disabled={status === 'adding-new'}
+										>{status === 'adding-new' ? 'Adding...' : 'Add'}</Button
 									>
 								</Dialog.Footer>
 							</Dialog.Content>
@@ -382,7 +416,51 @@
 							{setValue}
 						/>
 						<Form.Validation />
-						<Form.Validation />
+						<Dialog.Root
+							open={dialogOpen === 'new-project'}
+							onOpenChange={(open) => {
+								if (open) {
+									$formStore.new_project = { name: '', description: undefined };
+									return;
+								}
+								$formStore.new_project = undefined;
+							}}
+							closeOnEscape
+						>
+							<Dialog.Trigger
+								class={`${buttonVariants({ variant: 'default' })} justify-self-start`}
+							>
+								Add new Project
+							</Dialog.Trigger>
+							<Dialog.Content class="">
+								<Dialog.Header>
+									<Dialog.Title>Add new Project</Dialog.Title>
+								</Dialog.Header>
+								<div class="gap-4">
+									<Form.Field {config} name="new_project.name">
+										<Form.Item class="grid">
+											<Form.Label class="mb-2">Name</Form.Label>
+											<Form.Input placeholder="Name" />
+											<Form.Validation />
+										</Form.Item>
+									</Form.Field>
+									<Form.Field {config} name="new_project.description">
+										<Form.Item class="grid">
+											<Form.Label class="mb-2">Description</Form.Label>
+											<Form.Textarea />
+										</Form.Item>
+									</Form.Field>
+									{#if newError && dialogOpen == 'new-project'}
+										<span class="text-destructive">{newError}</span>
+									{/if}
+								</div>
+								<Dialog.Footer>
+									<Button type="button" on:click={addProject} disabled={status === 'adding-new'}
+										>{status === 'adding-new' ? 'Adding...' : 'Add'}</Button
+									>
+								</Dialog.Footer>
+							</Dialog.Content>
+						</Dialog.Root>
 					</Form.Item>
 				</Form.Field>
 

@@ -100,6 +100,7 @@ export const actions: Actions = {
 		const orgID = await fetchUserOrgID(apiClient.user.id);
 
 		delete data.new_vendor;
+		delete data.new_project;
 
 		const { error } = await apiClient.supabase.from('contracts').insert([
 			{
