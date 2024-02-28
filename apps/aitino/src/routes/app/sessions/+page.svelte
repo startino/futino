@@ -98,8 +98,8 @@
 		main();
 	}
 
-	function redirectToCreateMaeve() {
-		window.location.href = "/app/maeves/create";
+	function redirectToMaeveEditor() {
+		window.location.href = "/app/editors/maeve";
 	}
 </script>
 
@@ -128,7 +128,7 @@
 		class="xl:prose-md prose prose-sm prose-main mx-auto flex h-screen max-w-none flex-col items-center justify-center gap-4 px-12 text-center md:prose-base 2xl:prose-lg"
 	>
 		<h1>It looks like you haven't created a maeve yet...</h1>
-		<Button on:click={redirectToCreateMaeve}>Go Create One!</Button>
+		<Button on:click={redirectToMaeveEditor}>Go Create One!</Button>
 	</div>
 {/if}
 <div class="absolute bottom-1 mx-auto flex h-min w-full flex-col items-center justify-center">
