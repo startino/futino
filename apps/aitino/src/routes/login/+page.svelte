@@ -22,12 +22,13 @@
 			<Card.Description>Login to your account</Card.Description>
 		</Card.Header>
 		<Card.Content class="grid gap-4">
-			<div class="grid grid-cols-2 gap-6">
-				<Button variant="outline">
+			<!-- <div class="grid grid-cols-2 gap-6"> -->
+			<form method="POST" class=" grid w-full grid-cols-2 gap-6" use:enhance>
+				<Button variant="outline" formaction="?/login&provider=github" type="submit">
 					<Github class="mr-2 h-4 w-4" />
 					GitHub
 				</Button>
-				<Button variant="outline">
+				<Button variant="outline" formaction="?/login&provider=google" type="submit">
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
 						viewBox="0 0 48 48"
@@ -50,7 +51,8 @@
 					>
 					Google
 				</Button>
-			</div>
+			</form>
+			<!-- </div> -->
 			<div class="relative">
 				<div class="absolute inset-0 flex items-center">
 					<span class="w-full border-t" />

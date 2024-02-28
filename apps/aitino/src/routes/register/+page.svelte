@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { PageData } from "./$types";
+	import type { ActionData, PageData } from "./$types";
 	import { Button } from "$lib/components/ui/button";
 	import * as Card from "$lib/components/ui/card";
 	import { Label } from "$lib/components/ui/label";
@@ -12,6 +12,7 @@
 	import type { SuperValidated } from "sveltekit-superforms";
 	import { superForm } from "sveltekit-superforms/client";
 	import { toast } from "svelte-sonner";
+	export let form: ActionData;
 
 	export let data: PageData;
 
@@ -19,11 +20,9 @@
 		form: formRegister,
 		errors,
 		enhance
-	} = superForm(data.form, {
+	} = superForm(data.registerForm, {
 		validators: formSchema
 	});
-
-	export let form;
 
 	console.log(form, "form from action data not load function of register");
 </script>
@@ -35,12 +34,13 @@
 			<Card.Description>Enter your email below to create your account</Card.Description>
 		</Card.Header>
 		<Card.Content class="grid gap-4">
-			<div class="grid grid-cols-2 gap-6">
-				<Button variant="outline">
+			<!-- <div class="grid grid-cols-2 gap-6 w-full border"> -->
+			<form method="POST" class=" grid w-full grid-cols-2 gap-6" use:enhance>
+				<Button variant="outline" formaction="?/register&provider=github" type="submit">
 					<Github class="mr-2 h-4 w-4" />
 					GitHub
 				</Button>
-				<Button variant="outline">
+				<Button variant="outline" formaction="?/register&provider=google" type="submit">
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
 						viewBox="0 0 48 48"
@@ -63,7 +63,8 @@
 					>
 					Google
 				</Button>
-			</div>
+			</form>
+			<!-- </div> -->
 			<div class="relative">
 				<div class="absolute inset-0 flex items-center">
 					<span class="w-full border-t" />
