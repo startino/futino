@@ -139,6 +139,12 @@
 	const edges = writable<Edge[]>(data.maeve.edges);
 	$: data.maeve.edges = $edges;
 
+	const title = data.maeve.title;
+	$: data.maeve.title = title;
+
+	const description = data.maeve.description;
+	$: data.maeve.description = $description;
+
 	async function save() {
 		// TODO: save using +page.server.ts action
 
