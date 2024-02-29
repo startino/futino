@@ -43,30 +43,35 @@ export const loginUserSchema = z.object({
 	password: z.string().min(1, 'Please enter a password')
 });
 
-export const contractEntrySchema = z.object({
-	parent_contract: z.string().optional(),
-	start_date: z.date(),
-	end_date: z.date(),
-	description: z.string().optional(),
-	vendor_id: z.string().min(1),
-	new_vendor: z
-		.object({
-			name: z.string().min(1, 'The name is required'),
-			department_id: z.string().min(1).optional()
-		})
-		.optional(),
-	new_project: z
-		.object({
-			name: z.string().min(1, 'The name is required'),
-			description: z.string().min(1).optional()
-		})
-		.optional(),
-	project_id: z.string().optional(),
-	owner: z.string().min(1),
-	department_id: z.string().optional(),
-	amount: z.string().min(1),
-	spend_category: z.string().optional(),
-	attachment: z.string()
-});
+export const contractEntrySchema = z
+	.object({
+		parent_contract: z.string().optional(),
+		start_date: z.date(),
+		end_date: z.date(),
+		description: z.string().optional(),
+		vendor_id: z.string().min(1),
+		new_vendor: z
+			.object({
+				name: z.string().min(1, 'The name is required'),
+				department_id: z.string().min(1).optional()
+			})
+			.optional(),
+		new_project: z
+			.object({
+				name: z.string().min(1, 'The name is required'),
+				description: z.string().min(1).optional()
+			})
+			.optional(),
+		project_id: z.string().optional(),
+		owner: z.string().min(1),
+		department_id: z.string().optional(),
+		amount: z.string().min(1),
+		spend_category: z.string().optional(),
+		attachment: z.string()
+	})
+	.refine((v) => v.start_date <= v.end_date, {
+		message: "End date can't be before start date",
+		path: ['end_date']
+	});
 
 export type ContractEntryForm = typeof contractEntrySchema;

@@ -19,10 +19,8 @@
 	import type { SuperValidated } from 'sveltekit-superforms';
 	import { superForm } from 'sveltekit-superforms/client';
 	import DatePicker from '$lib/components/atoms/DatePicker.svelte';
-	import type { FormOptions } from 'formsnap';
 	import Combobox from '$lib/components/atoms/Combobox.svelte';
 	import type { PageData } from './$types';
-	import { tick } from 'svelte';
 	import { Skeleton } from '$lib/components/ui/skeleton';
 	import SkeletonForm from '$lib/components/molecules/SkeletonForm.svelte';
 	import { formatUSD } from '$lib/helpers';
@@ -54,9 +52,9 @@
 		dataType: 'json'
 	});
 
-	const formErrors = theForm.errors;
+	const allErrors = theForm.allErrors;
 
-	$: console.log({ formErrors: $formErrors });
+	$: console.log({ formErrors: $allErrors });
 
 	const submitting = theForm.submitting;
 
@@ -496,8 +494,8 @@
 				<Form.Button type="submit" disabled={status === 'uploading' || $submitting}
 					>Submit</Form.Button
 				>
-				{#if Object.entries($formErrors).length > 0}
-					<p class="text-destructive">Please fill out the form with the required data</p>
+				{#if $allErrors.length > 0}
+					<p class="text-destructive">Please enter valid data</p>
 				{/if}
 			</Form.Root>
 		{/await}
