@@ -8,7 +8,6 @@
 	import * as Alert from "$lib/components/ui/alert";
 	import { toast } from "svelte-sonner";
 	import { enhance } from "$app/forms";
-	import Footer from "$lib/components/Footer.svelte";
 
 	export let data: PageData;
 

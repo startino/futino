@@ -13,11 +13,11 @@ export const load = (async () => {
 export const actions: Actions = {
 	register: async ({ request, locals, url }) => {
 		const provider = url.searchParams.get("provider") as Provider;
+
 		if (provider) {
 			const { data, error: err } = await locals.supabase.auth.signInWithOAuth({
 				provider: provider
 			});
-
 
 			if (err) {
 				console.log(err);
@@ -33,12 +33,14 @@ export const actions: Actions = {
 		// const form = await superValidate(request, );
 		const form = await superValidate(body, formSchema);
 
-		if (!form.valid) {
-			return fail(400, {
-				form,
-				success: false,
-				errors: form.errors
-			});
+		if (!provider) {
+			if (!form.valid) {
+				return fail(400, {
+					form,
+					success: false,
+					errors: form.errors
+				});
+			}
 		}
 
 		const { data, error: err } = await locals.supabase.auth.signUp({
@@ -46,13 +48,13 @@ export const actions: Actions = {
 			password: body.password as string
 		});
 
+		console.log(data, "from register +page.ts", err, "from register +page.ts");
 
 		if (err) {
 			if (err instanceof AuthApiError && err.status === 400) {
-				throw redirect(307, '/login');
+				throw redirect(307, "/login");
 			}
 		}
-
 		// const user = data.user;
 
 		// if (user) {
@@ -67,5 +69,5 @@ export const actions: Actions = {
 		// }
 
 		throw redirect(301, "/");
-	}
+	},
 };

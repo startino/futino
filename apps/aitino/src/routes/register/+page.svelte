@@ -12,18 +12,18 @@
 	import type { SuperValidated } from "sveltekit-superforms";
 	import { superForm } from "sveltekit-superforms/client";
 	import { toast } from "svelte-sonner";
+	import { enhance } from "$app/forms";
 	export let form: ActionData;
-
 	export let data: PageData;
 
 	const {
 		form: formRegister,
 		errors,
-		enhance
+		enhance: enhanceRegister
 	} = superForm(data.registerForm, {
 		validators: formSchema
 	});
-
+console.log(form);
 </script>
 
 <div class="max-w-screen bg-card mx-auto flex h-screen items-center justify-center">
@@ -135,9 +135,9 @@
 					}}>Create account</Button
 				>
 			</form>
-			{#if form?.error}
+			{#if form?.message}
 				<Alert.Root variant="destructive" class="border-none p-0">
-					<Alert.Description>{form?.error}</Alert.Description>
+					<Alert.Description>{form?.message}</Alert.Description>
 				</Alert.Root>
 			{/if}
 		</Card.Content>
