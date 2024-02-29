@@ -31,7 +31,6 @@
 		getNodesCount
 	} from "$lib/utils";
 	import type { PanelAction } from "$lib/types";
-	import ChatRoom from "$lib/components/ChatRoom.svelte";
 	import { AGENT_LIMIT, PROMPT_LIMIT } from "$lib/config.js";
 
 	export let data;
@@ -307,19 +306,6 @@
 					</Dialog.Root>
 				{/if}
 			</RightEditorSidebar>
-		</Panel>
-		<Panel position="bottom-right">
-			<Dialog.Root
-				open={isChatDialogOpen}
-				onOpenChange={() => {
-					isChatDialogOpen = false;
-					console.log("close");
-				}}
-			>
-				<Dialog.Content class="sm:max-w-full">
-					<ChatRoom />
-				</Dialog.Content>
-			</Dialog.Root>
 		</Panel>
 	</SvelteFlow>
 </div>
