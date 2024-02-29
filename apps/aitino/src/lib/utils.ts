@@ -231,5 +231,6 @@ const formatter = new Intl.NumberFormat('en-US', {
 });
 
 export function formatCurrency(amount: number) {
+	if (amount === 0) return 'Free';
 	return formatter.format(amount);
 }

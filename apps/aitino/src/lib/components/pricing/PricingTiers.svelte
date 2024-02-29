@@ -8,11 +8,7 @@
 	import { formatCurrency } from "$lib/utils";
 	import { CheckCircle2, Info } from "lucide-svelte";
 
-	export let activeTabValue = 0;
-
 	let cycle: string = "yearly";
-
-	const handlePromotionToggle = (tabValue: number) => () => (activeTabValue = tabValue);
 </script>
 
 <section class="z-20">
@@ -51,9 +47,7 @@
 						<div class="flex flex-row items-end gap-2">
 							<div class="flex flex-row place-items-center">
 								<h1 class="text-4xl font-semibold leading-none tracking-tight text-primary">
-									{cycle == "yearly"
-										? formatCurrency(((cost * 10) / 12) * 0.7)
-										: formatCurrency(cost * 0.7)}
+									{cycle == "yearly" ? formatCurrency((cost * 10) / 12) : formatCurrency(cost)}
 								</h1>
 							</div>
 						</div>

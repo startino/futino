@@ -165,7 +165,7 @@
 
 	<section>
 		<div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-24 md:px-8 md:py-32">
-			<div class="mb-8 max-w-2xl md:mx-auto md:text-center xl:max-w-none">
+			<div class="mb-8 max-w-3xl md:mx-auto md:text-center xl:max-w-none">
 				<h2
 					class="tracking-loose m-0 text-balance text-center text-3xl font-semibold sm:m-0 sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl"
 				>

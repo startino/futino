@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { formatCurrency } from "$lib/utils";
 	import { features, type NorpTier } from "$lib/pricing-data";
-	import { CheckCircle2 } from "lucide-svelte";
+	import { CheckCircle2, Info } from "lucide-svelte";
 	import { Button } from "../ui/button";
 
 	export let tier: NorpTier;
@@ -27,7 +27,7 @@
 	</div>
 	<div class="flex flex-row items-end gap-2">
 		<div class="flex flex-row place-items-center">
-			<h1 class="text-5xl font-semibold leading-none tracking-tighter text-primary">
+			<h1 class="text-5xl font-semibold leading-none tracking-tight text-primary">
 				{cycle == "yearly" ? formatCurrency(tier.cost * 0.833) : formatCurrency(tier.cost)}
 			</h1>
 		</div>

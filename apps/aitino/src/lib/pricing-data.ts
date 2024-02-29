@@ -23,6 +23,7 @@ export type NorpTier = {
 };
 
 export const norpTiers: NorpTier[] = [
+	
 	{
 		stripeIds: {
 			monthly: 'price_1O9qPFD09EWpqQ4YzqNx0d4W',
@@ -31,7 +32,7 @@ export const norpTiers: NorpTier[] = [
 		index: 0,
 		name: 'Starter',
 		subtitle: 'Keep it going.',
-		cost: 21,
+		cost: 0,
 		features: {
 				'Rate Limits': '6 sessions / 3 hours',
 				'Max Agents In Teams': '10'
@@ -44,9 +45,9 @@ export const norpTiers: NorpTier[] = [
 			yearly: 'price_1O9gzGD09EWpqQ4YA5QHjpRQ'
 		},
 		index: 1,
-		name: 'Premium',
+		name: 'Cruising',
 		subtitle: 'Even the playing field.',
-		cost: 69,
+		cost: 21,
 		features: {
 				'Rate Limits': '25 sessions / day',
 				'Max Agents In Teams': '25'	
@@ -61,7 +62,7 @@ export const norpTiers: NorpTier[] = [
 		index: 2,
 		name: 'Professional',
 		subtitle: 'Make it unfair.',
-		cost: 420,
+		cost: 69,
 		features: {
 				'Rate Limits': '50 sessions / day',
 				'Max Agents In Teams': '50'
