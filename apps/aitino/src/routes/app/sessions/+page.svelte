@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { SessionLoad } from "$lib/loads";
+	import type { SessionLoad } from "$lib/types/loads";
 	import { Button } from "$lib/components/ui/button";
 	import Chat from "./Chat.svelte";
 	import { onMount } from "svelte";
@@ -59,7 +59,7 @@
 			}
 
 			if (e.id === 0) {
-				data.sessionId = e.data.session_id;
+				data.session.id = e.data.session_id;
 				localStorage.setItem("currentSessionId", e.data.session_id);
 				loading = false;
 				console.log("got session id", e.data.session_id);
@@ -80,7 +80,7 @@
 	function startSession() {
 		localStorage.removeItem("currentSessionId");
 		localStorage.removeItem("currentMessages");
-		data.sessionId = null;
+		data.session = null;
 		data.messages = [];
 		loading = true;
 
@@ -88,11 +88,11 @@
 		main(url);
 	}
 
-	function continueSession() {
-		const url = `${API_BASE_URL}/maeve?id=${data.maeveId}&session_id=${data.sessionId}&reply=${data.eply}`;
-
-		main(url);
-	}
+	// function continueSession() {
+	// 	const url = `${API_BASE_URL}/maeve?id=${data.maeveId}&session_id=${data.session.id}&reply=${data.eply}`;
+	//
+	// 	main(url);
+	// }
 
 	function redirectToMaeveEditor() {
 		window.location.href = "/app/editors/maeve";
@@ -105,14 +105,14 @@
 	>
 		<h1>Loading...</h1>
 	</div>
-{:else if data.sessionId && data.maeveId}
-	<Chat {data.maeveId} {data.sessionId} {data.messages} {awaitingReply} />
+{:else if data.session && data.maeveId}
+	<!-- <Chat {data.maeveId} {data.session.id} {data.messages} {awaitingReply} /> -->
 	<div
 		class="absolute top-0 mx-auto flex h-min w-full flex-col items-center justify-center bg-transparent p-4 backdrop-blur"
 	>
 		<Button on:click={startSession}>Start New Session</Button>
 	</div>
-{:else if maeveId}
+{:else if data.maeveId}
 	<div
 		class="xl:prose-md prose prose-sm prose-main mx-auto flex h-screen max-w-none flex-col items-center justify-center gap-4 px-12 text-center md:prose-base 2xl:prose-lg"
 	>
@@ -129,5 +129,5 @@
 {/if}
 <div class="absolute bottom-1 mx-auto flex h-min w-full flex-col items-center justify-center">
 	<code class="text-muted">debug:</code>
-	<code class="text-muted">maeve id: {maeveId} - session id: {sessionId}</code>
+	<!-- <code class="text-muted">maeve id: {data.maeveId} - session id: {data.session.id}</code> -->
 </div>

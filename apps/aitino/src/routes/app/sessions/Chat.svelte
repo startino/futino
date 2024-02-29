@@ -8,7 +8,6 @@
 	import { afterUpdate } from "svelte";
 	import { v4 as uuidv4 } from "uuid";
 
-	export let maeveId: string;
 	export let sessionId: string;
 	export let messages: {
 		id: string;

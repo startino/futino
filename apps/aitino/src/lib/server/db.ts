@@ -1,8 +1,7 @@
 import { supabase } from "$lib/supabase";
 import type { TablesInsert } from "$lib/types/supabase";
 import { error } from "@sveltejs/kit";
-import type { Maeve } from "$lib/types/models";
-import { getNodesCount } from "$lib/utils.js";
+import type { Maeve, Session } from "$lib/types/models";
 
 export async function getMessages(session_id: string | null) {
 	if (!session_id) {
@@ -29,27 +28,35 @@ export async function postMaeve(data: TablesInsert<"maeves">) {
 }
 
 export async function getMaeves(userId: string) {
-	const { data: data, error: err } = await supabase
-		.from("maeves")
-		.select("*")
-		.eq("user_id", userId);
-
-	let maeves: Maeve[] = [];
+	const { data, error: err } = await supabase.from("maeves").select("*").eq("user_id", userId);
 
 	if (err) {
-		return maeves;
+		return [];
 	}
-
 	if (data.length === 0) {
-		return maeves;
+		return [];
 	}
 
-	for (let i = 0; i < data.length; i++) {
-		const maeve = data[i] as Maeve;
-		maeve.count = getNodesCount(maeve.nodes);
-
-		maeves = [...maeves, maeve];
-	}
+	const maeves: Maeve[] = data as Maeve[];
 
 	return maeves;
+}
+
+export async function getSessions(userId: string, maeveId: string) {
+	const { data, error: err } = await supabase
+		.from("sessions")
+		.select("*")
+		.eq("user_id", userId)
+		.eq("maeve_id", maeveId);
+
+	if (err) {
+		return [];
+	}
+	if (data.length === 0) {
+		return [];
+	}
+
+	const sessions: Session[] = data as Session[];
+
+	return sessions;
 }

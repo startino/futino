@@ -20,7 +20,6 @@
 	import * as Dialog from "$lib/components/ui/dialog";
 	import { Library } from "$lib/components/ui/library";
 	import * as CustomNode from "$lib/components/ui/custom-node";
-	import * as db from "$lib/server/db";
 
 	import {
 		getContext,
@@ -37,17 +36,13 @@
 
 	const { receiver, count } = getContext("maeve");
 
-	let title = data.title;
-	let description = data.description;
-	let isChatDialogOpen = false;
-
 	const actions: PanelAction[] = [
 		{
 			name: "Run",
 			buttonVariant: "default",
 			onclick: async () => {
-				isChatDialogOpen = true;
 				await save();
+				window.location.href = "/app/sessions";
 			}
 		},
 		{ name: "Add Prompt", buttonVariant: "outline", onclick: addNewPrompt },
@@ -57,13 +52,17 @@
 			name: "Export",
 			buttonVariant: "outline",
 			onclick: () => {
+				if (!$receiver) {
+					toast.error("Please select a receiver."); // TODO: use shadcn sonner
+					return;
+				}
 				const jsonString = JSON.stringify(
 					{
 						nodes: getCleanNodes($nodes),
 						edges: $edges,
-						title,
-						description,
-						receiver_id: $receiver?.node.id ?? null
+						title: data.maeve.title,
+						description: data.maeve.description,
+						receiver_id: $receiver.node.id
 					},
 					null,
 					2
@@ -134,34 +133,16 @@
 		return { nodes, edges };
 	}
 
-	const nodes = writable<Node[]>(getWritableNodes(data.nodes));
-	const edges = writable<Edge[]>(data.edges);
+	const nodes = writable<Node[]>(getWritableNodes(data.maeve.nodes));
+	$: data.maeve.nodes = getCleanNodes($nodes);
+
+	const edges = writable<Edge[]>(data.maeve.edges);
+	$: data.maeve.edges = $edges;
 
 	async function save() {
-		const { error } = await db.postMaeve({
-			id: data.id,
-			user_id: data.user_id,
-			title,
-			description,
-			receiver_id: $receiver?.node.id ?? null,
-			nodes: getCleanNodes($nodes),
-			edges: $edges
-		});
+		// TODO: save using +page.server.ts action
 
-		if (!data.id) {
-			console.error("no data id");
-			toast.error("Something went wrong when saving the nodes.");
-			return;
-		}
-		if (error) {
-			console.error(error);
-			toast.error("Something went wrong when saving the nodes.");
-			return;
-		}
-
-		console.log(data.id, "from save node");
-
-		localStorage.setItem("currentMeaveId", data.id);
+		localStorage.setItem("currentMeaveId", data.maeve.id);
 
 		toast.success("Nodes successfully saved!");
 	}
@@ -189,7 +170,7 @@
 
 		do {
 			name = pickRandomName();
-		} while ($nodes.find((n) => n.type === "agent" && get(n.data.name) === name));
+		} while ($nodes.find((n) => n.type === "agent" && get(n.data.maeve.name) === name));
 
 		nodes.update((v) => [
 			...v,
@@ -233,7 +214,7 @@
 		$count.prompts++;
 	}
 
-	console.log(data.id, "from save node 0");
+	console.log(data.maeve.id, "from save node 0");
 </script>
 
 <div style="height:100vh;">
@@ -244,8 +225,8 @@
 		{nodeTypes}
 		fitView
 		oninit={() => {
-			count.set(data.count);
-			setReceiver(data.receiver_id);
+			count.set(data.maeve.count);
+			setReceiver(data.maeve.receiver_id);
 		}}
 		connectionLineType={ConnectionLineType.SmoothStep}
 		defaultEdgeOptions={{ type: "smoothstep", animated: true }}
