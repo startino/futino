@@ -43,18 +43,35 @@ export const loginUserSchema = z.object({
 	password: z.string().min(1, 'Please enter a password')
 });
 
-export const contractEntrySchema = z.object({
-	parent_contract: z.string().optional(),
-	start_date: z.date(),
-	end_date: z.date(),
-	description: z.string().optional(),
-	vendor_id: z.string(),
-	project: z.string().optional(),
-	creator: z.string(),
-	department: z.string().optional(),
-	amount: z.string(),
-	spend_category: z.string().optional(),
-	attachment: z.string()
-});
+export const contractEntrySchema = z
+	.object({
+		parent_contract: z.string().optional(),
+		start_date: z.date(),
+		end_date: z.date(),
+		description: z.string().min(5, 'Description must be at least 5 characters long').optional(),
+		vendor_id: z.string().min(1, 'The vendor is required'),
+		new_vendor: z
+			.object({
+				name: z.string().min(1, 'The name is required'),
+				department_id: z.string().min(1, 'The department is required').optional()
+			})
+			.optional(),
+		new_project: z
+			.object({
+				name: z.string().min(1, 'The name is required'),
+				description: z.string().min(5, 'Description must be at least 5 characters long').optional()
+			})
+			.optional(),
+		project_id: z.string().optional(),
+		owner: z.string().min(1, 'An owner is required'),
+		department_id: z.string().optional(),
+		amount: z.string().min(1, 'An amount is required'),
+		spend_category: z.string().optional(),
+		attachment: z.string()
+	})
+	.refine((v) => v.start_date <= v.end_date, {
+		message: "End date can't be before start date",
+		path: ['end_date']
+	});
 
 export type ContractEntryForm = typeof contractEntrySchema;
