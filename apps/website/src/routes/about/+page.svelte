@@ -28,7 +28,7 @@
 		{
 			index: 0,
 			name: 'Jorge Lewis',
-			position: 'Chief Executive Officer, Lead Developer',
+			position: 'Co-CEO, Business Development',
 			body: `Hey 👋. I've got over 6 years of programming experience under my belt, with an expertise in automation software and machine learning. 
       I've found a passion in building both beautiful and highly functional software to bring life to projects like your own through websites and custom software.`,
 			imgPath: 'people/jorge_1.jpg',
@@ -41,7 +41,7 @@
 		{
 			index: 1,
 			name: 'Jonas Lindberg',
-			position: 'Chief Technologies Officer, Lead Developer',
+			position: 'Co-CEO, Technology Operations',
 			body: `Hi there! With over 6 years of coding experience, I noticed that making a website was either too expensive (hiring someone) or too time
 					consuming (website builder) for everyone - individuals, startups, and especially large
 					businesses. I wanted to create a solution to these problems.
@@ -55,7 +55,7 @@
 		{
 			index: 2,
 			name: 'Nazif Barassounon',
-			position: 'Lead Developer',
+			position: 'Senior Developer',
 			body: `I'm a full-stack developer at Futino with over 3 years of experience using the stack.
       I'm passionate about creating web applications that blend technology and design seamlessly to deliver user-friendly interfaces. 
       I'm dedicated to learning and growing, always staying updated with the latest web development trends to meet the standard at Futino.`,
@@ -135,7 +135,7 @@
 				<h3 class="headline-small sm:headline-medium md:display-small lg:display-medium max-w-3xl">
 					Leverage the power of modern technologies to
 					<span class="text-tertiary"> design & develop websites </span>
-					in a more cost efficient manner for startups and small businesses.
+					in a more cost efficient manner for startups and businesses.
 				</h3>
 			</div>
 		</div>
@@ -147,8 +147,8 @@
 				<div class="z-10 flex w-full flex-col gap-24 lg:col-span-2">
 					<TextSection title="What we do">
 						At Futino, we specialize in web design, development, & hosting. We understand the
-						challenges faced by startups and small businesses in establishing their online presence
-						and staying competitive.
+						challenges faced by businesses in establishing their online presence and staying
+						competitive.
 					</TextSection>
 
 					<TextSection title="Why we do it">
@@ -168,7 +168,7 @@
 						Our unique pricing model is also what differs us from the other design and development companies.
 						Instead of paying highly unpredictable & highly inflated billable hours (also totally determined
 						by the other party), you pay a flat monthly price for a fixed amount of work from us. It
-						is by far a more preferred and just better model for startups and smaller companies.
+						is by far a more preferred and just better model for startups and growing businesses.
 					</TextSection>
 				</div>
 

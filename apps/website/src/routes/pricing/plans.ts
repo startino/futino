@@ -100,5 +100,5 @@ export const promotions: {
 	discount: string;
 }[] = [
 	{ label: 'Monthly', index: 0, for: 'monthly', discount: '' },
-	{ label: 'Anually', index: 1, for: 'anually', discount: '' }
+	{ label: 'Anually', index: 1, for: 'anually', discount: '2 Months free' }
 ];
