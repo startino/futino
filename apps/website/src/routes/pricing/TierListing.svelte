@@ -24,7 +24,7 @@
       <h2 class="display-large font-extrabold leading-none">
         {tier.name}
       </h2>
-      <h3 class="title-medium text-outline text-outline pb-6 pl-1">
+      <h3 class="title-medium text-outline pb-6 pl-1">
         {tier.subtitle}
       </h3>
     </div>
