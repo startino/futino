@@ -38,6 +38,8 @@
 
   onMount(() => {
     handleClick(1);
+    positionClass = "left: 131px";
+
   });
 
   function delay(ms: number) {

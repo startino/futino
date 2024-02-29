@@ -1,8 +1,5 @@
 <script lang="ts">
-	import * as Form from '$lib/components/ui/form';
-	import { contractEntrySchema, type ContractEntryForm } from '$lib/schemas';
-	import { navigating, page } from '$app/stores';
-	import { Calendar as CalendarIcon, Check, ChevronsUpDown, Lock, Paperclip } from 'lucide-svelte';
+	import { Calendar as CalendarIcon, Lock, Paperclip } from 'lucide-svelte';
 	import { Button } from '$lib/components/ui/button';
 	import {
 		type DateValue,
@@ -11,26 +8,42 @@
 		parseDate,
 		today
 	} from '@internationalized/date';
+	import type { SuperValidated } from 'sveltekit-superforms';
+	import { superForm } from 'sveltekit-superforms/client';
+	import { toast } from 'svelte-sonner';
+
+	import { page } from '$app/stores';
 	import { cn } from '$lib/utils';
+	import { formatUSD } from '$lib/helpers';
+	import { contractEntrySchema, type ContractEntryForm } from '$lib/schemas';
+	import type { PageData } from './$types';
+	import { Badge } from '$lib/components/ui/badge';
 	import { buttonVariants } from '$lib/components/ui/button';
 	import * as Card from '$lib/components/ui/card';
 	import * as Popover from '$lib/components/ui/popover';
-	import type { SuperValidated } from 'sveltekit-superforms';
-	import { superForm } from 'sveltekit-superforms/client';
 	import DatePicker from '$lib/components/atoms/DatePicker.svelte';
-	import type { FormOptions } from 'formsnap';
 	import Combobox from '$lib/components/atoms/Combobox.svelte';
-	import type { PageData } from './$types';
-	import { tick } from 'svelte';
 	import { Skeleton } from '$lib/components/ui/skeleton';
+	import * as Form from '$lib/components/ui/form';
 	import SkeletonForm from '$lib/components/molecules/SkeletonForm.svelte';
-	import { formatUSD } from '$lib/helpers';
 	import { Label } from '$lib/components/ui/label';
+	import * as Dialog from '$lib/components/ui/dialog';
 
 	export let data: PageData;
 
-	const supabase = data.supabase;
-	let uploading = false;
+	const apiClient = data.apiClient;
+	let status: 'uploading' | 'submitting' | 'idle' | 'adding-new-ressource' | 'error' = 'idle';
+
+	let contractsParsed = [];
+	let organizationUsersParsed = [];
+	let vendorsParsed = [];
+	let departmentsParsed = [];
+	let organizationProjectsParsed = [];
+	let newVendorDialog = false;
+	let newProjectDialog = false;
+	let newRessourceError = '';
+	let fileInput: HTMLInputElement;
+	let fileName: string | null;
 
 	let form: SuperValidated<ContractEntryForm> = $page.data.form;
 
@@ -38,33 +51,34 @@
 
 	const theForm = superForm(form, {
 		validators: contractEntrySchema,
-		taintedMessage: null
+		taintedMessage: null,
+		dataType: 'json',
+		resetForm: true,
+		onResult: ({ result }) => {
+			if (result.type == 'success') {
+				toast.success('Contract successfully create!');
+				startDateValue = undefined;
+				endDateValue = undefined;
+				fileInput.value = '';
+				fileName = null;
+			}
+
+			if (result.type == 'failure') {
+				toast.error('Contract creation failed...');
+			}
+		}
 	});
 
-	const { form: formStore } = theForm;
+	const allErrors = theForm.allErrors;
 
-	const options: FormOptions<typeof contractEntrySchema> = {
-		validators: contractEntrySchema,
-		onSubmit: () => {},
-		onError: () => {
-			// do something else
-		}
-		// ...
-	};
+	const submitting = theForm.submitting;
+
+	const { form: formStore } = theForm;
 
 	const df = new DateFormatter('en-US', {
 		dateStyle: 'long'
 	});
 
-	let parentContractOpen = false;
-	function closeAndFocusTrigger(triggerId: string) {
-		parentContractOpen = false;
-		tick().then(() => {
-			document.getElementById(triggerId)?.focus();
-		});
-	}
-
-	let parentContractValue: string | undefined = $formStore.parent_contract;
 	let startDateValue: DateValue | undefined = $formStore.start_date
 		? parseDate($formStore.start_date.toString())
 		: undefined;
@@ -78,43 +92,103 @@
 	$: $formStore.start_date = startDateValue ? new Date(startDateValue.toString()) : undefined;
 	$: $formStore.end_date = endDateValue ? new Date(endDateValue.toString()) : undefined;
 
-	async function upload(e) {
-		uploading = true;
-		const file = e.target.files[0];
-		const name = `${crypto.randomUUID()}-${file.name}`;
+	async function upload() {
+		status = 'uploading';
+		const file = fileInput.files[0];
+		const path = `/${crypto.randomUUID()}-${file.name}`;
 
-		const { error, data } = await supabase.storage
+		const { error, data } = await apiClient.supabase.storage
 			.from('contract-attachments')
-			.upload(`/${name}`, file, {
+			.upload(path, file, {
 				cacheControl: '3600',
 				upsert: false
 			});
 
 		if (error) {
 			console.log({ uploadError: error });
+			fileName = null;
 		} else {
+			fileName = file.name;
 			formStore.update((v) => ({ ...v, attachment: data.path }));
 		}
 
-		uploading = false;
+		status = 'idle';
+	}
+
+	async function addResource(formKey: 'vendor' | 'project', createFunction, updateFunction) {
+		status = 'adding-new-ressource';
+
+		const idError = await theForm.validate(
+			formKey === 'vendor' ? `new_${formKey}.department_id` : `new_${formKey}.description`
+		);
+		const nameError = await theForm.validate(`new_${formKey}.name`);
+
+		if (idError || nameError) {
+			console.error(`Error adding new ${formKey}`);
+			status = 'idle';
+			return;
+		}
+		const { data: resource, error } = await createFunction({
+			...$formStore[`new_${formKey}`],
+			name: $formStore[`new_${formKey}`].name as string,
+			organization_id: data.organization_id
+		});
+
+		status = 'idle';
+
+		if (error) {
+			console.log(error);
+
+			newRessourceError = 'Something went wrong...Please, try again';
+			return;
+		}
+
+		const newParsedValue = { label: resource.name, value: resource.id };
+		formKey == 'vendor'
+			? (vendorsParsed = [newParsedValue, ...vendorsParsed])
+			: (organizationProjectsParsed = [newParsedValue, ...organizationProjectsParsed]);
+
+		updateFunction((v) => ({ ...v, [`${formKey}_id`]: resource.id }));
+	}
+
+	async function addVendor() {
+		await addResource('vendor', async (v) => await apiClient.createVendor(v), formStore.update);
+		newVendorDialog = false;
+	}
+
+	async function addProject() {
+		await addResource('project', async (v) => await apiClient.createProject(v), formStore.update);
+		newProjectDialog = false;
 	}
 
 	async function waitForRequiredData() {
 		const contractsWithVendor = await data.contractsWithVendors;
 		const organizationUsers = await data.organizationUsers;
 		const vendors = await data.vendors;
+		const departments = await data.departments;
+		const organizationProjects = await data.organizationProjects;
 
-		let organizationUsersParsed = organizationUsers.map((user) => ({
+		organizationProjectsParsed = organizationProjects.map((project) => ({
+			value: project.id,
+			label: project.name
+		}));
+
+		departmentsParsed = departments.map((department) => ({
+			value: department.id,
+			label: department.name
+		}));
+
+		organizationUsersParsed = organizationUsers.map((user) => ({
 			value: user.id,
 			label: user.full_name
 		}));
 
-		let contractsParsed = contractsWithVendor.map((contract) => ({
+		contractsParsed = contractsWithVendor.map((contract) => ({
 			label: `${contract.vendor_name} | ${formatUSD(contract.amount)} | ${contract.start_date} | ${contract.end_date}`,
 			value: contract.id
 		}));
 
-		let vendorsParsed = vendors.map((vendor) => ({
+		vendorsParsed = vendors.map((vendor) => ({
 			label: vendor.name,
 			value: vendor.id
 		}));
@@ -122,34 +196,35 @@
 		return {
 			contracts: contractsParsed,
 			organizationUsers: organizationUsersParsed,
-			vendors: vendorsParsed
+			vendors: vendorsParsed,
+			departments: departmentsParsed
 		};
 	}
 </script>
 
-<Card.Root class=" h-full p-10">
+<Card.Root class="h-full p-10">
 	<Card.Header
-		><Card.Title class="m-0 sm:m-0">Contract Entry Form</Card.Title>
-		<Card.Description class="m-0 sm:m-0"
+		><Card.Title class="m-0">Contract Entry Form</Card.Title>
+		<Card.Description class="m-0"
 			>Enter the contract details. Once complete this item will be sent for approval.</Card.Description
 		></Card.Header
 	>
 	<Card.Content>
 		{#await waitForRequiredData()}
 			<SkeletonForm />
-		{:then { contracts, organizationUsers, vendors }}
+		{:then { contracts, organizationUsers, departments }}
 			<Form.Root
 				method="POST"
-				class="w-min space-y-6"
+				class="max-w-xl space-y-6"
 				controlled
 				schema={contractEntrySchema}
 				form={theForm}
 				let:config
 			>
-				<Form.Field {config} name="parent_contract" let:setValue let:value>
-					<Form.Item class="flex flex-col">
+				<Form.Field {config} name="parent_contract" let:setValue>
+					<Form.Item class="grid">
 						<Form.Label class="mb-2">Parent Contract</Form.Label>
-						<Combobox items={contracts} initialValue={userID} {setValue} />
+						<Combobox items={contracts} bind:value={$formStore.parent_contract} {setValue} />
 						<Form.Description>
 							Enter the parent contract number if this is a renewal or extension
 						</Form.Description>
@@ -157,7 +232,7 @@
 					</Form.Item>
 				</Form.Field>
 				<Form.Field {config} name="start_date">
-					<Form.Item class="flex flex-col">
+					<Form.Item class="grid">
 						<Form.Label for="start_date" class="mb-2">Start Date</Form.Label>
 						<Popover.Root>
 							<Form.Control id="start_date" let:attrs>
@@ -187,7 +262,7 @@
 					</Form.Item>
 				</Form.Field>
 				<Form.Field {config} name="end_date">
-					<Form.Item class="flex flex-col">
+					<Form.Item class="grid">
 						<Form.Label class="mb-2">End Date</Form.Label>
 						<Popover.Root>
 							<Form.Control id="end_date" let:attrs>
@@ -217,7 +292,7 @@
 					</Form.Item>
 				</Form.Field>
 				<Form.Field {config} name="description">
-					<Form.Item class="flex flex-col">
+					<Form.Item class="grid">
 						<Form.Label class="mb-2">Description</Form.Label>
 						<Form.Textarea
 							placeholder="Free text field to describe the contract if needed."
@@ -228,23 +303,135 @@
 					</Form.Item>
 				</Form.Field>
 				<Form.Field {config} name="vendor_id" let:setValue>
-					<Form.Item class="flex flex-col">
+					<Form.Item class="grid">
 						<Form.Label class="mb-2">Vendor</Form.Label>
-						<Combobox items={vendors} placeholder="Search for a vendor" {setValue} />
-						<Form.Description
-							>Select the owner of the contract, if it isn't yourself.</Form.Description
-						>
+						<Combobox
+							items={vendorsParsed}
+							bind:value={$formStore.vendor_id}
+							placeholder="Search for a vendor"
+							{setValue}
+						/>
 						<Form.Validation />
+
+						<Dialog.Root
+							bind:open={newVendorDialog}
+							onOpenChange={(open) => {
+								if (open) {
+									$formStore.new_vendor = { name: '', department_id: '' };
+								}
+							}}
+							closeOnEscape
+						>
+							<Dialog.Trigger
+								class={`${buttonVariants({ variant: 'default' })} justify-self-start`}
+							>
+								Add new vendor
+							</Dialog.Trigger>
+							<Dialog.Content class="">
+								<Dialog.Header>
+									<Dialog.Title>Add new vender</Dialog.Title>
+								</Dialog.Header>
+								<div class="gap-4">
+									<Form.Field {config} name="new_vendor.name">
+										<Form.Item class="grid">
+											<Form.Label class="mb-2">Name</Form.Label>
+											<Form.Input placeholder="Name" />
+											<Form.Validation />
+										</Form.Item>
+									</Form.Field>
+									<Form.Field {config} name="new_vendor.department_id" let:setValue>
+										<Form.Item class="grid">
+											<Form.Label class="mb-2">Department</Form.Label>
+											<Combobox
+												items={departments}
+												placeholder="Search for a department"
+												{setValue}
+											/>
+										</Form.Item>
+									</Form.Field>
+									{#if newVendorDialog}
+										<span class="text-destructive">{newRessourceError}</span>
+									{/if}
+								</div>
+								<Dialog.Footer>
+									<Button
+										type="button"
+										on:click={addVendor}
+										disabled={status === 'adding-new-ressource'}
+										>{status === 'adding-new-ressource' ? 'Adding...' : 'Add'}</Button
+									>
+								</Dialog.Footer>
+							</Dialog.Content>
+						</Dialog.Root>
 					</Form.Item>
 				</Form.Field>
-				<!--TODO project code input field-->
-				<Form.Field {config} name="creator" let:setValue>
-					<Form.Item class="flex flex-col">
-						<Form.Label class="mb-2">Owner</Form.Label>
-						<Combobox items={organizationUsers} initialValue={userID} {setValue} />
-						<Form.Description
-							>Select the owner of the contract, if it isn't yourself.</Form.Description
+
+				<Form.Field {config} name="project_id" let:setValue let:value>
+					<Form.Item class="grid">
+						<Form.Label class="mb-2">Project</Form.Label>
+						<Combobox
+							items={organizationProjectsParsed}
+							{value}
+							placeholder="Search for a project"
+							{setValue}
+						/>
+						<Form.Validation />
+						<Dialog.Root
+							bind:open={newProjectDialog}
+							onOpenChange={(open) => {
+								if (open) {
+									$formStore.new_project = { name: '', description: undefined };
+								}
+							}}
+							closeOnEscape
 						>
+							<Dialog.Trigger
+								class={`${buttonVariants({ variant: 'default' })} justify-self-start`}
+							>
+								Add new Project
+							</Dialog.Trigger>
+							<Dialog.Content class="">
+								<Dialog.Header>
+									<Dialog.Title>Add new Project</Dialog.Title>
+								</Dialog.Header>
+								<div class="gap-4">
+									<Form.Field {config} name="new_project.name">
+										<Form.Item class="grid">
+											<Form.Label class="mb-2">Name</Form.Label>
+											<Form.Input placeholder="Name" />
+											<Form.Validation />
+										</Form.Item>
+									</Form.Field>
+									<Form.Field {config} name="new_project.description">
+										<Form.Item class="grid">
+											<Form.Label class="mb-2">Description</Form.Label>
+											<Form.Textarea />
+										</Form.Item>
+									</Form.Field>
+									{#if newProjectDialog}
+										<span class="text-destructive">{newRessourceError}</span>
+									{/if}
+								</div>
+								<Dialog.Footer>
+									<Button
+										type="button"
+										on:click={addProject}
+										disabled={status === 'adding-new-ressource'}
+										>{status === 'adding-new-ressource' ? 'Adding...' : 'Add'}</Button
+									>
+								</Dialog.Footer>
+							</Dialog.Content>
+						</Dialog.Root>
+					</Form.Item>
+				</Form.Field>
+
+				<Form.Field {config} name="owner" let:setValue>
+					<Form.Item class="grid">
+						<Form.Label class="mb-2">Owner</Form.Label>
+						<Combobox items={organizationUsers} value={userID} {setValue} />
+						<Form.Description>
+							Select the owner of the contract, if it isn't yourself.
+						</Form.Description>
 						<Form.Validation />
 					</Form.Item>
 				</Form.Field>
@@ -256,20 +443,37 @@
 						</div>
 					{:then approvers}
 						<Label for="terms">Approvers <Lock class="mb-1 ml-1 inline-block h-4 w-4" /></Label>
-						<div class="flex max-w-xs flex-wrap gap-2">
-							{#each approvers as { name }}
-								<div class="mt-2 block w-fit rounded-md border">
-									<h6 class="not-prose whitespace-nowrap px-4 py-3 text-sm text-muted">{name}</h6>
-								</div>
-							{/each}
-						</div>
+						{#if approvers[0]}
+							<ul class="flex flex-wrap gap-2">
+								{#each approvers as { name }}
+									<li>
+										<Badge variant="outline">{name}</Badge>
+									</li>
+								{/each}
+							</ul>
+						{:else}
+							<p class="text-destructive">No approvers</p>
+						{/if}
 					{/await}
 				</div>
+				<Form.Field {config} name="department_id" let:setValue let:value>
+					<Form.Item class="grid">
+						<Form.Label class="mb-2">Department</Form.Label>
+						<Combobox
+							items={departmentsParsed}
+							{value}
+							placeholder="Search for a department"
+							{setValue}
+						/>
+						<Form.Validation />
+						<Form.Validation />
+					</Form.Item>
+				</Form.Field>
 				<Form.Field {config} name="amount">
-					<Form.Item class="flex flex-col">
+					<Form.Item class="grid">
 						<Form.Label class="mb-2">Amount</Form.Label>
 						<div class="flex flex-row place-items-center gap-x-2">
-							<Form.Input />
+							<Form.Input type="number" />
 							<Form.Label
 								class="flex h-[40px] max-h-[300px] place-items-center rounded-md border border-input px-2"
 								>USD</Form.Label
@@ -283,11 +487,17 @@
 					<Form.Item class="">
 						<Form.Label class="mb-2">Attachment</Form.Label>
 						<label class="mb-2 block cursor-pointer">
-							<input hidden type="file" on:input={upload} />
+							<input hidden type="file" on:input={upload} bind:this={fileInput} />
 							<div
 								class="flex w-fit items-center justify-start gap-4 rounded-md border border-input px-3 py-2"
 							>
-								{uploading ? 'Uploading...' : 'Upload File'}
+								{#if status === 'uploading'}
+									Uploading...
+								{:else if fileName}
+									{fileName}
+								{:else}
+									Upload file
+								{/if}
 								<Paperclip />
 							</div>
 						</label>
@@ -296,7 +506,12 @@
 						<Form.Validation />
 					</Form.Item>
 				</Form.Field>
-				<Form.Button disabled={uploading}>Submit</Form.Button>
+				<Form.Button type="submit" disabled={status === 'uploading' || $submitting}
+					>Submit</Form.Button
+				>
+				{#if $allErrors.length > 0}
+					<p class="text-destructive">Please enter valid data</p>
+				{/if}
 			</Form.Root>
 		{/await}
 	</Card.Content>

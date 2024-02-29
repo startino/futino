@@ -1,5 +1,5 @@
 import { error } from '@sveltejs/kit';
-import { PUBLIC_STRIPE_YEARLY_PRICE_ID, PUBLIC_BASE_URL } from '$env/static/public';
+import { PUBLIC_STRIPE_YEARLY_PRICE_ID } from '$env/static/public';
 import Stripe from 'stripe';
 
 export const load = async ({ locals: { stripe, stripeCustomerId, supabase, getSession } }) => {
