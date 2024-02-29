@@ -1,7 +1,4 @@
 <script lang="ts">
-	import * as Form from '$lib/components/ui/form';
-	import { contractEntrySchema, type ContractEntryForm } from '$lib/schemas';
-	import { page } from '$app/stores';
 	import { Calendar as CalendarIcon, Lock, Paperclip } from 'lucide-svelte';
 	import { Button } from '$lib/components/ui/button';
 	import {
@@ -11,19 +8,24 @@
 		parseDate,
 		today
 	} from '@internationalized/date';
+	import type { SuperValidated } from 'sveltekit-superforms';
+	import { superForm } from 'sveltekit-superforms/client';
+	import { toast } from 'svelte-sonner';
+
+	import { page } from '$app/stores';
 	import { cn } from '$lib/utils';
+	import { formatUSD } from '$lib/helpers';
+	import { contractEntrySchema, type ContractEntryForm } from '$lib/schemas';
+	import type { PageData } from './$types';
 	import { Badge } from '$lib/components/ui/badge';
 	import { buttonVariants } from '$lib/components/ui/button';
 	import * as Card from '$lib/components/ui/card';
 	import * as Popover from '$lib/components/ui/popover';
-	import type { SuperValidated } from 'sveltekit-superforms';
-	import { superForm } from 'sveltekit-superforms/client';
 	import DatePicker from '$lib/components/atoms/DatePicker.svelte';
 	import Combobox from '$lib/components/atoms/Combobox.svelte';
-	import type { PageData } from './$types';
 	import { Skeleton } from '$lib/components/ui/skeleton';
+	import * as Form from '$lib/components/ui/form';
 	import SkeletonForm from '$lib/components/molecules/SkeletonForm.svelte';
-	import { formatUSD } from '$lib/helpers';
 	import { Label } from '$lib/components/ui/label';
 	import * as Dialog from '$lib/components/ui/dialog';
 
@@ -32,7 +34,6 @@
 	const apiClient = data.apiClient;
 	let status: 'uploading' | 'submitting' | 'idle' | 'adding-new-ressource' | 'error' = 'idle';
 
-	let fileName: string | null;
 	let contractsParsed = [];
 	let organizationUsersParsed = [];
 	let vendorsParsed = [];
@@ -41,6 +42,8 @@
 	let newVendorDialog = false;
 	let newProjectDialog = false;
 	let newRessourceError = '';
+	let fileInput: HTMLInputElement;
+	let fileName: string | null;
 
 	let form: SuperValidated<ContractEntryForm> = $page.data.form;
 
@@ -49,12 +52,24 @@
 	const theForm = superForm(form, {
 		validators: contractEntrySchema,
 		taintedMessage: null,
-		dataType: 'json'
+		dataType: 'json',
+		resetForm: true,
+		onResult: ({ result }) => {
+			if (result.type == 'success') {
+				toast.success('Contract successfully create!');
+				startDateValue = undefined;
+				endDateValue = undefined;
+				fileInput.value = '';
+				fileName = null;
+			}
+
+			if (result.type == 'failure') {
+				toast.error('Contract creation failed...');
+			}
+		}
 	});
 
 	const allErrors = theForm.allErrors;
-
-	$: console.log({ formErrors: $allErrors });
 
 	const submitting = theForm.submitting;
 
@@ -77,9 +92,9 @@
 	$: $formStore.start_date = startDateValue ? new Date(startDateValue.toString()) : undefined;
 	$: $formStore.end_date = endDateValue ? new Date(endDateValue.toString()) : undefined;
 
-	async function upload(e) {
+	async function upload() {
 		status = 'uploading';
-		const file = e.target.files[0];
+		const file = fileInput.files[0];
 		const path = `/${crypto.randomUUID()}-${file.name}`;
 
 		const { error, data } = await apiClient.supabase.storage
@@ -209,7 +224,7 @@
 				<Form.Field {config} name="parent_contract" let:setValue>
 					<Form.Item class="grid">
 						<Form.Label class="mb-2">Parent Contract</Form.Label>
-						<Combobox items={contracts} {setValue} />
+						<Combobox items={contracts} bind:value={$formStore.parent_contract} {setValue} />
 						<Form.Description>
 							Enter the parent contract number if this is a renewal or extension
 						</Form.Description>
@@ -472,7 +487,7 @@
 					<Form.Item class="">
 						<Form.Label class="mb-2">Attachment</Form.Label>
 						<label class="mb-2 block cursor-pointer">
-							<input hidden type="file" on:input={upload} />
+							<input hidden type="file" on:input={upload} bind:this={fileInput} />
 							<div
 								class="flex w-fit items-center justify-start gap-4 rounded-md border border-input px-3 py-2"
 							>

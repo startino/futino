@@ -48,24 +48,24 @@ export const contractEntrySchema = z
 		parent_contract: z.string().optional(),
 		start_date: z.date(),
 		end_date: z.date(),
-		description: z.string().optional(),
-		vendor_id: z.string().min(1),
+		description: z.string().min(5, 'Description must be at least 5 characters long').optional(),
+		vendor_id: z.string().min(1, 'The vendor is required'),
 		new_vendor: z
 			.object({
 				name: z.string().min(1, 'The name is required'),
-				department_id: z.string().min(1).optional()
+				department_id: z.string().min(1, 'The department is required').optional()
 			})
 			.optional(),
 		new_project: z
 			.object({
 				name: z.string().min(1, 'The name is required'),
-				description: z.string().min(1).optional()
+				description: z.string().min(5, 'Description must be at least 5 characters long').optional()
 			})
 			.optional(),
 		project_id: z.string().optional(),
-		owner: z.string().min(1),
+		owner: z.string().min(1, 'An owner is required'),
 		department_id: z.string().optional(),
-		amount: z.string().min(1),
+		amount: z.string().min(1, 'An amount is required'),
 		spend_category: z.string().optional(),
 		attachment: z.string()
 	})
