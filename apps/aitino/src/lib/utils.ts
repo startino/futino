@@ -34,7 +34,7 @@ function getRandomIndex(array: Array<unknown>) {
 export const authenticateUser = ({ cookies }: RequestEvent) => {
 	if (cookies.get("profileId")) return;
 
-	const profileId = crypto.randomUUID();
+	const profileId = "edb9a148-a8fc-48bd-beb9-4bf5de602b78"; //crypto.randomUUID();
 
 	const expirationDate = new Date();
 	expirationDate.setMonth(expirationDate.getMonth() + 1);

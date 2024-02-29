@@ -1,8 +1,6 @@
 <script lang="ts">
 	import type { HTMLTextareaAttributes } from "svelte/elements";
 	import { cn } from "$lib/utils";
-	export let minRows = 1;
-	export let maxRows: number;
 
 	type $$Props = HTMLTextareaAttributes;
 
@@ -10,6 +8,8 @@
 	export let value: $$Props["value"] = undefined;
 	export { className as class };
 
+	export let minRows = 1;
+	export let maxRows: number;
 	$: minHeight = `${1 + minRows * 1.5}em`;
 	$: maxHeight = maxRows ? `${1 + maxRows * 1.5}em` : `auto`;
 </script>

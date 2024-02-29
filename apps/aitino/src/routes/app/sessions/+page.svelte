@@ -4,6 +4,7 @@
 	import Chat from "./Chat.svelte";
 	import { onMount } from "svelte";
 	import { API_BASE_URL } from "$lib/config";
+	import { error } from "@sveltejs/kit";
 
 	export let data: SessionLoad;
 
@@ -12,6 +13,10 @@
 
 	onMount(() => {
 		loading = false;
+
+		if (data.messages.length > 0) {
+			awaitingReply = true;
+		}
 	});
 
 	async function* callMaeve(url: string): AsyncGenerator<string, void, unknown> {
@@ -84,15 +89,20 @@
 		data.messages = [];
 		loading = true;
 
-		const url = `${API_BASE_URL}/maeve?id=${data.maeveId}`;
+		const url = `${API_BASE_URL}/maeve?id=${data.maeveId}&profile_id=${data.profileId}`;
+
 		main(url);
 	}
 
-	// function continueSession() {
-	// 	const url = `${API_BASE_URL}/maeve?id=${data.maeveId}&session_id=${data.session.id}&reply=${data.eply}`;
-	//
-	// 	main(url);
-	// }
+	function replySession(message: string) {
+		if (!data.session) {
+			throw error(500, "Cannot reply without session");
+		}
+		awaitingReply = false;
+		const url = `${API_BASE_URL}/maeve?id=${data.maeveId}&profile_id=${data.profileId}&session_id=${data.session.id}&reply=${message}`;
+
+		main(url);
+	}
 
 	function redirectToMaeveEditor() {
 		window.location.href = "/app/editors/maeve";
@@ -106,7 +116,12 @@
 		<h1>Loading...</h1>
 	</div>
 {:else if data.session && data.maeveId}
-	<!-- <Chat {data.maeveId} {data.session.id} {data.messages} {awaitingReply} /> -->
+	<Chat
+		sessionId={data.session.id}
+		messages={data.messages}
+		{awaitingReply}
+		replyCallback={replySession}
+	/>
 	<div
 		class="absolute top-0 mx-auto flex h-min w-full flex-col items-center justify-center bg-transparent p-4 backdrop-blur"
 	>
@@ -129,5 +144,7 @@
 {/if}
 <div class="absolute bottom-1 mx-auto flex h-min w-full flex-col items-center justify-center">
 	<code class="text-muted">debug:</code>
-	<!-- <code class="text-muted">maeve id: {data.maeveId} - session id: {data.session.id}</code> -->
+	<code class="text-muted">
+		maeve id: {data.maeveId} - session id: {data.session ? data.session.id : "missing"}
+	</code>
 </div>
