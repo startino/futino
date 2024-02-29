@@ -10,26 +10,18 @@
 	let menuOpen = false;
 	let navGroups = [
 		{
-			name: "Editors",
-			baseSrc: "/app/editors",
+			name: null,
+			baseSrc: "/app",
 			items: [
 				{
-					label: "Maeve",
-					src: "/maeve"
-				},
-				{
-					label: "Agent",
-					src: "/agent"
-				},
-				{
-					label: "Workflow",
-					src: "/workflow"
+					label: "Sessions",
+					src: "/sessions"
 				}
 			]
 		},
 		{
-			name: "Libraries",
-			baseSrc: "/app/libraries",
+			name: "Editors",
+			baseSrc: "/app/editors",
 			items: [
 				{
 					label: "Maeve",
