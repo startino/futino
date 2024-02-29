@@ -13,7 +13,7 @@ export type Message = {
 export type Maeve = {
 	id: string;
 	profile_id: string;
-	reciever_id: string;
+	receiver_id: string;
 	title: string;
 	description: string;
 	nodes: Node[];
