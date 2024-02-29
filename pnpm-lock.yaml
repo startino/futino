@@ -580,6 +580,9 @@ importers:
       mdsvex:
         specifier: ^0.11.0
         version: 0.11.0(svelte@4.2.9)
+      mode-watcher:
+        specifier: ^0.2.0
+        version: 0.2.0(svelte@4.2.9)
       radix-icons-svelte:
         specifier: ^1.2.1
         version: 1.2.1
