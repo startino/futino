@@ -13,6 +13,8 @@
 	import { superForm } from "sveltekit-superforms/client";
 	import { toast } from "svelte-sonner";
 	import { enhance } from "$app/forms";
+
+
 	export let form: ActionData;
 	export let data: PageData;
 
@@ -23,8 +25,18 @@
 	} = superForm(data.registerForm, {
 		validators: formSchema
 	});
-console.log(form);
+	console.log(form, "form from register");
 </script>
+
+{#if form?.success}
+	<Alert.Root variant="success" class="border-none p-0">
+		<Alert.Description>{form?.message}</Alert.Description>
+	</Alert.Root>
+{:else if form?.error}
+	<Alert.Root variant="destructive" class="border-none p-0">
+		<Alert.Description>{form?.error}</Alert.Description>
+	</Alert.Root>
+{/if}
 
 <div class="max-w-screen bg-card mx-auto flex h-screen items-center justify-center">
 	<Card.Root>

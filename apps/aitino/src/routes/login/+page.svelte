@@ -8,10 +8,14 @@
 	import * as Alert from "$lib/components/ui/alert";
 	import { toast } from "svelte-sonner";
 	import { enhance } from "$app/forms";
-
-	export let data: PageData;
+	import { onMount } from "svelte";
 
 	export let form;
+
+	function clearForm() {
+		form.error = null;
+	}
+
 </script>
 
 <div class="max-w-screen bg-card mx-auto flex h-screen items-center justify-center">
@@ -67,7 +71,6 @@
 						id="email"
 						name="email"
 						type="email"
-						required
 						placeholder="minilik@gmail.com"
 						class="border-input  placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border bg-transparent px-3 py-6 text-sm shadow-sm ring-offset-0 transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50"
 					/>
@@ -78,22 +81,20 @@
 						id="password"
 						name="password"
 						type="password"
-						required
 						class="border-input  placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border bg-transparent px-3 py-6 text-sm shadow-sm ring-offset-0 transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50"
 					/>
 				</div>
-				<!-- {#if form?.error}
+				{#if form?.error}
 					<Alert.Root variant="destructive" class="border-none p-0">
 						<Alert.Description>{form?.error}</Alert.Description>
 					</Alert.Root>
-				{/if} -->
+				{/if}
 				<Button
 					class="w-full"
 					type="submit"
 					on:click={() => {
-						if (form?.error) {
-							toast.error(form?.error);
-						}
+						clearForm;
+					
 					}}>Login</Button
 				>
 			</form>

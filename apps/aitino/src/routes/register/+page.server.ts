@@ -1,23 +1,29 @@
 import { fail, redirect } from "@sveltejs/kit";
-import type { Actions, PageServerLoad } from "./$types";
+import type { Actions } from "./$types";
 import { superValidate } from "sveltekit-superforms/server";
 import { formSchema } from "$lib/schma";
 import { AuthApiError, type Provider } from "@supabase/supabase-js";
 
-export const load = (async () => {
+export const load = async () => {
 	return {
 		registerForm: await superValidate(formSchema)
 	};
-}) satisfies PageServerLoad;
+};
 
 export const actions: Actions = {
 	register: async ({ request, locals, url }) => {
+		const body = Object.fromEntries(await request.formData());
+
 		const provider = url.searchParams.get("provider") as Provider;
 
 		if (provider) {
 			const { data, error: err } = await locals.supabase.auth.signInWithOAuth({
-				provider: provider
+				provider: provider,
+				oauth
 			});
+
+			console.log(data, "data from");
+			console.log(code, "error from");
 
 			if (err) {
 				console.log(err);
@@ -26,11 +32,23 @@ export const actions: Actions = {
 				});
 			}
 
+			const user = data.user;
+
+			if (user) {
+				const { error: profileError } = await locals.supabase
+					.from("profiles")
+					.upsert({ id: user.id, display_name: body.display_name as string });
+				// .insert([{ display_name: body.display_name as string }]);
+
+				if (profileError) {
+					console.error("Failed to create user profile:", profileError);
+					return fail(500, { error: "Failed to create user profile" });
+				}
+			}
+
 			throw redirect(307, data.url);
 		}
 
-		const body = Object.fromEntries(await request.formData());
-		// const form = await superValidate(request, );
 		const form = await superValidate(body, formSchema);
 
 		if (!provider) {
@@ -45,7 +63,12 @@ export const actions: Actions = {
 
 		const { data, error: err } = await locals.supabase.auth.signUp({
 			email: body.email as string,
-			password: body.password as string
+			password: body.password as string,
+			options: {
+				data: {
+					display_name: body.display_name as string
+				}
+			}
 		});
 
 		console.log(data, "from register +page.ts", err, "from register +page.ts");
@@ -55,19 +78,22 @@ export const actions: Actions = {
 				throw redirect(307, "/login");
 			}
 		}
-		// const user = data.user;
 
-		// if (user) {
-		// 	const { error: profileError } = await locals.supabase
-		// 		.from("profiles")
-		// 		.insert([{ user_id: user.id, display_name: body.display_name as string }]);
+		console.log(body, "body from register +page.server.ts");
+		const user = data.user;
 
-		// 	if (profileError) {
-		// 		console.error("Failed to create user profile:", profileError);
-		// 		return fail(500, { error: "Failed to create user profile" });
-		// 	}
-		// }
+		if (user) {
+			const { error: profileError } = await locals.supabase
+				.from("profiles")
+				.upsert({ id: user.id, display_name: body.display_name as string });
+			// .insert([{ display_name: body.display_name as string }]);
+
+			if (profileError) {
+				console.error("Failed to create user profile:", profileError);
+				return fail(500, { error: "Failed to create user profile" });
+			}
+		}
 
 		throw redirect(301, "/");
-	},
+	}
 };

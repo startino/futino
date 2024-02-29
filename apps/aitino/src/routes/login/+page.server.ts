@@ -1,6 +1,18 @@
 import { fail, redirect } from "@sveltejs/kit";
 import type { Actions, PageServerLoad } from "./$types";
 import type { Provider } from "@supabase/supabase-js";
+import { z } from "zod";
+
+const loginUserSchema = z.object({
+	email: z.string().email({ message: "Invalid email address" }),
+	password: z
+		.string()
+		.min(8, { message: "Password must be at least 8 characters long." })
+		.max(100, { message: "Password must be 100 characters or less." })
+		.regex(/[a-z]/, { message: "Password must contain at least one lowercase letter." })
+		.regex(/[A-Z]/, { message: "Password must contain at least one uppercase letter." })
+		.regex(/[0-9]/, { message: "Password must contain at least one number." })
+});
 
 export const load = (async () => {
 	return {};
@@ -25,6 +37,11 @@ export const actions: Actions = {
 		}
 		const body = Object.fromEntries(await request.formData());
 
+		if (!body.email || !body.password) {
+			return fail(400, {
+				error: "Email or password are missing "
+			});
+		}
 		const { data, error } = await locals.supabase.auth.signInWithPassword({
 			email: body.email as string,
 			password: body.password as string
