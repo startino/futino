@@ -6,7 +6,7 @@ import { Stripe } from 'stripe';
 import type { Database } from '$lib/server/supabase.types.ts';
 import { createSupabaseServerClient } from '@supabase/auth-helpers-sveltekit';
 import { redirect, type Handle } from '@sveltejs/kit';
-import { getUserSubscription } from '$lib/api-client';
+import { getUserSubscription } from '$lib/server/db';
 
 export const handle: Handle = async ({ event, resolve }) => {
 	event.locals.supabase = createSupabaseServerClient<Database>({

@@ -1,28 +1,16 @@
 <script lang="ts">
+	import type { SessionLoad } from "$lib/loads";
 	import { Button } from "$lib/components/ui/button";
 	import Chat from "./Chat.svelte";
 	import { onMount } from "svelte";
+	import { API_BASE_URL } from "$lib/config";
 
-	// get maeveId and sessionId from the page store
+	export let data: SessionLoad;
 
 	let loading = true;
-	let maeveId: string | null;
-	let sessionId: string | null;
 	let awaitingReply = false;
-	let messages: {
-		id: string;
-		session_id: string;
-		recipient: string;
-		content: string;
-		role: string;
-		name: string;
-		created_at: string;
-	}[] = [];
 
 	onMount(() => {
-		maeveId = localStorage.getItem("currentMeaveId");
-		sessionId = localStorage.getItem("currentSessionId");
-		messages = JSON.parse(localStorage.getItem("currentMessages") || "[]");
 		loading = false;
 	});
 
@@ -51,9 +39,7 @@
 		}
 	}
 
-	async function main(): Promise<void> {
-		const url = `https://api.aiti.no/maeve?id=${maeveId}`;
-
+	async function main(url: string): Promise<void> {
 		if (!url) {
 			console.log("Usage: Provide a valid URL as a parameter");
 			return;
@@ -63,6 +49,7 @@
 			let e = null;
 			try {
 				e = JSON.parse(event.trim());
+				console.log("got message", e);
 			} catch (error) {
 				console.error(`Error parsing JSON ${error}:`, event);
 				continue;
@@ -72,30 +59,39 @@
 			}
 
 			if (e.id === 0) {
-				sessionId = e.data.session_id;
+				data.sessionId = e.data.session_id;
 				localStorage.setItem("currentSessionId", e.data.session_id);
 				loading = false;
+				console.log("got session id", e.data.session_id);
 				continue;
 			}
 			if (e.data === "done") {
 				awaitingReply = true;
 				console.log("done");
+
 				return;
 			}
 
-			messages = [...messages, e.data];
-			localStorage.setItem("currentMessages", JSON.stringify(messages));
+			data.messages = [...data.messages, e.data];
+			localStorage.setItem("currentMessages", JSON.stringify(data.messages));
 		}
 	}
 
-	function runMaeve() {
+	function startSession() {
 		localStorage.removeItem("currentSessionId");
 		localStorage.removeItem("currentMessages");
-		sessionId = null;
-		messages = [];
+		data.sessionId = null;
+		data.messages = [];
 		loading = true;
 
-		main();
+		const url = `${API_BASE_URL}/maeve?id=${data.maeveId}`;
+		main(url);
+	}
+
+	function continueSession() {
+		const url = `${API_BASE_URL}/maeve?id=${data.maeveId}&session_id=${data.sessionId}&reply=${data.eply}`;
+
+		main(url);
 	}
 
 	function redirectToMaeveEditor() {
@@ -109,19 +105,19 @@
 	>
 		<h1>Loading...</h1>
 	</div>
-{:else if sessionId && maeveId}
-	<Chat {maeveId} {sessionId} {messages} {awaitingReply} />
+{:else if data.sessionId && data.maeveId}
+	<Chat {data.maeveId} {data.sessionId} {data.messages} {awaitingReply} />
 	<div
 		class="absolute top-0 mx-auto flex h-min w-full flex-col items-center justify-center bg-transparent p-4 backdrop-blur"
 	>
-		<Button on:click={runMaeve}>Start New Session</Button>
+		<Button on:click={startSession}>Start New Session</Button>
 	</div>
 {:else if maeveId}
 	<div
 		class="xl:prose-md prose prose-sm prose-main mx-auto flex h-screen max-w-none flex-col items-center justify-center gap-4 px-12 text-center md:prose-base 2xl:prose-lg"
 	>
 		<h1>It looks like you don't have session yet...</h1>
-		<Button on:click={runMaeve}>Run Your Maeve!</Button>
+		<Button on:click={startSession}>Run Your Maeve!</Button>
 	</div>
 {:else}
 	<div

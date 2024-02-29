@@ -20,7 +20,7 @@
 	import * as Dialog from "$lib/components/ui/dialog";
 	import { Library } from "$lib/components/ui/library";
 	import * as CustomNode from "$lib/components/ui/custom-node";
-	import { saveMaeveNodes } from "$lib/api-client";
+	import * as db from "$lib/server/db";
 
 	import {
 		getContext,
@@ -138,7 +138,7 @@
 	const edges = writable<Edge[]>(data.edges);
 
 	async function save() {
-		const { error } = await saveMaeveNodes({
+		const { error } = await db.postMaeve({
 			id: data.id,
 			user_id: data.user_id,
 			title,

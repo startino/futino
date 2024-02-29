@@ -1,15 +1,8 @@
 <script lang="ts">
 	import { User } from "lucide-svelte";
 	import SvelteMarkdown from "svelte-markdown";
-	export let message: {
-		id: string;
-		session_id: string;
-		recipient: string;
-		content: string;
-		role: string;
-		name: string;
-		created_at: string;
-	};
+    import * as models from "$lib/models";
+	export let message: models.Message;
 	function formatName(inputString: string): string {
 		return inputString
 			.replace(/([a-z])([A-Z])/g, "$1 $2")
