@@ -153,9 +153,6 @@
 									sizes="(min-width: 1024px) 67.8125rem, (min-width: 640px) 100vw, 45rem"
 								/>
 							</Card.Content>
-							<Card.Footer>
-								<Button>Save changes</Button>
-							</Card.Footer>
 						</Card.Root>
 					</Tabs.Content>
 				{/each}
