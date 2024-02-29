@@ -1,13 +1,18 @@
 import * as db from "$lib/server/db";
-import type { SessionLoad } from "$lib/loads";
+import type { SessionLoad } from "$lib/types/loads";
 
-export const load = async () => {
+export const load = async ({ locals: { userId } }) => {
 	const data: SessionLoad = {
-		maeveId: localStorage.getItem("maeveId"),
-		sessionId: localStorage.getItem("sessionId"),
+		maeveId: null,
+		sessionId: null,
 		messages: [],
-		reply: localStorage.getItem("currentReply") || ""
+		reply: ""
 	};
 
+	const maeves = await db.getMaeves(userId);
+	if (maeves.length === 0) {
+		return data;
+	}
+	data.maeveId = maeves[0].id;
 	data.messages = await db.getMessages(data.sessionId);
 };

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { User } from "lucide-svelte";
 	import SvelteMarkdown from "svelte-markdown";
-    import * as models from "$lib/models";
+	import * as models from "$lib/types/models";
 	export let message: models.Message;
 	function formatName(inputString: string): string {
 		return inputString
