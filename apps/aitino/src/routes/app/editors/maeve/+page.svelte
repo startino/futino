@@ -9,8 +9,7 @@
 		Panel,
 		useSvelteFlow,
 		type Node,
-		type Edge,
-		getOutgoers
+		type Edge
 	} from "@xyflow/svelte";
 	import { toast } from "svelte-sonner";
 
@@ -41,9 +40,17 @@
 
 	let title = data.title;
 	let description = data.description;
+	let isChatDialogOpen = false;
 
 	const actions: PanelAction[] = [
-		{ name: "Run", buttonVariant: "default" },
+		{
+			name: "Run",
+			buttonVariant: "default",
+			onclick: async () => {
+				isChatDialogOpen = true;
+				await save();
+			}
+		},
 		{ name: "Add Prompt", buttonVariant: "outline", onclick: addNewPrompt },
 		{ name: "Add Agent", buttonVariant: "outline", onclick: addNewAgent },
 		{ name: "Load Maeve", buttonVariant: "outline", isCustom: true },
@@ -78,8 +85,7 @@
 			buttonVariant: "outline",
 			onclick: async () => await save()
 		},
-		{ name: "Layout", buttonVariant: "outline", onclick: layout },
-		{ name: "Sessions", buttonVariant: "outline" }
+		{ name: "Layout", buttonVariant: "outline", onclick: layout }
 	];
 
 	const nodeTypes = {
@@ -143,10 +149,20 @@
 			edges: $edges
 		});
 
-		if (error) {
-			toast.error("Something went wrong when saving the nodes..");
+		if (!data.id) {
+			console.error("no data id");
+			toast.error("Something went wrong when saving the nodes.");
 			return;
 		}
+		if (error) {
+			console.error(error);
+			toast.error("Something went wrong when saving the nodes.");
+			return;
+		}
+
+		console.log(data.id, "from save node");
+
+		localStorage.setItem("currentMeaveId", data.id);
 
 		toast.success("Nodes successfully saved!");
 	}
@@ -176,7 +192,7 @@
 			name = pickRandomName();
 		} while ($nodes.find((n) => n.type === "agent" && get(n.data.name) === name));
 
-		setCenter(position.x, position.y, { zoom: position.zoom });
+		// setCenter(position.x, position.y, { zoom: position.zoom });
 
 		nodes.update((v) => [
 			...v,
@@ -220,6 +236,8 @@
 
 		$count.prompts++;
 	}
+
+	console.log(data.id, "from save node 0");
 </script>
 
 <div style="height:100vh;">
@@ -294,10 +312,13 @@
 			</RightEditorSidebar>
 		</Panel>
 		<Panel position="bottom-right">
-			<Dialog.Root>
-				<Dialog.Trigger>
-					<Button class="block text-base">Chat</Button>
-				</Dialog.Trigger>
+			<Dialog.Root
+				open={isChatDialogOpen}
+				onOpenChange={() => {
+					isChatDialogOpen = false;
+					console.log("close");
+				}}
+			>
 				<Dialog.Content class="sm:max-w-full">
 					<ChatRoom />
 				</Dialog.Content>

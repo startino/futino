@@ -9,7 +9,7 @@
 	setContext("splitTestIdentifier", data?.splitTestIdentifier);
 </script>
 
-<Shell class="">
+<Shell>
 	<svelte:fragment slot="header">
 		<Header />
 	</svelte:fragment>
