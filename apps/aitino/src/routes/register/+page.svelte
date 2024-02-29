@@ -25,7 +25,6 @@
 	} = superForm(data.registerForm, {
 		validators: formSchema
 	});
-	console.log(form, "form from register");
 </script>
 
 <div class="max-w-screen bg-card mx-auto flex h-screen items-center justify-center">

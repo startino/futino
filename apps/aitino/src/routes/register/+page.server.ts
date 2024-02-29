@@ -19,11 +19,9 @@ export const actions: Actions = {
 		if (provider) {
 			const { data, error: err } = await locals.supabase.auth.signInWithOAuth({
 				provider: provider,
-				oauth
 			});
 
 			console.log(data, "data from");
-			console.log(code, "error from");
 
 			if (err) {
 				console.log(err);
