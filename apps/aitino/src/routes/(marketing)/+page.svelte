@@ -12,6 +12,8 @@
 	import { Label } from "$lib/components/ui/label";
 	import PricingTiers from "$lib/components/pricing/PricingTiers.svelte";
 	import { faqList as faqs } from "$lib/faq-data";
+	import { fade } from "svelte/transition";
+	import { Codesandbox, Gauge, HeartHandshake, Key, Settings2, Waves } from "lucide-svelte";
 
 	export let form: ActionData;
 
@@ -38,27 +40,67 @@
 			title: "Teams of AI Agents",
 			description:
 				"Harness the collective intelligence of AI teams designed to collaborate and amplify problem-solving capabilities. Experience the synergy of multiple AI agents working in concert to tackle complex tasks efficiently.",
-			image: "/screenshots/maeve_editor_1.png"
+			image: "/screenshots/maeve_1_no_user_prompt.png"
 		},
 		{
 			title: "Fully Custom Agents",
 			description:
 				"Tailor your AI agents to meet unique business needs with fully customizable solutions. Create bespoke agents that align perfectly with your workflow and industry-specific challenges.	",
-			image: "/screenshots/agent_node_horizontal.png"
+			image: "/screenshots/agent_node_horizontal_1.png"
 		},
 		{
 			title: "Community Libraries",
 			description:
 				"Tap into a wealth of knowledge with our community-driven libraries, where shared insights fuel innovation. Benefit from a repository of resources that grows smarter through collective contributions.",
-			image: "/screenshots/vat-returns.png"
+			image: ""
 		},
 		{
 			title: "Multi-modal Task Solving",
 			description:
 				"Address a diverse range of problems with AI agents capable of multi-modal task solving. Whether it's text, image, or data-centric challenges, our versatile agents adapt to deliver results.",
-			image: "/screenshots/reporting.png"
+			image: ""
 		}
 	];
+
+	const benefits = [
+		{
+			title: "Complex Problem Solving",
+			description:
+				"Navigate through intricate challenges with AI Crews, designed for high-level task solving through collaboration, broadening the horizon of what's achievable.",
+			icon: Key
+		},
+		{
+			title: "Rapid Prototyping",
+			description:
+				"Accelerate the development of innovative ideas with Aitino, enabling users to quickly prototype solutions through AI-driven analyses and agent collaboration.",
+			icon: Gauge
+		},
+		{
+			title: "Streamlined Operations",
+			description:
+				"Automate complex workflows with ease, reducing manual effort and increasing productivity.",
+			icon: Waves
+		},
+		{
+			title: "Enhanced Creativity",
+			description:
+				"Unlock new potentials in content creation, powered by AI's versatility in handling diverse tasks and data types.",
+			icon: Codesandbox
+		},
+		{
+			title: "Community Support",
+			description:
+				"Benefit from collective intelligence by leveraging the hours of work of other users through shared assets.",
+			icon: HeartHandshake
+		},
+		{
+			title: "Customization at Core",
+			description:
+				"Tailor every aspect of your AI agents to fit exact business needs, ensuring maximum effectiveness and integration.",
+			icon: Settings2
+		}
+	];
+
 	function selectFeature(index: number) {
 		selectedIndex = index;
 	}
@@ -142,17 +184,28 @@
 						<Card.Root class="p-8">
 							<Card.Header class="text-center">
 								<Card.Title class="text-3xl">{feature.title}</Card.Title>
-								<Card.Description class="text-md mx-auto max-w-sm">
-									{feature.description}
+								<Card.Description class="text-md mx-auto max-w-xl text-balance">
+									<p transition:fade>{feature.description}</p>
 								</Card.Description>
 							</Card.Header>
 							<Card.Content class="space-y-2">
-								<img
-									class="mx-auto max-h-96 w-full max-w-3xl rounded-xl border border-border object-contain"
-									src={feature.image}
-									alt="screenshot of the feature of {feature.title}"
-									sizes="(min-width: 1024px) 67.8125rem, (min-width: 640px) 100vw, 45rem"
-								/>
+								<div class="mx-auto w-full max-w-3xl rounded-xl border border-border">
+									{#if feature.image != ""}
+										<img
+											class="w-full rounded-xl object-cover"
+											src={feature.image}
+											alt="screenshot of the feature of {feature.title}"
+										/>
+									{:else}
+										<div class="mx-auto max-w-7xl px-6 py-16 sm:py-24 lg:px-8">
+											<h2
+												class="text-center text-3xl font-semibold uppercase tracking-tight text-accent sm:text-4xl md:text-5xl"
+											>
+												Coming Soon
+											</h2>
+										</div>
+									{/if}
+								</div>
 							</Card.Content>
 						</Card.Root>
 					</Tabs.Content>
@@ -161,11 +214,56 @@
 		</div>
 	</section>
 
+	<section class=" py-24 sm:py-32">
+		<div class="mx-auto max-w-7xl px-6 lg:px-8">
+			<div class="mx-auto max-w-2xl sm:text-center">
+				<h2 class="text-base font-semibold leading-7 text-primary">Everything you need</h2>
+				<p class="mt-2 text-3xl font-bold tracking-tight text-white sm:text-4xl">
+					Not VC backed? Not a problem.
+				</p>
+				<p class="mt-6 text-lg leading-8 text-gray-300">
+					Solve, Prototype, and Automate with Your Own Crews
+				</p>
+			</div>
+		</div>
+		<div class="relative overflow-hidden pt-16">
+			<div class="mx-auto max-w-7xl px-6 lg:px-8">
+				<img
+					src="/screenshots/maeve_editor_1.png"
+					alt="App screenshot"
+					class="mb-[-12%] rounded-xl shadow-2xl ring-1 ring-white/10"
+					width="2432"
+					height="1442"
+				/>
+				<div class="relative" aria-hidden="true">
+					<div class="absolute -inset-x-20 bottom-0 bg-gradient-to-t from-gray-900 pt-[7%]"></div>
+				</div>
+			</div>
+		</div>
+		<div class="mx-auto mt-16 max-w-7xl px-6 sm:mt-20 md:mt-24 lg:px-8">
+			<dl
+				class="mx-auto grid max-w-2xl grid-cols-1 gap-x-6 gap-y-10 text-base leading-7 text-foreground/75 sm:grid-cols-2 lg:mx-0 lg:max-w-none lg:grid-cols-3 lg:gap-x-8 lg:gap-y-16"
+			>
+				{#each benefits as { title, description, icon }}
+					<div class="relative pl-9">
+						<dt class="inline font-semibold text-foreground">
+							<svelte:component this={icon} class="absolute left-1 top-1 h-5 w-5 text-primary" />
+							{title}.
+						</dt>
+						<dd class="inline">
+							{description}
+						</dd>
+					</div>
+				{/each}
+			</dl>
+		</div>
+	</section>
+
 	<section>
 		<div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-24 md:px-8 md:py-32">
 			<div class="mb-8 max-w-3xl md:mx-auto md:text-center xl:max-w-none">
 				<h2
-					class="tracking-loose m-0 text-balance text-center text-3xl font-semibold sm:m-0 sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl"
+					class="tracking-loose m-0 text-balance text-center text-3xl font-semibold sm:m-0 sm:text-5xl md:text-6xl lg:text-6xl"
 				>
 					Flexible plans for versatile problems
 				</h2>
@@ -176,7 +274,7 @@
 
 	<section>
 		<div class="mx-auto max-w-7xl px-6 py-16 sm:py-24 lg:px-8">
-			<h2 class="text-2xl font-bold leading-10 tracking-tight text-white">
+			<h2 class="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl md:text-5xl">
 				Frequently asked questions
 			</h2>
 			<p class="mt-6 max-w-2xl text-base leading-7 text-foreground/75">
@@ -191,11 +289,11 @@
 				>
 					{#each faqs as { question, answer }}
 						<div>
-							<dt class="text-base font-semibold leading-7 text-foreground">
+							<dt class="text-balance text-lg font-semibold text-foreground">
 								{question}
 							</dt>
-							<dd class="mt-2 text-base leading-7 text-foreground/75">
-								{answer}
+							<dd class="leading- mt-2 text-pretty text-sm text-foreground/75">
+								{@html answer}
 							</dd>
 						</div>
 					{/each}

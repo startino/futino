@@ -3,10 +3,19 @@
 // Probably better object oriented way to do this, but sometimes fast is better.
 export const features = {
 		'Rate Limits': `The guaranteed number of sessions available to in each period.`,
-		'Max Agents In Teams': `The maximum number of agents that can be inside a Team at one time.`,
+		'Max Agents Per Crew': `The maximum number of agents that can be inside a Crew at one time.`,
+		'Access to Crew Editor': `The ability to create and edit Crews.`,
+		'Access to Agent Editor': `The ability to create and edit Agents`,
+
 };
 
-export type Features = typeof features;
+export type Features = {
+	'Rate Limits': string;
+	'Max Agents Per Crew':  string;
+	'Access to Crew Editor': boolean;
+	'Access to Agent Editor': boolean;
+};
+
 
 // norp = no risk pricing (model)
 export type NorpTier = {
@@ -34,8 +43,10 @@ export const norpTiers: NorpTier[] = [
 		subtitle: 'Keep it going.',
 		cost: 0,
 		features: {
-				'Rate Limits': '6 sessions / 3 hours',
-				'Max Agents In Teams': '10'
+				'Rate Limits': '2 sessions / 3 hours',
+				'Max Agents Per Crew': '7',
+				'Access to Crew Editor': true,
+				'Access to Agent Editor': true,
 		},
 		thumbnail: '/artwork/sailboat.png'
 	},
@@ -50,7 +61,9 @@ export const norpTiers: NorpTier[] = [
 		cost: 21,
 		features: {
 				'Rate Limits': '25 sessions / day',
-				'Max Agents In Teams': '25'	
+				'Max Agents Per Crew': '15',
+				'Access to Crew Editor': true,
+				'Access to Agent Editor': true,
 		},
 		thumbnail: '/artwork/plane.png'
 	},
@@ -65,7 +78,9 @@ export const norpTiers: NorpTier[] = [
 		cost: 69,
 		features: {
 				'Rate Limits': '50 sessions / day',
-				'Max Agents In Teams': '50'
+				'Max Agents Per Crew': '30',
+				'Access to Crew Editor': true,
+				'Access to Agent Editor': true,
 		},
 		thumbnail: '/artwork/rocket.png'
 	}
