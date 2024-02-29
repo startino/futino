@@ -16,7 +16,8 @@
 	<svelte:fragment slot="sidebarLeft"></svelte:fragment>
 	<svelte:fragment slot="pageHeader"></svelte:fragment>
 	<!-- Router Slot -->
-	<slot />
+	<div class="overflow-y-hidden"><slot /></div>
+
 	<!-- ---- / ---- -->
 	<svelte:fragment slot="pageFooter"></svelte:fragment>
 	<!-- (footer) -->

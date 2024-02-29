@@ -10,6 +10,7 @@
 	import { Button } from "$lib/components/ui/button";
 	import { Input } from "$lib/components/ui/input";
 	import { Label } from "$lib/components/ui/label";
+	import PricingTiers from "$lib/components/pricing/PricingTiers.svelte";
 
 	export let form: ActionData;
 
@@ -62,10 +63,6 @@
 	}
 </script>
 
-<div
-	class="pointer-events-none absolute inset-0 h-[50000px] w-full bg-inherit bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:150px_150px]"
-></div>
-
 <Toaster />
 
 <svelte:head>
@@ -87,78 +84,99 @@
 	title="Aitino Early Access"
 	metadescription="The world's leading web platform in pairing modern AI models with highly effective multi-agent technologies. By taking the form of node-editors, Aitino harnesses the ability to create teams of AI agents that collaborate to solve complex tasks in real-time."
 />
-
-<section class="flex h-screen w-screen flex-col justify-center">
-	<div class="mt-32 flex w-screen flex-col justify-evenly py-6 md:mt-24 lg:mt-28 xl:mt-32">
-		<div
-			class="mx-auto flex w-full flex-col place-items-center gap-y-4 px-2 text-foreground sm:gap-y-8"
-		>
-			<Logo height="h-16" class="hidden rounded-xl lg:flex" />
-			<h1
-				class="tracking-loose m-0 text-center text-3xl font-semibold sm:m-0 sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl"
+<main class="relative overflow-hidden">
+	<div
+		class="pointer-events-none absolute h-[50000px] w-full bg-inherit bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:150px_150px]"
+	></div>
+	<section class="relative flex h-screen w-screen flex-col justify-center">
+		<div class="flex w-screen flex-col justify-evenly py-6 md:mt-24 lg:mt-28 xl:mt-32">
+			<div
+				class="mx-auto flex w-full flex-col place-items-center gap-y-4 px-2 text-foreground sm:gap-y-8"
 			>
-				<SplitTest key="Title Test" variants={Object.keys(titleVariants)} let:variant>
-					{@html titleVariants[0]}
-				</SplitTest>
-			</h1>
+				<Logo height="h-16" class="hidden rounded-xl lg:flex" />
+				<h1
+					class="tracking-loose m-0 text-center text-3xl font-semibold sm:m-0 sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl"
+				>
+					<SplitTest key="Title Test" variants={Object.keys(titleVariants)} let:variant>
+						{@html titleVariants[0]}
+					</SplitTest>
+				</h1>
 
-			<h3
-				class="m-0 mx-auto mt-2 max-w-3xl text-balance text-center text-sm text-foreground brightness-75 sm:m-0 sm:text-lg md:text-lg lg:text-xl xl:text-2xl"
-			>
-				<SplitTest key="Subtitle Test" variants={Object.keys(subtitleVariants)} let:variant>
-					{@html subtitleVariants[variant]}
-				</SplitTest>
-			</h3>
+				<h3
+					class="m-0 mx-auto mt-2 max-w-3xl text-balance text-center text-sm text-foreground brightness-75 sm:m-0 sm:text-lg md:text-lg lg:text-xl xl:text-2xl"
+				>
+					<SplitTest key="Subtitle Test" variants={Object.keys(subtitleVariants)} let:variant>
+						{@html subtitleVariants[variant]}
+					</SplitTest>
+				</h3>
 
-			<FormItem mainform={form} notform={data} />
+				<FormItem mainform={form} notform={data} />
+			</div>
 		</div>
-	</div>
-</section>
+	</section>
 
-<section
-	id="features"
-	aria-label="Features for running your books"
-	class="relative overflow-hidden pb-28 pt-20 sm:py-32"
->
-	<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-		<div class="mb-8 max-w-2xl md:mx-auto md:text-center xl:max-w-none">
-			<h2 class="font-display text-3xl tracking-tight text-foreground sm:text-4xl md:text-5xl">
-				Become a more efficient entrepreneur
-			</h2>
-			<p class="mt-6 text-lg tracking-tight text-foreground/80">
-				Here's a list of Aitino's features that will save you time and money.
-			</p>
-		</div>
+	<section
+		id="features"
+		aria-label="Features for running your books"
+		class="relative overflow-hidden pb-28 pt-20 sm:py-32"
+	>
+		<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+			<div class="mb-8 max-w-2xl md:mx-auto md:text-center xl:max-w-none">
+				<h2 class="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl md:text-5xl">
+					Become a more efficient entrepreneur
+				</h2>
+				<p class="mt-6 text-lg tracking-tight text-foreground/80">
+					Here's a list of Aitino's features that will save you time and money.
+				</p>
+			</div>
 
-		<Tabs.Root value="0" class="">
-			<Tabs.List class="grid w-full grid-cols-4">
+			<Tabs.Root value="0" class="">
+				<Tabs.List class="grid w-full grid-cols-4">
+					{#each features as feature, value}
+						<Tabs.Trigger value={value.toString()}>{feature.title}</Tabs.Trigger>
+					{/each}
+				</Tabs.List>
 				{#each features as feature, value}
-					<Tabs.Trigger value={value.toString()}>{feature.title}</Tabs.Trigger>
+					<Tabs.Content value={value.toString()}>
+						<Card.Root class="p-8">
+							<Card.Header class="text-center">
+								<Card.Title class="text-3xl">{feature.title}</Card.Title>
+								<Card.Description class="text-md mx-auto max-w-sm">
+									{feature.description}
+								</Card.Description>
+							</Card.Header>
+							<Card.Content class="space-y-2">
+								<img
+									class="mx-auto max-h-96 w-full max-w-3xl rounded-xl border border-border object-contain"
+									src={feature.image}
+									alt="screenshot of the feature of {feature.title}"
+									sizes="(min-width: 1024px) 67.8125rem, (min-width: 640px) 100vw, 45rem"
+								/>
+							</Card.Content>
+							<Card.Footer>
+								<Button>Save changes</Button>
+							</Card.Footer>
+						</Card.Root>
+					</Tabs.Content>
 				{/each}
-			</Tabs.List>
-			{#each features as feature, value}
-				<Tabs.Content value={value.toString()}>
-					<Card.Root class="p-8">
-						<Card.Header class="text-center">
-							<Card.Title class="text-3xl">{feature.title}</Card.Title>
-							<Card.Description class="text-md mx-auto max-w-sm">
-								{feature.description}
-							</Card.Description>
-						</Card.Header>
-						<Card.Content class="space-y-2">
-							<img
-								class="mx-auto max-h-96 w-full max-w-3xl rounded-xl border border-border object-contain"
-								src={feature.image}
-								alt="screenshot of the feature of {feature.title}"
-								sizes="(min-width: 1024px) 67.8125rem, (min-width: 640px) 100vw, 45rem"
-							/>
-						</Card.Content>
-						<Card.Footer>
-							<Button>Save changes</Button>
-						</Card.Footer>
-					</Card.Root>
-				</Tabs.Content>
-			{/each}
-		</Tabs.Root>
-	</div>
-</section>
+			</Tabs.Root>
+		</div>
+	</section>
+
+	<section>
+		<div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-24 md:px-8 md:py-32">
+			<div class="mb-8 max-w-2xl md:mx-auto md:text-center xl:max-w-none">
+				<h2
+					class="tracking-loose m-0 text-balance text-center text-3xl font-semibold sm:m-0 sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl"
+				>
+					Flexible plans for versatile problems with
+					<span
+						class="bg-gradient-to-b from-primary from-50% to-background bg-clip-text text-transparent"
+						>Aitino</span
+					>
+				</h2>
+			</div>
+			<PricingTiers />
+		</div>
+	</section>
+</main>

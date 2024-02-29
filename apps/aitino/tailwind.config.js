@@ -20,6 +20,12 @@ const config = {
 			}
 		},
 		extend: {
+			dropShadow: {
+				"pricing-art": [
+				  "0 0 3px rgb(var(--md-sys-color-tertiary-container) / 0.7)",
+				  "0 0 3px rgb(var(--md-sys-color-tertiary-container) / 0.7)",
+				],
+			},
 			animation: animationsConfig,
 			keyframes: keyframesConfig,
 			colors: colorConfig,
