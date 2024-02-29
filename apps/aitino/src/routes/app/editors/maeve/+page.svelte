@@ -192,8 +192,6 @@
 			name = pickRandomName();
 		} while ($nodes.find((n) => n.type === "agent" && get(n.data.name) === name));
 
-		// setCenter(position.x, position.y, { zoom: position.zoom });
-
 		nodes.update((v) => [
 			...v,
 			{
@@ -218,7 +216,6 @@
 		if ($count.prompts >= PROMPT_LIMIT) return;
 
 		const position = { ...getViewport() };
-		setCenter(position.x, position.y, { zoom: position.zoom });
 
 		nodes.update((v) => [
 			...v,
