@@ -1,7 +1,9 @@
 <script lang="ts">
-	import { navigating } from '$app/stores';
-	import { Skeleton } from '$lib/components/ui/skeleton';
 	import '$styling';
+
+	import { Toaster } from '$lib/components/ui/sonner';
 </script>
+
+<Toaster />
 
 <slot />
