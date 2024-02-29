@@ -9,46 +9,48 @@ import { redirect, type Handle } from '@sveltejs/kit';
 import { getUserSubscription } from '$lib/server/db';
 
 export const handle: Handle = async ({ event, resolve }) => {
-	event.locals.supabase = createSupabaseServerClient<Database>({
+	const supabase = createSupabaseServerClient<Database>({
 		supabaseUrl: PUBLIC_SUPABASE_URL,
 		supabaseKey: PUBLIC_SUPABASE_ANON_KEY,
 		event
 	});
 
-	event.locals.stripe = new Stripe(STRIPE_SECRET_KEY);
+	const stripe = new Stripe(STRIPE_SECRET_KEY);
 
-	event.locals.getSession = async () => {
-		const {
-			data: { session },
-			error
-		} = await event.locals.supabase.auth.getSession();
-		return error ? null : session;
-	};
+	const {
+		data: {
+			session: { user, access_token }
+		},
+		error: sessionError
+	} = await supabase.auth.getSession();
 
-	const session = await event.locals.getSession();
-
-	if (!session) {
+	if (sessionError) {
 		if (event.url.pathname.startsWith('/app')) {
 			redirect(303, '/login');
 		}
 	} else {
-		const { user } = session;
+		event.locals.apiClient = new ApiClient({
+			stripe,
+			supabase,
+			user,
+			userAccessToken: access_token
+		});
 
-		const { data } = await event.locals.supabase
+		const { data } = await event.locals.apiClient.supabase
 			.from('profiles')
 			.select()
 			.eq('id', user.id)
 			.single();
 
-		event.locals.stripeCustomerId = data.stripe_customer_id;
+		event.locals.apiClient.stripeCustomerId = data.stripe_customer_id;
 
-		const { data: subscription } = await getUserSubscription(event.locals.supabase, user);
+		const { data: subscription } = await event.locals.apiClient.getUserSubscription();
 
 		let forbidSubscription = false;
 
 		if (subscription) {
 			try {
-				const sub = await event.locals.stripe.subscriptions.retrieve(
+				const sub = await event.locals.apiClient.stripe.subscriptions.retrieve(
 					subscription.stripe_subscription_id
 				);
 				if (
@@ -77,7 +79,3 @@ export const handle: Handle = async ({ event, resolve }) => {
 		}
 	});
 };
-
-// export function handleError({ event, error }: { event: any; error: PostgrestError }) {
-// 	console.error('Handle Error caught an error: ' + error.message);
-// }
