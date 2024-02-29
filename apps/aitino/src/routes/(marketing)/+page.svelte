@@ -11,6 +11,7 @@
 	import { Input } from "$lib/components/ui/input";
 	import { Label } from "$lib/components/ui/label";
 	import PricingTiers from "$lib/components/pricing/PricingTiers.svelte";
+	import { faqList as faqs } from "$lib/faq-data";
 
 	export let form: ActionData;
 
@@ -166,14 +167,40 @@
 				<h2
 					class="tracking-loose m-0 text-balance text-center text-3xl font-semibold sm:m-0 sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl"
 				>
-					Flexible plans for versatile problems with
-					<span
-						class="bg-gradient-to-b from-primary from-50% to-background bg-clip-text text-transparent"
-						>Aitino</span
-					>
+					Flexible plans for versatile problems
 				</h2>
 			</div>
 			<PricingTiers />
+		</div>
+	</section>
+
+	<section>
+		<div class="mx-auto max-w-7xl px-6 py-16 sm:py-24 lg:px-8">
+			<h2 class="text-2xl font-bold leading-10 tracking-tight text-white">
+				Frequently asked questions
+			</h2>
+			<p class="mt-6 max-w-2xl text-base leading-7 text-foreground/75">
+				Have a different question and can’t find the answer you’re looking for? Reach out to us by <a
+					href="mailto:contact@futi.no"
+					class="font-semibold text-accent hover:text-accent-700">sending us an email</a
+				> and we’ll get back to you as soon as we can.
+			</p>
+			<div class="mt-20">
+				<dl
+					class="space-y-16 sm:grid sm:grid-cols-2 sm:gap-x-6 sm:gap-y-16 sm:space-y-0 lg:grid-cols-3 lg:gap-x-10"
+				>
+					{#each faqs as { question, answer }}
+						<div>
+							<dt class="text-base font-semibold leading-7 text-foreground">
+								{question}
+							</dt>
+							<dd class="mt-2 text-base leading-7 text-foreground/75">
+								{answer}
+							</dd>
+						</div>
+					{/each}
+				</dl>
+			</div>
 		</div>
 	</section>
 </main>
