@@ -59,8 +59,11 @@
 			}
 
 			if (e.id === 0) {
-				data.session.id = e.data.session_id;
-				localStorage.setItem("currentSessionId", e.data.session_id);
+				data.session = {
+					id: e.data.session_id,
+					maeve_id: e.data.maeva_id,
+					profile_id: e.data.profile_id
+				};
 				loading = false;
 				console.log("got session id", e.data.session_id);
 				continue;
@@ -73,13 +76,10 @@
 			}
 
 			data.messages = [...data.messages, e.data];
-			localStorage.setItem("currentMessages", JSON.stringify(data.messages));
 		}
 	}
 
 	function startSession() {
-		localStorage.removeItem("currentSessionId");
-		localStorage.removeItem("currentMessages");
 		data.session = null;
 		data.messages = [];
 		loading = true;

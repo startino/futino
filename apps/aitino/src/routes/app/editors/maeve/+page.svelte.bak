@@ -31,8 +31,9 @@
 	} from "$lib/utils";
 	import type { PanelAction } from "$lib/types";
 	import { AGENT_LIMIT, PROMPT_LIMIT } from "$lib/config.js";
+	import type { MaeveLoad } from "$lib/types/loads";
 
-	export let data;
+	export let data: MaeveLoad;
 
 	const { receiver, count } = getContext("maeve");
 
@@ -219,8 +220,6 @@
 
 		$count.prompts++;
 	}
-
-	console.log(data.maeve.id, "from save node 0");
 </script>
 
 <div style="height:100vh;">

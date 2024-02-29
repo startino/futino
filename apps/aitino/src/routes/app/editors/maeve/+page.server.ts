@@ -1,13 +1,21 @@
 import * as db from "$lib/server/db";
 import type { MaeveLoad } from "$lib/types/loads";
+import type { PageServerLoad, Actions } from "./$types";
+import { error } from "@sveltejs/kit";
 
-export const load = async ({ locals: { userId } }) => {
+export const load: PageServerLoad = async ({ cookies }) => {
+	const profileId = cookies.get("profileId");
+
+	if (!profileId) {
+		throw error(401, "Unauthorized");
+	}
+
 	const data: MaeveLoad = {
-		profileId: userId,
+		profileId: profileId,
 		maeve: {
 			id: "",
-			profile_id: userId,
-			reciever_id: "",
+			profile_id: profileId,
+			receiver_id: "",
 			title: "",
 			description: "",
 			nodes: [],
@@ -16,27 +24,43 @@ export const load = async ({ locals: { userId } }) => {
 		}
 	};
 
-	const maeves = await db.getMaeves(userId);
+	const maeves = await db.getMaeves(profileId);
+
+	console.log("tessssst");
 
 	if (maeves.length !== 0) {
 		data.maeve = maeves[0]; // TODO: select most recent maeve by default and add support for managing maeve
 	}
+	console.log("tetet");
 
 	return data;
 };
 
-export const actions = {
-	// 	save: async ({ cookies, request }) => {
-	// 		const data = cookies.get("data");
-	//
-	// 		const { error } = await db.postMaeve({
-	// 			id: data.maeve.id,
-	// 			profile_id: data.maeve.profileId,
-	// 			title: data.maeve.title,
-	// 			description: data.maeve.description,
-	// 			receiver_id: $receiver?.node.id ?? null,
-	// 			nodes: getCleanNodes($nodes),
-	// 			edges: $edges
-	// 		});
-	// 	}
+export const actions: Actions = {
+	save: async ({ cookies, request }) => {
+		const data = await request.json();
+
+		if (!data.id) throw error(400, "Invalid Maeve ID");
+		if (!data.profile_id) throw error(400, "Invalid Profile ID");
+		if (!data.title) throw error(400, "Invalid Maeve Title");
+		if (!data.description) throw error(400, "Invalid Maeve Description");
+		if (!data.receiver_id) throw error(400, "Invalid Receiver ID");
+		if (!data.nodes) throw error(400, "Invalid Maeve Nodes");
+		if (!data.edges) throw error(400, "Invalid Maeve Edges");
+
+		const { error: err } = await db.postMaeve({
+			id: data.id,
+			profile_id: data.profile_id,
+			title: data.title,
+			description: data.description,
+			receiver_id: data.receiver_id,
+			nodes: data.nodes,
+			edges: data.edges
+		});
+
+		if (err) {
+			console.log(err);
+			throw error(500, "Failed attempt at saving Maeve. Please try again.");
+		}
+	}
 };

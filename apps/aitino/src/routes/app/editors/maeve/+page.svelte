@@ -20,7 +20,6 @@
 	import * as Dialog from "$lib/components/ui/dialog";
 	import { Library } from "$lib/components/ui/library";
 	import * as CustomNode from "$lib/components/ui/custom-node";
-	import { saveMaeveNodes } from "$lib/api-client";
 
 	import {
 		getContext,
@@ -31,24 +30,26 @@
 		getNodesCount
 	} from "$lib/utils";
 	import type { PanelAction } from "$lib/types";
-	import ChatRoom from "$lib/components/ChatRoom.svelte";
 	import { AGENT_LIMIT, PROMPT_LIMIT } from "$lib/config.js";
+	import type { MaeveLoad } from "$lib/types/loads";
 
-	export let data;
+	export let data: MaeveLoad;
 
 	const { receiver, count } = getContext("maeve");
+	$: data.maeve.receiver_id = $receiver ? $receiver.node.id : null;
 
-	let title = data.title;
-	let description = data.description;
-	let isChatDialogOpen = false;
+	let title = data.maeve.title;
+	$: data.maeve.title = title;
+	let description = data.maeve.description;
+	$: data.maeve.description = description;
 
 	const actions: PanelAction[] = [
 		{
 			name: "Run",
 			buttonVariant: "default",
 			onclick: async () => {
-				isChatDialogOpen = true;
 				await save();
+				window.location.href = "/app/sessions";
 			}
 		},
 		{ name: "Add Prompt", buttonVariant: "outline", onclick: addNewPrompt },
@@ -135,34 +136,27 @@
 		return { nodes, edges };
 	}
 
-	const nodes = writable<Node[]>(getWritableNodes(data.nodes));
-	const edges = writable<Edge[]>(data.edges);
+	const nodes = writable<Node[]>(getWritableNodes(data.maeve.nodes));
+	$: data.maeve.nodes = getCleanNodes($nodes);
+	const edges = writable<Edge[]>(data.maeve.edges);
+	$: data.maeve.edges = $edges;
 
 	async function save() {
-		const { error } = await saveMaeveNodes({
-			id: data.id,
-			user_id: data.user_id,
-			title,
-			description,
-			receiver_id: $receiver?.node.id ?? null,
-			nodes: getCleanNodes($nodes),
-			edges: $edges
-		});
-
-		if (!data.id) {
-			console.error("no data id");
-			toast.error("Something went wrong when saving the nodes.");
-			return;
-		}
-		if (error) {
-			console.error(error);
-			toast.error("Something went wrong when saving the nodes.");
-			return;
+		if (!data.maeve.id) {
+			data.maeve.id = crypto.randomUUID();
 		}
 
-		console.log(data.id, "from save node");
+		const response = await (
+			await fetch("?/save", {
+				method: "POST",
+				body: JSON.stringify(data.maeve)
+			})
+		).json();
 
-		localStorage.setItem("currentMeaveId", data.id);
+		if (response.error) {
+			toast.error(response.error.message);
+			return;
+		}
 
 		toast.success("Nodes successfully saved!");
 	}
@@ -237,7 +231,7 @@
 		$count.prompts++;
 	}
 
-	console.log(data.id, "from save node 0");
+	console.log(data.maeve.id, "from save node 0");
 </script>
 
 <div style="height:100vh;">
@@ -248,8 +242,7 @@
 		{nodeTypes}
 		fitView
 		oninit={() => {
-			count.set(data.count);
-			setReceiver(data.receiver_id);
+			setReceiver(data.maeve.receiver_id);
 		}}
 		connectionLineType={ConnectionLineType.SmoothStep}
 		defaultEdgeOptions={{ type: "smoothstep", animated: true }}
@@ -310,19 +303,6 @@
 					</Dialog.Root>
 				{/if}
 			</RightEditorSidebar>
-		</Panel>
-		<Panel position="bottom-right">
-			<Dialog.Root
-				open={isChatDialogOpen}
-				onOpenChange={() => {
-					isChatDialogOpen = false;
-					console.log("close");
-				}}
-			>
-				<Dialog.Content class="sm:max-w-full">
-					<ChatRoom />
-				</Dialog.Content>
-			</Dialog.Root>
 		</Panel>
 	</SvelteFlow>
 </div>

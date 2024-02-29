@@ -23,12 +23,22 @@ export async function getMessages(session_id: string | null) {
 }
 
 export async function postMaeve(data: TablesInsert<"maeves">) {
-	localStorage.setItem("currentMeaveId", data.id);
+	if (!data.id) throw error(400, "Invalid Maeve ID");
+	if (!data.profile_id) throw error(400, "Invalid Profile ID");
+	if (!data.title) throw error(400, "Invalid Maeve Title");
+	if (!data.description) throw error(400, "Invalid Maeve Description");
+	if (!data.receiver_id) throw error(400, "Invalid Receiver ID");
+	if (!data.nodes) throw error(400, "Invalid Maeve Nodes");
+	if (!data.edges) throw error(400, "Invalid Maeve Edges");
+
 	return supabase.from("maeves").upsert(data);
 }
 
-export async function getMaeves(userId: string) {
-	const { data, error: err } = await supabase.from("maeves").select("*").eq("user_id", userId);
+export async function getMaeves(profileId: string) {
+	const { data, error: err } = await supabase
+		.from("maeves")
+		.select("*")
+		.eq("profile_id", profileId);
 
 	if (err) {
 		return [];
@@ -42,11 +52,11 @@ export async function getMaeves(userId: string) {
 	return maeves;
 }
 
-export async function getSessions(userId: string, maeveId: string) {
+export async function getSessions(profileId: string, maeveId: string) {
 	const { data, error: err } = await supabase
 		.from("sessions")
 		.select("*")
-		.eq("user_id", userId)
+		.eq("profile_id", profileId)
 		.eq("maeve_id", maeveId);
 
 	if (err) {

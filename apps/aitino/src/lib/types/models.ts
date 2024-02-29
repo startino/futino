@@ -13,7 +13,7 @@ export type Message = {
 export type Maeve = {
 	id: string;
 	profile_id: string;
-	receiver_id: string;
+	receiver_id: string | null;
 	title: string;
 	description: string;
 	nodes: Node[];
@@ -24,6 +24,6 @@ export type Maeve = {
 export type Session = {
 	id: string;
 	maeve_id: string;
-	user_id: string;
+	profile_id: string;
 	created_at: string;
 };
