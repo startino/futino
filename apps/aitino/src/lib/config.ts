@@ -1,7 +1,7 @@
 export const AGENT_LIMIT = 5;
 export const PROMPT_LIMIT = 1;
 
-export const API_BASE_URL = "http://localhost:8080"; // process.env.API_BASE_URL ||
+export const API_BASE_URL = "https://api.aiti.no"; // process.env.API_BASE_URL ||
 
 export const SAMPLE_FULL_NAMES = [
 	"Alice Smith",
