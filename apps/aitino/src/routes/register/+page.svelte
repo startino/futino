@@ -26,8 +26,9 @@
 	});
 </script>
 
-<div class="max-w-screen bg-card mx-auto flex h-screen items-center justify-center">
-	<Card.Root>
+<div class="max-w-screen bg-card mx-auto flex h-screen items-center justify-center ">
+	<div class="w-full max-w-lg rounded-lg">
+	<Card.Root >
 		<Card.Header>
 			<Card.Title class="text-2xl">Create an account</Card.Title>
 			<Card.Description>Enter your email below to create your account</Card.Description>
@@ -151,6 +152,6 @@
 					>Already have an account, login</Button
 				>
 			</Card.Footer>
-		</div>
-	</Card.Root>
+		</Card.Root>
+	</div>
 </div>
