@@ -2,7 +2,7 @@ import { authenticateUser } from "$lib/utils";
 import { PUBLIC_SUPABASE_URL, PUBLIC_SUPABASE_ANON_KEY } from "$env/static/public";
 import { createSupabaseServerClient } from "@supabase/auth-helpers-sveltekit";
 
-import type { Handle } from "@sveltejs/kit";
+import { redirect, type Handle } from "@sveltejs/kit";
 
 export const handle: Handle = async ({ event, resolve }) => {
 	authenticateUser(event);
@@ -24,6 +24,15 @@ export const handle: Handle = async ({ event, resolve }) => {
 		} = await event.locals.supabase.auth.getSession();
 		return session;
 	};
+
+	const session = await event.locals.getSession();
+	if (event.url.pathname.startsWith("/app")) {
+		console.log(session, 'session')
+		if (!session) {
+			// If there's no session, redirect to login page
+			throw redirect(302, "/login");
+		}
+	}
 	return await resolve(event, {
 		filterSerializedResponseHeaders(name) {
 			return name === "content-range";

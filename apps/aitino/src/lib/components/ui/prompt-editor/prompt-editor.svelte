@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Loader2 } from "lucide-svelte";
-	import { API_BASE_URL } from "$lib/config";
+	import { PUBLIC_API_URL } from "$env/static/public";
 
 	import * as Dialog from "$lib/components/ui/dialog";
 	import { Button } from "$lib/components/ui/button";
@@ -24,7 +24,7 @@
 			const temperature = 0; // Default to 0 if not provided
 			const prompt_type = "generic"; // Default to generic if not provided
 
-			const apiUrl = `${API_BASE_URL}/improve?word_limit=${wordLimit}&prompt=${encodeURIComponent(value)}&temperature=${temperature}&prompt_type=${prompt_type}`;
+			const apiUrl = `${PUBLIC_API_URL}/improve?word_limit=${wordLimit}&prompt=${encodeURIComponent(value)}&temperature=${temperature}&prompt_type=${prompt_type}`;
 
 			try {
 				const response = await fetch(apiUrl);

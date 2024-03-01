@@ -3,7 +3,7 @@
 	import { Button } from "$lib/components/ui/button";
 	import Chat from "./Chat.svelte";
 	import { onMount } from "svelte";
-	import { API_BASE_URL } from "$lib/config";
+    import { PUBLIC_API_URL } from "$env/static/public";
 	import { error } from "@sveltejs/kit";
 
 	export let data: SessionLoad;
@@ -89,7 +89,7 @@
 		data.messages = [];
 		loading = true;
 
-		const url = `${API_BASE_URL}/maeve?id=${data.maeveId}&profile_id=${data.profileId}`;
+		const url = `${PUBLIC_API_URL}/maeve?id=${data.maeveId}&profile_id=${data.profileId}`;
 
 		main(url);
 	}
@@ -99,7 +99,7 @@
 			throw error(500, "Cannot reply without session");
 		}
 		awaitingReply = false;
-		const url = `${API_BASE_URL}/maeve?id=${data.maeveId}&profile_id=${data.profileId}&session_id=${data.session.id}&reply=${message}`;
+		const url = `${PUBLIC_API_URL}/maeve?id=${data.maeveId}&profile_id=${data.profileId}&session_id=${data.session.id}&reply=${message}`;
 
 		main(url);
 	}
