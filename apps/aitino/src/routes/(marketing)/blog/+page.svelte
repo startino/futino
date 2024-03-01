@@ -12,17 +12,19 @@
 	metadescription="This is a collection of blogs written by Aitino to raise awareness of the capabilities of multi-agent systems, especially in this modern age of powerful AI models."
 />
 
-<div class="md:py py-36 sm:py-32">
+<div class="mt-32 min-h-96 md:mt-64">
 	<div class="mx-auto max-w-7xl px-6 lg:px-8">
-		<div class="mx-auto max-w-2xl lg:max-w-4xl">
+		<div class="mx-auto max-w-2xl overflow-hidden lg:max-w-4xl">
 			<h2
 				class="bg-gradient-to-b from-foreground to-primary bg-clip-text text-center text-3xl font-bold tracking-tight text-transparent sm:text-4xl"
 			>
 				Blog
 			</h2>
 			<p class="mt-2 text-center text-lg leading-8 text-foreground/80"></p>
-			<div class="mx-auto mt-16 space-y-20 text-center lg:mt-20 lg:space-y-20">
-				Coming Soon
+			<div
+				class="mx-auto mt-16 space-y-20 text-center font-bold text-primary lg:mt-20 lg:space-y-20"
+			>
+				COMING SOON!
 				<!-- {#each data.posts as post}
 					{#if post.published}
 						<a href="/blog/{post.slug}" class="group">

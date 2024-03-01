@@ -10,8 +10,16 @@
 			href: "/"
 		},
 		{
-			name: "Blog",
-			href: "/blog"
+			name: "Features",
+			href: "/#features-section"
+		},
+		{
+			name: "Benefits",
+			href: "/#benefits-section"
+		},
+		{
+			name: "Pricing",
+			href: "/#pricing-section"
 		}
 	];
 	/** Labels and hrefs of CTA buttons on the hero. Recommended 1-2.*/
@@ -85,7 +93,7 @@
 				>{name}</a
 			>
 		{/each}
-		<div class="grid grid-cols-2 gap-x-4">
+		<div class="grid {CTAButtons.length == 2 ? 'grid-cols-2' : 'grid-cols-1'} gap-x-4">
 			{#each Object.entries(CTAButtons) as [name, { href, highlight }]}
 				<Button {href} class="w-full">
 					{name}
@@ -128,6 +136,7 @@
 						{#each pages as { name, href }}
 							<a
 								{href}
+								on:click={() => toggleMenu()}
 								class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-card-foreground hover:bg-accent hover:text-accent-foreground"
 								>{name}</a
 							>
@@ -135,7 +144,7 @@
 					</div>
 					<div class="grid grid-cols-2 gap-x-4 py-6">
 						{#each Object.entries(CTAButtons) as [name, { href, highlight }]}
-							<Button {href} class="w-full">
+							<Button {href} class="w-full" on:click={() => toggleMenu()}>
 								{name}
 							</Button>
 						{/each}

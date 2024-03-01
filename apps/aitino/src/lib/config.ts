@@ -21,7 +21,13 @@ export const SAMPLE_FULL_NAMES = [
 	"Quinn Scott",
 	"Rachel Green",
 	"Samuel Turner",
-	"Taylor Adams"
+	"Taylor Adams",
+	"Uma Campbell",
+	"Victor Parker",
+	"Willow Evans",
+	"Xander Hughes",
+	"Yara Diaz",
+	"Zane Carter"
 ];
 
 export const AVATARS = [

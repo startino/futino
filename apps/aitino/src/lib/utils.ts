@@ -214,3 +214,16 @@ export function formatDate(date: string, dateStyle: DateStyle = "medium", locale
 	const formatter = new Intl.DateTimeFormat(locales, { dateStyle });
 	return formatter.format(new Date(date));
 }
+
+// Create our number formatter.
+const formatter = new Intl.NumberFormat('en-US', {
+	style: 'currency',
+	currency: 'USD',
+	minimumFractionDigits: 0, // (this suffices for whole numbers, but will print 2500.10 as $2,500.1)
+	maximumFractionDigits: 0 // (causes 2500.99 to be printed as $2,501)
+});
+
+export function formatCurrency(amount: number) {
+	if (amount === 0) return 'Free';
+	return formatter.format(amount);
+}
