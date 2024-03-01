@@ -1,11 +1,10 @@
-// import {  } from "$env/static/public";
+import { PUBLIC_API_BASE_URL } from "$env/static/public";
 
 export const AGENT_LIMIT = 5;
 export const PROMPT_LIMIT = 1;
 
-export const API_BASE_URL = import.meta.env.API_BASE_URL
-	? import.meta.env.API_BASE_URL
-	: "https://api.aiti.no";
+export const API_BASE_URL = PUBLIC_API_BASE_URL ? PUBLIC_API_BASE_URL : "https://api.aiti.no";
+
 export const SAMPLE_FULL_NAMES = [
 	"Alice Smith",
 	"Bob Johnson",

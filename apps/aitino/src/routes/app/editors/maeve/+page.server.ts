@@ -37,12 +37,9 @@ export const load: PageServerLoad = async ({ cookies }) => {
 
 	const maeves = await db.getMaeves(profileId);
 
-	console.log("tessssst");
-
 	if (maeves.length !== 0) {
 		data.maeve = maeves[0]; // TODO: select most recent maeve by default and add support for managing maeve
 	}
-	console.log("tetet");
 
 	return data;
 };
