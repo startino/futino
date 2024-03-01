@@ -31,28 +31,21 @@ function getRandomIndex(array: Array<unknown>) {
 	return randomArray[0] % array.length;
 }
 
-export const authenticateUser = ({ cookies, locals }: RequestEvent) => {
-	const currentUserId = cookies.get("userId");
+export const authenticateUser = ({ cookies }: RequestEvent) => {
+	if (cookies.get("profileId")) return;
 
-	if (currentUserId) {
-		locals.userId = currentUserId;
-		return;
-	}
-
-	const userId = crypto.randomUUID();
+	const profileId = "edb9a148-a8fc-48bd-beb9-4bf5de602b78"; //crypto.randomUUID();
 
 	const expirationDate = new Date();
 	expirationDate.setMonth(expirationDate.getMonth() + 1);
 
-	cookies.set("userId", userId, {
+	cookies.set("profileId", profileId, {
 		path: "/",
 		httpOnly: true,
 		sameSite: "strict",
 		secure: process.env.NODE_ENV === "production",
 		expires: expirationDate
 	});
-
-	locals.userId = userId;
 };
 
 export function getPremadeInputsMap() {

@@ -36,12 +36,6 @@
 	export let data: MaeveLoad;
 
 	const { receiver, count } = getContext("maeve");
-	$: data.maeve.receiver_id = $receiver ? $receiver.node.id : null;
-
-	let title = data.maeve.title;
-	$: data.maeve.title = title;
-	let description = data.maeve.description;
-	$: data.maeve.description = description;
 
 	const actions: PanelAction[] = [
 		{
@@ -59,13 +53,17 @@
 			name: "Export",
 			buttonVariant: "outline",
 			onclick: () => {
+				if (!$receiver) {
+					toast.error("Please select a receiver."); // TODO: use shadcn sonner
+					return;
+				}
 				const jsonString = JSON.stringify(
 					{
 						nodes: getCleanNodes($nodes),
 						edges: $edges,
-						title,
-						description,
-						receiver_id: $receiver?.node.id ?? null
+						title: data.maeve.title,
+						description: data.maeve.description,
+						receiver_id: $receiver.node.id
 					},
 					null,
 					2
@@ -138,25 +136,20 @@
 
 	const nodes = writable<Node[]>(getWritableNodes(data.maeve.nodes));
 	$: data.maeve.nodes = getCleanNodes($nodes);
+
 	const edges = writable<Edge[]>(data.maeve.edges);
 	$: data.maeve.edges = $edges;
 
+	const title = data.maeve.title;
+	$: data.maeve.title = title;
+
+	const description = data.maeve.description;
+	$: data.maeve.description = $description;
+
 	async function save() {
-		if (!data.maeve.id) {
-			data.maeve.id = crypto.randomUUID();
-		}
+		// TODO: save using +page.server.ts action
 
-		const response = await (
-			await fetch("?/save", {
-				method: "POST",
-				body: JSON.stringify(data.maeve)
-			})
-		).json();
-
-		if (response.error) {
-			toast.error(response.error.message);
-			return;
-		}
+		localStorage.setItem("currentMeaveId", data.maeve.id);
 
 		toast.success("Nodes successfully saved!");
 	}
@@ -184,9 +177,7 @@
 
 		do {
 			name = pickRandomName();
-		} while ($nodes.find((n) => n.type === "agent" && get(n.data.name) === name));
-
-		// setCenter(position.x, position.y, { zoom: position.zoom });
+		} while ($nodes.find((n) => n.type === "agent" && get(n.data.maeve.name) === name));
 
 		nodes.update((v) => [
 			...v,
@@ -212,7 +203,6 @@
 		if ($count.prompts >= PROMPT_LIMIT) return;
 
 		const position = { ...getViewport() };
-		setCenter(position.x, position.y, { zoom: position.zoom });
 
 		nodes.update((v) => [
 			...v,
@@ -230,8 +220,6 @@
 
 		$count.prompts++;
 	}
-
-	console.log(data.maeve.id, "from save node 0");
 </script>
 
 <div style="height:100vh;">
@@ -242,6 +230,7 @@
 		{nodeTypes}
 		fitView
 		oninit={() => {
+			count.set(data.maeve.count);
 			setReceiver(data.maeve.receiver_id);
 		}}
 		connectionLineType={ConnectionLineType.SmoothStep}

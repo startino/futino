@@ -2,9 +2,9 @@ import type { Node } from "@xyflow/svelte";
 import type { Writable } from "svelte/store";
 
 import type { Variant } from "$lib/components/ui/button";
-import type { Tables } from "$lib/supabase.types";
+import type { Tables } from "$lib/types/supabase";
 
-export type Maeve = Tables<"maeve_nodes">;
+export type Maeve = Tables<"maeves">;
 
 export type SvelteEvent<E extends Event = Event, T extends EventTarget = Element> = E & {
 	currentTarget: EventTarget & T;
