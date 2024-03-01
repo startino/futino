@@ -43,7 +43,7 @@ export const norpTiers: NorpTier[] = [
 		subtitle: 'Keep it going.',
 		cost: 0,
 		features: {
-				'Rate Limits': '2 sessions / 3 hours',
+				'Rate Limits': '4 sessions / day',
 				'Max Agents Per Crew': '7',
 				'Access to Crew Editor': true,
 				'Access to Agent Editor': true,
@@ -60,7 +60,7 @@ export const norpTiers: NorpTier[] = [
 		subtitle: 'Even the playing field.',
 		cost: 21,
 		features: {
-				'Rate Limits': '25 sessions / day',
+				'Rate Limits': '3 sessions / 3 hours',
 				'Max Agents Per Crew': '15',
 				'Access to Crew Editor': true,
 				'Access to Agent Editor': true,
@@ -77,7 +77,7 @@ export const norpTiers: NorpTier[] = [
 		subtitle: 'Make it unfair.',
 		cost: 69,
 		features: {
-				'Rate Limits': '50 sessions / day',
+				'Rate Limits': '10 sessions / 3 hours',
 				'Max Agents Per Crew': '30',
 				'Access to Crew Editor': true,
 				'Access to Agent Editor': true,
