@@ -45,13 +45,13 @@
 		{
 			title: "Fully Custom Agents",
 			description:
-				"Tailor your AI agents to meet unique business needs with fully customizable solutions. Create bespoke agents that align perfectly with your workflow and industry-specific challenges.	",
+				"Tailor your AI agents to meet your unique needs with fully customizable solutions. Create agents that align perfectly with your workflow and specific challenges.",
 			image: "/screenshots/agent_node_horizontal_1.png"
 		},
 		{
 			title: "Community Libraries",
 			description:
-				"Tap into a wealth of knowledge with our community-driven libraries, where shared insights fuel innovation. Benefit from a repository of resources that grows smarter through collective contributions.",
+				"Tap into tons of assets from community-driven libraries, where shared insights fuel innovation. Benefit from a repository of resources that grows smarter through collective contributions.",
 			image: ""
 		},
 		{
