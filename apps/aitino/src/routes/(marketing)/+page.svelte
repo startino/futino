@@ -159,7 +159,7 @@
 	</section>
 
 	<section
-		id="features"
+		id="features-section"
 		aria-label="Features for running your books"
 		class="relative overflow-hidden pb-28 pt-20 sm:py-32"
 	>
@@ -214,7 +214,7 @@
 		</div>
 	</section>
 
-	<section class=" py-24 sm:py-32">
+	<section class=" py-24 sm:py-32" id="benefits-section">
 		<div class="mx-auto max-w-7xl px-6 lg:px-8">
 			<div class="mx-auto max-w-2xl sm:text-center">
 				<h2 class="text-base font-semibold leading-7 text-primary">Everything you need</h2>
@@ -261,7 +261,7 @@
 		</div>
 	</section>
 
-	<section>
+	<section id="pricing-section">
 		<div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-24 md:px-8 md:py-32">
 			<div class="mb-8 max-w-3xl md:mx-auto md:text-center xl:max-w-none">
 				<h2

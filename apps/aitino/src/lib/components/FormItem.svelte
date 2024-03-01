@@ -35,8 +35,8 @@
 <!-- <SuperDebug data={notform.contactForm} /> -->
 <!-- <SuperDebug data={notform.waitlistForm} /> -->
 <div class="grid w-full max-w-lg grid-cols-2 gap-4">
-	<Button class="p-8 text-xl">Try for Free</Button>
-	<Button class="p-8 text-xl" variant="outline">Contact Us</Button>
+	<Button class="p-8 text-xl" href="/register">Try for Free</Button>
+	<Button class="p-8 text-xl" variant="outline" href="mailto:contact@futi.no">Contact Us</Button>
 </div>
 <!-- 
 <Dialog.Root>

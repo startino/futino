@@ -90,9 +90,9 @@
 			{/each}
 
 			<div class="grid-item border-none" />
-			{#each norpTiers as { stripeIds }}
+			{#each norpTiers as tier, index}
 				<div class="-ml-2 mt-10 w-full self-start md:pr-4 lg:pr-10">
-					<Button class="w-full" on:click={() => {}}>
+					<Button class="w-full" on:click={() => {}} disabled={index == 0 ? false : true}>
 						<h1 class="lg:title-large text-lg font-semibold uppercase text-primary-foreground">
 							Get Started
 						</h1>

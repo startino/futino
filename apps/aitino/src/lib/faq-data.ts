@@ -1,11 +1,11 @@
 export const faqList = [
     {
       question: `What distinguishes Aitino from other AI platforms?`,
-      answer: `So many things! By using teams of AI agents, rather than AI workflows, Aitino allows for versatile and complex task solving and many more features just as cool as that. These are then even further supported by a rich set of community-driven principles.`
+      answer: `So many things! By using teams of AI agents, rather than a single one like ChatGPT, Aitino allows for versatile and complex task solving and many more features just as cool as that. These are then even further supported by a rich set of community-driven principles.`
     },
     {
       question: `How can I start using Aitino for my project?`,
-      answer: `Start for free by creating an account <a href="https://github.com/futino/aitino" class="text-accent underline">here!</a> then use auto-build to get started with your first team, that's already tailored to your task right off the bat!`
+      answer: `Start for free by creating an account <a href="https://github.com/futino/aitino" class="text-accent underline">here!</a> then use auto-build to get started with your first team zthat's already tailored to your task right off the bat!`
     },
     {
       question: `Is Aitino suitable for non-coders?`,
