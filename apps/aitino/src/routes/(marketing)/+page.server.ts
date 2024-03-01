@@ -1,16 +1,15 @@
-import { fail, type Actions } from "@sveltejs/kit";
+import { fail } from "@sveltejs/kit";
 import { supabase } from "$lib/supabase";
 import { z } from "zod";
 import { superValidate } from "sveltekit-superforms/server";
 import { formSchema } from "../schema";
-import { API_BASE_URL } from "$lib/config";
-import axios from "axios";
+import type { PageServerLoad, Actions } from "./$types";
 
 const waitlistSchema = z.object({
 	email: z.string().email({ message: "Invalid email address" })
 });
 
-export const load = async (event) => {
+export const load: PageServerLoad = async (event) => {
 	const contactForm = await superValidate(formSchema);
 	const waitlistForm = await superValidate(waitlistSchema);
 
@@ -20,7 +19,7 @@ export const load = async (event) => {
 	return { contactForm, waitlistForm };
 };
 
-export const actions = {
+export const actions: Actions = {
 	register: async ({ request }) => {
 		const waitlistForm = await superValidate(request, waitlistSchema);
 

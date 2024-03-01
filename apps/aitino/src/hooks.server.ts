@@ -24,6 +24,7 @@ export const handle: Handle = async ({ event, resolve }) => {
 		} = await event.locals.supabase.auth.getSession();
 		return session;
 	};
+
 	return await resolve(event, {
 		filterSerializedResponseHeaders(name) {
 			return name === "content-range";
