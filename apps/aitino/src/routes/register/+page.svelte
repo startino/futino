@@ -14,7 +14,6 @@
 	import { toast } from "svelte-sonner";
 	import { enhance } from "$app/forms";
 
-
 	export let form: ActionData;
 	export let data: PageData;
 
@@ -122,6 +121,11 @@
 						</Alert.Root>
 					{/if}
 				</div>
+				{#if form?.error}
+					<Alert.Root variant="destructive" class="border-none p-0">
+						<Alert.Description>{form?.error}</Alert.Description>
+					</Alert.Root>
+				{/if}
 				<Button
 					class="w-full"
 					type="submit"
@@ -136,11 +140,6 @@
 					}}>Create account</Button
 				>
 			</form>
-			{#if form?.message}
-				<Alert.Root variant="destructive" class="border-none p-0">
-					<Alert.Description>{form?.message}</Alert.Description>
-				</Alert.Root>
-			{/if}
 		</Card.Content>
 		<Card.Footer class="block  p-0 ">
 			<Button

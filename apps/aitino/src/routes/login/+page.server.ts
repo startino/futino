@@ -21,6 +21,8 @@ export const load = (async () => {
 export const actions: Actions = {
 	login: async ({ request, locals, cookies, url }) => {
 		const provider = url.searchParams.get("provider") as Provider;
+		const session = await locals.getSession();
+		console.log(session, 'session');
 		if (provider) {
 			const { data, error: err } = await locals.supabase.auth.signInWithOAuth({
 				provider: provider

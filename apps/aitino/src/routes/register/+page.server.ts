@@ -2,7 +2,7 @@ import { fail, redirect } from "@sveltejs/kit";
 import type { Actions } from "./$types";
 import { superValidate } from "sveltekit-superforms/server";
 import { formSchema } from "$lib/schma";
-import { AuthApiError, type Provider } from "@supabase/supabase-js";
+import { type Provider } from "@supabase/supabase-js";
 
 export const load = async () => {
 	return {
@@ -13,12 +13,14 @@ export const load = async () => {
 export const actions: Actions = {
 	register: async ({ request, locals, url }) => {
 		const body = Object.fromEntries(await request.formData());
+		const session = await locals.getSession();
+		console.log(session, 'session');
 
 		const provider = url.searchParams.get("provider") as Provider;
 
 		if (provider) {
 			const { data, error: err } = await locals.supabase.auth.signInWithOAuth({
-				provider: provider,
+				provider: provider
 			});
 
 			console.log(data, "data from");
@@ -72,9 +74,9 @@ export const actions: Actions = {
 		console.log(data, "from register +page.ts", err, "from register +page.ts");
 
 		if (err) {
-			if (err instanceof AuthApiError && err.status === 400) {
-				throw redirect(307, "/login");
-			}
+			return fail(400, {
+				error: err.message
+			});
 		}
 
 		console.log(body, "body from register +page.server.ts");
