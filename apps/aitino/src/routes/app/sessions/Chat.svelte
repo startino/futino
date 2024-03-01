@@ -1,14 +1,10 @@
 <script lang="ts">
-	import { Loader, Send } from "lucide-svelte";
-	import { Input } from "$lib/components/ui/input";
+	import { Send } from "lucide-svelte";
 	import { Button } from "$lib/components/ui/button";
 	import { Textarea } from "$lib/components/ui/textarea";
 	import Message from "./Message.svelte";
-	import * as Card from "$lib/components/ui/card";
 	import { afterUpdate } from "svelte";
-	import { v4 as uuidv4 } from "uuid";
 
-	export let maeveId: string;
 	export let sessionId: string;
 	export let messages: {
 		id: string;
@@ -21,6 +17,8 @@
 	}[] = [];
 
 	export let awaitingReply = false;
+
+	export let replyCallback: (message: string) => void;
 
 	let rows = 1;
 	$: minRows = rows <= 1 ? 1 : rows >= 50 ? 50 : rows;
@@ -37,8 +35,10 @@
 			// TODO: show sonner warning to user
 		}
 
+		replyCallback(newMessageContent);
+
 		const newMessage = {
-			id: uuidv4(),
+			id: crypto.randomUUID(),
 			session_id: sessionId,
 			recipient: "",
 			content: newMessageContent,
@@ -63,7 +63,7 @@
 		class="no-scrollbar flex h-screen w-full flex-col gap-4 overflow-y-auto pb-16 pt-20"
 		bind:this={chatContainerElement}
 	>
-		<!-- add scroll to the bottom of the chat  -->
+		<!-- TODO: add scroll to the bottom of the chat button -->
 		{#each messages as message, index}
 			<Message {message} />
 

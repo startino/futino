@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { Loader2 } from "lucide-svelte";
+	import { PUBLIC_API_URL } from "$env/static/public";
 
 	import * as Dialog from "$lib/components/ui/dialog";
 	import { Button } from "$lib/components/ui/button";
@@ -12,33 +13,41 @@
 	const handleSubmit = async () => {
 		console.log(value);
 
-		if (value) {
-			state = "loading";
+		if (!value) {
+			return;
+		}
 
-			console.log("Sending GET request to improve prompt");
+		state = "loading";
+
+		try {
+			const wordLimit = 300; // Default to 300 if not provided
+			const temperature = 0; // Default to 0 if not provided
+			const prompt_type = "generic"; // Default to generic if not provided
+
+			const apiUrl = `${PUBLIC_API_URL}/improve?word_limit=${wordLimit}&prompt=${encodeURIComponent(value)}&temperature=${temperature}&prompt_type=${prompt_type}`;
+
 			try {
-				const queryParams = new URLSearchParams({ prompt: value }).toString();
-				const response = await fetch(`/api/v1/prompt?${queryParams}`);
-
-				console.log(response, "from handlesubmit");
-				if (response.ok) {
-					const data = await response.json();
-					console.log(data);
-					state = "idle";
-					let improvedPrompt = data.improvedPrompt;
-					if (improvedPrompt.startsWith("```markdown")) {
-						improvedPrompt = improvedPrompt.substring(11); // Remove the starting ```markdown
-						improvedPrompt = improvedPrompt.substring(0, improvedPrompt.lastIndexOf("```")); // Remove the closing ```
-					}
-					value = improvedPrompt;
-				} else {
+				const response = await fetch(apiUrl);
+				if (!response.ok) {
 					state = "error";
-					console.log(`HTTP error! status: ${response.status}`);
+					console.log(`request failed: ${response.status}, ${response.statusText}`);
 				}
+
+				let data = await response.json();
+				console.log(data);
+				state = "idle";
+				if (data.startsWith("```markdown")) {
+					data = data.substring(11); // Remove the starting ```markdown
+					data = data.substring(0, data.lastIndexOf("```")); // Remove the closing ```
+				}
+				value = data;
 			} catch (error) {
 				state = "error";
-				console.error("Error fetching improved prompt:", error);
+				console.log(`HTTP error! status: ${error}`);
 			}
+		} catch (error) {
+			state = "error";
+			console.error("Error fetching improved prompt:", error);
 		}
 	};
 </script>

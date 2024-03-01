@@ -1,15 +1,15 @@
-import { fail, type Actions } from "@sveltejs/kit";
+import { fail } from "@sveltejs/kit";
 import { supabase } from "$lib/supabase";
 import { z } from "zod";
 import { superValidate } from "sveltekit-superforms/server";
 import { formSchema } from "../schema";
-import axios from "axios";
+import type { PageServerLoad, Actions } from "./$types";
 
 const waitlistSchema = z.object({
 	email: z.string().email({ message: "Invalid email address" })
 });
 
-export const load = async (event) => {
+export const load: PageServerLoad = async (event) => {
 	const contactForm = await superValidate(formSchema);
 	const waitlistForm = await superValidate(waitlistSchema);
 
@@ -19,7 +19,7 @@ export const load = async (event) => {
 	return { contactForm, waitlistForm };
 };
 
-export const actions = {
+export const actions: Actions = {
 	register: async ({ request }) => {
 		const waitlistForm = await superValidate(request, waitlistSchema);
 
@@ -95,18 +95,6 @@ export const actions = {
 
 		return {
 			success: true
-		};
-	},
-	ImprovePrompt: async ({ request, url }) => {
-		console.log("from backend");
-		const prompt = url.searchParams.get("prompt");
-		const response = await axios.get(
-			`https://api.aiti.no/improve?word_limit=300&prompt=${prompt}}`
-		);
-
-		return {
-			success: true,
-			message: "this is a test success"
 		};
 	}
 } satisfies Actions;
