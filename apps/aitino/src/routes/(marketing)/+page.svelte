@@ -236,7 +236,9 @@
 					height="1442"
 				/>
 				<div class="relative" aria-hidden="true">
-					<div class="absolute -inset-x-20 bottom-0 bg-gradient-to-t from-gray-900 pt-[7%]"></div>
+					<div
+						class="absolute -inset-x-1 bottom-0 bg-gradient-to-t from-primary-900/20 pt-[7%]"
+					></div>
 				</div>
 			</div>
 		</div>

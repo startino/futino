@@ -34,77 +34,10 @@
 <!-- Uncomment this to debug the superform and zod -->
 <!-- <SuperDebug data={notform.contactForm} /> -->
 <!-- <SuperDebug data={notform.waitlistForm} /> -->
-
-<form
-	action="?/register"
-	id="waitlist-signup"
-	method="POST"
-	class="mx-auto flex w-full max-w-sm flex-col items-center justify-center gap-4 space-x-2 sm:max-w-md md:max-w-lg lg:max-w-lg {$$props.class}"
-	use:enhance={() => {
-		return async ({ result }) => {
-			await applyAction(result);
-		};
-	}}
->
-	<div class="flex h-fit w-full flex-col gap-4 p-1 sm:flex-row">
-		<div class="flex w-full flex-col justify-between">
-			<Input
-				class="flex w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm ring-offset-0 transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring focus-visible:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50 "
-				id="email"
-				type="email"
-				name="email"
-				placeholder="jorge.lewis@futi.no"
-				bind:value={$join_waitlist_Form.email}
-			/>
-			{#if !mainform?.success}
-				{#if $join_waitlist_Error.email}
-					<p class="block w-full max-w-lg text-red-500">
-						{$join_waitlist_Error.email}
-					</p>
-				{/if}
-			{/if}
-		</div>
-
-		<Button
-			type="submit"
-			class="text-md relative flex w-full gap-x-3 transition-all duration-300 ease-in-out sm:w-fit"
-			on:click={async () => {
-				isLoading = true;
-				setTimeout(() => {
-					// if (($join_waitlist_Error.email === null || undefined)) {
-					if (mainform) {
-						$join_waitlist_Error = {};
-						if (mainform?.message) {
-							toast.success(mainform?.message);
-							document.getElementById("email").value = " ";
-							console.log(" from message");
-							isLoading = false;
-							$join_waitlist_Error = {};
-						} else if (mainform?.invalid) {
-							$join_waitlist_Error = {};
-							toast.error(mainform?.error);
-							console.log(" from error");
-							isLoading = false;
-							document.getElementById("email").value = " ";
-						}
-					}
-					isLoading = false;
-				}, 2000);
-			}}
-		>
-			{#if isLoading}
-				<Button
-					disabled
-					class="text-md relative flex w-full gap-x-3 transition-all duration-300 ease-in-out sm:w-fit"
-				>
-					<Loader2 class="mr-2 h-4 w-4 animate-spin" />
-					Please wait
-				</Button>
-			{:else}
-				Join Early Access<ArrowRight />{/if}
-		</Button>
-	</div>
-</form>
+<div class="grid w-full max-w-lg grid-cols-2 gap-4">
+	<Button class="p-8 text-xl">Try for Free</Button>
+	<Button class="p-8 text-xl" variant="outline">Contact Us</Button>
+</div>
 <!-- 
 <Dialog.Root>
 	<Dialog.Trigger class="mt-4 md:mt-6 xl:mt-8">

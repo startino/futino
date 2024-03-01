@@ -85,7 +85,7 @@
 				>{name}</a
 			>
 		{/each}
-		<div class="grid grid-cols-2 gap-x-4">
+		<div class="grid {CTAButtons.length == 2 ? 'grid-cols-2' : 'grid-cols-1'} gap-x-4">
 			{#each Object.entries(CTAButtons) as [name, { href, highlight }]}
 				<Button {href} class="w-full">
 					{name}
