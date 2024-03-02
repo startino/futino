@@ -31,10 +31,6 @@
 					label: "Agent",
 					src: "/agent"
 				},
-				{
-					label: "Workflow",
-					src: "/workflow"
-				}
 			]
 		},
 		{
