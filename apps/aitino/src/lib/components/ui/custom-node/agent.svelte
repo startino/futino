@@ -14,7 +14,7 @@
 
 	type $$Props = NodeProps;
 
-	const { receiver, count } = getContext("maeve");
+	const { receiver, count } = getContext("crew");
 
 	export let data: {
 		avatar: string;

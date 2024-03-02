@@ -4,7 +4,7 @@ import type { Writable } from "svelte/store";
 import type { Variant } from "$lib/components/ui/button";
 import type { Tables } from "$lib/types/supabase";
 
-export type Maeve = Tables<"maeves">;
+export type Crew = Tables<"crews">;
 
 export type SvelteEvent<E extends Event = Event, T extends EventTarget = Element> = E & {
 	currentTarget: EventTarget & T;
@@ -20,10 +20,10 @@ export type PanelAction = {
 export type ContextKey = keyof ContextMap;
 
 export interface ContextMap {
-	maeve: MaeveContext;
+	crew: CrewContext;
 }
 
-export interface MaeveContext {
+export interface CrewContext {
 	receiver: Writable<{ node: Node; targetCount: number } | null>;
 	count: Writable<{ agents: number; prompts: number }>;
 }

@@ -1,6 +1,6 @@
-import type { Maeve } from "$lib/types";
+import type { Crew } from "$lib/types";
 
-export const maevePresets: Maeve[] = [
+export const crewPresets: Crew[] = [
 	{
 		instance_id: "preset_01",
 		composition: {

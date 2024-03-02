@@ -24,8 +24,8 @@
 			baseSrc: "/app/editors",
 			items: [
 				{
-					label: "Maeve",
-					src: "/maeve"
+					label: "Crew",
+					src: "/crew"
 				},
 				{
 					label: "Agent",
@@ -53,7 +53,7 @@
 		}
 	];
 
-	setContext("maeve", {
+	setContext("crew", {
 		receiver: writable(null),
 		count: writable({ agents: 0, prompts: 0 })
 	});

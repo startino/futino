@@ -31,17 +31,17 @@
 	} from "$lib/utils";
 	import type { PanelAction } from "$lib/types";
 	import { AGENT_LIMIT, PROMPT_LIMIT } from "$lib/config.js";
-	import type { MaeveLoad } from "$lib/types/loads";
+	import type { CrewLoad } from "$lib/types/loads";
 
-	export let data: MaeveLoad;
+	export let data: CrewLoad;
 
-	const { receiver, count } = getContext("maeve");
-	$: data.maeve.receiver_id = $receiver ? $receiver.node.id : null;
+	const { receiver, count } = getContext("crew");
+	$: data.crew.receiver_id = $receiver ? $receiver.node.id : null;
 
-	let title = data.maeve.title;
-	$: data.maeve.title = title;
-	let description = data.maeve.description;
-	$: data.maeve.description = description;
+	let title = data.crew.title;
+	$: data.crew.title = title;
+	let description = data.crew.description;
+	$: data.crew.description = description;
 
 	const actions: PanelAction[] = [
 		{
@@ -54,7 +54,7 @@
 		},
 		{ name: "Add Prompt", buttonVariant: "outline", onclick: addNewPrompt },
 		{ name: "Add Agent", buttonVariant: "outline", onclick: addNewAgent },
-		{ name: "Load Maeve", buttonVariant: "outline", isCustom: true },
+		{ name: "Load Crew", buttonVariant: "outline", isCustom: true },
 		{
 			name: "Export",
 			buttonVariant: "outline",
@@ -74,7 +74,7 @@
 				const url = window.URL.createObjectURL(blob);
 				const a = document.createElement("a");
 				a.href = url;
-				a.download = "maeve.json";
+				a.download = "crew.json";
 				document.body.appendChild(a);
 				a.click();
 				window.URL.revokeObjectURL(url);
@@ -136,20 +136,20 @@
 		return { nodes, edges };
 	}
 
-	const nodes = writable<Node[]>(getWritableNodes(data.maeve.nodes));
-	$: data.maeve.nodes = getCleanNodes($nodes);
-	const edges = writable<Edge[]>(data.maeve.edges);
-	$: data.maeve.edges = $edges;
+	const nodes = writable<Node[]>(getWritableNodes(data.crew.nodes));
+	$: data.crew.nodes = getCleanNodes($nodes);
+	const edges = writable<Edge[]>(data.crew.edges);
+	$: data.crew.edges = $edges;
 
 	async function save() {
-		if (!data.maeve.id) {
-			data.maeve.id = crypto.randomUUID();
+		if (!data.crew.id) {
+			data.crew.id = crypto.randomUUID();
 		}
 
 		const response = await (
 			await fetch("?/save", {
 				method: "POST",
-				body: JSON.stringify(data.maeve)
+				body: JSON.stringify(data.crew)
 			})
 		).json();
 
@@ -231,7 +231,7 @@
 		$count.prompts++;
 	}
 
-	console.log(data.maeve.id, "from save node 0");
+	console.log(data.crew.id, "from save node 0");
 </script>
 
 <div style="height:100vh;">
@@ -242,7 +242,7 @@
 		{nodeTypes}
 		fitView
 		oninit={() => {
-			setReceiver(data.maeve.receiver_id);
+			setReceiver(data.crew.receiver_id);
 		}}
 		connectionLineType={ConnectionLineType.SmoothStep}
 		defaultEdgeOptions={{ type: "smoothstep", animated: true }}
@@ -288,15 +288,15 @@
 						</Dialog.Trigger>
 						<Dialog.Content class="max-w-5xl">
 							<Library
-								on:maeve-load={(e) => {
-									const maeve = e.detail.maeve;
-									$count = getNodesCount(maeve.nodes);
-									nodes.set(getWritableNodes(maeve.nodes));
-									edges.set(maeve.edges);
+								on:crew-load={(e) => {
+									const crew = e.detail.crew;
+									$count = getNodesCount(crew.nodes);
+									nodes.set(getWritableNodes(crew.nodes));
+									edges.set(crew.edges);
 									libraryOpen = false;
-									title = maeve.title;
-									description = maeve.description;
-									setReceiver(maeve.receiver_id);
+									title = crew.title;
+									description = crew.description;
+									setReceiver(crew.receiver_id);
 								}}
 							/>
 						</Dialog.Content>

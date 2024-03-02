@@ -40,7 +40,7 @@
 			title: "Teams of AI Agents",
 			description:
 				"Harness the collective intelligence of AI teams designed to collaborate and amplify problem-solving capabilities. Experience the synergy of multiple AI agents working in concert to tackle complex tasks efficiently.",
-			image: "/screenshots/maeve_1_no_user_prompt.png"
+			image: "/screenshots/crew_1_no_user_prompt.png"
 		},
 		{
 			title: "Fully Custom Agents",
@@ -229,7 +229,7 @@
 		<div class="relative overflow-hidden pt-16">
 			<div class="mx-auto max-w-7xl px-6 lg:px-8">
 				<img
-					src="/screenshots/maeve_editor_1.png"
+					src="/screenshots/crew_editor_1.png"
 					alt="App screenshot"
 					class="mb-[-12%] rounded-xl shadow-2xl ring-1 ring-white/10"
 					width="2432"

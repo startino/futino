@@ -5,7 +5,7 @@
 	import * as Avatar from "$lib/components/ui/avatar";
 	import { Input } from "$lib/components/ui/input";
 	import { Button } from "$lib/components/ui/button";
-	import { maevePresets } from "$lib/dummy-data/maevePresets";
+	import { crewPresets } from "$lib/dummy-data/crewPresets";
 	import { Label } from "$lib/components/ui/label";
 
 	const dispatch = createEventDispatcher();
@@ -30,8 +30,8 @@
 
 						try {
 							const text = await file.text();
-							dispatch("maeve-load", {
-								maeve: JSON.parse(text)
+							dispatch("crew-load", {
+								crew: JSON.parse(text)
 							});
 						} catch (error) {
 							console.error("Error parsing JSON:", error);
@@ -39,7 +39,7 @@
 					}}
 				>
 					<div class="col-span-7 grid w-full max-w-sm items-center gap-1.5">
-						<Label for="file">Upload a Maeve from a file with the button below</Label>
+						<Label for="file">Upload a Crew from a file with the button below</Label>
 
 						<Input
 							id="file"
@@ -53,7 +53,7 @@
 					</div>
 				</form>
 
-				{#each maevePresets as preset}
+				{#each crewPresets as preset}
 					<li class="w-full gap-2">
 						<div class="grid grid-cols-8 rounded-md border border-border bg-card p-6">
 							<Avatar.Root class="mr-auto">

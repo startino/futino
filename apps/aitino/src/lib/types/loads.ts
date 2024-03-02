@@ -4,13 +4,13 @@ import * as models from "$lib/types/models";
 
 export type SessionLoad = {
 	profileId: string;
-	maeveId: string | null;
+	crewId: string | null;
 	session: models.Session | null;
 	messages: models.Message[];
 	reply: string;
 };
 
-export type MaeveLoad = {
+export type CrewLoad = {
 	profileId: string;
-	maeve: models.Maeve;
+	crew: models.Crew;
 };
