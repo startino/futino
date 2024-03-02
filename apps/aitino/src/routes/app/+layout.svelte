@@ -24,36 +24,32 @@
 			baseSrc: "/app/editors",
 			items: [
 				{
-					label: "Maeve",
-					src: "/maeve"
+					label: "Crew",
+					src: "/crew"
 				},
 				{
 					label: "Agent",
 					src: "/agent"
-				},
-				{
-					label: "Workflow",
-					src: "/workflow"
 				}
 			]
 		},
 		{
 			name: null,
-			baseSrc: "/app",
+			baseSrc: "",
 			items: [
 				{
 					label: "Account",
-					src: "/account"
+					src: "/app/account"
 				},
 				{
 					label: "Help",
-					src: "/help"
+					src: "https://discord.gg/sAzxPpr9a8"
 				}
 			]
 		}
 	];
 
-	setContext("maeve", {
+	setContext("crew", {
 		receiver: writable(null),
 		count: writable({ agents: 0, prompts: 0 })
 	});

@@ -1,7 +1,7 @@
 import { supabase } from "$lib/supabase";
 import type { TablesInsert } from "$lib/types/supabase";
 import { error } from "@sveltejs/kit";
-import type { Maeve, Session } from "$lib/types/models";
+import type { Crew, Session } from "$lib/types/models";
 
 export async function getMessages(session_id: string | null) {
 	if (!session_id) {
@@ -22,21 +22,21 @@ export async function getMessages(session_id: string | null) {
 	return data;
 }
 
-export async function postMaeve(data: TablesInsert<"maeves">) {
-	if (!data.id) throw error(400, "Invalid Maeve ID");
+export async function postCrew(data: TablesInsert<"crews">) {
+	if (!data.id) throw error(400, "Invalid Crew ID");
 	if (!data.profile_id) throw error(400, "Invalid Profile ID");
-	if (!data.title) throw error(400, "Invalid Maeve Title");
-	if (!data.description) throw error(400, "Invalid Maeve Description");
+	if (!data.title) throw error(400, "Invalid Crew Title");
+	if (!data.description) throw error(400, "Invalid Crew Description");
 	if (!data.receiver_id) throw error(400, "Invalid Receiver ID");
-	if (!data.nodes) throw error(400, "Invalid Maeve Nodes");
-	if (!data.edges) throw error(400, "Invalid Maeve Edges");
+	if (!data.nodes) throw error(400, "Invalid Crew Nodes");
+	if (!data.edges) throw error(400, "Invalid Crew Edges");
 
-	return supabase.from("maeves").upsert(data);
+	return supabase.from("crews").upsert(data);
 }
 
-export async function getMaeves(profileId: string) {
+export async function getCrews(profileId: string) {
 	const { data, error: err } = await supabase
-		.from("maeves")
+		.from("crews")
 		.select("*")
 		.eq("profile_id", profileId);
 
@@ -47,17 +47,17 @@ export async function getMaeves(profileId: string) {
 		return [];
 	}
 
-	const maeves: Maeve[] = data as Maeve[];
+	const crews: Crew[] = data as Crew[];
 
-	return maeves;
+	return crews;
 }
 
-export async function getSessions(profileId: string, maeveId: string) {
+export async function getSessions(profileId: string, crewId: string) {
 	const { data, error: err } = await supabase
 		.from("sessions")
 		.select("*")
 		.eq("profile_id", profileId)
-		.eq("maeve_id", maeveId);
+		.eq("crew_id", crewId);
 
 	if (err) {
 		return [];

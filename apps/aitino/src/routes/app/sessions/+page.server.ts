@@ -1,6 +1,6 @@
 import * as db from "$lib/server/db";
 import type { SessionLoad } from "$lib/types/loads";
-import type { Maeve, Session } from "$lib/types/models";
+import type { Crew, Session } from "$lib/types/models";
 import type { PageServerLoad, Actions } from "./$types";
 import { error } from "@sveltejs/kit";
 
@@ -32,17 +32,17 @@ export const load: PageServerLoad = async ({ cookies }) => {
 
 	const data: SessionLoad = {
 		profileId: profileId,
-		maeveId: null,
+		crewId: null,
 		session: null,
 		messages: [],
 		reply: ""
 	};
 
-	const maeves: Maeve[] = await db.getMaeves(profileId);
-	if (maeves.length !== 0) {
-		data.maeveId = maeves[0].id;
+	const crews: Crew[] = await db.getCrews(profileId);
+	if (crews.length !== 0) {
+		data.crewId = crews[0].id;
 
-		const sessions: Session[] = await db.getSessions(data.profileId, data.maeveId);
+		const sessions: Session[] = await db.getSessions(data.profileId, data.crewId);
 		if (sessions.length !== 0) {
 			data.session = sessions[0];
 

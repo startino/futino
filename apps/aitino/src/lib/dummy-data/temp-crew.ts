@@ -1,4 +1,4 @@
-export const maeves = [
+export const crews = [
 	{
 		prompts: [
 			{

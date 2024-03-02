@@ -16,7 +16,7 @@
 
 	const { content, title } = data;
 
-	const { receiver, count } = getContext("maeve");
+	const { receiver, count } = getContext("crew");
 	const connects = useHandleConnections({ nodeId: id, type: "source" });
 	const { deleteElements } = useSvelteFlow();
 

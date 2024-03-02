@@ -1,5 +1,5 @@
 import * as db from "$lib/server/db";
-import type { MaeveLoad } from "$lib/types/loads";
+import type { CrewLoad } from "$lib/types/loads";
 import type { PageServerLoad, Actions } from "./$types";
 import { error } from "@sveltejs/kit";
 
@@ -21,9 +21,9 @@ export const load: PageServerLoad = async ({ cookies }) => {
 		throw error(401, "Unauthorized");
 	}
 
-	const data: MaeveLoad = {
+	const data: CrewLoad = {
 		profileId: profileId,
-		maeve: {
+		crew: {
 			id: "",
 			profile_id: profileId,
 			receiver_id: "",
@@ -35,10 +35,10 @@ export const load: PageServerLoad = async ({ cookies }) => {
 		}
 	};
 
-	const maeves = await db.getMaeves(profileId);
+	const crews = await db.getCrews(profileId);
 
-	if (maeves.length !== 0) {
-		data.maeve = maeves[0]; // TODO: select most recent maeve by default and add support for managing maeve
+	if (crews.length !== 0) {
+		data.crew = crews[0]; // TODO: select most recent crew by default and add support for managing crew
 	}
 
 	return data;
@@ -48,15 +48,15 @@ export const actions: Actions = {
 	save: async ({ cookies, request }) => {
 		const data = await request.json();
 
-		if (!data.id) throw error(400, "Invalid Maeve ID");
+		if (!data.id) throw error(400, "Invalid Crew ID");
 		if (!data.profile_id) throw error(400, "Invalid Profile ID");
-		if (!data.title) throw error(400, "Invalid Maeve Title");
-		if (!data.description) throw error(400, "Invalid Maeve Description");
+		if (!data.title) throw error(400, "Invalid Crew Title");
+		if (!data.description) throw error(400, "Invalid Crew Description");
 		if (!data.receiver_id) throw error(400, "Invalid Receiver ID");
-		if (!data.nodes) throw error(400, "Invalid Maeve Nodes");
-		if (!data.edges) throw error(400, "Invalid Maeve Edges");
+		if (!data.nodes) throw error(400, "Invalid Crew Nodes");
+		if (!data.edges) throw error(400, "Invalid Crew Edges");
 
-		const { error: err } = await db.postMaeve({
+		const { error: err } = await db.postCrew({
 			id: data.id,
 			profile_id: data.profile_id,
 			title: data.title,
@@ -68,7 +68,7 @@ export const actions: Actions = {
 
 		if (err) {
 			console.log(err);
-			throw error(500, "Failed attempt at saving Maeve. Please try again.");
+			throw error(500, "Failed attempt at saving Crew. Please try again.");
 		}
 	}
 };

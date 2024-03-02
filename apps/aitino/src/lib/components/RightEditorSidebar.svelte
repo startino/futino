@@ -8,7 +8,7 @@
 	export let title: string;
 	export let description: string;
 
-	const { count } = getContext("maeve");
+	const { count } = getContext("crew");
 </script>
 
 <!-- Static sidebar for desktop -->

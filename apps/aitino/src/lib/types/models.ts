@@ -10,7 +10,7 @@ export type Message = {
 	created_at: string;
 };
 
-export type Maeve = {
+export type Crew = {
 	id: string;
 	profile_id: string;
 	receiver_id: string | null;
@@ -23,7 +23,7 @@ export type Maeve = {
 
 export type Session = {
 	id: string;
-	maeve_id: string;
+	crew_id: string;
 	profile_id: string;
 	created_at: string;
 };

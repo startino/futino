@@ -7,7 +7,7 @@ import type { RequestEvent } from "@sveltejs/kit";
 import type { TransitionConfig } from "svelte/transition";
 import { getContext as getSvelteContext, setContext as setSvelteContext } from "svelte";
 import { writable } from "svelte/store";
-import type { ContextKey, ContextMap, Maeve } from "$lib/types";
+import type { ContextKey, ContextMap, Crew } from "$lib/types";
 import { browser } from "$app/environment";
 import { AVATARS, SAMPLE_FULL_NAMES } from "$lib/config";
 
@@ -79,15 +79,15 @@ export function injectPremadeValues(str: string) {
 	}
 }
 
-// Get Maeve from localStorage
-export function getLocalMaeve() {
-	let maeveStr: string | null = null;
+// Get Crew from localStorage
+export function getLocalCrew() {
+	let crewStr: string | null = null;
 	if (browser) {
-		maeveStr = localStorage.getItem("maeve");
+		crewStr = localStorage.getItem("crew");
 	}
-	if (!maeveStr) return null;
+	if (!crewStr) return null;
 
-	return JSON.parse(maeveStr) as Maeve;
+	return JSON.parse(crewStr) as Crew;
 }
 
 // creates an array of nodes without the stores
