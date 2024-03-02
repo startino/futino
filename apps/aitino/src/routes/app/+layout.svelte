@@ -30,20 +30,20 @@
 				{
 					label: "Agent",
 					src: "/agent"
-				},
+				}
 			]
 		},
 		{
 			name: null,
-			baseSrc: "/app",
+			baseSrc: "",
 			items: [
 				{
 					label: "Account",
-					src: "/account"
+					src: "/app/account"
 				},
 				{
 					label: "Help",
-					src: "/help"
+					src: "https://discord.gg/sAzxPpr9a8"
 				}
 			]
 		}
