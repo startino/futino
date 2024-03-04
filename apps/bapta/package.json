@@ -41,7 +41,7 @@
 	"dependencies": {
 		"@tailwindcss/forms": "^0.5.7",
 		"@tailwindcss/typography": "^0.5.10",
-		"bits-ui": "^0.18.1",
+		"bits-ui": "^0.19.2",
 		"clsx": "^2.1.0",
 		"crypto-js": "^4.2.0",
 		"lucide-svelte": "^0.344.0",
