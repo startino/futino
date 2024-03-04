@@ -47,7 +47,7 @@
 	"dependencies": {
 		"@stripe/stripe-js": "^3.0.3",
 		"@types/gtag.js": "^0.0.19",
-		"bits-ui": "^0.18.3",
+		"bits-ui": "^0.19.2",
 		"clsx": "^2.1.0",
 		"crypto-js": "^4.2.0",
 		"gtag": "^1.0.1",
