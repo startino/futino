@@ -95,7 +95,7 @@
 										class="text-primary display-large font-extrabold leading-none tracking-tighter"
 									>
 										{cycle == 'yearly'
-											? formatter.format(((cost * 10) / 12) * 0.997)
+											? formatter.format(cost * (10 / 12))
 											: formatter.format(cost)}
 									</h1>
 								</div>
