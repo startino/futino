@@ -6,4 +6,4 @@ pnpm dlx svelte-add@latest tailwindcss
 
 pnpm install
 
-pnpm dlx shadcn-svelte@latest init 
+pnpm dlx shadcn-svelte@latest init
