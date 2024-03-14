@@ -15,8 +15,7 @@ export const features = {
 		'Avg. Turnaround Time': `The Average Turnaround Time reflects the typical duration
 		 between the submission and completion of a Request. Please note that this time may 
 		 vary depending on Request complexity and current workload.`
-	},
-	
+	}
 };
 
 export type NorpTier = {
@@ -48,8 +47,7 @@ export const norpTiers: NorpTier[] = [
 				'Monthly Work Capacity': '6 hours',
 				'Requests & Revisions': 'ထ',
 				'Avg. Turnaround Time': '3 days'
-			},
-			
+			}
 		},
 		thumbnail: '/artwork/sailboat_2.png'
 	},
@@ -67,8 +65,7 @@ export const norpTiers: NorpTier[] = [
 				'Monthly Work Capacity': '22 hours',
 				'Requests & Revisions': 'ထ',
 				'Avg. Turnaround Time': '2 days'
-			},
-			
+			}
 		},
 		thumbnail: '/artwork/plane_2.png'
 	},
@@ -86,8 +83,7 @@ export const norpTiers: NorpTier[] = [
 				'Monthly Work Capacity': '95 hours',
 				'Requests & Revisions': 'ထ',
 				'Avg. Turnaround Time': '2 days'
-			},
-			
+			}
 		},
 		thumbnail: '/artwork/rocket_6.png'
 	}
