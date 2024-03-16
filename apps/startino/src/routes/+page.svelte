@@ -7,7 +7,7 @@
 <section
 	class="md:prose-md prose prose-sm prose-main flex h-screen w-screen max-w-7xl flex-col items-center justify-center gap-2 px-5 text-lg sm:prose-base lg:prose-lg xl:prose-xl sm:px-10 sm:text-xl md:text-2xl lg:text-4xl"
 >
-	<img class="size-32" src="https://futi.no/favicon.png" alt="Futino's Logo" />
+	<img class="size-32" src="/favicon.png" alt="Futino's Logo" />
 	<div class="flex flex-col">
 		<h1 class="m-0 sm:m-0">
 			<span
@@ -204,7 +204,7 @@
 			<li class="flex flex-col gap-6 xl:flex-row">
 				<img
 					class="aspect-[4/5] w-52 flex-none rounded-2xl bg-primary/10 object-cover"
-					src="https://futi.no/favicon.png"
+					src="/favicon.png"
 					alt=""
 				/>
 				<div class="flex-auto">
@@ -228,7 +228,7 @@
 			<li class="flex flex-col gap-6 xl:flex-row">
 				<img
 					class="aspect-[4/5] w-52 flex-none rounded-2xl bg-primary/10 object-cover"
-					src="https://futi.no/favicon.png"
+					src="/favicon.png"
 					alt=""
 				/>
 				<div class="flex-auto">
