@@ -10,7 +10,7 @@
 		<img
 			src={agentDisplayDetails.avatar}
 			alt={agentDisplayDetails.title}
-			class="border-primary h-48 w-48 rounded-full border object-cover shadow-2xl"
+			class="h-48 w-48 rounded-full border border-primary object-cover shadow-2xl"
 		/>
 		<div
 			class="absolute -bottom-2 -right-2 animate-pulse rounded-full bg-blue-500 px-3 py-2 text-xs font-semibold text-white"
