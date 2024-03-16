@@ -241,7 +241,7 @@
 	</div>
 </section>
 
-<section class="mx-auto flex max-w-7xl flex-col gap-8 px-6 pb-20 lg:px-8">
+<section class="mx-auto flex flex-col gap-8 px-6 pb-20 xl:px-16 2xl:px-64">
 	<div
 		class="md:prose-md prose prose-sm prose-main mx-auto flex flex-col items-center justify-center px-5 sm:prose-base lg:prose-lg xl:prose-xl 2xl:prose-2xl sm:px-10"
 	>
@@ -249,16 +249,15 @@
 			<span class="opacity-30">Y</span>our Secret Sauce
 		</h2>
 		<p class="mt-6 text-pretty text-lg leading-8 opacity-80">
-			The Robust and Agile Tech Stack Empowering Innovation, Efficiency, and Scalability in Web
-			Development
+			The Robust and Agile Tech Stack Empowering Innovation, Efficiency, and Scalability.
 		</p>
 	</div>
-	<ul role="list" class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+	<ul role="list" class="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-3">
 		<li class="col-span-1 rounded-xl border border-primary shadow">
 			<a href="https://svelte.dev/" class="flex items-center justify-between space-x-6 p-6">
 				<div class="flex-1">
 					<div class="flex items-center space-x-3">
-						<h3 class="text-sm font-medium text-background-on">Svelte & SvelteKit</h3>
+						<h3 class="text-nowrap text-sm font-medium text-background-on">Svelte & SvelteKit</h3>
 						<span
 							class="inline-flex flex-shrink-0 items-center rounded-full bg-secondary px-1.5 py-0.5 text-xs font-medium text-secondary-on ring-1 ring-inset ring-green-600/20"
 							>Web Framework</span
