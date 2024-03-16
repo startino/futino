@@ -2,10 +2,6 @@ name: Build Projects
 
 on:
   workflow_dispatch:
-  pull_request:
-    branches:
-      - alpha
-
 jobs:
   buildall:
     if: ${{ always() }}
@@ -24,10 +20,7 @@ jobs:
       matrix:
         pnpm-version: [8]
         project:
-          - { name: Website, id: website, path: apps/website }
-          - { name: Wonderlee, id: wonderlee, path: apps/wonderlee }
-          - { name: Template, id: template, path: apps/template }
-          - { name: Buffalo, id: buffalo, path: apps/buffalo }
+          - { name: Example, id: example, path: apps/example }
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
