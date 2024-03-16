@@ -107,8 +107,8 @@
 		Our Offer
 	</h2>
 	<p class="text-pretty">
-		Choosing Startino means engaging in a partnership that offers more than just technical
-		expertise. We provide <b class="underline decoration-secondary decoration-2 underline-offset-4"
+		Choosing Futino means engaging in a partnership that offers more than just technical expertise.
+		We provide <b class="underline decoration-secondary decoration-2 underline-offset-4"
 			>cost-effective development</b
 		>
 		through a unique and simple model, ensuring our
