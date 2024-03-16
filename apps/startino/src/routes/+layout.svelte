@@ -3,7 +3,7 @@
 </script>
 
 <main
-	class="relative min-h-screen w-screen overflow-hidden bg-background text-center text-background-on"
+	class="relative min-h-screen w-full overflow-hidden bg-background text-center text-background-on"
 >
 	<!-- The background pattern -->
 	<div
@@ -11,7 +11,7 @@
 	></div>
 
 	<!-- The content -->
-	<arcitle class="relative flex min-h-screen w-screen flex-col items-center justify-center gap-24">
+	<arcitle class="relative flex min-h-screen w-full flex-col items-center justify-center gap-24">
 		<slot />
 	</arcitle>
 </main>

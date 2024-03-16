@@ -5,7 +5,7 @@
 
 <!-- Hero -->
 <section
-	class="md:prose-md prose prose-sm prose-main flex h-screen w-screen max-w-7xl flex-col items-center justify-center gap-2 px-5 text-lg sm:prose-base lg:prose-lg xl:prose-xl sm:px-10 sm:text-xl md:text-2xl lg:text-4xl"
+	class="md:prose-md prose prose-sm prose-main flex h-screen w-full max-w-7xl flex-col items-center justify-center gap-2 px-5 text-lg sm:prose-base lg:prose-lg xl:prose-xl sm:px-10 sm:text-xl md:text-2xl lg:text-4xl"
 >
 	<img class="size-32" src="/favicon.png" alt="Futino's Logo" />
 	<div class="flex flex-col">
@@ -155,7 +155,7 @@
 				<img
 					class="aspect-[4/5] w-52 flex-none rounded-2xl bg-primary/10 object-cover"
 					src="/portraits/jorge-lewis.jpg"
-					alt=""
+					alt="Portrait of Jorge Lewis"
 				/>
 				<div class="flex-auto">
 					<h3 class="trackng-tight text-lg font-semibold leading-8 text-primary">Jorge Lewis</h3>
@@ -172,7 +172,7 @@
 				<img
 					class="aspect-[4/5] w-52 flex-none rounded-2xl bg-primary/10 object-cover"
 					src="/portraits/jonas-lindberg.jpg"
-					alt=""
+					alt="Portrait of Jonas Lindberg"
 				/>
 				<div class="flex-auto">
 					<h3 class="trackng-tight text-lg font-semibold leading-8 text-primary">Jonas Lindberg</h3>
@@ -189,7 +189,7 @@
 				<img
 					class="aspect-[4/5] w-52 flex-none rounded-2xl bg-primary/10 object-cover"
 					src="/portraits/nazif-barassounon.jpg"
-					alt=""
+					alt="Portrait of Nazif Barassounon"
 				/>
 				<div class="flex-auto">
 					<h3 class="trackng-tight text-lg font-semibold leading-8 text-primary">
@@ -208,7 +208,7 @@
 				<img
 					class="aspect-[4/5] w-52 flex-none rounded-2xl bg-primary/10 object-cover"
 					src="/favicon.png"
-					alt=""
+					alt="Portrait of Minilik Zeru"
 				/>
 				<div class="flex-auto">
 					<h3 class="trackng-tight text-lg font-semibold leading-8 text-primary">Minilik Zeru</h3>
@@ -220,7 +220,7 @@
 				<img
 					class="aspect-[4/5] w-52 flex-none rounded-2xl bg-primary/10 object-cover"
 					src="/portraits/leon-nilsson.jpg"
-					alt=""
+					alt="Portrait of Leon Nilsson"
 				/>
 				<div class="flex-auto">
 					<h3 class="trackng-tight text-lg font-semibold leading-8 text-primary">Leon Nilsson</h3>
@@ -232,7 +232,7 @@
 				<img
 					class="aspect-[4/5] w-52 flex-none rounded-2xl bg-primary/10 object-cover"
 					src="/favicon.png"
-					alt=""
+					alt="Portrait of Joshua Heath"
 				/>
 				<div class="flex-auto">
 					<h3 class="trackng-tight lading-8 text-lg font-semibold text-primary">Joshua Heath</h3>
