@@ -7,7 +7,7 @@
 <section
 	class="md:prose-md prose prose-sm prose-main flex h-screen w-screen max-w-7xl flex-col items-center justify-center gap-2 px-5 text-lg sm:prose-base lg:prose-lg xl:prose-xl sm:px-10 sm:text-xl md:text-2xl lg:text-4xl"
 >
-	<img class="size-32" src="https://futi.no/favicon.png" alt="Futino's Logo" />
+	<img class="size-32" src="/favicon.png" alt="Futino's Logo" />
 	<div class="flex flex-col">
 		<h1 class="m-0 sm:m-0">
 			<span
@@ -32,18 +32,18 @@
 		before they finish their MVP or giving half their business to someone untrustworthy.
 	</p>
 	<!-- TODO: Make these buttons functional and uncomment them -->
-	<div class="flex gap-4">
-		<button
-			class="inline-flex h-10 items-center justify-center whitespace-nowrap rounded bg-primary p-8 text-xl font-bold text-primary-on ring-offset-background transition-colors hover:scale-[98%] hover:bg-tertiary hover:text-tertiary-on focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
-		>
-			Contact Us
-		</button>
-		<button
-			class="inline-flex h-10 items-center justify-center whitespace-nowrap rounded border border-input bg-transparent p-8 text-xl font-medium text-primary ring-offset-background transition-colors hover:scale-[98%] hover:border-tertiary hover:text-tertiary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
-		>
-			Book a Meeting
-		</button>
-	</div>
+	<!-- <div class="flex gap-4"> -->
+	<!-- 	<button -->
+	<!-- 		class="inline-flex h-10 items-center justify-center whitespace-nowrap rounded bg-primary p-8 text-xl font-bold text-primary-on ring-offset-background transition-colors hover:scale-[98%] hover:bg-tertiary hover:text-tertiary-on focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50" -->
+	<!-- 	> -->
+	<!-- 		Contact Us -->
+	<!-- 	</button> -->
+	<!-- 	<button -->
+	<!-- 		class="inline-flex h-10 items-center justify-center whitespace-nowrap rounded border border-input bg-transparent p-8 text-xl font-medium text-primary ring-offset-background transition-colors hover:scale-[98%] hover:border-tertiary hover:text-tertiary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50" -->
+	<!-- 	> -->
+	<!-- 		Book a Meeting -->
+	<!-- 	</button> -->
+	<!-- </div> -->
 </section>
 
 <!-- Solution -->
@@ -119,12 +119,15 @@
 		<b class="underline decoration-secondary decoration-2 underline-offset-4"
 			>passion of a co-founder,</b
 		>
-		enhanced by the <b>professional execution</b> of a seasoned development agency. Beyond just
-		coding, we’ll be at your side to provide
-		<b class="underline decoration-primary decoration-2 underline-offset-4">strategic insights</b>
+		enhanced by the
+		<b class="underline decoration-primary decoration-2 underline-offset-4"
+			>professional execution</b
+		>
+		of a seasoned development agency. Beyond just coding, we’ll be at your side to provide
+		<b class="underline decoration-secondary decoration-2 underline-offset-4">strategic insights</b>
 		and
-		<b class="underline decoration-secondary decoration-2 underline-offset-4">ongoing support</b> to
-		ensure your product not only reaches the market but thrives.
+		<b class="underline decoration-primary decoration-2 underline-offset-4">ongoing support</b> to ensure
+		your product not only reaches the market but thrives.
 	</p>
 </section>
 
@@ -204,7 +207,7 @@
 			<li class="flex flex-col gap-6 xl:flex-row">
 				<img
 					class="aspect-[4/5] w-52 flex-none rounded-2xl bg-primary/10 object-cover"
-					src="https://futi.no/favicon.png"
+					src="/favicon.png"
 					alt=""
 				/>
 				<div class="flex-auto">
@@ -228,7 +231,7 @@
 			<li class="flex flex-col gap-6 xl:flex-row">
 				<img
 					class="aspect-[4/5] w-52 flex-none rounded-2xl bg-primary/10 object-cover"
-					src="https://futi.no/favicon.png"
+					src="/favicon.png"
 					alt=""
 				/>
 				<div class="flex-auto">
