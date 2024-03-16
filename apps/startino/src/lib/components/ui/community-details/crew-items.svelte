@@ -30,11 +30,11 @@
 	<div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
 		{#each crewDisplayDetails.nodes.filter((n) => n.type !== 'prompt') as node}
 			<div
-				class="from-surface-variant to-surface overflow-hidden rounded-lg bg-gradient-to-r shadow-lg transition duration-300 ease-in-out hover:shadow-2xl"
+				class="overflow-hidden rounded-lg bg-gradient-to-r from-surface-variant to-surface shadow-lg transition duration-300 ease-in-out hover:shadow-2xl"
 			>
 				<div class="flex items-center p-4">
 					<div class="mr-4 flex-shrink-0">
-						<div class="border-primary h-16 w-16 overflow-hidden rounded-full border-2">
+						<div class="h-16 w-16 overflow-hidden rounded-full border-2 border-primary">
 							<img
 								src={node.data.avatar || 'default-avatar.png'}
 								alt=""
@@ -43,10 +43,10 @@
 						</div>
 					</div>
 					<div>
-						<div class="text-primary font-semibold">{node.data.name || 'Unnamed Node'}</div>
-						<div class="text-secondary text-sm">Type: {node.type}</div>
+						<div class="font-semibold text-primary">{node.data.name || 'Unnamed Node'}</div>
+						<div class="text-sm text-secondary">Type: {node.type}</div>
 						{#if node.data.model}
-							<div class="text-tertiary text-sm">Model: {node.data.model.label}</div>
+							<div class="text-sm text-tertiary">Model: {node.data.model.label}</div>
 						{/if}
 						{#if node.data.description}
 							<div class="text-on-surface-variant mt-2 text-sm">{node.data.description}</div>
