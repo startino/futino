@@ -32,18 +32,18 @@
 		before they finish their MVP or giving half their business to someone untrustworthy.
 	</p>
 	<!-- TODO: Make these buttons functional and uncomment them -->
-	<div class="flex gap-4">
-		<button
-			class="inline-flex h-10 items-center justify-center whitespace-nowrap rounded bg-primary p-8 text-xl font-bold text-primary-on ring-offset-background transition-colors hover:scale-[98%] hover:bg-tertiary hover:text-tertiary-on focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
-		>
-			Contact Us
-		</button>
-		<button
-			class="inline-flex h-10 items-center justify-center whitespace-nowrap rounded border border-input bg-transparent p-8 text-xl font-medium text-primary ring-offset-background transition-colors hover:scale-[98%] hover:border-tertiary hover:text-tertiary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
-		>
-			Book a Meeting
-		</button>
-	</div>
+	<!-- <div class="flex gap-4"> -->
+	<!-- 	<button -->
+	<!-- 		class="inline-flex h-10 items-center justify-center whitespace-nowrap rounded bg-primary p-8 text-xl font-bold text-primary-on ring-offset-background transition-colors hover:scale-[98%] hover:bg-tertiary hover:text-tertiary-on focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50" -->
+	<!-- 	> -->
+	<!-- 		Contact Us -->
+	<!-- 	</button> -->
+	<!-- 	<button -->
+	<!-- 		class="inline-flex h-10 items-center justify-center whitespace-nowrap rounded border border-input bg-transparent p-8 text-xl font-medium text-primary ring-offset-background transition-colors hover:scale-[98%] hover:border-tertiary hover:text-tertiary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50" -->
+	<!-- 	> -->
+	<!-- 		Book a Meeting -->
+	<!-- 	</button> -->
+	<!-- </div> -->
 </section>
 
 <!-- Solution -->
@@ -119,12 +119,15 @@
 		<b class="underline decoration-secondary decoration-2 underline-offset-4"
 			>passion of a co-founder,</b
 		>
-		enhanced by the <b>professional execution</b> of a seasoned development agency. Beyond just
-		coding, we’ll be at your side to provide
-		<b class="underline decoration-primary decoration-2 underline-offset-4">strategic insights</b>
+		enhanced by the
+		<b class="underline decoration-primary decoration-2 underline-offset-4"
+			>professional execution</b
+		>
+		of a seasoned development agency. Beyond just coding, we’ll be at your side to provide
+		<b class="underline decoration-secondary decoration-2 underline-offset-4">strategic insights</b>
 		and
-		<b class="underline decoration-secondary decoration-2 underline-offset-4">ongoing support</b> to
-		ensure your product not only reaches the market but thrives.
+		<b class="underline decoration-primary decoration-2 underline-offset-4">ongoing support</b> to ensure
+		your product not only reaches the market but thrives.
 	</p>
 </section>
 
