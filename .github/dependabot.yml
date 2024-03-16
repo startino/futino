@@ -23,11 +23,6 @@ updates:
 
   # Apps
   - package-ecosystem: "npm"
-    directory: "/apps/allheim"
-    schedule:
-      interval: "daily"
-
-  - package-ecosystem: "npm"
     directory: "/apps/anzelmo"
     schedule:
       interval: "daily"
@@ -38,12 +33,22 @@ updates:
       interval: "daily"
 
   - package-ecosystem: "npm"
-    directory: "/apps/eksno"
+    directory: "/apps/buffalo"
     schedule:
       interval: "daily"
 
   - package-ecosystem: "npm"
-    directory: "/apps/ggsoccer"
+    directory: "/apps/caffeino"
+    schedule:
+      interval: "daily"
+
+  - package-ecosystem: "npm"
+    directory: "/apps/oak"
+    schedule:
+      interval: "daily"
+
+  - package-ecosystem: "npm"
+    directory: "/apps/startino"
     schedule:
       interval: "daily"
 
