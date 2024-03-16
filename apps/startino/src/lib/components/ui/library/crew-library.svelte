@@ -99,7 +99,7 @@
 			</div>
 			<form
 				method="POST"
-				class="border-border bg-card grid grid-cols-8 rounded-md border p-6"
+				class="grid grid-cols-8 rounded-md border border-border bg-card p-6"
 				on:submit|preventDefault={async (e) => {
 					const file = e.target[0].files[0];
 
@@ -122,7 +122,7 @@
 						id="file"
 						accept=".json"
 						type="file"
-						class="border-border bg-foreground/10 border"
+						class="border border-border bg-foreground/10"
 					/>
 				</div>
 				<div class="col-span-1 ml-auto">

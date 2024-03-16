@@ -54,7 +54,7 @@
 </script>
 
 <Card.Root
-	class="{isTarget ? 'bg-card border-2 border-dashed ' : ''} {isReceiver
+	class="{isTarget ? 'border-2 border-dashed bg-card ' : ''} {isReceiver
 		? 'bg-primary-950'
 		: ''} aspect-1transition"
 >

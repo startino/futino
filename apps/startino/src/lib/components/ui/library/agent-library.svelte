@@ -115,7 +115,7 @@
 			{#each filteredMyAgents as agent, index (`personal-${agent.id}`)}
 				<AgentRow
 					{agent}
-					on:click={({detail}) => ((showDetails = true), showDetailInTheModal(detail.id))}
+					on:click={({ detail }) => ((showDetails = true), showDetailInTheModal(detail.id))}
 					on:load={({ detail }) => {
 						toast.success(`Added a new agent ${detail.title}`);
 						console.log(detail, 'detail');

@@ -41,7 +41,7 @@
 <div class=" flex h-full py-8 pl-4 lg:z-50 lg:w-72 lg:flex-col{$$props.class}">
 	<!-- Sidebar component, swap this element with another sidebar if you like -->
 	<div
-		class="flex grow flex-col gap-y-5 overflow-hidden rounded-2xl border bg-primary-950/30 px-6 pb-6 text-white"
+		class="bg-primary-950/30 flex grow flex-col gap-y-5 overflow-hidden rounded-2xl border px-6 pb-6 text-white"
 	>
 		<div class="flex h-16 shrink-0 items-center px-2 pt-6">
 			<a href="/app/auto-build" class="mr-4 flex place-items-center space-x-2">
