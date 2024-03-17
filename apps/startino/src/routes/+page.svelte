@@ -1,6 +1,21 @@
 <script lang="ts">
 	import { Button } from '$lib/components/ui/button';
 	import { Brain } from 'lucide-svelte';
+
+	const process = [
+		{
+			title: 'Plan',
+			body: 'It starts with a conversation where we understand your vision, followed by strategic planning to align our goals. Then, wrapped up with a deal and assigning a partner.'
+		},
+		{
+			title: 'Build',
+			body: 'Throughout this journey, we remain partners, offering not just our technical skills but also our strategic insights. We’ll be talking to users, iterating on their feedback, then all over again - until product market fit.'
+		},
+		{
+			title: 'Maintain',
+			body: 'Once product market fit is found, you can leave everything to us. We’ll be the backbone of your product, keeping it stable and ensuring scalability.'
+		}
+	];
 </script>
 
 <!-- Hero -->
@@ -129,6 +144,85 @@
 		<b class="underline decoration-primary decoration-2 underline-offset-4">ongoing support</b> to ensure
 		your product not only reaches the market but thrives.
 	</p>
+</section>
+
+<!-- Process Section -->
+<section
+	class="md:prose-md prose prose-sm prose-main flex max-w-7xl flex-col items-center justify-center px-5 sm:prose-base lg:prose-lg xl:prose-xl 2xl:prose-2xl sm:px-10"
+>
+	<div class="inner-section flex flex-col md:gap-24">
+		<div class="mx-auto w-fit max-w-xl">
+			<h2
+				class="bg-gradient-to-b from-primary from-50% to-background bg-clip-text text-transparent"
+			>
+				How We Roll
+			</h2>
+			<p>The lifecycle of our partnership in three easy steps.</p>
+		</div>
+		<div class="grid grid-cols-1 place-items-center gap-y-6 md:grid-cols-3">
+			{#each process as { title, body }, i}
+				<div class="relative flex h-full w-full">
+					<!-- md+ Journey line and Chapter checkmark -->
+					<div class="hidden md:flex">
+						<div
+							class="not-prose absolute top-0 hidden h-full w-full -translate-y-1/2 flex-row place-items-center text-center md:flex"
+						>
+							<!-- Circle -->
+							<div
+								class="z-10 flex h-11 w-11 items-center rounded-full bg-primary text-center text-primary-on"
+							>
+								<b class="z-20 mx-auto text-lg">{i + 1}</b>
+							</div>
+
+							<!-- Line -->
+							<div class="my-2 -ml-6 flex h-1 w-2/3 rounded-full bg-primary" />
+						</div>
+						<div
+							class="my-2 ml-12 mt-14 flex w-full flex-col py-4 pl-1 pr-8 text-left md:ml-0 md:mr-2"
+						>
+							<h3
+								class="mt-0 bg-gradient-to-b from-primary from-50% to-background bg-clip-text text-transparent sm:mt-0"
+							>
+								{title}
+							</h3>
+							<p class="title-medium md:headline-large max-w-xs">
+								{body}
+							</p>
+						</div>
+					</div>
+
+					<!-- Mobile Journey line and Chapter checkmark -->
+					<div class="flex flex-col md:hidden">
+						<div
+							class="not-prose absolute -top-2 left-4 flex h-full flex-col items-center text-center"
+						>
+							<!-- Circle -->
+							<div
+								class="z-10 flex h-12 w-11 items-center rounded-full bg-primary text-center text-primary-on"
+							>
+								<b class="z-20 mx-auto text-lg">
+									{i + 1}
+								</b>
+							</div>
+
+							<!-- Line -->
+							<div class="mx-auto -mt-6 flex h-full w-1 rounded-full bg-primary" />
+						</div>
+						<div class="flex w-full flex-col pl-16 pr-4 pt-8 text-left">
+							<h3
+								class="mt-0 bg-gradient-to-b from-primary from-50% to-background bg-clip-text text-transparent sm:mt-0"
+							>
+								{title}
+							</h3>
+							<p>
+								{body}
+							</p>
+						</div>
+					</div>
+				</div>
+			{/each}
+		</div>
+	</div>
 </section>
 
 <!-- How it works -->
