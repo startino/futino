@@ -1,12 +1,30 @@
 <script lang="ts">
 	import { Button } from '$lib/components/ui/button';
-	import { Brain } from 'lucide-svelte';
+	import { Brain, Boxes, Workflow, PanelsTopLeft, Building2, MonitorCheck } from 'lucide-svelte';
+
+	const process = [
+		{
+			title: 'Plan',
+			body: 'It starts with a conversation where we understand your vision, followed by strategic planning to align our goals. Then, wrapped up with a deal and assigning a partner.'
+		},
+		{
+			title: 'Build',
+			body: 'Throughout this journey, we remain partners, offering not just our technical skills but also our strategic insights. We’ll be talking to users, iterating on their feedback, then all over again - until product market fit.'
+		},
+		{
+			title: 'Maintain',
+			body: 'Once product market fit is found, you can leave everything to us. We’ll be the backbone of your product, keeping it stable and ensuring scalability.'
+		}
+	];
 </script>
 
 <!-- Hero -->
 <section
 	class="md:prose-md prose prose-sm prose-main flex h-screen w-full max-w-7xl flex-col items-center justify-center gap-2 px-5 text-lg sm:prose-base lg:prose-lg xl:prose-xl sm:px-10 sm:text-xl md:text-2xl lg:text-4xl"
 >
+	<div
+		class="z-100 absolute left-0 right-0 top-0 h-screen border-b border-primary/40 shadow-2xl"
+	></div>
 	<img class="size-32" src="/favicon.png" alt="Futino's Logo" />
 	<div class="flex flex-col">
 		<h1 class="m-0 sm:m-0">
@@ -50,14 +68,34 @@
 <section
 	class="md:prose-md prose prose-sm prose-main flex max-w-7xl flex-col items-center justify-center px-5 sm:prose-base lg:prose-lg xl:prose-xl 2xl:prose-2xl sm:px-10"
 >
-	<h2 class="bg-gradient-to-b from-primary from-50% to-background bg-clip-text text-transparent">
-		The Solution
+	<h2
+		class="mt-0 bg-gradient-to-b from-primary from-50% to-background bg-clip-text text-transparent sm:mt-0"
+	>
+		Our Offer
 	</h2>
 	<p>
-		By partnering with us, you gain not just a service provider, but a committed tech co-founder
-		who's invested in your success. With Futino, enjoy the reliability, passion, and effectiveness
-		of having a co-founder, paired with the legal security and speed of an established agency. Our
-		model means we succeed when you do, ensuring a partnership rooted in mutual growth and success.
+		Benefit from a partnership that offers the
+		<b class="underline decoration-secondary decoration-2 underline-offset-4">
+			long-term dedication
+		</b>
+		and
+		<b class="underline decoration-primary decoration-2 underline-offset-4">
+			passion of a co-founder,
+		</b>
+		enhanced by the
+		<b class="underline decoration-secondary decoration-2 underline-offset-4">
+			professional execution
+		</b>
+		of a seasoned development agency. By taking a piece of the pie through equity or revenue share, we
+		ensure our
+		<b class="underline decoration-primary decoration-2 underline-offset-4">
+			goals align with yours.
+		</b>
+		We’ll be at your side to provide
+		<b class="underline decoration-secondary decoration-2 underline-offset-4">strategic insights</b>
+		and
+		<b class="underline decoration-primary decoration-2 underline-offset-4">ongoing support</b> to ensure
+		your product not only reaches the market but thrives.
 	</p>
 </section>
 
@@ -67,81 +105,128 @@
 	class="md:prose-md prose prose-sm prose-main flex max-w-7xl flex-col items-center justify-center px-5 sm:prose-base lg:prose-lg xl:prose-xl 2xl:prose-2xl sm:px-10"
 >
 	<h2
-		class="m-0 bg-gradient-to-b from-primary from-50% to-background bg-clip-text text-transparent sm:m-0"
+		class=" mt-0 bg-gradient-to-b from-primary from-50% to-background bg-clip-text text-transparent sm:mt-0"
 	>
 		Our Specialties
 	</h2>
 	<dl class="grid grid-cols-2 gap-8 overflow-hidden sm:mx-0 sm:rounded-2xl md:grid-cols-3">
-		<dt class="flex items-center justify-center gap-1 font-semibold text-primary-container-on">
-			<Brain class="h-5 w-5" />
+		<dt class="flex items-center justify-center gap-1 font-semibold text-background-on">
+			<Brain class="mr-1 h-7 w-7 text-primary" />
 			Machine Learning.
 		</dt>
-		<dt class="flex items-center justify-center gap-1 font-semibold text-primary-container-on">
-			<Brain class="h-5 w-5" />
+		<dt class="flex items-center justify-center gap-1 font-semibold text-background-on">
+			<Boxes class="mr-1 h-7 w-7 text-primary" />
 			Product Development.
 		</dt>
-		<dt class="flex items-center justify-center gap-1 font-semibold text-primary-container-on">
-			<Brain class="h-5 w-5" />
+		<dt class="flex items-center justify-center gap-1 font-semibold text-background-on">
+			<Workflow class="mr-1 h-7 w-7 text-primary" />
 			SaaS Development.
 		</dt>
-		<dt class="flex items-center justify-center gap-1 font-semibold text-primary-container-on">
-			<Brain class="h-5 w-5" />
+		<dt class="flex items-center justify-center gap-1 font-semibold text-background-on">
+			<PanelsTopLeft class="mr-1 h-7 w-7 text-primary" />
 			Web Design.
 		</dt>
-		<dt class="flex items-center justify-center gap-1 font-semibold text-primary-container-on">
-			<Brain class="h-5 w-5" />
+		<dt class="flex items-center justify-center gap-1 font-semibold text-background-on">
+			<Building2 class="mr-1 h-7 w-7 text-primary" />
 			System Architecture.
 		</dt>
-		<dt class="flex items-center justify-center gap-1 font-semibold text-primary-container-on">
-			<Brain class="h-5 w-5" />
+		<dt class="flex items-center justify-center gap-1 font-semibold text-background-on">
+			<MonitorCheck class="mr-1 h-7 w-7 text-primary" />
 			UI/UX Design.
 		</dt>
 	</dl>
 </section>
 
-<!-- What we offer -->
+<!-- Process Section -->
 <section
 	class="md:prose-md prose prose-sm prose-main flex max-w-7xl flex-col items-center justify-center px-5 sm:prose-base lg:prose-lg xl:prose-xl 2xl:prose-2xl sm:px-10"
 >
-	<h2 class="bg-gradient-to-b from-primary from-50% to-background bg-clip-text text-transparent">
-		Our Offer
-	</h2>
-	<p class="text-pretty">
-		Choosing Futino means engaging in a partnership that offers more than just technical expertise.
-		We provide <b class="underline decoration-secondary decoration-2 underline-offset-4"
-			>cost-effective development</b
-		>
-		through a unique and simple model, ensuring our
-		<b class="underline decoration-primary decoration-2 underline-offset-4"
-			>goals align with yours.</b
-		>
-		Benefit from a partnership that offers the long-term dedication and
-		<b class="underline decoration-secondary decoration-2 underline-offset-4"
-			>passion of a co-founder,</b
-		>
-		enhanced by the
-		<b class="underline decoration-primary decoration-2 underline-offset-4"
-			>professional execution</b
-		>
-		of a seasoned development agency. Beyond just coding, we’ll be at your side to provide
-		<b class="underline decoration-secondary decoration-2 underline-offset-4">strategic insights</b>
-		and
-		<b class="underline decoration-primary decoration-2 underline-offset-4">ongoing support</b> to ensure
-		your product not only reaches the market but thrives.
-	</p>
+	<div class="inner-section flex flex-col md:gap-12">
+		<div class="mx-auto w-fit max-w-xl">
+			<h2
+				class="mt-0 bg-gradient-to-b from-primary from-50% to-background bg-clip-text text-transparent sm:mt-0"
+			>
+				How We Roll
+			</h2>
+			<p>The lifecycle of our partnership in three easy steps.</p>
+		</div>
+		<div class="grid grid-cols-1 place-items-center gap-y-6 md:grid-cols-3">
+			{#each process as { title, body }, i}
+				<div class="relative flex h-full w-full">
+					<!-- md+ Journey line and Chapter checkmark -->
+					<div class="hidden md:flex">
+						<div
+							class="not-prose absolute top-0 hidden h-full w-full -translate-y-1/2 flex-row place-items-center text-center md:flex"
+						>
+							<!-- Circle -->
+							<div
+								class="z-10 flex h-11 w-11 items-center rounded-full bg-primary text-center text-primary-on"
+							>
+								<b class="z-20 mx-auto text-lg">{i + 1}</b>
+							</div>
+
+							<!-- Line -->
+							<div class="my-2 -ml-6 flex h-1 w-2/3 rounded-full bg-primary" />
+						</div>
+						<div
+							class="my-2 ml-12 mt-14 flex w-full flex-col py-4 pl-1 pr-8 text-left md:ml-0 md:mr-2"
+						>
+							<h3
+								class="mt-0 bg-gradient-to-b from-primary from-50% to-background bg-clip-text text-transparent sm:mt-0"
+							>
+								{title}
+							</h3>
+							<p class="title-medium md:headline-large max-w-xs">
+								{body}
+							</p>
+						</div>
+					</div>
+
+					<!-- Mobile Journey line and Chapter checkmark -->
+					<div class="flex flex-col md:hidden">
+						<div
+							class="not-prose absolute -top-2 left-4 flex h-full flex-col items-center text-center"
+						>
+							<!-- Circle -->
+							<div
+								class="z-10 flex h-12 w-11 items-center rounded-full bg-primary text-center text-primary-on"
+							>
+								<b class="z-20 mx-auto text-lg">
+									{i + 1}
+								</b>
+							</div>
+
+							<!-- Line -->
+							<div class="mx-auto -mt-6 flex h-full w-1 rounded-full bg-primary" />
+						</div>
+						<div class="flex w-full flex-col pl-16 pr-4 pt-8 text-left">
+							<h3
+								class="mt-0 bg-gradient-to-b from-primary from-50% to-background bg-clip-text text-transparent sm:mt-0"
+							>
+								{title}
+							</h3>
+							<p>
+								{body}
+							</p>
+						</div>
+					</div>
+				</div>
+			{/each}
+		</div>
+	</div>
 </section>
 
 <!-- How it works -->
 
 <section>
-	<div class="mx-auto max-w-7xl px-6 pb-20 lg:px-8">
+	<div class="mx-auto max-w-7xl px-6 lg:px-8">
 		<div
 			class="md:prose-md prose prose-sm prose-main mx-auto flex flex-col items-center justify-center px-5 sm:prose-base lg:prose-lg xl:prose-xl 2xl:prose-2xl sm:px-10"
 		>
 			<h2
 				class="bg-gradient-to-b from-primary from-50% to-background bg-clip-text text-transparent"
 			>
-				<span class="opacity-30">Y</span>our People
+				<span class="relative text-primary/20">Y</span>our People
 			</h2>
 			<p class="mt-6 text-lg leading-8 opacity-80">
 				We’re a dynamic group of individuals who are passionate about what we do and dedicated to
@@ -151,7 +236,9 @@
 		<ul
 			class="mx-auto mt-20 grid max-w-2xl grid-cols-1 gap-x-6 gap-y-20 text-left sm:grid-cols-2 lg:max-w-4xl lg:gap-x-8 xl:max-w-none"
 		>
-			<li class="flex flex-col gap-6 xl:flex-row">
+			<li
+				class="flex flex-col items-center justify-center gap-6 text-center sm:items-start sm:justify-start sm:text-left xl:flex-row"
+			>
 				<img
 					class="aspect-[4/5] w-52 flex-none rounded-2xl bg-primary/10 object-cover"
 					src="/portraits/jorge-lewis.jpg"
@@ -168,7 +255,9 @@
 					</p>
 				</div>
 			</li>
-			<li class="flex flex-col gap-6 xl:flex-row">
+			<li
+				class="flex flex-col items-center justify-center gap-6 text-center sm:items-start sm:justify-start sm:text-left xl:flex-row"
+			>
 				<img
 					class="aspect-[4/5] w-52 flex-none rounded-2xl bg-primary/10 object-cover"
 					src="/portraits/jonas-lindberg.jpg"
@@ -185,7 +274,9 @@
 					</p>
 				</div>
 			</li>
-			<li class="flex flex-col gap-6 xl:flex-row">
+			<li
+				class="flex flex-col items-center justify-center gap-6 text-center sm:items-start sm:justify-start sm:text-left xl:flex-row"
+			>
 				<img
 					class="aspect-[4/5] w-52 flex-none rounded-2xl bg-primary/10 object-cover"
 					src="/portraits/nazif-barassounon.jpg"
@@ -204,7 +295,9 @@
 					</p>
 				</div>
 			</li>
-			<li class="flex flex-col gap-6 xl:flex-row">
+			<li
+				class="flex flex-col items-center justify-center gap-6 text-center sm:items-start sm:justify-start sm:text-left xl:flex-row"
+			>
 				<img
 					class="aspect-[4/5] w-52 flex-none rounded-2xl bg-primary/10 object-cover"
 					src="/favicon.png"
@@ -216,7 +309,9 @@
 					<p class="mt-6 text-base leading-7 opacity-80">Coming Soon...</p>
 				</div>
 			</li>
-			<li class="flex flex-col gap-6 xl:flex-row">
+			<li
+				class="flex flex-col items-center justify-center gap-6 text-center sm:items-start sm:justify-start sm:text-left xl:flex-row"
+			>
 				<img
 					class="aspect-[4/5] w-52 flex-none rounded-2xl bg-primary/10 object-cover"
 					src="/portraits/leon-nilsson.jpg"
@@ -228,7 +323,9 @@
 					<p class="mt-6 text-base leading-7 opacity-80">Coming Soon...</p>
 				</div>
 			</li>
-			<li class="flex flex-col gap-6 xl:flex-row">
+			<li
+				class="flex flex-col items-center justify-center gap-6 text-center sm:items-start sm:justify-start sm:text-left xl:flex-row"
+			>
 				<img
 					class="aspect-[4/5] w-52 flex-none rounded-2xl bg-primary/10 object-cover"
 					src="/favicon.png"
@@ -248,8 +345,10 @@
 	<div
 		class="md:prose-md prose prose-sm prose-main mx-auto flex flex-col items-center justify-center px-5 sm:prose-base lg:prose-lg xl:prose-xl 2xl:prose-2xl sm:px-10"
 	>
-		<h2 class="bg-gradient-to-b from-primary from-50% to-background bg-clip-text text-transparent">
-			<span class="opacity-30">Y</span>our Secret Sauce
+		<h2
+			class="mt-0 bg-gradient-to-b from-primary from-50% to-background bg-clip-text text-transparent sm:mt-0"
+		>
+			<span class="relative text-primary/20">Y</span>our Secret Sauce
 		</h2>
 		<p class="mt-6 text-pretty text-lg leading-8 opacity-80">
 			The Robust and Agile Tech Stack Empowering Innovation, Efficiency, and Scalability.
