@@ -219,7 +219,7 @@
 <!-- How it works -->
 
 <section>
-	<div class="mx-auto max-w-7xl px-6 pb-20 lg:px-8">
+	<div class="mx-auto max-w-7xl px-6 lg:px-8">
 		<div
 			class="md:prose-md prose prose-sm prose-main mx-auto flex flex-col items-center justify-center px-5 sm:prose-base lg:prose-lg xl:prose-xl 2xl:prose-2xl sm:px-10"
 		>
@@ -236,7 +236,9 @@
 		<ul
 			class="mx-auto mt-20 grid max-w-2xl grid-cols-1 gap-x-6 gap-y-20 text-left sm:grid-cols-2 lg:max-w-4xl lg:gap-x-8 xl:max-w-none"
 		>
-			<li class="flex flex-col gap-6 xl:flex-row">
+			<li
+				class="flex flex-col items-center justify-center gap-6 text-center sm:items-start sm:justify-start sm:text-left xl:flex-row"
+			>
 				<img
 					class="aspect-[4/5] w-52 flex-none rounded-2xl bg-primary/10 object-cover"
 					src="/portraits/jorge-lewis.jpg"
@@ -253,7 +255,9 @@
 					</p>
 				</div>
 			</li>
-			<li class="flex flex-col gap-6 xl:flex-row">
+			<li
+				class="flex flex-col items-center justify-center gap-6 text-center sm:items-start sm:justify-start sm:text-left xl:flex-row"
+			>
 				<img
 					class="aspect-[4/5] w-52 flex-none rounded-2xl bg-primary/10 object-cover"
 					src="/portraits/jonas-lindberg.jpg"
@@ -270,7 +274,9 @@
 					</p>
 				</div>
 			</li>
-			<li class="flex flex-col gap-6 xl:flex-row">
+			<li
+				class="flex flex-col items-center justify-center gap-6 text-center sm:items-start sm:justify-start sm:text-left xl:flex-row"
+			>
 				<img
 					class="aspect-[4/5] w-52 flex-none rounded-2xl bg-primary/10 object-cover"
 					src="/portraits/nazif-barassounon.jpg"
@@ -289,7 +295,9 @@
 					</p>
 				</div>
 			</li>
-			<li class="flex flex-col gap-6 xl:flex-row">
+			<li
+				class="flex flex-col items-center justify-center gap-6 text-center sm:items-start sm:justify-start sm:text-left xl:flex-row"
+			>
 				<img
 					class="aspect-[4/5] w-52 flex-none rounded-2xl bg-primary/10 object-cover"
 					src="/favicon.png"
@@ -301,7 +309,9 @@
 					<p class="mt-6 text-base leading-7 opacity-80">Coming Soon...</p>
 				</div>
 			</li>
-			<li class="flex flex-col gap-6 xl:flex-row">
+			<li
+				class="flex flex-col items-center justify-center gap-6 text-center sm:items-start sm:justify-start sm:text-left xl:flex-row"
+			>
 				<img
 					class="aspect-[4/5] w-52 flex-none rounded-2xl bg-primary/10 object-cover"
 					src="/portraits/leon-nilsson.jpg"
@@ -313,7 +323,9 @@
 					<p class="mt-6 text-base leading-7 opacity-80">Coming Soon...</p>
 				</div>
 			</li>
-			<li class="flex flex-col gap-6 xl:flex-row">
+			<li
+				class="flex flex-col items-center justify-center gap-6 text-center sm:items-start sm:justify-start sm:text-left xl:flex-row"
+			>
 				<img
 					class="aspect-[4/5] w-52 flex-none rounded-2xl bg-primary/10 object-cover"
 					src="/favicon.png"
@@ -333,7 +345,9 @@
 	<div
 		class="md:prose-md prose prose-sm prose-main mx-auto flex flex-col items-center justify-center px-5 sm:prose-base lg:prose-lg xl:prose-xl 2xl:prose-2xl sm:px-10"
 	>
-		<h2 class="bg-gradient-to-b from-primary from-50% to-background bg-clip-text text-transparent">
+		<h2
+			class="mt-0 bg-gradient-to-b from-primary from-50% to-background bg-clip-text text-transparent sm:mt-0"
+		>
 			<span class="relative text-primary/20">Y</span>our Secret Sauce
 		</h2>
 		<p class="mt-6 text-pretty text-lg leading-8 opacity-80">
