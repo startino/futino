@@ -235,7 +235,7 @@
 			<h2
 				class="bg-gradient-to-b from-primary from-50% to-background bg-clip-text text-transparent"
 			>
-				<span class="opacity-30">Y</span>our People
+				Our People
 			</h2>
 			<p class="mt-6 text-lg leading-8 opacity-80">
 				We’re a dynamic group of individuals who are passionate about what we do and dedicated to
@@ -343,7 +343,7 @@
 		class="md:prose-md prose prose-sm prose-main mx-auto flex flex-col items-center justify-center px-5 sm:prose-base lg:prose-lg xl:prose-xl 2xl:prose-2xl sm:px-10"
 	>
 		<h2 class="bg-gradient-to-b from-primary from-50% to-background bg-clip-text text-transparent">
-			<span class="opacity-30">Y</span>our Secret Sauce
+			Our Secret Sauce
 		</h2>
 		<p class="mt-6 text-pretty text-lg leading-8 opacity-80">
 			The Robust and Agile Tech Stack Empowering Innovation, Efficiency, and Scalability.
