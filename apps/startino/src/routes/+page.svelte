@@ -22,6 +22,9 @@
 <section
 	class="md:prose-md prose prose-sm prose-main flex h-screen w-full max-w-7xl flex-col items-center justify-center gap-2 px-5 text-lg sm:prose-base lg:prose-lg xl:prose-xl sm:px-10 sm:text-xl md:text-2xl lg:text-4xl"
 >
+	<div
+		class="z-100 absolute left-0 right-0 top-0 h-screen border-b border-primary/40 shadow-2xl"
+	></div>
 	<img class="size-32" src="/favicon.png" alt="Futino's Logo" />
 	<div class="flex flex-col">
 		<h1 class="m-0 sm:m-0">
@@ -65,7 +68,9 @@
 <section
 	class="md:prose-md prose prose-sm prose-main flex max-w-7xl flex-col items-center justify-center px-5 sm:prose-base lg:prose-lg xl:prose-xl 2xl:prose-2xl sm:px-10"
 >
-	<h2 class="bg-gradient-to-b from-primary from-50% to-background bg-clip-text text-transparent">
+	<h2
+		class="mt-0 bg-gradient-to-b from-primary from-50% to-background bg-clip-text text-transparent sm:mt-0"
+	>
 		Our Offer
 	</h2>
 	<p>
@@ -100,7 +105,7 @@
 	class="md:prose-md prose prose-sm prose-main flex max-w-7xl flex-col items-center justify-center px-5 sm:prose-base lg:prose-lg xl:prose-xl 2xl:prose-2xl sm:px-10"
 >
 	<h2
-		class="m-0 bg-gradient-to-b from-primary from-50% to-background bg-clip-text text-transparent sm:m-0"
+		class=" mt-0 bg-gradient-to-b from-primary from-50% to-background bg-clip-text text-transparent sm:mt-0"
 	>
 		Our Specialties
 	</h2>
@@ -136,10 +141,10 @@
 <section
 	class="md:prose-md prose prose-sm prose-main flex max-w-7xl flex-col items-center justify-center px-5 sm:prose-base lg:prose-lg xl:prose-xl 2xl:prose-2xl sm:px-10"
 >
-	<div class="inner-section flex flex-col md:gap-24">
+	<div class="inner-section flex flex-col md:gap-12">
 		<div class="mx-auto w-fit max-w-xl">
 			<h2
-				class="bg-gradient-to-b from-primary from-50% to-background bg-clip-text text-transparent"
+				class="mt-0 bg-gradient-to-b from-primary from-50% to-background bg-clip-text text-transparent sm:mt-0"
 			>
 				How We Roll
 			</h2>
