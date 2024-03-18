@@ -300,13 +300,18 @@
 			>
 				<img
 					class="aspect-[4/5] w-52 flex-none rounded-2xl bg-primary/10 object-cover"
-					src="/favicon.png"
+					src="/portraits/minilik-zeru.jpg"
 					alt="Portrait of Minilik Zeru"
 				/>
 				<div class="flex-auto">
 					<h3 class="trackng-tight text-lg font-semibold leading-8 text-primary">Minilik Zeru</h3>
 					<p class="text-base leading-7 text-primary">Web Developer</p>
-					<p class="mt-6 text-base leading-7 opacity-80">Coming Soon...</p>
+					<p class="mt-6 text-base leading-7 opacity-80">
+						I'm a full-stack developer specializing in intuitive interfaces with SvelteKit and
+						robust APIs using Node.js. Committed to enhancing user satisfaction, I continuously
+						update my skills to incorporate the latest trends. Passionate about innovation, I ensure
+						each project remains at the forefront of digital advancements.
+					</p>
 				</div>
 			</li>
 			<li
@@ -320,7 +325,12 @@
 				<div class="flex-auto">
 					<h3 class="trackng-tight text-lg font-semibold leading-8 text-primary">Leon Nilsson</h3>
 					<p class="text-base leading-7 text-primary">Backend Developer</p>
-					<p class="mt-6 text-base leading-7 opacity-80">Coming Soon...</p>
+					<p class="mt-6 text-base leading-7 opacity-80">
+						I'm a developer who has been programming for 5 years, passionate about backend
+						development. I'm committed to writing high quality, scalable software, innovating and
+						finding the best possible solutions to different problems. I strive to learn all I can
+						in today's shifting digital landscape.
+					</p>
 				</div>
 			</li>
 			<li
