@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Button } from '$lib/components/ui/button';
-	import { Brain } from 'lucide-svelte';
+	import { Brain, Boxes, Workflow, PanelsTopLeft, Building2, MonitorCheck } from 'lucide-svelte';
 
 	const process = [
 		{
@@ -66,13 +66,31 @@
 	class="md:prose-md prose prose-sm prose-main flex max-w-7xl flex-col items-center justify-center px-5 sm:prose-base lg:prose-lg xl:prose-xl 2xl:prose-2xl sm:px-10"
 >
 	<h2 class="bg-gradient-to-b from-primary from-50% to-background bg-clip-text text-transparent">
-		The Solution
+		Our Offer
 	</h2>
 	<p>
-		By partnering with us, you gain not just a service provider, but a committed tech co-founder
-		who's invested in your success. With Futino, enjoy the reliability, passion, and effectiveness
-		of having a co-founder, paired with the legal security and speed of an established agency. Our
-		model means we succeed when you do, ensuring a partnership rooted in mutual growth and success.
+		Benefit from a partnership that offers the
+		<b class="underline decoration-secondary decoration-2 underline-offset-4">
+			long-term dedication
+		</b>
+		and
+		<b class="underline decoration-primary decoration-2 underline-offset-4">
+			passion of a co-founder,
+		</b>
+		enhanced by the
+		<b class="underline decoration-secondary decoration-2 underline-offset-4">
+			professional execution
+		</b>
+		of a seasoned development agency. By taking a piece of the pie through equity or revenue share, we
+		ensure our
+		<b class="underline decoration-primary decoration-2 underline-offset-4">
+			goals align with yours.
+		</b>
+		We’ll be at your side to provide
+		<b class="underline decoration-secondary decoration-2 underline-offset-4">strategic insights</b>
+		and
+		<b class="underline decoration-primary decoration-2 underline-offset-4">ongoing support</b> to ensure
+		your product not only reaches the market but thrives.
 	</p>
 </section>
 
@@ -87,63 +105,31 @@
 		Our Specialties
 	</h2>
 	<dl class="grid grid-cols-2 gap-8 overflow-hidden sm:mx-0 sm:rounded-2xl md:grid-cols-3">
-		<dt class="flex items-center justify-center gap-1 font-semibold text-primary-container-on">
-			<Brain class="h-5 w-5" />
+		<dt class="flex items-center justify-center gap-1 font-semibold text-background-on">
+			<Brain class="mr-1 h-7 w-7 text-primary" />
 			Machine Learning.
 		</dt>
-		<dt class="flex items-center justify-center gap-1 font-semibold text-primary-container-on">
-			<Brain class="h-5 w-5" />
+		<dt class="flex items-center justify-center gap-1 font-semibold text-background-on">
+			<Boxes class="mr-1 h-7 w-7 text-primary" />
 			Product Development.
 		</dt>
-		<dt class="flex items-center justify-center gap-1 font-semibold text-primary-container-on">
-			<Brain class="h-5 w-5" />
+		<dt class="flex items-center justify-center gap-1 font-semibold text-background-on">
+			<Workflow class="mr-1 h-7 w-7 text-primary" />
 			SaaS Development.
 		</dt>
-		<dt class="flex items-center justify-center gap-1 font-semibold text-primary-container-on">
-			<Brain class="h-5 w-5" />
+		<dt class="flex items-center justify-center gap-1 font-semibold text-background-on">
+			<PanelsTopLeft class="mr-1 h-7 w-7 text-primary" />
 			Web Design.
 		</dt>
-		<dt class="flex items-center justify-center gap-1 font-semibold text-primary-container-on">
-			<Brain class="h-5 w-5" />
+		<dt class="flex items-center justify-center gap-1 font-semibold text-background-on">
+			<Building2 class="mr-1 h-7 w-7 text-primary" />
 			System Architecture.
 		</dt>
-		<dt class="flex items-center justify-center gap-1 font-semibold text-primary-container-on">
-			<Brain class="h-5 w-5" />
+		<dt class="flex items-center justify-center gap-1 font-semibold text-background-on">
+			<MonitorCheck class="mr-1 h-7 w-7 text-primary" />
 			UI/UX Design.
 		</dt>
 	</dl>
-</section>
-
-<!-- What we offer -->
-<section
-	class="md:prose-md prose prose-sm prose-main flex max-w-7xl flex-col items-center justify-center px-5 sm:prose-base lg:prose-lg xl:prose-xl 2xl:prose-2xl sm:px-10"
->
-	<h2 class="bg-gradient-to-b from-primary from-50% to-background bg-clip-text text-transparent">
-		Our Offer
-	</h2>
-	<p class="text-pretty">
-		Choosing Futino means engaging in a partnership that offers more than just technical expertise.
-		We provide <b class="underline decoration-secondary decoration-2 underline-offset-4"
-			>cost-effective development</b
-		>
-		through a unique and simple model, ensuring our
-		<b class="underline decoration-primary decoration-2 underline-offset-4"
-			>goals align with yours.</b
-		>
-		Benefit from a partnership that offers the long-term dedication and
-		<b class="underline decoration-secondary decoration-2 underline-offset-4"
-			>passion of a co-founder,</b
-		>
-		enhanced by the
-		<b class="underline decoration-primary decoration-2 underline-offset-4"
-			>professional execution</b
-		>
-		of a seasoned development agency. Beyond just coding, we’ll be at your side to provide
-		<b class="underline decoration-secondary decoration-2 underline-offset-4">strategic insights</b>
-		and
-		<b class="underline decoration-primary decoration-2 underline-offset-4">ongoing support</b> to ensure
-		your product not only reaches the market but thrives.
-	</p>
 </section>
 
 <!-- Process Section -->
@@ -235,7 +221,7 @@
 			<h2
 				class="bg-gradient-to-b from-primary from-50% to-background bg-clip-text text-transparent"
 			>
-				Our People
+				<span class="relative text-primary/20">Y</span>our People
 			</h2>
 			<p class="mt-6 text-lg leading-8 opacity-80">
 				We’re a dynamic group of individuals who are passionate about what we do and dedicated to
@@ -343,7 +329,7 @@
 		class="md:prose-md prose prose-sm prose-main mx-auto flex flex-col items-center justify-center px-5 sm:prose-base lg:prose-lg xl:prose-xl 2xl:prose-2xl sm:px-10"
 	>
 		<h2 class="bg-gradient-to-b from-primary from-50% to-background bg-clip-text text-transparent">
-			Our Secret Sauce
+			<span class="relative text-primary/20">Y</span>our Secret Sauce
 		</h2>
 		<p class="mt-6 text-pretty text-lg leading-8 opacity-80">
 			The Robust and Agile Tech Stack Empowering Innovation, Efficiency, and Scalability.
