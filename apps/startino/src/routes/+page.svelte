@@ -5,15 +5,15 @@
 	const process = [
 		{
 			title: 'Plan',
-			body: 'It starts with a conversation where we understand your vision, followed by strategic planning to align our goals. Then, wrapped up with a deal and assigning a partner.'
+			body: 'In this initial phase, we engage in thorough discussions to understand your vision, goals, and requirements for your software project.'
 		},
 		{
-			title: 'Build',
-			body: 'Throughout this journey, we remain partners, offering not just our technical skills but also our strategic insights. We’ll be talking to users, iterating on their feedback, then all over again - until product market fit.'
+			title: 'Develop',
+			body: 'Our experts bring your concept to life with cutting-edge technologies. We iterate based on feedback, ensuring a user-friendly and scalable solution.'
 		},
 		{
-			title: 'Maintain',
-			body: 'Once product market fit is found, you can leave everything to us. We’ll be the backbone of your product, keeping it stable and ensuring scalability.'
+			title: 'Deploy',
+			body: 'Our team ensures a seamless transition from development to deployment. Post-launch, we provide ongoing support and maintenance.'
 		}
 	];
 </script>
