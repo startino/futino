@@ -64,6 +64,6 @@ export type Contract = {
 };
 
 export type NestedContract = Omit<Tables<'contracts'>, 'vendor' | 'creator'> & {
-	vendor: { full_name: string };
+	vendors: { name: string };
 	creator: { full_name: string };
 };

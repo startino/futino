@@ -110,12 +110,12 @@
 		// }),
 		table.column({
 			header: 'Vendor Name',
-			accessor: 'vendor',
-			cell: ({ value }) => value.full_name.toLowerCase(),
+			accessor: 'vendors',
+			cell: ({ value }) => value.name.toLowerCase(),
 			plugins: {
 				filter: {
 					getFilterValue(value) {
-						return value.full_name.toLowerCase();
+						return value.name.toLowerCase();
 					}
 				}
 			}

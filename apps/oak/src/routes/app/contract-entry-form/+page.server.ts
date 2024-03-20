@@ -8,7 +8,7 @@ import type { TablesInsert } from '$lib/server/supabase.types';
 export const load = async ({ locals: { apiClient } }) => {
 	const form = await superValidate(contractEntrySchema);
 
-	const userID = apiClient.user.id;
+	const userID = apiClient.session.user.id;
 	const organizationID = await fetchUserOrgID(userID);
 
 	// Fetch all the contracts with vendor name attached that are in the same organization as the current user
@@ -97,7 +97,7 @@ export const actions: Actions = {
 
 		const data = form.data;
 
-		const orgID = await fetchUserOrgID(apiClient.user.id);
+		const orgID = await fetchUserOrgID(apiClient.session.user.id);
 
 		delete data.new_vendor;
 		delete data.new_project;

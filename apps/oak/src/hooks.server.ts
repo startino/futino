@@ -6,7 +6,7 @@ import { Stripe } from 'stripe';
 import type { Database } from '$lib/server/supabase.types.ts';
 import { createSupabaseServerClient } from '@supabase/auth-helpers-sveltekit';
 import { redirect, type Handle } from '@sveltejs/kit';
-import { getUserSubscription } from '$lib/server/db';
+import { ApiClient } from '$lib/api-client';
 
 export const handle: Handle = async ({ event, resolve }) => {
 	const supabase = createSupabaseServerClient<Database>({
@@ -18,39 +18,35 @@ export const handle: Handle = async ({ event, resolve }) => {
 	const stripe = new Stripe(STRIPE_SECRET_KEY);
 
 	const {
-		data: {
-			session: { user, access_token }
-		},
-		error: sessionError
+		data: { session }
 	} = await supabase.auth.getSession();
 
-	if (sessionError) {
+	const apiClient = new ApiClient({
+		stripe,
+		supabase,
+		session
+	});
+
+	if (!apiClient.session) {
 		if (event.url.pathname.startsWith('/app')) {
 			redirect(303, '/login');
 		}
 	} else {
-		event.locals.apiClient = new ApiClient({
-			stripe,
-			supabase,
-			user,
-			userAccessToken: access_token
-		});
-
-		const { data } = await event.locals.apiClient.supabase
+		const { data } = await apiClient.supabase
 			.from('profiles')
 			.select()
-			.eq('id', user.id)
+			.eq('id', apiClient.session.user.id)
 			.single();
 
-		event.locals.apiClient.stripeCustomerId = data.stripe_customer_id;
+		apiClient.stripeCustomerId = data.stripe_customer_id;
 
-		const { data: subscription } = await event.locals.apiClient.getUserSubscription();
+		const { data: subscription } = await apiClient.getUserSubscription();
 
 		let forbidSubscription = false;
 
 		if (subscription) {
 			try {
-				const sub = await event.locals.apiClient.stripe.subscriptions.retrieve(
+				const sub = await apiClient.stripe.subscriptions.retrieve(
 					subscription.stripe_subscription_id
 				);
 				if (
@@ -72,6 +68,8 @@ export const handle: Handle = async ({ event, resolve }) => {
 			redirect(302, '/app/subscription');
 		}
 	}
+
+	event.locals.apiClient = apiClient;
 
 	return resolve(event, {
 		filterSerializedResponseHeaders(name) {

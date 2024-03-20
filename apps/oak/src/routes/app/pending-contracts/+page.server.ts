@@ -1,12 +1,13 @@
-import type { PageServerLoad } from './$types';
 import { fail } from '@sveltejs/kit';
 import type { NestedContract } from '$lib/types';
 
-export const load: PageServerLoad = async ({ locals: { supabase } }) => {
-	const { data, error } = await supabase
+export const load = async ({ locals: { apiClient } }) => {
+	const { data: profile } = await apiClient.getUserProfile();
+
+	const { data, error } = await apiClient.supabase
 		.from('contracts')
-		.select('*, vendor(full_name), creator(full_name)')
-		.eq('organization_id', 'f47ac10b-58cc-4372-a567-0e02b2c3d479')
+		.select('*, vendors(name), creator(full_name)')
+		.eq('organization_id', profile.organization_id)
 		.eq('status', 'Pending')
 		.returns<NestedContract[]>();
 
@@ -16,7 +17,6 @@ export const load: PageServerLoad = async ({ locals: { supabase } }) => {
 	}
 
 	return {
-		session: null,
 		contracts: data
 	};
 };
