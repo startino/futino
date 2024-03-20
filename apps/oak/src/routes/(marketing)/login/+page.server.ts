@@ -1,10 +1,10 @@
 import { loginUserSchema } from '$lib/schemas';
 import { setError, superValidate } from 'sveltekit-superforms/server';
-import type { Actions, PageServerLoad } from './$types';
+import type { Actions } from './$types';
 import { fail, redirect } from '@sveltejs/kit';
 import { AuthApiError } from '@supabase/supabase-js';
 
-export const load: PageServerLoad = async () => {
+export const load = async () => {
 	const form = await superValidate(loginUserSchema);
 
 	return {
@@ -22,7 +22,7 @@ export const actions: Actions = {
 			});
 		}
 
-		const { error: authError } = await event.locals.supabase.auth.signInWithPassword({
+		const { error: authError } = await event.locals.apiClient.supabase.auth.signInWithPassword({
 			email: form.data.email,
 			password: form.data.password
 		});

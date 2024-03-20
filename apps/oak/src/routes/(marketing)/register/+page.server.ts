@@ -1,9 +1,9 @@
 import { setError, superValidate } from 'sveltekit-superforms/server';
 import { registrationSchema } from '$lib/schemas';
 import { fail, redirect, type RequestEvent } from '@sveltejs/kit';
-import type { Actions, PageServerLoad } from './$types';
+import type { Actions } from './$types';
 
-export const load: PageServerLoad = async () => {
+export const load = async () => {
 	return {
 		form: await superValidate(registrationSchema)
 	};
@@ -13,7 +13,7 @@ export const actions: Actions = {
 	default: async (event) => {
 		const form = await superValidate(event, registrationSchema);
 		const { user, company } = form.data;
-		const supabase = event.locals.supabase;
+		const supabase = event.locals.apiClient.supabase;
 
 		if (!form.valid) {
 			return fail(400, {
@@ -58,7 +58,7 @@ export const actions: Actions = {
 
 		console.log({ accountError });
 
-		const { data: signUpData, error: authError } = await event.locals.supabase.auth.signUp({
+		const { data: signUpData, error: authError } = await supabase.auth.signUp({
 			email: user.email,
 			password: user.password,
 			options: {
@@ -77,7 +77,7 @@ export const actions: Actions = {
 			form.data.user.fullName
 		);
 
-		const { error: profileUpdateError } = await event.locals.supabase
+		const { error: profileUpdateError } = await supabase
 			.from('profiles')
 			.update({ stripe_customer_id: customer.id })
 			.eq('id', signUpData.user.id);
@@ -100,7 +100,7 @@ export const actions: Actions = {
 };
 
 async function createStripeCustomer(event: RequestEvent, email: string, fullName: string) {
-	const customer = await event.locals.stripe.customers.create({
+	const customer = await event.locals.apiClient.stripe.customers.create({
 		email: email,
 		name: fullName
 	});

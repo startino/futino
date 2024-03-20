@@ -1,26 +1,23 @@
-import type { SupabaseClient, User } from '@supabase/supabase-js';
+import type { Session, SupabaseClient } from '@supabase/supabase-js';
 import type Stripe from 'stripe';
 import type { TablesInsert, Database } from './server/supabase.types';
 
 type ApiClientArg = {
 	supabase: SupabaseClient<Database>;
-	user: User;
-	userAccessToken: string;
+	session: Session;
 	stripe: Stripe;
 };
 
 export class ApiClient {
 	supabase: SupabaseClient<Database>;
-	user: User;
-	userAccesToken: string = '';
+	session: Session;
 	stripe: Stripe;
 	stripeCustomerId: string = '';
 
 	constructor(arg: ApiClientArg) {
 		this.supabase = arg.supabase;
 		this.stripe = arg.stripe;
-		this.user = arg.user;
-		this.userAccesToken = arg.userAccessToken;
+		this.session = arg.session;
 	}
 
 	async getOrgProjects(organizationId: string) {
@@ -69,19 +66,19 @@ export class ApiClient {
 		return await this.supabase
 			.from('subscriptions')
 			.select()
-			.eq('profile_id', this.user.id)
+			.eq('profile_id', this.session.user.id)
 			.single();
 	}
 
 	async getUserProfile() {
-		await this.supabase.from('profiles').select().eq('id', this.user.id).single();
+		return await this.supabase.from('profiles').select().eq('id', this.session.user.id).single();
 	}
 
 	async getUserBillingMethod(): Promise<Stripe.Response<Stripe.PaymentMethod> | null> {
 		const { data: billing } = await this.supabase
 			.from('billing_information')
 			.select()
-			.eq('profile_id', this.user.id)
+			.eq('profile_id', this.session.user.id)
 			.single();
 
 		try {
