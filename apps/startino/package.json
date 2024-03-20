@@ -47,7 +47,7 @@
 		"@stripe/stripe-js": "^3.0.10",
 		"@sveltejs/adapter-vercel": "^4.0.5",
 		"@sveltejs/site-kit": "^5.2.2",
-		"@types/wicg-file-system-access": "^2023.10.4",
+		"@types/wicg-file-system-access": "^2023.10.5",
 		"@xyflow/svelte": "^0.0.35",
 		"axios": "^1.6.8",
 		"bits-ui": "^0.20.0",
