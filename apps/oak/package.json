@@ -49,7 +49,7 @@
 		"clsx": "^2.1.0",
 		"cmdk-sv": "^0.0.15",
 		"dotenv": "^16.3.1",
-		"embla-carousel-svelte": "8.0.0-rc19",
+		"embla-carousel-svelte": "8.0.0",
 		"formsnap": "^0.4.4",
 		"lucide-svelte": "^0.360.0",
 		"mdsvex": "^0.11.0",
