@@ -60,7 +60,7 @@
 		"formsnap": "^0.4.4",
 		"lucide-svelte": "^0.362.0",
 		"mdsvex": "^0.11.0",
-		"mode-watcher": "^0.2.1",
+		"mode-watcher": "^0.3.0",
 		"object-hash": "^3.0.0",
 		"svelte-markdown": "^0.4.1",
 		"svelte-sonner": "^0.3.19",
