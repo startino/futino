@@ -50,7 +50,7 @@
 		"@types/wicg-file-system-access": "^2023.10.5",
 		"@xyflow/svelte": "^0.0.39",
 		"axios": "^1.6.8",
-		"bits-ui": "^0.20.0",
+		"bits-ui": "^0.20.1",
 		"carta-md": "^3.6.1",
 		"clsx": "^2.1.0",
 		"dayjs": "^1.11.10",
