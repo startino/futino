@@ -27,7 +27,7 @@ const projects: Projects = {
 	'hkdi-3-leaf-telescopic': new Project({
 		name: 'HKDI 3-leaf telescopic',
 		date: 2022,
-		thumbnail: '/projects/new_images/HKDI_3-leaf_telescopic_1.jpg',
+		thumbnail: '/projects/new_images/HKDI_3-leaf_telescopic_1.webp',
 		description: [
 			'Proprietary 3-leaf telescopic design.',
 			'9m wide x 2.5m high, 1,800 Kg in weight.',
@@ -40,7 +40,7 @@ const projects: Projects = {
 	'beacon-hill-mont-verra': new Project({
 		name: 'Beacon Hill Mont Verra',
 		date: 2022,
-		thumbnail: '/projects/new_images/Beacon_Hill_On_Slope.jpg',
+		thumbnail: '/projects/new_images/Beacon_Hill_On_Slope.webp',
 		description: [
 			'Proprietary On-Slope fold gate.',
 			'Trapezoidal shape to match the sloped entrance.',
@@ -53,7 +53,7 @@ const projects: Projects = {
 	'square-mile-renlita-vertical-bifold': new Project({
 		name: 'Square Mile Renlita Vertical Bifold',
 		date: 2021,
-		thumbnail: '/projects/new_images/Square_Mile_Renlita_1.jpg',
+		thumbnail: '/projects/new_images/Square_Mile_Renlita_1.webp',
 		description: [
 			'Counter weight balanced vertical bifold door.',
 			'Proprietary Renlita door made in USA.',
@@ -66,7 +66,7 @@ const projects: Projects = {
 	'hi-speed-slide-gate': new Project({
 		name: 'Hi-speed slide gate',
 		date: 2020,
-		thumbnail: '/projects/new_images/75_DWBR_1.jpg',
+		thumbnail: '/projects/new_images/75_DWBR_1.webp',
 		description: [
 			'Class gate design withe bronze decos.',
 			'Motorized by Tousek TPS 40Pro Hi-speed motor.',
@@ -79,7 +79,7 @@ const projects: Projects = {
 	'swing-+-telescopic-slide-gate': new Project({
 		name: 'Swing + Telescopic Slide gate',
 		date: 2020,
-		thumbnail: '/projects/new_images/Grand_Garden.jpg',
+		thumbnail: '/projects/new_images/Grand_Garden.webp',
 		description: [
 			'Cantilever system designed for 7m opening width.',
 			'To open, the telescopic slide gate retracts into the swing gate, then \tthe swing gate powered by 2 Tousek Swing X arms opens the gate.',
@@ -91,7 +91,7 @@ const projects: Projects = {
 	'k11-renlita-vertical-bifold': new Project({
 		name: 'K11 Renlita Vertical Bifold',
 		date: 2019,
-		thumbnail: '/projects/new_images/Museum_S-3000.jpg',
+		thumbnail: '/projects/new_images/Museum_S-3000.webp',
 		description: [
 			'Counter weight balanced vertical bifold door.',
 			'Proprietary Renlita door made in USA.',
@@ -104,7 +104,7 @@ const projects: Projects = {
 	'jockey-club-cong-hua-curved-gate': new Project({
 		name: 'Jockey Club Cong Hua curved gate',
 		date: 2018,
-		thumbnail: 'projects/new_images/HKJC_20curved_20slide_20gate.jpg',
+		thumbnail: 'projects/new_images/HKJC_20curved_20slide_20gate.webp',
 		description: [
 			'High speed curved slide gate for 8m wide driveway.',
 			'Proprietary design Ø30 stainless steel curved rail.',
@@ -117,7 +117,7 @@ const projects: Projects = {
 	'proprietary-uphill-slide-gate': new Project({
 		name: 'Proprietary uphill slide gate',
 		date: 2018,
-		thumbnail: 'projects/new_images/Up-hill.jpg',
+		thumbnail: 'projects/new_images/Up-hill.webp',
 		description: [
 			'Trapezoidal shape, even gap at bottom to fit 6m wide \tdriveway.',
 			'Proprietary 1-way reduction gear to balance the gate in manual mode.',
@@ -130,7 +130,7 @@ const projects: Projects = {
 	'jockey-club-tai-kwun': new Project({
 		name: 'Jockey Club Tai Kwun',
 		date: 2018,
-		thumbnail: '/projects/new_images/Tai_20Kwun_202.jpg',
+		thumbnail: '/projects/new_images/Tai_20Kwun_202.webp',
 		description: [
 			'BD approval superstructure (Metal Gate).',
 			'9m(w)x5m(h), powered by 2 Aprimatic hydraulic arms on each side.',
@@ -143,7 +143,7 @@ const projects: Projects = {
 	'k4-rated-security-gate': new Project({
 		name: 'K4 rated security gate',
 		date: 2017,
-		thumbnail: '/projects/new_images/K4_20elevation.jpg',
+		thumbnail: '/projects/new_images/K4_20elevation.webp',
 		description: [
 			'7m(w)x2.4m(h) slide gate powered by 3-phase motor at \ta high-security data center in TKO.',
 			'K4 rated designed and built by Avon UK, our partner in rated security barriers.',
@@ -155,7 +155,7 @@ const projects: Projects = {
 	'uphill-slide-gate': new Project({
 		name: 'Uphill slide gate',
 		date: 2017,
-		thumbnail: '/projects/new_images/Uphill_20slide_20gate.jpg',
+		thumbnail: '/projects/new_images/Uphill_20slide_20gate.webp',
 		description: [
 			'Uphill slide gate \ton 4° incline, no hang rail, 5m(w)x2.7m(h) opening.',
 			'Powered by Tousek frequency-converter motor for remote control access.',
@@ -167,7 +167,7 @@ const projects: Projects = {
 	'curved-slide-gate': new Project({
 		name: 'Curved slide gate',
 		date: 2017,
-		thumbnail: '/projects/new_images/Curved_20Slide_20Gate_20Stanley.jpg',
+		thumbnail: '/projects/new_images/Curved_20Slide_20Gate_20Stanley.webp',
 		description: [
 			'On-track curved slide gate, no hang rail, 5m(w)x3.2m(h) opening.',
 			'Powered by Tousek frequency conventer motor for remote control access.',
@@ -179,7 +179,7 @@ const projects: Projects = {
 	'19-meter-cantilever-gate': new Project({
 		name: '19 meter cantilever gate',
 		date: 2017,
-		thumbnail: '/projects/new_images/Cantilever-gate-Repulse-Bay.jpg',
+		thumbnail: '/projects/new_images/Cantilever-gate-Repulse-Bay.webp',
 		description: [
 			'On-slope cantilever gate, no hang rail, no ground \trail, 10m(w)x3.2m(h) opening.',
 			'Powered by Aprimatic 3-phase motor for remote control access.',
@@ -191,7 +191,7 @@ const projects: Projects = {
 	'8-meter-telescopic-gate': new Project({
 		name: '8 meter telescopic gate',
 		date: 2016,
-		thumbnail: '/projects/new_images/Telescopic_20Gate.jpg',
+		thumbnail: '/projects/new_images/Telescopic_20Gate.webp',
 		description: [
 			'Patented telescopic gate, both leaves driven by a \tsingle motor.',
 			'Powered by Tousek frequency converter motor for remote control access.',
@@ -203,7 +203,7 @@ const projects: Projects = {
 	'6-meter-counter-balanced-slide-gate': new Project({
 		name: '6 meter counter balanced slide gate',
 		date: 2016,
-		thumbnail: '/projects/new_images/Balanced-slide-gate.jpg',
+		thumbnail: '/projects/new_images/Balanced-slide-gate.webp',
 		description: [
 			'On-slope slide gate, no hang rail, no ground rail, \tbalanced by counter weight.',
 			'Powered by Tousek frequency converter motor for remote control access.',
@@ -215,7 +215,7 @@ const projects: Projects = {
 	'6-meter-telescopic-gate-2': new Project({
 		name: '6 meter telescopic gate',
 		date: 2016,
-		thumbnail: '/projects/new_images/Telescopic-Gate-1-Tai-Hang-Road.jpg',
+		thumbnail: '/projects/new_images/Telescopic-Gate-1-Tai-Hang-Road.webp',
 		description: [
 			'6m slide gate GMS frame, GMS frame \twrought iron pattern, dual-color.',
 			'Powered by Aprimatic motor for remote control access.',
@@ -227,7 +227,7 @@ const projects: Projects = {
 	'6-meter-telescopic-gate-1': new Project({
 		name: '6 meter telescopic gate',
 		date: 2016,
-		thumbnail: "/projects/new_images/Telescopic-Gate-King's-Garden.jpg",
+		thumbnail: "/projects/new_images/Telescopic-Gate-King's-Garden.webp",
 		description: [
 			'6m slide gate GMS frame, aluminium double-layer \tpattern, dual-clor.',
 			'Powered by Aprimatic motor for remote control access.',
@@ -239,7 +239,7 @@ const projects: Projects = {
 	'8-meter-renlita-sovereign,-shek-o': new Project({
 		name: '8 meter Renlita Sovereign, Shek-O',
 		date: 2016,
-		thumbnail: '/projects/new_images/Shek-O_20Slide_20Gate.jpg',
+		thumbnail: '/projects/new_images/Shek-O_20Slide_20Gate.webp',
 		description: [
 			'8m slide gate GMS frame, aluminium double-layer \tpattern, tempered glass.',
 			'Powered by Aprimatic 3-phase motor for remote control access.',
@@ -251,7 +251,7 @@ const projects: Projects = {
 	'5-meter-renlita-sovereign,-shek-o': new Project({
 		name: '5 meter Renlita Sovereign, Shek-O',
 		date: 2016,
-		thumbnail: '/projects/new_images/Renlita_20Stacking_20Door.jpg',
+		thumbnail: '/projects/new_images/Renlita_20Stacking_20Door.webp',
 		description: [
 			'One of it kind Renlita stacking door for garage \twithout roof.',
 			'Powered by ZAP opener for remote control access.',
@@ -263,7 +263,7 @@ const projects: Projects = {
 	'6-meter-fold-gates-at-holiday-inn': new Project({
 		name: '6 meter fold gates at Holiday Inn',
 		date: 2015,
-		thumbnail: '/projects/new_images/holidayInn.jpg',
+		thumbnail: '/projects/new_images/holidayInn.webp',
 		description: [
 			'Steel frame with aluminium computer-cut 3-D pattern.',
 			'Powered by FAAC openers for remote control access.',
@@ -275,7 +275,7 @@ const projects: Projects = {
 	'5-meter-auto-gates-at-riva': new Project({
 		name: '5 meter auto gates at Riva',
 		date: 2015,
-		thumbnail: '/projects/new_images/Riva.jpg',
+		thumbnail: '/projects/new_images/Riva.webp',
 		description: [
 			'Steel frame with double-layer aluminium computer-cut tree pattern.',
 			'Powered by LiftMaster openers for remote control access.',
@@ -299,7 +299,7 @@ const projects: Projects = {
 	'renlita-door-from-usa': new Project({
 		name: 'Renlita door from USA',
 		date: 2015,
-		thumbnail: '/projects/new_images/Sunny_20Hills.jpg',
+		thumbnail: '/projects/new_images/Sunny_20Hills.webp',
 		description: [
 			'Balanced by count-weight, the whole door goes up as if float-away.',
 			'Built by Renlita USA according to ANSI standard.',
@@ -359,7 +359,7 @@ const projects: Projects = {
 	'5-meter-wood-slide-gate': new Project({
 		name: '5 meter wood slide gate',
 		date: 2013,
-		thumbnail: '/projects/new_images/Wood_20gate.jpg',
+		thumbnail: '/projects/new_images/Wood_20gate.webp',
 		description: [
 			'Steel frame with real wood and stainless steel trim.',
 			'Powered by LiftMaster SLY500 opener for remote control access.',
@@ -382,7 +382,7 @@ const projects: Projects = {
 	'8-meter-bipart-slide-gate': new Project({
 		name: '8 meter bipart slide gate',
 		date: 2013,
-		thumbnail: '/projects/new_images/Lung_20Ha_20Wan.JPG',
+		thumbnail: '/projects/new_images/Lung_20Ha_20Wan.webp',
 		description: [
 			'Steel frame with composite wood.',
 			'Matching pedestrian door with electric lock.',
@@ -394,7 +394,7 @@ const projects: Projects = {
 	'5-meter-copper-slide-gate': new Project({
 		name: '5 meter copper slide gate',
 		date: 2013,
-		thumbnail: '/projects/new_images/waterloo_20copper_20slide_20gate_201.jpg',
+		thumbnail: '/projects/new_images/waterloo_20copper_20slide_20gate_201.webp',
 		description: [
 			'Made of pure copper panel and steel frame.',
 			'Wicket side door for easy pedestrian access.',
@@ -416,7 +416,7 @@ const projects: Projects = {
 	'4-meter-garage-door': new Project({
 		name: '4 meter garage door',
 		date: 2013,
-		thumbnail: '/projects/new_images/Moorsom_20Drive.JPG',
+		thumbnail: '/projects/new_images/Moorsom_20Drive.webp',
 		description: [
 			'Automatic garage door for remote control access.',
 			'Wicket door for easy pedestrian access.',
@@ -428,7 +428,7 @@ const projects: Projects = {
 	'2-meter-swing-gate': new Project({
 		name: '2 meter swing gate',
 		date: 2013,
-		thumbnail: '/projects/new_images/mantak.jpg',
+		thumbnail: '/projects/new_images/mantak.webp',
 		description: [
 			'The gate pattern is mathematically generated and CNC cut from a 1-piece of stainless steel.',
 			'Wireless intercom based on GSM technology.',
@@ -440,7 +440,7 @@ const projects: Projects = {
 	'6-meter-swing-fold-gate': new Project({
 		name: '6 meter swing-fold gate',
 		date: 2013,
-		thumbnail: '/projects/new_images/sheko.jpg',
+		thumbnail: '/projects/new_images/sheko.webp',
 		description: [
 			'The architect came to Wonderlee for solution to build automatic gate at main entrance of a slope.',
 			'The trapezoidal middle panel folds right when open to avoid having a big gap on the downhill side if the gate were built in rectangular shape.',
@@ -451,7 +451,7 @@ const projects: Projects = {
 	'4-meter-slide-gate-2': new Project({
 		name: '4 meter slide gate',
 		date: 2013,
-		thumbnail: '/projects/new_images/CNC_20slide_20gate.jpg',
+		thumbnail: '/projects/new_images/CNC_20slide_20gate.webp',
 		description: [
 			'The gate pattern is mathematically generated and CNC cut from a 1-piece of stainless steel.',
 			'The back side of the gate is covered by perforated screen to limit see-through.',
@@ -462,7 +462,7 @@ const projects: Projects = {
 	'5-meter-slide-gate': new Project({
 		name: '5 meter slide gate',
 		date: 2013,
-		thumbnail: '/projects/new_images/Royal_20Crest.jpg',
+		thumbnail: '/projects/new_images/Royal_20Crest.webp',
 		description: [
 			'We were contracted by developer to build a slide gate with matching pedestrian side gate',
 			'The slide gate is powered by LiftMaster SLY500 for remote-control access.',
@@ -506,7 +506,7 @@ const projects: Projects = {
 	'8-meter-slide-gate-at-singapore-international-school': new Project({
 		name: '8 meter slide gate at Singapore International School',
 		date: 2012,
-		thumbnail: '/projects/new_images/Singapore_20school.jpg',
+		thumbnail: '/projects/new_images/Singapore_20school.webp',
 		description: [
 			'This gate is driven by a LiftMaster SLY 1000 electric openers.',
 			'Security guard controls the gate with keyed switch for visitor access.',
@@ -541,7 +541,7 @@ const projects: Projects = {
 	'5-meter-bi-part-swing-gate': new Project({
 		name: '5 meter bi-part swing gate',
 		date: 2012,
-		thumbnail: '/projects/new_images/acacia.jpg',
+		thumbnail: '/projects/new_images/acacia.webp',
 		description: [
 			'Owners at this gated community in Lantau wanted an automatic gate to keep the cows away.',
 			'We designed a bi-part swing gate system with a LiftMaster SCS 300 openers.',
