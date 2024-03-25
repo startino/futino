@@ -38,7 +38,7 @@
 	"dependencies": {
 		"bits-ui": "^0.20.0",
 		"clsx": "^2.1.0",
-		"lucide-svelte": "^0.362.0",
+		"lucide-svelte": "^0.363.0",
 		"mdsvex": "^0.11.0",
 		"tailwind-merge": "^2.2.0",
 		"tailwind-variants": "^0.2.1"
