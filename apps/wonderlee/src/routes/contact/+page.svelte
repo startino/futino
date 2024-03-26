@@ -38,7 +38,7 @@
       <Inview presetOptions={fromRight} delay={150}>
         <div class=" py-12">
           <p class="uppercase text-tertiary m-0 sm:m-0">Email</p>
-          <h3 class="m-0 sm:m-0">Sales@wonderlee.hk</h3>
+          <h3 class="m-0 sm:m-0">contact@wonderlee.com</h3>
         </div>
       </Inview>
 
