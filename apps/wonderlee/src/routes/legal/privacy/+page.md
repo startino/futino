@@ -81,7 +81,7 @@ For your convenience, our Site may provide links to third-party websites or serv
 
 ## **7. Children’s Privacy**
 
-Our services are not intended for children under the age of 13. We do not knowingly solicit or collect personal information from children under the age of 13. If we learn that any personal information has been collected inadvertently from a child under 13, we will delete the information as soon as possible. If you believe that we might have collected information from a child under 13, please contact us at Sales@wonderlee.hk.
+Our services are not intended for children under the age of 13. We do not knowingly solicit or collect personal information from children under the age of 13. If we learn that any personal information has been collected inadvertently from a child under 13, we will delete the information as soon as possible. If you believe that we might have collected information from a child under 13, please contact us at [contact@wonderlee.com](mailto:contact@wonderlee.com).
 
 ## **8. Changes to Privacy Notice**
 
@@ -89,4 +89,4 @@ We reserve the right to change this Privacy Notice from time to time in our sole
 
 ## **9. Contact Us**
 
-For additional inquiries about this Privacy Notice, please send us an email at Sales@wonderlee.hk.
+For additional inquiries about this Privacy Notice, please send us an email at [contact@wonderlee.com](mailto:contact@wonderlee.com).
