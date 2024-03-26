@@ -37,7 +37,7 @@
 	"type": "module",
 	"dependencies": {
 		"@supabase/supabase-js": "^2.39.3",
-		"bits-ui": "^0.20.0",
+		"bits-ui": "^0.21.0",
 		"clsx": "^2.1.0",
 		"lucide-svelte": "^0.363.0",
 		"tailwind-merge": "^2.2.0",
