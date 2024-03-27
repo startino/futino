@@ -7,37 +7,39 @@
 
 	const camps = [
 		{
-			date: 'August 1 - 4',
-			time_first: '8:00 - 9:00',
-			time_second: '9:15 - 11:15',
-			cost_first: '$60',
-			cost_second: '$80',
+			date: 'June 3 - 7, 2024',
+			time_first: '8:15 - 9:15',
+			time_second: '9:30 - 12:00',
+			cost_first: '$80',
+			cost_second: '$130',
 			location: 'Leavenworth County Fairgrounds, Tonganoxie',
-			link: 'https://forms.gle/E917AxWV1avX11px7',
-		},
+			link: 'https://forms.gle/dtp9iyzfQvgzi4Sb9'
+		}
 	];
 </script>
 
 <Header />
 
-<main
-	class="text-center border-b shadow-2xl  border-red-400/40 flex flex-col items-stretch">
+<main class="flex flex-col items-stretch border-b border-red-400/40 text-center shadow-2xl">
 	<!--Hero-->
 	<section
 		id="hero"
-		class="grow py-32 sm:py-34 md:py-44 shadow-lg px-4 sm:px-6 md:px-8 grid justify-items-center space-y-12  border-red-600/20 bg-black relative">
+		class="sm:py-34 relative grid grow justify-items-center space-y-12 border-red-600/20 bg-black px-4 py-32 shadow-lg sm:px-6 md:px-8 md:py-44"
+	>
 		<img
 			src="media/IMG_4905.webp"
 			alt=""
-			class="absolute opacity-50
-             w-full h-full object-cover" />
+			class="absolute h-full
+             w-full object-cover opacity-50"
+		/>
 		<ScrollFadeIn>
 			<h1 class="display-large text-white z-10 drop-shadow-md shadow-black font-extrabold">
 				Good Game Soccer
 			</h1>
 
 			<h3
-				class="headline-small text-white z-10 drop-shadow-md shadow-black font-bold tracking-wide">
+				class="headline-small z-10 font-bold tracking-wide text-white shadow-black drop-shadow-md"
+			>
 				Empowering Players, Inspiring Youth: Excellence Through Soccer
 			</h3>
 
@@ -59,17 +61,18 @@
 	<!--About section-->
 	<section
 		id="about"
-		class="flex flex-col text-center py-5 sm:py-10 md:py-20 px-4 sm:px-6 md:px-8 shadow-lg border-b  border-red-600/20">
+		class="flex flex-col border-b border-red-600/20 px-4 py-5 text-center shadow-lg sm:px-6 sm:py-10 md:px-8 md:py-20"
+	>
 		<ScrollFadeIn>
-			<div class="flex flex-col max-w-7xl mx-auto">
+			<div class="mx-auto flex max-w-7xl flex-col">
 				<h2 class="display-large">About GG Soccer</h2>
-				<p class="mt-6 max-w-3xl mx-auto body-large">
-					Good Game (GG) Soccer was founded by college soccer players who have a passion for giving
-					back to the younger generation through the sport they love and played their whole lives.
-					At GG Soccer we value the development of each of our campers. Our camps are aimed at
-					providing each camper a chance to improve their soccer ability while also bringing home a
-					memorable experience that is fun, social, and engaging. We are very excited to see you all
-					this summer!
+				<p class="body-large mx-auto mt-6 max-w-3xl">
+					Good Game (GG) Soccer was founded by college soccer players who have a passion for giving back
+					to the younger generation through the sport they love and played their whole lives. At GG
+					Soccer we value the development of each of our campers. Our camps are aimed at providing
+					each camper a chance to improve their soccer ability while also bringing home a memorable
+					experience that is fun, social, and engaging. We are very excited to see you all this
+					summer!
 				</p>
 			</div>
 		</ScrollFadeIn>
@@ -78,31 +81,34 @@
 	<!--Camp Options-->
 	<section
 		id="camps"
-		class="flex flex-col text-center py-5 sm:py-10 md:py-20 px-4 sm:px-6 md:px-8 shadow-lg border-b  border-red-600/20">
-		<div class="flex flex-col max-w-7xl mx-auto">
-			<h1 class="display-large">Summer Camps 2023</h1>
+		class="flex flex-col border-b border-red-600/20 px-4 py-5 text-center shadow-lg sm:px-6 sm:py-10 md:px-8 md:py-20"
+	>
+		<div class="mx-auto flex max-w-7xl flex-col">
+			<h1 class="display-large">Summer Camps 2024</h1>
 
 			<style>
 				.card {
-					@apply rounded-lg max-w-2xl shadow-2xl flex flex-col  text-gray-950 m-2 p-6 h-fit;
+					@apply m-2 flex h-fit max-w-2xl flex-col  rounded-lg p-6 text-gray-950 shadow-2xl;
 				}
 			</style>
 			<div id="camps" class="">
 				{#each camps as { date, time_first, time_second, cost_first, cost_second, location, link }}
 					<h2 class="display-small pt-14">{date}</h2>
 					<div
-						class="grid grid-cols-1 max-w-7xl mx-auto lg:grid-cols-2 my-8 justify-items-stretch"
-						id="jul_camp">
-						<div class="card space-y-2 ">
+						class="mx-auto my-8 grid max-w-7xl grid-cols-1 justify-items-stretch lg:grid-cols-2"
+						id="jul_camp"
+					>
+						<div class="card space-y-2">
 							<img
 								src="media/CampAges36.webp"
 								alt="Ages 7-12 Camp"
-								class="object-cover h-60 sm:h-96" />
+								class="h-60 object-cover sm:h-96"
+							/>
 							<h1 class="headline-medium font-bold">Ages 3 - 6</h1>
-							<h2 class="title-large ">{time_first}</h2>
+							<h2 class="title-large">{time_first}</h2>
 							<hr class="p-1 opacity-40" />
-							<h2 class="title-medium ">{location}</h2>
-							<h2 class="font-bold title-large  text-red-600">
+							<h2 class="title-medium">{location}</h2>
+							<h2 class="title-large font-bold text-red-600">
 								{cost_first}
 							</h2>
 							<a href={link}>
@@ -111,16 +117,17 @@
 								</Button>
 							</a>
 						</div>
-						<div class="card space-y-2 ">
+						<div class="card space-y-2">
 							<img
 								src="media/CampAges712.png"
 								alt="Ages 7-12 Camp"
-								class="object-cover h-60 sm:h-96" />
+								class="h-60 object-cover sm:h-96"
+							/>
 							<h1 class="headline-medium font-bold">Ages 7 - 12</h1>
-							<h2 class="title-large ">{time_second}</h2>
+							<h2 class="title-large">{time_second}</h2>
 							<hr class="p-1 opacity-40" />
-							<h2 class="title-medium ">{location}</h2>
-							<h2 class="font-bold title-large  text-red-600">
+							<h2 class="title-medium">{location}</h2>
+							<h2 class="title-large font-bold text-red-600">
 								{cost_second}
 							</h2>
 							<a href={link}>
@@ -138,13 +145,18 @@
 	<!--Contact Section-->
 	<section
 		id="contact"
-		class="flex flex-col text-center py-5 sm:py-10 md:py-20 px-4 sm:px-6 md:px-8 shadow-lg border-b  border-red-600/20">
+		class="flex flex-col border-b border-red-600/20 px-4 py-5 text-center shadow-lg sm:px-6 sm:py-10 md:px-8 md:py-20"
+	>
 		<ScrollFadeIn>
-			<div class="flex flex-col max-w-7xl mx-auto">
+			<div class="mx-auto flex max-w-7xl flex-col">
+
+				<div class="">
+					<img src="" alt="">
+				</div>
 				<!--Contant methods-->
 				<div class="grid grid-cols-4 grid-rows-3 gap-2">
 					<!--Phone number-->
-					<div class="col-span-1 rounded-full  w-min h-min ml-auto p-5">
+					<div class="col-span-1 ml-auto h-min w-min rounded-full p-5">
 						<Icon icon="phone" height="32px" width="32px" />
 					</div>
 
@@ -152,7 +164,7 @@
 						<h1 class="title-small sm:title-large">(913) 360-0394</h1>
 					</a>
 					<!--Email-->
-					<div class="col-span-1 rounded-full  w-min h-min ml-auto p-5">
+					<div class="col-span-1 ml-auto h-min w-min rounded-full p-5">
 						<Icon icon="email" height="32px" width="32px" fillColor="black" />
 					</div>
 
@@ -160,13 +172,14 @@
 						<h1 class="title-small sm:title-large">ggsoccercamps@gmail.com</h1>
 					</a>
 					<!--Email-->
-					<div class="col-span-1 rounded-full  w-min h-min ml-auto p-5">
+					<div class="col-span-1 ml-auto h-min w-min rounded-full p-5">
 						<Icon icon="facebook" height="32px" width="32px" />
 					</div>
 
 					<a
 						class="col-span-3 flex items-center"
-						href="https://www.facebook.com/goodgamesoccercamps">
+						href="https://www.facebook.com/goodgamesoccercamps"
+					>
 						<h1 class="title-small sm:title-large">goodgamesoccercamps</h1>
 					</a>
 				</div>
@@ -209,14 +222,15 @@
 	<!--Gallery Section-->
 	<section
 		id="gallery"
-		class="text-center py-5 sm:py-10 md:py-24 px-4 sm:px-6 md:px-12 md:max-w-7xl self-center">
+		class="self-center px-4 py-5 text-center sm:px-6 sm:py-10 md:max-w-7xl md:px-12 md:py-24"
+	>
 		<ScrollFadeIn>
-			<h1 class="display-large font-bold p-4">Don't Miss Out!</h1>
-			<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">
+			<h1 class="display-large p-4 font-bold">Don't Miss Out!</h1>
+			<div class="grid grid-cols-1 gap-2 sm:grid-cols-2 md:grid-cols-3">
 				<div class="flex flex-col gap-2">
-					<img src="media/IMG_4776.webp" alt="" class="object-cover h-full" />
+					<img src="media/IMG_4776.webp" alt="" class="h-full object-cover" />
 					<img src="media/IMG_4904.webp" alt="" class="" />
-					<img src="media/img1.webp" alt="" class="object-cover h-full" />
+					<img src="media/img1.webp" alt="" class="h-full object-cover" />
 				</div>
 
 				<div class="flex flex-col gap-2">
@@ -226,7 +240,7 @@
 						Error Message
 					</video>
 					<img src="media/img6.webp" alt="" class="object-cover" />
-					<img src="media/img7.webp" alt="" class="object-cover h-full" />
+					<img src="media/img7.webp" alt="" class="h-full object-cover" />
 				</div>
 
 				<div class="flex flex-col gap-2">
@@ -236,7 +250,7 @@
 						Error Message
 					</video>
 
-					<img src="media/IMG_3011.webp" alt="" class="object-cover h-full" />
+					<img src="media/IMG_3011.webp" alt="" class="h-full object-cover" />
 				</div>
 			</div>
 		</ScrollFadeIn>
