@@ -33,24 +33,24 @@
              w-full object-cover opacity-50"
 		/>
 		<ScrollFadeIn>
-			<h1 class="display-large text-white z-10 drop-shadow-md shadow-black font-extrabold">
+			<h1 class="display-large z-10 font-extrabold text-white shadow-black ">
 				Good Game Soccer
 			</h1>
 
 			<h3
-				class="headline-small z-10 font-bold tracking-wide text-white shadow-black drop-shadow-md"
+				class="headline-small z-10 font-bold tracking-wide text-white shadow-black "
 			>
 				Empowering Players, Inspiring Youth: Excellence Through Soccer
 			</h3>
 
-			<div class="space-x-6 py-4">
-				<a href="#camps">
-					<Button>
+			<div class="space-x-6 py-4 text-white">
+				<a href="#camps" class="bg-green-950 py-2">
+					<Button class="transition-all duration-300 hover:scale-105">
 						<p>Register Now</p>
 					</Button>
 				</a>
-				<a href="#contact">
-					<Button>
+				<a href="#contact" class="bg-green-950 px-4 py-2">
+					<Button class="transition-all duration-300 hover:scale-105">
 						<p>Contact Us</p>
 					</Button>
 				</a>
@@ -67,12 +67,12 @@
 			<div class="mx-auto flex max-w-7xl flex-col">
 				<h2 class="display-large">About GG Soccer</h2>
 				<p class="body-large mx-auto mt-6 max-w-3xl">
-					Good Game (GG) Soccer was founded by college soccer players who have a passion for giving back
-					to the younger generation through the sport they love and played their whole lives. At GG
-					Soccer we value the development of each of our campers. Our camps are aimed at providing
-					each camper a chance to improve their soccer ability while also bringing home a memorable
-					experience that is fun, social, and engaging. We are very excited to see you all this
-					summer!
+					Good Game (GG) Soccer was founded by college soccer players who have a passion for giving
+					back to the younger generation through the sport they love and played their whole lives.
+					At GG Soccer we value the development of each of our campers. Our camps are aimed at
+					providing each camper a chance to improve their soccer ability while also bringing home a
+					memorable experience that is fun, social, and engaging. We are very excited to see you all
+					this summer!
 				</p>
 			</div>
 		</ScrollFadeIn>
@@ -112,7 +112,7 @@
 								{cost_first}
 							</h2>
 							<a href={link}>
-								<Button>
+								<Button class="hover:scale-105 shadow-inner border transition-all duration-300">
 									<p>Register Now</p>
 								</Button>
 							</a>
@@ -131,7 +131,7 @@
 								{cost_second}
 							</h2>
 							<a href={link}>
-								<Button>
+								<Button class="hover:scale-105 shadow-inner border transition-all duration-300">
 									<p>Register Now</p>
 								</Button>
 							</a>
@@ -149,9 +149,8 @@
 	>
 		<ScrollFadeIn>
 			<div class="mx-auto flex max-w-7xl flex-col">
-
 				<div class="">
-					<img src="" alt="">
+					<img src="" alt="" />
 				</div>
 				<!--Contant methods-->
 				<div class="grid grid-cols-4 grid-rows-3 gap-2">
