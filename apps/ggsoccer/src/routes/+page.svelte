@@ -10,9 +10,11 @@
 			date: 'June 3 - 7, 2024',
 			time_first: '8:15 - 9:15',
 			time_second: '9:30 - 12:00',
+			first_discount: '$100',
+			second_discount: '$150',
 			cost_first: '$80',
 			cost_second: '$130',
-			location: 'Leavenworth County Fairgrounds, Tonganoxie',
+			location: 'Atchison Recreation Sports Complex',
 			link: 'https://forms.gle/dtp9iyzfQvgzi4Sb9'
 		}
 	];
@@ -24,7 +26,7 @@
 	<!--Hero-->
 	<section
 		id="hero"
-		class="sm:py-34 relative grid grow justify-items-center space-y-12 border-red-600/20 bg-black px-4 py-32 shadow-lg sm:px-6 md:px-8 md:py-44"
+		class="sm:py-34 relative z-0 grid grow justify-items-center space-y-12 border-red-600/20 bg-black px-4 py-32 shadow-lg sm:px-6 md:px-8 md:py-44"
 	>
 		<img
 			src="media/IMG_4905.webp"
@@ -32,30 +34,27 @@
 			class="absolute h-full
              w-full object-cover opacity-50"
 		/>
-		<ScrollFadeIn>
-			<h1 class="display-large z-10 font-extrabold text-white shadow-black ">
-				Good Game Soccer
-			</h1>
 
-			<h3
-				class="headline-small z-10 font-bold tracking-wide text-white shadow-black "
-			>
-				Empowering Players, Inspiring Youth: Excellence Through Soccer
-			</h3>
+		<h1 class="display-large z-20 font-extrabold text-white opacity-100 shadow-black">
+			Good Game Soccer
+		</h1>
 
-			<div class="space-x-6 py-4 text-white">
-				<a href="#camps" class="bg-green-950 py-2">
-					<Button class="transition-all duration-300 hover:scale-105">
-						<p>Register Now</p>
-					</Button>
-				</a>
-				<a href="#contact" class="bg-green-950 px-4 py-2">
-					<Button class="transition-all duration-300 hover:scale-105">
-						<p>Contact Us</p>
-					</Button>
-				</a>
-			</div>
-		</ScrollFadeIn>
+		<h3 class="headline-small z-20 font-bold tracking-wide text-white shadow-black">
+			Empowering Players, Inspiring Youth: Excellence Through Soccer
+		</h3>
+
+		<div class="space-x-6 py-4 text-white">
+			<a href="#camps" class="py-2">
+				<Button class="transition-all duration-300 hover:scale-105">
+					<p>Register Now</p>
+				</Button>
+			</a>
+			<a href="#contact" class=" px-4 py-2">
+				<Button class="transition-all duration-300 hover:scale-105">
+					<p>Contact Us</p>
+				</Button>
+			</a>
+		</div>
 	</section>
 
 	<!--About section-->
@@ -92,7 +91,7 @@
 				}
 			</style>
 			<div id="camps" class="">
-				{#each camps as { date, time_first, time_second, cost_first, cost_second, location, link }}
+				{#each camps as { date, time_first, time_second, first_discount, second_discount, cost_first, cost_second, location, link }}
 					<h2 class="display-small pt-14">{date}</h2>
 					<div
 						class="mx-auto my-8 grid max-w-7xl grid-cols-1 justify-items-stretch lg:grid-cols-2"
@@ -108,11 +107,16 @@
 							<h2 class="title-large">{time_first}</h2>
 							<hr class="p-1 opacity-40" />
 							<h2 class="title-medium">{location}</h2>
-							<h2 class="title-large font-bold text-red-600">
-								{cost_first}
-							</h2>
+							<div class="mx-auto flex flex-row gap-2">
+								<h2 class="title-large font-bold text-red-600 line-through">
+									{first_discount}
+								</h2>
+								<h2 class="title-large font-bold text-red-600">
+									{cost_first}
+								</h2>
+							</div>
 							<a href={link}>
-								<Button class="hover:scale-105 shadow-inner border transition-all duration-300">
+								<Button class="border shadow-inner transition-all duration-300 hover:scale-105">
 									<p>Register Now</p>
 								</Button>
 							</a>
@@ -127,11 +131,19 @@
 							<h2 class="title-large">{time_second}</h2>
 							<hr class="p-1 opacity-40" />
 							<h2 class="title-medium">{location}</h2>
-							<h2 class="title-large font-bold text-red-600">
-								{cost_second}
-							</h2>
+							<div class="mx-auto flex flex-row place-items-center gap-2">
+								<div class="flex flex-col font-bold text-green-700">
+									<h2 class="title-large font-bold text-red-700 line-through">
+										{second_discount}
+									</h2>
+									Early Bird!
+								</div>
+								<h2 class="display-small font-extrabold text-green-700">
+									{cost_second}
+								</h2>
+							</div>
 							<a href={link}>
-								<Button class="hover:scale-105 shadow-inner border transition-all duration-300">
+								<Button class="border shadow-inner transition-all duration-300 hover:scale-105">
 									<p>Register Now</p>
 								</Button>
 							</a>
