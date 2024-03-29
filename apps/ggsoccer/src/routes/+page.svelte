@@ -107,11 +107,14 @@
 							<h2 class="title-large">{time_first}</h2>
 							<hr class="p-1 opacity-40" />
 							<h2 class="title-medium">{location}</h2>
-							<div class="mx-auto flex flex-row gap-2">
-								<h2 class="title-large font-bold text-red-600 line-through">
-									{first_discount}
-								</h2>
-								<h2 class="title-large font-bold text-red-600">
+							<div class="mx-auto flex flex-row place-items-center gap-2">
+								<div class="flex flex-col font-bold text-green-700">
+									<h2 class="title-large font-bold text-red-700 line-through">
+										{first_discount}
+									</h2>
+									Early Bird!
+								</div>
+								<h2 class="display-small font-extrabold text-green-700">
 									{cost_first}
 								</h2>
 							</div>
@@ -123,7 +126,7 @@
 						</div>
 						<div class="card space-y-2">
 							<img
-								src="media/CampAges712.png"
+								src="media/CampAges712.webp"
 								alt="Ages 7-12 Camp"
 								class="h-60 object-cover sm:h-96"
 							/>
@@ -239,9 +242,9 @@
 			<h1 class="display-large p-4 font-bold">Don't Miss Out!</h1>
 			<div class="grid grid-cols-1 gap-2 sm:grid-cols-2 md:grid-cols-3">
 				<div class="flex flex-col gap-2">
-					<img src="media/IMG_4776.webp" alt="" class="h-full object-cover" />
-					<img src="media/IMG_4904.webp" alt="" class="" />
-					<img src="media/img1.webp" alt="" class="h-full object-cover" />
+					<img src="media/Pro Photo GGS_Camp_08.webp" alt="" class="h-full object-cover" />
+					<img src="media/IMG_4904.jpeg" alt="" class="" />
+					<img src="media/Pro Photo GGS_Camp_06.webp" alt="" class="h-full object-cover" />
 				</div>
 
 				<div class="flex flex-col gap-2">
