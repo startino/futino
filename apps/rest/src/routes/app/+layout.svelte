@@ -25,38 +25,15 @@
 			name: '',
 			items: [
 				{
-					name: 'Auto-build',
-					href: '/app/auto-build',
+					name: 'Home',
+					href: '/app/home',
 					icon: Zap,
 					current: false
 				},
 				{
-					name: 'Sessions',
-					href: '/app/session',
+					name: 'Projects',
+					href: '/app/projects',
 					icon: MessagesSquare,
-					current: false
-				}
-			]
-		},
-		{
-			name: '',
-			items: [
-				{
-					name: 'Crews',
-					href: '/app/crews',
-					icon: UsersRound,
-					current: false
-				},
-				{ name: 'Agents', href: '/app/agents/editor', icon: Dna, current: false }
-			]
-		},
-		{
-			name: '',
-			items: [
-				{
-					name: 'Account',
-					href: '/app/account',
-					icon: CircleUserRound,
 					current: false
 				}
 			]
@@ -66,7 +43,12 @@
 </script>
 
 <LocalAuth>
-	<Shell class="h-screen">
+	<Shell
+		class="h-screen w-full max-w-none"
+		slotSidebarLeft="m-4"
+		slotPageContent="m-4"
+		slotPageHeader="my-4"
+	>
 		<svelte:fragment slot="sidebarLeft">
 			<SideNav {navigations} {bottomNavigation} />
 		</svelte:fragment>

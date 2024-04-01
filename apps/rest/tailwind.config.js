@@ -29,6 +29,7 @@ const config = {
 			animation: animationsConfig,
 			keyframes: keyframesConfig,
 			colors: colorConfig,
+			
 			borderRadius: {
 				lg: 'var(--radius)',
 				md: 'calc(var(--radius) - 2px)',
