@@ -41,7 +41,7 @@
 		"tsparticles-engine": "^2.12.0",
 		"tsparticles-slim": "^2.12.0",
 		"typescript": "^5.0.0",
-		"vite": "^5.0.12"
+		"vite": "^5.0.13"
 	},
 	"type": "module",
 	"dependencies": {
