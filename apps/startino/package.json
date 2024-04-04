@@ -64,7 +64,7 @@
 		"object-hash": "^3.0.0",
 		"svelte-markdown": "^0.4.1",
 		"svelte-sonner": "^0.3.21",
-		"svelte-stripe": "^1.1.4",
+		"svelte-stripe": "^1.1.7",
 		"tailwind-merge": "^2.2.2",
 		"tailwind-variants": "^0.2.1",
 		"uuid": "^9.0.1"
