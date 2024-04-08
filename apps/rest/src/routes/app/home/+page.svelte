@@ -1,15 +1,20 @@
 <script lang="ts">
 	import * as Resizable from '$lib/components/ui/resizable';
 	import DataTable from '$lib/components/ui/data-table/data-table.svelte';
+	import { LeadViewer } from '$lib/components/ui/lead-viewer';
+	import type { Lead } from '$lib/types';
+
+	let activeLead: Lead | null = null;
 </script>
 
 <Resizable.PaneGroup direction="horizontal" class="rounded-lg border">
 	<Resizable.Pane defaultSize={50}>
 		<div class="flex items-center justify-center p-6">
-			<DataTable />
+			<DataTable bind:activeLead />
 		</div>
 	</Resizable.Pane>
 	<Resizable.Handle withHandle />
-	<Resizable.Pane defaultSize={50}>Submission Editor</Resizable.Pane>
+	<Resizable.Pane defaultSize={50}>
+		<LeadViewer lead={activeLead} />
+	</Resizable.Pane>
 </Resizable.PaneGroup>
-

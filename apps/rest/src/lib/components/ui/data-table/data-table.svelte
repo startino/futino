@@ -22,29 +22,13 @@
 	import { Input } from '$lib/components/ui/input';
 	import DataTableCheckbox from '$lib/components/ui/data-table/data-table-checkbox.svelte';
 	import type { building } from '$app/environment';
+	import type { Lead } from '$lib/types';
 
-	type LeadData = {
-		type: 'SUBMISSION' | 'COMMENT';
-		url: string;
-		title?: string;
-		body?: string;
-	};
-
-	type Lead = {
-		id: string; // UUID
-		discovered_at: Date;
-		last_event: string;
-		reddit_id: string;
-		prospect_username: string;
-		source: string;
-		data: LeadData; // JSONB
-		status: string;
-		comment: string;
-	};
+	export let activeLead: Lead | null = null;
 
 	const data: Lead[] = [
 		{
-			id: '1',
+			id: '0',
 			discovered_at: new Date(),
 			last_event: 'comment_posted',
 			reddit_id: 'SK29S',
@@ -60,7 +44,7 @@
 			comment: 'This is a publisehd comment'
 		},
 		{
-			id: '2',
+			id: '1',
 			discovered_at: new Date(),
 			last_event: 'comment_posted',
 			reddit_id: 'A02NB',
@@ -75,14 +59,15 @@
 			comment: 'This is a comment'
 		},
 		{
-			id: '3',
+			id: '2',
 			discovered_at: new Date(),
 			last_event: 'discovered',
 			reddit_id: 'A1B23',
-			prospect_username: 'janedoe',
+			prospect_username: 'jdddlew',
 			source: 'their_post',
 			data: {
 				type: 'COMMENT',
+				title: 'Title of reddit 3',
 				url: 'https://reddit.com',
 				body: 'Body'
 			},
@@ -192,7 +177,10 @@
 						<Table.Row
 							{...rowAttrs}
 							data-state={$selectedDataIds[row.id] && 'selected'}
-							on:click={() => console.log('hello')}
+							on:click={() => {
+								activeLead = data.find((d) => d.id === row.id);
+								console.log(activeLead);
+							}}
 						>
 							{#each row.cells as cell (cell.id)}
 								<Subscribe attrs={cell.attrs()} let:attrs>
