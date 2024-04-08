@@ -5,12 +5,15 @@
 	import type { Lead } from '$lib/types';
 
 	let activeLead: Lead | null = null;
+
+	export let data: { leads: Lead[] };
+	let { leads } = data;
 </script>
 
 <Resizable.PaneGroup direction="horizontal" class="rounded-lg border">
 	<Resizable.Pane defaultSize={50}>
 		<div class="flex items-center justify-center p-6">
-			<DataTable bind:activeLead />
+			<DataTable bind:activeLead data={leads} />
 		</div>
 	</Resizable.Pane>
 	<Resizable.Handle withHandle />

@@ -25,56 +25,7 @@
 	import type { Lead } from '$lib/types';
 
 	export let activeLead: Lead | null = null;
-
-	const data: Lead[] = [
-		{
-			id: '0',
-			discovered_at: new Date(),
-			last_event: 'comment_posted',
-			reddit_id: 'SK29S',
-			prospect_username: 'johndoe',
-			source: 'their_post',
-			data: {
-				type: 'SUBMISSION',
-				url: 'https://reddit.com',
-				title: 'Title of reddit 1',
-				body: 'Body of reddit 1'
-			},
-			status: 'subscriber',
-			comment: 'This is a publisehd comment'
-		},
-		{
-			id: '1',
-			discovered_at: new Date(),
-			last_event: 'comment_posted',
-			reddit_id: 'A02NB',
-			prospect_username: 'janedoe',
-			source: 'their_post',
-			data: {
-				type: 'COMMENT',
-				url: 'https://reddit.com',
-				body: 'Body'
-			},
-			status: 'subscriber',
-			comment: 'This is a comment'
-		},
-		{
-			id: '2',
-			discovered_at: new Date(),
-			last_event: 'discovered',
-			reddit_id: 'A1B23',
-			prospect_username: 'jdddlew',
-			source: 'their_post',
-			data: {
-				type: 'COMMENT',
-				title: 'Title of reddit 3',
-				url: 'https://reddit.com',
-				body: 'Body'
-			},
-			status: 'under_review',
-			comment: 'This is a comment that needs to be fixed'
-		}
-	];
+	export let data: Lead[] = [];
 
 	const table = createTable(readable(data), {
 		sort: addSortBy({ disableMultiSort: true }),
@@ -179,6 +130,7 @@
 							data-state={$selectedDataIds[row.id] && 'selected'}
 							on:click={() => {
 								activeLead = data.find((d) => d.id === row.id);
+								console.log(row.id);
 								console.log(activeLead);
 							}}
 						>

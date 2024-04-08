@@ -1,3 +1,5 @@
+import type { Tables } from './supabase';
+
 export type LeadData = {
 	type: 'SUBMISSION' | 'COMMENT';
 	url: string;
@@ -5,14 +7,4 @@ export type LeadData = {
 	body?: string;
 };
 
-export type Lead = {
-	id: string; // UUID
-	discovered_at: Date;
-	last_event: string;
-	reddit_id: string;
-	prospect_username: string;
-	source: string;
-	data: LeadData; // JSONB
-	status: string;
-	comment: string;
-};
+export type Lead = Tables<'leads'>;

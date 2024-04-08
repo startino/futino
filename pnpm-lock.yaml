@@ -713,6 +713,9 @@ importers:
       '@stripe/stripe-js':
         specifier: ^3.1.0
         version: 3.1.0
+      '@supabase/auth-helpers-sveltekit':
+        specifier: ^0.12.0
+        version: 0.12.0(@supabase/supabase-js@2.41.1)(@sveltejs/kit@2.5.5)
       '@supabase/supabase-js':
         specifier: ^2.41.1
         version: 2.41.1
@@ -2929,6 +2932,15 @@ packages:
       jose: 4.15.4
     dev: false
 
+  /@supabase/auth-helpers-shared@0.6.3(@supabase/supabase-js@2.41.1):
+    resolution: {integrity: sha512-xYQRLFeFkL4ZfwC7p9VKcarshj3FB2QJMgJPydvOY7J5czJe6xSG5/wM1z63RmAzGbCkKg+dzpq61oeSyWiGBQ==}
+    peerDependencies:
+      '@supabase/supabase-js': ^2.19.0
+    dependencies:
+      '@supabase/supabase-js': 2.41.1
+      jose: 4.15.4
+    dev: false
+
   /@supabase/auth-helpers-sveltekit@0.12.0(@supabase/supabase-js@2.39.3)(@sveltejs/kit@2.5.5):
     resolution: {integrity: sha512-/gSjhtIInGriH66tWfen/3ne8TXpqCzE3nGvAWAshrm8a1JYg4MunY8PvU8YltF8M4dDYxpKf1f8IlC0oEbUkw==}
     peerDependencies:
@@ -2937,6 +2949,17 @@ packages:
     dependencies:
       '@supabase/auth-helpers-shared': 0.6.3(@supabase/supabase-js@2.39.3)
       '@supabase/supabase-js': 2.39.3
+      '@sveltejs/kit': 2.5.5(@sveltejs/vite-plugin-svelte@3.0.2)(svelte@4.2.12)(vite@5.2.7)
+    dev: false
+
+  /@supabase/auth-helpers-sveltekit@0.12.0(@supabase/supabase-js@2.41.1)(@sveltejs/kit@2.5.5):
+    resolution: {integrity: sha512-/gSjhtIInGriH66tWfen/3ne8TXpqCzE3nGvAWAshrm8a1JYg4MunY8PvU8YltF8M4dDYxpKf1f8IlC0oEbUkw==}
+    peerDependencies:
+      '@supabase/supabase-js': ^2.19.0
+      '@sveltejs/kit': ^1.30.3 || ^2.0.0
+    dependencies:
+      '@supabase/auth-helpers-shared': 0.6.3(@supabase/supabase-js@2.41.1)
+      '@supabase/supabase-js': 2.41.1
       '@sveltejs/kit': 2.5.5(@sveltejs/vite-plugin-svelte@3.0.2)(svelte@4.2.12)(vite@5.2.7)
     dev: false
 
