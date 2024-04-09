@@ -47,10 +47,6 @@
 			accessor: 'prospect_username'
 		}),
 		table.column({
-			header: 'Comment',
-			accessor: 'comment'
-		}),
-		table.column({
 			header: 'Status',
 			accessor: 'status'
 		}),
@@ -129,8 +125,9 @@
 							{...rowAttrs}
 							data-state={$selectedDataIds[row.id] && 'selected'}
 							on:click={() => {
-								activeLead = data.find((d) => d.id === row.id);
-								console.log(row.id);
+								console.log('Row ID: ', row.original.id);
+								console.log('Row: ', row);
+								activeLead = data.find((d) => d.id === row.original.id) ?? null;
 								console.log(activeLead);
 							}}
 						>

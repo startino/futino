@@ -37,7 +37,7 @@
 				{/if}
 			</div>
 			<Separator />
-			<div class="flex-1 overflow-y-auto whitespace-pre-wrap p-4 text-sm">
+			<div class="flex-1 overflow-y-auto whitespace-pre-wrap p-4 text-left text-sm">
 				{lead.data.body}
 			</div>
 			<Separator class="mt-auto" />
@@ -45,7 +45,7 @@
 				<form>
 					<div class="grid gap-4">
 						<Textarea
-							class="p-4"
+							class="h-64 p-4"
 							placeholder={`Reply ${lead.id}...`}
 							value={lead.comment}
 							disabled={lead.status != 'under_review'}
