@@ -80,47 +80,41 @@ export type Database = {
       }
       leads: {
         Row: {
+          comment: string | null
           data: Json | null
           discovered_at: string
           id: string
           last_contacted_at: string | null
-          last_event: string | null
-          probability: number | null
-          projected_clv: number | null
+          last_event: string
           prospect_name: string | null
           prospect_username: string
-          reddit_id: string
-          sale_value: number | null
+          reddit_id: string | null
           source: string
           status: string
         }
         Insert: {
-          data?: Json | null
-          discovered_at: string
-          id?: string
-          last_contacted_at?: string | null
-          last_event?: string | null
-          probability?: number | null
-          projected_clv?: number | null
-          prospect_name?: string | null
-          prospect_username: string
-          reddit_id: string
-          sale_value?: number | null
-          source: string
-          status: string
-        }
-        Update: {
+          comment?: string | null
           data?: Json | null
           discovered_at?: string
           id?: string
           last_contacted_at?: string | null
-          last_event?: string | null
-          probability?: number | null
-          projected_clv?: number | null
+          last_event?: string
+          prospect_name?: string | null
+          prospect_username: string
+          reddit_id?: string | null
+          source?: string
+          status: string
+        }
+        Update: {
+          comment?: string | null
+          data?: Json | null
+          discovered_at?: string
+          id?: string
+          last_contacted_at?: string | null
+          last_event?: string
           prospect_name?: string | null
           prospect_username?: string
-          reddit_id?: string
-          sale_value?: number | null
+          reddit_id?: string | null
           source?: string
           status?: string
         }

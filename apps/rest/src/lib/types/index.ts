@@ -1,5 +1,7 @@
 import type { Tables } from './supabase';
 
+export type UUID = `${string}-${string}-4${string}-${'89ab'}${string}-${string}`;
+
 export type LeadData = {
 	type: 'SUBMISSION' | 'COMMENT';
 	url: string;

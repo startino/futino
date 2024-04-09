@@ -21,8 +21,19 @@
 		EllipsisVertical
 	} from 'lucide-svelte';
 	import type { Lead } from '$lib/types';
+	import * as api from '$lib/api';
+	import type { UUID } from '$lib/types';
 
 	export let lead: Lead | null;
+
+	async function handlePublish() {
+		const res: boolean = await api.publishComment(lead?.id, lead?.comment);
+		if (res) {
+			console.log('Comment published');
+		} else {
+			console.log('Comment not published');
+		}
+	}
 </script>
 
 <div class="flex h-full flex-col">
