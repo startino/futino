@@ -10,9 +10,11 @@
 			date: 'June 3 - 7, 2024',
 			time_first: '8:15 - 9:15',
 			time_second: '9:30 - 12:00',
+			first_discount: '$100',
+			second_discount: '$150',
 			cost_first: '$80',
 			cost_second: '$130',
-			location: 'Leavenworth County Fairgrounds, Tonganoxie',
+			location: 'Atchison Recreation Sports Complex',
 			link: 'https://forms.gle/dtp9iyzfQvgzi4Sb9'
 		}
 	];
@@ -24,7 +26,7 @@
 	<!--Hero-->
 	<section
 		id="hero"
-		class="sm:py-34 relative grid grow justify-items-center space-y-12 border-red-600/20 bg-black px-4 py-32 shadow-lg sm:px-6 md:px-8 md:py-44"
+		class="sm:py-34 relative z-0 grid grow justify-items-center space-y-12 border-red-600/20 bg-black px-4 py-32 shadow-lg sm:px-6 md:px-8 md:py-44"
 	>
 		<img
 			src="media/IMG_4905.webp"
@@ -32,30 +34,27 @@
 			class="absolute h-full
              w-full object-cover opacity-50"
 		/>
-		<ScrollFadeIn>
-			<h1 class="display-large text-white z-10 drop-shadow-md shadow-black font-extrabold">
-				Good Game Soccer
-			</h1>
 
-			<h3
-				class="headline-small z-10 font-bold tracking-wide text-white shadow-black drop-shadow-md"
-			>
-				Empowering Players, Inspiring Youth: Excellence Through Soccer
-			</h3>
+		<h1 class="display-large z-20 font-extrabold text-white opacity-100 shadow-black">
+			Good Game Soccer
+		</h1>
 
-			<div class="space-x-6 py-4">
-				<a href="#camps">
-					<Button>
-						<p>Register Now</p>
-					</Button>
-				</a>
-				<a href="#contact">
-					<Button>
-						<p>Contact Us</p>
-					</Button>
-				</a>
-			</div>
-		</ScrollFadeIn>
+		<h3 class="headline-small z-20 font-bold tracking-wide text-white shadow-black">
+			Empowering Players, Inspiring Youth: Excellence Through Soccer
+		</h3>
+
+		<div class="space-x-6 py-4 text-white">
+			<a href="#camps" class="py-2">
+				<Button class="transition-all duration-300 hover:scale-105">
+					<p>Register Now</p>
+				</Button>
+			</a>
+			<a href="#contact" class=" px-4 py-2">
+				<Button class="transition-all duration-300 hover:scale-105">
+					<p>Contact Us</p>
+				</Button>
+			</a>
+		</div>
 	</section>
 
 	<!--About section-->
@@ -67,12 +66,12 @@
 			<div class="mx-auto flex max-w-7xl flex-col">
 				<h2 class="display-large">About GG Soccer</h2>
 				<p class="body-large mx-auto mt-6 max-w-3xl">
-					Good Game (GG) Soccer was founded by college soccer players who have a passion for giving back
-					to the younger generation through the sport they love and played their whole lives. At GG
-					Soccer we value the development of each of our campers. Our camps are aimed at providing
-					each camper a chance to improve their soccer ability while also bringing home a memorable
-					experience that is fun, social, and engaging. We are very excited to see you all this
-					summer!
+					Good Game (GG) Soccer was founded by college soccer players who have a passion for giving
+					back to the younger generation through the sport they love and played their whole lives.
+					At GG Soccer we value the development of each of our campers. Our camps are aimed at
+					providing each camper a chance to improve their soccer ability while also bringing home a
+					memorable experience that is fun, social, and engaging. We are very excited to see you all
+					this summer!
 				</p>
 			</div>
 		</ScrollFadeIn>
@@ -92,7 +91,7 @@
 				}
 			</style>
 			<div id="camps" class="">
-				{#each camps as { date, time_first, time_second, cost_first, cost_second, location, link }}
+				{#each camps as { date, time_first, time_second, first_discount, second_discount, cost_first, cost_second, location, link }}
 					<h2 class="display-small pt-14">{date}</h2>
 					<div
 						class="mx-auto my-8 grid max-w-7xl grid-cols-1 justify-items-stretch lg:grid-cols-2"
@@ -108,18 +107,26 @@
 							<h2 class="title-large">{time_first}</h2>
 							<hr class="p-1 opacity-40" />
 							<h2 class="title-medium">{location}</h2>
-							<h2 class="title-large font-bold text-red-600">
-								{cost_first}
-							</h2>
+							<div class="mx-auto flex flex-row place-items-center gap-2">
+								<div class="flex flex-col font-bold text-green-700">
+									<h2 class="title-large font-bold text-red-700 line-through">
+										{first_discount}
+									</h2>
+									Early Bird!
+								</div>
+								<h2 class="display-small font-extrabold text-green-700">
+									{cost_first}
+								</h2>
+							</div>
 							<a href={link}>
-								<Button>
+								<Button class="border shadow-inner transition-all duration-300 hover:scale-105">
 									<p>Register Now</p>
 								</Button>
 							</a>
 						</div>
 						<div class="card space-y-2">
 							<img
-								src="media/CampAges712.png"
+								src="media/CampAges712.webp"
 								alt="Ages 7-12 Camp"
 								class="h-60 object-cover sm:h-96"
 							/>
@@ -127,11 +134,19 @@
 							<h2 class="title-large">{time_second}</h2>
 							<hr class="p-1 opacity-40" />
 							<h2 class="title-medium">{location}</h2>
-							<h2 class="title-large font-bold text-red-600">
-								{cost_second}
-							</h2>
+							<div class="mx-auto flex flex-row place-items-center gap-2">
+								<div class="flex flex-col font-bold text-green-700">
+									<h2 class="title-large font-bold text-red-700 line-through">
+										{second_discount}
+									</h2>
+									Early Bird!
+								</div>
+								<h2 class="display-small font-extrabold text-green-700">
+									{cost_second}
+								</h2>
+							</div>
 							<a href={link}>
-								<Button>
+								<Button class="border shadow-inner transition-all duration-300 hover:scale-105">
 									<p>Register Now</p>
 								</Button>
 							</a>
@@ -149,9 +164,8 @@
 	>
 		<ScrollFadeIn>
 			<div class="mx-auto flex max-w-7xl flex-col">
-
 				<div class="">
-					<img src="" alt="">
+					<img src="" alt="" />
 				</div>
 				<!--Contant methods-->
 				<div class="grid grid-cols-4 grid-rows-3 gap-2">
@@ -228,9 +242,9 @@
 			<h1 class="display-large p-4 font-bold">Don't Miss Out!</h1>
 			<div class="grid grid-cols-1 gap-2 sm:grid-cols-2 md:grid-cols-3">
 				<div class="flex flex-col gap-2">
-					<img src="media/IMG_4776.webp" alt="" class="h-full object-cover" />
-					<img src="media/IMG_4904.webp" alt="" class="" />
-					<img src="media/img1.webp" alt="" class="h-full object-cover" />
+					<img src="media/Pro Photo GGS_Camp_08.webp" alt="" class="h-full object-cover" />
+					<img src="media/IMG_4904.jpeg" alt="" class="" />
+					<img src="media/Pro Photo GGS_Camp_06.webp" alt="" class="h-full object-cover" />
 				</div>
 
 				<div class="flex flex-col gap-2">

@@ -20,11 +20,11 @@
 		"@tailwindcss/container-queries": "^0.1.1",
 		"@tailwindcss/forms": "^0.5.7",
 		"@tailwindcss/typography": "^0.5.10",
-		"@types/eslint": "8.56.6",
+		"@types/eslint": "8.56.7",
 		"@typescript-eslint/eslint-plugin": "^7.0.1",
 		"@typescript-eslint/parser": "^7.0.1",
 		"autoprefixer": "^10.4.16",
-		"eslint": "^8.56.0",
+		"eslint": "^9.0.0",
 		"eslint-config-prettier": "^9.1.0",
 		"eslint-plugin-svelte": "^2.35.1",
 		"postcss": "^8.4.32",
@@ -41,7 +41,7 @@
 		"tsparticles-engine": "^2.12.0",
 		"tsparticles-slim": "^2.12.0",
 		"typescript": "^5.0.0",
-		"vite": "^5.0.12"
+		"vite": "^5.0.13"
 	},
 	"type": "module",
 	"dependencies": {
@@ -51,7 +51,7 @@
 		"clsx": "^2.1.0",
 		"crypto-js": "^4.2.0",
 		"gtag": "^1.0.1",
-		"lucide-svelte": "^0.363.0",
+		"lucide-svelte": "^0.366.0",
 		"mdsvex": "^0.11.0",
 		"tailwind-merge": "^2.2.0",
 		"tailwind-variants": "^0.2.0"
