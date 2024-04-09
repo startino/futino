@@ -59,6 +59,7 @@
 		"carta-md": "^3.6.1",
 		"clsx": "^2.1.0",
 		"crypto-js": "^4.2.0",
+		"date-fns": "^3.6.0",
 		"dayjs": "^1.11.10",
 		"esm-env": "^1.0.0",
 		"esm-seedrandom": "^3.0.5",

@@ -23,6 +23,8 @@
 	import DataTableCheckbox from '$lib/components/ui/data-table/data-table-checkbox.svelte';
 	import type { building } from '$app/environment';
 	import type { Lead } from '$lib/types';
+	import StatusCell from './status-cell.svelte';
+	import RelativeDateCell from './relative-date-cell.svelte';
 
 	export let activeLead: Lead | null = null;
 	export let data: Lead[] = [];
@@ -39,16 +41,26 @@
 
 	const columns = table.createColumns([
 		table.column({
-			accessor: 'reddit_id',
-			header: 'Reddit ID'
-		}),
-		table.column({
 			header: 'Prospect Username',
 			accessor: 'prospect_username'
 		}),
 		table.column({
 			header: 'Status',
-			accessor: 'status'
+			accessor: 'status',
+			cell: (item) => {
+				return createRender(StatusCell, {
+					status: item.value
+				});
+			}
+		}),
+		table.column({
+			header: 'Last Contact',
+			accessor: 'last_contacted_at',
+			cell: (item) => {
+				return createRender(RelativeDateCell, {
+					date: item.value ?? ''
+				});
+			}
 		}),
 		table.column({
 			header: '',
