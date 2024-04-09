@@ -1,8 +1,9 @@
 import type { UUID } from '$lib/types';
-import { PUBLIC_API_URL, REDDIT_USERNAME, REDDIT_PASSWORD } from '$env/static/public';
+import { PUBLIC_API_URL } from '$env/static/public';
+import { PUBLIC_REDDIT_USERNAME, PUBLIC_REDDIT_PASSWORD } from '$env/static/public';
 
 export const publishComment = async (leadId: UUID, text: string): Promise<boolean> => {
-	const success: boolean = await fetch(`${PUBLIC_API_URL}/rest/publish_comment`, {
+	const success: boolean = await fetch(`${PUBLIC_API_URL}/rest/`, {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json'
@@ -10,8 +11,8 @@ export const publishComment = async (leadId: UUID, text: string): Promise<boolea
 		body: JSON.stringify({
 			lead_id: leadId,
 			comment: text,
-			reddit_username: REDDIT_USERNAME,
-			reddit_password: REDDIT_PASSWORD
+			reddit_username: PUBLIC_REDDIT_USERNAME,
+			reddit_password: PUBLIC_REDDIT_PASSWORD
 		})
 	})
 		.then(async (response) => {

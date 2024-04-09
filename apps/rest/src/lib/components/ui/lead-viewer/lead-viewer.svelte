@@ -27,6 +27,7 @@
 	export let lead: Lead | null;
 
 	async function handlePublish() {
+		console.log('Trying to publish');
 		const res: boolean = await api.publishComment(lead?.id, lead?.comment);
 		if (res) {
 			console.log('Comment published');
@@ -64,7 +65,13 @@
 						<div class="flex items-center">
 							{#if lead.status == 'under_review'}
 								<Button size="sm" variant="destructive" class="mr-auto">Irrelevant</Button>
-								<Button size="sm" class="ml-auto">Publish</Button>
+								<Button
+									size="sm"
+									class="ml-auto"
+									on:click={() => {
+										handlePublish();
+									}}>Publish</Button
+								>
 							{/if}
 						</div>
 					</div>
