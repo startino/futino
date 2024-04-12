@@ -16,6 +16,15 @@
 			cost_second: '$130',
 			location: 'Atchison Recreation Sports Complex',
 			link: 'https://forms.gle/dtp9iyzfQvgzi4Sb9'
+		},
+		{
+			date: 'June 24 - 27, 2024',
+			time_first: '8:15 - 9:15',
+			time_second: '9:30 - 12:00',
+			cost_first: '$80',
+			cost_second: '$130',
+			location: 'St. Joseph Catholic School',
+			link: 'https://docs.google.com/forms/d/e/1FAIpQLScZSTaOPQ8EbAP8VxlM0SuSWe3aOI0LaLWjyCNFChshEjOXUg/viewform?usp=sf_link'
 		}
 	];
 </script>
@@ -43,7 +52,7 @@
 			Empowering Players, Inspiring Youth: Excellence Through Soccer
 		</h3>
 
-		<div class="space-x-6 py-4 text-white">
+		<div class="flex flex-col items-center justify-center gap-6 py-4 text-white sm:flex-row">
 			<a href="#camps" class="py-2">
 				<Button class="transition-all duration-300 hover:scale-105">
 					<p>Register Now</p>
@@ -108,12 +117,14 @@
 							<hr class="p-1 opacity-40" />
 							<h2 class="title-medium">{location}</h2>
 							<div class="mx-auto flex flex-row place-items-center gap-2">
-								<div class="flex flex-col font-bold text-green-700">
-									<h2 class="title-large font-bold text-red-700 line-through">
-										{first_discount}
-									</h2>
-									Early Bird!
-								</div>
+								{#if first_discount}
+									<div class="flex flex-col font-bold text-green-700">
+										<h2 class="title-large font-bold text-red-700 line-through">
+											{first_discount}
+										</h2>
+										Early Bird!
+									</div>
+								{/if}
 								<h2 class="display-small font-extrabold text-green-700">
 									{cost_first}
 								</h2>
@@ -135,12 +146,14 @@
 							<hr class="p-1 opacity-40" />
 							<h2 class="title-medium">{location}</h2>
 							<div class="mx-auto flex flex-row place-items-center gap-2">
-								<div class="flex flex-col font-bold text-green-700">
-									<h2 class="title-large font-bold text-red-700 line-through">
-										{second_discount}
-									</h2>
-									Early Bird!
-								</div>
+								{#if second_discount}
+									<div class="flex flex-col font-bold text-green-700">
+										<h2 class="title-large font-bold text-red-700 line-through">
+											{second_discount}
+										</h2>
+										Early Bird!
+									</div>
+								{/if}
 								<h2 class="display-small font-extrabold text-green-700">
 									{cost_second}
 								</h2>
