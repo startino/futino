@@ -1,11 +1,11 @@
 <script lang="ts">
-	import { base } from '$app/paths';
 	import journeys, { Journey } from '$lib/journeys';
 	import { formatter } from '$lib/utils';
 
-	import type { Tour } from '../tsData/tours';
+	export let journeyId: string;
 
-	export let journeyId: string = '';
+	console.log(`journey-id: ${journeyId}`);
+
 	const journey: Journey = journeys[journeyId];
 
 	let { name, duration, days, thumbnail, midrange, luxury } = journey;
@@ -13,32 +13,36 @@
 
 	let formattedMidrange: string[] = [
 		formatter.format(midrange[0] * days),
-		formatter.format(midrange[1] * days),
+		formatter.format(midrange[1] * days)
 	];
 	let formattedLuxury: string[] = [
 		formatter.format(luxury[0] * days),
-		formatter.format(luxury[1] * days),
+		formatter.format(luxury[1] * days)
 	];
 </script>
 
 <div
-	class="grid grid-cols-2 md:grid-cols-1 lg:grid-cols-2 h-fit w-full text-left transition-all place-items-center rounded-lg shadow-lg shadow-surface bg-surface gap-4">
-	<div class="flex h-full w-full relative rounded-md">
+	class="grid h-fit w-full grid-cols-2 place-items-center gap-4 rounded-lg bg-surface text-left shadow-lg shadow-surface transition-all md:grid-cols-1 lg:grid-cols-2"
+>
+	<div class="relative flex h-full w-full rounded-md">
 		<img
 			src={thumbnail}
 			alt="TOUR IMG"
-			class="object-cover object-center w-full h-52 sm:h-64 md:h-64 lg:h-full flex rounded-l lg:rounded-l lg:rounded-r-none md:rounded-t md:rounded-b-none transition-all" />
+			class="flex h-52 w-full rounded-l object-cover object-center transition-all sm:h-64 md:h-64 md:rounded-b-none md:rounded-t lg:h-full lg:rounded-l lg:rounded-r-none"
+		/>
 
 		{#if tags.includes('Top Rated')}
 			<div
-				class="bg-yellow-500 text-white absolute rounded-2xl px-3 py-1 mt-3 mr-2 font-bold w-fit right-0 top-0">
-				<h1 class="uppercase body-large font-bold">Top Rated</h1>
+				class="absolute right-0 top-0 mr-2 mt-3 w-fit rounded-2xl bg-yellow-500 px-3 py-1 font-bold text-white"
+			>
+				<h1 class="body-large font-bold uppercase">Top Rated</h1>
 			</div>
 		{/if}
 	</div>
 	<!--Title, Parks, and tags-->
 	<div
-		class="rounded-b flex flex-col gap-2 w-full my-auto md:place-items-start py-1 px-2 sm:px-4 md:px-2 md:pr-2 lg:pr-4 lg:pl-0 pr-4 justify-items-center">
+		class="my-auto flex w-full flex-col justify-items-center gap-2 rounded-b px-2 py-1 pr-4 sm:px-4 md:place-items-start md:px-2 md:pr-2 lg:pl-0 lg:pr-4"
+	>
 		<h1 class="title-large sm:headline-small pt-4 md:pt-0">{name}</h1>
 
 		<div class="title-small sm:headline-small flex gap-6">
@@ -50,35 +54,35 @@
 			</h1>
 		</div>
 		{#if days == 1}
-			<div class="flex flex-col py-2 mt-2 w-fit">
+			<div class="mt-2 flex w-fit flex-col py-2">
 				<h1 class="title-small md:title-medium">Standard</h1>
-				<h1 class="headline-medium md:headline-large font-bold inline-block">
+				<h1 class="headline-medium md:headline-large inline-block font-bold">
 					<span class="text-primary"> {formattedMidrange[0]} </span>
-					<span class="title-small text-outline ">/person</span>
+					<span class="title-small text-outline">/person</span>
 				</h1>
 			</div>
 		{:else}
-			<div class="flex flex-col py-2 mt-2 border-b border-outline w-fit pr-12">
+			<div class="mt-2 flex w-fit flex-col border-b border-outline py-2 pr-12">
 				<h1 class="title-small md:title-medium">Midrange</h1>
-				<h1 class="headline-small md:headline-medium font-bold inline-block">
+				<h1 class="headline-small md:headline-medium inline-block font-bold">
 					{#if luxury[0] == 0}
 						-
 					{:else}
 						<span class="text-primary"> {formattedMidrange[0]} </span> -
 						<span class="text-primary"> {formattedMidrange[1]} </span>
-						<span class="title-medium text-outline ">/person</span>
+						<span class="title-medium text-outline">/person</span>
 					{/if}
 				</h1>
 			</div>
-			<div class="flex flex-col mb-2 py-2">
+			<div class="mb-2 flex flex-col py-2">
 				<h1 class="title-small md:title-medium">Luxury</h1>
-				<h1 class="headline-small md:headline-medium font-bold inline-block">
+				<h1 class="headline-small md:headline-medium inline-block font-bold">
 					{#if luxury[0] == 0}
 						-
 					{:else}
 						<span class="text-primary"> {formattedLuxury[0]}</span> -
 						<span class="text-primary"> {formattedLuxury[1]} </span>
-						<span class="title-medium text-outline ">/person</span>
+						<span class="title-medium text-outline">/person</span>
 					{/if}
 				</h1>
 			</div>
