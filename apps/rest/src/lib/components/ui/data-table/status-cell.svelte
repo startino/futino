@@ -1,7 +1,7 @@
 <script lang="ts">
 	import * as DropdownMenu from '$lib/components/ui/dropdown-menu';
 	import { Button } from '$lib/components/ui/button';
-	import { Pickaxe, Check, CheckCheck } from 'lucide-svelte';
+	import { Pickaxe, Check, CheckCheck, Ban, CircleHelp } from 'lucide-svelte';
 
 	export let status: string;
 </script>
@@ -11,7 +11,11 @@
 		<Pickaxe class="text-yellow-500" />
 	{:else if status == 'subscriber'}
 		<Check class="text-emerald-400" />
+	{:else if status == 'rejected'}
+		<Ban class="text-red-500" />
+	{:else if status == 'subscriber'}
+		<CheckCheck class="text-emerald-400" />
 	{:else}
-		<CheckCheck class="text-blue-500" />
+		<CircleHelp class="text-blue-500" />
 	{/if}
 </div>
