@@ -101,7 +101,8 @@
 			</style>
 			<div id="camps" class="">
 				{#each camps as { date, time_first, time_second, first_discount, second_discount, cost_first, cost_second, location, link }}
-					<h2 class="display-small pt-14">{date}</h2>
+					<h2 class="display-small pt-14">{location}</h2>
+					<h2 class="display-small pt-4">{date}</h2>
 					<div
 						class="mx-auto my-8 grid max-w-7xl grid-cols-1 justify-items-stretch lg:grid-cols-2"
 						id="jul_camp"
@@ -115,7 +116,6 @@
 							<h1 class="headline-medium font-bold">Ages 3 - 6</h1>
 							<h2 class="title-large">{time_first}</h2>
 							<hr class="p-1 opacity-40" />
-							<h2 class="title-medium">{location}</h2>
 							<div class="mx-auto flex flex-row place-items-center gap-2">
 								{#if first_discount}
 									<div class="flex flex-col font-bold text-green-700">
@@ -144,7 +144,6 @@
 							<h1 class="headline-medium font-bold">Ages 7 - 12</h1>
 							<h2 class="title-large">{time_second}</h2>
 							<hr class="p-1 opacity-40" />
-							<h2 class="title-medium">{location}</h2>
 							<div class="mx-auto flex flex-row place-items-center gap-2">
 								{#if second_discount}
 									<div class="flex flex-col font-bold text-green-700">
