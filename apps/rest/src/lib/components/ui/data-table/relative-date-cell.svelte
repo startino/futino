@@ -2,15 +2,14 @@
 	import { Label } from '$lib/components/ui/label';
 	import { formatDistanceToNowStrict } from 'date-fns';
 
-	export let date: string = '';
-
-	const relativeDate = formatDistanceToNowStrict(date, { addSuffix: true });
+	export let date: string | null = '';
 </script>
 
 <Label>
 	{#if date}
-		{relativeDate}
+		{formatDistanceToNowStrict(date, { addSuffix: true })}
+		}
 	{:else}
-		N/A
+		Never
 	{/if}
 </Label>

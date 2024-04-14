@@ -78,6 +78,51 @@ export type Database = {
         }
         Relationships: []
       }
+      evaluated_submissions: {
+        Row: {
+          body: string
+          correct_reason: string | null
+          cost: number
+          created_at: string
+          human_answer: boolean | null
+          id: string
+          is_relevant: boolean
+          qualifying_question: string | null
+          reason: string | null
+          reddit_id: string
+          title: string
+          url: string
+        }
+        Insert: {
+          body?: string
+          correct_reason?: string | null
+          cost: number
+          created_at?: string
+          human_answer?: boolean | null
+          id?: string
+          is_relevant: boolean
+          qualifying_question?: string | null
+          reason?: string | null
+          reddit_id: string
+          title?: string
+          url: string
+        }
+        Update: {
+          body?: string
+          correct_reason?: string | null
+          cost?: number
+          created_at?: string
+          human_answer?: boolean | null
+          id?: string
+          is_relevant?: boolean
+          qualifying_question?: string | null
+          reason?: string | null
+          reddit_id?: string
+          title?: string
+          url?: string
+        }
+        Relationships: []
+      }
       leads: {
         Row: {
           comment: string | null
@@ -91,6 +136,7 @@ export type Database = {
           reddit_id: string | null
           source: string
           status: string
+          submission_id: string | null
         }
         Insert: {
           comment?: string | null
@@ -104,6 +150,7 @@ export type Database = {
           reddit_id?: string | null
           source?: string
           status: string
+          submission_id?: string | null
         }
         Update: {
           comment?: string | null
@@ -117,8 +164,17 @@ export type Database = {
           reddit_id?: string | null
           source?: string
           status?: string
+          submission_id?: string | null
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "public_leads_submission_id_fkey"
+            columns: ["submission_id"]
+            isOneToOne: false
+            referencedRelation: "evaluated_submissions"
+            referencedColumns: ["id"]
+          },
+        ]
       }
     }
     Views: {

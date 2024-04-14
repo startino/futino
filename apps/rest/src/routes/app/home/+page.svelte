@@ -4,10 +4,10 @@
 	import { LeadViewer } from '$lib/components/ui/lead-viewer';
 	import type { Lead } from '$lib/types';
 
-	let activeLead: Lead | null = null;
-
 	export let data: { leads: Lead[] };
 	let { leads } = data;
+
+	let activeLead: Lead = leads[0];
 </script>
 
 <Resizable.PaneGroup direction="horizontal" class="rounded-lg border">
