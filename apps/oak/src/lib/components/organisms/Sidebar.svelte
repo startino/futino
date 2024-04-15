@@ -1,80 +1,45 @@
 <script lang="ts">
 	import LucideIcon from '$lib/components/atoms/LucideIcon.svelte';
+	import { ReceiptText, Receipt, PieChart, Users, User, Building2 } from 'lucide-svelte';
 	import { page } from '$app/stores';
 	import Logo from '../atoms/Logo.svelte';
 
-	export let navigations: {
-		name: string;
-		items: {
-			name: string;
-			href: string;
-			icon: string;
-			current: boolean;
-			pendingCount?: number;
-		}[];
-	}[] = [
+	const baseHref = '/app';
+
+	let navItems = [
 		{
-			name: 'Pending Approvals',
-			items: [
-				{
-					name: 'Contract Entries',
-					href: 'pending-contracts',
-					icon: 'Paperclip',
-					current: false,
-					pendingCount: 2
-				},
-				{
-					name: 'Bill Entries',
-					href: 'pending-bills',
-					icon: 'Receipt',
-					current: false,
-					pendingCount: 3
-				},
-				{
-					name: 'Contract Modifications',
-					href: 'pending-modifications',
-					icon: 'PencilRuler',
-					current: false,
-					pendingCount: 0
-				}
-			]
+			label: 'Contracts',
+			href: '/contracts',
+			icon: ReceiptText
 		},
 		{
-			name: 'Contract Management',
-			items: [
-				{ name: 'Contract Repository', href: 'contract-repository', icon: 'Table', current: false },
-				{
-					name: 'Contract Entry Form',
-					href: 'contract-entry-form',
-					icon: 'PlusCircle',
-					current: false
-				},
-				{ name: 'Contract Report', href: 'contract-report', icon: 'PieChart', current: false }
-			]
+			label: 'Bills',
+			href: '/bills',
+			icon: Receipt
 		},
 		{
-			name: 'Bill Management',
-			items: [
-				{ name: 'Bill Repository', href: 'bill-repository', icon: 'Table', current: false },
-				{ name: 'Bill Entry Form', href: 'bill-entry-form', icon: 'PlusCircle', current: false }
-			]
+			label: 'Report',
+			href: '/report',
+			icon: PieChart
 		},
 		{
-			name: 'Settings',
-			items: [
-				{
-					name: 'Personal Account',
-					href: 'personal-account',
-					icon: 'CircleUserRound',
-					current: false
-				},
-				{ name: 'Company Account', href: 'company-account', icon: 'Building', current: false },
-				{ name: 'Subscription', href: 'subscription', icon: 'ReceiptText', current: false }
-			]
+			label: 'Users',
+			href: '/users',
+			icon: Users
+		},
+		{
+			label: 'Personal Account',
+			href: '/personal-account',
+			icon: User
+		},
+		{
+			label: 'Organization Account',
+			href: '/organization-account',
+			icon: Building2
 		}
 	];
+
 	export let bottomNavigation = [
-		{ name: 'Help', href: 'help', icon: 'HelpCircle', current: false },
 		{ name: 'Logout', href: 'logout', icon: 'LogOut', current: false }
 	];
 </script>
@@ -92,57 +57,40 @@
 				>
 			</a>
 		</div>
-		<nav class="flex flex-col pt-0 sm:mt-0 sm:pt-0">
-			<ul role="list" class="flex list-none flex-col gap-y-0 pl-0 sm:mt-0 sm:pl-0">
-				<li class="my-0 pl-0 sm:my-0 sm:pl-0">
-					{#each navigations as { name, items }}
-						<ul role="list" class=" mb-6 list-none gap-4 pl-0 sm:mb-8 sm:pl-0">
-							<p class="m-0 px-2 pb-2 text-xs font-semibold sm:m-0">{name}</p>
-							{#each items as { name, href, icon, current, pendingCount }}
-								<li class="m-0 pl-0 sm:m-0 sm:pl-0">
-									<!-- Current: "bg-gray-800 text-primary-foreground", Default: "text-gray-400 hover:text-primary-foreground hover:bg-gray-800" -->
-									<a
-										href={'/app/' + href}
-										class="group flex gap-x-3 rounded-md p-2 text-sm font-semibold transition transition-colors transition-transform hover:translate-x-2 hover:scale-[1.04] {$page.url.pathname.includes(
-											href
-										)
-											? 'bg-accent/90 text-accent-foreground hover:bg-accent '
-											: 'text-primary-foreground opacity-100 hover:text-accent'}"
-									>
-										<LucideIcon name={icon} />
-										{name}
-										{#if pendingCount}
-											<span
-												class="ml-auto rounded-full bg-accent px-2 py-1 text-xs font-semibold text-accent-foreground"
-											>
-												{pendingCount}
-											</span>
-										{/if}
-									</a>
-								</li>
-							{/each}
-						</ul>
-					{/each}
-				</li>
-				<li class="mt-auto pl-0 sm:mt-auto sm:pl-0">
-					<ul role="list" class=" m-0 list-none pl-0 sm:m-0 sm:pl-0">
-						{#each bottomNavigation as { name, href, icon, current }}
-							<li class="pb-0 pl-0 sm:pl-0">
-								<a
-									href={'/app/' + href}
-									class="group flex gap-x-3 rounded-md p-2 text-sm font-semibold transition transition-colors transition-transform hover:translate-x-2 hover:scale-[1.04] {$page.url.pathname.includes(
-										href
-									)
-										? 'bg-accent/90 text-accent-foreground hover:bg-accent '
-										: 'text-primary-foreground opacity-100 hover:text-accent'}"
-								>
-									<LucideIcon name={icon} />
-									{name}
-								</a>
-							</li>
-						{/each}
-					</ul>
-				</li>
+		<nav>
+			<ul role="list" class=" mb-10">
+				{#each navItems as { label, href, icon }}
+					<li>
+						<a
+							href={baseHref + href}
+							class="group flex gap-x-3 rounded-md p-2 text-sm font-semibold transition hover:translate-x-2 hover:scale-[1.04] {$page.url.pathname.includes(
+								href
+							)
+								? 'bg-accent/90 text-accent-foreground hover:bg-accent '
+								: 'text-primary-foreground opacity-100 hover:text-accent'}"
+						>
+							<svelte:component this={icon} />
+							{label}
+						</a>
+					</li>
+				{/each}
+			</ul>
+			<ul role="list" class=" m-0 list-none pl-0 sm:m-0 sm:pl-0">
+				{#each bottomNavigation as { name, href, icon, current }}
+					<li class="pb-0 pl-0 sm:pl-0">
+						<a
+							href={'/app/' + href}
+							class="group flex gap-x-3 rounded-md p-2 text-sm font-semibold transition transition-colors transition-transform hover:translate-x-2 hover:scale-[1.04] {$page.url.pathname.includes(
+								href
+							)
+								? 'bg-accent/90 text-accent-foreground hover:bg-accent '
+								: 'text-primary-foreground opacity-100 hover:text-accent'}"
+						>
+							<LucideIcon name={icon} />
+							{name}
+						</a>
+					</li>
+				{/each}
 			</ul>
 		</nav>
 	</div>
