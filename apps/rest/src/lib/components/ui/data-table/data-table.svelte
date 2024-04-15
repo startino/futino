@@ -137,10 +137,7 @@
 							{...rowAttrs}
 							data-state={$selectedDataIds[row.id] && 'selected'}
 							on:click={() => {
-								console.log('Row ID: ', row.original.id);
-								console.log('Row: ', row);
 								activeLead = data.find((d) => d.id === row.original.id) ?? null;
-								console.log(activeLead);
 							}}
 						>
 							{#each row.cells as cell (cell.id)}
