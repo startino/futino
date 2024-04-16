@@ -20,61 +20,48 @@ export class ApiClient {
 		this.session = arg.session;
 	}
 
-	async getOrgProjects(organizationId: string) {
+	getOrgProjects = async (organizationId: string) => {
 		return await this.supabase.from('projects').select('*').eq('organization_id', organizationId);
-	}
+	};
 
-	async getOrgDeparments(organizationId: string) {
-		return await this.supabase
-			.from('departments')
-			.select('*')
-			.eq('organization_id', organizationId);
-	}
+	getOrgDeparments = async (organizationId: string) =>
+		await this.supabase.from('departments').select('*').eq('organization_id', organizationId);
 
-	async getOrgUsers(organizationId: string) {
-		return await this.supabase
+	getOrgUsers = async (organizationId: string) =>
+		await this.supabase
 			.from('profiles')
 			.select('id, full_name')
 			.eq('organization_id', organizationId);
-	}
 
-	async getOrgContracts(organizationId: string) {
-		return await this.supabase.from('contracts').select('*').eq('organization_id', organizationId);
-	}
+	getOrgContracts = async (organizationId: string) =>
+		await this.supabase.from('contracts').select('*').eq('organization_id', organizationId);
 
-	async getOrgVendors(organizationId: string) {
-		return await this.supabase.from('vendors').select('*').eq('organization_id', organizationId);
-	}
+	getOrgVendors = async (organizationId: string) =>
+		await this.supabase.from('vendors').select('*').eq('organization_id', organizationId);
 
-	async getApprovers(approveeId: string) {
-		return await this.supabase.from('approvers').select('*').eq('approvee_id', approveeId);
-	}
+	getApprovers = async (approveeId: string) =>
+		await this.supabase.from('approvers').select('*').eq('approvee_id', approveeId);
 
-	async createVendor(data: TablesInsert<'vendors'>) {
-		return await this.supabase.from('vendors').insert(data).select().single();
-	}
+	createVendor = async (data: TablesInsert<'vendors'>) =>
+		await this.supabase.from('vendors').insert(data).select().single();
 
-	async createProject(data: TablesInsert<'projects'>) {
-		return await this.supabase.from('projects').insert(data).select().single();
-	}
+	createProject = async (data: TablesInsert<'projects'>) =>
+		await this.supabase.from('projects').insert(data).select().single();
 
-	async createDepartment(data: TablesInsert<'departments'>) {
-		return await this.supabase.from('departments').insert(data);
-	}
+	createDepartment = async (data: TablesInsert<'departments'>) =>
+		await this.supabase.from('departments').insert(data);
 
-	async getUserSubscription() {
-		return await this.supabase
+	getUserSubscription = async () =>
+		await this.supabase
 			.from('subscriptions')
 			.select()
 			.eq('profile_id', this.session.user.id)
 			.single();
-	}
 
-	async getUserProfile() {
-		return await this.supabase.from('profiles').select().eq('id', this.session.user.id).single();
-	}
+	getUserProfile = async () =>
+		await this.supabase.from('profiles').select().eq('id', this.session.user.id).single();
 
-	async getUserBillingMethod(): Promise<Stripe.Response<Stripe.PaymentMethod> | null> {
+	getUserBillingMethod = async (): Promise<Stripe.Response<Stripe.PaymentMethod> | null> => {
 		const { data: billing } = await this.supabase
 			.from('billing_information')
 			.select()
@@ -86,5 +73,5 @@ export class ApiClient {
 		} catch (error) {
 			return null;
 		}
-	}
+	};
 }
