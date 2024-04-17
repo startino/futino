@@ -115,6 +115,7 @@ export type Database = {
           owner_id: string
           parent_contract_id: string | null
           project_id: string | null
+          signed: boolean | null
           spend_category_id: string | null
           start_date: string
           status: Database["public"]["Enums"]["contract_status"]
@@ -137,6 +138,7 @@ export type Database = {
           owner_id: string
           parent_contract_id?: string | null
           project_id?: string | null
+          signed?: boolean | null
           spend_category_id?: string | null
           start_date: string
           status?: Database["public"]["Enums"]["contract_status"]
@@ -159,6 +161,7 @@ export type Database = {
           owner_id?: string
           parent_contract_id?: string | null
           project_id?: string | null
+          signed?: boolean | null
           spend_category_id?: string | null
           start_date?: string
           status?: Database["public"]["Enums"]["contract_status"]
