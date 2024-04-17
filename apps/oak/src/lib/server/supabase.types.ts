@@ -117,7 +117,7 @@ export type Database = {
           owner_id: string
           parent_contract_id: string | null
           project_id: string | null
-          spent_category_id: string | null
+          spend_category_id: string | null
           start_date: string
           status: Database["public"]["Enums"]["contract_status"]
           updated_at: string
@@ -138,12 +138,12 @@ export type Database = {
           owner_id: string
           parent_contract_id?: string | null
           project_id?: string | null
-          spent_category_id?: string | null
+          spend_category_id?: string | null
           start_date: string
           status?: Database["public"]["Enums"]["contract_status"]
           updated_at?: string
           vendor_id: string
-          version: number
+          version?: number
         }
         Update: {
           amount?: number
@@ -159,7 +159,7 @@ export type Database = {
           owner_id?: string
           parent_contract_id?: string | null
           project_id?: string | null
-          spent_category_id?: string | null
+          spend_category_id?: string | null
           start_date?: string
           status?: Database["public"]["Enums"]["contract_status"]
           updated_at?: string
@@ -218,7 +218,7 @@ export type Database = {
           },
           {
             foreignKeyName: "public_contracts_spent_category_id_fkey"
-            columns: ["spent_category_id"]
+            columns: ["spend_category_id"]
             isOneToOne: false
             referencedRelation: "spend_categories"
             referencedColumns: ["id"]
@@ -370,18 +370,29 @@ export type Database = {
           created_at: string
           id: string
           name: string
+          organization_id: string
         }
         Insert: {
           created_at?: string
           id?: string
           name: string
+          organization_id: string
         }
         Update: {
           created_at?: string
           id?: string
           name?: string
+          organization_id?: string
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "public_spend_categories_organization_id_fkey"
+            columns: ["organization_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       subscriptions: {
         Row: {
