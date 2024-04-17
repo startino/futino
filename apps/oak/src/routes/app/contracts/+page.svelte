@@ -9,17 +9,16 @@
 	const currentProfile = getContext('currentUser');
 	let userPendingApprovalsMode = false;
 
-	$: contracts = data.contracts.filter((c) => {
-		if (userPendingApprovalsMode) {
-			return (
+	$: if (userPendingApprovalsMode) {
+		contracts = data.contracts.filter(
+			(c) =>
 				(($currentProfile.role === 'employee' && c.current_approver_id === $currentProfile.id) ||
 					$currentProfile.role === 'signer') &&
 				!c.signed
-			);
-		} else {
-			return true;
-		}
-	});
+		);
+	} else {
+		contracts = data.contracts;
+	}
 </script>
 
 <h1 class="text-3xl">Contracts</h1>
