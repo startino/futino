@@ -36,11 +36,11 @@
 	</div>
 	<div class="hidden bg-muted lg:block">
 		<img
-			src="oak-tree.jpg"
+			src="road-of-oak-trees.jpg"
 			alt="oak tree"
 			width="1920"
 			height="1080"
-			class="h-screen w-full object-cover brightness-[0.5] grayscale"
+			class=" h-screen w-full object-cover brightness-[0.4] contrast-[1.3] hue-rotate-[30deg]"
 		/>
 	</div>
 </div>
