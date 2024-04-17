@@ -18,7 +18,7 @@
 			link: 'https://forms.gle/dtp9iyzfQvgzi4Sb9'
 		},
 		{
-			date: 'June 24 - 27, 2024',
+			date: 'June 24 - 28, 2024',
 			time_first: '8:15 - 9:15',
 			time_second: '9:30 - 12:00',
 			cost_first: '$80',
@@ -116,6 +116,7 @@
 							<h1 class="headline-medium font-bold">Ages 3 - 6</h1>
 							<h2 class="title-large">{time_first}</h2>
 							<hr class="p-1 opacity-40" />
+							<h2 class="title-medium">{location}</h2>
 							<div class="mx-auto flex flex-row place-items-center gap-2">
 								{#if first_discount}
 									<div class="flex flex-col font-bold text-green-700">
@@ -144,6 +145,7 @@
 							<h1 class="headline-medium font-bold">Ages 7 - 12</h1>
 							<h2 class="title-large">{time_second}</h2>
 							<hr class="p-1 opacity-40" />
+							<h2 class="title-medium">{location}</h2>
 							<div class="mx-auto flex flex-row place-items-center gap-2">
 								{#if second_discount}
 									<div class="flex flex-col font-bold text-green-700">
