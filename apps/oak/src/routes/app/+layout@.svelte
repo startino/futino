@@ -4,6 +4,12 @@
 	import Sidebar from '$lib/components/organisms/Sidebar.svelte';
 	import { Skeleton } from '$lib/components/ui/skeleton';
 	import { navigating } from '$app/stores';
+	import { setContext } from '$lib/utils';
+	import { createCurrentProfile } from '$lib/stores';
+
+	export let data;
+
+	setContext('currentUser', createCurrentProfile(data.storesData.currentProfile));
 </script>
 
 {#if $navigating}
