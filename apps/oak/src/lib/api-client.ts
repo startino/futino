@@ -1,6 +1,7 @@
 import type { Session, SupabaseClient } from '@supabase/supabase-js';
 import type Stripe from 'stripe';
 import type { TablesInsert, Database } from './server/supabase.types';
+import type { ContractDatableRow } from './types';
 
 type ApiClientArg = {
 	supabase: SupabaseClient<Database>;
@@ -35,6 +36,13 @@ export class ApiClient {
 
 	getOrgContracts = async (organizationId: string) =>
 		await this.supabase.from('contracts').select('*').eq('organization_id', organizationId);
+
+	getContractRows = async (organizationId: string) =>
+		await this.supabase
+			.from('contracts')
+			.select('*, owner:owner_id (*), vendor:vendor_id(*)')
+			.eq('organization_id', organizationId)
+			.returns<ContractDatableRow[]>();
 
 	getOrgVendors = async (organizationId: string) =>
 		await this.supabase.from('vendors').select('*').eq('organization_id', organizationId);

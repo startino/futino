@@ -1,26 +1,12 @@
 import type { Tables } from '$lib/server/supabase.types';
 
-/**
- * This type alias is to identify CSS classes within component props,
- * which enables Tailwind IntelliSense
- */
-export type CssClasses = string;
+export interface ContractDatableRow extends Tables<'contracts'> {
+	owner: Tables<'profiles'>;
+	vendor: Tables<'vendors'>;
+}
 
 export type SvelteEvent<E extends Event = Event, T extends EventTarget = Element> = E & {
 	currentTarget: EventTarget & T;
-};
-
-export type StyleVariants = {
-	[name: string]: {
-		colors: CssClasses[];
-		border: CssClasses;
-		padding: CssClasses;
-		radius: CssClasses;
-		typography: CssClasses;
-		margin: CssClasses;
-		top: CssClasses;
-		maxWidth: CssClasses;
-	};
 };
 
 export type IconType = string;

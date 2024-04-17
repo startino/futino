@@ -15,21 +15,18 @@ export type Database = {
           id: string
           number: number
           organization_id: string
-          signed: boolean
         }
         Insert: {
           description?: string | null
           id?: string
           number: number
           organization_id: string
-          signed?: boolean
         }
         Update: {
           description?: string | null
           id?: string
           number?: number
           organization_id?: string
-          signed?: boolean
         }
         Relationships: [
           {
@@ -104,6 +101,7 @@ export type Database = {
       }
       contracts: {
         Row: {
+          account_id: string | null
           amount: number
           attachment: string
           created_at: string
@@ -125,6 +123,7 @@ export type Database = {
           version: number
         }
         Insert: {
+          account_id?: string | null
           amount?: number
           attachment?: string
           created_at?: string
@@ -146,6 +145,7 @@ export type Database = {
           version?: number
         }
         Update: {
+          account_id?: string | null
           amount?: number
           attachment?: string
           created_at?: string
@@ -200,6 +200,13 @@ export type Database = {
             columns: ["vendor_id"]
             isOneToOne: false
             referencedRelation: "vendors"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "public_contracts_account_id_fkey"
+            columns: ["account_id"]
+            isOneToOne: false
+            referencedRelation: "accounts"
             referencedColumns: ["id"]
           },
           {
