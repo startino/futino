@@ -7,6 +7,7 @@ declare global {
 	namespace App {
 		interface Locals {
 			apiClient: ApiClient;
+			orgID: string;
 		}
 		interface PageData {
 			session: Session | null;

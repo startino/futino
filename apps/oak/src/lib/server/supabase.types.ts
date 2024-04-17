@@ -15,21 +15,18 @@ export type Database = {
           id: string
           number: number
           organization_id: string
-          signed: boolean
         }
         Insert: {
           description?: string | null
           id?: string
           number: number
           organization_id: string
-          signed?: boolean
         }
         Update: {
           description?: string | null
           id?: string
           number?: number
           organization_id?: string
-          signed?: boolean
         }
         Relationships: [
           {
@@ -104,6 +101,7 @@ export type Database = {
       }
       contracts: {
         Row: {
+          account_id: string | null
           amount: number
           attachment: string
           created_at: string
@@ -117,7 +115,8 @@ export type Database = {
           owner_id: string
           parent_contract_id: string | null
           project_id: string | null
-          spent_category_id: string | null
+          signed: boolean | null
+          spend_category_id: string | null
           start_date: string
           status: Database["public"]["Enums"]["contract_status"]
           updated_at: string
@@ -125,6 +124,7 @@ export type Database = {
           version: number
         }
         Insert: {
+          account_id?: string | null
           amount?: number
           attachment?: string
           created_at?: string
@@ -138,14 +138,16 @@ export type Database = {
           owner_id: string
           parent_contract_id?: string | null
           project_id?: string | null
-          spent_category_id?: string | null
+          signed?: boolean | null
+          spend_category_id?: string | null
           start_date: string
           status?: Database["public"]["Enums"]["contract_status"]
           updated_at?: string
           vendor_id: string
-          version: number
+          version?: number
         }
         Update: {
+          account_id?: string | null
           amount?: number
           attachment?: string
           created_at?: string
@@ -159,7 +161,8 @@ export type Database = {
           owner_id?: string
           parent_contract_id?: string | null
           project_id?: string | null
-          spent_category_id?: string | null
+          signed?: boolean | null
+          spend_category_id?: string | null
           start_date?: string
           status?: Database["public"]["Enums"]["contract_status"]
           updated_at?: string
@@ -203,6 +206,13 @@ export type Database = {
             referencedColumns: ["id"]
           },
           {
+            foreignKeyName: "public_contracts_account_id_fkey"
+            columns: ["account_id"]
+            isOneToOne: false
+            referencedRelation: "accounts"
+            referencedColumns: ["id"]
+          },
+          {
             foreignKeyName: "public_contracts_current_approver_id_fkey"
             columns: ["current_approver_id"]
             isOneToOne: false
@@ -218,7 +228,7 @@ export type Database = {
           },
           {
             foreignKeyName: "public_contracts_spent_category_id_fkey"
-            columns: ["spent_category_id"]
+            columns: ["spend_category_id"]
             isOneToOne: false
             referencedRelation: "spend_categories"
             referencedColumns: ["id"]
@@ -370,18 +380,29 @@ export type Database = {
           created_at: string
           id: string
           name: string
+          organization_id: string
         }
         Insert: {
           created_at?: string
           id?: string
           name: string
+          organization_id: string
         }
         Update: {
           created_at?: string
           id?: string
           name?: string
+          organization_id?: string
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "public_spend_categories_organization_id_fkey"
+            columns: ["organization_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       subscriptions: {
         Row: {
