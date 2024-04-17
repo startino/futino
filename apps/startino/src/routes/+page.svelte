@@ -249,9 +249,9 @@
 					<p class="text-base leading-7 text-primary">Co-Founder</p>
 					<p class="mt-6 text-base leading-7 opacity-80">
 						Hey 👋. I've got over 6 years of programming experience under my belt, with an expertise
-						in automation software and machine learning. I've found a passion in building both
-						beautiful and highly functional software to bring life to projects like your own through
-						websites and custom software.
+						in automation software and machine learning. I've found a passion in building beautiful
+						and highly functional software (the key is in the balance! 😉) to bring life to projects
+						like your own.
 					</p>
 				</div>
 			</li>
@@ -286,31 +286,13 @@
 					<h3 class="trackng-tight text-lg font-semibold leading-8 text-primary">
 						Nazif Barassounon
 					</h3>
-					<p class="text-base leading-7 text-primary">Web Developer</p>
+					<p class="text-base leading-7 text-primary">Full-stack Developer</p>
 					<p class="mt-6 text-base leading-7 opacity-80">
-						I'm a full-stack developer at Futino with over 3 years of experience. I'm passionate
-						about creating web applications that blend technology and design seamlessly to deliver
-						user-friendly interfaces. I'm dedicated to learning and growing, always staying updated
-						with the latest web development trends.
-					</p>
-				</div>
-			</li>
-			<li
-				class="flex flex-col items-center justify-center gap-6 text-center sm:items-start sm:justify-start sm:text-left xl:flex-row"
-			>
-				<img
-					class="aspect-[4/5] w-52 flex-none rounded-2xl bg-primary/10 object-cover"
-					src="/portraits/minilik-zeru.jpg"
-					alt="Portrait of Minilik Zeru"
-				/>
-				<div class="flex-auto">
-					<h3 class="trackng-tight text-lg font-semibold leading-8 text-primary">Minilik Zeru</h3>
-					<p class="text-base leading-7 text-primary">Web Developer</p>
-					<p class="mt-6 text-base leading-7 opacity-80">
-						I'm a full-stack developer specializing in intuitive interfaces with SvelteKit and
-						robust APIs using Node.js. Committed to enhancing user satisfaction, I continuously
-						update my skills to incorporate the latest trends. Passionate about innovation, I ensure
-						each project remains at the forefront of digital advancements.
+						As a Full Stack developer with over three years of deep experience in web development,
+						my passion is creating web applications that blend technology and design seamlessly to
+						deliver user-friendly interfaces. As a philomath, I love learning and growing — staying
+						up-to-date with the latest development trends in order to always exceed our clients’
+						expectations.
 					</p>
 				</div>
 			</li>
@@ -326,25 +308,11 @@
 					<h3 class="trackng-tight text-lg font-semibold leading-8 text-primary">Leon Nilsson</h3>
 					<p class="text-base leading-7 text-primary">Backend Developer</p>
 					<p class="mt-6 text-base leading-7 opacity-80">
-						I'm a developer who has been programming for 5 years, passionate about backend
+						I'm a developer who has been programming for over five years, passionate about backend
 						development. I'm committed to writing high quality, scalable software, innovating and
 						finding the best possible solutions to different problems. I strive to learn all I can
 						in today's shifting digital landscape.
 					</p>
-				</div>
-			</li>
-			<li
-				class="flex flex-col items-center justify-center gap-6 text-center sm:items-start sm:justify-start sm:text-left xl:flex-row"
-			>
-				<img
-					class="aspect-[4/5] w-52 flex-none rounded-2xl bg-primary/10 object-cover"
-					src="/favicon.png"
-					alt="Portrait of Joshua Heath"
-				/>
-				<div class="flex-auto">
-					<h3 class="trackng-tight lading-8 text-lg font-semibold text-primary">Joshua Heath</h3>
-					<p class="text-base leading-7 text-primary">Sales</p>
-					<p class="mt-6 text-base leading-7 opacity-80">Coming Soon...</p>
 				</div>
 			</li>
 		</ul>

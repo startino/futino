@@ -27,10 +27,11 @@
 	import * as api from '$lib/api';
 	import type { UUID } from '$lib/types';
 
-	export let lead: Lead;
+	export let lead: Lead | null = null;
 
-	let url: string = lead.data.url;
+	let url: string = lead?.data.url ?? '';
 	let subreddit: string = extractSubreddit(url);
+
 	function extractSubreddit(url: string): string {
 		// Parse the URL
 		const parsedUrl = new URL(url);
@@ -46,10 +47,11 @@
 	}
 
 	let reasonTextValue = 'Post is irrelevant because';
+	let commentTextValue = lead?.comment ?? '';
 
-	async function handlePublish() {
+	async function handlePublishComment() {
 		console.log('Trying to publish');
-		const res: boolean = await api.publishComment(lead?.id, lead?.comment);
+		const res: boolean = await api.publishComment(lead?.id, commentTextValue);
 		if (res) {
 			console.log('Comment published');
 		} else {
@@ -62,8 +64,19 @@
 		const res: boolean = await api.markAsIrrelevant(lead?.id, lead?.submission_id, reasonTextValue);
 		if (res) {
 			console.log('Marked as irrelevant');
+			lead = null;
 		} else {
 			console.log('Not marked as irrelevant');
+		}
+	}
+
+	async function handleGenerateComment() {
+		console.log('Trying to generate comment');
+		const res: boolean = await api.generateComment(lead?.id);
+		if (res) {
+			console.log('Comment generated');
+		} else {
+			console.log('Comment not generated');
 		}
 	}
 </script>
@@ -72,7 +85,7 @@
 	{#if lead}
 		<div class="flex h-full flex-1 flex-col overflow-hidden text-left">
 			<div class="flex items-start p-4">
-				<h1 class="bold text-2xl">{lead.data.title}</h1>
+				<h1 class="bold text-2xl">{lead.data?.title}</h1>
 				{#if lead.discovered_at}
 					<div class="ml-auto text-sm text-muted-foreground">
 						Posted {formatDistanceToNowStrict(lead.discovered_at, { addSuffix: true })}
@@ -85,7 +98,7 @@
 			</div>
 			<Separator />
 			<div class="flex-1 overflow-y-auto whitespace-pre-wrap p-4 text-left text-sm">
-				{lead.data.body}
+				<p class="text-md tracking-widest">{lead.data.body}</p>
 			</div>
 			<Separator class="mt-auto" />
 			<div class="p-4">
@@ -126,13 +139,18 @@
 										</Dialog.Footer>
 									</Dialog.Content>
 								</Dialog.Root>
-								<Button
-									size="sm"
-									class="ml-auto"
-									on:click={() => {
-										handlePublish();
-									}}>Publish</Button
-								>
+								<div class="ml-auto flex flex-row gap-4">
+									<Button on:click={() => handleGenerateComment()} variant="secondary"
+										>Generate new comment</Button
+									>
+									<Button
+										class=""
+										bind:value={commentTextValue}
+										on:click={() => {
+											handlePublishComment();
+										}}>Publish</Button
+									>
+								</div>
 							{/if}
 						</div>
 					</div>
