@@ -35,6 +35,9 @@
 			accessor: 'owner',
 			header: 'Owner',
 			plugins: {
+				filter: {
+					getFilterValue: (value) => value.full_name
+				},
 				sort: {
 					disable: true
 				}
@@ -45,6 +48,9 @@
 			accessor: 'vendor',
 			header: 'Vendor',
 			plugins: {
+				filter: {
+					getFilterValue: (value) => value.name
+				},
 				sort: {
 					disable: true
 				}
@@ -96,7 +102,12 @@
 
 <div>
 	<div class="flex items-center py-4">
-		<Input class="max-w-sm" placeholder="Filter emails..." type="text" bind:value={$filterValue} />
+		<Input
+			class="max-w-sm"
+			placeholder="Filter numbers, owners, vendors, description, status..."
+			type="text"
+			bind:value={$filterValue}
+		/>
 	</div>
 	<div class="rounded-md border">
 		<Table.Root {...$tableAttrs}>
@@ -135,10 +146,6 @@
 									<Table.Cell {...attrs}>
 										{#if cell.id === 'amount'}
 											<div class="text-right">
-												<Render of={cell.render()} />
-											</div>
-										{:else if cell.id === 'status'}
-											<div class="capitalize">
 												<Render of={cell.render()} />
 											</div>
 										{:else}
