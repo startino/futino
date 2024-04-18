@@ -1,42 +1,9 @@
-import { loginUserSchema } from '$lib/schemas';
-import { setError, superValidate } from 'sveltekit-superforms/server';
-import type { Actions } from './$types';
-import { fail, redirect } from '@sveltejs/kit';
-import { AuthApiError } from '@supabase/supabase-js';
+import { loginSchema } from './schema';
+import { superValidate } from 'sveltekit-superforms';
+import { zod } from 'sveltekit-superforms/adapters';
 
-export const load = async () => {
-	const form = await superValidate(loginUserSchema);
-
+export const load: PageServerLoad = async () => {
 	return {
-		form: form
+		form: await superValidate(zod(loginSchema))
 	};
-};
-
-export const actions: Actions = {
-	default: async (event) => {
-		const form = await superValidate(event, loginUserSchema);
-
-		if (!form.valid) {
-			return fail(400, {
-				form
-			});
-		}
-
-		const { error: authError } = await event.locals.apiClient.supabase.auth.signInWithPassword({
-			email: form.data.email,
-			password: form.data.password
-		});
-
-		if (authError) {
-			if (authError instanceof AuthApiError && authError.status === 400) {
-				setError(form, 'email', 'Invalid credentials');
-				setError(form, 'password', 'Invalid credentials');
-				return fail(400, {
-					form
-				});
-			}
-		} else {
-			throw redirect(302, '/app');
-		}
-	}
 };

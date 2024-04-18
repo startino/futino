@@ -38,11 +38,6 @@ export const registrationSchema = z.object({
 	user: userSchema
 });
 
-export const loginUserSchema = z.object({
-	email: z.string().email('Please enter a valid email address'),
-	password: z.string().min(1, 'Please enter a password')
-});
-
 export const contractEntrySchema = z
 	.object({
 		parent_contract: z.string().optional(),
