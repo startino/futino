@@ -13,11 +13,12 @@
 	import { getContext } from '$lib/utils';
 	import type { ContractDatableRow } from '$lib/types';
 
-	const currentProfile = getContext('currentProfile');
-
 	export let data: ContractDatableRow[];
 
 	export let userPendingApprovalsMode: boolean;
+	export let userPendingApprovalsCount: number;
+
+	const currentProfile = getContext('currentProfile');
 
 	const table = createTable(writable(data), {
 		page: addPagination(),
@@ -118,10 +119,17 @@
 			/>
 		</div>
 
-		{#if $currentProfile.role !== 'admin'}
+		<!-- {#if $currentProfile.role !== 'admin'}
 			<div class="flex items-center space-x-2">
 				<Switch id="user-pending-approvals" bind:checked={userPendingApprovalsMode} />
 				<Label for="user-pending-approvals">Your pending approvals</Label>
+			</div>
+		{/if} -->
+
+		{#if $currentProfile.role !== 'admin' && userPendingApprovalsCount > 0}
+			<div class="flex items-center space-x-2">
+				<Switch id="user-pending-approvals" bind:checked={userPendingApprovalsMode} />
+				<Label for="user-pending-approvals" class="text-sm text-primary">Pending approvals</Label>
 			</div>
 		{/if}
 	</div>
