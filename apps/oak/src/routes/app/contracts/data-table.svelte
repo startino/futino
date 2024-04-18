@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { writable } from 'svelte/store';
-	import { ArrowUpDown } from 'lucide-svelte';
+	import { ArrowUpDown, Search } from 'lucide-svelte';
 
 	import { createTable, Subscribe } from '$lib/svelte-headless-table';
 	import { addPagination, addTableFilter, addSortBy } from '$lib/svelte-headless-table/plugins';
@@ -13,7 +13,7 @@
 	import { getContext } from '$lib/utils';
 	import type { ContractDatableRow } from '$lib/types';
 
-	const currentProfile = getContext('currentUser');
+	const currentProfile = getContext('currentProfile');
 
 	export let data: ContractDatableRow[];
 
@@ -108,12 +108,15 @@
 
 <div>
 	<div class="flex items-center gap-4 py-4">
-		<Input
-			class="max-w-sm"
-			placeholder="Filter numbers, owners, vendors, description, status..."
-			type="text"
-			bind:value={$filterValue}
-		/>
+		<div class="flex items-center gap-2">
+			<Search />
+			<Input
+				class="w-[400px]"
+				placeholder="Filter numbers, owners, vendors, description, status..."
+				type="text"
+				bind:value={$filterValue}
+			/>
+		</div>
 
 		{#if $currentProfile.role !== 'admin'}
 			<div class="flex items-center space-x-2">

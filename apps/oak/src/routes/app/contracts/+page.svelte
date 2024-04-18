@@ -6,7 +6,7 @@
 
 	let contracts = data.contracts;
 
-	const currentProfile = getContext('currentUser');
+	const currentProfile = getContext('currentProfile');
 	let userPendingApprovalsMode = false;
 
 	$: if (userPendingApprovalsMode) {

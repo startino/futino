@@ -9,7 +9,7 @@
 
 	export let data;
 
-	setContext('currentUser', createCurrentProfile(data.storesData.currentProfile));
+	setContext('currentProfile', createCurrentProfile(data.storesData.currentProfile));
 </script>
 
 {#if $navigating}
