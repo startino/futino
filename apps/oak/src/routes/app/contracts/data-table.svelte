@@ -10,8 +10,10 @@
 	import { Input } from '$lib/components/ui/input';
 	import { Switch } from '$lib/components/ui/switch';
 	import { Label } from '$lib/components/ui/label';
-
+	import { getContext } from '$lib/utils';
 	import type { ContractDatableRow } from '$lib/types';
+
+	const currentProfile = getContext('currentUser');
 
 	export let data: ContractDatableRow[];
 
@@ -113,10 +115,12 @@
 			bind:value={$filterValue}
 		/>
 
-		<div class="flex items-center space-x-2">
-			<Switch id="user-pending-approvals" bind:checked={userPendingApprovalsMode} />
-			<Label for="user-pending-approvals">Your pending approvals</Label>
-		</div>
+		{#if $currentProfile.role !== 'admin'}
+			<div class="flex items-center space-x-2">
+				<Switch id="user-pending-approvals" bind:checked={userPendingApprovalsMode} />
+				<Label for="user-pending-approvals">Your pending approvals</Label>
+			</div>
+		{/if}
 	</div>
 	<div class="rounded-md border">
 		<Table.Root {...$tableAttrs}>
