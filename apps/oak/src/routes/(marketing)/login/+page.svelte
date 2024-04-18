@@ -1,21 +1,14 @@
 <script lang="ts">
-	import { Button } from '$lib/components/ui/button/index.js';
-	import { Input } from '$lib/components/ui/input/index.js';
-	import { Label } from '$lib/components/ui/label/index.js';
-	import * as Form from '$lib/components/ui/form';
-	import { loginSchema, type LoginSchema } from './schema';
-	import { type SuperValidated, type Infer, superForm } from 'sveltekit-superforms';
-	import { zodClient } from 'sveltekit-superforms/adapters';
+	import { Loader2 } from 'lucide-svelte';
+	import { superForm } from 'sveltekit-superforms/client';
 
-	export let data: PageData;
+	import { Input } from '$lib/components/ui/input';
+	import { Button } from '$lib/components/ui/button';
+	import { Label } from '$lib/components/ui/label';
 
-	export let datta: SuperValidated<Infer<LoginSchema>> = data.form;
+	export let data;
 
-	const form = superForm(datta, {
-		validators: zodClient(loginSchema)
-	});
-
-	const { form: formData, enhance } = form;
+	const { form, enhance, constraints, errors, submitting } = superForm(data.form);
 </script>
 
 <div class="h-full w-full lg:grid lg:grid-cols-2">
@@ -28,38 +21,41 @@
 				</p>
 			</div>
 			<div class="grid gap-4">
-				<Form.Field {form} name="email">
-					<Form.Control let:attrs class="grid gap-2">
-						<Form.Label>Email</Form.Label>
-						<Input {...attrs} bind:value={$formData.email} placeholder="m@example.com" />
-					</Form.Control>
-					<Form.Description />
-					<Form.FieldErrors />
-				</Form.Field>
 				<div class="grid gap-2">
-					<Form.Field name="password" {form}>
-						<Form.Control let:attrs class="flex items-center">
-							<Label for="password">Password</Label>
-
-							<Input {...attrs} bind:value={$formData.password} />
-						</Form.Control>
-						<a href="##" class="ml-auto inline-block text-sm text-accent underline">
-							Forgot your password?
-						</a>
-						<Form.Description />
-						<Form.FieldErrors />
-					</Form.Field>
+					<Label for="email">Email</Label>
+					<Input
+						{...$constraints.email}
+						bind:value={$form.email}
+						type="email"
+						placeholder="m@example.com"
+						id="email"
+						name="email"
+					/>
 				</div>
-				<Form.Button type="submit" class="w-full">Login</Form.Button>
+				<div class="grid gap-2">
+					<Label for="password">Password</Label>
+					<Input
+						type="password"
+						{...$constraints.password}
+						bind:value={$form.password}
+						id="password"
+						name="password"
+					/>
+				</div>
+				{#if $errors._errors}
+					<span class="text-sm text-destructive">{$errors._errors[0]}</span>
+				{/if}
+				<Button type="submit" class="w-full">
+					{#if $submitting}
+						<Loader2 class="animate-spin" />
+					{:else}
+						Login
+					{/if}
+				</Button>
 			</div>
-			<div class="mt-4 text-center text-sm">
-				Don&apos;t have an account?
-				<a href="##" class="text-accent underline"> Sign up </a>
-			</div>
-
 			<div class="mt-4 text-balance text-center text-sm">
-				If you’re company hasn’t created accounts yet to register
-				<a href="##" class="text-accent underline"> click here to register</a>
+				If your company hasn't created an account yet,
+				<a href="/register" class="text-accent underline"> click here to register</a>
 			</div>
 		</div>
 	</form>

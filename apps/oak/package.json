@@ -32,10 +32,12 @@
 		"supabase": "^1.159.1",
 		"svelte": "^4.2.14",
 		"svelte-check": "^3.6.9",
+		"sveltekit-superforms": "^2.12.5",
 		"tailwindcss": "^3.4.3",
 		"tslib": "^2.6.2",
 		"typescript": "^5.4.5",
-		"vite": "^5.2.9"
+		"vite": "^5.2.9",
+		"zod": "^3.22.4"
 	},
 	"type": "module",
 	"dependencies": {
@@ -61,11 +63,9 @@
 		"svelte-sonner": "^0.3.22",
 		"svelte-stripe": "^1.1.7",
 		"svelte-subscribe": "^2.0.1",
-		"sveltekit-superforms": "^2.12.5",
 		"tailwind-merge": "^2.2.2",
 		"tailwind-variants": "^0.2.1",
 		"vaul-svelte": "^0.3.0",
-		"zod": "^3.22.4",
 		"zod-password-validation-schema": "^0.0.2"
 	}
 }

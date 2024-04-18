@@ -9,6 +9,11 @@ const projectSchema = z.string().min(1, 'The project name is required');
 
 const accountSchema = z.number().gt(0, 'Please enter a valid number');
 
+export const loginSchema = z.object({
+	email: z.string().email(),
+	password: z.string()
+});
+
 const userSchema = z
 	.object({
 		fullName: z.string().max(140, 'Name must be less than 140 characters.').min(3),
