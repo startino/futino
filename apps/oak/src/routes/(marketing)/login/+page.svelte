@@ -5,14 +5,15 @@
 	import { Input } from '$lib/components/ui/input';
 	import { Button } from '$lib/components/ui/button';
 	import { Label } from '$lib/components/ui/label';
+	import { AuthShell } from '$lib/components/auth-shell';
 
 	export let data;
 
 	const { form, enhance, constraints, errors, submitting } = superForm(data.form);
 </script>
 
-<div class="h-full w-full lg:grid lg:grid-cols-2">
-	<form method="POST" use:enhance class="flex items-center justify-center py-12">
+<AuthShell>
+	<form method="POST" use:enhance class="flex items-start justify-center py-12">
 		<div class="mx-auto grid w-[350px] gap-6">
 			<div class="grid gap-2 text-center">
 				<h1 class="text-3xl font-bold">Login</h1>
@@ -59,14 +60,4 @@
 			</div>
 		</div>
 	</form>
-
-	<div class="hidden h-screen bg-muted lg:block">
-		<img
-			src="road-of-oak-trees.jpg"
-			alt="oak tree"
-			width="1920"
-			height="1080"
-			class="h-full w-full object-cover brightness-[0.4] contrast-[1.3] hue-rotate-[30deg]"
-		/>
-	</div>
-</div>
+</AuthShell>

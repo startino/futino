@@ -1,9 +1,5 @@
 <script>
-	import Shell from '$lib/components/organisms/Shell.svelte';
-
 	import Header from '$lib/components/molecules/Header.svelte';
-	import Prose from '$lib/components/atoms/Prose.svelte';
-	import MarketingShell from '$lib/components/ui/shell/marketing-shell.svelte';
 
 	const navigation = [
 		{ name: 'Home', href: '/' },
@@ -16,14 +12,6 @@
 	};
 </script>
 
-<MarketingShell class="">
-	<svelte:fragment slot="header">
-		<Header companyName="Oak" pages={navigation} {CTAButtons} />
-	</svelte:fragment>
+<Header companyName="Oak" pages={navigation} {CTAButtons} />
 
-	<!-- Router Slot -->
-	<slot />
-	<!-- ---- / ---- -->
-	<svelte:fragment slot="pageFooter"></svelte:fragment>
-	<!-- (footer) -->
-</MarketingShell>
+<slot />

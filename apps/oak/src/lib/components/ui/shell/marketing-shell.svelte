@@ -91,7 +91,7 @@
 		<div id="page" class="{regionPage} {cPage}" style:scrollbar-gutter={scrollbarGutter} on:scroll>
 			<!-- Slot: Page Header -->
 			{#if $$slots.pageHeader}
-				<header id="page-header" class="flex-none {classesPageHeader}">
+				<header id="page-header" class="sticky flex-none {classesPageHeader}">
 					<slot name="pageHeader">(slot:header)</slot>
 				</header>
 			{/if}

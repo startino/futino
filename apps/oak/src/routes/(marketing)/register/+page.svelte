@@ -1,94 +1,160 @@
 <script lang="ts">
+	import { Loader2 } from 'lucide-svelte';
+	import { zodClient } from 'sveltekit-superforms/adapters';
+
 	import { Button } from '$lib/components/ui/button';
 	import { Input } from '$lib/components/ui/input';
 	import { Label } from '$lib/components/ui/label';
-	import * as Form from '$lib/components/ui/form';
-	import { registerSchema, type LoginSchema } from './schema';
-	import { type SuperValidated, type Infer, superForm } from 'sveltekit-superforms';
-	import { zodClient } from 'sveltekit-superforms/adapters';
-	import { MoveRight } from 'lucide-svelte';
+	import { superForm } from 'sveltekit-superforms/client';
+	import { registrationSchema } from '$lib/schemas';
+	import AuthShell from '$lib/components/auth-shell/auth-shell.svelte';
 
-	export let data: PageData;
+	export let data;
 
-	export let datta: SuperValidated<Infer<LoginSchema>> = data.form;
-
-	const form = superForm(datta, {
-		validators: zodClient(registerSchema)
+	const { form, enhance, validate, constraints, errors, submitting } = superForm(data.form, {
+		dataType: 'json',
+		validators: zodClient(registrationSchema)
 	});
 
-	const { form: formData, enhance } = form;
+	let step = 1;
 
-	let currentStep = 0;
+	const moveTo = async (newStep: 1 | 2) => {
+		if (newStep == 2) {
+			const result = await validate('organization');
+
+			if (result) return;
+		}
+
+		step = newStep;
+	};
 </script>
 
-<div class="h-full w-full lg:grid lg:grid-cols-2">
-	<form method="POST" use:enhance class="flex items-center justify-center py-12">
-		<div class="mx-auto grid w-[350px] gap-6">
-			<div class="relative flex w-full flex-row justify-between">
-				<div class="flex flex-col place-items-center gap-2 text-center">
-					<h1 class="text-md">Company Details</h1>
-					<div class=" grid aspect-1 place-items-center rounded-full bg-card text-xl">
-						<p class="p-2">1</p>
-					</div>
-				</div>
-				<MoveRight class="w-full scale-x-125" width="120" />
-				<div class="flex flex-col place-items-center gap-2 text-center">
-					<h1 class="text-md">Company Details</h1>
-					<div class=" grid aspect-1 place-items-center rounded-full bg-card text-xl">
-						<p class="p-2">1</p>
-					</div>
-				</div>
-			</div>
+<AuthShell>
+	<form method="POST" use:enhance class="grid w-full max-w-sm items-start justify-center py-12">
+		<div class="mx-auto grid gap-10">
 			<div class="grid gap-2 text-center">
-				<h1 class="text-3xl font-bold">Login</h1>
+				<h1 class="text-3xl font-bold">Register your company</h1>
 				<p class="text-balance text-muted-foreground">
-					Enter your email and password below to login to your account
+					If your admin already created an account, <a href="/login" class="text-accent underline"
+						>login here</a
+					>
 				</p>
 			</div>
-			<div class="grid gap-4">
-				<Form.Field {form} name="email">
-					<Form.Control let:attrs class="grid gap-2">
-						<Form.Label>Email</Form.Label>
-						<Input {...attrs} bind:value={$formData.email} placeholder="m@example.com" />
-					</Form.Control>
-					<Form.Description />
-					<Form.FieldErrors />
-				</Form.Field>
-				<div class="grid gap-2">
-					<Form.Field name="password" {form}>
-						<Form.Control let:attrs class="flex items-center">
-							<Label for="password">Password</Label>
 
-							<Input {...attrs} bind:value={$formData.password} />
-						</Form.Control>
-						<a href="##" class="ml-auto inline-block text-sm text-accent underline">
-							Forgot your password?
-						</a>
-						<Form.Description />
-						<Form.FieldErrors />
-					</Form.Field>
+			<div
+				class="relative grid w-[350px] grid-cols-[auto_1fr_auto] grid-rows-2 items-center justify-items-center"
+			>
+				<h1 class="col-start-1 row-start-1 font-bold">Company Details</h1>
+				<div class="row-start-2 flex w-full items-center">
+					<span class="bg-tranparent h-1 flex-1" />
+					<span
+						class:bg-card-foreground={step == 1}
+						class:text-card={step == 1}
+						class="grid aspect-1 w-12 place-items-center rounded-full bg-card text-xl">1</span
+					>
+					<span class="h-1 flex-1 bg-foreground" />
 				</div>
-				<Form.Button type="submit" class="w-full">Login</Form.Button>
-			</div>
-			<div class="mt-4 text-center text-sm">
-				Don&apos;t have an account?
-				<a href="##" class="text-accent underline"> Sign up </a>
-			</div>
 
-			<div class="mt-4 text-balance text-center text-sm">
-				If you’re company hasn’t created accounts yet to register
-				<a href="##" class="text-accent underline"> click here to register</a>
+				<span class="col-start-2 row-start-2 h-1 w-full bg-foreground" />
+
+				<h1 class="col-start-3 row-start-1 font-bold">Admin Details</h1>
+				<div class="col-start-3 row-start-2 flex w-full items-center">
+					<span class="h-1 flex-1 bg-foreground" />
+					<span
+						class:bg-card-foreground={step == 2}
+						class:text-card={step == 2}
+						class="grid aspect-1 w-12 place-items-center rounded-full bg-card text-xl">2</span
+					>
+					<span class="bg-tranparent h-1 flex-1" />
+				</div>
+			</div>
+			<div class="grid gap-4">
+				{#if step == 1}
+					<div class="grid gap-2">
+						<Label>Company Name</Label>
+						<Input
+							bind:value={$form.organization.name}
+							name="organizationName"
+							aria-invalid={$errors.organization?.name ? true : undefined}
+							{...$constraints.organization.name}
+						/>
+						{#if $errors.organization?.name}
+							<p class="text-sm text-destructive">{$errors.organization.name[0]}</p>
+						{/if}
+					</div>
+				{:else}
+					<div class="grid gap-2">
+						<Label>Full Name</Label>
+						<Input
+							bind:value={$form.user.fullName}
+							name="fullname"
+							aria-invalid={$errors.user?.fullName ? true : undefined}
+							{...$constraints.user.fullName}
+						/>
+						{#if $errors.user?.fullName}
+							<p class="text-sm text-destructive">{$errors.user.fullName[0]}</p>
+						{/if}
+					</div>
+
+					<div class="grid gap-2">
+						<Label>Email</Label>
+						<Input
+							type="email"
+							bind:value={$form.user.email}
+							name="email"
+							aria-invalid={$errors.user?.email ? true : undefined}
+							{...$constraints.user.email}
+						/>
+						{#if $errors.user?.email}
+							<p class="text-sm text-destructive">{$errors.user.email[0]}</p>
+						{/if}
+					</div>
+
+					<div class="grid gap-2">
+						<Label>Password</Label>
+						<Input
+							type="password"
+							bind:value={$form.user.password}
+							name="password"
+							aria-invalid={$errors.user?.password ? true : undefined}
+							{...$constraints.user.password}
+						/>
+						{#if $errors.user?.password}
+							<p class="text-sm text-destructive">{$errors.user.password[0]}</p>
+						{/if}
+					</div>
+
+					<div class="grid gap-2">
+						<Label>Confirma password</Label>
+						<Input
+							type="password"
+							bind:value={$form.user.confirmPassword}
+							name="confirmPassword"
+							aria-invalid={$errors.user?.confirmPassword ? true : undefined}
+							{...$constraints.user.confirmPassword}
+						/>
+						{#if $errors.user?.confirmPassword}
+							<p class="text-sm text-destructive">{$errors.user.confirmPassword[0]}</p>
+						{/if}
+					</div>
+
+					{#if $errors._errors}
+						<p class="text-sm text-destructive">{$errors._errors[0]}</p>
+					{/if}
+
+					<Button type="submit">
+						{#if $submitting}
+							<Loader2 class="animate-spin" />
+						{:else}
+							Submit
+						{/if}
+					</Button>
+				{/if}
+				<div class="flex justify-between">
+					<Button disabled={step == 1} variant="outline" on:click={() => moveTo(1)}>Prev</Button>
+					<Button disabled={step == 2} variant="outline" on:click={() => moveTo(2)}>Next</Button>
+				</div>
 			</div>
 		</div>
 	</form>
-
-	<div class="hidden h-screen bg-muted lg:block">
-		<img
-			src="road-of-oak-trees.jpg"
-			alt="oak tree"
-			width="1920"
-			height="1080"
-			class="h-full w-full object-cover brightness-[0.4] contrast-[1.3] hue-rotate-[30deg]"
-		/>
-	</div>
-</div>
+</AuthShell>

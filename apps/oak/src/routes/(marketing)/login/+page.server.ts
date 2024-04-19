@@ -1,9 +1,10 @@
 import { loginSchema } from '$lib/schemas';
 import { fail, redirect } from '@sveltejs/kit';
 import { superValidate, setError } from 'sveltekit-superforms/server';
+import { zod } from 'sveltekit-superforms/adapters';
 
 export const load = async () => {
-	const form = await superValidate(loginSchema);
+	const form = await superValidate(zod(loginSchema));
 
 	return {
 		form
@@ -12,7 +13,7 @@ export const load = async () => {
 
 export const actions = {
 	default: async ({ request, locals: { apiClient } }) => {
-		const form = await superValidate(request, loginSchema);
+		const form = await superValidate(request, zod(loginSchema));
 
 		if (!form.valid) {
 			return fail(400, { form });
