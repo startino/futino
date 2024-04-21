@@ -46,8 +46,8 @@
 		return subreddit;
 	}
 
-	let reasonTextValue = 'Post is irrelevant because';
-	let commentTextValue = lead?.comment ?? '';
+	$: reasonTextValue = 'Post is irrelevant because';
+	$: commentTextValue = lead?.comment ?? '';
 
 	async function handlePublishComment() {
 		console.log('Trying to publish');
