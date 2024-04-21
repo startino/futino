@@ -65,6 +65,7 @@
 		if (res) {
 			console.log('Marked as irrelevant');
 			lead = null;
+			reasonTextValue = 'Post is irrelevant because';
 		} else {
 			console.log('Not marked as irrelevant');
 		}
@@ -107,7 +108,7 @@
 						<Textarea
 							class="h-64 p-4"
 							placeholder={`Reply ${lead.id}...`}
-							value={lead.comment}
+							bind:value={commentTextValue}
 							disabled={lead.status != 'under_review'}
 						/>
 						<div class="flex items-center">
@@ -145,7 +146,6 @@
 									>
 									<Button
 										class=""
-										bind:value={commentTextValue}
 										on:click={() => {
 											handlePublishComment();
 										}}>Publish</Button

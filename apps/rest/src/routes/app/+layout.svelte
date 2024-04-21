@@ -49,9 +49,7 @@
 		slotPageContent="m-4"
 		slotPageHeader="my-4"
 	>
-		<svelte:fragment slot="sidebarLeft">
-			<SideNav {navigations} {bottomNavigation} />
-		</svelte:fragment>
+		<svelte:fragment slot="sidebarLeft"></svelte:fragment>
 
 		<slot />
 	</Shell>
