@@ -1,4 +1,9 @@
 import type { Tables } from '$lib/server/supabase.types';
+import { createCurrentProfile } from './stores';
+
+export interface Context {
+	currentProfile: ReturnType<typeof createCurrentProfile>;
+}
 
 export interface ContractDatableRow extends Tables<'contracts'> {
 	owner: Tables<'profiles'>;

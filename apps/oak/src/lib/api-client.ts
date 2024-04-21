@@ -21,18 +21,17 @@ export class ApiClient {
 		this.session = arg.session;
 	}
 
-	getOrgProjects = async (organizationId: string) => {
-		return await this.supabase.from('projects').select('*').eq('organization_id', organizationId);
-	};
+	getOrg = async (organizationId: string) =>
+		await this.supabase.from('organizations').select().eq('id', organizationId).single();
+
+	getOrgProjects = async (organizationId: string) =>
+		await this.supabase.from('projects').select('*').eq('organization_id', organizationId);
 
 	getOrgDeparments = async (organizationId: string) =>
 		await this.supabase.from('departments').select('*').eq('organization_id', organizationId);
 
 	getOrgUsers = async (organizationId: string) =>
-		await this.supabase
-			.from('profiles')
-			.select('id, full_name')
-			.eq('organization_id', organizationId);
+		await this.supabase.from('profiles').select().eq('organization_id', organizationId);
 
 	getOrgContracts = async (organizationId: string) =>
 		await this.supabase.from('contracts').select('*').eq('organization_id', organizationId);

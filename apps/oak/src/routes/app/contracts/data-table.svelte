@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { readable } from 'svelte/store';
-	import { ArrowUpDown } from 'lucide-svelte';
+	import { writable } from 'svelte/store';
+	import { ArrowUpDown, Search } from 'lucide-svelte';
 
 	import { createTable, Subscribe } from '$lib/svelte-headless-table';
 	import { addPagination, addTableFilter, addSortBy } from '$lib/svelte-headless-table/plugins';
@@ -8,12 +8,19 @@
 	import * as Table from '$lib/components/ui/table';
 	import { Button } from '$lib/components/ui/button';
 	import { Input } from '$lib/components/ui/input';
-	import type { Tables } from '$lib/server/supabase.types';
+	import { Switch } from '$lib/components/ui/switch';
+	import { Label } from '$lib/components/ui/label';
+	import { getContext } from '$lib/utils';
 	import type { ContractDatableRow } from '$lib/types';
 
 	export let data: ContractDatableRow[];
 
-	const table = createTable(readable(data), {
+	export let userPendingApprovalsMode: boolean;
+	export let userPendingApprovalsCount: number;
+
+	const currentProfile = getContext('currentProfile');
+
+	const table = createTable(writable(data), {
 		page: addPagination(),
 		sort: addSortBy(),
 		filter: addTableFilter({
@@ -35,6 +42,9 @@
 			accessor: 'owner',
 			header: 'Owner',
 			plugins: {
+				filter: {
+					getFilterValue: (value) => value.full_name
+				},
 				sort: {
 					disable: true
 				}
@@ -45,6 +55,9 @@
 			accessor: 'vendor',
 			header: 'Vendor',
 			plugins: {
+				filter: {
+					getFilterValue: (value) => value.name
+				},
 				sort: {
 					disable: true
 				}
@@ -95,8 +108,30 @@
 </script>
 
 <div>
-	<div class="flex items-center py-4">
-		<Input class="max-w-sm" placeholder="Filter emails..." type="text" bind:value={$filterValue} />
+	<div class="flex items-center gap-4 py-4">
+		<div class="flex items-center gap-2">
+			<Search />
+			<Input
+				class="w-[400px]"
+				placeholder="Filter numbers, owners, vendors, description, status..."
+				type="text"
+				bind:value={$filterValue}
+			/>
+		</div>
+
+		<!-- {#if $currentProfile.role !== 'admin'}
+			<div class="flex items-center space-x-2">
+				<Switch id="user-pending-approvals" bind:checked={userPendingApprovalsMode} />
+				<Label for="user-pending-approvals">Your pending approvals</Label>
+			</div>
+		{/if} -->
+
+		{#if $currentProfile.role !== 'admin' && userPendingApprovalsCount > 0}
+			<div class="flex items-center space-x-2">
+				<Switch id="user-pending-approvals" bind:checked={userPendingApprovalsMode} />
+				<Label for="user-pending-approvals" class="text-sm text-primary">Pending approvals</Label>
+			</div>
+		{/if}
 	</div>
 	<div class="rounded-md border">
 		<Table.Root {...$tableAttrs}>
@@ -135,10 +170,6 @@
 									<Table.Cell {...attrs}>
 										{#if cell.id === 'amount'}
 											<div class="text-right">
-												<Render of={cell.render()} />
-											</div>
-										{:else if cell.id === 'status'}
-											<div class="capitalize">
 												<Render of={cell.render()} />
 											</div>
 										{:else}

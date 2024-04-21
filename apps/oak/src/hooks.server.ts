@@ -39,6 +39,7 @@ export const handle: Handle = async ({ event, resolve }) => {
 			.single();
 
 		event.locals.orgID = data.organization_id;
+		event.locals.currentProfile = data;
 		apiClient.stripeCustomerId = data.stripe_customer_id;
 
 		const { data: subscription } = await apiClient.getUserSubscription();
