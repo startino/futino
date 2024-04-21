@@ -41,7 +41,7 @@ export const actions = {
 				data: {
 					organization_id: org.id,
 					role: 'admin',
-					full_name: formData.user.fullName
+					full_name: userData.fullName
 				}
 			}
 		});
@@ -50,6 +50,6 @@ export const actions = {
 			return setError(form, 'Something went wrong. Please, try again', { status: 500 });
 		}
 
-		redirect(302, '/login?status=confirmation-sent');
+		redirect(302, `/login?confirmation-sent&email=${userData.email}`);
 	}
 };

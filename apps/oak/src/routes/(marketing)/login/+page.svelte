@@ -1,13 +1,20 @@
 <script lang="ts">
-	import { Loader2 } from 'lucide-svelte';
+	import { Loader2, Send, CheckCircle } from 'lucide-svelte';
 	import { superForm } from 'sveltekit-superforms/client';
 
 	import { Input } from '$lib/components/ui/input';
 	import { Button } from '$lib/components/ui/button';
 	import { Label } from '$lib/components/ui/label';
 	import { AuthShell } from '$lib/components/auth-shell';
+	import * as Alert from '$lib/components/ui/alert';
+	import { page } from '$app/stores';
 
 	export let data;
+
+	const newEmail = $page.url.searchParams.get('email');
+
+	const confirmationSent = $page.url.searchParams.has('confirmation-sent') && newEmail;
+	const confirmed = $page.url.searchParams.has('confirmed') && newEmail;
 
 	const { form, enhance, constraints, errors, submitting } = superForm(data.form);
 </script>
@@ -15,6 +22,26 @@
 <AuthShell>
 	<form method="POST" use:enhance class="flex items-start justify-center py-12">
 		<div class="mx-auto grid w-[350px] gap-6">
+			{#if confirmationSent}
+				<Alert.Root variant="default">
+					<Send class="h-4 w-4" />
+					<Alert.Title>Verify your email</Alert.Title>
+					<Alert.Description
+						>We've sent an email to <span class="font-bold">{newEmail}</span> to verify your email address
+						and activate your account.</Alert.Description
+					>
+				</Alert.Root>
+			{/if}
+
+			{#if confirmed}
+				<Alert.Root variant="default">
+					<CheckCircle class="h-4 w-4" />
+					<Alert.Title>Congratulations!</Alert.Title>
+					<Alert.Description
+						>Your email: <span class="font-bold">{newEmail}</span> has been confirmed. You can now login.</Alert.Description
+					>
+				</Alert.Root>
+			{/if}
 			<div class="grid gap-2 text-center">
 				<h1 class="text-3xl font-bold">Login</h1>
 				<p class="text-balance text-muted-foreground">
