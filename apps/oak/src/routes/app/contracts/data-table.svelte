@@ -119,13 +119,6 @@
 			/>
 		</div>
 
-		<!-- {#if $currentProfile.role !== 'admin'}
-			<div class="flex items-center space-x-2">
-				<Switch id="user-pending-approvals" bind:checked={userPendingApprovalsMode} />
-				<Label for="user-pending-approvals">Your pending approvals</Label>
-			</div>
-		{/if} -->
-
 		{#if $currentProfile.role !== 'admin' && userPendingApprovalsCount > 0}
 			<div class="flex items-center space-x-2">
 				<Switch id="user-pending-approvals" bind:checked={userPendingApprovalsMode} />
