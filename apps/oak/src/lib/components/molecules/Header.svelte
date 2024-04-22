@@ -60,7 +60,7 @@
 </script>
 
 <header
-	class="fixed left-1/2 mt-6 w-[90%] max-w-7xl -translate-x-1/2 rounded-3xl bg-card text-card-foreground"
+	class="sticky top-6 z-10 mx-auto my-6 w-[90%] max-w-7xl rounded-3xl bg-card text-card-foreground"
 >
 	<nav
 		class="items-center justify-between p-6 lg:px-8 {menuOpen ? 'hidden' : 'flex'}"
@@ -108,7 +108,6 @@
 					</Button>
 				{/each}
 			</div>
-			<ThemeToggle />
 		</div>
 	</nav>
 	<!-- Mobile menu, show/hide based on menu open state. -->
