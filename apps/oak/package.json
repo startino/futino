@@ -48,7 +48,7 @@
 		"@tailwindcss/aspect-ratio": "^0.4.2",
 		"@tailwindcss/typography": "^0.5.12",
 		"bits-ui": "^0.21.4",
-		"clsx": "^2.1.0",
+		"clsx": "^2.1.1",
 		"cmdk-sv": "^0.0.17",
 		"dotenv": "^16.4.5",
 		"embla-carousel-svelte": "8.0.2",
