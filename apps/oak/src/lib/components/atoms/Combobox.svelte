@@ -9,7 +9,7 @@
 
 	export let setValue;
 
-	export let items: { value: string; label: string }[];
+	export let items: { value: string | undefined; label: string }[];
 
 	export let placeholder: string = 'Select or search for an item...';
 
@@ -35,13 +35,13 @@
 <Popover.Root bind:open let:ids>
 	<Popover.Trigger asChild let:builder>
 		<Form.Control id={ids.trigger} let:attrs>
+			<input hidden bind:value {...attrs} />
 			<Button
 				builders={[builder]}
-				{...attrs}
 				variant="outline"
 				role="combobox"
 				type="button"
-				class={cn('justify-between', !label && 'text-muted-foreground')}
+				class={cn('justify-between', !label && 'text-muted-foreground', 'max-w-md')}
 			>
 				{label}
 				<ChevronsUpDown class="ml-2 h-4 w-4 shrink-0 opacity-50" />
@@ -58,7 +58,6 @@
 						class="whitespace-nowrap px-2"
 						value={item.value}
 						onSelect={(currentValue) => {
-							console.log('currentValue: ', currentValue);
 							setValue(currentValue);
 							value = currentValue;
 							closeAndFocusTrigger(ids.trigger);

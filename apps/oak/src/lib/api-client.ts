@@ -41,6 +41,7 @@ export class ApiClient {
 			.from('contracts')
 			.select('*, owner:owner_id (*), vendor:vendor_id(*)')
 			.eq('organization_id', organizationId)
+			.order('created_at', { ascending: false })
 			.returns<ContractDatableRow[]>();
 
 	getOrgVendors = async (organizationId: string) =>

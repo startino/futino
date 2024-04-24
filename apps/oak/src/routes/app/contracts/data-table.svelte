@@ -125,6 +125,8 @@
 				<Label for="user-pending-approvals" class="text-sm text-primary">Pending approvals</Label>
 			</div>
 		{/if}
+		<span class="flex-grow" />
+		<slot name="entry-form" />
 	</div>
 	<div class="rounded-md border">
 		<Table.Root {...$tableAttrs}>
