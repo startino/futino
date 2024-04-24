@@ -2,6 +2,9 @@
 	import { Button } from '$lib/components/ui/button';
 	import { Brain, Boxes, Workflow, PanelsTopLeft, Building2, MonitorCheck } from 'lucide-svelte';
 
+	import { FaqSection } from '$lib/components/ui/faq';
+	import { faqs } from './faq-data';
+
 	const process = [
 		{
 			title: 'Plan',
@@ -472,4 +475,8 @@
 			</a>
 		</li>
 	</ul>
+</section>
+
+<section class="flex max-w-7xl flex-col items-center justify-center px-5 sm:px-10">
+	<FaqSection {faqs} />
 </section>
