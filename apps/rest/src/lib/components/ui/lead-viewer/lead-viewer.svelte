@@ -27,10 +27,12 @@
 	import * as api from '$lib/api';
 	import type { UUID } from '$lib/types';
 
-	export let lead: Lead | null = null;
+	export let lead: Lead;
 
-	let url: string = lead?.data.url ?? '';
-	let subreddit: string = extractSubreddit(url);
+	let url: string;
+	$: url = lead.data?.url ?? '';
+	let subreddit: string;
+	$: subreddit = extractSubreddit(url);
 
 	function extractSubreddit(url: string): string {
 		// Parse the URL
@@ -47,11 +49,11 @@
 	}
 
 	let reasonTextValue = 'Post is irrelevant because';
-	let commentTextValue = lead?.comment ?? '';
+	let commentTextValue = lead.comment ?? '';
 
 	async function handlePublishComment() {
 		console.log('Trying to publish');
-		const res: boolean = await api.publishComment(lead?.id, commentTextValue);
+		const res: boolean = await api.publishComment(lead.id, lead.comment);
 		if (res) {
 			console.log('Comment published');
 		} else {
@@ -61,10 +63,12 @@
 
 	async function handleIrrelevant() {
 		console.log('Trying to mark as irrelevant');
-		const res: boolean = await api.markAsIrrelevant(lead?.id, lead?.submission_id, reasonTextValue);
+		const res: boolean = await api.markAsIrrelevant(lead.id, lead.submission_id, reasonTextValue);
 		if (res) {
 			console.log('Marked as irrelevant');
-			lead = null;
+			// Reactive UI management to show lead was removed
+			lead.data!.body = '';
+
 			reasonTextValue = 'Post is irrelevant because';
 		} else {
 			console.log('Not marked as irrelevant');
@@ -73,9 +77,10 @@
 
 	async function handleGenerateComment() {
 		console.log('Trying to generate comment');
-		const res: boolean = await api.generateComment(lead?.id);
-		if (res) {
+		const comment: string = await api.generateComment(lead.data?.title, lead.data?.body);
+		if (comment != '') {
 			console.log('Comment generated');
+			commentTextValue = comment;
 		} else {
 			console.log('Comment not generated');
 		}
@@ -108,8 +113,8 @@
 						<Textarea
 							class="h-64 p-4"
 							placeholder={`Reply ${lead.id}...`}
-							bind:value={commentTextValue}
-							disabled={lead.status != 'under_review'}
+							bind:value={lead.comment}
+
 						/>
 						<div class="flex items-center">
 							{#if lead.status == 'under_review'}

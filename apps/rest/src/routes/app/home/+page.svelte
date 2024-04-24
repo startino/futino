@@ -18,6 +18,6 @@
 	</Resizable.Pane>
 	<Resizable.Handle withHandle />
 	<Resizable.Pane defaultSize={50}>
-		<LeadViewer lead={activeLead} />
+		<LeadViewer bind:lead={activeLead} />
 	</Resizable.Pane>
 </Resizable.PaneGroup>
