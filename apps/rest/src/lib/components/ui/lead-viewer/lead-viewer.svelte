@@ -68,6 +68,7 @@
 			console.log('Marked as irrelevant');
 			// Reactive UI management to show lead was removed
 			lead.data!.body = '';
+
 			reasonTextValue = 'Post is irrelevant because';
 		} else {
 			console.log('Not marked as irrelevant');
@@ -113,6 +114,7 @@
 							class="h-64 p-4"
 							placeholder={`Reply ${lead.id}...`}
 							bind:value={lead.comment}
+
 						/>
 						<div class="flex items-center">
 							{#if lead.status == 'under_review'}

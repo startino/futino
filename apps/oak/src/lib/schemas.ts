@@ -1,46 +1,47 @@
 import { z } from 'zod';
 
-const departmentSchema = z.object({
+export const departmentSchema = z.object({
 	number: z.number().gt(0, 'Please enter a valid number'),
 	name: z.string().min(1, 'The deparment name is required')
 });
 
-const projectSchema = z.string().min(1, 'The project name is required');
+export const projectSchema = z.string().min(1, 'The project name is required');
 
-const accountSchema = z.number().gt(0, 'Please enter a valid number');
+export const accountSchema = z.number().gt(0, 'Please enter a valid number');
+
+export const loginSchema = z.object({
+	email: z.string().email(),
+	password: z.string()
+});
 
 const userSchema = z
 	.object({
-		fullName: z.string().max(140, 'Name must be less than 140 characters.').min(3),
+		fullName: z
+			.string()
+			.max(140, 'Name must be less than 140 characters.')
+			.min(3, 'Name must be at leat 3 characters long')
+			.refine((v) => v !== '', 'A full name is required'),
 		email: z.string().email('Invalid email address'),
 		password: z
 			.string()
-			.max(96, 'Password must be less than 96 characters')
-			.min(6, 'Password must be at least 6 characters.'),
-		confirmPassword: z
-			.string()
-			.max(96, 'Password must be less than 96 characters')
-			.min(6, 'Password must be at least 6 characters.')
+			.min(8, 'Password must be at least 8 characters')
+			.regex(
+				/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@.#$!%*?&^])[A-Za-z\d@.#$!%*?&]{8,15}$/,
+				'For security sake, please include lowercase, uppercase letters, digits and symbols.'
+			),
+		confirmPassword: z.string()
 	})
 	.refine(({ password, confirmPassword }) => password === confirmPassword, {
 		message: 'The passwords did not match'
 	});
 
-export const companySchema = z.object({
-	name: z.string().min(1, 'The name of the company is required'),
-	departments: z.array(departmentSchema).optional().default([]),
-	accounts: z.array(accountSchema).optional().default([]),
-	projects: z.array(projectSchema).optional().default([])
+export const organizationSchema = z.object({
+	name: z.string().min(1, 'An organization name is required')
 });
 
 export const registrationSchema = z.object({
-	company: companySchema,
+	organization: organizationSchema,
 	user: userSchema
-});
-
-export const loginUserSchema = z.object({
-	email: z.string().email('Please enter a valid email address'),
-	password: z.string().min(1, 'Please enter a password')
 });
 
 export const contractEntrySchema = z

@@ -1,108 +1,55 @@
-import { setError, superValidate } from 'sveltekit-superforms/server';
 import { registrationSchema } from '$lib/schemas';
-import { fail, redirect, type RequestEvent } from '@sveltejs/kit';
-import type { Actions } from './$types';
+import { fail, redirect, type RecursiveRequired } from '@sveltejs/kit';
+import { setError, superValidate } from 'sveltekit-superforms/server';
+import { zod } from 'sveltekit-superforms/adapters';
 
 export const load = async () => {
+	const form = await superValidate(zod(registrationSchema));
+
 	return {
-		form: await superValidate(registrationSchema)
+		form
 	};
 };
 
-export const actions: Actions = {
-	default: async (event) => {
-		const form = await superValidate(event, registrationSchema);
-		const { user, company } = form.data;
-		const supabase = event.locals.apiClient.supabase;
+export const actions = {
+	default: async ({ request, locals: { apiClient } }) => {
+		const form = await superValidate(request, zod(registrationSchema));
 
 		if (!form.valid) {
-			return fail(400, {
-				msg: form.errors,
-				form: form
-			});
+			return fail(400, { form });
 		}
 
-		const { data: organization, error: orgError } = await supabase
+		type FormData = RecursiveRequired<typeof form.data>;
+
+		const formData: FormData = form.data as FormData;
+
+		const { data: org, error: orgErr } = await apiClient.supabase
 			.from('organizations')
-			.insert({ name: company.name })
+			.insert({ name: formData.organization.name })
 			.select()
 			.single();
 
-		console.log({ orgError });
+		if (orgErr) {
+			return setError(form, 'Something went wrong. Please, try again', { status: 500 });
+		}
 
-		const { error: departError } = await supabase.from('departments').insert(
-			company.departments.map((d) => ({
-				name: d.name,
-				number: d.number,
-				organization_id: organization.id
-			}))
-		);
-
-		console.log({ departError });
-
-		const { error: projectError } = await supabase.from('projects').insert(
-			company.projects.map((p) => ({
-				name: p,
-				organization_id: organization.id
-			}))
-		);
-
-		console.log({ projectError });
-
-		const { error: accountError } = await supabase.from('accounting-accounts').insert(
-			company.accounts.map((a) => ({
-				number: a,
-				organization_id: organization.id
-			}))
-		);
-
-		console.log({ accountError });
-
-		const { data: signUpData, error: authError } = await supabase.auth.signUp({
-			email: user.email,
-			password: user.password,
+		const userData = formData.user;
+		const { error } = await apiClient.supabase.auth.signUp({
+			email: userData.email,
+			password: userData.password,
 			options: {
 				data: {
-					full_name: user.fullName,
-					organization_id: organization.id
+					organization_id: org.id,
+					role: 'admin',
+					full_name: userData.fullName
 				}
 			}
 		});
 
-		console.log({ authError });
-
-		const customer = await createStripeCustomer(
-			event,
-			form.data.user.email,
-			form.data.user.fullName
-		);
-
-		const { error: profileUpdateError } = await supabase
-			.from('profiles')
-			.update({ stripe_customer_id: customer.id })
-			.eq('id', signUpData.user.id);
-
-		console.log({ profileUpdateError });
-
-		if (
-			authError ||
-			orgError ||
-			departError ||
-			projectError ||
-			accountError ||
-			profileUpdateError
-		) {
-			return setError(form, 'An error occured while registering.');
-		} else {
-			redirect(300, '/login');
+		if (error) {
+			return setError(form, 'Something went wrong. Please, try again', { status: 500 });
 		}
+
+		redirect(302, `/login?confirmation-sent&email=${userData.email}`);
 	}
 };
-
-async function createStripeCustomer(event: RequestEvent, email: string, fullName: string) {
-	const customer = await event.locals.apiClient.stripe.customers.create({
-		email: email,
-		name: fullName
-	});
-	return customer;
-}
