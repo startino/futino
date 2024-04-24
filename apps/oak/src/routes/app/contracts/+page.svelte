@@ -25,6 +25,7 @@
 	import Textarea from '$lib/components/ui/textarea/textarea.svelte';
 	import { buttonVariants } from '$lib/components/ui/button';
 	import { onMount } from 'svelte';
+	import { fly } from 'svelte/transition';
 
 	export let data;
 
@@ -109,7 +110,10 @@
 						<Button><Plus />Add</Button>
 					</Dialog.Trigger>
 
-					<Dialog.Content class="max-h-screen w-full max-w-lg overflow-y-scroll">
+					<Dialog.Content
+						transition={(node) => fly(node, { x: 300, duration: 300 })}
+						class="left-auto right-0 max-h-screen w-full max-w-lg translate-x-1 overflow-y-scroll border-y-0 sm:rounded-none"
+					>
 						<Dialog.Header>
 							<Dialog.Title>Add a contract</Dialog.Title>
 						</Dialog.Header>
