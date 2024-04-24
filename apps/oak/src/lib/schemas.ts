@@ -44,35 +44,29 @@ export const registrationSchema = z.object({
 	user: userSchema
 });
 
-export const contractEntrySchema = z
+export const contractSchema = z
 	.object({
-		parent_contract: z.string().optional(),
+		parent_contract_id: z.string().optional(),
 		start_date: z.date(),
 		end_date: z.date(),
-		description: z.string().min(5, 'Description must be at least 5 characters long').optional(),
-		vendor_id: z.string().min(1, 'The vendor is required'),
-		new_vendor: z
-			.object({
-				name: z.string().min(1, 'The name is required'),
-				department_id: z.string().min(1, 'The department is required').optional()
-			})
-			.optional(),
-		new_project: z
-			.object({
-				name: z.string().min(1, 'The name is required'),
-				description: z.string().min(5, 'Description must be at least 5 characters long').optional()
-			})
-			.optional(),
-		project_id: z.string().optional(),
-		owner: z.string().min(1, 'An owner is required'),
-		department_id: z.string().optional(),
+		description: z.string().min(5, 'Description must be at least 5 characters long'),
+		number: z.string().min(1, 'The contract number is required'),
+		project_id: z.string().uuid('A project is required'),
+		account_id: z.string().uuid('An account is required'),
+		organization_id: z.string().uuid(),
+		owner_id: z.string().uuid(),
+		current_approver_id: z.string().uuid(),
+		department_id: z.string().uuid('A department is required'),
 		amount: z.string().min(1, 'An amount is required'),
-		spend_category: z.string().optional(),
-		attachment: z.string()
+		spend_category_id: z.string().uuid('A spend category is required'),
+		attachment: z
+			.instanceof(File, { message: 'Please upload a the contract PDF.' })
+			.refine((f) => f.size / 1024 / 1024 < 5, 'Max 5 MiB upload size.'),
+		vendor_id: z.string().uuid('The vendor is required')
 	})
 	.refine((v) => v.start_date <= v.end_date, {
 		message: "End date can't be before start date",
 		path: ['end_date']
 	});
 
-export type ContractEntryForm = typeof contractEntrySchema;
+export type ContractEntryForm = typeof contractSchema;

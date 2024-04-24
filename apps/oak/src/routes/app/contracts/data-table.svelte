@@ -119,19 +119,14 @@
 			/>
 		</div>
 
-		<!-- {#if $currentProfile.role !== 'admin'}
-			<div class="flex items-center space-x-2">
-				<Switch id="user-pending-approvals" bind:checked={userPendingApprovalsMode} />
-				<Label for="user-pending-approvals">Your pending approvals</Label>
-			</div>
-		{/if} -->
-
 		{#if $currentProfile.role !== 'admin' && userPendingApprovalsCount > 0}
 			<div class="flex items-center space-x-2">
 				<Switch id="user-pending-approvals" bind:checked={userPendingApprovalsMode} />
 				<Label for="user-pending-approvals" class="text-sm text-primary">Pending approvals</Label>
 			</div>
 		{/if}
+		<span class="flex-grow" />
+		<slot name="entry-form" />
 	</div>
 	<div class="rounded-md border">
 		<Table.Root {...$tableAttrs}>

@@ -1,8 +1,22 @@
 import type { Tables } from '$lib/server/supabase.types';
-import { createCurrentProfile } from './stores';
+import {
+	createAccounts,
+	createCurrentProfile,
+	createDepartments,
+	createOrganization,
+	createProjects,
+	createSpendCategories,
+	createVendors
+} from './stores';
 
 export interface Context {
 	currentProfile: ReturnType<typeof createCurrentProfile>;
+	organization: ReturnType<typeof createOrganization>;
+	departments: ReturnType<typeof createDepartments>;
+	projects: ReturnType<typeof createProjects>;
+	accounts: ReturnType<typeof createAccounts>;
+	spendCategories: ReturnType<typeof createSpendCategories>;
+	vendors: ReturnType<typeof createVendors>;
 }
 
 export interface ContractDatableRow extends Tables<'contracts'> {

@@ -5,11 +5,26 @@
 	import { Skeleton } from '$lib/components/ui/skeleton';
 	import { navigating } from '$app/stores';
 	import { setContext } from '$lib/utils';
-	import { createCurrentProfile } from '$lib/stores';
+	import {
+		createAccounts,
+		createCurrentProfile,
+		createOrganization,
+		createProjects,
+		createDepartments,
+		createVendors,
+		createSpendCategories
+	} from '$lib/stores';
 
 	export let data;
+	const storesData = data.storesData;
 
-	setContext('currentProfile', createCurrentProfile(data.storesData.currentProfile));
+	setContext('currentProfile', createCurrentProfile(storesData.currentProfile));
+	setContext('organization', createOrganization(storesData.organization));
+	setContext('projects', createProjects(storesData.projects));
+	setContext('accounts', createAccounts(storesData.accounts));
+	setContext('departments', createDepartments(storesData.departments));
+	setContext('spendCategories', createSpendCategories(storesData.spendCategories));
+	setContext('vendors', createVendors(storesData.vendors));
 </script>
 
 {#if $navigating}

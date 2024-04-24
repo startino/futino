@@ -3,7 +3,7 @@ import { PUBLIC_SUPABASE_URL, PUBLIC_SUPABASE_ANON_KEY } from '$env/static/publi
 import { STRIPE_SECRET_KEY } from '$env/static/private';
 
 import { Stripe } from 'stripe';
-import type { Database } from '$lib/server/supabase.types.ts';
+import type { Database } from '$lib/server/supabase.types';
 import { createSupabaseServerClient } from '@supabase/auth-helpers-sveltekit';
 import { redirect, type Handle } from '@sveltejs/kit';
 import { ApiClient } from '$lib/api-client';
@@ -18,25 +18,20 @@ export const handle: Handle = async ({ event, resolve }) => {
 	const stripe = new Stripe(STRIPE_SECRET_KEY);
 
 	const {
-		data: { session }
-	} = await supabase.auth.getSession();
-
+		data: { user }
+	} = await supabase.auth.getUser();
 	const apiClient = new ApiClient({
 		stripe,
 		supabase,
-		session
+		user
 	});
 
-	if (!apiClient.session) {
+	if (!apiClient.user) {
 		if (event.url.pathname.startsWith('/app')) {
 			redirect(303, '/login');
 		}
 	} else {
-		const { data } = await apiClient.supabase
-			.from('profiles')
-			.select()
-			.eq('id', apiClient.session.user.id)
-			.single();
+		const { data } = await apiClient.supabase.from('profiles').select().eq('id', user.id).single();
 
 		event.locals.orgID = data.organization_id;
 		event.locals.currentProfile = data;

@@ -1,24 +1,24 @@
-import type { Session, SupabaseClient } from '@supabase/supabase-js';
+import type { SupabaseClient, User } from '@supabase/supabase-js';
 import type Stripe from 'stripe';
 import type { TablesInsert, Database } from './server/supabase.types';
 import type { ContractDatableRow } from './types';
 
 type ApiClientArg = {
 	supabase: SupabaseClient<Database>;
-	session: Session;
+	user: User;
 	stripe: Stripe;
 };
 
 export class ApiClient {
 	supabase: SupabaseClient<Database>;
-	session: Session;
+	user: User;
 	stripe: Stripe;
 	stripeCustomerId: string = '';
 
 	constructor(arg: ApiClientArg) {
 		this.supabase = arg.supabase;
 		this.stripe = arg.stripe;
-		this.session = arg.session;
+		this.user = arg.user;
 	}
 
 	getOrg = async (organizationId: string) =>
@@ -41,13 +41,11 @@ export class ApiClient {
 			.from('contracts')
 			.select('*, owner:owner_id (*), vendor:vendor_id(*)')
 			.eq('organization_id', organizationId)
+			.order('created_at', { ascending: false })
 			.returns<ContractDatableRow[]>();
 
 	getOrgVendors = async (organizationId: string) =>
 		await this.supabase.from('vendors').select('*').eq('organization_id', organizationId);
-
-	getApprovers = async (approveeId: string) =>
-		await this.supabase.from('approvers').select('*').eq('approvee_id', approveeId);
 
 	createVendor = async (data: TablesInsert<'vendors'>) =>
 		await this.supabase.from('vendors').insert(data).select().single();
@@ -59,20 +57,16 @@ export class ApiClient {
 		await this.supabase.from('departments').insert(data);
 
 	getUserSubscription = async () =>
-		await this.supabase
-			.from('subscriptions')
-			.select()
-			.eq('profile_id', this.session.user.id)
-			.single();
+		await this.supabase.from('subscriptions').select().eq('profile_id', this.user.id).single();
 
 	getUserProfile = async () =>
-		await this.supabase.from('profiles').select().eq('id', this.session.user.id).single();
+		await this.supabase.from('profiles').select().eq('id', this.user.id).single();
 
 	getUserBillingMethod = async (): Promise<Stripe.Response<Stripe.PaymentMethod> | null> => {
 		const { data: billing } = await this.supabase
 			.from('billing_information')
 			.select()
-			.eq('profile_id', this.session.user.id)
+			.eq('profile_id', this.user.id)
 			.single();
 
 		try {
