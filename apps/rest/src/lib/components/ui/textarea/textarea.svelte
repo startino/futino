@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { HTMLTextareaAttributes } from 'svelte/elements';
 	import { cn } from '$lib/utils';
+	import { fade } from 'svelte/transition';
 
 	type $$Props = HTMLTextareaAttributes;
 
@@ -20,6 +21,7 @@
 		className
 	)}
 	style="min-height: {minHeight}; max-height: {maxHeight}"
+	in:fade
 	bind:value
 	on:blur
 	on:change
