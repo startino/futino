@@ -24,6 +24,17 @@ export interface ContractDatableRow extends Tables<'contracts'> {
 	vendor: Tables<'vendors'>;
 }
 
+export interface JoinedContract extends Tables<'contracts'> {
+	owner: Tables<'profiles'>;
+	vendor: Tables<'vendors'>;
+	department: Tables<'departments'>;
+	project: Tables<'projects'>;
+	current_approver: Tables<'profiles'>;
+	parent_contract: Tables<'contracts'> | null;
+	spend_category: Tables<'spend_categories'>;
+	account: Tables<'accounts'>;
+}
+
 export type SvelteEvent<E extends Event = Event, T extends EventTarget = Element> = E & {
 	currentTarget: EventTarget & T;
 };
