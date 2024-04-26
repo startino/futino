@@ -29,5 +29,11 @@ export const load = async ({ locals: { apiClient }, params }) => {
 			: error(500, 'Something went wrong.');
 	}
 
-	return { contract };
+	const {
+		data: { signedUrl }
+	} = await apiClient.supabase.storage
+		.from('contract-attachments')
+		.createSignedUrl(contract.attachment, 60 * 60 * 24);
+
+	return { contract, attachmentUrl: signedUrl };
 };

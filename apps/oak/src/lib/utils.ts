@@ -4,6 +4,18 @@ import { cubicOut } from 'svelte/easing';
 import type { TransitionConfig } from 'svelte/transition';
 import type { Context } from '$lib/types';
 import { getContext as getSvelteContext, setContext as setSvelteContext } from 'svelte';
+import * as PDFJS from 'pdfjs-dist';
+import * as pdfWorker from 'pdfjs-dist/build/pdf.worker.mjs';
+
+PDFJS.GlobalWorkerOptions.workerSrc = 'pdfjs-dist/build/pdf.worker.mjs';
+
+export const pdfjsLib = PDFJS;
+
+export const formatAmount = (value: number) =>
+	new Intl.NumberFormat('en-US', {
+		style: 'currency',
+		currency: 'USD'
+	}).format(value);
 
 export function setContext<K extends keyof Context>(key: K, value: Context[K]) {
 	return setSvelteContext(key, value);

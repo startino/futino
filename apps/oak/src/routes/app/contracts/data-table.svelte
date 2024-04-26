@@ -10,7 +10,7 @@
 	import { Input } from '$lib/components/ui/input';
 	import { Switch } from '$lib/components/ui/switch';
 	import { Label } from '$lib/components/ui/label';
-	import { cn, getContext } from '$lib/utils';
+	import { cn, formatAmount, getContext } from '$lib/utils';
 	import type { ContractDatableRow } from '$lib/types';
 	import { goto } from '$app/navigation';
 
@@ -77,13 +77,7 @@
 		table.column({
 			accessor: 'amount',
 			header: 'Amount',
-			cell: ({ value }) => {
-				const formatted = new Intl.NumberFormat('en-US', {
-					style: 'currency',
-					currency: 'USD'
-				}).format(value);
-				return formatted;
-			},
+			cell: ({ value }) => formatAmount(value),
 			plugins: {
 				filter: {
 					exclude: true
