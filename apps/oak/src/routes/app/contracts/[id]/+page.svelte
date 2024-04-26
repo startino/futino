@@ -32,6 +32,8 @@
 			canvas.width = viewport.width;
 			canvas.height = viewport.height;
 
+			console.log(canvas.width);
+
 			const context = canvas.getContext('2d');
 			const renderContext = {
 				canvasContext: context,
@@ -124,7 +126,7 @@
 
 		<Dialog.Root>
 			<Dialog.Trigger disabled={isLoadingPDF}>
-				<Button class="flex gap-2">
+				<Button class="flex gap-2" variant="outline">
 					{#if isLoadingPDF}
 						<Loader2 class="animate-spin" />
 					{:else}
@@ -134,9 +136,9 @@
 			</Dialog.Trigger>
 			<Dialog.Content
 				id="dialog-content"
-				class="max-h-dvh w-full max-w-screen-md overflow-y-scroll py-4"
+				class="max-h-dvh w-full max-w-screen-md overflow-y-scroll px-0"
 			>
-				<Dialog.Title>Attachment</Dialog.Title>
+				<Dialog.Title class="px-6">Attachment</Dialog.Title>
 				<div use:appendContainer></div>
 			</Dialog.Content>
 		</Dialog.Root>
