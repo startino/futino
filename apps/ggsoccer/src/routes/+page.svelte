@@ -15,7 +15,18 @@
 			cost_first: '$80',
 			cost_second: '$130',
 			location: 'Atchison Recreation Sports Complex',
+			locationShort: 'Atchison',
 			link: 'https://forms.gle/dtp9iyzfQvgzi4Sb9'
+		},
+		{
+			date: 'June 17 - 21, 2024',
+			time_first: '8:15 - 9:15',
+			time_second: '9:30 - 12:00',
+			cost_first: '$80',
+			cost_second: '$130',
+			location: 'Chieftain Park',
+			locationShort: 'Tonganoxie',
+			link: 'https://docs.google.com/forms/d/e/1FAIpQLSd2ygKNs2RQ4zC1MS13-9pchZZN2UjxdYvIiQnG523mtB5q2g/viewform?usp=sf_link'
 		},
 		{
 			date: 'June 24 - 28, 2024',
@@ -24,6 +35,7 @@
 			cost_first: '$80',
 			cost_second: '$130',
 			location: 'St. Joseph Catholic School',
+			locationShort: 'Shawnee',
 			link: 'https://docs.google.com/forms/d/e/1FAIpQLScZSTaOPQ8EbAP8VxlM0SuSWe3aOI0LaLWjyCNFChshEjOXUg/viewform?usp=sf_link'
 		}
 	];
@@ -52,13 +64,21 @@
 			Empowering Players, Inspiring Youth: Excellence Through Soccer
 		</h3>
 
-		<div class="flex flex-col items-center justify-center gap-6 py-4 text-white sm:flex-row">
-			<a href="#camps" class="py-2">
-				<Button class="transition-all duration-300 hover:scale-105">
-					<p>Register Now</p>
-				</Button>
-			</a>
-			<a href="#contact" class=" px-4 py-2">
+		<div class="flex flex-col items-center justify-center gap-2 py-4 text-white">
+			<h3 class="headline-small z-20 font-bold tracking-wide text-white shadow-black">
+				Register for camp in:
+			</h3>
+			<div class="flex gap-4">
+				{#each camps as { locationShort, link }}
+					<a href={link} class="py-2">
+						<Button class="transition-all duration-300 hover:scale-105">
+							<p>{locationShort}</p>
+						</Button>
+					</a>
+				{/each}
+			</div>
+			<h3 class="headline-small z-20 font-bold tracking-wide text-white shadow-black">or</h3>
+			<a href="#contact">
 				<Button class="transition-all duration-300 hover:scale-105">
 					<p>Contact Us</p>
 				</Button>
@@ -99,12 +119,13 @@
 					@apply m-2 flex h-fit max-w-2xl flex-col  rounded-lg p-6 text-gray-950 shadow-2xl;
 				}
 			</style>
-			<div id="camps" class="">
-				{#each camps as { date, time_first, time_second, first_discount, second_discount, cost_first, cost_second, location, link }}
-					<h2 class="display-small pt-14">{location}</h2>
-					<h2 class="display-small pt-4">{date}</h2>
+			<div id="camps">
+				{#each camps as { date, time_first, time_second, first_discount, second_discount, cost_first, cost_second, location, locationShort, link }}
+					<h2 class="display-medium pt-14">{locationShort}</h2>
+					<h2 class="display-small">{location}</h2>
+					<h2 class="display-small">{date}</h2>
 					<div
-						class="mx-auto my-8 grid max-w-7xl grid-cols-1 justify-items-stretch lg:grid-cols-2"
+						class="mx-auto my-4 grid max-w-7xl grid-cols-1 justify-items-stretch lg:grid-cols-2"
 						id="jul_camp"
 					>
 						<div class="card space-y-2">
