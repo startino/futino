@@ -5,5 +5,10 @@ export default defineConfig({
 	plugins: [sveltekit()],
 	build: {
 		target: 'ES2022'
+	},
+	optimizeDeps: {
+		esbuildOptions: {
+			target: 'esnext'
+		}
 	}
 });
