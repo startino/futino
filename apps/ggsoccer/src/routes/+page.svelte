@@ -68,7 +68,7 @@
 			<h3 class="headline-small z-20 font-bold tracking-wide text-white shadow-black">
 				Register for camp in:
 			</h3>
-			<div class="flex gap-4">
+			<div class="flex flex-wrap items-center justify-center gap-x-4">
 				{#each camps as { locationShort, link }}
 					<a href={link} class="py-2">
 						<Button class="transition-all duration-300 hover:scale-105">
