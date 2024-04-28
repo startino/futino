@@ -33,7 +33,7 @@
 
 <Shell
 	class="h-screen w-full max-w-none"
-	slotSidebarLeft="m-4"
+	slotSidebarLeft="p-4"
 	slotPageHeader="my-4"
 	slotPageContent=""
 >
