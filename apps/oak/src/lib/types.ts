@@ -4,6 +4,7 @@ import {
 	createCurrentProfile,
 	createDepartments,
 	createOrganization,
+	createProfiles,
 	createProjects,
 	createSpendCategories,
 	createVendors
@@ -17,11 +18,16 @@ export interface Context {
 	accounts: ReturnType<typeof createAccounts>;
 	spendCategories: ReturnType<typeof createSpendCategories>;
 	vendors: ReturnType<typeof createVendors>;
+	profiles: ReturnType<typeof createProfiles>;
 }
 
 export interface ContractDatableRow extends Tables<'contracts'> {
 	owner: Tables<'profiles'>;
 	vendor: Tables<'vendors'>;
+}
+
+export interface JoinedProfile extends Tables<'profiles'> {
+	approver: Tables<'profiles'>;
 }
 
 export interface JoinedContract extends Tables<'contracts'> {

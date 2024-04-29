@@ -45,10 +45,10 @@
 </script>
 
 <!-- Static sidebar for desktop -->
-<div class="hidden h-full overflow-y-clip lg:z-50 lg:flex lg:w-72 lg:flex-col {$$props.class}">
+<div class="hidden h-full lg:z-50 lg:flex lg:w-72 lg:flex-col {$$props.class}">
 	<!-- Sidebar component, swap this element with another sidebar if you like -->
 	<div
-		class="flex grow flex-col gap-y-5 overflow-hidden rounded-lg border border-r bg-background px-6 pb-6 text-muted-foreground"
+		class="flex grow flex-col gap-y-5 overflow-hidden rounded-lg bg-background px-6 pb-6 text-muted-foreground shadow-lg shadow-card"
 	>
 		<div class="flex h-16 shrink-0 items-center px-2 pt-6">
 			<a href="https://flowbite.com" class="mr-4 flex place-items-center space-x-2">
