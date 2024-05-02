@@ -39,7 +39,7 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"@internationalized/date": "^3.5.2",
+		"@internationalized/date": "^3.5.3",
 		"@stripe/stripe-js": "^3.3.0",
 		"@supabase/auth-helpers-sveltekit": "^0.13.0",
 		"@supabase/supabase-js": "^2.42.5",
