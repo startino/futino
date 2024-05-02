@@ -48,7 +48,7 @@
 <div class="hidden h-full lg:z-50 lg:flex lg:w-72 lg:flex-col {$$props.class}">
 	<!-- Sidebar component, swap this element with another sidebar if you like -->
 	<div
-		class="flex grow flex-col gap-y-5 overflow-hidden rounded-lg bg-background px-6 pb-6 text-muted-foreground shadow-lg shadow-card"
+		class="flex grow flex-col gap-y-5 overflow-hidden rounded-lg bg-background px-6 pb-6 text-muted-foreground shadow-lg"
 	>
 		<div class="flex h-16 shrink-0 items-center px-2 pt-6">
 			<a href="https://flowbite.com" class="mr-4 flex place-items-center space-x-2">
@@ -66,7 +66,7 @@
 							class="flex gap-x-3 rounded-md p-2 text-sm font-semibold transition hover:translate-x-2 hover:scale-[1.04] {$page.url.pathname.includes(
 								href
 							)
-								? 'bg-accent text-accent-foreground hover:bg-accent '
+								? 'bg-accent text-accent-foreground hover:bg-accent'
 								: ' opacity-100 hover:text-foreground'}"
 						>
 							<svelte:component this={icon} />
@@ -76,7 +76,7 @@
 				{/each}
 			</ul>
 			<ul>
-				{#each bottomNavigation as { name, href, icon, current }}
+				{#each bottomNavigation as { name, href, icon }}
 					<li class="pb-0 pl-0 sm:pl-0">
 						<a
 							href={'/app/' + href}

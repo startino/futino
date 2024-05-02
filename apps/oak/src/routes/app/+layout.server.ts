@@ -1,5 +1,5 @@
 import { STRIPE_SECRET_KEY } from '$env/static/private';
-import type { JoinedProfile } from '$lib/types.js';
+import type { JoinedProfile } from '$lib/types';
 import { error } from '@sveltejs/kit';
 
 export const load = async ({ locals: { apiClient, currentProfile, orgID } }) => {
@@ -16,6 +16,7 @@ export const load = async ({ locals: { apiClient, currentProfile, orgID } }) => 
 		.from('profiles')
 		.select('*, approver:approver_id (*)')
 		.eq('organization_id', orgID)
+		.order('created_at', { ascending: false })
 		.returns<JoinedProfile[]>();
 
 	if (

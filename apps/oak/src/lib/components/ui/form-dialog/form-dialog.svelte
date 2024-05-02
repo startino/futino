@@ -17,7 +17,7 @@
 
 	<Dialog.Content
 		transition={(node) => fly(node, { x: 300, duration: 300 })}
-		class="left-auto right-0 max-h-screen w-full max-w-lg translate-x-1 overflow-y-scroll border-y-0 sm:rounded-none"
+		class="left-auto right-0 flex h-dvh max-h-screen w-full max-w-lg translate-x-1 flex-col overflow-y-scroll border-y-0 sm:rounded-none"
 	>
 		<Dialog.Header>
 			<Dialog.Title>{title}</Dialog.Title>

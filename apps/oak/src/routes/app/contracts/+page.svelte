@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { fly } from 'svelte/transition';
-	import { Plus, CalendarIcon, Paperclip, Loader2 } from 'lucide-svelte';
+	import { CalendarIcon, Paperclip, Loader2 } from 'lucide-svelte';
 	import { zodClient } from 'sveltekit-superforms/adapters';
 	import { fileProxy, superForm } from 'sveltekit-superforms/client';
 	import { toast } from 'svelte-sonner';
@@ -14,8 +13,6 @@
 	} from '@internationalized/date';
 
 	import Combobox from '$lib/components/atoms/Combobox.svelte';
-	import { Button } from '$lib/components/ui/button';
-	import * as Dialog from '$lib/components/ui/dialog';
 	import * as Form from '$lib/components/ui/form';
 	import { getContext, cn } from '$lib/utils';
 	import DataTable from './data-table.svelte';

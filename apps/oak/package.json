@@ -51,6 +51,7 @@
 		"dotenv": "^16.4.5",
 		"embla-carousel-svelte": "8.0.2",
 		"formsnap": "^1.0.0",
+		"generate-password-browser": "^1.1.0",
 		"lucide-svelte": "^0.374.0",
 		"mdsvex": "^0.11.0",
 		"mode-watcher": "^0.3.0",

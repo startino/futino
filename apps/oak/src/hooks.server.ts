@@ -1,6 +1,5 @@
-import { PUBLIC_SUPABASE_URL, PUBLIC_SUPABASE_ANON_KEY } from '$env/static/public';
-
-import { STRIPE_SECRET_KEY } from '$env/static/private';
+import { PUBLIC_SUPABASE_URL } from '$env/static/public';
+import { STRIPE_SECRET_KEY, SUPABASE_SERVICE_ROLE_KEY } from '$env/static/private';
 
 import { Stripe } from 'stripe';
 import type { Database } from '$lib/server/supabase.types';
@@ -11,7 +10,7 @@ import { ApiClient } from '$lib/api-client';
 export const handle: Handle = async ({ event, resolve }) => {
 	const supabase = createSupabaseServerClient<Database>({
 		supabaseUrl: PUBLIC_SUPABASE_URL,
-		supabaseKey: PUBLIC_SUPABASE_ANON_KEY,
+		supabaseKey: SUPABASE_SERVICE_ROLE_KEY,
 		event
 	});
 

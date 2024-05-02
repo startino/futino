@@ -1,5 +1,24 @@
 import { z } from 'zod';
 
+export const profileSchema = z.object({
+	full_name: z
+		.string()
+		.max(140, 'Name must be less than 140 characters.')
+		.min(3, 'Name must be at leat 3 characters long')
+		.refine((v) => v !== '', 'A full name is required'),
+	email: z.string().email('Invalid email address'),
+	approval_threshold: z.number().gte(0).default(0),
+	approver_id: z.string().uuid(),
+	role: z.enum(['admin', 'employee', 'signer']),
+	password: z
+		.string()
+		.min(8, 'Password must be at least 8 characters')
+		.regex(
+			/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@.#$!%*?&^])[A-Za-z\d@.#$!%*?&]{8,15}$/,
+			'For security sake, please include lowercase, uppercase letters, digits and symbols.'
+		)
+});
+
 export const departmentSchema = z.object({
 	number: z.number().gt(0, 'Please enter a valid number'),
 	name: z.string().min(1, 'The deparment name is required')
