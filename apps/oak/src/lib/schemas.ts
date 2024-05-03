@@ -1,4 +1,7 @@
 import { z } from 'zod';
+import genarator from 'generate-password-browser';
+
+const { generate: generatePassword } = genarator;
 
 export const profileSchema = z.object({
 	full_name: z
@@ -12,11 +15,8 @@ export const profileSchema = z.object({
 	role: z.enum(['admin', 'employee', 'signer']),
 	password: z
 		.string()
-		.min(8, 'Password must be at least 8 characters')
-		.regex(
-			/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@.#$!%*?&^])[A-Za-z\d@.#$!%*?&]{8,15}$/,
-			'For security sake, please include lowercase, uppercase letters, digits and symbols.'
-		)
+		.readonly()
+		.default(generatePassword({ numbers: true, strict: true }))
 });
 
 export const departmentSchema = z.object({
@@ -43,10 +43,11 @@ const userSchema = z
 		email: z.string().email('Invalid email address'),
 		password: z
 			.string()
-			.min(8, 'Password must be at least 8 characters')
+			.min(8, 'Password must be at least 8 characters logn')
+			.max(16, 'Password must be at most 16 characters long')
 			.regex(
-				/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@.#$!%*?&^])[A-Za-z\d@.#$!%*?&]{8,15}$/,
-				'For security sake, please include lowercase, uppercase letters, digits and symbols.'
+				/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,16}$/,
+				'For security sake, please include lowercase, uppercase letters and digits.'
 			),
 		confirmPassword: z.string()
 	})

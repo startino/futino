@@ -2,12 +2,10 @@
 	import { superForm } from 'sveltekit-superforms/client';
 	import { zodClient } from 'sveltekit-superforms/adapters';
 	import { toast } from 'svelte-sonner';
-	import genarator from 'generate-password-browser';
 	import { Loader2 } from 'lucide-svelte';
 
 	import { getContext } from '$lib/utils';
 	import { profileSchema } from '$lib/schemas';
-	import { Button } from '$lib/components/ui/button';
 	import { FormDialog } from '$lib/components/ui/form-dialog';
 	import * as Select from '$lib/components/ui/select';
 	import * as Form from '$lib/components/ui/form';
@@ -20,7 +18,6 @@
 	export let data;
 
 	const profiles = getContext('profiles');
-	const { generate: generatePassword } = genarator;
 	const form = superForm(data.form, {
 		validators: zodClient(profileSchema),
 		onResult: ({ result }) => {
@@ -121,22 +118,16 @@
 							<Form.Control let:attrs>
 								<Form.Label>Password</Form.Label>
 								<div class="flex gap-2">
-									<Input type="password" {...attrs} bind:value={$formData.password} />
-									<Button
-										on:click={() => {
-											$formData.password = generatePassword({
-												numbers: true,
-												symbols: true,
-												strict: true
-											});
-											console.log($formData.password);
-											toast.success('Password generated!');
-										}}>Generate</Button
-									>
+									<Input disabled type="password" {...attrs} bind:value={$formData.password} />
 								</div>
 							</Form.Control>
+							<Form.Description>The password is auto-generated</Form.Description>
 							<Form.FieldErrors />
 						</Form.Field>
+
+						{#if $errors._errors}
+							<p class="text-sm text-destructive">{$errors._errors[0]}</p>
+						{/if}
 
 						<Form.Button type="submit" class="my-4 w-full">
 							{#if $submitting}

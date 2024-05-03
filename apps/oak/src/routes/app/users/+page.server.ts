@@ -1,9 +1,12 @@
+import nodemailer from 'nodemailer';
 import { setError, superValidate } from 'sveltekit-superforms/server';
 import { zod } from 'sveltekit-superforms/adapters';
 import { fail } from '@sveltejs/kit';
 
 import { profileSchema } from '$lib/schemas';
 import type { JoinedProfile } from '$lib/types';
+import { SMTP_HOST, SMTP_PASSWORD, SMTP_PORT, SMTP_USER } from '$env/static/private';
+import { PUBLIC_SITE_URL } from '$env/static/public';
 
 export const load = async () => {
 	const form = await superValidate(zod(profileSchema));
@@ -24,7 +27,6 @@ export const actions = {
 		const { error, data } = await apiClient.supabase.auth.admin.createUser({
 			email: formData.email,
 			password: formData.password,
-			email_confirm: true,
 			user_metadata: {
 				organization_id: orgID,
 				...formData
@@ -40,6 +42,45 @@ export const actions = {
 			});
 		}
 
+		const {
+			data: {
+				properties: { action_link }
+			}
+		} = await apiClient.supabase.auth.admin.generateLink({
+			email: formData.email,
+			password: formData.password,
+			type: 'signup',
+			options: {
+				redirectTo: `${PUBLIC_SITE_URL}/login?confirmed&email=${formData.email}`
+			}
+		});
+
+		const transporter = nodemailer.createTransport({
+			host: SMTP_HOST,
+			port: SMTP_PORT,
+			secure: false,
+			auth: {
+				user: SMTP_USER,
+				pass: SMTP_PASSWORD
+			},
+			tls: {
+				rejectUnauthorized: false
+			}
+		});
+
+		await transporter.sendMail({
+			from: `"Oak" <${SMTP_USER}>`,
+			to: formData.email,
+			subject: 'Your Oak credentials',
+			html: `
+				Your Administrator has created an Oak accound for you.
+				Here is your credentials: <br/>
+				<b>Email: </b> ${formData.email}<br/>
+				<b>Password: </b> ${formData.password}<br/>
+				<b><a href="${action_link}">Confirm and login</a></b>
+			`
+		});
+
 		const { data: newProfile } = await apiClient.supabase
 			.from('profiles')
 			.select('*, approver:approver_id (*)')
@@ -47,6 +88,6 @@ export const actions = {
 			.returns<JoinedProfile[]>()
 			.single();
 
-		return { newProfile };
+		return { form, newProfile };
 	}
 };

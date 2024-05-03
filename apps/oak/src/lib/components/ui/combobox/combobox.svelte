@@ -53,7 +53,7 @@
 	<input hidden bind:value name={attrs?.name} />
 	<Popover.Content class="p-0">
 		<Command.Root>
-			<Command.Input placeholder="Search framework..." class="h-9" />
+			<Command.Input placeholder="Search.." class="h-9" />
 			<Command.Empty>No item found.</Command.Empty>
 			<Command.Group>
 				{#each items as item}
