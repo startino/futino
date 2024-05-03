@@ -4,6 +4,7 @@
 
 	import { FaqSection } from '$lib/components/ui/faq';
 	import { faqs } from './faq-data';
+	import PricingSection from './PricingSection.svelte';
 
 	const process = [
 		{
@@ -12,11 +13,43 @@
 		},
 		{
 			title: 'Develop',
-			body: 'Our experts bring your concept to life with cutting-edge technologies. We iterate based on feedback, ensuring a user-friendly and scalable solution.'
+			body: 'We bring your concept to life. We iterate based on feedback, ensuring a user-friendly and scalable solution.'
 		},
 		{
 			title: 'Deploy',
 			body: 'Our team ensures a seamless transition from development to deployment. Post-launch, we provide ongoing support and maintenance.'
+		}
+	];
+	const team = [
+		{
+			name: 'Jorge Lewis',
+			role: 'Co-Founder',
+			description: `Hey 👋. I've got over 6 years of programming experience under my belt, with an expertise
+                in automation software and machine learning. I've found a passion in building beautiful
+                and highly functional software (the key is in the balance! 😉) to bring life to projects
+                like your own.`,
+			image: '/portraits/jorge'
+		},
+		{
+			name: 'Jonas Lindberg',
+			role: 'Co-Founder',
+			description:
+				"Since the age of 14, my passion for coding has been a driving force in my life. I've been deeply engaged in the creation of websites and bespoke software solutions in collaboration with startups. Eager to dive into emerging tech, I'm all about driving innovation and sharing the excitement!",
+			image: '/portraits/jonas'
+		},
+		{
+			name: 'Nazif Barassounon',
+			role: 'Full-stack Developer',
+			description:
+				'As a Full Stack developer with over three years of deep experience in web development, my passion is creating web applications that blend technology and design seamlessly to deliver user-friendly interfaces. As a philomath, I love learning and growing — staying up-to-date with the latest development trends in order to always exceed our clients’ expectations.',
+			image: '/portraits/nazif'
+		},
+		{
+			name: 'Leon Nilsson',
+			role: 'Backend Developer',
+			description:
+				"I'm a developer who has been programming for over five years, passionate about backend development. I'm committed to writing high quality, scalable software, innovating and finding the best possible solutions to different problems. I strive to learn all I can in today's shifting digital landscape.",
+			image: '/portraits/leon'
 		}
 	];
 </script>
@@ -28,43 +61,32 @@
 	<div
 		class="z-100 absolute left-0 right-0 top-0 h-screen border-b border-primary/40 shadow-2xl"
 	></div>
-	<img class="size-32" src="/favicon.png" alt="Futino's Logo" />
 	<div class="flex flex-col">
 		<h1 class="m-0 sm:m-0">
+			Building <br /><span
+				class="m-0 bg-gradient-to-b from-primary from-50% to-background bg-clip-text text-transparent sm:m-0"
+			>
+				Ideas
+			</span>
+			Into
 			<span
 				class="m-0 bg-gradient-to-b from-primary from-50% to-background bg-clip-text text-transparent sm:m-0"
 			>
-				Tech
+				Life
 			</span>
-			Co-Founder
+
 			<br />
-		</h1>
-		<h1 class="m-0 sm:m-0">
-			as a
-			<span
-				class="bg-gradient-to-b from-primary from-50% to-background bg-clip-text text-transparent"
-			>
-				Service
-			</span>
 		</h1>
 	</div>
 	<p class="text-pretty opacity-80">
-		Many non-tech founders struggle to build out their software idea in a holistic manner; retiring
-		before they finish their MVP or giving half their business to someone untrustworthy.
+		Advancing the success of non-technical entrepreneurs and startups through beautiful (if we say
+		so ourselves) software development, attracting initial users, and iterating for market fit.
 	</p>
-	<!-- TODO: Make these buttons functional and uncomment them -->
-	<!-- <div class="flex gap-4"> -->
-	<!-- 	<button -->
-	<!-- 		class="inline-flex h-10 items-center justify-center whitespace-nowrap rounded bg-primary p-8 text-xl font-bold text-primary-on ring-offset-background transition-colors hover:scale-[98%] hover:bg-tertiary hover:text-tertiary-on focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50" -->
-	<!-- 	> -->
-	<!-- 		Contact Us -->
-	<!-- 	</button> -->
-	<!-- 	<button -->
-	<!-- 		class="inline-flex h-10 items-center justify-center whitespace-nowrap rounded border border-input bg-transparent p-8 text-xl font-medium text-primary ring-offset-background transition-colors hover:scale-[98%] hover:border-tertiary hover:text-tertiary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50" -->
-	<!-- 	> -->
-	<!-- 		Book a Meeting -->
-	<!-- 	</button> -->
-	<!-- </div> -->
+	<div class="not-prose flex gap-4">
+		<Button href="https://calendly.com/jorge-lewis" class="px-12 py-7 text-2xl">Get in Touch</Button
+		>
+		<Button href="#pricing" class="px-12 py-7 text-2xl" variant="outline">Pricing</Button>
+	</div>
 </section>
 
 <!-- Solution -->
@@ -140,6 +162,10 @@
 	</dl>
 </section>
 
+<!-- Pricing Section -->
+<section id="pricing" class="flex max-w-7xl flex-col items-center justify-center px-5 sm:px-10">
+	hello
+</section>
 <!-- Process Section -->
 <section
 	class="md:prose-md prose prose-sm prose-main flex max-w-7xl flex-col items-center justify-center px-5 sm:prose-base lg:prose-lg xl:prose-xl 2xl:prose-2xl sm:px-10"
@@ -220,7 +246,6 @@
 </section>
 
 <!-- How it works -->
-
 <section>
 	<div class="mx-auto max-w-7xl px-6 lg:px-8">
 		<div
@@ -239,88 +264,29 @@
 		<ul
 			class="mx-auto mt-20 grid max-w-2xl grid-cols-1 gap-x-6 gap-y-20 text-left sm:grid-cols-2 lg:max-w-4xl lg:gap-x-8 xl:max-w-none"
 		>
-			<li
-				class="flex flex-col items-center justify-center gap-6 text-center sm:items-start sm:justify-start sm:text-left xl:flex-row"
-			>
-				<img
-					class="aspect-[4/5] w-52 flex-none rounded-2xl bg-primary/10 object-cover"
-					src="/portraits/jorge-lewis.jpg"
-					alt="Portrait of Jorge Lewis"
-				/>
-				<div class="flex-auto">
-					<h3 class="trackng-tight text-lg font-semibold leading-8 text-primary">Jorge Lewis</h3>
-					<p class="text-base leading-7 text-primary">Co-Founder</p>
-					<p class="mt-6 text-base leading-7 opacity-80">
-						Hey 👋. I've got over 6 years of programming experience under my belt, with an expertise
-						in automation software and machine learning. I've found a passion in building beautiful
-						and highly functional software (the key is in the balance! 😉) to bring life to projects
-						like your own.
-					</p>
-				</div>
-			</li>
-			<li
-				class="flex flex-col items-center justify-center gap-6 text-center sm:items-start sm:justify-start sm:text-left xl:flex-row"
-			>
-				<img
-					class="aspect-[4/5] w-52 flex-none rounded-2xl bg-primary/10 object-cover"
-					src="/portraits/jonas-lindberg.jpg"
-					alt="Portrait of Jonas Lindberg"
-				/>
-				<div class="flex-auto">
-					<h3 class="trackng-tight text-lg font-semibold leading-8 text-primary">Jonas Lindberg</h3>
-					<p class="text-base leading-7 text-primary">Co-Founder</p>
-					<p class="mt-6 text-base leading-7 opacity-80">
-						Since the age of 14, my passion for coding has been a driving force in my life. I've
-						been deeply engaged in the creation of websites and bespoke software solutions in
-						collaboration with startups. Eager to dive into emerging tech, I'm all about driving
-						innovation and sharing the excitement!
-					</p>
-				</div>
-			</li>
-			<li
-				class="flex flex-col items-center justify-center gap-6 text-center sm:items-start sm:justify-start sm:text-left xl:flex-row"
-			>
-				<img
-					class="aspect-[4/5] w-52 flex-none rounded-2xl bg-primary/10 object-cover"
-					src="/portraits/nazif-barassounon.jpg"
-					alt="Portrait of Nazif Barassounon"
-				/>
-				<div class="flex-auto">
-					<h3 class="trackng-tight text-lg font-semibold leading-8 text-primary">
-						Nazif Barassounon
-					</h3>
-					<p class="text-base leading-7 text-primary">Full-stack Developer</p>
-					<p class="mt-6 text-base leading-7 opacity-80">
-						As a Full Stack developer with over three years of deep experience in web development,
-						my passion is creating web applications that blend technology and design seamlessly to
-						deliver user-friendly interfaces. As a philomath, I love learning and growing — staying
-						up-to-date with the latest development trends in order to always exceed our clients’
-						expectations.
-					</p>
-				</div>
-			</li>
-			<li
-				class="flex flex-col items-center justify-center gap-6 text-center sm:items-start sm:justify-start sm:text-left xl:flex-row"
-			>
-				<img
-					class="aspect-[4/5] w-52 flex-none rounded-2xl bg-primary/10 object-cover"
-					src="/portraits/leon-nilsson.jpg"
-					alt="Portrait of Leon Nilsson"
-				/>
-				<div class="flex-auto">
-					<h3 class="trackng-tight text-lg font-semibold leading-8 text-primary">Leon Nilsson</h3>
-					<p class="text-base leading-7 text-primary">Backend Developer</p>
-					<p class="mt-6 text-base leading-7 opacity-80">
-						I'm a developer who has been programming for over five years, passionate about backend
-						development. I'm committed to writing high quality, scalable software, innovating and
-						finding the best possible solutions to different problems. I strive to learn all I can
-						in today's shifting digital landscape.
-					</p>
-				</div>
-			</li>
+			{#each team as { name, role, description, image }, i}
+				<li
+					class="flex flex-col items-center justify-center gap-6 text-center sm:items-start sm:justify-start sm:text-left xl:flex-row"
+				>
+					<img
+						class="aspect-[4/5] w-52 flex-none rounded-2xl bg-primary/10 object-cover"
+						src="{image}-main-720.webp"
+						alt="Portrait of {name}"
+					/>
+					<div class="flex-auto">
+						<h3 class="trackng-tight text-lg font-semibold leading-8 text-primary">{name}</h3>
+						<p class="text-base leading-7 text-primary">{role}</p>
+						<p class="mt-6 text-base leading-7 opacity-80">
+							{description}
+						</p>
+					</div>
+				</li>
+			{/each}
 		</ul>
 	</div>
 </section>
+
+<PricingSection />
 
 <section class="mx-auto flex flex-col gap-8 px-6 pb-20 xl:px-16 2xl:px-64">
 	<div

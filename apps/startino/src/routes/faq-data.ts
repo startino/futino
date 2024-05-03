@@ -5,6 +5,39 @@ type Faqs = {
 
 export const faqs: Faqs = [
 	{
+		question: 'How does your process work?',
+		answer: 'Provide a detailed explanation of your process here.'
+	},
+	{
+		question: 'What is a minimum viable product (MVP)?',
+		answer:
+			'An MVP is a development technique in which a new product is developed with sufficient features to satisfy early adopters.'
+	},
+	{
+		question: 'What budget should I consider for an MVP app?',
+		answer:
+			'Budget considerations for an MVP app can vary widely based on the scope and scale of the project.'
+	},
+	{
+		question: 'How does payment work?',
+		answer: 'Detail your payment procedures, including accepted methods, billing cycles, etc.'
+	},
+	{
+		question: 'How are you able to maintain the quality of work?',
+		answer:
+			'Discuss your quality assurance processes, staff training, and any standards you follow.'
+	},
+	{
+		question: "What's the next step after completing my MVP?",
+		answer:
+			'Describe the typical pathways post-MVP, such as further development, market testing, or scaling.'
+	},
+	{
+		question: 'What happens if I can no longer work on my idea?',
+		answer:
+			'The advantage of creating a SaaS product lies in building a valuable asset. Should you decide to discontinue your SaaS project, you have the option to sell the project. This approach can enable you to recover a substantial portion of your initial investment, significantly reducing your financial risk.'
+	},
+	{
 		question: `What services does Futino offer?`,
 		answer: `Futino provides three main web-services: Design, Development (making the website), and Hosting. Within these we cover the whole deal that any business would need to get an amazing website up, including but not limited to: UI/UX Design, 3D modeling, SEO, copywriting, e-commerce development.`
 	},
