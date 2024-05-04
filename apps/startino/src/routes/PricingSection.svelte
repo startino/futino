@@ -5,15 +5,12 @@
 	<div class="mx-auto max-w-7xl px-6 pb-96 pt-24 text-center sm:pt-32 lg:px-8">
 		<div class="mx-auto max-w-4xl">
 			<h2 class="text-base font-semibold leading-7 text-primary">Pricing</h2>
-			<p class="mt-2 text-4xl font-bold tracking-tight text-white sm:text-5xl">
-				The right price for you, <br class="hidden sm:inline lg:hidden" />whoever you are
+			<p class="mt-2 text-3xl font-bold tracking-tight text-white sm:text-4xl sm:text-6xl">
+				Invest in your success, <br class=" " />bring your idea to life
 			</p>
 		</div>
 		<div class="relative mt-6">
-			<p class="mx-auto max-w-2xl text-lg leading-8 text-white/60">
-				Lorem ipsum dolor sit, amet consectetur adipisicing elit. Velit numquam eligendi quos odit
-				doloribus molestiae voluptatum.
-			</p>
+			<p class="mx-auto max-w-2xl text-lg leading-8 text-white/60"></p>
 			<svg
 				viewBox="0 0 1208 1024"
 				class="absolute -top-10 left-1/2 -z-10 h-[64rem] -translate-x-1/2 [mask-image:radial-gradient(closest-side,white,transparent)] sm:-top-12 md:-top-20 lg:-top-12 xl:top-0"

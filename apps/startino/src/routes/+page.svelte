@@ -1,6 +1,14 @@
 <script lang="ts">
 	import { Button } from '$lib/components/ui/button';
-	import { Brain, Boxes, Workflow, PanelsTopLeft, Building2, MonitorCheck } from 'lucide-svelte';
+	import {
+		Brain,
+		Boxes,
+		Workflow,
+		PanelsTopLeft,
+		Building2,
+		CodeXml,
+		HardDrive
+	} from 'lucide-svelte';
 
 	import { FaqSection } from '$lib/components/ui/faq';
 	import { faqs } from './faq-data';
@@ -9,30 +17,28 @@
 	const process = [
 		{
 			title: 'Plan',
-			body: 'In this initial phase, we engage in thorough discussions to understand your vision, goals, and requirements for your software project.'
+			body: 'We engage in thorough discussions to understand your vision, goals, and requirements.'
 		},
 		{
 			title: 'Develop',
-			body: 'We bring your concept to life. We iterate based on feedback, ensuring a user-friendly and scalable solution.'
+			body: "From our clear planning, we're able to bring your concept to life with efficiency and beauty."
 		},
 		{
-			title: 'Deploy',
-			body: 'Our team ensures a seamless transition from development to deployment. Post-launch, we provide ongoing support and maintenance.'
+			title: 'Thrive',
+			body: 'Our team ensures a seamless transition from development to deployment. Post-launch, we iterate and optimize for market fit based on user-feedback.'
 		}
 	];
 	const team = [
 		{
 			name: 'Jorge Lewis',
-			role: 'Co-Founder',
-			description: `Hey 👋. I've got over 6 years of programming experience under my belt, with an expertise
-                in automation software and machine learning. I've found a passion in building beautiful
-                and highly functional software (the key is in the balance! 😉) to bring life to projects
-                like your own.`,
+			role: 'Co-Founder - Business Development',
+			description:
+				"Hey 👋. I've got over six years of programming experience under my belt, specializing in automation software and machine learning. I've found a passion for merging business processes, strategy, and software to bring projects like yours to fruition.",
 			image: '/portraits/jorge'
 		},
 		{
 			name: 'Jonas Lindberg',
-			role: 'Co-Founder',
+			role: 'Co-Founder - Technology',
 			description:
 				"Since the age of 14, my passion for coding has been a driving force in my life. I've been deeply engaged in the creation of websites and bespoke software solutions in collaboration with startups. Eager to dive into emerging tech, I'm all about driving innovation and sharing the excitement!",
 			image: '/portraits/jonas'
@@ -41,7 +47,7 @@
 			name: 'Nazif Barassounon',
 			role: 'Full-stack Developer',
 			description:
-				'As a Full Stack developer with over three years of deep experience in web development, my passion is creating web applications that blend technology and design seamlessly to deliver user-friendly interfaces. As a philomath, I love learning and growing — staying up-to-date with the latest development trends in order to always exceed our clients’ expectations.',
+				'As a full-stack developer with over three years of deep experience in web development, my passion is creating web applications that blend technology and design seamlessly to deliver user-friendly interfaces. As a philomath, I love learning and growing — staying up-to-date with the latest development trends in order to always exceed our clients’ expectations.',
 			image: '/portraits/nazif'
 		},
 		{
@@ -134,38 +140,35 @@
 	>
 		Our Specialties
 	</h2>
+
 	<dl class="grid grid-cols-2 gap-8 overflow-hidden sm:mx-0 sm:rounded-2xl md:grid-cols-3">
 		<dt class="flex items-center justify-center gap-1 font-semibold text-background-on">
 			<Brain class="mr-1 h-7 w-7 text-primary" />
-			Machine Learning.
+			Machine Learning & AI
 		</dt>
 		<dt class="flex items-center justify-center gap-1 font-semibold text-background-on">
 			<Boxes class="mr-1 h-7 w-7 text-primary" />
-			Product Development.
+			MVP Development
 		</dt>
 		<dt class="flex items-center justify-center gap-1 font-semibold text-background-on">
-			<Workflow class="mr-1 h-7 w-7 text-primary" />
-			SaaS Development.
+			<CodeXml class="mr-1 h-7 w-7 text-primary" />
+			SaaS & PaaS Development
 		</dt>
 		<dt class="flex items-center justify-center gap-1 font-semibold text-background-on">
 			<PanelsTopLeft class="mr-1 h-7 w-7 text-primary" />
-			Web Design.
+			UI/UX Design
 		</dt>
 		<dt class="flex items-center justify-center gap-1 font-semibold text-background-on">
 			<Building2 class="mr-1 h-7 w-7 text-primary" />
-			System Architecture.
+			System Design
 		</dt>
 		<dt class="flex items-center justify-center gap-1 font-semibold text-background-on">
-			<MonitorCheck class="mr-1 h-7 w-7 text-primary" />
-			UI/UX Design.
+			<HardDrive class="mr-1 h-7 w-7 text-primary" />
+			Data Heavy Applications
 		</dt>
 	</dl>
 </section>
 
-<!-- Pricing Section -->
-<section id="pricing" class="flex max-w-7xl flex-col items-center justify-center px-5 sm:px-10">
-	hello
-</section>
 <!-- Process Section -->
 <section
 	class="md:prose-md prose prose-sm prose-main flex max-w-7xl flex-col items-center justify-center px-5 sm:prose-base lg:prose-lg xl:prose-xl 2xl:prose-2xl sm:px-10"
@@ -245,8 +248,8 @@
 	</div>
 </section>
 
-<!-- How it works -->
-<section>
+<!-- About -->
+<section id="about">
 	<div class="mx-auto max-w-7xl px-6 lg:px-8">
 		<div
 			class="md:prose-md prose prose-sm prose-main mx-auto flex flex-col items-center justify-center px-5 sm:prose-base lg:prose-lg xl:prose-xl 2xl:prose-2xl sm:px-10"
@@ -257,7 +260,7 @@
 				<span class="relative text-primary/20">Y</span>our People
 			</h2>
 			<p class="mt-6 text-lg leading-8 opacity-80">
-				At Startino, we're "people over process". We know a well rounded, experienced and lean team
+				At Startino, we're "people over process". We know a well rounded, experienced, and lean team
 				produces better results. We’re a group of individuals who are passionate about what we do
 				and dedicated to delivering the best results for our Co-Founders.
 			</p>
