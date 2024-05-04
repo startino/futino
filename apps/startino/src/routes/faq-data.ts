@@ -91,27 +91,27 @@ export const faqs: Faqs = [
 			'The advantage of creating a SaaS product lies in building a valuable asset. Should you decide to discontinue your SaaS project, you have the option to sell the project. This approach can enable you to recover a substantial portion of your initial investment, significantly reducing your financial risk.'
 	},
 	{
-		question: `What services does Futino offer?`,
-		answer: `Futino provides three main web-services: Basic UI/UX, Development, and Hosting. Within these we cover the whole deal that any software project would need.`
+		question: `What services does Startino offer?`,
+		answer: `Startino provides three main web-services: Basic UI/UX, Development, and Hosting. Within these we cover the whole deal that any software project would need.`
 	},
 	{
-		question: `What types of clients does Futino work with?`,
-		answer: `Futino caters to any non-technical entrepreneur and startup with an idea and vision. We only partner with clients who are determined in their success and are qualified within the industry of their idea.`
+		question: `What types of clients does Startino work with?`,
+		answer: `Startino caters to any non-technical entrepreneur and startup with an idea and vision. We only partner with clients who are determined in their success and are qualified within the industry of their idea.`
 	},
 	{
 		question: `Can I request revisions after it's been developed?`,
 		answer: `Yes, we offer unlimited revisions within our capacity, but as your partners we will advise on a case-by-case basis if the request is the option.`
 	},
 	{
-		question: `How do I get started with Futino's services?`,
+		question: `How do I get started with Startino's services?`,
 		answer: `You can get started by booking a call or filling the contact form on the website. We'll guide you through the process from there. We start off by gathering necessary informating about your project then get straight to work.`
 	},
 	{
-		question: `What is open-source software, and how does Futino use it?`,
+		question: `What is open-source software, and how does Startino use it?`,
 		answer: `Open-source software is software with source code that is open to the public. Open-source software allows transparency as well as cost-efficiency in our tools and services.`
 	},
 	{
-		question: `Can Futino help me with branding and identity design?`,
+		question: `Can Startino help me with branding and identity design?`,
 		answer: `While we offer this service, it isn't our main focus. We advise working with one of our trusted partner, Unloc, for these services.`
 	}
 ];
