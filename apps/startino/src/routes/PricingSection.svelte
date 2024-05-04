@@ -80,7 +80,7 @@
 							>Get started today</a
 						>
 						<p class="mx-auto mt-4 text-sm italic text-surface-on/80">
-							Flexible pricing upon contacting
+							Custom pricing for larger scale upon contacting
 						</p>
 					</div>
 

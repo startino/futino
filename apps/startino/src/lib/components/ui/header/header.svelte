@@ -9,20 +9,16 @@
 			href: '/'
 		},
 		{
-			name: 'Services',
-			href: '/#services'
-		},
-		{
 			name: 'About',
-			href: '/about'
+			href: '#about'
 		},
 		{
 			name: 'Contact',
-			href: '/contact'
+			href: '#contact'
 		},
 		{
 			name: 'Pricing',
-			href: '/pricing'
+			href: '#pricing'
 		}
 	];
 

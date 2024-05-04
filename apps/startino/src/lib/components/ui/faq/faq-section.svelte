@@ -42,10 +42,10 @@
 			answer there, we're open to answer any questions.
 		</h1>
 		<div class="my-2 mb-6 flex flex-row gap-4">
-			<Button href="/contact">
+			<Button href="#contact">
 				<h2 class="title-medium">Book a call</h2>
 			</Button>
-			<Button href="/contact">
+			<Button href="#contact">
 				<h2 class="title-medium">Contact</h2>
 			</Button>
 		</div>
@@ -57,7 +57,7 @@
 					{#if searchInput && filteredFaqs.length === 0}
 						<div class="headline-medium inline w-full py-12">
 							<h1 class="">Sorry, we couldn't find your question.</h1>
-							<a href="/contact" class="headline-small text-tertiary underline">Ask Us Here!</a>
+							<a href="#contact" class="headline-small text-tertiary underline">Ask Us Here!</a>
 						</div>
 					{:else if filteredFaqs.length > 0}
 						{#each filteredFaqs as { question, answer }}
