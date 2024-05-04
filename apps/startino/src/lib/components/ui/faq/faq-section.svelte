@@ -28,7 +28,9 @@
 	};
 </script>
 
-<div class="grid w-full grid-cols-1 gap-3 md:grid-cols-5">
+<section
+	class="my-12 flex grid w-full max-w-7xl grid-cols-1 flex-col items-center justify-center gap-3 px-5 sm:px-10 md:grid-cols-5"
+>
 	<div
 		class="col-span-2 flex h-fit flex-col items-center gap-y-4 self-start text-surface-on md:items-start md:text-left"
 	>
@@ -50,7 +52,7 @@
 	</div>
 	<div class="flex w-full flex-col gap-4 self-start md:col-span-3">
 		<div class="flex flex-col items-start gap-4">
-			<ScrollArea class="flex max-h-96  flex-col gap-12">
+			<ScrollArea class="flex max-h-[500px]  flex-col gap-12">
 				<div class="flex w-max flex-col space-y-4">
 					{#if searchInput && filteredFaqs.length === 0}
 						<div class="headline-medium inline w-full py-12">
@@ -70,4 +72,4 @@
 			</ScrollArea>
 		</div>
 	</div>
-</div>
+</section>

@@ -257,8 +257,9 @@
 				<span class="relative text-primary/20">Y</span>our People
 			</h2>
 			<p class="mt-6 text-lg leading-8 opacity-80">
-				We’re a dynamic group of individuals who are passionate about what we do and dedicated to
-				delivering the best results for our Co-Founders.
+				At Startino, we're "people over process". We know a well rounded, experienced and lean team
+				produces better results. We’re a group of individuals who are passionate about what we do
+				and dedicated to delivering the best results for our Co-Founders.
 			</p>
 		</div>
 		<ul
@@ -287,6 +288,8 @@
 </section>
 
 <PricingSection />
+
+<FaqSection {faqs} />
 
 <section class="mx-auto flex flex-col gap-8 px-6 pb-20 xl:px-16 2xl:px-64">
 	<div
@@ -441,8 +444,4 @@
 			</a>
 		</li>
 	</ul>
-</section>
-
-<section class="flex max-w-7xl flex-col items-center justify-center px-5 sm:px-10">
-	<FaqSection {faqs} />
 </section>
