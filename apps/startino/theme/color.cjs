@@ -113,16 +113,16 @@ colors.destructive = {
 };
 colors.muted = {
 	DEFAULT: colors.surface.DEFAULT,
-	foreground: colors.surface.on.DEFAULT
+	foreground: colors.surface.variant.on.DEFAULT
 };
 
 colors.popover = {
-	DEFAULT: colors.primary.DEFAULT,
-	foreground: colors.primary.on.DEFAULT
+	DEFAULT: colors.surface.DEFAULT,
+	foreground: colors.surface.on.DEFAULT
 };
 colors.card = {
 	DEFAULT: colors.primary.DEFAULT,
-	foreground: colors.primary.on.DEFAULT
+	foreground: colors.surface.on.DEFAULT
 };
 
 module.exports = colors;

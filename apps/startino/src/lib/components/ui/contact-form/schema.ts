@@ -7,16 +7,9 @@ export const budgetOptions = [
 	'$16,000 - $32,000',
 	'$32,000 - $50,000',
 	'more than $50,000'
-] as const;
+];
 
-export const sourceOptions = [
-	'Google',
-	'LinkedIn',
-	'Reddit',
-	'Someone else',
-	'Clutch',
-	'Other'
-] as const;
+export const sourceOptions = ['Google', 'LinkedIn', 'Reddit', 'Someone else', 'Clutch', 'Other'];
 
 export const formSchema = z.object({
 	name: z.string().min(2),

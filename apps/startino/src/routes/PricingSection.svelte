@@ -5,8 +5,8 @@
 	<div class="mx-auto max-w-7xl px-6 pb-96 pt-24 text-center sm:pt-32 lg:px-8">
 		<div class="mx-auto max-w-4xl">
 			<h2 class="text-base font-semibold leading-7 text-primary">Pricing</h2>
-			<p class="mt-2 text-3xl font-bold tracking-tight text-white sm:text-4xl sm:text-6xl">
-				Invest in your success, <br class=" " />bring your idea to life
+			<p class="mt-2 text-3xl font-bold tracking-tight text-background-on sm:text-4xl sm:text-6xl">
+				Invest in your success, <br class=" " />bring your idea to life.
 			</p>
 		</div>
 		<div class="relative mt-6">
@@ -76,7 +76,7 @@
 						<a
 							href="https://calendly.com/jorge-lewis"
 							aria-describedby="tier-full-cycle"
-							class="mt-8 block rounded-md bg-primary px-3.5 py-2 text-center text-sm font-semibold leading-6 text-primary-on shadow-sm hover:bg-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+							class="mt-8 block rounded-md bg-primary px-3.5 py-2 text-center text-sm font-semibold leading-6 text-primary-on shadow-sm transition-colors duration-300 hover:bg-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
 							>Get started today</a
 						>
 						<p class="mx-auto mt-4 text-sm italic text-surface-on/80">

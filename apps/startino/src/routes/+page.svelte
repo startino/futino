@@ -14,7 +14,7 @@
 	import { FaqSection } from '$lib/components/ui/faq';
 	import { faqs } from './faq-data';
 	import PricingSection from './PricingSection.svelte';
-	import ContactForm from '$lib/components/ui/contact-form/contact-form.svelte';
+	import { ContactForm } from '$lib/components/ui/contact-form';
 	import type { PageData } from './$types.js';
 
 	export let data: PageData;
@@ -302,9 +302,11 @@
 <!-- Contact Section -->
 <!-- About -->
 <section id="about">
-	<div class="mx-auto grid max-w-7xl grid-cols-1 px-6 md:grid-cols-2 lg:px-8">
+	<div class="mx-auto grid max-w-7xl grid-cols-1 gap-8 px-6 md:grid-cols-2 lg:px-8">
 		<div class=" flex max-w-3xl flex-col gap-4 text-left">
-			<h1 class="text-4xl font-bold">Let's do this.</h1>
+			<h1 class="text-3xl font-bold tracking-tight text-background-on sm:text-4xl sm:text-6xl">
+				Let's do this.
+			</h1>
 			<p class="text-base">
 				We're excited to hear about your project. Fill out the form or reach out to us at <a
 					class="text-accent underline"
