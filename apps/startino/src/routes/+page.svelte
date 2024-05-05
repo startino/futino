@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { Button } from '$lib/components/ui/button';
+	import * as Avatar from '$lib/components/ui/avatar';
 	import {
 		Brain,
 		Boxes,
@@ -13,6 +14,10 @@
 	import { FaqSection } from '$lib/components/ui/faq';
 	import { faqs } from './faq-data';
 	import PricingSection from './PricingSection.svelte';
+	import ContactForm from '$lib/components/ui/contact-form/contact-form.svelte';
+	import type { PageData } from './$types.js';
+
+	export let data: PageData;
 
 	const process = [
 		{
@@ -62,10 +67,11 @@
 
 <!-- Hero -->
 <section
+	id="hero"
 	class="md:prose-md prose prose-sm prose-main flex h-screen w-full max-w-7xl flex-col items-center justify-center gap-2 px-5 text-lg sm:prose-base lg:prose-lg xl:prose-xl sm:px-10 sm:text-xl md:text-2xl lg:text-4xl"
 >
 	<div
-		class="z-100 absolute left-0 right-0 top-0 h-screen border-b border-primary/40 shadow-2xl"
+		class="z-100 pointer-events-none absolute left-0 right-0 top-0 h-screen border-b border-primary/40 shadow-2xl"
 	></div>
 	<div class="flex flex-col">
 		<h1 class="m-0 sm:m-0">
@@ -89,7 +95,8 @@
 		so ourselves) software development, attracting initial users, and iterating for market fit.
 	</p>
 	<div class="not-prose flex gap-4">
-		<Button href="https://calendly.com/jorge-lewis" class="px-12 py-7 text-2xl">Get in Touch</Button
+		<Button href="https://calendly.com/jorge-lewis" target="new" class="px-12 py-7 text-2xl"
+			>Get in Touch</Button
 		>
 		<Button href="#pricing" class="px-12 py-7 text-2xl" variant="outline">Pricing</Button>
 	</div>
@@ -291,6 +298,39 @@
 </section>
 
 <PricingSection />
+
+<!-- Contact Section -->
+<!-- About -->
+<section id="about">
+	<div class="mx-auto grid max-w-7xl grid-cols-1 px-6 md:grid-cols-2 lg:px-8">
+		<div class=" flex max-w-3xl flex-col gap-4 text-left">
+			<h1 class="text-4xl font-bold">Let's do this.</h1>
+			<p class="text-base">
+				We're excited to hear about your project. Fill out the form or reach out to us at <a
+					class="text-accent underline"
+					href="mailto:contact@futi.no">contact@futi.no</a
+				> and we'll get back to you within 24 hours. Even better yet, let's have a virtual chat over
+				coffee.
+			</p>
+			<Button
+				href="https://calendly.com/jorge-lewis"
+				variant="outline"
+				target="new"
+				class="group w-fit px-8 py-8 text-xl font-bold text-primary"
+				>Book a Meeting!
+				<Avatar.Root class="z-10 ml-2 transition-all group-hover:translate-x-1">
+					<Avatar.Image src="/portraits/jorge-main-close-up.webp" alt="@shadcn" />
+					<Avatar.Fallback>CN</Avatar.Fallback>
+				</Avatar.Root>
+				<Avatar.Root class="-ml-3 transition-all group-hover:translate-x-3">
+					<Avatar.Image src="/portraits/jonas-main-close-up.webp" alt="@shadcn" />
+					<Avatar.Fallback>CN</Avatar.Fallback>
+				</Avatar.Root>
+			</Button>
+		</div>
+		<ContactForm data={data.form} />
+	</div>
+</section>
 
 <FaqSection {faqs} />
 

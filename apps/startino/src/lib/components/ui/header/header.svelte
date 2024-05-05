@@ -6,7 +6,7 @@
 	export const elements = [
 		{
 			name: 'Home',
-			href: '/'
+			href: '#hero'
 		},
 		{
 			name: 'About',

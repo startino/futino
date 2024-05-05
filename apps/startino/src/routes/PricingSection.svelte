@@ -74,8 +74,8 @@
 							</ul>
 						</div>
 						<a
-							href="#"
-							aria-describedby="tier-hobby"
+							href="https://calendly.com/jorge-lewis"
+							aria-describedby="tier-full-cycle"
 							class="mt-8 block rounded-md bg-primary px-3.5 py-2 text-center text-sm font-semibold leading-6 text-primary-on shadow-sm hover:bg-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
 							>Get started today</a
 						>

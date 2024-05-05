@@ -1,46 +1,55 @@
 <script lang="ts">
-	import { Button } from '$lib/components/ui/button/index.js';
-	import { Input } from '$lib/components/ui/input/index.js';
-	import { Label } from '$lib/components/ui/label/index.js';
+	import { type Infer, type SuperValidated, superForm } from 'sveltekit-superforms';
+	import { zodClient } from 'sveltekit-superforms/adapters';
+	import * as Form from '$lib/components/ui/form/index.js';
+	import * as Select from '$lib/components/ui/select';
+
+	import { formSchema, type FormSchema, budgetOptions, sourceOptions } from './schema';
+
+	export let data: SuperValidated<Infer<FormSchema>>;
+
+	const form = superForm(data, {
+		validators: zodClient(formSchema)
+	});
+
+	const { form: formData, enhance } = form;
+
+	$: selectedBudget = $formData.budget
+		? {
+				label: $formData.budget,
+				value: $formData.budget
+			}
+		: undefined;
+	$: selectedSource = $formData.source
+		? { label: $formData.source, value: $formData.source }
+		: undefined;
 </script>
 
-<div class="w-full lg:grid lg:min-h-[600px] lg:grid-cols-2 xl:min-h-[800px]">
-	<div class="flex items-center justify-center py-12">
-		<div class="mx-auto grid w-[350px] gap-6">
-			<div class="grid gap-2 text-center">
-				<h1 class="text-3xl font-bold">Login</h1>
-				<p class="text-balance text-muted-foreground">
-					Enter your email below to login to your account
-				</p>
-			</div>
-			<div class="grid gap-4">
-				<div class="grid gap-2">
-					<Label for="email">Email</Label>
-					<Input id="email" type="email" placeholder="m@example.com" required />
-				</div>
-				<div class="grid gap-2">
-					<div class="flex items-center">
-						<Label for="password">Password</Label>
-						<a href="##" class="ml-auto inline-block text-sm underline"> Forgot your password? </a>
-					</div>
-					<Input id="password" type="password" required />
-				</div>
-				<Button type="submit" class="w-full">Login</Button>
-				<Button variant="outline" class="w-full">Login with Google</Button>
-			</div>
-			<div class="mt-4 text-center text-sm">
-				Don&apos;t have an account?
-				<a href="##" class="underline"> Sign up </a>
-			</div>
-		</div>
-	</div>
-	<div class="hidden bg-muted lg:block">
-		<img
-			src="/images/placeholder.svg"
-			alt="placeholder"
-			width="1920"
-			height="1080"
-			class="h-full w-full object-cover dark:brightness-[0.2] dark:grayscale"
-		/>
-	</div>
-</div>
+<form method="POST" class="w-2/3 space-y-6" use:enhance>
+	<Form.Field {form} name="budget">
+		<Form.Control let:attrs>
+			<Form.Label>What's your budget?</Form.Label>
+			<Select.Root
+				selected={selectedBudget}
+				onSelectedChange={(v) => {
+					v && ($formData.budget = v.value);
+				}}
+			>
+				<Select.Trigger {...attrs}>
+					<Select.Value placeholder="Select a verified email to display" />
+				</Select.Trigger>
+				<Select.Content>
+					{#each budgetOptions as option}
+						<Select.Item value={option} label={option} />
+					{/each}
+				</Select.Content>
+			</Select.Root>
+			<input hidden bind:value={$formData.budget} name={attrs.name} />
+		</Form.Control>
+		<Form.Description>
+			You can manage email address in your <a href="/examples/forms">email settings</a>.
+		</Form.Description>
+		<Form.FieldErrors />
+	</Form.Field>
+	<Form.Button>Submit</Form.Button>
+</form>
