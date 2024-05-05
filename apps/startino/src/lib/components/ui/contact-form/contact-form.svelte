@@ -64,7 +64,7 @@
 				}}
 			>
 				<Select.Trigger {...attrs}>
-					<Select.Value placeholder="Select a verified email to display" />
+					<Select.Value placeholder="Select a budget" />
 				</Select.Trigger>
 				<Select.Content>
 					{#each budgetOptions as option}
@@ -80,13 +80,13 @@
 		<Form.Control let:attrs>
 			<Form.Label>How did you hear about us?</Form.Label>
 			<Select.Root
-				selected={selectedBudget}
+				selected={selectedSource}
 				onSelectedChange={(v) => {
-					v && ($formData.budget = v.value);
+					v && ($formData.source = v.value);
 				}}
 			>
 				<Select.Trigger {...attrs}>
-					<Select.Value placeholder="Select where you heard about us from" />
+					<Select.Value placeholder="Let us know where you're from" />
 				</Select.Trigger>
 				<Select.Content>
 					{#each sourceOptions as option}

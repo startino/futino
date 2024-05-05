@@ -1,12 +1,11 @@
 import { z } from 'zod';
 
 export const budgetOptions = [
-	'less than $4,000',
 	'$4,000 - $8,000',
 	'$8,000 - $16,000',
 	'$16,000 - $32,000',
 	'$32,000 - $50,000',
-	'more than $50,000'
+	'> $50,000'
 ];
 
 export const sourceOptions = ['Google', 'LinkedIn', 'Reddit', 'Someone else', 'Clutch', 'Other'];
