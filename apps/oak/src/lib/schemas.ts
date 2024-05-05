@@ -1,7 +1,4 @@
 import { z } from 'zod';
-import genarator from 'generate-password-browser';
-
-const { generate: generatePassword } = genarator;
 
 export const profileSchema = z.object({
 	full_name: z
@@ -12,11 +9,8 @@ export const profileSchema = z.object({
 	email: z.string().email('Invalid email address'),
 	approval_threshold: z.number().gte(0).default(0),
 	approver_id: z.string().uuid(),
-	role: z.enum(['admin', 'employee', 'signer']),
-	password: z
-		.string()
-		.readonly()
-		.default(generatePassword({ numbers: true, strict: true }))
+	role: z.enum(['employee', 'admin', 'signer']),
+	password: z.string().readonly().default('************')
 });
 
 export const departmentSchema = z.object({

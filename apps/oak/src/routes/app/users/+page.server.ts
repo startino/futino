@@ -2,6 +2,9 @@ import nodemailer from 'nodemailer';
 import { setError, superValidate } from 'sveltekit-superforms/server';
 import { zod } from 'sveltekit-superforms/adapters';
 import { fail } from '@sveltejs/kit';
+import genarator from 'generate-password';
+
+const { generate: generatePassword } = genarator;
 
 import { profileSchema } from '$lib/schemas';
 import type { JoinedProfile } from '$lib/types';
@@ -10,7 +13,6 @@ import { PUBLIC_SITE_URL } from '$env/static/public';
 
 export const load = async () => {
 	const form = await superValidate(zod(profileSchema));
-
 	return { form };
 };
 
@@ -23,6 +25,7 @@ export const actions = {
 		}
 
 		const formData = form.data;
+		formData.password = generatePassword({ numbers: true, strict: true });
 
 		const { error, data } = await apiClient.supabase.auth.admin.createUser({
 			email: formData.email,
@@ -73,7 +76,7 @@ export const actions = {
 			to: formData.email,
 			subject: 'Your Oak credentials',
 			html: `
-				Your Administrator has created an Oak accound for you.
+				Your Administrator has created an Oak account for you.
 				Here is your credentials: <br/>
 				<b>Email: </b> ${formData.email}<br/>
 				<b>Password: </b> ${formData.password}<br/>
