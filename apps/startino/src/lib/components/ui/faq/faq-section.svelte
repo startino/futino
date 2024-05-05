@@ -45,14 +45,14 @@
 			<Button href="https://calendly.com/jorge-lewis" size="lg">
 				<h2 class="title-medium">Book a call</h2>
 			</Button>
-			<Button href="https://calendly.com/jorge-lewis" size="lg">
-				<h2 class="title-medium">Contact</h2>
+			<Button href="#contact" size="lg">
+				<h2 class="title-medium">Fill a form</h2>
 			</Button>
 		</div>
 	</div>
 	<div class="flex w-full flex-col gap-4 self-start md:col-span-3">
 		<div class="flex flex-col items-start gap-4">
-			<ScrollArea class="flex max-h-[500px]  flex-col gap-12">
+			<ScrollArea class="mx-auto flex max-h-[500px]  flex-col gap-12">
 				<div class="flex w-max flex-col space-y-4">
 					{#if searchInput && filteredFaqs.length === 0}
 						<div class="headline-medium inline w-full py-12">

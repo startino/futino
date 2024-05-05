@@ -5,16 +5,24 @@
 	import * as Select from '$lib/components/ui/select';
 	import { Input } from '$lib/components/ui/input';
 	import { Textarea } from '$lib/components/ui/textarea';
+	import { RotateCw } from 'lucide-svelte';
 
 	import { formSchema, type FormSchema, budgetOptions, sourceOptions } from './schema';
+	import DialogOverlay from '../dialog/dialog-overlay.svelte';
 
 	export let data: SuperValidated<Infer<FormSchema>>;
 
+	let showMessage = false;
 	const form = superForm(data, {
-		validators: zodClient(formSchema)
+		validators: zodClient(formSchema),
+		onUpdated({ form }) {
+			if (form.valid) {
+				showMessage = true;
+			}
+		}
 	});
 
-	const { form: formData, enhance } = form;
+	const { form: formData, enhance, delayed } = form;
 
 	$: selectedBudget = $formData.budget
 		? {
@@ -27,7 +35,7 @@
 		: undefined;
 </script>
 
-<form method="POST" class="w-2/3 space-y-6 text-left" use:enhance>
+<form method="POST" class="w-full max-w-md space-y-6 text-left" use:enhance>
 	<Form.Field {form} name="name">
 		<Form.Control let:attrs>
 			<Form.Label>Name</Form.Label>
@@ -99,5 +107,13 @@
 		<Form.FieldErrors />
 	</Form.Field>
 
-	<Form.Button size="lg">Submit</Form.Button>
+	<Form.Button size="lg" disabled={$delayed}>
+		{#if $delayed}
+			<RotateCw class="mr-2 h-4 w-4 animate-spin" />
+		{/if}
+		Submit
+	</Form.Button>
+	{#if showMessage}
+		<p class="text-emerald-400">Message sent successfully!</p>
+	{/if}
 </form>

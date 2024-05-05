@@ -353,7 +353,11 @@
 	</div>
 	<ul role="list" class="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-3">
 		<li class="col-span-1 rounded-xl border border-primary shadow">
-			<a href="https://svelte.dev/" class="flex items-center justify-between space-x-6 p-6">
+			<a
+				href="https://svelte.dev/"
+				target="_blank"
+				class="flex items-center justify-between space-x-6 p-6"
+			>
 				<div class="flex-1">
 					<div class="flex items-center space-x-3">
 						<h3 class="text-nowrap text-sm font-medium text-background-on">Svelte & SvelteKit</h3>
@@ -377,6 +381,7 @@
 		<li class="col-span-1 rounded-xl border border-primary shadow">
 			<a
 				href="https://www.typescriptlang.org/"
+				target="_blank"
 				class="flex items-center justify-between space-x-6 p-6"
 			>
 				<div class="flex-1">
@@ -400,7 +405,11 @@
 			</a>
 		</li>
 		<li class="col-span-1 rounded-xl border border-primary shadow">
-			<a href="https://vercel.com" class="flex items-center justify-between space-x-6 p-6">
+			<a
+				href="https://vercel.com"
+				target="_blank"
+				class="flex items-center justify-between space-x-6 p-6"
+			>
 				<div class="flex-1">
 					<div class="flex items-center space-x-3">
 						<h3 class="text-sm font-medium text-background-on">Vercel</h3>
@@ -422,7 +431,11 @@
 			</a>
 		</li>
 		<li class="col-span-1 rounded-xl border border-primary shadow">
-			<a href="https://www.cloudflare.com/" class="flex items-center justify-between space-x-6 p-6">
+			<a
+				href="https://www.cloudflare.com/"
+				target="_blank"
+				class="flex items-center justify-between space-x-6 p-6"
+			>
 				<div class="flex-1">
 					<div class="flex items-center space-x-3">
 						<h3 class="text-sm font-medium text-background-on">Cloudflare</h3>
@@ -446,6 +459,7 @@
 		<li class="col-span-1 rounded-xl border border-primary shadow">
 			<a
 				href="https://fastapi.tiangolo.com/"
+				target="_blank"
 				class="flex items-center justify-between space-x-6 p-6"
 			>
 				<div class="flex-1">
@@ -469,7 +483,11 @@
 			</a>
 		</li>
 		<li class="col-span-1 rounded-xl border border-primary shadow">
-			<a href="https://www.python.org/" class="flex items-center justify-between space-x-6 p-6">
+			<a
+				href="https://www.python.org/"
+				target="_blank"
+				class="flex items-center justify-between space-x-6 p-6"
+			>
 				<div class="flex-1">
 					<div class="flex items-center space-x-3">
 						<h3 class="text-sm font-medium text-background-on">Python</h3>

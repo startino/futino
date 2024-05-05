@@ -11,7 +11,7 @@
 
 <button
 	on:click={toggle}
-	class="border-1 flex max-w-xs flex-col text-wrap rounded-md border-primary/50 bg-surface px-3 py-5 text-left shadow-lg transition-all duration-300 sm:max-w-md md:max-w-md lg:max-w-xl xl:max-w-3xl"
+	class="border-1 flex max-w-xs flex-col text-wrap rounded-md border-primary/50 bg-surface px-3 py-6 text-left shadow-lg transition-all duration-300 sm:max-w-md md:max-w-md lg:max-w-xl xl:max-w-3xl"
 >
 	<div class="flex w-full flex-row items-center justify-between gap-x-6">
 		<h3 class="text-lg font-bold">
