@@ -10,8 +10,9 @@
 	import { Input } from '$lib/components/ui/input';
 	import { Switch } from '$lib/components/ui/switch';
 	import { Label } from '$lib/components/ui/label';
-	import { getContext } from '$lib/utils';
+	import { cn, formatAmount, getContext } from '$lib/utils';
 	import type { ContractDatableRow } from '$lib/types';
+	import { goto } from '$app/navigation';
 
 	export let data: ContractDatableRow[];
 
@@ -76,13 +77,7 @@
 		table.column({
 			accessor: 'amount',
 			header: 'Amount',
-			cell: ({ value }) => {
-				const formatted = new Intl.NumberFormat('en-US', {
-					style: 'currency',
-					currency: 'USD'
-				}).format(value);
-				return formatted;
-			},
+			cell: ({ value }) => formatAmount(value),
 			plugins: {
 				filter: {
 					exclude: true
@@ -157,9 +152,13 @@
 				{/each}
 			</Table.Header>
 			<Table.Body {...$tableBodyAttrs}>
-				{#each $pageRows as row (row.id)}
+				{#each $pageRows as row, i (row.id)}
 					<Subscribe rowAttrs={row.attrs()} let:rowAttrs>
-						<Table.Row {...rowAttrs}>
+						<Table.Row
+							{...rowAttrs}
+							class={cn('cursor-pointer')}
+							on:click={() => goto(`/app/contracts/${data[i].id}`)}
+						>
 							{#each row.cells as cell (cell.id)}
 								<Subscribe attrs={cell.attrs()} let:attrs>
 									<Table.Cell {...attrs}>

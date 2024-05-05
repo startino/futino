@@ -60,7 +60,7 @@ export const contractSchema = z
 		amount: z.string().min(1, 'An amount is required'),
 		spend_category_id: z.string().uuid('A spend category is required'),
 		attachment: z
-			.instanceof(File, { message: 'Please upload a the contract PDF.' })
+			.instanceof(File, { message: 'Please upload the contract PDF.' })
 			.refine((f) => f.size / 1024 / 1024 < 5, 'Max 5 MiB upload size.'),
 		vendor_id: z.string().uuid('The vendor is required')
 	})
