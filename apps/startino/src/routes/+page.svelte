@@ -1,4 +1,6 @@
 <script lang="ts">
+	// This was added for the purpose of rebuilding the project lol. its not deploying.
+	// if this is still here you can proibably delete it
 	import { Button } from '$lib/components/ui/button';
 	import * as Avatar from '$lib/components/ui/avatar';
 	import {
