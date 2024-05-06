@@ -1,67 +1,105 @@
 <script lang="ts">
 	import { Button } from '$lib/components/ui/button';
-	import { Brain, Boxes, Workflow, PanelsTopLeft, Building2, MonitorCheck } from 'lucide-svelte';
+	import * as Avatar from '$lib/components/ui/avatar';
+	import {
+		Brain,
+		Boxes,
+		Workflow,
+		PanelsTopLeft,
+		Building2,
+		CodeXml,
+		HardDrive
+	} from 'lucide-svelte';
+
+	import { FaqSection } from '$lib/components/ui/faq';
+	import { faqs } from './faq-data';
+	import PricingSection from './PricingSection.svelte';
+	import { ContactForm } from '$lib/components/ui/contact-form';
+	import type { PageData } from './$types.js';
+
+	export let data: PageData;
 
 	const process = [
 		{
 			title: 'Plan',
-			body: 'In this initial phase, we engage in thorough discussions to understand your vision, goals, and requirements for your software project.'
+			body: 'We engage in thorough discussions to understand your vision, goals, and requirements.'
 		},
 		{
 			title: 'Develop',
-			body: 'Our experts bring your concept to life with cutting-edge technologies. We iterate based on feedback, ensuring a user-friendly and scalable solution.'
+			body: "From our clear planning, we're able to bring your concept to life with efficiency and beauty."
 		},
 		{
-			title: 'Deploy',
-			body: 'Our team ensures a seamless transition from development to deployment. Post-launch, we provide ongoing support and maintenance.'
+			title: 'Thrive',
+			body: 'Our team ensures a seamless transition from development to deployment. Post-launch, we iterate and optimize for market fit based on user-feedback.'
+		}
+	];
+	const team = [
+		{
+			name: 'Jorge Lewis',
+			role: 'Co-Founder - Business Development',
+			description:
+				"Hey 👋. I've got over six years of programming experience under my belt, specializing in automation software and machine learning. I've found a passion for merging business processes, strategy, and software to bring projects like yours to fruition.",
+			image: '/portraits/jorge'
+		},
+		{
+			name: 'Jonas Lindberg',
+			role: 'Co-Founder - Technology',
+			description:
+				"Since the age of 14, my passion for coding has been a driving force in my life. I've been deeply engaged in the creation of websites and bespoke software solutions in collaboration with startups. Eager to dive into emerging tech, I'm all about driving innovation and sharing the excitement!",
+			image: '/portraits/jonas'
+		},
+		{
+			name: 'Nazif Barassounon',
+			role: 'Full-stack Developer',
+			description:
+				'As a full-stack developer with over three years of deep experience in web development, my passion is creating web applications that blend technology and design seamlessly to deliver user-friendly interfaces. As a philomath, I love learning and growing — staying up-to-date with the latest development trends in order to always exceed our clients’ expectations.',
+			image: '/portraits/nazif'
+		},
+		{
+			name: 'Leon Nilsson',
+			role: 'Backend Developer',
+			description:
+				"I'm a developer who has been programming for over five years, passionate about backend development. I'm committed to writing high quality, scalable software, innovating and finding the best possible solutions to different problems. I strive to learn all I can in today's shifting digital landscape.",
+			image: '/portraits/leon'
 		}
 	];
 </script>
 
 <!-- Hero -->
 <section
+	id="hero"
 	class="md:prose-md prose prose-sm prose-main flex h-screen w-full max-w-7xl flex-col items-center justify-center gap-2 px-5 text-lg sm:prose-base lg:prose-lg xl:prose-xl sm:px-10 sm:text-xl md:text-2xl lg:text-4xl"
 >
 	<div
-		class="z-100 absolute left-0 right-0 top-0 h-screen border-b border-primary/40 shadow-2xl"
+		class="z-100 pointer-events-none absolute left-0 right-0 top-0 h-screen border-b border-primary/40 shadow-2xl"
 	></div>
-	<img class="size-32" src="/favicon.png" alt="Futino's Logo" />
 	<div class="flex flex-col">
 		<h1 class="m-0 sm:m-0">
+			Building <br /><span
+				class="m-0 bg-gradient-to-b from-primary from-50% to-background bg-clip-text text-transparent sm:m-0"
+			>
+				Ideas
+			</span>
+			Into
 			<span
 				class="m-0 bg-gradient-to-b from-primary from-50% to-background bg-clip-text text-transparent sm:m-0"
 			>
-				Tech
+				Life
 			</span>
-			Co-Founder
+
 			<br />
-		</h1>
-		<h1 class="m-0 sm:m-0">
-			as a
-			<span
-				class="bg-gradient-to-b from-primary from-50% to-background bg-clip-text text-transparent"
-			>
-				Service
-			</span>
 		</h1>
 	</div>
 	<p class="text-pretty opacity-80">
-		Many non-tech founders struggle to build out their software idea in a holistic manner; retiring
-		before they finish their MVP or giving half their business to someone untrustworthy.
+		Advancing the success of non-technical entrepreneurs and startups through beautiful (if we say
+		so ourselves) software development, attracting initial users, and iterating for market fit.
 	</p>
-	<!-- TODO: Make these buttons functional and uncomment them -->
-	<!-- <div class="flex gap-4"> -->
-	<!-- 	<button -->
-	<!-- 		class="inline-flex h-10 items-center justify-center whitespace-nowrap rounded bg-primary p-8 text-xl font-bold text-primary-on ring-offset-background transition-colors hover:scale-[98%] hover:bg-tertiary hover:text-tertiary-on focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50" -->
-	<!-- 	> -->
-	<!-- 		Contact Us -->
-	<!-- 	</button> -->
-	<!-- 	<button -->
-	<!-- 		class="inline-flex h-10 items-center justify-center whitespace-nowrap rounded border border-input bg-transparent p-8 text-xl font-medium text-primary ring-offset-background transition-colors hover:scale-[98%] hover:border-tertiary hover:text-tertiary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50" -->
-	<!-- 	> -->
-	<!-- 		Book a Meeting -->
-	<!-- 	</button> -->
-	<!-- </div> -->
+	<div class="not-prose flex gap-4">
+		<Button href="https://calendly.com/jorge-lewis" target="new" class="px-12 py-7 text-2xl"
+			>Get in Touch</Button
+		>
+		<Button href="#pricing" class="px-12 py-7 text-2xl" variant="outline">Pricing</Button>
+	</div>
 </section>
 
 <!-- Solution -->
@@ -109,30 +147,31 @@
 	>
 		Our Specialties
 	</h2>
+
 	<dl class="grid grid-cols-2 gap-8 overflow-hidden sm:mx-0 sm:rounded-2xl md:grid-cols-3">
 		<dt class="flex items-center justify-center gap-1 font-semibold text-background-on">
 			<Brain class="mr-1 h-7 w-7 text-primary" />
-			Machine Learning.
+			Machine Learning & AI
 		</dt>
 		<dt class="flex items-center justify-center gap-1 font-semibold text-background-on">
 			<Boxes class="mr-1 h-7 w-7 text-primary" />
-			Product Development.
+			MVP Development
 		</dt>
 		<dt class="flex items-center justify-center gap-1 font-semibold text-background-on">
-			<Workflow class="mr-1 h-7 w-7 text-primary" />
-			SaaS Development.
+			<CodeXml class="mr-1 h-7 w-7 text-primary" />
+			SaaS & PaaS Development
 		</dt>
 		<dt class="flex items-center justify-center gap-1 font-semibold text-background-on">
 			<PanelsTopLeft class="mr-1 h-7 w-7 text-primary" />
-			Web Design.
+			UI/UX Design
 		</dt>
 		<dt class="flex items-center justify-center gap-1 font-semibold text-background-on">
 			<Building2 class="mr-1 h-7 w-7 text-primary" />
-			System Architecture.
+			System Design
 		</dt>
 		<dt class="flex items-center justify-center gap-1 font-semibold text-background-on">
-			<MonitorCheck class="mr-1 h-7 w-7 text-primary" />
-			UI/UX Design.
+			<HardDrive class="mr-1 h-7 w-7 text-primary" />
+			Data Heavy Applications
 		</dt>
 	</dl>
 </section>
@@ -216,9 +255,8 @@
 	</div>
 </section>
 
-<!-- How it works -->
-
-<section>
+<!-- About -->
+<section id="about">
 	<div class="mx-auto max-w-7xl px-6 lg:px-8">
 		<div
 			class="md:prose-md prose prose-sm prose-main mx-auto flex flex-col items-center justify-center px-5 sm:prose-base lg:prose-lg xl:prose-xl 2xl:prose-2xl sm:px-10"
@@ -229,95 +267,76 @@
 				<span class="relative text-primary/20">Y</span>our People
 			</h2>
 			<p class="mt-6 text-lg leading-8 opacity-80">
-				We’re a dynamic group of individuals who are passionate about what we do and dedicated to
-				delivering the best results for our Co-Founders.
+				At Startino, we're "people over process". We know a well rounded, experienced, and lean team
+				produces better results. We’re a group of individuals who are passionate about what we do
+				and dedicated to delivering the best results for our Co-Founders.
 			</p>
 		</div>
 		<ul
 			class="mx-auto mt-20 grid max-w-2xl grid-cols-1 gap-x-6 gap-y-20 text-left sm:grid-cols-2 lg:max-w-4xl lg:gap-x-8 xl:max-w-none"
 		>
-			<li
-				class="flex flex-col items-center justify-center gap-6 text-center sm:items-start sm:justify-start sm:text-left xl:flex-row"
-			>
-				<img
-					class="aspect-[4/5] w-52 flex-none rounded-2xl bg-primary/10 object-cover"
-					src="/portraits/jorge-lewis.jpg"
-					alt="Portrait of Jorge Lewis"
-				/>
-				<div class="flex-auto">
-					<h3 class="trackng-tight text-lg font-semibold leading-8 text-primary">Jorge Lewis</h3>
-					<p class="text-base leading-7 text-primary">Co-Founder</p>
-					<p class="mt-6 text-base leading-7 opacity-80">
-						Hey 👋. I've got over 6 years of programming experience under my belt, with an expertise
-						in automation software and machine learning. I've found a passion in building beautiful
-						and highly functional software (the key is in the balance! 😉) to bring life to projects
-						like your own.
-					</p>
-				</div>
-			</li>
-			<li
-				class="flex flex-col items-center justify-center gap-6 text-center sm:items-start sm:justify-start sm:text-left xl:flex-row"
-			>
-				<img
-					class="aspect-[4/5] w-52 flex-none rounded-2xl bg-primary/10 object-cover"
-					src="/portraits/jonas-lindberg.jpg"
-					alt="Portrait of Jonas Lindberg"
-				/>
-				<div class="flex-auto">
-					<h3 class="trackng-tight text-lg font-semibold leading-8 text-primary">Jonas Lindberg</h3>
-					<p class="text-base leading-7 text-primary">Co-Founder</p>
-					<p class="mt-6 text-base leading-7 opacity-80">
-						Since the age of 14, my passion for coding has been a driving force in my life. I've
-						been deeply engaged in the creation of websites and bespoke software solutions in
-						collaboration with startups. Eager to dive into emerging tech, I'm all about driving
-						innovation and sharing the excitement!
-					</p>
-				</div>
-			</li>
-			<li
-				class="flex flex-col items-center justify-center gap-6 text-center sm:items-start sm:justify-start sm:text-left xl:flex-row"
-			>
-				<img
-					class="aspect-[4/5] w-52 flex-none rounded-2xl bg-primary/10 object-cover"
-					src="/portraits/nazif-barassounon.jpg"
-					alt="Portrait of Nazif Barassounon"
-				/>
-				<div class="flex-auto">
-					<h3 class="trackng-tight text-lg font-semibold leading-8 text-primary">
-						Nazif Barassounon
-					</h3>
-					<p class="text-base leading-7 text-primary">Full-stack Developer</p>
-					<p class="mt-6 text-base leading-7 opacity-80">
-						As a Full Stack developer with over three years of deep experience in web development,
-						my passion is creating web applications that blend technology and design seamlessly to
-						deliver user-friendly interfaces. As a philomath, I love learning and growing — staying
-						up-to-date with the latest development trends in order to always exceed our clients’
-						expectations.
-					</p>
-				</div>
-			</li>
-			<li
-				class="flex flex-col items-center justify-center gap-6 text-center sm:items-start sm:justify-start sm:text-left xl:flex-row"
-			>
-				<img
-					class="aspect-[4/5] w-52 flex-none rounded-2xl bg-primary/10 object-cover"
-					src="/portraits/leon-nilsson.jpg"
-					alt="Portrait of Leon Nilsson"
-				/>
-				<div class="flex-auto">
-					<h3 class="trackng-tight text-lg font-semibold leading-8 text-primary">Leon Nilsson</h3>
-					<p class="text-base leading-7 text-primary">Backend Developer</p>
-					<p class="mt-6 text-base leading-7 opacity-80">
-						I'm a developer who has been programming for over five years, passionate about backend
-						development. I'm committed to writing high quality, scalable software, innovating and
-						finding the best possible solutions to different problems. I strive to learn all I can
-						in today's shifting digital landscape.
-					</p>
-				</div>
-			</li>
+			{#each team as { name, role, description, image }, i}
+				<li
+					class="flex flex-col items-center justify-center gap-6 text-center sm:items-start sm:justify-start sm:text-left xl:flex-row"
+				>
+					<img
+						class="aspect-[4/5] w-52 flex-none rounded-2xl bg-primary/10 object-cover"
+						src="{image}-main-720.webp"
+						alt="Portrait of {name}"
+					/>
+					<div class="flex-auto">
+						<h3 class="trackng-tight text-lg font-semibold leading-8 text-primary">{name}</h3>
+						<p class="text-base leading-7 text-primary">{role}</p>
+						<p class="mt-6 text-base leading-7 opacity-80">
+							{description}
+						</p>
+					</div>
+				</li>
+			{/each}
 		</ul>
 	</div>
 </section>
+
+<PricingSection />
+
+<!-- Contact Section -->
+<!-- About -->
+<section id="about">
+	<div
+		class="mx-auto grid max-w-7xl grid-cols-1 justify-items-center gap-8 px-6 md:grid-cols-2 lg:px-8"
+	>
+		<div class=" flex max-w-3xl flex-col gap-4 text-left">
+			<h1 class="text-3xl font-bold tracking-tight text-background-on sm:text-4xl sm:text-6xl">
+				Let's do this.
+			</h1>
+			<p class="text-base">
+				We're excited to hear about your project. Fill out the form or reach out to us at <a
+					class="text-accent underline"
+					href="mailto:contact@futi.no">contact@futi.no</a
+				> and we'll get back to you within 24 hours. Even better yet, let's have a virtual chat over
+				coffee.
+			</p>
+			<Button
+				href="https://calendly.com/jorge-lewis"
+				variant="outline"
+				target="new"
+				class="group w-fit px-8 py-8 text-xl font-bold text-primary"
+				>Book a Meeting!
+				<Avatar.Root class="z-10 ml-2 transition-all group-hover:translate-x-1">
+					<Avatar.Image src="/portraits/jorge-main-close-up.webp" alt="@shadcn" />
+					<Avatar.Fallback>CN</Avatar.Fallback>
+				</Avatar.Root>
+				<Avatar.Root class="-ml-3 transition-all group-hover:translate-x-3">
+					<Avatar.Image src="/portraits/jonas-main-close-up.webp" alt="@shadcn" />
+					<Avatar.Fallback>CN</Avatar.Fallback>
+				</Avatar.Root>
+			</Button>
+		</div>
+		<ContactForm data={data.form} />
+	</div>
+</section>
+
+<FaqSection {faqs} />
 
 <section class="mx-auto flex flex-col gap-8 px-6 pb-20 xl:px-16 2xl:px-64">
 	<div
@@ -334,7 +353,11 @@
 	</div>
 	<ul role="list" class="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-3">
 		<li class="col-span-1 rounded-xl border border-primary shadow">
-			<a href="https://svelte.dev/" class="flex items-center justify-between space-x-6 p-6">
+			<a
+				href="https://svelte.dev/"
+				target="_blank"
+				class="flex items-center justify-between space-x-6 p-6"
+			>
 				<div class="flex-1">
 					<div class="flex items-center space-x-3">
 						<h3 class="text-nowrap text-sm font-medium text-background-on">Svelte & SvelteKit</h3>
@@ -358,6 +381,7 @@
 		<li class="col-span-1 rounded-xl border border-primary shadow">
 			<a
 				href="https://www.typescriptlang.org/"
+				target="_blank"
 				class="flex items-center justify-between space-x-6 p-6"
 			>
 				<div class="flex-1">
@@ -381,7 +405,11 @@
 			</a>
 		</li>
 		<li class="col-span-1 rounded-xl border border-primary shadow">
-			<a href="https://vercel.com" class="flex items-center justify-between space-x-6 p-6">
+			<a
+				href="https://vercel.com"
+				target="_blank"
+				class="flex items-center justify-between space-x-6 p-6"
+			>
 				<div class="flex-1">
 					<div class="flex items-center space-x-3">
 						<h3 class="text-sm font-medium text-background-on">Vercel</h3>
@@ -403,7 +431,11 @@
 			</a>
 		</li>
 		<li class="col-span-1 rounded-xl border border-primary shadow">
-			<a href="https://www.cloudflare.com/" class="flex items-center justify-between space-x-6 p-6">
+			<a
+				href="https://www.cloudflare.com/"
+				target="_blank"
+				class="flex items-center justify-between space-x-6 p-6"
+			>
 				<div class="flex-1">
 					<div class="flex items-center space-x-3">
 						<h3 class="text-sm font-medium text-background-on">Cloudflare</h3>
@@ -427,6 +459,7 @@
 		<li class="col-span-1 rounded-xl border border-primary shadow">
 			<a
 				href="https://fastapi.tiangolo.com/"
+				target="_blank"
 				class="flex items-center justify-between space-x-6 p-6"
 			>
 				<div class="flex-1">
@@ -450,7 +483,11 @@
 			</a>
 		</li>
 		<li class="col-span-1 rounded-xl border border-primary shadow">
-			<a href="https://www.python.org/" class="flex items-center justify-between space-x-6 p-6">
+			<a
+				href="https://www.python.org/"
+				target="_blank"
+				class="flex items-center justify-between space-x-6 p-6"
+			>
 				<div class="flex-1">
 					<div class="flex items-center space-x-3">
 						<h3 class="text-sm font-medium text-background-on">Python</h3>

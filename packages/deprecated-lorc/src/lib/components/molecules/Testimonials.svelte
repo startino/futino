@@ -32,7 +32,7 @@
         Testimonials
       </h2>
       <p
-        class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl"
+        class="mt-2 text-3xl font-bold tracking-tight text-surface-on sm:text-4xl"
       >
         We have worked with thousands of amazing people
       </p>
