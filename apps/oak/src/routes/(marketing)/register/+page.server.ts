@@ -47,6 +47,9 @@ export const actions = {
 		});
 
 		if (error) {
+			if (error.code === 'email_exists') {
+				return setError(form, 'This email is already registered', { status: 400 });
+			}
 			return setError(form, 'Something went wrong. Please, try again', { status: 500 });
 		}
 

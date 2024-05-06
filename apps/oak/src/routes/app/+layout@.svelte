@@ -12,7 +12,8 @@
 		createProjects,
 		createDepartments,
 		createVendors,
-		createSpendCategories
+		createSpendCategories,
+		createProfiles
 	} from '$lib/stores';
 
 	export let data;
@@ -25,6 +26,7 @@
 	setContext('departments', createDepartments(storesData.departments));
 	setContext('spendCategories', createSpendCategories(storesData.spendCategories));
 	setContext('vendors', createVendors(storesData.vendors));
+	setContext('profiles', createProfiles(storesData.profiles));
 </script>
 
 {#if $navigating}
@@ -33,7 +35,7 @@
 
 <Shell
 	class="h-screen w-full max-w-none"
-	slotSidebarLeft="m-4"
+	slotSidebarLeft="p-4"
 	slotPageHeader="my-4"
 	slotPageContent=""
 >

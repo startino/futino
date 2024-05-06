@@ -95,7 +95,7 @@
 			<h1 class="text-xl font-bold">{`#${contract.number} ${contract.vendor.name}`}</h1>
 		</Card.Title>
 	</Card.Header>
-	<Card.Content class="grid  gap-6">
+	<Card.Content class="grid gap-6">
 		<div class="flex gap-2">
 			<h2 class="font-bold">Status:</h2>
 			<p><Badge>{contract.status}</Badge></p>

@@ -1,5 +1,25 @@
 import { z } from 'zod';
 
+export const updateUserByAdminSchema = z.object({
+	id: z.string().uuid(),
+	approver_id: z.string().uuid().optional(),
+	role: z.enum(['employee', 'admin', 'signer']),
+	approval_threshold: z.number().gte(0)
+});
+
+export const createUserSchema = z.object({
+	full_name: z
+		.string()
+		.max(140, 'Name must be less than 140 characters.')
+		.min(3, 'Name must be at leat 3 characters long')
+		.refine((v) => v !== '', 'A full name is required'),
+	email: z.string().email('Invalid email address'),
+	approval_threshold: z.number().gte(0).default(0),
+	approver_id: z.string().uuid().optional(),
+	role: z.enum(['employee', 'admin', 'signer']),
+	password: z.string().readonly().default('************')
+});
+
 export const departmentSchema = z.object({
 	number: z.number().gt(0, 'Please enter a valid number'),
 	name: z.string().min(1, 'The deparment name is required')
@@ -24,10 +44,11 @@ const userSchema = z
 		email: z.string().email('Invalid email address'),
 		password: z
 			.string()
-			.min(8, 'Password must be at least 8 characters')
+			.min(8, 'Password must be at least 8 characters logn')
+			.max(16, 'Password must be at most 16 characters long')
 			.regex(
-				/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@.#$!%*?&^])[A-Za-z\d@.#$!%*?&]{8,15}$/,
-				'For security sake, please include lowercase, uppercase letters, digits and symbols.'
+				/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,16}$/,
+				'For security sake, please include lowercase, uppercase letters and digits.'
 			),
 		confirmPassword: z.string()
 	})
