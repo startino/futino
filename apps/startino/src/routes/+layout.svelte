@@ -1,6 +1,22 @@
 <script lang="ts">
 	import '$styling';
+	import { Header } from '$lib/components/ui/header';
+	import { Footer } from '$lib/components/ui/footer';
+
+	const links = {
+		Company: [
+			{ name: 'About', href: '#about' },
+			{ name: 'Pricing', href: '#pricing' },
+			{ name: 'Contact Us', href: '#contact' }
+		],
+		Socials: [
+			{ name: 'LinkedIn', href: 'https://www.linkedin.com/company/futino' },
+			{ name: 'GitHub', href: 'https://github.com/futino' }
+		]
+	};
 </script>
+
+<Header />
 
 <main
 	class="relative min-h-screen w-full overflow-hidden bg-background text-center text-background-on"
@@ -15,3 +31,5 @@
 		<slot />
 	</arcitle>
 </main>
+
+<Footer {links} />
