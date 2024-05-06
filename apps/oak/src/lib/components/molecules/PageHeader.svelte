@@ -16,7 +16,7 @@
 					id="toggleSidebar"
 					aria-expanded="true"
 					aria-controls="sidebar"
-					class="mr-3 hidden cursor-pointer rounded p-2 text-surface-on/70 hover:bg-gray-100 hover:text-surface-on lg:inline dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+					class="mr-3 hidden cursor-pointer rounded p-2 text-gray-600 hover:bg-gray-100 hover:text-gray-900 lg:inline dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
 				>
 					<svg
 						class="h-5 w-5"
@@ -37,7 +37,7 @@
 				<button
 					aria-expanded="true"
 					aria-controls="sidebar"
-					class="mr-2 cursor-pointer rounded-lg p-2 text-surface-on/70 hover:bg-gray-100 hover:text-surface-on focus:bg-gray-100 focus:ring-2 focus:ring-gray-100 lg:hidden dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:bg-gray-700 dark:focus:ring-gray-700"
+					class="mr-2 cursor-pointer rounded-lg p-2 text-gray-600 hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:ring-2 focus:ring-gray-100 lg:hidden dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:bg-gray-700 dark:focus:ring-gray-700"
 				>
 					<svg
 						class="h-[18px] w-[18px]"

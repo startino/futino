@@ -3,7 +3,7 @@
 	import Icon from '$lib/components/atoms/Icon.svelte';
 </script>
 
-<label for="search-field" class="mb-2 text-sm font-medium text-surface-on sr-only text-gray-300"
+<label for="search-field" class="mb-2 text-sm font-medium text-gray-900 sr-only text-gray-300"
 	>Search</label>
 <div class="relative">
 	<input
