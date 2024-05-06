@@ -1,6 +1,13 @@
 import { z } from 'zod';
 
-export const profileSchema = z.object({
+export const updateUserByAdminSchema = z.object({
+	id: z.string().uuid(),
+	approver_id: z.string().uuid().optional(),
+	role: z.enum(['employee', 'admin', 'signer']),
+	approval_threshold: z.number().gte(0)
+});
+
+export const createUserSchema = z.object({
 	full_name: z
 		.string()
 		.max(140, 'Name must be less than 140 characters.')
@@ -8,7 +15,7 @@ export const profileSchema = z.object({
 		.refine((v) => v !== '', 'A full name is required'),
 	email: z.string().email('Invalid email address'),
 	approval_threshold: z.number().gte(0).default(0),
-	approver_id: z.string().uuid(),
+	approver_id: z.string().uuid().optional(),
 	role: z.enum(['employee', 'admin', 'signer']),
 	password: z.string().readonly().default('************')
 });

@@ -1,18 +1,22 @@
 <script lang="ts">
+	import { createEventDispatcher } from 'svelte';
 	import { writable } from 'svelte/store';
-	import { ArrowUpDown, Search } from 'lucide-svelte';
+	import { Search } from 'lucide-svelte';
 
 	import { createTable, Subscribe } from '$lib/svelte-headless-table';
+	import { createRender } from '$lib/svelte-render';
 	import { addPagination, addTableFilter } from '$lib/svelte-headless-table/plugins';
 	import { Render } from '$lib/svelte-render';
 	import * as Table from '$lib/components/ui/table';
 	import { Button } from '$lib/components/ui/button';
 	import { Input } from '$lib/components/ui/input';
-	import { cn, formatAmount, getContext } from '$lib/utils';
+	import DataTableActions from './data-table-actions.svelte';
+	import { formatAmount, getContext } from '$lib/utils';
 	import type { JoinedProfile } from '$lib/types';
-	import { goto } from '$app/navigation';
 
 	export let data: JoinedProfile[];
+
+	const dispatch = createEventDispatcher();
 
 	const currentProfile = getContext('currentProfile');
 
@@ -61,8 +65,19 @@
 					exclude: true
 				}
 			}
+		}),
+		table.column({
+			accessor: (row) => row,
+			header: '',
+			cell: ({ value }) => {
+				return createRender(DataTableActions, { onEdit: () => edit(value), profile: value });
+			}
 		})
 	]);
+
+	const edit = (profile: JoinedProfile) => {
+		dispatch('edit', profile);
+	};
 
 	const { headerRows, pageRows, tableAttrs, tableBodyAttrs, pluginStates } =
 		table.createViewModel(columns);
@@ -81,7 +96,7 @@
 		<span class="flex-grow" />
 
 		{#if $currentProfile.role === 'admin'}
-			<slot name="entry-form" />
+			<slot name="form" />
 		{/if}
 	</div>
 	<div class="rounded-md border">

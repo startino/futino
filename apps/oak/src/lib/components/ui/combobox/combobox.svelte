@@ -52,10 +52,26 @@
 	</Popover.Trigger>
 	<input hidden bind:value name={attrs?.name} />
 	<Popover.Content class="p-0">
-		<Command.Root>
+		<Command.Root
+			filter={(value, search) => {
+				const item = items.find((i) => i.value === value);
+				if (item && item.label.toLowerCase().includes(search.toLowerCase())) return 1;
+				return 0;
+			}}
+		>
 			<Command.Input placeholder="Search.." class="h-9" />
 			<Command.Empty>No item found.</Command.Empty>
 			<Command.Group>
+				<Command.Item
+					value={undefined}
+					onSelect={(currentValue) => {
+						value = currentValue;
+						closeAndFocusTrigger(ids.trigger);
+					}}
+				>
+					<Check class={cn('mr-2 h-4 w-4', 'text-transparent')} />
+					None
+				</Command.Item>
 				{#each items as item}
 					<Command.Item
 						value={item.value}

@@ -6,25 +6,30 @@ import genarator from 'generate-password';
 
 const { generate: generatePassword } = genarator;
 
-import { profileSchema } from '$lib/schemas';
+import { createUserSchema, updateUserByAdminSchema } from '$lib/schemas';
 import type { JoinedProfile } from '$lib/types';
 import { SMTP_HOST, SMTP_PASSWORD, SMTP_PORT, SMTP_USER } from '$env/static/private';
 import { PUBLIC_SITE_URL } from '$env/static/public';
 
 export const load = async () => {
-	const form = await superValidate(zod(profileSchema));
-	return { form };
+	const createForm = await superValidate(zod(createUserSchema));
+	const updateForm = await superValidate(zod(updateUserByAdminSchema));
+	return { createForm, updateForm };
 };
 
 export const actions = {
-	default: async ({ request, locals: { apiClient, orgID } }) => {
-		const form = await superValidate(request, zod(profileSchema));
+	create: async ({ request, locals: { apiClient, orgID, currentProfile } }) => {
+		const createForm = await superValidate(request, zod(createUserSchema));
 
-		if (!form.valid) {
-			return fail(400, { form });
+		if (currentProfile.role !== 'admin') {
+			return setError(createForm, 'Only admins can add user', { status: 400 });
 		}
 
-		const formData = form.data;
+		if (!createForm.valid) {
+			return fail(400, { createForm });
+		}
+
+		const formData = createForm.data;
 		formData.password = generatePassword({ numbers: true, strict: true });
 
 		const { error, data } = await apiClient.supabase.auth.admin.createUser({
@@ -38,9 +43,9 @@ export const actions = {
 
 		if (error) {
 			if (error.code === 'email_exists') {
-				return setError(form, 'This email is already registered', { status: 400 });
+				return setError(createForm, 'This email is already registered', { status: 400 });
 			}
-			return setError(form, 'Something went wrong while adding user. Please try again.', {
+			return setError(createForm, 'Something went wrong while adding user. Please try again.', {
 				status: 500
 			});
 		}
@@ -91,6 +96,37 @@ export const actions = {
 			.returns<JoinedProfile[]>()
 			.single();
 
-		return { form, newProfile };
+		return { createForm, newProfile };
+	},
+	update: async ({ request, locals: { apiClient, currentProfile } }) => {
+		const updateForm = await superValidate(request, zod(updateUserByAdminSchema));
+
+		if (currentProfile.role !== 'admin') {
+			return setError(updateForm, 'Only admins can update user', { status: 400 });
+		}
+
+		if (!updateForm.valid) {
+			return fail(400, { updateForm });
+		}
+
+		const formData = updateForm.data;
+
+		const { data: updatedProfile, error } = await apiClient.supabase
+			.from('profiles')
+			.update({ ...formData })
+			.eq('id', formData.id)
+			.select('*, approver:approver_id (*)')
+			.returns<JoinedProfile[]>()
+			.single();
+
+		if (error) {
+			console.log({ error });
+
+			return setError(updateForm, 'Something went wrong while saving changes. Please try again.', {
+				status: 500
+			});
+		}
+
+		return { updateForm, updatedProfile };
 	}
 };

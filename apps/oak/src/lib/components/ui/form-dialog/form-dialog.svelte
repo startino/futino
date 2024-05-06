@@ -6,14 +6,11 @@
 	import { Button } from '$lib/components/ui/button';
 
 	export let title = '';
-	export let triggerLabel = 'Add';
 	export let open = false;
 </script>
 
 <Dialog.Root bind:open onOpenChange={(o) => (open = o)}>
-	<Dialog.Trigger>
-		<Button><Plus />{triggerLabel}</Button>
-	</Dialog.Trigger>
+	<slot name="trigger" />
 
 	<Dialog.Content
 		transition={(node) => fly(node, { x: 300, duration: 300 })}
