@@ -57,7 +57,7 @@
 		"mdsvex": "^0.11.0",
 		"mode-watcher": "^0.3.0",
 		"nodemailer": "^6.9.13",
-		"pdfjs-dist": "^4.1.392",
+		"pdfjs-dist": "^4.2.67",
 		"radix-icons-svelte": "^1.2.1",
 		"stripe": "^15.3.0",
 		"svelte-french-toast": "^1.2.0",
