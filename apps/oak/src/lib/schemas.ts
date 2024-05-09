@@ -91,3 +91,11 @@ export const contractSchema = z
 	});
 
 export type ContractEntryForm = typeof contractSchema;
+
+export const orgManagementSchema = z.object({
+	name: z.string().min(1, 'An organization name is required'),
+	accounts: z.array(z.object({ name: z.string(), number: z.string() })).optional(),
+	departements: z.array(z.object({ name: z.string(), number: z.number() })).optional(),
+	projects: z.array(z.string()).optional(),
+	spend_categories: z.array(z.string()).optional()
+});
