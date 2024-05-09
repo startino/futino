@@ -1,6 +1,9 @@
 <script lang="ts">
 	import { getContext } from '$lib/utils';
 	import * as Card from '$lib/components/ui/card';
+	import OrgForm from './org-form.svelte';
+
+	export let data;
 
 	const org = getContext('organization');
 	const accounts = getContext('accounts');
@@ -12,16 +15,14 @@
 
 <Card.Root class="mx-auto max-w-screen-md">
 	<Card.Header>
-		<Card.Title>
-			<h1 class="text-3xl">Organization Account</h1>
-		</Card.Title>
+		<Card.Title tag="h1" class="text-3xl">Organization Account</Card.Title>
 	</Card.Header>
 
 	<Card.Content class="grid gap-6">
 		<div class="grid gap-2">
-			<h2 class="text-lg font-bold">Details</h2>
+			<h2 class="text-lg font-bold">Name</h2>
 
-			{$org.name}
+			<OrgForm validatedForm={data.orgForm} />
 		</div>
 
 		<div class="grid gap-2">

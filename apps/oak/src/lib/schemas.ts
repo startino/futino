@@ -22,12 +22,25 @@ export const createUserSchema = z.object({
 
 export const departmentSchema = z.object({
 	number: z.number().gt(0, 'Please enter a valid number'),
-	name: z.string().min(1, 'The deparment name is required')
+	name: z.string().min(1, 'The department name is required')
 });
 
-export const projectSchema = z.string().min(1, 'The project name is required');
+export const projectSchema = z.object({
+	name: z.string().min(1, 'The project name is required')
+});
 
-export const accountSchema = z.number().gt(0, 'Please enter a valid number');
+export const accountSchema = z.object({
+	number: z.number().gt(0, 'Please enter a valid number'),
+	description: z.string().min(1, 'A description is required')
+});
+
+export const vendorSchema = z.object({
+	name: z.string().min(1, "The vendor's name is required")
+});
+
+export const spendCategorySchema = z.object({
+	name: z.string().min(1, "The category's name is required")
+});
 
 export const loginSchema = z.object({
 	email: z.string().email(),

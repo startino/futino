@@ -1,13 +1,14 @@
 // src/app.d.ts
 
 import type { ApiClient } from '$lib/api-client';
-import type { Tables } from '$lib/server/supabase.types';
+import type { Database, Tables } from '$lib/server/supabase.types';
 import { SupabaseClient, Session } from '@supabase/supabase-js';
 
 declare global {
 	namespace App {
 		interface Locals {
 			apiClient: ApiClient;
+			supabase: SupabaseClient<Database>;
 			orgID: string;
 			currentProfile: Tables<'profiles'>;
 		}
