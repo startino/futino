@@ -86,5 +86,35 @@ export const actions = {
 		}
 
 		return message(vendorForm, newVendor);
+	},
+	department: async ({ request, locals: { supabase, orgID } }) => {
+		const departmentForm = await superValidate(request, zod(departmentSchema));
+
+		if (!departmentForm.valid) {
+			return fail(400, { departmentForm });
+		}
+
+		const formData = departmentForm.data as RecursiveRequired<typeof departmentForm.data>;
+
+		const { data: newDepartment, error } = await supabase
+			.from('departments')
+			.insert({ ...formData, organization_id: orgID })
+			.select()
+			.single();
+
+		if (error) {
+			console.log({ error });
+
+			return setError(
+				departmentForm,
+				'name',
+				'Something went wrong while adding the department. Please try again.',
+				{
+					status: 500
+				}
+			);
+		}
+
+		return message(departmentForm, newDepartment);
 	}
 };

@@ -1,9 +1,10 @@
 <script lang="ts">
 	import { getContext } from '$lib/utils';
 	import * as Card from '$lib/components/ui/card';
+	import Item from './item.svelte';
 	import OrgForm from './org-form.svelte';
 	import VendorForm from './vendor-form.svelte';
-	import Item from './item.svelte';
+	import DepartmentForm from './department-form.svelte';
 
 	export let data;
 
@@ -21,7 +22,7 @@
 
 	<Card.Content class="grid gap-6">
 		<div class="grid gap-2">
-			<h2 class="text-lg font-bold">Name</h2>
+			<h2 class="text-lg font-bold">Organization's name</h2>
 
 			<OrgForm validatedForm={data.orgForm} />
 		</div>
@@ -40,6 +41,7 @@
 
 		<div class="grid gap-3">
 			<h2 class="text-lg font-bold">Departments</h2>
+			<DepartmentForm validatedForm={data.departmentForm} />
 			<ul class="grid gap-2">
 				{#each $departments as department}
 					<Item>
