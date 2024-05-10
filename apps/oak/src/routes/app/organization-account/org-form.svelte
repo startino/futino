@@ -13,9 +13,11 @@
 
 	const org = getContext('organization');
 	const form = superForm(validatedForm, {
+		id: 'organization',
 		validators: zodClient(organizationSchema),
 		onUpdated: ({ form }) => {
 			if (form.valid) {
+				form.id;
 				$org.name = form.data.name;
 				toast.success('Changes saved!');
 			}

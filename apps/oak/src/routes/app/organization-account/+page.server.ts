@@ -1,4 +1,4 @@
-import { fail, setError, superValidate } from 'sveltekit-superforms';
+import { fail, setError, superValidate, message } from 'sveltekit-superforms';
 import { zod } from 'sveltekit-superforms/adapters';
 
 import {
@@ -56,5 +56,35 @@ export const actions = {
 			orgForm,
 			updatedData
 		};
+	},
+	vendor: async ({ request, locals: { supabase, orgID } }) => {
+		const vendorForm = await superValidate(request, zod(vendorSchema));
+
+		if (!vendorForm.valid) {
+			return fail(400, { vendorForm });
+		}
+
+		const formData = vendorForm.data as RecursiveRequired<typeof vendorForm.data>;
+
+		const { data: newVendor, error } = await supabase
+			.from('vendors')
+			.insert({ ...formData, organization_id: orgID })
+			.select()
+			.single();
+
+		if (error) {
+			console.log({ error });
+
+			return setError(
+				vendorForm,
+				'name',
+				'Something went wrong while adding the vendor. Please try again.',
+				{
+					status: 500
+				}
+			);
+		}
+
+		return message(vendorForm, newVendor);
 	}
 };

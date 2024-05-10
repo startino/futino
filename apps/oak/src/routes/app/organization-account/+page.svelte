@@ -2,10 +2,11 @@
 	import { getContext } from '$lib/utils';
 	import * as Card from '$lib/components/ui/card';
 	import OrgForm from './org-form.svelte';
+	import VendorForm from './vendor-form.svelte';
+	import Item from './item.svelte';
 
 	export let data;
 
-	const org = getContext('organization');
 	const accounts = getContext('accounts');
 	const departments = getContext('departments');
 	const vendors = getContext('vendors');
@@ -25,52 +26,63 @@
 			<OrgForm validatedForm={data.orgForm} />
 		</div>
 
-		<div class="grid gap-2">
-			<h2 class="text-lg font-bold">Departments</h2>
-
-			<ul class="grid gap-1">
-				{#each $departments as department}
-					<li>#{department.number} {department.name}</li>
-				{/each}
-			</ul>
-		</div>
-
-		<div class="grid gap-2">
+		<div class="grid gap-3">
 			<h2 class="text-lg font-bold">Vendors</h2>
-
-			<ul class="grid gap-1">
+			<VendorForm validatedForm={data.vendorForm} />
+			<ul class="grid gap-2">
 				{#each $vendors as vendor}
-					<li>{vendor.name}</li>
+					<Item>
+						{vendor.name}
+					</Item>
 				{/each}
 			</ul>
 		</div>
 
-		<div class="grid gap-2">
+		<div class="grid gap-3">
+			<h2 class="text-lg font-bold">Departments</h2>
+			<ul class="grid gap-2">
+				{#each $departments as department}
+					<Item>
+						#{department.number}
+						{department.name}
+					</Item>
+				{/each}
+			</ul>
+		</div>
+
+		<div class="grid gap-3">
 			<h2 class="text-lg font-bold">Accounts</h2>
 
-			<ul class="grid gap-1">
+			<ul class="grid gap-2">
 				{#each $accounts as account}
-					<li>{account.number}: {account.description}</li>
+					<Item>
+						<span class="text-sm font-bold">{account.number}</span>
+						<p class="text-muted-foreground">{account.description}</p>
+					</Item>
 				{/each}
 			</ul>
 		</div>
 
-		<div class="grid gap-2">
+		<div class="grid gap-3">
 			<h2 class="text-lg font-bold">Projects</h2>
 
-			<ul class="grid gap-1">
+			<ul class="grid gap-2">
 				{#each $projects as project}
-					<li>{project.name}</li>
+					<Item>
+						{project.name}
+					</Item>
 				{/each}
 			</ul>
 		</div>
 
-		<div class="grid gap-2">
+		<div class="grid gap-3">
 			<h2 class="text-lg font-bold">Spend Categories</h2>
 
-			<ul class="grid gap-1">
+			<ul class="grid gap-2">
 				{#each $spendCategories as category}
-					<li>{category.name}</li>
+					<Item>
+						{category.name}
+					</Item>
 				{/each}
 			</ul>
 		</div>
