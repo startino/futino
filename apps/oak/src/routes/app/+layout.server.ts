@@ -11,7 +11,8 @@ export const load = async ({ locals: { apiClient, currentProfile, orgID } }) => 
 	const { data: spendCategories, error: categoriesError } = await apiClient.supabase
 		.from('spend_categories')
 		.select()
-		.eq('organization_id', orgID);
+		.eq('organization_id', orgID)
+		.order('created_at', { ascending: false });
 	const { data: profiles, error: profilesError } = await apiClient.supabase
 		.from('profiles')
 		.select('*, approver:approver_id (*)')

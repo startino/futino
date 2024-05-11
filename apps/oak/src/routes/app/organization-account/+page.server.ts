@@ -146,5 +146,64 @@ export const actions = {
 		}
 
 		return message(accountForm, newDepartment);
+	},
+	category: async ({ request, locals: { supabase, orgID } }) => {
+		const categoryForm = await superValidate(request, zod(spendCategorySchema));
+
+		if (!categoryForm.valid) {
+			return fail(400, { categoryForm });
+		}
+
+		const formData = categoryForm.data as RecursiveRequired<typeof categoryForm.data>;
+
+		const { data: newCategory, error } = await supabase
+			.from('spend_categories')
+			.insert({ ...formData, organization_id: orgID })
+			.select()
+			.single();
+
+		if (error) {
+			console.log({ error });
+
+			return setError(
+				categoryForm,
+				'Something went wrong while adding the category. Please try again.',
+				{
+					status: 500
+				}
+			);
+		}
+
+		return message(categoryForm, newCategory);
+	},
+	project: async ({ request, locals: { supabase, orgID } }) => {
+		const projectForm = await superValidate(request, zod(projectSchema));
+
+		if (!projectForm.valid) {
+			return fail(400, { projectForm });
+		}
+
+		const formData = projectForm.data as RecursiveRequired<typeof projectForm.data>;
+
+		const { data: newProject, error } = await supabase
+			.from('projects')
+			.insert({ ...formData, organization_id: orgID })
+			.select()
+			.single();
+
+		if (error) {
+			console.log({ error });
+
+			return setError(
+				projectForm,
+				'name',
+				'Something went wrong while adding the project. Please try again.',
+				{
+					status: 500
+				}
+			);
+		}
+
+		return message(projectForm, newProject);
 	}
 };

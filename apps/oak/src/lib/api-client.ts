@@ -35,7 +35,11 @@ export class ApiClient {
 			.order('created_at', { ascending: false });
 
 	getOrgUsers = async (organizationId: string) =>
-		await this.supabase.from('profiles').select().eq('organization_id', organizationId);
+		await this.supabase
+			.from('profiles')
+			.select()
+			.eq('organization_id', organizationId)
+			.order('created_at', { ascending: false });
 
 	getOrgContracts = async (organizationId: string) =>
 		await this.supabase.from('contracts').select('*').eq('organization_id', organizationId);

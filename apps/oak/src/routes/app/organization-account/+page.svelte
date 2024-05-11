@@ -6,6 +6,8 @@
 	import VendorForm from './vendor-form.svelte';
 	import DepartmentForm from './department-form.svelte';
 	import AccountForm from './account-form.svelte';
+	import ProjectForm from './project-form.svelte';
+	import CategoryForm from './category-form.svelte';
 
 	export let data;
 
@@ -24,7 +26,6 @@
 	<Card.Content class="grid gap-6">
 		<div class="grid gap-2">
 			<h2 class="text-lg font-bold">Organization's name</h2>
-
 			<OrgForm validatedForm={data.orgForm} />
 		</div>
 
@@ -68,7 +69,7 @@
 
 		<div class="grid gap-3">
 			<h2 class="text-lg font-bold">Projects</h2>
-
+			<ProjectForm validatedForm={data.projectForm} />
 			<ul class="grid gap-2">
 				{#each $projects as project}
 					<Item>
@@ -80,7 +81,7 @@
 
 		<div class="grid gap-3">
 			<h2 class="text-lg font-bold">Spend Categories</h2>
-
+			<CategoryForm validatedForm={data.spendCategory} />
 			<ul class="grid gap-2">
 				{#each $spendCategories as category}
 					<Item>
