@@ -30,7 +30,7 @@ export const projectSchema = z.object({
 });
 
 export const accountSchema = z.object({
-	number: z.number().gt(0, 'Please enter a valid number'),
+	number: z.string().min(1, 'Please enter a valid number'),
 	description: z.string().min(1, 'A description is required')
 });
 

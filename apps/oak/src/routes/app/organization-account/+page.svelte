@@ -5,6 +5,7 @@
 	import OrgForm from './org-form.svelte';
 	import VendorForm from './vendor-form.svelte';
 	import DepartmentForm from './department-form.svelte';
+	import AccountForm from './account-form.svelte';
 
 	export let data;
 
@@ -54,7 +55,7 @@
 
 		<div class="grid gap-3">
 			<h2 class="text-lg font-bold">Accounts</h2>
-
+			<AccountForm validatedForm={data.accountForm} />
 			<ul class="grid gap-2">
 				{#each $accounts as account}
 					<Item>

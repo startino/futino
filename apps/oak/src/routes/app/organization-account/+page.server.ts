@@ -116,5 +116,35 @@ export const actions = {
 		}
 
 		return message(departmentForm, newDepartment);
+	},
+	account: async ({ request, locals: { supabase, orgID } }) => {
+		const accountForm = await superValidate(request, zod(accountSchema));
+
+		if (!accountForm.valid) {
+			return fail(400, { accountForm });
+		}
+
+		const formData = accountForm.data as RecursiveRequired<typeof accountForm.data>;
+
+		const { data: newDepartment, error } = await supabase
+			.from('accounts')
+			.insert({ ...formData, organization_id: orgID })
+			.select()
+			.single();
+
+		if (error) {
+			console.log({ error });
+
+			return setError(
+				accountForm,
+				'number',
+				'Something went wrong while adding the account. Please try again.',
+				{
+					status: 500
+				}
+			);
+		}
+
+		return message(accountForm, newDepartment);
 	}
 };
