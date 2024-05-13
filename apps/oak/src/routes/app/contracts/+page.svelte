@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { CalendarIcon, Paperclip, Loader2 } from 'lucide-svelte';
+	import { CalendarIcon, Paperclip, Loader2, Plus } from 'lucide-svelte';
 	import { zodClient } from 'sveltekit-superforms/adapters';
 	import { fileProxy, superForm } from 'sveltekit-superforms/client';
 	import { toast } from 'svelte-sonner';
@@ -13,6 +13,8 @@
 	} from '@internationalized/date';
 
 	import Combobox from '$lib/components/atoms/Combobox.svelte';
+	import * as Dialog from '$lib/components/ui/dialog';
+	import { Button } from '$lib/components/ui/button';
 	import * as Form from '$lib/components/ui/form';
 	import { getContext, cn } from '$lib/utils';
 	import DataTable from './data-table.svelte';
@@ -55,6 +57,8 @@
 	const df = new DateFormatter('en-US', {
 		dateStyle: 'long'
 	});
+
+	console.log($currentProfile.role);
 
 	let formOpen = false;
 	let fileName: string | null;
@@ -104,6 +108,11 @@
 			<svelte:fragment slot="entry-form">
 				{#if $currentProfile.role === 'employee'}
 					<FormDialog bind:open={formOpen} title="Add contract">
+						<svelte:fragment slot="trigger">
+							<Dialog.Trigger>
+								<Button><Plus />Add</Button>
+							</Dialog.Trigger>
+						</svelte:fragment>
 						<form method="POST" enctype="multipart/form-data" use:enhance>
 							<input name="organization_id" hidden value={$formData.organization_id} />
 							<input name="owner_id" hidden value={$formData.owner_id} />
