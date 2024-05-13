@@ -28,10 +28,18 @@ export class ApiClient {
 		await this.supabase.from('projects').select('*').eq('organization_id', organizationId);
 
 	getOrgDeparments = async (organizationId: string) =>
-		await this.supabase.from('departments').select('*').eq('organization_id', organizationId);
+		await this.supabase
+			.from('departments')
+			.select('*')
+			.eq('organization_id', organizationId)
+			.order('created_at', { ascending: false });
 
 	getOrgUsers = async (organizationId: string) =>
-		await this.supabase.from('profiles').select().eq('organization_id', organizationId);
+		await this.supabase
+			.from('profiles')
+			.select()
+			.eq('organization_id', organizationId)
+			.order('created_at', { ascending: false });
 
 	getOrgContracts = async (organizationId: string) =>
 		await this.supabase.from('contracts').select('*').eq('organization_id', organizationId);
@@ -45,7 +53,11 @@ export class ApiClient {
 			.returns<ContractDatableRow[]>();
 
 	getOrgVendors = async (organizationId: string) =>
-		await this.supabase.from('vendors').select('*').eq('organization_id', organizationId);
+		await this.supabase
+			.from('vendors')
+			.select('*')
+			.eq('organization_id', organizationId)
+			.order('created_at', { ascending: false });
 
 	createVendor = async (data: TablesInsert<'vendors'>) =>
 		await this.supabase.from('vendors').insert(data).select().single();

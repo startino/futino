@@ -13,19 +13,19 @@ export type Database = {
         Row: {
           description: string | null
           id: string
-          number: number
+          number: string
           organization_id: string
         }
         Insert: {
           description?: string | null
           id?: string
-          number: number
+          number: string
           organization_id: string
         }
         Update: {
           description?: string | null
           id?: string
-          number?: number
+          number?: string
           organization_id?: string
         }
         Relationships: [
@@ -237,18 +237,21 @@ export type Database = {
       }
       departments: {
         Row: {
+          created_at: string
           id: string
           name: string
           number: number
           organization_id: string
         }
         Insert: {
+          created_at?: string
           id?: string
           name: string
           number: number
           organization_id: string
         }
         Update: {
+          created_at?: string
           id?: string
           name?: string
           number?: number
@@ -287,7 +290,7 @@ export type Database = {
       }
       profiles: {
         Row: {
-          approval_threshold: number
+          approval_threshold: number | null
           approver_id: string | null
           created_at: string
           full_name: string | null
@@ -299,7 +302,7 @@ export type Database = {
           updated_at: string
         }
         Insert: {
-          approval_threshold?: number
+          approval_threshold?: number | null
           approver_id?: string | null
           created_at?: string
           full_name?: string | null
@@ -311,7 +314,7 @@ export type Database = {
           updated_at?: string
         }
         Update: {
-          approval_threshold?: number
+          approval_threshold?: number | null
           approver_id?: string | null
           created_at?: string
           full_name?: string | null
@@ -435,18 +438,21 @@ export type Database = {
       }
       vendors: {
         Row: {
+          created_at: string | null
           department_id: string | null
           id: string
           name: string
           organization_id: string
         }
         Insert: {
+          created_at?: string | null
           department_id?: string | null
           id?: string
           name: string
           organization_id: string
         }
         Update: {
+          created_at?: string | null
           department_id?: string | null
           id?: string
           name?: string

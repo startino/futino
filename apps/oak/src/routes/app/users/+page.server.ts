@@ -91,7 +91,7 @@ export const actions = {
 
 		const { data: newProfile } = await apiClient.supabase
 			.from('profiles')
-			.select('*, approver:approver_id (*)')
+			.select('*, approver(*)')
 			.eq('id', data.user.id)
 			.returns<JoinedProfile[]>()
 			.single();

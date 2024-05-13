@@ -22,12 +22,25 @@ export const createUserSchema = z.object({
 
 export const departmentSchema = z.object({
 	number: z.number().gt(0, 'Please enter a valid number'),
-	name: z.string().min(1, 'The deparment name is required')
+	name: z.string().min(1, 'The department name is required')
 });
 
-export const projectSchema = z.string().min(1, 'The project name is required');
+export const projectSchema = z.object({
+	name: z.string().min(1, 'The project name is required')
+});
 
-export const accountSchema = z.number().gt(0, 'Please enter a valid number');
+export const accountSchema = z.object({
+	number: z.string().min(1, 'Please enter a valid number'),
+	description: z.string().min(1, 'A description is required')
+});
+
+export const vendorSchema = z.object({
+	name: z.string().min(1, "The vendor's name is required")
+});
+
+export const spendCategorySchema = z.object({
+	name: z.string().min(1, "The category's name is required")
+});
 
 export const loginSchema = z.object({
 	email: z.string().email(),
@@ -91,3 +104,11 @@ export const contractSchema = z
 	});
 
 export type ContractEntryForm = typeof contractSchema;
+
+export const orgManagementSchema = z.object({
+	name: z.string().min(1, 'An organization name is required'),
+	accounts: z.array(z.object({ name: z.string(), number: z.string() })).optional(),
+	departements: z.array(z.object({ name: z.string(), number: z.number() })).optional(),
+	projects: z.array(z.string()).optional(),
+	spend_categories: z.array(z.string()).optional()
+});
