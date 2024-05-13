@@ -7,7 +7,11 @@ export const load = async ({ locals: { apiClient, currentProfile, orgID } }) => 
 	const { data: projects, error: projectsError } = await apiClient.getOrgProjects(orgID);
 	const { data: vendors, error: vendorsError } = await apiClient.getOrgVendors(orgID);
 	const { data: organization, error: orgError } = await apiClient.getOrg(orgID);
-	const { data: accounts, error: accError } = await apiClient.supabase.from('accounts').select();
+	const { data: accounts, error: accError } = await apiClient.supabase
+		.from('accounts')
+		.select()
+		.eq('organization_id', orgID)
+		.order('created_at', { ascending: false });
 	const { data: spendCategories, error: categoriesError } = await apiClient.supabase
 		.from('spend_categories')
 		.select()
