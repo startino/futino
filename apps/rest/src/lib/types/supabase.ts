@@ -1,4 +1,17 @@
-export type Json =
+[?25l
+    Select a project:                                                                                 
+                                                                                                      
+  >  1. qnzxoapdhdycrblbeovn [name: Futino Website, org: fxghcqpkpoucaydrqnwq, region: ap-southeast-1]
+    2. ommkphtudcxplovqfhmu [name: Aitino, org: fxghcqpkpoucaydrqnwq, region: eu-central-1]           
+    3. xiexnscobcskqufqctvu [name: Oak, org: fxghcqpkpoucaydrqnwq, region: us-west-1]                 
+                                                                                                      
+                                                                                                      
+                                                                                                      
+                                                                                                      
+                                                                                                      
+                                                                                                      
+    ↑/k up • ↓/j down • / filter • q quit • ? more                                                    
+                                                                                                      [0D[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[0D[2K [0D[2K[?25h[?1002l[?1003l[?1006lexport type Json =
   | string
   | number
   | boolean
@@ -131,9 +144,10 @@ export type Database = {
           id: string
           last_contacted_at: string | null
           last_event: string
+          project_id: string
           prospect_name: string | null
           prospect_username: string
-          reddit_id: string | null
+          reddit_id: string
           source: string
           status: string
           submission_id: string | null
@@ -145,9 +159,10 @@ export type Database = {
           id?: string
           last_contacted_at?: string | null
           last_event?: string
+          project_id?: string
           prospect_name?: string | null
           prospect_username: string
-          reddit_id?: string | null
+          reddit_id: string
           source?: string
           status: string
           submission_id?: string | null
@@ -159,14 +174,22 @@ export type Database = {
           id?: string
           last_contacted_at?: string | null
           last_event?: string
+          project_id?: string
           prospect_name?: string | null
           prospect_username?: string
-          reddit_id?: string | null
+          reddit_id?: string
           source?: string
           status?: string
           submission_id?: string | null
         }
         Relationships: [
+          {
+            foreignKeyName: "leads_project_id_fkey"
+            columns: ["project_id"]
+            isOneToOne: false
+            referencedRelation: "projects"
+            referencedColumns: ["id"]
+          },
           {
             foreignKeyName: "public_leads_submission_id_fkey"
             columns: ["submission_id"]
@@ -175,6 +198,54 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      projects: {
+        Row: {
+          created_at: string
+          id: string
+          name: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          name: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          name?: string
+        }
+        Relationships: []
+      }
+      startino_contact_form: {
+        Row: {
+          budget: string
+          created_at: string
+          description: string
+          email: string
+          id: string
+          name: string
+          source: string
+        }
+        Insert: {
+          budget: string
+          created_at?: string
+          description: string
+          email: string
+          id?: string
+          name: string
+          source: string
+        }
+        Update: {
+          budget?: string
+          created_at?: string
+          description?: string
+          email?: string
+          id?: string
+          name?: string
+          source?: string
+        }
+        Relationships: []
       }
     }
     Views: {
