@@ -12,7 +12,7 @@
 		today
 	} from '@internationalized/date';
 
-	import Combobox from '$lib/components/atoms/Combobox.svelte';
+	import { Combobox } from '$lib/components/ui/combobox';
 	import * as Dialog from '$lib/components/ui/dialog';
 	import { Button } from '$lib/components/ui/button';
 	import * as Form from '$lib/components/ui/form';
@@ -58,11 +58,8 @@
 		dateStyle: 'long'
 	});
 
-	console.log($currentProfile.role);
-
 	let formOpen = false;
 	let fileName: string | null;
-	let selectedVendorId: string | null = null;
 	let contracts = data.contracts;
 	let userPending = data.contracts.filter(
 		(c) =>
@@ -85,7 +82,7 @@
 	} else {
 		contracts = data.contracts;
 	}
-	$: parentContracts = data.contracts.filter((c) => c.vendor_id === selectedVendorId);
+	$: parentContracts = data.contracts.filter((c) => c.vendor_id === $formData.vendor_id);
 	$: $formData.start_date = startDateValue ? new Date(startDateValue.toString()) : undefined;
 	$: $formData.end_date = endDateValue ? new Date(endDateValue.toString()) : undefined;
 
@@ -126,10 +123,6 @@
 											placeholder="Select a vendor"
 											items={$vendors.map((v) => ({ label: v.name, value: v.id }))}
 											bind:value={$formData.vendor_id}
-											setValue={(value) => {
-												$formData.vendor_id = value;
-												selectedVendorId = value;
-											}}
 										/>
 									</div>
 								</Form.Control>
@@ -143,14 +136,15 @@
 											<Combobox
 												placeholder="Select a parent contract"
 												items={[
-													{ label: 'None', value: undefined },
 													...parentContracts.map((c) => ({
-														label: `#${c.number} | ${c.vendor.name}`,
+														label: {
+															heading: `#${c.number} | ${c.vendor.name}`,
+															content: c.description
+														},
 														value: c.id
 													}))
 												]}
 												bind:value={$formData.parent_contract_id}
-												setValue={(value) => ($formData.parent_contract_id = value)}
 												{...attrs}
 											/>
 										{:else}
@@ -169,7 +163,6 @@
 											items={$accounts.map((c) => ({ label: c.number.toString(), value: c.id }))}
 											bind:value={$formData.account_id}
 											{...attrs}
-											setValue={(value) => ($formData.account_id = value)}
 										/>
 									</div>
 								</Form.Control>
@@ -184,7 +177,6 @@
 											items={$spendCategories.map((c) => ({ label: c.name, value: c.id }))}
 											bind:value={$formData.spend_category_id}
 											{...attrs}
-											setValue={(value) => ($formData.spend_category_id = value)}
 										/>
 									</div>
 								</Form.Control>
@@ -199,7 +191,6 @@
 											items={$departments.map((d) => ({ label: d.name, value: d.id }))}
 											bind:value={$formData.department_id}
 											{...attrs}
-											setValue={(value) => ($formData.department_id = value)}
 										/>
 									</div>
 								</Form.Control>
@@ -214,7 +205,6 @@
 											items={$projects.map((d) => ({ label: d.name, value: d.id }))}
 											bind:value={$formData.project_id}
 											{...attrs}
-											setValue={(value) => ($formData.project_id = value)}
 										/>
 									</div>
 								</Form.Control>

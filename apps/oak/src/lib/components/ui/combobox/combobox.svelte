@@ -9,7 +9,7 @@
 
 	export let open = false;
 	export let value: string | undefined;
-	export let items: { value: typeof value; label: string }[];
+	export let items: { value: typeof value; label: string | { heading: string; content: string } }[];
 	export let placeholder = 'Select an item';
 	export let attrs: Partial<{
 		name: string;
@@ -21,7 +21,7 @@
 		'data-fs-control': string;
 	}> = {};
 
-	$: selectedValue = items.find((i) => i.value === value) ?? {
+	$: selectedItem = items.find((i) => i.value === value) ?? {
 		label: placeholder,
 		value: undefined
 	};
@@ -41,25 +41,40 @@
 	<Popover.Trigger
 		class={cn(
 			buttonVariants({ variant: 'outline' }),
+			'max-w-full',
+			'overflow-clip',
 			'justify-between',
 			!value && 'text-muted-foreground'
 		)}
 		role="combobox"
 		{...attrs}
 	>
-		{selectedValue.label}
+		{#if typeof selectedItem.label === 'string'}
+			{selectedItem.label}
+		{:else}
+			{selectedItem.label.heading}
+		{/if}
 		<CaretSort class="ml-2 h-4 w-4 shrink-0 opacity-50" />
 	</Popover.Trigger>
 	<input hidden bind:value name={attrs?.name} />
-	<Popover.Content class="p-0">
+	<Popover.Content class="w-full max-w-96 p-0">
 		<Command.Root
 			filter={(value, search) => {
+				let result = 0;
 				const item = items.find((i) => i.value === value);
-				if (item && item.label.toLowerCase().includes(search.toLowerCase())) return 1;
-				return 0;
+				if (item) {
+					let label = '';
+					if (typeof item.label === 'string') {
+						label = item.label;
+					} else {
+						label = item.label.heading;
+					}
+					label.toLowerCase().includes(search.toLowerCase()) && (result = 1);
+					return result;
+				}
 			}}
 		>
-			<Command.Input placeholder="Search.." class="h-9" />
+			<Command.Input placeholder="Search..." class="h-9" />
 			<Command.Empty>No item found.</Command.Empty>
 			<Command.Group>
 				<Command.Item
@@ -74,6 +89,7 @@
 				</Command.Item>
 				{#each items as item}
 					<Command.Item
+						class="grid grid-cols-[auto_1fr] items-start"
 						value={item.value}
 						onSelect={(currentValue) => {
 							value = currentValue;
@@ -81,7 +97,14 @@
 						}}
 					>
 						<Check class={cn('mr-2 h-4 w-4', value !== item.value && 'text-transparent')} />
-						{item.label}
+						{#if typeof item.label === 'string'}
+							{item.label}
+						{:else}
+							<div class="grid gap-1 text-sm">
+								<span class="font-bold">{item.label.heading}</span>
+								<span>{item.label.content}</span>
+							</div>
+						{/if}
 					</Command.Item>
 				{/each}
 			</Command.Group>
