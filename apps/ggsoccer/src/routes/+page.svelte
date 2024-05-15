@@ -10,10 +10,8 @@
 			date: 'June 3 - 7, 2024',
 			time_first: '8:15 - 9:15',
 			time_second: '9:30 - 12:00',
-			first_discount: '$100',
-			second_discount: '$150',
-			cost_first: '$80',
-			cost_second: '$130',
+			cost_first: '$100',
+			cost_second: '$150',
 			location: 'Atchison Recreation Sports Complex',
 			locationShort: 'Atchison',
 			link: 'https://forms.gle/dtp9iyzfQvgzi4Sb9'
