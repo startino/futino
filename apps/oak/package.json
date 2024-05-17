@@ -50,7 +50,7 @@
 		"clsx": "^2.1.1",
 		"cmdk-sv": "^0.0.17",
 		"dotenv": "^16.4.5",
-		"embla-carousel-svelte": "8.0.4",
+		"embla-carousel-svelte": "8.1.0",
 		"formsnap": "^1.0.0",
 		"generate-password": "^1.7.1",
 		"lucide-svelte": "^0.378.0",
