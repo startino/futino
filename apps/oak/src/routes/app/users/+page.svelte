@@ -5,7 +5,7 @@
 	import { Loader2, Plus } from 'lucide-svelte';
 
 	import { getContext } from '$lib/utils';
-	import { createUserSchema, updateUserByAdminSchema } from '$lib/schemas';
+	import { createUserByAdminSchema, updateUserByAdminSchema } from '$lib/schemas';
 	import { FormDialog } from '$lib/components/ui/form-dialog';
 	import * as Select from '$lib/components/ui/select';
 	import * as Form from '$lib/components/ui/form';
@@ -23,16 +23,14 @@
 	const currentProfile = getContext('currentProfile');
 
 	const createForm = superForm(data.createForm, {
-		validators: zodClient(createUserSchema),
-		onResult: ({ result }) => {
-			if (result.type == 'success') {
-				$profiles = [result.data.newProfile as JoinedProfile, ...$profiles];
+		validators: zodClient(createUserByAdminSchema),
+		onUpdate: ({ form }) => {
+			if (form.valid) {
 				toast.success('User added!');
 				createFormOpen = false;
+				$profiles = [form.message as JoinedProfile, ...$profiles];
 				createReset();
-			}
-
-			if (result.type == 'failure') {
+			} else {
 				toast.error('Failed to add user...');
 			}
 		}
@@ -79,9 +77,8 @@
 	let updateFormOpen = false;
 	let selectedProfile: JoinedProfile | null = null;
 
-	$: selectedRole = $createData.role
-		? { label: $createData.role, value: $createData.role }
-		: undefined;
+	$: selectedRolesCreate = $createData.roles.map((r) => ({ label: r, value: r }));
+	$: selectedRolesUpdate = $updateData.roles.map((r) => ({ label: r, value: r }));
 
 	const handleEdit = (event) => {
 		const profile = event.detail as JoinedProfile;
@@ -122,12 +119,19 @@
 							<Form.FieldErrors />
 						</Form.Field>
 
-						<Form.Field form={createForm} name="role">
+						<Form.Field form={createForm} name="roles">
 							<Form.Control let:attrs>
 								<Form.Label>Role</Form.Label>
 								<Select.Root
-									selected={selectedRole}
-									onSelectedChange={(v) => v && ($createData.role = v.value)}
+									multiple
+									selected={selectedRolesCreate}
+									onSelectedChange={(s) => {
+										if (s) {
+											$createData.roles = s.map((r) => r.value);
+										} else {
+											$createData.roles = [];
+										}
+									}}
 								>
 									<Select.Trigger {...attrs}>
 										<Select.Value placeholder="Select a role" />
@@ -137,7 +141,9 @@
 											<Select.Item value={role}>{role}</Select.Item>
 										{/each}
 									</Select.Content>
-									<input hidden bind:value={$createData.role} name={attrs.name} />
+									{#each $createData.roles as role}
+										<input hidden value={role} name={attrs.name} />
+									{/each}
 								</Select.Root>
 							</Form.Control>
 							<Form.FieldErrors />
@@ -217,7 +223,7 @@
 													p.id !== $currentProfile.id &&
 													p.id !== selectedProfile.id &&
 													p.approver_id !== selectedProfile.id &&
-													selectedProfile.role !== 'signer'
+													!selectedProfile.roles.includes('signer')
 											)
 											.map((p) => ({ label: p.full_name, value: p.id }))}
 										bind:value={$updateData.approver_id}
@@ -228,12 +234,19 @@
 							<Form.FieldErrors />
 						</Form.Field>
 
-						<Form.Field form={updateForm} name="role">
+						<Form.Field form={updateForm} name="roles">
 							<Form.Control let:attrs>
 								<Form.Label>Role</Form.Label>
 								<Select.Root
-									selected={{ label: $updateData.role, value: $updateData.role }}
-									onSelectedChange={(v) => v && ($updateData.role = v.value)}
+									multiple
+									selected={selectedRolesUpdate}
+									onSelectedChange={(s) => {
+										if (s) {
+											$updateData.roles = s.map((r) => r.value);
+										} else {
+											$updateData.roles = [];
+										}
+									}}
 								>
 									<Select.Trigger {...attrs}>
 										<Select.Value placeholder="Select a role" />
@@ -243,7 +256,10 @@
 											<Select.Item value={role}>{role}</Select.Item>
 										{/each}
 									</Select.Content>
-									<input hidden bind:value={$updateData.role} name={attrs.name} />
+
+									{#each $updateData.roles as role}
+										<input hidden value={role} name={attrs.name} />
+									{/each}
 								</Select.Root>
 							</Form.Control>
 							<Form.FieldErrors />

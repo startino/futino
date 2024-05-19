@@ -9,9 +9,10 @@
 	export let profile: JoinedProfile;
 
 	const currentProfile = getContext('currentProfile');
+	const iam = getContext('iam');
 </script>
 
-{#if $currentProfile.role === 'admin' && profile.id !== $currentProfile.id}
+{#if iam.isAllowedTo('profiles.update') && profile.id !== $currentProfile.id}
 	<DropdownMenu.Root>
 		<DropdownMenu.Trigger asChild let:builder>
 			<Button variant="ghost" builders={[builder]} size="icon" class="relative h-8 w-8 p-0">

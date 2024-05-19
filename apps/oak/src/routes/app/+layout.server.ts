@@ -2,7 +2,7 @@ import { STRIPE_SECRET_KEY } from '$env/static/private';
 import type { JoinedProfile } from '$lib/types';
 import { error } from '@sveltejs/kit';
 
-export const load = async ({ locals: { apiClient, currentProfile, orgID } }) => {
+export const load = async ({ locals: { apiClient, currentProfile, orgID, iam } }) => {
 	const { data: departments, error: departmentsError } = await apiClient.getOrgDeparments(orgID);
 	const { data: projects, error: projectsError } = await apiClient.getOrgProjects(orgID);
 	const { data: vendors, error: vendorsError } = await apiClient.getOrgVendors(orgID);
@@ -39,6 +39,7 @@ export const load = async ({ locals: { apiClient, currentProfile, orgID } }) => 
 	return {
 		stripeKey: STRIPE_SECRET_KEY,
 		user: apiClient.user,
+		resourcePolicy: iam.policy,
 		storesData: {
 			currentProfile,
 			departments,

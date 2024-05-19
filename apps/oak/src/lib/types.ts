@@ -1,4 +1,5 @@
 import type { Tables } from '$lib/server/supabase.types';
+import type { IAM } from './iam';
 import {
 	createAccounts,
 	createCurrentProfile,
@@ -11,6 +12,7 @@ import {
 } from './stores';
 
 export interface Context {
+	iam: IAM;
 	currentProfile: ReturnType<typeof createCurrentProfile>;
 	organization: ReturnType<typeof createOrganization>;
 	departments: ReturnType<typeof createDepartments>;

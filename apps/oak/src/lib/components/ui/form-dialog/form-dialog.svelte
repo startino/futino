@@ -1,9 +1,7 @@
 <script lang="ts">
-	import { Plus } from 'lucide-svelte';
 	import { fly } from 'svelte/transition';
 
 	import * as Dialog from '$lib/components/ui/dialog';
-	import { Button } from '$lib/components/ui/button';
 
 	export let title = '';
 	export let open = false;

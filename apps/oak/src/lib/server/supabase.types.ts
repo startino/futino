@@ -11,18 +11,21 @@ export type Database = {
     Tables: {
       accounts: {
         Row: {
+          created_at: string
           description: string | null
           id: string
           number: string
           organization_id: string
         }
         Insert: {
+          created_at?: string
           description?: string | null
           id?: string
           number: string
           organization_id: string
         }
         Update: {
+          created_at?: string
           description?: string | null
           id?: string
           number?: string
@@ -296,7 +299,7 @@ export type Database = {
           full_name: string | null
           id: string
           organization_id: string | null
-          role: Database["public"]["Enums"]["role"] | null
+          roles: Database["public"]["Enums"]["role"][] | null
           stripe_customer_id: string | null
           subscription_id: string | null
           updated_at: string
@@ -308,7 +311,7 @@ export type Database = {
           full_name?: string | null
           id: string
           organization_id?: string | null
-          role?: Database["public"]["Enums"]["role"] | null
+          roles?: Database["public"]["Enums"]["role"][] | null
           stripe_customer_id?: string | null
           subscription_id?: string | null
           updated_at?: string
@@ -320,7 +323,7 @@ export type Database = {
           full_name?: string | null
           id?: string
           organization_id?: string | null
-          role?: Database["public"]["Enums"]["role"] | null
+          roles?: Database["public"]["Enums"]["role"][] | null
           stripe_customer_id?: string | null
           subscription_id?: string | null
           updated_at?: string
@@ -351,18 +354,21 @@ export type Database = {
       }
       projects: {
         Row: {
+          created_at: string
           description: string | null
           id: string
           name: string
           organization_id: string
         }
         Insert: {
+          created_at?: string
           description?: string | null
           id?: string
           name: string
           organization_id: string
         }
         Update: {
+          created_at?: string
           description?: string | null
           id?: string
           name?: string
@@ -377,6 +383,21 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      resource_policy: {
+        Row: {
+          content: Json
+          id: string
+        }
+        Insert: {
+          content: Json
+          id?: string
+        }
+        Update: {
+          content?: Json
+          id?: string
+        }
+        Relationships: []
       }
       spend_categories: {
         Row: {
@@ -490,6 +511,7 @@ export type Database = {
         | "active"
         | "finished"
         | "under_review"
+      group: "member"
       role: "admin" | "employee" | "signer"
     }
     CompositeTypes: {

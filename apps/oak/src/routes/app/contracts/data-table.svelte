@@ -19,7 +19,7 @@
 	export let userPendingApprovalsMode: boolean;
 	export let userPendingApprovalsCount: number;
 
-	const currentProfile = getContext('currentProfile');
+	const iam = getContext('iam');
 
 	const table = createTable(writable(data), {
 		page: addPagination(),
@@ -114,7 +114,7 @@
 			/>
 		</div>
 
-		{#if $currentProfile.role !== 'admin' && userPendingApprovalsCount > 0}
+		{#if iam.isAllowedTo('contracts.update') && userPendingApprovalsCount > 0}
 			<div class="flex items-center space-x-2">
 				<Switch id="user-pending-approvals" bind:checked={userPendingApprovalsMode} />
 				<Label for="user-pending-approvals" class="text-sm text-primary">Pending approvals</Label>

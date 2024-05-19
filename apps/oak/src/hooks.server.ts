@@ -4,8 +4,9 @@ import { STRIPE_SECRET_KEY, SUPABASE_SERVICE_ROLE_KEY } from '$env/static/privat
 import { Stripe } from 'stripe';
 import type { Database } from '$lib/server/supabase.types';
 import { createSupabaseServerClient } from '@supabase/auth-helpers-sveltekit';
-import { redirect, type Handle } from '@sveltejs/kit';
+import { error, redirect, type Handle } from '@sveltejs/kit';
 import { ApiClient } from '$lib/api-client';
+import { IAM } from '$lib/iam';
 
 export const handle: Handle = async ({ event, resolve }) => {
 	const supabase = createSupabaseServerClient<Database>({
@@ -31,11 +32,15 @@ export const handle: Handle = async ({ event, resolve }) => {
 		}
 	} else {
 		const { data } = await apiClient.supabase.from('profiles').select().eq('id', user.id).single();
+		const { data: policy } = await apiClient.supabase.from('resource_policy').select().single();
 
+		event.locals.iam = new IAM(policy.content, data);
 		event.locals.orgID = data.organization_id;
 		event.locals.currentProfile = data;
 		event.locals.supabase = supabase;
 		apiClient.stripeCustomerId = data.stripe_customer_id;
+
+		if (!event.locals.iam.canAccess(event)) return error(403, 'Forbidden action!');
 
 		const { data: subscription } = await apiClient.getUserSubscription();
 

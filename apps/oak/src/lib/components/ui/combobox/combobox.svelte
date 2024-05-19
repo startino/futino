@@ -8,7 +8,7 @@
 	import { cn } from '$lib/utils';
 
 	export let open = false;
-	export let value: string | undefined;
+	export let value: string | null;
 	export let items: { value: typeof value; label: string | { heading: string; content: string } }[];
 	export let placeholder = 'Select an item';
 	export let attrs: Partial<{
@@ -23,7 +23,7 @@
 
 	$: selectedItem = items.find((i) => i.value === value) ?? {
 		label: placeholder,
-		value: undefined
+		value: null
 	};
 
 	// We want to refocus the trigger button when the user selects
@@ -78,9 +78,8 @@
 			<Command.Empty>No item found.</Command.Empty>
 			<Command.Group>
 				<Command.Item
-					value={undefined}
-					onSelect={(currentValue) => {
-						value = currentValue;
+					onSelect={() => {
+						value = null;
 						closeAndFocusTrigger(ids.trigger);
 					}}
 				>
