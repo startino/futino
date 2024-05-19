@@ -69,6 +69,9 @@
 	let startDatePlaceholder: DateValue = today(getLocalTimeZone());
 	let endDatePlaceholder: DateValue = today(getLocalTimeZone());
 
+	$: if (formOpen) {
+		$formData.department_id = $currentProfile.department_id;
+	}
 	$: if (userPendingApprovalsMode) {
 		contracts = userPending;
 	} else {

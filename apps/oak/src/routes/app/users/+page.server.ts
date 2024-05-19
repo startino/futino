@@ -90,7 +90,7 @@ export const actions = {
 
 		const { data: newProfile, error: profileError } = await apiClient.supabase
 			.from('profiles')
-			.select('*, approver:approver_id (*)')
+			.select('*, approver:approver_id (*), department:department_id (*)')
 			.eq('id', data.user.id)
 			.returns<JoinedProfile[]>()
 			.single();
@@ -115,7 +115,7 @@ export const actions = {
 			.from('profiles')
 			.update({ ...formData })
 			.eq('id', formData.id)
-			.select('*, approver:approver_id (*)')
+			.select('*, approver:approver_id (*), department:department_id (*)')
 			.returns<JoinedProfile[]>()
 			.single();
 
