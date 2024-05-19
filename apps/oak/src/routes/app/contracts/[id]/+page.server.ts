@@ -39,7 +39,7 @@ export const load = async ({ locals: { apiClient }, params }) => {
 };
 
 export const actions = {
-	approve: async ({ request, locals: { currentProfile, apiClient } }) => {
+	approve: async ({ request, locals: { currentProfile, apiClient, iam } }) => {
 		const contractId = (await request.formData()).get('contract-id');
 
 		if (!contractId) return fail(400, { error: 'A contract ID is required' });
@@ -55,7 +55,7 @@ export const actions = {
 			return fail(500, { error: 'Something went wrong' });
 		}
 
-		if (currentProfile.role !== 'employee') fail(400);
+		if (!iam.isAllowedTo('contracts.update')) fail(400);
 
 		if (currentProfile.id !== contract.current_approver_id)
 			return fail(400, { error: 'Your are not the current approver' });
@@ -73,23 +73,12 @@ export const actions = {
 		return { success: 'Contract approved!' };
 	},
 
-	sign: async ({ request, locals: { currentProfile, apiClient } }) => {
+	sign: async ({ request, locals: { currentProfile, apiClient, iam } }) => {
 		const contractId = (await request.formData()).get('contract-id');
 
 		if (!contractId) return fail(400, { error: 'A contract ID is required' });
 
-		const { data: contract, error: contractError } = await apiClient.supabase
-			.from('contracts')
-			.select()
-			.eq('id', contractId)
-			.single();
-
-		if (contractError) {
-			console.log({ contractError });
-			return fail(500, { error: 'Something went wrong' });
-		}
-
-		if (currentProfile.role !== 'signer') fail(400);
+		if (!iam.isAllowedTo('contracts.sign')) fail(400);
 
 		const { error: updateError } = await apiClient.supabase
 			.from('contracts')

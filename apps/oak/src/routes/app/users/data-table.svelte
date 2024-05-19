@@ -18,7 +18,7 @@
 
 	const dispatch = createEventDispatcher();
 
-	const currentProfile = getContext('currentProfile');
+	const iam = getContext('iam');
 
 	const table = createTable(writable(data), {
 		page: addPagination(),
@@ -53,7 +53,7 @@
 			cell: ({ value }) => (value ? value.full_name : 'none')
 		}),
 		table.column({
-			accessor: 'role',
+			accessor: 'roles',
 			header: 'Role'
 		}),
 		table.column({
@@ -95,7 +95,7 @@
 
 		<span class="flex-grow" />
 
-		{#if $currentProfile.role === 'admin'}
+		{#if iam.isAllowedTo('profiles.create')}
 			<slot name="form" />
 		{/if}
 	</div>

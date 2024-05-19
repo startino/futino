@@ -19,7 +19,7 @@ export const load = async ({ locals: { apiClient, orgID } }) => {
 };
 
 export const actions = {
-	default: async ({ request, locals: { apiClient } }) => {
+	default: async ({ request, locals: { apiClient, orgID, currentProfile } }) => {
 		const form = await superValidate(request, zod(contractSchema));
 
 		if (!form.valid) {
@@ -55,8 +55,9 @@ export const actions = {
 
 		const { error } = await apiClient.supabase.from('contracts').insert({
 			...formData,
-			amount: Number(formData.amount),
-			number: Number(formData.number),
+			organization_id: orgID,
+			current_approver_id: currentProfile.approver_id,
+			owner_id: currentProfile.id,
 			start_date: formData.start_date.toISOString(),
 			end_date: formData.end_date.toISOString(),
 			attachment: path
@@ -69,6 +70,6 @@ export const actions = {
 			});
 		}
 
-		message(withFiles(form), 'success');
+		return message(withFiles(form), 'success');
 	}
 };

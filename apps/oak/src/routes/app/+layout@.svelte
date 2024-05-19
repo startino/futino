@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import '$styling';
 	import Shell from '$lib/components/organisms/Shell.svelte';
 	import Sidebar from '$lib/components/organisms/Sidebar.svelte';
@@ -15,10 +15,14 @@
 		createSpendCategories,
 		createProfiles
 	} from '$lib/stores';
+	import { IAM } from '$lib/iam';
 
 	export let data;
 	const storesData = data.storesData;
 
+	const iam = new IAM(data.resourcePolicy, storesData.currentProfile);
+
+	setContext('iam', iam);
 	setContext('currentProfile', createCurrentProfile(storesData.currentProfile));
 	setContext('organization', createOrganization(storesData.organization));
 	setContext('projects', createProjects(storesData.projects));

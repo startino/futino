@@ -1,29 +1,26 @@
 import nodemailer from 'nodemailer';
-import { setError, superValidate } from 'sveltekit-superforms/server';
+import { message, setError, superValidate } from 'sveltekit-superforms/server';
 import { zod } from 'sveltekit-superforms/adapters';
-import { fail } from '@sveltejs/kit';
+import { fail, error } from '@sveltejs/kit';
 import genarator from 'generate-password';
 
 const { generate: generatePassword } = genarator;
 
-import { createUserSchema, updateUserByAdminSchema } from '$lib/schemas';
+import { createUserByAdminSchema, updateUserByAdminSchema } from '$lib/schemas';
 import type { JoinedProfile } from '$lib/types';
 import { SMTP_HOST, SMTP_PASSWORD, SMTP_PORT, SMTP_USER } from '$env/static/private';
 import { PUBLIC_SITE_URL } from '$env/static/public';
 
-export const load = async () => {
-	const createForm = await superValidate(zod(createUserSchema));
+export const load = async ({ locals: { iam } }) => {
+	iam.isAllowedTo('profiles.create');
+	const createForm = await superValidate(zod(createUserByAdminSchema));
 	const updateForm = await superValidate(zod(updateUserByAdminSchema));
 	return { createForm, updateForm };
 };
 
 export const actions = {
-	create: async ({ request, locals: { apiClient, orgID, currentProfile } }) => {
-		const createForm = await superValidate(request, zod(createUserSchema));
-
-		if (currentProfile.role !== 'admin') {
-			return setError(createForm, 'Only admins can add user', { status: 400 });
-		}
+	create: async ({ request, locals: { apiClient, orgID } }) => {
+		const createForm = await superValidate(request, zod(createUserByAdminSchema));
 
 		if (!createForm.valid) {
 			return fail(400, { createForm });
@@ -32,7 +29,7 @@ export const actions = {
 		const formData = createForm.data;
 		formData.password = generatePassword({ numbers: true, strict: true });
 
-		const { error, data } = await apiClient.supabase.auth.admin.createUser({
+		const { error: authError, data } = await apiClient.supabase.auth.admin.createUser({
 			email: formData.email,
 			password: formData.password,
 			user_metadata: {
@@ -41,8 +38,10 @@ export const actions = {
 			}
 		});
 
-		if (error) {
-			if (error.code === 'email_exists') {
+		if (authError) {
+			console.log({ authError });
+
+			if (authError.code === 'email_exists') {
 				return setError(createForm, 'This email is already registered', { status: 400 });
 			}
 			return setError(createForm, 'Something went wrong while adding user. Please try again.', {
@@ -89,21 +88,22 @@ export const actions = {
 			`
 		});
 
-		const { data: newProfile } = await apiClient.supabase
+		const { data: newProfile, error: profileError } = await apiClient.supabase
 			.from('profiles')
-			.select('*, approver(*)')
+			.select('*, approver:approver_id (*)')
 			.eq('id', data.user.id)
 			.returns<JoinedProfile[]>()
 			.single();
 
-		return { createForm, newProfile };
-	},
-	update: async ({ request, locals: { apiClient, currentProfile } }) => {
-		const updateForm = await superValidate(request, zod(updateUserByAdminSchema));
-
-		if (currentProfile.role !== 'admin') {
-			return setError(updateForm, 'Only admins can update user', { status: 400 });
+		if (profileError) {
+			console.log({ profileError });
+			return error(500, 'Something went wrong');
 		}
+
+		return message(createForm, newProfile);
+	},
+	update: async ({ request, locals: { apiClient } }) => {
+		const updateForm = await superValidate(request, zod(updateUserByAdminSchema));
 
 		if (!updateForm.valid) {
 			return fail(400, { updateForm });

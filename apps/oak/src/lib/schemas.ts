@@ -1,13 +1,16 @@
 import { z } from 'zod';
+import type { Enums } from '$lib/server/supabase.types';
 
 export const updateUserByAdminSchema = z.object({
 	id: z.string().uuid(),
-	approver_id: z.string().uuid().optional(),
-	role: z.enum(['employee', 'admin', 'signer']),
+	approver_id: z.string().uuid().optional().nullable(),
+	roles: z
+		.array(z.enum(['employee', 'admin', 'signer'] as [Enums<'role'>, ...Enums<'role'>[]]))
+		.min(1, 'Select at least one role'),
 	approval_threshold: z.number().gte(0)
 });
 
-export const createUserSchema = z.object({
+export const createUserByAdminSchema = z.object({
 	full_name: z
 		.string()
 		.max(140, 'Name must be less than 140 characters.')
@@ -15,8 +18,10 @@ export const createUserSchema = z.object({
 		.refine((v) => v !== '', 'A full name is required'),
 	email: z.string().email('Invalid email address'),
 	approval_threshold: z.number().gte(0).default(0),
-	approver_id: z.string().uuid().optional(),
-	role: z.enum(['employee', 'admin', 'signer']),
+	approver_id: z.string().uuid().optional().nullable(),
+	roles: z
+		.array(z.enum(['employee', 'admin', 'signer'] as [Enums<'role'>, ...Enums<'role'>[]]))
+		.min(1, 'Select at least one role'),
 	password: z.string().readonly().default('************')
 });
 
@@ -84,14 +89,11 @@ export const contractSchema = z
 		start_date: z.date(),
 		end_date: z.date(),
 		description: z.string().min(5, 'Description must be at least 5 characters long'),
-		number: z.string().min(1, 'The contract number is required'),
+		number: z.number().gt(0, 'The contract number is required'),
 		project_id: z.string().uuid('A project is required'),
 		account_id: z.string().uuid('An account is required'),
-		organization_id: z.string().uuid(),
-		owner_id: z.string().uuid(),
-		current_approver_id: z.string().uuid(),
 		department_id: z.string().uuid('A department is required'),
-		amount: z.string().min(1, 'An amount is required'),
+		amount: z.number().gt(0, 'An amount is required'),
 		spend_category_id: z.string().uuid('A spend category is required'),
 		attachment: z
 			.instanceof(File, { message: 'Please upload the contract PDF.' })

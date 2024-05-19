@@ -23,7 +23,7 @@
 	let isLoadingPDF = true;
 	let isApproving = false;
 
-	const isSigner = $currentProfile.role === 'signer';
+	const isSigner = $currentProfile.roles.includes('signer');
 
 	onMount(async () => {
 		pdf = await loadPDF();
@@ -67,7 +67,8 @@
 	};
 
 	$: contract = data.contract;
-	$: isCurrentApprover = $currentProfile.id === contract.current_approver.id;
+	$: isCurrentApprover =
+		contract.current_approver && $currentProfile.id === contract.current_approver.id;
 	$: if (form?.success) {
 		toast.success(form.success);
 	}
@@ -135,10 +136,11 @@
 			<h2 class="font-bold">Department</h2>
 			<p>{contract.department.name}</p>
 		</div>
-
 		<div class="grid gap-2">
 			<h2 class="font-bold">Current Approver</h2>
-			<p>{contract.current_approver.full_name}</p>
+			{#if contract.current_approver}
+				<p>{contract.current_approver.full_name}</p>
+			{/if}
 		</div>
 
 		<div class="grid gap-2">

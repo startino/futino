@@ -11,27 +11,39 @@
 
 	export let data;
 
+	const org = getContext('organization');
 	const accounts = getContext('accounts');
 	const departments = getContext('departments');
 	const vendors = getContext('vendors');
 	const projects = getContext('projects');
 	const spendCategories = getContext('spendCategories');
+	const iam = getContext('iam');
 </script>
 
 <Card.Root class="mx-auto max-w-screen-md">
 	<Card.Header>
-		<Card.Title tag="h1" class="text-3xl">Organization Account</Card.Title>
+		{#if iam.isAllowedTo('organizations.create')}
+			<Card.Title tag="h1" class="text-3xl">Organization Account</Card.Title>
+		{:else}
+			<Card.Title tag="h1" class="text-3xl">{$org.name}</Card.Title>
+		{/if}
 	</Card.Header>
 
 	<Card.Content class="grid gap-6">
-		<div class="grid gap-2">
-			<h2 class="text-lg font-bold">Organization's name</h2>
-			<OrgForm validatedForm={data.orgForm} />
-		</div>
+		{#if iam.isAllowedTo('organizations.create')}
+			<div class="grid gap-2">
+				<h2 class="text-lg font-bold">Organization's name</h2>
+				{#if iam.isAllowedTo('organizations.create')}
+					<OrgForm validatedForm={data.orgForm} />
+				{/if}
+			</div>
+		{/if}
 
 		<div class="grid gap-3">
 			<h2 class="text-lg font-bold">Vendors</h2>
-			<VendorForm validatedForm={data.vendorForm} />
+			{#if iam.isAllowedTo('organizations.create')}
+				<VendorForm validatedForm={data.vendorForm} />
+			{/if}
 			<ul class="grid gap-2">
 				{#each $vendors as vendor}
 					<Item>
@@ -43,7 +55,9 @@
 
 		<div class="grid gap-3">
 			<h2 class="text-lg font-bold">Departments</h2>
-			<DepartmentForm validatedForm={data.departmentForm} />
+			{#if iam.isAllowedTo('organizations.create')}
+				<DepartmentForm validatedForm={data.departmentForm} />
+			{/if}
 			<ul class="grid gap-2">
 				{#each $departments as department}
 					<Item>
@@ -56,7 +70,9 @@
 
 		<div class="grid gap-3">
 			<h2 class="text-lg font-bold">Accounts</h2>
-			<AccountForm validatedForm={data.accountForm} />
+			{#if iam.isAllowedTo('organizations.create')}
+				<AccountForm validatedForm={data.accountForm} />
+			{/if}
 			<ul class="grid gap-2">
 				{#each $accounts as account}
 					<Item>
@@ -69,7 +85,9 @@
 
 		<div class="grid gap-3">
 			<h2 class="text-lg font-bold">Projects</h2>
-			<ProjectForm validatedForm={data.projectForm} />
+			{#if iam.isAllowedTo('organizations.create')}
+				<ProjectForm validatedForm={data.projectForm} />
+			{/if}
 			<ul class="grid gap-2">
 				{#each $projects as project}
 					<Item>
@@ -81,7 +99,9 @@
 
 		<div class="grid gap-3">
 			<h2 class="text-lg font-bold">Spend Categories</h2>
-			<CategoryForm validatedForm={data.spendCategory} />
+			{#if iam.isAllowedTo('organizations.create')}
+				<CategoryForm validatedForm={data.spendCategory} />
+			{/if}
 			<ul class="grid gap-2">
 				{#each $spendCategories as category}
 					<Item>

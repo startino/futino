@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
 	import { CalendarIcon, Paperclip, Loader2, Plus } from 'lucide-svelte';
 	import { zodClient } from 'sveltekit-superforms/adapters';
 	import { fileProxy, superForm } from 'sveltekit-superforms/client';
@@ -30,25 +29,23 @@
 
 	const form = superForm(data.form, {
 		validators: zodClient(contractSchema),
-		onResult: ({ result }) => {
-			if (result.type == 'success') {
+		onUpdate: ({ form }) => {
+			if (form.valid) {
 				toast.success('Contract successfully created!');
 				formOpen = false;
 				startDateValue = undefined;
 				endDateValue = undefined;
 				fileName = null;
 				reset();
-			}
-
-			if (result.type == 'failure') {
+			} else {
 				toast.error('Contract creation failed...');
 			}
 		}
 	});
 	const { form: formData, enhance, submitting, errors, reset } = form;
 	const file = fileProxy(formData, 'attachment');
+	const iam = getContext('iam');
 	const currentProfile = getContext('currentProfile');
-	const organization = getContext('organization');
 	const projects = getContext('projects');
 	const accounts = getContext('accounts');
 	const departments = getContext('departments');
@@ -59,21 +56,16 @@
 	});
 
 	let formOpen = false;
-	let fileName: string | null;
+	let fileName: string | null = null;
 	let contracts = data.contracts;
 	let userPending = data.contracts.filter(
-		(c) =>
-			(($currentProfile.role === 'employee' && c.current_approver_id === $currentProfile.id) ||
-				$currentProfile.role === 'signer') &&
-			!c.signed
+		(c) => c.current_approver_id === $currentProfile.id && !c.signed
 	);
 	let userPendingApprovalsMode = false;
-	let startDateValue: DateValue | undefined = $formData.start_date
+	let startDateValue = $formData.start_date
 		? parseDate($formData.start_date.toString())
 		: undefined;
-	let endDateValue: DateValue | undefined = $formData.end_date
-		? parseDate($formData.end_date.toString())
-		: undefined;
+	let endDateValue = $formData.end_date ? parseDate($formData.end_date.toString()) : undefined;
 	let startDatePlaceholder: DateValue = today(getLocalTimeZone());
 	let endDatePlaceholder: DateValue = today(getLocalTimeZone());
 
@@ -85,12 +77,6 @@
 	$: parentContracts = data.contracts.filter((c) => c.vendor_id === $formData.vendor_id);
 	$: $formData.start_date = startDateValue ? new Date(startDateValue.toString()) : undefined;
 	$: $formData.end_date = endDateValue ? new Date(endDateValue.toString()) : undefined;
-
-	onMount(() => {
-		$formData.organization_id = $organization.id;
-		$formData.owner_id = $currentProfile.id;
-		$formData.current_approver_id = $currentProfile.approver_id;
-	});
 </script>
 
 <h1 class="text-3xl">Contracts</h1>
@@ -103,7 +89,7 @@
 			userPendingApprovalsCount={userPending.length}
 		>
 			<svelte:fragment slot="entry-form">
-				{#if $currentProfile.role === 'employee'}
+				{#if iam.isAllowedTo('contracts.create')}
 					<FormDialog bind:open={formOpen} title="Add contract">
 						<svelte:fragment slot="trigger">
 							<Dialog.Trigger>
@@ -111,18 +97,15 @@
 							</Dialog.Trigger>
 						</svelte:fragment>
 						<form method="POST" enctype="multipart/form-data" use:enhance>
-							<input name="organization_id" hidden value={$formData.organization_id} />
-							<input name="owner_id" hidden value={$formData.owner_id} />
-							<input name="current_approver_id" hidden value={$formData.current_approver_id} />
-
 							<Form.Field {form} name="vendor_id">
-								<Form.Control>
+								<Form.Control let:attrs>
 									<Form.Label>Vendor</Form.Label>
 									<div>
 										<Combobox
 											placeholder="Select a vendor"
 											items={$vendors.map((v) => ({ label: v.name, value: v.id }))}
 											bind:value={$formData.vendor_id}
+											{attrs}
 										/>
 									</div>
 								</Form.Control>
@@ -145,7 +128,7 @@
 													}))
 												]}
 												bind:value={$formData.parent_contract_id}
-												{...attrs}
+												{attrs}
 											/>
 										{:else}
 											<p class="text-xs font-bold text-accent">No parent contract</p>
@@ -162,7 +145,7 @@
 											placeholder="Select an account number"
 											items={$accounts.map((c) => ({ label: c.number.toString(), value: c.id }))}
 											bind:value={$formData.account_id}
-											{...attrs}
+											{attrs}
 										/>
 									</div>
 								</Form.Control>
@@ -176,7 +159,7 @@
 											placeholder="Select a spend category"
 											items={$spendCategories.map((c) => ({ label: c.name, value: c.id }))}
 											bind:value={$formData.spend_category_id}
-											{...attrs}
+											{attrs}
 										/>
 									</div>
 								</Form.Control>
@@ -190,7 +173,7 @@
 											placeholder="Select a department"
 											items={$departments.map((d) => ({ label: d.name, value: d.id }))}
 											bind:value={$formData.department_id}
-											{...attrs}
+											{attrs}
 										/>
 									</div>
 								</Form.Control>
@@ -204,7 +187,7 @@
 											placeholder="Select a project"
 											items={$projects.map((d) => ({ label: d.name, value: d.id }))}
 											bind:value={$formData.project_id}
-											{...attrs}
+											{attrs}
 										/>
 									</div>
 								</Form.Control>
@@ -214,7 +197,12 @@
 							<Form.Field {form} name="number">
 								<Form.Control let:attrs>
 									<Form.Label>Contract number</Form.Label>
-									<Input type="number" {...attrs} bind:value={$formData.number} />
+									<Input
+										type="number"
+										{...attrs}
+										bind:value={$formData.number}
+										on:change={(e) => ($formData.number = +e.currentTarget.value)}
+									/>
 								</Form.Control>
 								<Form.FieldErrors />
 							</Form.Field>
@@ -230,7 +218,12 @@
 							<Form.Field {form} name="amount">
 								<Form.Control let:attrs>
 									<Form.Label>Amount</Form.Label>
-									<Input type="number" {...attrs} bind:value={$formData.amount} />
+									<Input
+										type="number"
+										{...attrs}
+										bind:value={$formData.amount}
+										on:change={(e) => ($formData.amount = +e.currentTarget.value)}
+									/>
 								</Form.Control>
 								<Form.FieldErrors />
 							</Form.Field>
