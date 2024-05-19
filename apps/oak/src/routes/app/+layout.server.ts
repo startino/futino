@@ -19,7 +19,7 @@ export const load = async ({ locals: { apiClient, currentProfile, orgID, iam } }
 		.order('created_at', { ascending: false });
 	const { data: profiles, error: profilesError } = await apiClient.supabase
 		.from('profiles')
-		.select('*, approver:approver_id (*)')
+		.select('*, approver:approver_id (*), department:department_id (*)')
 		.eq('organization_id', orgID)
 		.order('created_at', { ascending: false })
 		.returns<JoinedProfile[]>();

@@ -296,6 +296,7 @@ export type Database = {
           approval_threshold: number | null
           approver_id: string | null
           created_at: string
+          department_id: string | null
           full_name: string | null
           id: string
           organization_id: string | null
@@ -308,6 +309,7 @@ export type Database = {
           approval_threshold?: number | null
           approver_id?: string | null
           created_at?: string
+          department_id?: string | null
           full_name?: string | null
           id: string
           organization_id?: string | null
@@ -320,6 +322,7 @@ export type Database = {
           approval_threshold?: number | null
           approver_id?: string | null
           created_at?: string
+          department_id?: string | null
           full_name?: string | null
           id?: string
           organization_id?: string | null
@@ -329,6 +332,13 @@ export type Database = {
           updated_at?: string
         }
         Relationships: [
+          {
+            foreignKeyName: "profiles_department_id_fkey"
+            columns: ["department_id"]
+            isOneToOne: false
+            referencedRelation: "departments"
+            referencedColumns: ["id"]
+          },
           {
             foreignKeyName: "profiles_id_fkey"
             columns: ["id"]

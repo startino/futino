@@ -30,6 +30,7 @@ export interface ContractDatableRow extends Tables<'contracts'> {
 
 export interface JoinedProfile extends Tables<'profiles'> {
 	approver: Tables<'profiles'>;
+	department: Tables<'departments'>;
 }
 
 export interface JoinedContract extends Tables<'contracts'> {

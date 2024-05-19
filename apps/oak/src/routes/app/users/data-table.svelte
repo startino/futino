@@ -57,6 +57,16 @@
 			header: 'Role'
 		}),
 		table.column({
+			accessor: 'department',
+			header: 'Department',
+			plugins: {
+				filter: {
+					getFilterValue: (value) => (value ? value.name : 'none')
+				}
+			},
+			cell: ({ value }) => (value ? value.name : 'none')
+		}),
+		table.column({
 			accessor: 'created_at',
 			header: 'Created At',
 			cell: ({ value }) => new Date(value).toDateString(),

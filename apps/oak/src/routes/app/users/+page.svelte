@@ -21,6 +21,7 @@
 
 	const profiles = getContext('profiles');
 	const currentProfile = getContext('currentProfile');
+	const departments = getContext('departments');
 
 	const createForm = superForm(data.createForm, {
 		validators: zodClient(createUserByAdminSchema),
@@ -149,6 +150,21 @@
 							<Form.FieldErrors />
 						</Form.Field>
 
+						<Form.Field form={updateForm} name="department_id">
+							<Form.Control let:attrs>
+								<Form.Label>Department</Form.Label>
+								<div>
+									<Combobox
+										placeholder="Select a department"
+										items={$departments.map((d) => ({ label: d.name, value: d.id }))}
+										bind:value={$createData.department_id}
+										{attrs}
+									/>
+								</div>
+							</Form.Control>
+							<Form.FieldErrors />
+						</Form.Field>
+
 						<Form.Field form={createForm} name="approver_id">
 							<Form.Control let:attrs>
 								<Form.Label>Supervisor</Form.Label>
@@ -211,12 +227,27 @@
 							<Form.FieldErrors />
 						</Form.Field>
 
+						<Form.Field form={updateForm} name="department_id">
+							<Form.Control let:attrs>
+								<Form.Label>Department</Form.Label>
+								<div>
+									<Combobox
+										placeholder="Select a department"
+										items={$departments.map((d) => ({ label: d.name, value: d.id }))}
+										bind:value={$updateData.department_id}
+										{attrs}
+									/>
+								</div>
+							</Form.Control>
+							<Form.FieldErrors />
+						</Form.Field>
+
 						<Form.Field form={updateForm} name="approver_id">
 							<Form.Control let:attrs>
 								<Form.Label>Supervisor</Form.Label>
 								<div>
 									<Combobox
-										placeholder="Select a user"
+										placeholder="Select a supervisor"
 										items={$profiles
 											.filter(
 												(p) =>

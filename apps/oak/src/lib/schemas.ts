@@ -3,6 +3,7 @@ import type { Enums } from '$lib/server/supabase.types';
 
 export const updateUserByAdminSchema = z.object({
 	id: z.string().uuid(),
+	department_id: z.string().uuid().optional().nullable(),
 	approver_id: z.string().uuid().optional().nullable(),
 	roles: z
 		.array(z.enum(['employee', 'admin', 'signer'] as [Enums<'role'>, ...Enums<'role'>[]]))
@@ -18,6 +19,7 @@ export const createUserByAdminSchema = z.object({
 		.refine((v) => v !== '', 'A full name is required'),
 	email: z.string().email('Invalid email address'),
 	approval_threshold: z.number().gte(0).default(0),
+	department_id: z.string().uuid().optional().nullable(),
 	approver_id: z.string().uuid().optional().nullable(),
 	roles: z
 		.array(z.enum(['employee', 'admin', 'signer'] as [Enums<'role'>, ...Enums<'role'>[]]))
