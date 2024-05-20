@@ -5,6 +5,7 @@
 	import * as Card from '$lib/components/ui/card';
 	import { Button } from '$lib/components/ui/button';
 	import { Separator } from '$lib/components/ui/separator';
+	import * as AlertDialog from '$lib/components/ui/alert-dialog';
 
 	export let data;
 
@@ -27,23 +28,40 @@
 		const success = (await response.json()) as boolean;
 
 		if (success) {
-			state = 'email-recovery-link-sent';
-		} else {
-			state = 'email-change-error';
-		}
-	};
-	const changeEmail = async () => {
-		state = 'email-recovering';
-		const response = await fetch('/api/reset-password', { method: 'POST' });
-		const success = (await response.json()) as boolean;
-
-		if (success) {
 			state = 'password-recovery-link-sent';
 		} else {
 			state = 'password-reset-error';
 		}
 	};
+
+	const changeEmail = async () => {
+		state = 'email-recovering';
+		const response = await fetch('/api/reset-email', { method: 'POST' });
+		const success = (await response.json()) as boolean;
+
+		if (success) {
+			state = 'email-recovery-link-sent';
+		} else {
+			state = 'email-change-error';
+		}
+	};
 </script>
+
+<AlertDialog.Root
+	open={state === 'password-recovery-link-sent' || state === 'email-recovery-link-sent'}
+>
+	<AlertDialog.Content>
+		<AlertDialog.Header>
+			<AlertDialog.Description>
+				We've sent a password reset link to your email. This might take a couple of minutes before
+				you receive it. Use this link to update your password.
+			</AlertDialog.Description>
+		</AlertDialog.Header>
+		<AlertDialog.Footer>
+			<AlertDialog.Action>Got it!</AlertDialog.Action>
+		</AlertDialog.Footer>
+	</AlertDialog.Content>
+</AlertDialog.Root>
 
 <Card.Root class="mx-auto max-w-screen-md">
 	<Card.Header>
@@ -68,7 +86,11 @@
 
 		<div class="grid gap-2">
 			<h2 class="font-bold">Department</h2>
-			<p>{$currentProfile.department.name}</p>
+			{#if $currentProfile.department}
+				<p>{$currentProfile.department.name}</p>
+			{:else}
+				<p>None set</p>
+			{/if}
 		</div>
 
 		<div class="grid gap-2">

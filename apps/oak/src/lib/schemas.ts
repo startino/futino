@@ -1,6 +1,22 @@
 import { z } from 'zod';
 import type { Enums } from '$lib/server/supabase.types';
 
+export const resetPasswordSchema = z
+	.object({
+		password: z
+			.string()
+			.min(8, 'Password must be at least 8 characters long')
+			.max(16, 'Password must be at most 16 characters long')
+			.regex(
+				/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,16}$/,
+				'For security sake, please include lowercase, uppercase letters and digits.'
+			),
+		confirmPassword: z.string()
+	})
+	.refine(({ password, confirmPassword }) => password === confirmPassword, {
+		message: 'The passwords did not match'
+	});
+
 export const updateUserByAdminSchema = z.object({
 	id: z.string().uuid(),
 	department_id: z.string().uuid().optional().nullable(),
@@ -64,7 +80,7 @@ const userSchema = z
 		email: z.string().email('Invalid email address'),
 		password: z
 			.string()
-			.min(8, 'Password must be at least 8 characters logn')
+			.min(8, 'Password must be at least 8 characters long')
 			.max(16, 'Password must be at most 16 characters long')
 			.regex(
 				/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,16}$/,

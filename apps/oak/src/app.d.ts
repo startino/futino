@@ -2,8 +2,9 @@
 
 import type { ApiClient } from '$lib/api-client';
 import type { IAM } from '$lib/iam';
-import type { Database, Tables } from '$lib/server/supabase.types';
-import { SupabaseClient, Session } from '@supabase/supabase-js';
+import type { Database } from '$lib/server/supabase.types';
+import type { JoinedProfile } from '$lib/types';
+import { SupabaseClient } from '@supabase/supabase-js';
 
 declare global {
 	namespace App {
@@ -11,11 +12,10 @@ declare global {
 			apiClient: ApiClient;
 			supabase: SupabaseClient<Database>;
 			orgID: string;
-			currentProfile: Tables<'profiles'>;
+			currentProfile: JoinedProfile;
 			iam: IAM;
 		}
 		interface PageData {
-			session: Session | null;
 			supabase: SupabaseClient;
 			userAccessToken: string;
 		}
