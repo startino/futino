@@ -1,6 +1,10 @@
 import { z } from 'zod';
 import type { Enums } from '$lib/server/supabase.types';
 
+export const emailSchema = z.object({
+	email: z.string().email('Invalid email address')
+});
+
 export const resetPasswordSchema = z
 	.object({
 		password: z

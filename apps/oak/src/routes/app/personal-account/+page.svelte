@@ -1,26 +1,31 @@
 <script lang="ts">
 	import { Loader2 } from 'lucide-svelte';
+	import { superForm } from 'sveltekit-superforms';
+	import { zodClient } from 'sveltekit-superforms/adapters';
 
+	import { emailSchema } from '$lib/schemas';
 	import { getContext } from '$lib/utils';
 	import * as Card from '$lib/components/ui/card';
+	import * as Form from '$lib/components/ui/form';
 	import { Button } from '$lib/components/ui/button';
-	import { Separator } from '$lib/components/ui/separator';
+	import { Input } from '$lib/components/ui/input';
 	import * as AlertDialog from '$lib/components/ui/alert-dialog';
 
 	export let data;
+
+	const currentProfile = getContext('currentProfile');
+	const emailForm = superForm(data.emailForm, { id: 'email', validators: zodClient(emailSchema) });
 
 	let state:
 		| 'idle'
 		| 'password-recovery-link-sent'
 		| 'email-recovery-link-sent'
-		| 'email-recovering'
 		| 'password-recovering'
-		| 'password-reset-error'
-		| 'email-change-error' = 'idle';
+		| 'password-reset-error' = 'idle';
 
-	$: isLoading = state === 'email-recovering' || state === 'password-recovering';
+	let emailFormOpen = false;
 
-	const currentProfile = getContext('currentProfile');
+	const { form: emailFormData, delayed, isTainted, enhance, tainted } = emailForm;
 
 	const resetPassword = async () => {
 		state = 'password-recovering';
@@ -33,18 +38,6 @@
 			state = 'password-reset-error';
 		}
 	};
-
-	const changeEmail = async () => {
-		state = 'email-recovering';
-		const response = await fetch('/api/reset-email', { method: 'POST' });
-		const success = (await response.json()) as boolean;
-
-		if (success) {
-			state = 'email-recovery-link-sent';
-		} else {
-			state = 'email-change-error';
-		}
-	};
 </script>
 
 <AlertDialog.Root
@@ -53,12 +46,24 @@
 	<AlertDialog.Content>
 		<AlertDialog.Header>
 			<AlertDialog.Description>
-				We've sent a password reset link to your email. This might take a couple of minutes before
-				you receive it. Use this link to update your password.
+				{#if state === 'password-recovery-link-sent'}
+					<AlertDialog.Title>Reset link sent!</AlertDialog.Title>
+					<span>
+						We've sent a password reset link to your email. This might take a couple of minutes
+						before you receive it. Use this link to update your password.
+					</span>
+				{/if}
+
+				{#if state === 'email-recovery-link-sent'}
+					<AlertDialog.Title
+						>Confirm your new email <address></address></AlertDialog.Title
+					>
+					<span>We've sent a confirmation email to verify your email address.</span>
+				{/if}
 			</AlertDialog.Description>
 		</AlertDialog.Header>
 		<AlertDialog.Footer>
-			<AlertDialog.Action>Got it!</AlertDialog.Action>
+			<AlertDialog.Action>Continue</AlertDialog.Action>
 		</AlertDialog.Footer>
 	</AlertDialog.Content>
 </AlertDialog.Root>
@@ -76,7 +81,48 @@
 
 		<div class="grid gap-2">
 			<h2 class="font-bold">Email</h2>
-			<p>{data.email}</p>
+			<p class="flex items-center gap-2">
+				{data.email}
+				{#if !emailFormOpen}
+					<Button
+						on:click={() => {
+							emailFormOpen = true;
+						}}
+						size="sm"
+						variant="outline">change</Button
+					>
+				{/if}
+			</p>
+
+			{#if emailFormOpen}
+				<form action="?/updateEmail" method="post" class="space-y-1" use:enhance>
+					<Form.Field form={emailForm} name="email">
+						<Form.Control let:attrs>
+							<Form.Label>Enter your new email</Form.Label>
+							<Input
+								type="email"
+								placeholder="example@email.com"
+								bind:value={$emailFormData.email}
+								{...attrs}
+							/>
+						</Form.Control>
+						<Form.FieldErrors />
+					</Form.Field>
+					<div class="flex gap-2">
+						<Form.Button size="sm" type="submit" disabled={!isTainted($tainted) || $delayed}>
+							{#if $delayed}
+								<Loader2 class="animate-spin" />
+							{:else}
+								Update
+							{/if}
+						</Form.Button>
+
+						<Button variant="outline" size="sm" on:click={() => (emailFormOpen = false)}
+							>Discard</Button
+						>
+					</div>
+				</form>
+			{/if}
 		</div>
 
 		<div class="grid gap-2">
@@ -98,20 +144,17 @@
 			<p>{$currentProfile.approver.full_name}</p>
 		</div>
 
-		<div class="flex gap-4">
-			<Button variant="outline" disabled={isLoading} on:click={resetPassword} class="flex gap-2">
-				{#if state === 'password-recovering'}
-					<Loader2 class="animate-spin" />
-				{/if}
+		<Button
+			variant="outline"
+			disabled={state === 'password-recovering'}
+			on:click={resetPassword}
+			class="flex max-w-fit gap-2"
+		>
+			{#if state === 'password-recovering'}
+				<Loader2 class="animate-spin" />
+			{:else}
 				Reset password
-			</Button>
-			<Separator orientation="vertical" />
-			<Button variant="outline" disabled={isLoading} on:click={changeEmail} class="flex gap-2">
-				{#if state === 'email-recovering'}
-					<Loader2 class="animate-spin" />
-				{/if}
-				Change email</Button
-			>
-		</div>
+			{/if}
+		</Button>
 	</Card.Content>
 </Card.Root>
