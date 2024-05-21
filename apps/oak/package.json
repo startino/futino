@@ -46,7 +46,7 @@
 		"@tailwindcss/aspect-ratio": "^0.4.2",
 		"@tailwindcss/typography": "^0.5.12",
 		"@types/nodemailer": "^6.4.15",
-		"bits-ui": "^0.21.8",
+		"bits-ui": "^0.21.9",
 		"clsx": "^2.1.1",
 		"cmdk-sv": "^0.0.17",
 		"dotenv": "^16.4.5",
