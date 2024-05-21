@@ -29,8 +29,8 @@ export interface ContractDatableRow extends Tables<'contracts'> {
 }
 
 export interface JoinedProfile extends Tables<'profiles'> {
-	approver: Tables<'profiles'>;
-	department: Tables<'departments'>;
+	approver: Tables<'profiles'> | null;
+	department: Tables<'departments'> | null;
 }
 
 export interface JoinedContract extends Tables<'contracts'> {

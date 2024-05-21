@@ -1,6 +1,26 @@
 import { z } from 'zod';
 import type { Enums } from '$lib/server/supabase.types';
 
+export const emailSchema = z.object({
+	email: z.string().email('Invalid email address')
+});
+
+export const resetPasswordSchema = z
+	.object({
+		password: z
+			.string()
+			.min(8, 'Password must be at least 8 characters long')
+			.max(16, 'Password must be at most 16 characters long')
+			.regex(
+				/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,16}$/,
+				'For security sake, please include lowercase, uppercase letters and digits.'
+			),
+		confirmPassword: z.string()
+	})
+	.refine(({ password, confirmPassword }) => password === confirmPassword, {
+		message: 'The passwords did not match'
+	});
+
 export const updateUserByAdminSchema = z.object({
 	id: z.string().uuid(),
 	department_id: z.string().uuid().optional().nullable(),
@@ -30,6 +50,10 @@ export const createUserByAdminSchema = z.object({
 export const departmentSchema = z.object({
 	number: z.number().gt(0, 'Please enter a valid number'),
 	name: z.string().min(1, 'The department name is required')
+});
+
+export const departmentIdSchema = z.object({
+	department_id: z.string().uuid('A department is required').optional().nullable()
 });
 
 export const projectSchema = z.object({
@@ -64,7 +88,7 @@ const userSchema = z
 		email: z.string().email('Invalid email address'),
 		password: z
 			.string()
-			.min(8, 'Password must be at least 8 characters logn')
+			.min(8, 'Password must be at least 8 characters long')
 			.max(16, 'Password must be at most 16 characters long')
 			.regex(
 				/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,16}$/,

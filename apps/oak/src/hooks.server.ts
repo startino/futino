@@ -7,6 +7,7 @@ import { createSupabaseServerClient } from '@supabase/auth-helpers-sveltekit';
 import { error, redirect, type Handle } from '@sveltejs/kit';
 import { ApiClient } from '$lib/api-client';
 import { IAM } from '$lib/iam';
+import type { JoinedProfile } from '$lib/types';
 
 export const handle: Handle = async ({ event, resolve }) => {
 	const supabase = createSupabaseServerClient<Database>({
@@ -31,7 +32,12 @@ export const handle: Handle = async ({ event, resolve }) => {
 			redirect(303, '/login');
 		}
 	} else {
-		const { data } = await apiClient.supabase.from('profiles').select().eq('id', user.id).single();
+		const { data } = await apiClient.supabase
+			.from('profiles')
+			.select('*, approver:approver_id (*), department:department_id (*)')
+			.eq('id', user.id)
+			.returns<JoinedProfile[]>()
+			.single();
 		const { data: policy } = await apiClient.supabase.from('resource_policy').select().single();
 
 		event.locals.iam = new IAM(policy.content, data);
