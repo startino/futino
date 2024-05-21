@@ -52,6 +52,10 @@ export const departmentSchema = z.object({
 	name: z.string().min(1, 'The department name is required')
 });
 
+export const departmentIdSchema = z.object({
+	department_id: z.string().uuid('A department is required').optional().nullable()
+});
+
 export const projectSchema = z.object({
 	name: z.string().min(1, 'The project name is required')
 });

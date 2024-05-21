@@ -1,6 +1,5 @@
 <script lang="ts">
-	import Check from 'svelte-radix/Check.svelte';
-	import CaretSort from 'svelte-radix/CaretSort.svelte';
+	import { Check, ChevronsUpDown, Loader2 } from 'lucide-svelte';
 	import { tick } from 'svelte';
 	import * as Command from '$lib/components/ui/command';
 	import * as Popover from '$lib/components/ui/popover';
@@ -9,8 +8,11 @@
 
 	export let open = false;
 	export let value: string | null;
+	export let disabled = false;
+	export let loading = false;
 	export let items: { value: typeof value; label: string | { heading: string; content: string } }[];
 	export let placeholder = 'Select an item';
+	export let onChange: (value: string | null) => void = () => {};
 	export let attrs: Partial<{
 		name: string;
 		id: string;
@@ -39,22 +41,29 @@
 
 <Popover.Root bind:open let:ids>
 	<Popover.Trigger
+		{disabled}
 		class={cn(
 			buttonVariants({ variant: 'outline' }),
 			'max-w-full',
 			'overflow-clip',
 			'justify-between',
+			'flex',
+			'gap-2',
+			'items-center',
 			!value && 'text-muted-foreground'
 		)}
 		role="combobox"
 		{...attrs}
 	>
+		{#if loading}
+			<Loader2 class="animate-spin" />
+		{/if}
 		{#if typeof selectedItem.label === 'string'}
 			{selectedItem.label}
 		{:else}
 			{selectedItem.label.heading}
 		{/if}
-		<CaretSort class="ml-2 h-4 w-4 shrink-0 opacity-50" />
+		<ChevronsUpDown class="ml-2 h-4 w-4 shrink-0 opacity-50" />
 	</Popover.Trigger>
 	<input hidden bind:value name={attrs?.name} />
 	<Popover.Content class="w-full max-w-96 p-0">
@@ -80,6 +89,7 @@
 				<Command.Item
 					onSelect={() => {
 						value = null;
+						onChange(value);
 						closeAndFocusTrigger(ids.trigger);
 					}}
 				>
@@ -92,6 +102,7 @@
 						value={item.value}
 						onSelect={(currentValue) => {
 							value = currentValue;
+							onChange(value);
 							closeAndFocusTrigger(ids.trigger);
 						}}
 					>
