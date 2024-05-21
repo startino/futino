@@ -37,6 +37,7 @@ export const handle: Handle = async ({ event, resolve }) => {
 		event.locals.iam = new IAM(policy.content, currentProfile);
 		event.locals.currentProfile = currentProfile;
 		event.locals.supabase = supabase;
+		event.locals.user = user;
 
 		if (!event.locals.iam.canAccess(event)) return error(403, 'Forbidden action!');
 	}
