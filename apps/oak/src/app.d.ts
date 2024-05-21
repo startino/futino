@@ -4,10 +4,12 @@ import type { IAM } from '$lib/iam';
 import type { Database } from '$lib/server/supabase.types';
 import type { JoinedProfile } from '$lib/types';
 import type { SupabaseClient, User } from '@supabase/supabase-js';
+import type { createSMPTransport } from '$lib/utils';
 
 declare global {
 	namespace App {
 		interface Locals {
+			smtpTransporter: ReturnType<typeof createSMPTransport>;
 			supabase: SupabaseClient<Database>;
 			currentProfile: JoinedProfile;
 			iam: IAM;

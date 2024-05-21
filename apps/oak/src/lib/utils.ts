@@ -5,7 +5,6 @@ import type { TransitionConfig } from 'svelte/transition';
 import type { Context } from '$lib/types';
 import { getContext as getSvelteContext, setContext as setSvelteContext } from 'svelte';
 import * as PDFJS from 'pdfjs-dist';
-import * as pdfWorker from 'pdfjs-dist/build/pdf.worker.mjs';
 
 PDFJS.GlobalWorkerOptions.workerSrc = 'pdfjs-dist/build/pdf.worker.mjs';
 
