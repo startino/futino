@@ -11,14 +11,14 @@ export const load = async () => {
 };
 
 export const actions = {
-	default: async ({ request, locals: { supabase, apiClient } }) => {
+	default: async ({ request, locals: { supabase } }) => {
 		const form = await superValidate(request, zod(resetPasswordSchema));
 
 		if (!form.valid) {
 			return fail(400, { form });
 		}
 
-		const { data, error } = await supabase.auth.updateUser({
+		const { error } = await supabase.auth.updateUser({
 			password: form.data.password
 		});
 
@@ -26,8 +26,6 @@ export const actions = {
 			console.log({ error });
 			return setError(form, 'Something went wrong, please try again', { status: 500 });
 		}
-
-		apiClient.user = data.user;
 
 		redirect(302, '/app/personal-account');
 	}

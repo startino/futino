@@ -12,14 +12,14 @@ export const load = async () => {
 };
 
 export const actions = {
-	default: async ({ request, locals: { apiClient } }) => {
+	default: async ({ request, locals: { supabase } }) => {
 		const form = await superValidate(request, zod(loginSchema));
 
 		if (!form.valid) {
 			return fail(400, { form });
 		}
 
-		const { error } = await apiClient.supabase.auth.signInWithPassword(
+		const { error } = await supabase.auth.signInWithPassword(
 			form.data as Required<typeof form.data>
 		);
 

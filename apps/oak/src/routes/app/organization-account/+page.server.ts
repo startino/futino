@@ -23,7 +23,13 @@ export const load = async () => {
 };
 
 export const actions = {
-	organization: async ({ request, locals: { supabase, orgID } }) => {
+	organization: async ({
+		request,
+		locals: {
+			supabase,
+			currentProfile: { organization_id }
+		}
+	}) => {
 		const orgForm = await superValidate(request, zod(organizationSchema));
 
 		if (!orgForm.valid) {
@@ -35,7 +41,7 @@ export const actions = {
 		const { data: updatedData, error } = await supabase
 			.from('organizations')
 			.update(formData)
-			.eq('id', orgID)
+			.eq('id', organization_id)
 			.select()
 			.single();
 
@@ -57,7 +63,13 @@ export const actions = {
 			updatedData
 		};
 	},
-	vendor: async ({ request, locals: { supabase, orgID } }) => {
+	vendor: async ({
+		request,
+		locals: {
+			supabase,
+			currentProfile: { organization_id }
+		}
+	}) => {
 		const vendorForm = await superValidate(request, zod(vendorSchema));
 
 		if (!vendorForm.valid) {
@@ -68,7 +80,7 @@ export const actions = {
 
 		const { data: newVendor, error } = await supabase
 			.from('vendors')
-			.insert({ ...formData, organization_id: orgID })
+			.insert({ ...formData, organization_id })
 			.select()
 			.single();
 
@@ -87,7 +99,13 @@ export const actions = {
 
 		return message(vendorForm, newVendor);
 	},
-	department: async ({ request, locals: { supabase, orgID } }) => {
+	department: async ({
+		request,
+		locals: {
+			supabase,
+			currentProfile: { organization_id }
+		}
+	}) => {
 		const departmentForm = await superValidate(request, zod(departmentSchema));
 
 		if (!departmentForm.valid) {
@@ -98,7 +116,7 @@ export const actions = {
 
 		const { data: newDepartment, error } = await supabase
 			.from('departments')
-			.insert({ ...formData, organization_id: orgID })
+			.insert({ ...formData, organization_id })
 			.select()
 			.single();
 
@@ -117,7 +135,13 @@ export const actions = {
 
 		return message(departmentForm, newDepartment);
 	},
-	account: async ({ request, locals: { supabase, orgID } }) => {
+	account: async ({
+		request,
+		locals: {
+			supabase,
+			currentProfile: { organization_id }
+		}
+	}) => {
 		const accountForm = await superValidate(request, zod(accountSchema));
 
 		if (!accountForm.valid) {
@@ -128,7 +152,7 @@ export const actions = {
 
 		const { data: newDepartment, error } = await supabase
 			.from('accounts')
-			.insert({ ...formData, organization_id: orgID })
+			.insert({ ...formData, organization_id })
 			.select()
 			.single();
 
@@ -147,7 +171,13 @@ export const actions = {
 
 		return message(accountForm, newDepartment);
 	},
-	category: async ({ request, locals: { supabase, orgID } }) => {
+	category: async ({
+		request,
+		locals: {
+			supabase,
+			currentProfile: { organization_id }
+		}
+	}) => {
 		const categoryForm = await superValidate(request, zod(spendCategorySchema));
 
 		if (!categoryForm.valid) {
@@ -158,7 +188,7 @@ export const actions = {
 
 		const { data: newCategory, error } = await supabase
 			.from('spend_categories')
-			.insert({ ...formData, organization_id: orgID })
+			.insert({ ...formData, organization_id })
 			.select()
 			.single();
 
@@ -176,7 +206,13 @@ export const actions = {
 
 		return message(categoryForm, newCategory);
 	},
-	project: async ({ request, locals: { supabase, orgID } }) => {
+	project: async ({
+		request,
+		locals: {
+			supabase,
+			currentProfile: { organization_id }
+		}
+	}) => {
 		const projectForm = await superValidate(request, zod(projectSchema));
 
 		if (!projectForm.valid) {
@@ -187,7 +223,7 @@ export const actions = {
 
 		const { data: newProject, error } = await supabase
 			.from('projects')
-			.insert({ ...formData, organization_id: orgID })
+			.insert({ ...formData, organization_id })
 			.select()
 			.single();
 

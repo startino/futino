@@ -2,9 +2,9 @@ import { error, fail } from '@sveltejs/kit';
 
 import type { JoinedContract } from '$lib/types';
 
-export const load = async ({ locals: { apiClient }, params }) => {
+export const load = async ({ locals: { supabase }, params }) => {
 	const { id } = params;
-	const { data: contract, error: contractError } = await apiClient.supabase
+	const { data: contract, error: contractError } = await supabase
 		.from('contracts')
 		.select(
 			`
@@ -31,7 +31,7 @@ export const load = async ({ locals: { apiClient }, params }) => {
 
 	const {
 		data: { signedUrl }
-	} = await apiClient.supabase.storage
+	} = await supabase.storage
 		.from('contract-attachments')
 		.createSignedUrl(contract.attachment, 60 * 60 * 24);
 
@@ -39,12 +39,12 @@ export const load = async ({ locals: { apiClient }, params }) => {
 };
 
 export const actions = {
-	approve: async ({ request, locals: { currentProfile, apiClient, iam } }) => {
+	approve: async ({ request, locals: { currentProfile, supabase, iam } }) => {
 		const contractId = (await request.formData()).get('contract-id');
 
 		if (!contractId) return fail(400, { error: 'A contract ID is required' });
 
-		const { data: contract, error: contractError } = await apiClient.supabase
+		const { data: contract, error: contractError } = await supabase
 			.from('contracts')
 			.select()
 			.eq('id', contractId)
@@ -60,7 +60,7 @@ export const actions = {
 		if (currentProfile.id !== contract.current_approver_id)
 			return fail(400, { error: 'Your are not the current approver' });
 
-		const { error: updateError } = await apiClient.supabase
+		const { error: updateError } = await supabase
 			.from('contracts')
 			.update({ current_approver_id: currentProfile.approver_id })
 			.eq('id', contractId);
@@ -73,14 +73,14 @@ export const actions = {
 		return { success: 'Contract approved!' };
 	},
 
-	sign: async ({ request, locals: { currentProfile, apiClient, iam } }) => {
+	sign: async ({ request, locals: { currentProfile, supabase, iam } }) => {
 		const contractId = (await request.formData()).get('contract-id');
 
 		if (!contractId) return fail(400, { error: 'A contract ID is required' });
 
 		if (!iam.isAllowedTo('contracts.sign')) fail(400);
 
-		const { error: updateError } = await apiClient.supabase
+		const { error: updateError } = await supabase
 			.from('contracts')
 			.update({ current_approver_id: currentProfile.id, signed: true, status: 'active' })
 			.eq('id', contractId);

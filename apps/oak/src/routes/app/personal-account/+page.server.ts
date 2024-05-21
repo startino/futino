@@ -3,22 +3,22 @@ import { zod } from 'sveltekit-superforms/adapters';
 
 import { emailSchema, departmentIdSchema } from '$lib/schemas';
 
-export const load = async ({ locals: { apiClient } }) => {
+export const load = async ({ locals: { user } }) => {
 	const emailForm = await superValidate(zod(emailSchema));
 	const departmentForm = await superValidate(zod(departmentIdSchema));
 
-	return { email: apiClient.user.email, emailForm, departmentForm };
+	return { email: user.email, emailForm, departmentForm };
 };
 
 export const actions = {
-	updateEmail: async ({ request, locals: { supabase, apiClient } }) => {
+	updateEmail: async ({ request, locals: { supabase } }) => {
 		const emailForm = await superValidate(request, zod(emailSchema));
 
 		if (!emailForm.valid) {
 			return fail(400, { emailForm });
 		}
 
-		const { data, error } = await supabase.auth.updateUser({ email: emailForm.data.email });
+		const { error } = await supabase.auth.updateUser({ email: emailForm.data.email });
 
 		if (error) {
 			return setError(emailForm, 'email', 'Unable to update the email. Please try again.', {
@@ -26,11 +26,9 @@ export const actions = {
 			});
 		}
 
-		apiClient.user = data.user;
-
 		return { emailForm };
 	},
-	updateDepartment: async ({ request, locals: { supabase, apiClient, currentProfile } }) => {
+	updateDepartment: async ({ request, locals: { supabase, currentProfile } }) => {
 		const departmentForm = await superValidate(request, zod(departmentIdSchema));
 
 		if (!departmentForm.valid) {
@@ -40,7 +38,7 @@ export const actions = {
 		const { error } = await supabase
 			.from('profiles')
 			.update(departmentForm.data)
-			.eq('id', apiClient.user.id);
+			.eq('id', currentProfile.id);
 
 		if (error) {
 			departmentForm.data.department_id = currentProfile.department_id;

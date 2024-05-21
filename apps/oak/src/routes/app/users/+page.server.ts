@@ -19,7 +19,13 @@ export const load = async ({ locals: { iam } }) => {
 };
 
 export const actions = {
-	create: async ({ request, locals: { apiClient, orgID } }) => {
+	create: async ({
+		request,
+		locals: {
+			supabase,
+			currentProfile: { organization_id }
+		}
+	}) => {
 		const createForm = await superValidate(request, zod(createUserByAdminSchema));
 
 		if (!createForm.valid) {
@@ -29,11 +35,11 @@ export const actions = {
 		const formData = createForm.data;
 		formData.password = generatePassword({ numbers: true, strict: true });
 
-		const { error: authError, data } = await apiClient.supabase.auth.admin.createUser({
+		const { error: authError, data } = await supabase.auth.admin.createUser({
 			email: formData.email,
 			password: formData.password,
 			user_metadata: {
-				organization_id: orgID,
+				organization_id,
 				...formData
 			}
 		});
@@ -53,7 +59,7 @@ export const actions = {
 			data: {
 				properties: { action_link }
 			}
-		} = await apiClient.supabase.auth.admin.generateLink({
+		} = await supabase.auth.admin.generateLink({
 			email: formData.email,
 			password: formData.password,
 			type: 'signup',
@@ -88,7 +94,7 @@ export const actions = {
 			`
 		});
 
-		const { data: newProfile, error: profileError } = await apiClient.supabase
+		const { data: newProfile, error: profileError } = await supabase
 			.from('profiles')
 			.select('*, approver:approver_id (*), department:department_id (*)')
 			.eq('id', data.user.id)
@@ -102,7 +108,7 @@ export const actions = {
 
 		return message(createForm, newProfile);
 	},
-	update: async ({ request, locals: { apiClient } }) => {
+	update: async ({ request, locals: { supabase } }) => {
 		const updateForm = await superValidate(request, zod(updateUserByAdminSchema));
 
 		if (!updateForm.valid) {
@@ -111,7 +117,7 @@ export const actions = {
 
 		const formData = updateForm.data;
 
-		const { data: updatedProfile, error } = await apiClient.supabase
+		const { data: updatedProfile, error } = await supabase
 			.from('profiles')
 			.update({ ...formData })
 			.eq('id', formData.id)
