@@ -5,7 +5,6 @@ import { Stripe } from 'stripe';
 import type { Database } from '$lib/server/supabase.types';
 import { createSupabaseServerClient } from '@supabase/auth-helpers-sveltekit';
 import { error, redirect, type Handle } from '@sveltejs/kit';
-import { ApiClient } from '$lib/api-client';
 import { IAM } from '$lib/iam';
 import type { JoinedProfile } from '$lib/types';
 
@@ -21,63 +20,27 @@ export const handle: Handle = async ({ event, resolve }) => {
 	const {
 		data: { user }
 	} = await supabase.auth.getUser();
-	const apiClient = new ApiClient({
-		stripe,
-		supabase,
-		user
-	});
 
-	if (!apiClient.user) {
+	if (!user) {
 		if (event.url.pathname.startsWith('/app')) {
 			redirect(303, '/login');
 		}
 	} else {
-		const { data } = await apiClient.supabase
+		const { data: currentProfile } = await supabase
 			.from('profiles')
 			.select('*, approver:approver_id (*), department:department_id (*)')
 			.eq('id', user.id)
 			.returns<JoinedProfile[]>()
 			.single();
-		const { data: policy } = await apiClient.supabase.from('resource_policy').select().single();
+		const { data: policy } = await supabase.from('resource_policy').select().single();
 
-		event.locals.iam = new IAM(policy.content, data);
-		event.locals.orgID = data.organization_id;
-		event.locals.currentProfile = data;
+		event.locals.iam = new IAM(policy.content, currentProfile);
+		event.locals.currentProfile = currentProfile;
 		event.locals.supabase = supabase;
-		apiClient.stripeCustomerId = data.stripe_customer_id;
+		event.locals.user = user;
 
 		if (!event.locals.iam.canAccess(event)) return error(403, 'Forbidden action!');
-
-		const { data: subscription } = await apiClient.getUserSubscription();
-
-		let forbidSubscription = false;
-
-		if (subscription) {
-			try {
-				const sub = await apiClient.stripe.subscriptions.retrieve(
-					subscription.stripe_subscription_id
-				);
-				if (
-					sub.status === 'active' &&
-					(event.url.pathname.includes('/yearly') || event.url.pathname.includes('/monthly'))
-				) {
-					forbidSubscription = true;
-				}
-			} catch (error) {
-				return resolve(event, {
-					filterSerializedResponseHeaders(name) {
-						return name === 'content-range';
-					}
-				});
-			}
-		}
-
-		if (forbidSubscription) {
-			redirect(302, '/app/subscription');
-		}
 	}
-
-	event.locals.apiClient = apiClient;
 
 	return resolve(event, {
 		filterSerializedResponseHeaders(name) {

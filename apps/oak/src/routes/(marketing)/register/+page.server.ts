@@ -12,7 +12,7 @@ export const load = async () => {
 };
 
 export const actions = {
-	default: async ({ request, locals: { apiClient } }) => {
+	default: async ({ request, locals: { supabase } }) => {
 		const form = await superValidate(request, zod(registrationSchema));
 
 		if (!form.valid) {
@@ -23,7 +23,7 @@ export const actions = {
 
 		const formData: FormData = form.data as FormData;
 
-		const { data: org, error: orgErr } = await apiClient.supabase
+		const { data: org, error: orgErr } = await supabase
 			.from('organizations')
 			.insert({ name: formData.organization.name })
 			.select()
@@ -34,7 +34,7 @@ export const actions = {
 		}
 
 		const userData = formData.user;
-		const { error } = await apiClient.supabase.auth.signUp({
+		const { error } = await supabase.auth.signUp({
 			email: userData.email,
 			password: userData.password,
 			options: {
