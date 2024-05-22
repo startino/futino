@@ -1,6 +1,16 @@
 import { PUBLIC_SUPABASE_URL } from '$env/static/public';
-import { STRIPE_SECRET_KEY, SUPABASE_SERVICE_ROLE_KEY } from '$env/static/private';
+import {
+	STRIPE_SECRET_KEY,
+	SUPABASE_SERVICE_ROLE_KEY,
+	SMTP_HOST,
+	SMTP_PASSWORD,
+	SMTP_PORT,
+	SMTP_USER
+} from '$env/static/private';
 
+import path from 'path';
+import nodemailer from 'nodemailer';
+import hbs from 'nodemailer-express-handlebars';
 import { Stripe } from 'stripe';
 import type { Database } from '$lib/server/supabase.types';
 import { createSupabaseServerClient } from '@supabase/auth-helpers-sveltekit';
@@ -14,6 +24,7 @@ export const handle: Handle = async ({ event, resolve }) => {
 		supabaseKey: SUPABASE_SERVICE_ROLE_KEY,
 		event
 	});
+	event.locals.supabase = supabase;
 
 	const stripe = new Stripe(STRIPE_SECRET_KEY);
 
@@ -36,8 +47,13 @@ export const handle: Handle = async ({ event, resolve }) => {
 
 		event.locals.iam = new IAM(policy.content, currentProfile);
 		event.locals.currentProfile = currentProfile;
-		event.locals.supabase = supabase;
 		event.locals.user = user;
+		event.locals.smtpTransporter = createSMPTransport({
+			host: SMTP_HOST,
+			port: Number(SMTP_PORT),
+			user: SMTP_USER,
+			pass: SMTP_PASSWORD
+		});
 
 		if (!event.locals.iam.canAccess(event)) return error(403, 'Forbidden action!');
 	}
@@ -47,4 +63,37 @@ export const handle: Handle = async ({ event, resolve }) => {
 			return name === 'content-range';
 		}
 	});
+};
+
+type SMTPOptions = {
+	host: string;
+	port: number;
+	user: string;
+	pass: string;
+};
+export const createSMPTransport = ({ host, port, user, pass }: SMTPOptions) => {
+	const transporter = nodemailer.createTransport({
+		host,
+		port,
+		secure: false,
+		auth: {
+			user,
+			pass
+		},
+		tls: {
+			rejectUnauthorized: false
+		}
+	});
+
+	const handlebarOptions = {
+		viewEngine: {
+			partialsDir: path.resolve('./src/email-templates/'),
+			defaultLayout: false
+		},
+		viewPath: path.resolve('./src/email-templates/')
+	};
+
+	transporter.use('compile', hbs(handlebarOptions));
+
+	return transporter;
 };

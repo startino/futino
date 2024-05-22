@@ -8,7 +8,7 @@ const { generate: generatePassword } = genarator;
 
 import { createUserByAdminSchema, updateUserByAdminSchema } from '$lib/schemas';
 import type { JoinedProfile } from '$lib/types';
-import { SMTP_HOST, SMTP_PASSWORD, SMTP_PORT, SMTP_USER } from '$env/static/private';
+import { SMTP_USER } from '$env/static/private';
 import { PUBLIC_SITE_URL } from '$env/static/public';
 
 export const load = async ({ locals: { iam } }) => {
@@ -22,6 +22,7 @@ export const actions = {
 	create: async ({
 		request,
 		locals: {
+			smtpTransporter,
 			supabase,
 			currentProfile: { organization_id }
 		}
@@ -68,30 +69,16 @@ export const actions = {
 			}
 		});
 
-		const transporter = nodemailer.createTransport({
-			host: SMTP_HOST,
-			port: SMTP_PORT,
-			secure: false,
-			auth: {
-				user: SMTP_USER,
-				pass: SMTP_PASSWORD
-			},
-			tls: {
-				rejectUnauthorized: false
-			}
-		});
-
-		await transporter.sendMail({
+		await smtpTransporter.sendMail({
+			template: 'new-user',
 			from: `"Oak" <${SMTP_USER}>`,
 			to: formData.email,
 			subject: 'Your Oak credentials',
-			html: `
-				Your Administrator has created an Oak account for you.
-				Here is your credentials: <br/>
-				<b>Email: </b> ${formData.email}<br/>
-				<b>Password: </b> ${formData.password}<br/>
-				<b><a href="${action_link}">Confirm and login</a></b>
-			`
+			context: {
+				email: formData.email,
+				password: formData.password,
+				action_link
+			}
 		});
 
 		const { data: newProfile, error: profileError } = await supabase

@@ -38,7 +38,7 @@ export interface JoinedContract extends Tables<'contracts'> {
 	vendor: Tables<'vendors'>;
 	department: Tables<'departments'>;
 	project: Tables<'projects'>;
-	current_approver: Tables<'profiles'>;
+	current_approver: Tables<'profiles'> | null;
 	parent_contract: Tables<'contracts'> | null;
 	spend_category: Tables<'spend_categories'>;
 	account: Tables<'accounts'>;
