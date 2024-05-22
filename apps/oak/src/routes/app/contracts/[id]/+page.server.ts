@@ -1,6 +1,9 @@
 import { error, fail } from '@sveltejs/kit';
 
 import type { JoinedContract } from '$lib/types';
+import { SMTP_USER } from '$env/static/private';
+import { PUBLIC_SITE_URL } from '$env/static/public';
+import type { Tables } from '$lib/server/supabase.types.js';
 
 export const load = async ({ locals: { supabase }, params }) => {
 	const { id } = params;
@@ -39,15 +42,16 @@ export const load = async ({ locals: { supabase }, params }) => {
 };
 
 export const actions = {
-	approve: async ({ request, locals: { currentProfile, supabase, iam } }) => {
+	approve: async ({ request, locals: { currentProfile, supabase, iam, smtpTransporter } }) => {
 		const contractId = (await request.formData()).get('contract-id');
 
 		if (!contractId) return fail(400, { error: 'A contract ID is required' });
 
 		const { data: contract, error: contractError } = await supabase
 			.from('contracts')
-			.select()
+			.select('*, vendor:vendor_id (*)')
 			.eq('id', contractId)
+			.returns<Array<Tables<'contracts'> & { vendor: Tables<'vendors'> }>>()
 			.single();
 
 		if (contractError) {
@@ -57,38 +61,75 @@ export const actions = {
 
 		if (!iam.isAllowedTo('contracts.update')) fail(400);
 
-		if (currentProfile.id !== contract.current_approver_id)
-			return fail(400, { error: 'Your are not the current approver' });
+		if (
+			currentProfile.id !== contract.current_approver_id ||
+			currentProfile.id === contract.owner_id
+		)
+			return error(403);
 
 		const { error: updateError } = await supabase
 			.from('contracts')
 			.update({ current_approver_id: currentProfile.approver_id })
-			.eq('id', contractId);
+			.eq('id', contractId)
+			.single();
 
 		if (updateError) {
 			console.log({ updateError });
 			return fail(500, { error: 'Something went wrong' });
 		}
 
+		const {
+			data: { user }
+		} = await supabase.auth.admin.getUserById(currentProfile.approver_id);
+
+		await smtpTransporter.sendMail({
+			template: 'new-contract',
+			from: `"Oak" <${SMTP_USER}>`,
+			to: user.email,
+			subject: 'New contract',
+			context: {
+				link: `${PUBLIC_SITE_URL}/app/contracts/${contract.id}`,
+				label: `#${contract.number} ${contract.vendor.name}`
+			}
+		});
+
 		return { success: 'Contract approved!' };
 	},
 
-	sign: async ({ request, locals: { currentProfile, supabase, iam } }) => {
+	sign: async ({ request, locals: { currentProfile, supabase, iam, smtpTransporter } }) => {
 		const contractId = (await request.formData()).get('contract-id');
 
 		if (!contractId) return fail(400, { error: 'A contract ID is required' });
 
 		if (!iam.isAllowedTo('contracts.sign')) fail(400);
 
-		const { error: updateError } = await supabase
+		const { data: contract, error: updateError } = await supabase
 			.from('contracts')
 			.update({ current_approver_id: currentProfile.id, signed: true, status: 'active' })
-			.eq('id', contractId);
+			.eq('id', contractId)
+			.select('*, vendor:vendor_id (*)')
+			.returns<Array<Tables<'contracts'> & { vendor: Tables<'vendors'> }>>()
+			.single();
 
 		if (updateError) {
 			console.log({ updateError });
 			return fail(500, { error: 'Something went wrong' });
 		}
+
+		const {
+			data: { user }
+		} = await supabase.auth.admin.getUserById(contract.owner_id);
+
+		await smtpTransporter.sendMail({
+			template: 'contract-signed',
+			from: `"Oak" <${SMTP_USER}>`,
+			to: user.email,
+			subject: 'Contract signed',
+			context: {
+				link: `${PUBLIC_SITE_URL}/app/contracts/${contract.id}`,
+				label: `#${contract.number} ${contract.vendor.name}`
+			}
+		});
 
 		return { success: 'Contract signed!' };
 	}

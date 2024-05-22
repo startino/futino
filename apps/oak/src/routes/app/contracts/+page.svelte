@@ -113,7 +113,7 @@
 					</AlertDialog.Root>
 				{/if}
 
-				{#if iam.isAllowedTo('contracts.create') && $currentProfile.approver_id}
+				{#if (iam.isAllowedTo('contracts.create') && $currentProfile.approver_id) || iam.isAllowedTo('contracts.sign')}
 					<FormDialog bind:open={formOpen} title="Add contract">
 						<svelte:fragment slot="trigger">
 							<Dialog.Trigger>

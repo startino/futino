@@ -19,7 +19,16 @@
 	const currentProfile = getContext('currentProfile');
 	const departments = getContext('departments');
 
-	const emailForm = superForm(data.emailForm, { id: 'email', validators: zodClient(emailSchema) });
+	const emailForm = superForm(data.emailForm, {
+		id: 'email',
+		validators: zodClient(emailSchema),
+		onUpdated: ({ form }) => {
+			if (form.valid) {
+				state = 'email-recovery-link-sent';
+				emailFormOpen = false;
+			}
+		}
+	});
 	const departmentForm = superForm(data.departmentForm, {
 		id: 'department',
 		resetForm: false,
@@ -117,7 +126,6 @@
 				{/if}
 
 				{#if state === 'email-recovery-link-sent'}
-					<AlertDialog.Title>Confirm your new email address</AlertDialog.Title>
 					<span>We've sent a confirmation email to verify your email address.</span>
 				{/if}
 			</AlertDialog.Description>
