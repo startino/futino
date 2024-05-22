@@ -24,6 +24,7 @@ export const handle: Handle = async ({ event, resolve }) => {
 		supabaseKey: SUPABASE_SERVICE_ROLE_KEY,
 		event
 	});
+	event.locals.supabase = supabase;
 
 	const stripe = new Stripe(STRIPE_SECRET_KEY);
 
@@ -46,7 +47,6 @@ export const handle: Handle = async ({ event, resolve }) => {
 
 		event.locals.iam = new IAM(policy.content, currentProfile);
 		event.locals.currentProfile = currentProfile;
-		event.locals.supabase = supabase;
 		event.locals.user = user;
 		event.locals.smtpTransporter = createSMPTransport({
 			host: SMTP_HOST,
@@ -90,10 +90,10 @@ export const createSMPTransport = ({ host, port, user, pass }: SMTPOptions) => {
 			partialsDir: path.resolve('./src/email-templates/'),
 			defaultLayout: false
 		},
-		viewPath: path.resolve('./src/email-templates/'),
-	}
+		viewPath: path.resolve('./src/email-templates/')
+	};
 
-	transporter.use('compile', hbs(handlebarOptions))
+	transporter.use('compile', hbs(handlebarOptions));
 
 	return transporter;
 };

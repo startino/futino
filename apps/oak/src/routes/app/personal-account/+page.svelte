@@ -98,9 +98,18 @@
 >
 	<AlertDialog.Content>
 		<AlertDialog.Header>
+			<AlertDialog.Title>
+				{#if state === 'password-recovery-link-sent'}
+					<span> Reset link sent! </span>
+				{/if}
+
+				{#if state === 'email-recovery-link-sent'}
+					<span>Confirm your new email address</span>
+				{/if}
+			</AlertDialog.Title>
+
 			<AlertDialog.Description>
 				{#if state === 'password-recovery-link-sent'}
-					<AlertDialog.Title>Reset link sent!</AlertDialog.Title>
 					<span>
 						We've sent a password reset link to your email. This might take a couple of minutes
 						before you receive it. Use this link to update your password.
@@ -108,9 +117,7 @@
 				{/if}
 
 				{#if state === 'email-recovery-link-sent'}
-					<AlertDialog.Title
-						>Confirm your new email <address></address></AlertDialog.Title
-					>
+					<AlertDialog.Title>Confirm your new email address</AlertDialog.Title>
 					<span>We've sent a confirmation email to verify your email address.</span>
 				{/if}
 			</AlertDialog.Description>
@@ -213,7 +220,11 @@
 
 		<div class="grid gap-2">
 			<h2 class="font-bold">Supervisor</h2>
-			<p>{$currentProfile.approver.full_name}</p>
+			{#if $currentProfile.approver_id}
+				<p>{$currentProfile.approver.full_name}</p>
+			{:else}
+				<p>No supervisor</p>
+			{/if}
 		</div>
 
 		<Button

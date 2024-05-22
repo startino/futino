@@ -4,6 +4,9 @@ import { zod } from 'sveltekit-superforms/adapters';
 
 import { contractSchema } from '$lib/schemas';
 import type { ContractDatableRow } from '$lib/types';
+import { SMTP_USER } from '$env/static/private';
+import { PUBLIC_SITE_URL } from '$env/static/public';
+import type { Tables } from '$lib/server/supabase.types.js';
 
 export const load = async ({ locals: { currentProfile, supabase } }) => {
 	const { data, error: e } = await supabase
@@ -25,7 +28,10 @@ export const load = async ({ locals: { currentProfile, supabase } }) => {
 };
 
 export const actions = {
-	default: async ({ request, locals: { supabase, currentProfile } }) => {
+	default: async ({ request, locals: { supabase, currentProfile, smtpTransporter, iam } }) => {
+		if (!iam.isAllowedTo('contracts.sign') && !currentProfile.approver_id) {
+			return error(403);
+		}
 		const form = await superValidate(request, zod(contractSchema));
 
 		if (!form.valid) {
@@ -59,20 +65,42 @@ export const actions = {
 			);
 		}
 
-		const { error } = await supabase.from('contracts').insert({
-			...formData,
-			organization_id: currentProfile.organization_id,
-			current_approver_id: currentProfile.approver_id,
-			owner_id: currentProfile.id,
-			start_date: formData.start_date.toISOString(),
-			end_date: formData.end_date.toISOString(),
-			attachment: path
-		});
+		const { data: newContract, error: contractError } = await supabase
+			.from('contracts')
+			.insert({
+				...formData,
+				organization_id: currentProfile.organization_id,
+				current_approver_id: currentProfile.approver_id,
+				owner_id: currentProfile.id,
+				start_date: formData.start_date.toISOString(),
+				end_date: formData.end_date.toISOString(),
+				attachment: path
+			})
+			.select('*, vendor:vendor_id (*)')
+			.returns<Array<Tables<'contracts'> & { vendor: Tables<'vendors'> }>>()
+			.single();
 
-		if (error) {
+		if (contractError) {
 			console.error(error);
 			return setError(withFiles(form), 'Unable to add contract. Please try again.', {
 				status: 500
+			});
+		}
+
+		if (!iam.isAllowedTo('contracts.sign')) {
+			const {
+				data: { user }
+			} = await supabase.auth.admin.getUserById(currentProfile.approver_id);
+
+			await smtpTransporter.sendMail({
+				template: 'new-contract',
+				from: `"Oak" <${SMTP_USER}>`,
+				to: user.email,
+				subject: 'New contract',
+				context: {
+					link: `${PUBLIC_SITE_URL}/app/contracts/${newContract.id}`,
+					label: `#${newContract.number} ${newContract.vendor.name}`
+				}
 			});
 		}
 
