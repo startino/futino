@@ -8,7 +8,9 @@ import {
 	SMTP_USER
 } from '$env/static/private';
 
+import path from 'path';
 import nodemailer from 'nodemailer';
+import hbs from 'nodemailer-express-handlebars';
 import { Stripe } from 'stripe';
 import type { Database } from '$lib/server/supabase.types';
 import { createSupabaseServerClient } from '@supabase/auth-helpers-sveltekit';
@@ -69,7 +71,7 @@ type SMTPOptions = {
 	user: string;
 	pass: string;
 };
-const createSMPTransport = ({ host, port, user, pass }: SMTPOptions) => {
+export const createSMPTransport = ({ host, port, user, pass }: SMTPOptions) => {
 	const transporter = nodemailer.createTransport({
 		host,
 		port,
@@ -82,6 +84,16 @@ const createSMPTransport = ({ host, port, user, pass }: SMTPOptions) => {
 			rejectUnauthorized: false
 		}
 	});
+
+	const handlebarOptions = {
+		viewEngine: {
+			partialsDir: path.resolve('./src/email-templates/'),
+			defaultLayout: false
+		},
+		viewPath: path.resolve('./src/email-templates/'),
+	}
+
+	transporter.use('compile', hbs(handlebarOptions))
 
 	return transporter;
 };

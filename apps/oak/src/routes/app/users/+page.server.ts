@@ -70,16 +70,15 @@ export const actions = {
 		});
 
 		await smtpTransporter.sendMail({
+			template: 'new-user',
 			from: `"Oak" <${SMTP_USER}>`,
 			to: formData.email,
 			subject: 'Your Oak credentials',
-			html: `
-				Your Administrator has created an Oak account for you.
-				Here is your credentials: <br/>
-				<b>Email: </b> ${formData.email}<br/>
-				<b>Password: </b> ${formData.password}<br/>
-				<b><a href="${action_link}">Confirm and login</a></b>
-			`
+			context: {
+				email: formData.email,
+				password: formData.password,
+				action_link
+			}
 		});
 
 		const { data: newProfile, error: profileError } = await supabase
