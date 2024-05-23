@@ -1,6 +1,12 @@
 import { PUBLIC_SUPABASE_URL, PUBLIC_SUPABASE_ANON_KEY } from '$env/static/public';
+import { SMTP_HOST, SMTP_PASSWORD, SMTP_PORT, SMTP_USER } from '$env/static/private';
 import { createServerClient } from '@supabase/ssr';
 import type { Handle } from '@sveltejs/kit';
+import path from 'path';
+import nodemailer from 'nodemailer';
+import hbs from 'nodemailer-express-handlebars';
+
+import { createSMPTransport } from '$lib/smtp';
 
 export const handle: Handle = async ({ event, resolve }) => {
 	event.locals.supabase = createServerClient(PUBLIC_SUPABASE_URL, PUBLIC_SUPABASE_ANON_KEY, {
@@ -21,6 +27,12 @@ export const handle: Handle = async ({ event, resolve }) => {
 		}
 	});
 
+	event.locals.smtpTransporter = createSMPTransport({
+		host: SMTP_HOST,
+		port: Number(SMTP_PORT),
+		user: SMTP_USER,
+		pass: SMTP_PASSWORD
+	});
 	/**
 	 * Unlike `supabase.auth.getSession()`, which returns the session _without_
 	 * validating the JWT, this function also calls `getUser()` to validate the

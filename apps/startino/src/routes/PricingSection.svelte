@@ -43,8 +43,8 @@
 								Full-Cycle
 							</h3>
 							<div class="mt-4 flex items-baseline gap-x-2">
-								<span class="text-5xl font-bold tracking-tight text-surface-on">$4,000</span>
-								<span class="text-base font-semibold leading-7 text-surface-on/70">/month</span>
+								<span class="text-5xl font-bold tracking-tight text-surface-on">$1250</span>
+								<span class="text-base font-semibold leading-7 text-surface-on/70">/week</span>
 							</div>
 							<p
 								class=" mt-6

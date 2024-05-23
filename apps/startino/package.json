@@ -63,6 +63,8 @@
 		"lucide-svelte": "^0.379.0",
 		"mdsvex": "^0.11.0",
 		"mode-watcher": "^0.3.0",
+		"nodemailer": "^6.9.13",
+		"nodemailer-express-handlebars": "^6.1.2",
 		"object-hash": "^3.0.0",
 		"svelte-markdown": "^0.4.1",
 		"svelte-sonner": "^0.3.24",
