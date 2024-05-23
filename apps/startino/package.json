@@ -42,7 +42,7 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"@cartamd/plugin-code": "^4.0.4",
+		"@cartamd/plugin-code": "^4.0.5",
 		"@dagrejs/dagre": "^1.1.2",
 		"@stripe/stripe-js": "^3.4.1",
 		"@supabase/ssr": "^0.3.0",
