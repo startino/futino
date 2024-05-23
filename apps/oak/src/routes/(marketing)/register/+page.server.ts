@@ -2,6 +2,7 @@ import { registrationSchema } from '$lib/schemas';
 import { fail, redirect, type RecursiveRequired } from '@sveltejs/kit';
 import { setError, superValidate } from 'sveltekit-superforms/server';
 import { zod } from 'sveltekit-superforms/adapters';
+import { PUBLIC_SITE_URL } from '$env/static/public';
 
 export const load = async () => {
 	const form = await superValidate(zod(registrationSchema));
@@ -38,9 +39,10 @@ export const actions = {
 			email: userData.email,
 			password: userData.password,
 			options: {
+				emailRedirectTo: `${PUBLIC_SITE_URL}/login`,
 				data: {
 					organization_id: org.id,
-					role: 'admin',
+					roles: ['admin'],
 					full_name: userData.fullName
 				}
 			}

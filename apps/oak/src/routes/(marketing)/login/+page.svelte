@@ -14,7 +14,6 @@
 	const newEmail = $page.url.searchParams.get('email');
 
 	const confirmationSent = $page.url.searchParams.has('confirmation-sent') && newEmail;
-	const confirmed = $page.url.searchParams.has('confirmed') && newEmail;
 
 	const { form, enhance, constraints, errors, submitting } = superForm(data.form);
 </script>
@@ -33,15 +32,6 @@
 				</Alert.Root>
 			{/if}
 
-			{#if confirmed}
-				<Alert.Root variant="default">
-					<CheckCircle class="h-4 w-4" />
-					<Alert.Title>Congratulations!</Alert.Title>
-					<Alert.Description
-						>Your email: <span class="font-bold">{newEmail}</span> has been confirmed. You can now login.</Alert.Description
-					>
-				</Alert.Root>
-			{/if}
 			<div class="grid gap-2 text-center">
 				<h1 class="text-3xl font-bold">Login</h1>
 				<p class="text-balance text-muted-foreground">

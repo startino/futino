@@ -125,7 +125,7 @@
 					</div>
 
 					<div class="grid gap-2">
-						<Label>Confirma password</Label>
+						<Label>Confirm password</Label>
 						<Input
 							type="password"
 							bind:value={$form.user.confirmPassword}
