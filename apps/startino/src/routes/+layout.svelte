@@ -5,9 +5,9 @@
 
 	const footerLinks = {
 		Company: [
-			{ name: 'About', href: '#about' },
-			{ name: 'Pricing', href: '#pricing' },
-			{ name: 'Contact Us', href: '#contact' }
+			{ name: 'About', href: '/#about' },
+			{ name: 'Pricing', href: '/#pricing' },
+			{ name: 'Contact Us', href: '/#contact' }
 		],
 		Socials: [
 			{ name: 'LinkedIn', href: 'https://www.linkedin.com/company/futino' },
@@ -17,7 +17,7 @@
 	const headerLinks = [
 		{
 			name: 'Home',
-			href: '#hero'
+			href: '/#hero'
 		},
 		{
 			name: 'About',

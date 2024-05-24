@@ -1,9 +1,9 @@
 ---
-title: 'Are you making these mistakes as a non-technical founder?'
+title: Are you making these mistakes as a non-technical founder?
 
-description: 'Being a non-technical founder can be challenging – Learn the common mistakes non-technical founders make and how to avoid them. Be a step ahead and succeed'
+description: Being a non-technical founder can be challenging – Learn the common mistakes non-technical founders make and how to avoid them. Be a step ahead and succeed
 
-date: '2024-5-24'
+date: "2024-05-25"
 
 category: Article
 
@@ -11,9 +11,9 @@ published: true
 
 timeToRead: 9
 
-thumbnail: '/blog/1.webp'
+thumbnail: /blog/1.webp
 
-author: 'Jorge Lewis'
+author: Jorge Lewis
 ---
 
 # Why is it so Hard to be a Non-technical Founder?

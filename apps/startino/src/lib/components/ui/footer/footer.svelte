@@ -11,7 +11,7 @@
 			<div class="space-y-8">
 				<Logo wordmark class="h-9" />
 				<p class="text-balance text-sm leading-6 text-gray-300">
-					Building the software ideas of entrepreneurs and startups into life
+					Building Software Ideas into Life
 				</p>
 			</div>
 			<div class="mt-16 gap-8 xl:col-span-2 xl:ml-64 xl:mt-0">

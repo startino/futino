@@ -14,7 +14,7 @@
 <div class="md:py py-36 sm:py-32">
 	<div class="mx-auto max-w-7xl px-6 lg:px-8">
 		<div class="mx-auto max-w-2xl lg:max-w-4xl">
-			<h2 class="">Blog</h2>
+			<h2 class="text-3xl">Blog</h2>
 			<p class="mt-2 text-center text-lg leading-8 text-foreground/80"></p>
 			<div class="mx-auto mt-16 space-y-20 text-center lg:mt-20 lg:space-y-20">
 				{#each data.posts as post}
@@ -40,11 +40,6 @@
 									<div class="flex items-center gap-x-4 text-xs">
 										<time datetime={post.date} class="text-foreground/70"
 											>{post.date_formatted}</time
-										>
-										<a
-											href="#"
-											class="hover:bg- relative z-10 rounded-full bg-primary px-3 py-1.5 font-medium text-primary-foreground"
-											>{post.category}</a
 										>
 									</div>
 									<div class="group relative max-w-xl text-left">

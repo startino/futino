@@ -6,23 +6,23 @@
 	export const elements = [
 		{
 			name: 'Home',
-			href: '#hero'
+			href: '/#hero'
 		},
 		{
 			name: 'About',
-			href: '#about'
+			href: '/#about'
 		},
 		{
 			name: 'Contact',
-			href: '#contact'
+			href: '/#contact'
 		},
 		{
 			name: 'Pricing',
-			href: '#pricing'
+			href: '/#pricing'
 		},
 		{
 			name: 'Blog',
-			href: 'blog'
+			href: '/blog'
 		}
 	];
 
