@@ -99,7 +99,7 @@
 	</p>
 
 	<div class="not-prose flex gap-4">
-		<Button href="https://calendly.com/jorge-lewis" target="new" class="px-12 py-7 text-2xl"
+		<Button href="https://cal.com/jorgelewis" target="new" class="px-12 py-7 text-2xl"
 			>Get in Touch</Button
 		>
 		<Button href="#pricing" class="px-12 py-7 text-2xl" variant="outline">Pricing</Button>
@@ -321,7 +321,7 @@
 				coffee.
 			</p>
 			<Button
-				href="https://calendly.com/jorge-lewis"
+				href="https://cal.com/jorgelewis"
 				variant="outline"
 				target="new"
 				class="group w-fit px-8 py-8 text-xl font-bold text-primary"

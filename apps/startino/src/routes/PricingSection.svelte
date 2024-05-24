@@ -74,7 +74,7 @@
 							</ul>
 						</div>
 						<a
-							href="https://calendly.com/jorge-lewis"
+							href="https://cal.com/jorgelewis"
 							aria-describedby="tier-full-cycle"
 							class="mt-8 block rounded-md bg-primary px-3.5 py-2 text-center text-sm font-semibold leading-6 text-primary-on shadow-sm transition-colors duration-300 hover:bg-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
 							>Get started today</a
@@ -97,7 +97,7 @@
 							</p>
 						</div>
 						<a
-							href="https://calendly.com/jorge-lewis"
+							href="https://cal.com/jorgelewis"
 							class="rounded-md px-3.5 py-2 text-sm font-semibold leading-6 text-primary ring-1 ring-inset ring-primary transition hover:text-accent hover:ring-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
 							>Book a Call <span aria-hidden="true">&rarr;</span></a
 						>

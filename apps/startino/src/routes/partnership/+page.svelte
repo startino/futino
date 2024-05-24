@@ -11,7 +11,7 @@
 	</div>
 	<p class="text-pretty opacity-80"></p>
 	<div class="not-prose flex gap-4">
-		<Button href="https://calendly.com/jorge-lewis" target="new" class="px-12 py-7 text-2xl"
+		<Button href="https://cal.com/jorgelewis" target="new" class="px-12 py-7 text-2xl"
 			>Get in Touch</Button
 		>
 		<Button href="#pricing" class="px-12 py-7 text-2xl" variant="outline">Pricing</Button>
