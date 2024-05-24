@@ -19,6 +19,10 @@
 		{
 			name: 'Pricing',
 			href: '#pricing'
+		},
+		{
+			name: 'Blog',
+			href: 'blog'
 		}
 	];
 

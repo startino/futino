@@ -954,6 +954,9 @@ importers:
       bits-ui:
         specifier: ^0.21.9
         version: 0.21.9(svelte@4.2.17)
+      carta:
+        specifier: ^0.0.1
+        version: 0.0.1
       carta-md:
         specifier: ^4.0.3
         version: 4.0.3(svelte@4.2.17)
@@ -5996,6 +5999,11 @@ packages:
       unified: 11.0.4
     transitivePeerDependencies:
       - supports-color
+    dev: false
+
+  /carta@0.0.1:
+    resolution: {integrity: sha512-DfKYdDm4rpdWrzLyjCXVPHLfmJD824AN8pUSzBGHlrG2uHUJf/jGNECdOZkPecmxKg9nzEwdr86SNTBSX8KkBQ==}
+    deprecated: this package has been deprecated
     dev: false
 
   /caseless@0.12.0:
