@@ -5,6 +5,8 @@ import { animationsConfig, keyframesConfig } from './theme/animation.cjs';
 
 /** @type {import('tailwindcss').Config} */
 
+const defaultTheme = require('tailwindcss/defaultTheme')
+
 const alpha = '<alpha-value>';
 
 const config = {
@@ -35,7 +37,7 @@ const config = {
 				sm: 'calc(var(--radius) - 4px)'
 			},
 			fontFamily: {
-				sans: [...fontFamily.sans]
+sans: ['"Lato"', ...defaultTheme.fontFamily.sans],
 			},
 			typography: ({ colors }) => ({
 				...typographyConfig(colors, alpha),

@@ -40,7 +40,7 @@ export const actions: Actions = {
 		const transporter = await smtpTransporter.sendMail({
 			template: 'new-contact-form',
 			from: `"Oak" <${SMTP_USER}>`,
-			to: 'jorge.lewis@futi.no, contact@futi.no, ',
+			to: 'jorge.lewis@futi.no, contact@futi.no, jonas.lindberg@futi.no',
 			subject: 'Your Oak credentials',
 			context: {
 				name: formData.name,
