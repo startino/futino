@@ -35,7 +35,7 @@ export const actions = {
 		}
 
 		const userData = formData.user;
-		const { error } = await supabase.auth.signUp({
+		const { data, error } = await supabase.auth.signUp({
 			email: userData.email,
 			password: userData.password,
 			options: {
@@ -54,6 +54,11 @@ export const actions = {
 			}
 			return setError(form, 'Something went wrong. Please, try again', { status: 500 });
 		}
+
+		await supabase
+			.from('organizations')
+			.update({ hierarchy: { id: org.id, children: [{ id: data.user.id, threshold: 0 }] } })
+			.eq('id', org.id);
 
 		redirect(302, `/login?confirmation-sent&email=${userData.email}`);
 	}

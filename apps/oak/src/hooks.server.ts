@@ -10,6 +10,7 @@ import {
 
 import path from 'path';
 import nodemailer from 'nodemailer';
+import TreeModel from 'tree-model';
 import hbs from 'nodemailer-express-handlebars';
 import { Stripe } from 'stripe';
 import type { Database } from '$lib/server/supabase.types';
@@ -43,9 +44,18 @@ export const handle: Handle = async ({ event, resolve }) => {
 			.eq('id', user.id)
 			.returns<JoinedProfile[]>()
 			.single();
+
+		const { data: organization } = await supabase
+			.from('organizations')
+			.select()
+			.eq('id', currentProfile.organization_id)
+			.single();
+
 		const { data: policy } = await supabase.from('resource_policy').select().single();
 
 		event.locals.iam = new IAM(policy.content, currentProfile);
+		event.locals.organization = organization;
+		event.locals.hierarchyRoot = new TreeModel().parse(organization.hierarchy);
 		event.locals.currentProfile = currentProfile;
 		event.locals.user = user;
 		event.locals.smtpTransporter = createSMPTransport({

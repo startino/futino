@@ -1,6 +1,8 @@
+import { error } from '@sveltejs/kit';
+import TreeModel from 'tree-model';
+
 import { STRIPE_SECRET_KEY } from '$env/static/private';
 import type { JoinedProfile } from '$lib/types';
-import { error } from '@sveltejs/kit';
 
 export const load = async ({ locals: { supabase, currentProfile, user, iam } }) => {
 	const { data: departments, error: departmentsError } = await supabase
