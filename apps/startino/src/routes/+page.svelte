@@ -93,11 +93,13 @@
 		</h1>
 	</div>
 	<p class="text-pretty opacity-80">
-		Advancing the success of non-technical entrepreneurs and startups through beautiful (if we say
-		so ourselves) software development, attracting initial users, and iterating for market fit.
+		Advancing the success of non-technical entrepreneurs and startups by providing the passion and
+		commitment of a tech co-founder alongside the efficiency and reliability of a professional
+		development agency.
 	</p>
+
 	<div class="not-prose flex gap-4">
-		<Button href="https://calendly.com/jorge-lewis" target="new" class="px-12 py-7 text-2xl"
+		<Button href="https://cal.com/jorgelewis" target="new" class="px-12 py-7 text-2xl"
 			>Get in Touch</Button
 		>
 		<Button href="#pricing" class="px-12 py-7 text-2xl" variant="outline">Pricing</Button>
@@ -319,7 +321,7 @@
 				coffee.
 			</p>
 			<Button
-				href="https://calendly.com/jorge-lewis"
+				href="https://cal.com/jorgelewis"
 				variant="outline"
 				target="new"
 				class="group w-fit px-8 py-8 text-xl font-bold text-primary"

@@ -42,7 +42,7 @@
 			answer there, we're open to answer any questions.
 		</h1>
 		<div class="my-2 mb-6 flex flex-row gap-4">
-			<Button href="https://calendly.com/jorge-lewis" size="lg">
+			<Button href="https://cal.com/jorgelewis" size="lg">
 				<h2 class="title-medium">Book a call</h2>
 			</Button>
 			<Button href="#contact" size="lg">
