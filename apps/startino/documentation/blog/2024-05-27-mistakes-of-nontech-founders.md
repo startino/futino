@@ -3,7 +3,7 @@ title: Are you making these mistakes as a non-technical founder?
 
 description: Being a non-technical founder can be challenging – Learn the common mistakes non-technical founders make and how to avoid them. Be a step ahead and succeed
 
-date: "2024-05-25"
+date: '2024-05-27'
 
 category: Article
 
