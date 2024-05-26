@@ -1,5 +1,13 @@
+<script lang="ts">
+	export let data;
+</script>
+
 <div
-	class="fixed -z-10 h-screen w-screen bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary-950/5 to-background"
+	class="from-primary-950/5 fixed -z-10 h-screen w-screen bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] to-background"
 />
 
-<slot />
+<div class="mt-44">
+	<main>
+		<slot />
+	</main>
+</div>
