@@ -4,7 +4,7 @@ import type { SvelteComponent } from 'svelte';
 import { error } from '@sveltejs/kit';
 import { base } from '$app/paths';
 
-const BLOG_PATH = `./documentation/blog`;
+const BLOG_PATH = `./src/documentation/blog`;
 
 export async function get_blog_post(pathname: string) {
 	const { readFile } = await import('node:fs/promises');
