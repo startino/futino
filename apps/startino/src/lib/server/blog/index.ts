@@ -4,21 +4,16 @@ import type { SvelteComponent } from 'svelte';
 import { error } from '@sveltejs/kit';
 import { base } from '$app/paths';
 
-const BLOG_PATH = `./src/lib/documentation/blog`;
+const BLOG_PATH = `./documentation/blog`;
 
 export async function get_blog_post(pathname: string) {
-	const pages = import.meta.glob('./src/lib/documentation/blog/*.md');
-	const path = pathname.slice(base.length).slice(1).split('/').pop();
-	const match = pages[`./src/lib/documentation/blog/${path}.md`];
-	if (!match) throw error(404, "Could not find the blog post you're looking for.");
+	const { readFile } = await import('node:fs/promises');
+	const file = await readFile(`${BLOG_PATH}/${pathname}.md`, 'utf-8');
 
-	const Markdown = (await match()) as {
-		default: SvelteComponent;
-		metadata: MarkdownMetadata;
-	};
-	return Markdown;
+	if (!file) throw error(404, "Could not find the blog post you're looking for.");
+
+	return file;
 }
-
 export async function get_processed_blog_post(
 	blog_data: BlogData,
 	slug: string
@@ -125,8 +120,6 @@ export function extractFrontmatter(markdown: string) {
 		const [key, value] = [items[0], items.slice(1).join(':')];
 		if (key && value) {
 			metadata[key] = removeQuotes(value).trim();
-
-			console.log('metadata', metadata);
 		}
 	});
 

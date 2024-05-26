@@ -44,6 +44,7 @@
 	"dependencies": {
 		"@cartamd/plugin-code": "^4.0.5",
 		"@dagrejs/dagre": "^1.1.2",
+		"@octokit/rest": "^20.1.1",
 		"@stripe/stripe-js": "^3.4.1",
 		"@supabase/ssr": "^0.3.0",
 		"@supabase/supabase-js": "^2.43.4",
@@ -54,6 +55,7 @@
 		"axios": "^1.7.2",
 		"bits-ui": "^0.21.9",
 		"carta-md": "^4.0.4",
+		"cheerio": "1.0.0-rc.12",
 		"clsx": "^2.1.1",
 		"dayjs": "^1.11.11",
 		"esm-env": "^1.0.0",
@@ -71,6 +73,7 @@
 		"svelte-stripe": "^1.2.0",
 		"tailwind-merge": "^2.3.0",
 		"tailwind-variants": "^0.2.1",
+		"ts-node": "^10.9.2",
 		"uuid": "^9.0.1"
 	}
 }
