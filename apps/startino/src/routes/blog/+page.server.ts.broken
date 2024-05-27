@@ -1,0 +1,19 @@
+import { supabase } from '$lib/supabase/client';
+
+export async function load() {
+	const { data, error } = await supabase.storage.from('blog').list('', {
+		limit: 100,
+		offset: 0
+	});
+	if (error) {
+		console.error('Error loading blog data:', error);
+		return { error };
+	}
+
+	for (const file of data) {
+		const { data} = await supabase.storage.from('blog').getPublicUrl(`/${file.name}`);
+
+		console.log(data);
+	}
+	return {};
+}

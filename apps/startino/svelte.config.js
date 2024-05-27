@@ -13,6 +13,18 @@ const config = {
 			extensions: ['.md']
 		})
 	],
+	frontmatter: {
+		marker: '-',
+		type: 'yaml',
+		parse: (frontmatter, messages) => {
+			try {
+				let content = yaml.load(frontmatter);
+				return { fm: content, ...content };
+			} catch (e) {
+				messages.push(e.message);
+			}
+		}
+	},
 
 	kit: {
 		// adapter-auto only supports some environments, see https://kit.svelte.dev/docs/adapter-auto for a list.
