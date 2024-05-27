@@ -53,7 +53,7 @@ export async function get_blog_data(base = BLOG_PATH): Promise<BlogData> {
 				slug,
 				title: metadata?.title ?? '',
 				file,
-				author: metadata?.author ?? 'Aitino',
+				author: metadata?.author ?? 'Startino',
 				thumbnail: metadata?.thumbnail ?? 'favicon.png'
 			},
 			content: body
