@@ -174,6 +174,7 @@
 			{#if isCurrentApprover && !isSigner}
 				<form action="?/approve" method="post" use:enhance>
 					<input hidden value={contract.id} name="contract-id" />
+					<input hidden type="number" value={contract.amount} name="amount" />
 					<Button on:click={() => (isApproving = true)} class="w-full" type="submit">
 						{#if isApproving}
 							<Loader2 class="animate-spin" />
