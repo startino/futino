@@ -8,7 +8,6 @@
 <Label>
 	{#if date}
 		{formatDistanceToNowStrict(date, { addSuffix: true })}
-		}
 	{:else}
 		Never
 	{/if}
