@@ -54,8 +54,8 @@
 			}
 		}),
 		table.column({
-			header: 'Last Contact',
-			accessor: 'last_contacted_at',
+			header: 'Discovered At',
+			accessor: 'discovered_at',
 			cell: (item) => {
 				return createRender(RelativeDateCell, {
 					date: item.value ?? ''
@@ -115,7 +115,7 @@
 							{#each headerRow.cells as cell (cell.id)}
 								<Subscribe attrs={cell.attrs()} let:attrs props={cell.props()} let:props>
 									<Table.Head {...attrs} class={cn('[&:has([role=checkbox])]:pl-3')}>
-										{#if cell.id === 'last_event' || cell.id === 'status'}
+										{#if cell.id === 'last_event' || cell.id === 'status' || cell.id === 'discovered_at'}
 											<Button variant="ghost" on:click={props.sort.toggle}>
 												<Render of={cell.render()} />
 												<ArrowUpDown class={'ml-2 h-4 w-4'} />
