@@ -38,8 +38,6 @@ export const actions = {
 		const form = await superValidate(request, zod(contractSchema));
 
 		if (!form.valid) {
-			console.log({ form });
-
 			return fail(400, { form: withFiles(form) });
 		}
 

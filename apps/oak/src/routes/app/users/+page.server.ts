@@ -1,4 +1,4 @@
-import nodemailer from 'nodemailer';
+import type { SupabaseClient } from '@supabase/supabase-js';
 import { message, setError, superValidate } from 'sveltekit-superforms/server';
 import { zod } from 'sveltekit-superforms/adapters';
 import { fail, error } from '@sveltejs/kit';
@@ -6,6 +6,7 @@ import genarator from 'generate-password';
 
 const { generate: generatePassword } = genarator;
 
+import type { Database } from '$lib/server/supabase.types';
 import { createUserByAdminSchema, updateUserByAdminSchema } from '$lib/schemas';
 import type { JoinedProfile } from '$lib/types';
 import { SMTP_USER } from '$env/static/private';
@@ -69,7 +70,7 @@ export const actions = {
 			}
 		});
 
-		await smtpTransporter.sendMail({
+		smtpTransporter.sendMail({
 			template: 'new-user',
 			from: `"Oak" <${SMTP_USER}>`,
 			to: formData.email,
@@ -104,6 +105,25 @@ export const actions = {
 
 		const formData = updateForm.data;
 
+		const { result, error: cycleError } = await hasCycle(
+			formData.id,
+			formData.approver_id,
+			supabase
+		);
+
+		if (cycleError) {
+			return setError(updateForm, 'Something went wrong while saving changes. Please try again.', {
+				status: 500
+			});
+		}
+
+		if (result)
+			return setError(
+				updateForm,
+				'approver_id',
+				'Cannot use this user as an approver as it might create an approval infinite loop'
+			);
+
 		const { data: updatedProfile, error } = await supabase
 			.from('profiles')
 			.update({ ...formData })
@@ -122,4 +142,25 @@ export const actions = {
 
 		return { updateForm, updatedProfile };
 	}
+};
+
+const hasCycle = async (
+	userId: string,
+	approverId: string | null,
+	supabase: SupabaseClient<Database>,
+	visited: Array<string> = []
+) => {
+	if (!approverId) return { result: false, error: null };
+
+	if (visited.length === 0) visited.push(userId);
+
+	if (visited.includes(approverId)) return { result: true, error: null };
+
+	visited.push(approverId);
+
+	const { data, error } = await supabase.from('profiles').select().eq('id', approverId).single();
+
+	if (error) return { error, result: null };
+
+	return await hasCycle(userId, data.approver_id, supabase, visited);
 };

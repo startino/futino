@@ -26,8 +26,6 @@ export const handle: Handle = async ({ event, resolve }) => {
 	});
 	event.locals.supabase = supabase;
 
-	const stripe = new Stripe(STRIPE_SECRET_KEY);
-
 	const {
 		data: { user }
 	} = await supabase.auth.getUser();
