@@ -59,9 +59,7 @@
 	let formOpen = false;
 	let fileName: string | null = null;
 	let contracts = data.contracts;
-	let userPending = data.contracts.filter(
-		(c) => c.current_approver_id === $currentProfile.id && !c.signed
-	);
+	let userPending = data.contracts.filter((c) => c.approver_id === $currentProfile.id && !c.signed);
 	let userPendingApprovalsMode = false;
 	let startDateValue = $formData.start_date
 		? parseDate($formData.start_date.toString())

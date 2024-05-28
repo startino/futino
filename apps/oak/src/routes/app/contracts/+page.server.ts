@@ -83,7 +83,7 @@ export const actions = {
 			.insert({
 				...formData,
 				organization_id: currentProfile.organization_id,
-				current_approver_id: approver ? approver.id : null,
+				approver_id: approver ? approver.id : null,
 				owner_id: currentProfile.id,
 				start_date: formData.start_date.toISOString(),
 				end_date: formData.end_date.toISOString(),
@@ -100,8 +100,9 @@ export const actions = {
 			});
 		}
 
-		if (!iam.isAllowedTo('contracts.sign')) {
-			approver && (await sendNotification(approver, newContract, smtpTransporter, supabase));
+		// If the user is a signer no need to notify anyone
+		if (!iam.isAllowedTo('contracts.sign') && approver) {
+			sendNotification(approver, newContract, smtpTransporter, supabase);
 		}
 
 		return message(withFiles(form), 'success');

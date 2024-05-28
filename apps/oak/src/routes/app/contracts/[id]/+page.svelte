@@ -67,8 +67,7 @@
 	};
 
 	$: contract = data.contract;
-	$: isCurrentApprover =
-		contract.current_approver && $currentProfile.id === contract.current_approver.id;
+	$: isCurrentApprover = contract.approver && $currentProfile.id === contract.approver.id;
 	$: if (form?.success) {
 		toast.success(form.success);
 	}
@@ -107,6 +106,13 @@
 			<p>{contract.owner.full_name}</p>
 		</div>
 
+		{#if contract.signer}
+			<div class="grid gap-2">
+				<h2 class="font-bold text-accent">Signer</h2>
+				<p>{contract.signer.full_name}</p>
+			</div>
+		{/if}
+
 		<div class="grid gap-2">
 			<h2 class="font-bold">Description</h2>
 			<p>{contract.description}</p>
@@ -137,9 +143,11 @@
 			<p>{contract.department.name}</p>
 		</div>
 		<div class="grid gap-2">
-			<h2 class="font-bold">Current Approver</h2>
-			{#if contract.current_approver}
-				<p>{contract.current_approver.full_name}</p>
+			<h2 class="font-bold">Approver</h2>
+			{#if contract.approver}
+				<p>{contract.approver.full_name}</p>
+			{:else}
+				<p>No approver</p>
 			{/if}
 		</div>
 

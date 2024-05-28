@@ -17,7 +17,8 @@ export const load = async ({ locals: { supabase }, params }) => {
       vendor:vendor_id (*),
       department:department_id (*),
       project:project_id (*),
-      current_approver: current_approver_id (*),
+      approver:approver_id (*),
+			signer:signer_id (*),
       parent_contract:parent_contract_id (*),
       spend_category:spend_category_id (*),
       account:account_id (*)
@@ -63,10 +64,7 @@ export const actions = {
 
 		if (!iam.isAllowedTo('contracts.update')) return fail(400);
 
-		if (
-			currentProfile.id !== contract.current_approver_id ||
-			currentProfile.id === contract.owner_id
-		)
+		if (currentProfile.id !== contract.approver_id || currentProfile.id === contract.owner_id)
 			return error(403);
 
 		const { approver, error: approverError } = await findApprover(
@@ -81,7 +79,7 @@ export const actions = {
 
 		const { error: updateError } = await supabase
 			.from('contracts')
-			.update({ current_approver_id: approver.id })
+			.update({ approver_id: approver.id, status: 'pending signing' })
 			.eq('id', contractId)
 			.single();
 
@@ -108,7 +106,7 @@ export const actions = {
 		return { success: 'Contract approved!' };
 	},
 
-	sign: async ({ request, locals: { supabase, iam, smtpTransporter } }) => {
+	sign: async ({ request, locals: { supabase, iam, smtpTransporter, currentProfile } }) => {
 		const contractId = (await request.formData()).get('contract-id');
 
 		if (!contractId) return fail(400, { error: 'A contract ID is required' });
@@ -117,7 +115,7 @@ export const actions = {
 
 		const { data: contract, error: updateError } = await supabase
 			.from('contracts')
-			.update({ signed: true, status: 'active' })
+			.update({ signed: true, status: 'active', signer_id: currentProfile.id })
 			.eq('id', contractId)
 			.select('*, vendor:vendor_id (*)')
 			.returns<Array<Tables<'contracts'> & { vendor: Tables<'vendors'> }>>()

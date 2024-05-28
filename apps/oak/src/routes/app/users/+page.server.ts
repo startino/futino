@@ -1,4 +1,4 @@
-import type { SupabaseClient } from '@supabase/supabase-js';
+import type { PostgrestError, SupabaseClient } from '@supabase/supabase-js';
 import { message, setError, superValidate } from 'sveltekit-superforms/server';
 import { zod } from 'sveltekit-superforms/adapters';
 import { fail, error } from '@sveltejs/kit';
@@ -121,7 +121,7 @@ export const actions = {
 			return setError(
 				updateForm,
 				'approver_id',
-				'Cannot use this user as an approver as it might create an approval infinite loop'
+				'Cannot use this user as an approver as it might leads an infinite approval loop'
 			);
 
 		const { data: updatedProfile, error } = await supabase
@@ -149,7 +149,7 @@ const hasCycle = async (
 	approverId: string | null,
 	supabase: SupabaseClient<Database>,
 	visited: Array<string> = []
-) => {
+): Promise<{ result: boolean | null; error: PostgrestError | null }> => {
 	if (!approverId) return { result: false, error: null };
 
 	if (visited.length === 0) visited.push(userId);

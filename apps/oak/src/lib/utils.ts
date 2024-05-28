@@ -21,6 +21,15 @@ export const findApprover = async (
 	if (currentProfile.roles.includes('signer')) return { approver: currentProfile, error: null };
 
 	if (!currentProfile.approver_id) {
+		const { data: signer, error } = await supabase
+			.from('profiles')
+			.select()
+			.contains('roles', ['signer']);
+		if (error) return { approver: null, error };
+
+		if (signer && signer[0]) {
+			return { approver: signer[0], error: null };
+		}
 		return { approver: null, error: null };
 	}
 
