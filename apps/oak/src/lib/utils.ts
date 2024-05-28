@@ -2,14 +2,51 @@ import { type ClassValue, clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import { cubicOut } from 'svelte/easing';
 import type { TransitionConfig } from 'svelte/transition';
+import type { SupabaseClient, PostgrestError } from '@supabase/supabase-js';
 import type { Context } from '$lib/types';
 import { getContext as getSvelteContext, setContext as setSvelteContext } from 'svelte';
+import type { Tables, Database } from '$lib/server/supabase.types';
 import * as PDFJS from 'pdfjs-dist';
 import * as pdfWorker from 'pdfjs-dist/build/pdf.worker.mjs';
 
 PDFJS.GlobalWorkerOptions.workerSrc = 'pdfjs-dist/build/pdf.worker.mjs';
 
 export const pdfjsLib = PDFJS;
+
+export const findApprover = async (
+	currentProfile: Tables<'profiles'>,
+	amount: number,
+	supabase: SupabaseClient<Database>
+): Promise<{ approver: Tables<'profiles'> | null; error: PostgrestError | null }> => {
+	if (currentProfile.roles.includes('signer')) return { approver: currentProfile, error: null };
+
+	if (!currentProfile.approver_id) {
+		const { data: signer, error } = await supabase
+			.from('profiles')
+			.select()
+			.contains('roles', ['signer']);
+		if (error) return { approver: null, error };
+
+		if (signer && signer[0]) {
+			return { approver: signer[0], error: null };
+		}
+		return { approver: null, error: null };
+	}
+
+	const { data: approver, error } = await supabase
+		.from('profiles')
+		.select()
+		.eq('id', currentProfile.approver_id)
+		.single();
+
+	if (error) return { approver: null, error };
+
+	if (amount <= approver.approval_threshold) {
+		return { approver, error: null };
+	} else {
+		return await findApprover(approver, amount, supabase);
+	}
+};
 
 export const formatAmount = (value: number) =>
 	new Intl.NumberFormat('en-US', {

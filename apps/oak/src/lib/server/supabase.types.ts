@@ -106,9 +106,9 @@ export type Database = {
         Row: {
           account_id: string | null
           amount: number
+          approver_id: string | null
           attachment: string
           created_at: string
-          current_approver_id: string | null
           department_id: string | null
           description: string | null
           end_date: string
@@ -119,6 +119,7 @@ export type Database = {
           parent_contract_id: string | null
           project_id: string | null
           signed: boolean | null
+          signer_id: string | null
           spend_category_id: string | null
           start_date: string
           status: Database["public"]["Enums"]["contract_status"]
@@ -129,9 +130,9 @@ export type Database = {
         Insert: {
           account_id?: string | null
           amount?: number
+          approver_id?: string | null
           attachment?: string
           created_at?: string
-          current_approver_id?: string | null
           department_id?: string | null
           description?: string | null
           end_date: string
@@ -142,6 +143,7 @@ export type Database = {
           parent_contract_id?: string | null
           project_id?: string | null
           signed?: boolean | null
+          signer_id?: string | null
           spend_category_id?: string | null
           start_date: string
           status?: Database["public"]["Enums"]["contract_status"]
@@ -152,9 +154,9 @@ export type Database = {
         Update: {
           account_id?: string | null
           amount?: number
+          approver_id?: string | null
           attachment?: string
           created_at?: string
-          current_approver_id?: string | null
           department_id?: string | null
           description?: string | null
           end_date?: string
@@ -165,6 +167,7 @@ export type Database = {
           parent_contract_id?: string | null
           project_id?: string | null
           signed?: boolean | null
+          signer_id?: string | null
           spend_category_id?: string | null
           start_date?: string
           status?: Database["public"]["Enums"]["contract_status"]
@@ -173,6 +176,13 @@ export type Database = {
           version?: number
         }
         Relationships: [
+          {
+            foreignKeyName: "contracts_approver_id_fkey"
+            columns: ["approver_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
           {
             foreignKeyName: "contracts_creator_fkey"
             columns: ["owner_id"]
@@ -202,6 +212,13 @@ export type Database = {
             referencedColumns: ["id"]
           },
           {
+            foreignKeyName: "contracts_signer_id_fkey"
+            columns: ["signer_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
             foreignKeyName: "contracts_vendor_id_fkey"
             columns: ["vendor_id"]
             isOneToOne: false
@@ -213,13 +230,6 @@ export type Database = {
             columns: ["account_id"]
             isOneToOne: false
             referencedRelation: "accounts"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "public_contracts_current_approver_id_fkey"
-            columns: ["current_approver_id"]
-            isOneToOne: false
-            referencedRelation: "profiles"
             referencedColumns: ["id"]
           },
           {
@@ -333,6 +343,13 @@ export type Database = {
         }
         Relationships: [
           {
+            foreignKeyName: "profiles_approver_id_fkey"
+            columns: ["approver_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
             foreignKeyName: "profiles_department_id_fkey"
             columns: ["department_id"]
             isOneToOne: false
@@ -351,13 +368,6 @@ export type Database = {
             columns: ["organization_id"]
             isOneToOne: false
             referencedRelation: "organizations"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "public_profiles_approver_id_fkey"
-            columns: ["approver_id"]
-            isOneToOne: false
-            referencedRelation: "profiles"
             referencedColumns: ["id"]
           },
         ]
@@ -517,10 +527,11 @@ export type Database = {
       contract_department: "Accounting" | "IT" | "etc"
       contract_spend_category: "Testing" | "Manufacturing" | "Legal" | "etc"
       contract_status:
-        | "pending_approval"
+        | "pending approval"
         | "active"
         | "finished"
-        | "under_review"
+        | "under review"
+        | "pending signing"
       group: "member"
       role: "admin" | "employee" | "signer"
     }
