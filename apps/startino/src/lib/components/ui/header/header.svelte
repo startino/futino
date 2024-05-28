@@ -6,19 +6,23 @@
 	export const elements = [
 		{
 			name: 'Home',
-			href: '#hero'
+			href: '/#hero'
 		},
 		{
 			name: 'About',
-			href: '#about'
+			href: '/#about'
 		},
 		{
 			name: 'Contact',
-			href: '#contact'
+			href: '/#contact'
 		},
 		{
 			name: 'Pricing',
-			href: '#pricing'
+			href: '/#pricing'
+		},
+		{
+			name: 'Blog',
+			href: '/blog'
 		}
 	];
 
@@ -87,8 +91,7 @@
 >
 	<div class="md:px-18 relative mx-auto flex items-center px-6 lg:max-w-5xl xl:max-w-6xl">
 		<a class="flex gap-3" href="/">
-			<Logo />
-			<p class="headline-small my-auto hidden pb-1 sm:flex">Startino</p>
+			<Logo wordmark class="h-9" />
 		</a>
 		<div class="title-large ml-auto flex items-center gap-8">
 			<nav class="hidden gap-6 pb-0.5 md:flex lg:gap-8">
