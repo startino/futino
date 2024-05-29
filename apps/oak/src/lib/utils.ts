@@ -13,6 +13,8 @@ PDFJS.GlobalWorkerOptions.workerSrc = 'pdfjs-dist/build/pdf.worker.mjs';
 
 export const pdfjsLib = PDFJS;
 
+export const toDateString = (date: Date) => date.toLocaleDateString('en-us');
+
 export const findApprover = async (
 	currentProfile: Tables<'profiles'>,
 	amount: number,

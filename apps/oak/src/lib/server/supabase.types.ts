@@ -109,6 +109,7 @@ export type Database = {
           attachment: string
           contract_id: string
           created_at: string
+          description: string | null
           due_date: string
           id: string
           invoice_date: string
@@ -121,6 +122,7 @@ export type Database = {
           attachment: string
           contract_id?: string
           created_at?: string
+          description?: string | null
           due_date: string
           id?: string
           invoice_date: string
@@ -133,6 +135,7 @@ export type Database = {
           attachment?: string
           contract_id?: string
           created_at?: string
+          description?: string | null
           due_date?: string
           id?: string
           invoice_date?: string

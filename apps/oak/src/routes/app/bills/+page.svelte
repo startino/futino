@@ -6,8 +6,6 @@
 	let bills = data.bills;
 </script>
 
-<h1 class="text-3xl">Bills</h1>
+<h1 class="mb-10 text-3xl">Bills</h1>
 
-<div class="container mx-auto py-10">
-	<DataTable data={bills} />
-</div>
+<DataTable data={bills} />

@@ -8,9 +8,8 @@
 	import * as Table from '$lib/components/ui/table';
 	import { Button } from '$lib/components/ui/button';
 	import { Input } from '$lib/components/ui/input';
-	import { cn, formatAmount } from '$lib/utils';
+	import { formatAmount, toDateString } from '$lib/utils';
 	import type { BillDatableRow } from '$lib/types';
-	import { goto } from '$app/navigation';
 
 	export let data: BillDatableRow[];
 
@@ -28,6 +27,9 @@
 			header: 'Contract',
 			cell: ({ value }) => `#${value.number} ${value.vendor.name}`,
 			plugins: {
+				filter: {
+					getFilterValue: (value) => `#${value.number} ${value.vendor.name}`
+				},
 				sort: {
 					disable: true
 				}
@@ -39,23 +41,13 @@
 			header: 'Owner',
 			plugins: {
 				filter: {
-					getFilterValue: (value) => value.full_name
+					getFilterValue: (value) => value.owner.full_name
 				},
 				sort: {
 					disable: true
 				}
 			},
 			cell: ({ value }) => value.owner.full_name
-		}),
-		table.column({
-			accessor: 'invoice_date',
-			header: 'Invoice date',
-			cell: ({ value }) => new Date(value).toLocaleDateString('en-us')
-		}),
-		table.column({
-			accessor: 'due_date',
-			header: 'Due date',
-			cell: ({ value }) => new Date(value).toLocaleDateString('en-us')
 		}),
 		table.column({
 			accessor: 'amount',
@@ -68,14 +60,44 @@
 			}
 		}),
 		table.column({
+			accessor: 'invoice_date',
+			header: 'Invoice date',
+			cell: ({ value }) => toDateString(new Date(value)),
+			plugins: {
+				filter: {
+					exclude: true
+				}
+			}
+		}),
+		table.column({
+			accessor: 'due_date',
+			header: 'Due date',
+			cell: ({ value }) => toDateString(new Date(value)),
+			plugins: {
+				filter: {
+					exclude: true
+				}
+			}
+		}),
+		table.column({
 			accessor: 'accrual_period',
 			header: 'Accrual period',
-			cell: ({ value }) => new Date(value).toLocaleDateString('en-us')
+			cell: ({ value }) => toDateString(new Date(value)),
+			plugins: {
+				filter: {
+					exclude: true
+				}
+			}
 		}),
 		table.column({
 			accessor: 'posting_period',
 			header: 'Posting period',
-			cell: ({ value }) => new Date(value).toLocaleDateString('en-us')
+			cell: ({ value }) => toDateString(new Date(value)),
+			plugins: {
+				filter: {
+					exclude: true
+				}
+			}
 		})
 	]);
 
@@ -92,7 +114,7 @@
 			<Search />
 			<Input
 				class="w-[400px]"
-				placeholder="Filter by term..."
+				placeholder="Filter by contracts or owner..."
 				type="text"
 				bind:value={$filterValue}
 			/>
