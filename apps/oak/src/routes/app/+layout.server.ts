@@ -2,7 +2,7 @@ import { STRIPE_SECRET_KEY } from '$env/static/private';
 import type { JoinedProfile } from '$lib/types';
 import { error } from '@sveltejs/kit';
 
-export const load = async ({ locals: { supabase, currentProfile, user, iam } }) => {
+export const load = async ({ locals: { supabase, currentProfile, user, iam, organization } }) => {
 	const { data: departments, error: departmentsError } = await supabase
 		.from('departments')
 		.select('*')
@@ -17,11 +17,6 @@ export const load = async ({ locals: { supabase, currentProfile, user, iam } }) 
 		.select('*')
 		.eq('organization_id', currentProfile.organization_id)
 		.order('created_at', { ascending: false });
-	const { data: organization, error: orgError } = await supabase
-		.from('organizations')
-		.select()
-		.eq('id', currentProfile.organization_id)
-		.single();
 	const { data: accounts, error: accError } = await supabase
 		.from('accounts')
 		.select()
@@ -43,7 +38,6 @@ export const load = async ({ locals: { supabase, currentProfile, user, iam } }) 
 		departmentsError ||
 		projectsError ||
 		vendorsError ||
-		orgError ||
 		accError ||
 		categoriesError ||
 		profilesError

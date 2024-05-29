@@ -43,9 +43,8 @@ export const findApprover = async (
 
 	if (amount <= approver.approval_threshold) {
 		return { approver, error: null };
-	} else {
-		return await findApprover(approver, amount, supabase);
 	}
+	return await findApprover(approver, amount, supabase);
 };
 
 export const formatAmount = (value: number) =>

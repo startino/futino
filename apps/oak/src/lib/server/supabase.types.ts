@@ -102,6 +102,60 @@ export type Database = {
           },
         ]
       }
+      bills: {
+        Row: {
+          accrual_period: string
+          amount: number
+          attachment: string
+          contract_id: string
+          created_at: string
+          due_date: string
+          id: string
+          invoice_date: string
+          organization_id: string
+          posting_period: string
+        }
+        Insert: {
+          accrual_period: string
+          amount: number
+          attachment: string
+          contract_id?: string
+          created_at?: string
+          due_date: string
+          id?: string
+          invoice_date: string
+          organization_id?: string
+          posting_period: string
+        }
+        Update: {
+          accrual_period?: string
+          amount?: number
+          attachment?: string
+          contract_id?: string
+          created_at?: string
+          due_date?: string
+          id?: string
+          invoice_date?: string
+          organization_id?: string
+          posting_period?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "bills_contract_id_fkey"
+            columns: ["contract_id"]
+            isOneToOne: false
+            referencedRelation: "contracts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "bills_organization_id_fkey"
+            columns: ["organization_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       contracts: {
         Row: {
           account_id: string | null
