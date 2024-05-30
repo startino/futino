@@ -33,6 +33,10 @@ export interface JoinedProfile extends Tables<'profiles'> {
 	department: Tables<'departments'> | null;
 }
 
+export interface BillDatableRow extends Tables<'bills'> {
+	contract: Tables<'contracts'> & { vendor: Tables<'vendors'>; owner: Tables<'profiles'> };
+}
+
 export interface JoinedContract extends Tables<'contracts'> {
 	owner: Tables<'profiles'>;
 	vendor: Tables<'vendors'>;

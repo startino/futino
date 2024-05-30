@@ -13,6 +13,8 @@ PDFJS.GlobalWorkerOptions.workerSrc = 'pdfjs-dist/build/pdf.worker.mjs';
 
 export const pdfjsLib = PDFJS;
 
+export const toDateString = (date: Date) => date.toLocaleDateString('en-us');
+
 export const findApprover = async (
 	currentProfile: Tables<'profiles'>,
 	amount: number,
@@ -43,9 +45,8 @@ export const findApprover = async (
 
 	if (amount <= approver.approval_threshold) {
 		return { approver, error: null };
-	} else {
-		return await findApprover(approver, amount, supabase);
 	}
+	return await findApprover(approver, amount, supabase);
 };
 
 export const formatAmount = (value: number) =>

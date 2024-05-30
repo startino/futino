@@ -102,6 +102,113 @@ export type Database = {
           },
         ]
       }
+      bills: {
+        Row: {
+          account_id: string | null
+          accrual_period: string
+          amount: number
+          attachment: string | null
+          contract_id: string
+          created_at: string
+          department_id: string | null
+          description: string | null
+          due_date: string
+          id: string
+          invoice_date: string
+          organization_id: string
+          posting_period: string
+          project_id: string | null
+          spend_category_id: string | null
+          vendor_id: string | null
+        }
+        Insert: {
+          account_id?: string | null
+          accrual_period: string
+          amount: number
+          attachment?: string | null
+          contract_id?: string
+          created_at?: string
+          department_id?: string | null
+          description?: string | null
+          due_date: string
+          id?: string
+          invoice_date: string
+          organization_id?: string
+          posting_period: string
+          project_id?: string | null
+          spend_category_id?: string | null
+          vendor_id?: string | null
+        }
+        Update: {
+          account_id?: string | null
+          accrual_period?: string
+          amount?: number
+          attachment?: string | null
+          contract_id?: string
+          created_at?: string
+          department_id?: string | null
+          description?: string | null
+          due_date?: string
+          id?: string
+          invoice_date?: string
+          organization_id?: string
+          posting_period?: string
+          project_id?: string | null
+          spend_category_id?: string | null
+          vendor_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "bills_account_id_fkey"
+            columns: ["account_id"]
+            isOneToOne: false
+            referencedRelation: "accounts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "bills_contract_id_fkey"
+            columns: ["contract_id"]
+            isOneToOne: false
+            referencedRelation: "contracts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "bills_department_id_fkey"
+            columns: ["department_id"]
+            isOneToOne: false
+            referencedRelation: "departments"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "bills_organization_id_fkey"
+            columns: ["organization_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "bills_project_id_fkey"
+            columns: ["project_id"]
+            isOneToOne: false
+            referencedRelation: "projects"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "bills_spend_category_id_fkey"
+            columns: ["spend_category_id"]
+            isOneToOne: false
+            referencedRelation: "spend_categories"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "bills_vendor_id_fkey"
+            columns: ["vendor_id"]
+            isOneToOne: false
+            referencedRelation: "vendors"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       contracts: {
         Row: {
           account_id: string | null

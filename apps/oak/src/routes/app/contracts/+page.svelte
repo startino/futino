@@ -140,15 +140,13 @@
 										{#if parentContracts[0]}
 											<Combobox
 												placeholder="Select a parent contract"
-												items={[
-													...parentContracts.map((c) => ({
-														label: {
-															heading: `#${c.number} | ${c.vendor.name}`,
-															content: c.description
-														},
-														value: c.id
-													}))
-												]}
+												items={parentContracts.map((c) => ({
+													label: {
+														heading: `#${c.number} | ${c.vendor.name}`,
+														content: c.description
+													},
+													value: c.id
+												}))}
 												bind:value={$formData.parent_contract_id}
 												{attrs}
 											/>
