@@ -107,7 +107,7 @@ export type Database = {
           account_id: string | null
           accrual_period: string
           amount: number
-          attachment: string
+          attachment: string | null
           contract_id: string
           created_at: string
           department_id: string | null
@@ -117,6 +117,7 @@ export type Database = {
           invoice_date: string
           organization_id: string
           posting_period: string
+          project_id: string | null
           spend_category_id: string | null
           vendor_id: string | null
         }
@@ -124,7 +125,7 @@ export type Database = {
           account_id?: string | null
           accrual_period: string
           amount: number
-          attachment: string
+          attachment?: string | null
           contract_id?: string
           created_at?: string
           department_id?: string | null
@@ -134,6 +135,7 @@ export type Database = {
           invoice_date: string
           organization_id?: string
           posting_period: string
+          project_id?: string | null
           spend_category_id?: string | null
           vendor_id?: string | null
         }
@@ -141,7 +143,7 @@ export type Database = {
           account_id?: string | null
           accrual_period?: string
           amount?: number
-          attachment?: string
+          attachment?: string | null
           contract_id?: string
           created_at?: string
           department_id?: string | null
@@ -151,6 +153,7 @@ export type Database = {
           invoice_date?: string
           organization_id?: string
           posting_period?: string
+          project_id?: string | null
           spend_category_id?: string | null
           vendor_id?: string | null
         }
@@ -181,6 +184,13 @@ export type Database = {
             columns: ["organization_id"]
             isOneToOne: false
             referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "bills_project_id_fkey"
+            columns: ["project_id"]
+            isOneToOne: false
+            referencedRelation: "projects"
             referencedColumns: ["id"]
           },
           {
