@@ -1,4 +1,5 @@
 import { type ClassValue, clsx } from 'clsx';
+import { parseDate } from '@internationalized/date';
 import { twMerge } from 'tailwind-merge';
 import { cubicOut } from 'svelte/easing';
 import type { TransitionConfig } from 'svelte/transition';
@@ -12,6 +13,19 @@ import * as pdfWorker from 'pdfjs-dist/build/pdf.worker.mjs';
 PDFJS.GlobalWorkerOptions.workerSrc = 'pdfjs-dist/build/pdf.worker.mjs';
 
 export const pdfjsLib = PDFJS;
+
+export const getMonthsDifference = (startStr: string, endStr: string) => {
+	let start = parseDate(startStr);
+	let end = parseDate(endStr);
+	let multiplier = 1;
+
+	if (start.compare(end) > 0) multiplier = -1;
+
+	const yearDifference = end.year - start.year;
+	const monthDifference = end.month - start.month;
+
+	return (yearDifference * 12 + monthDifference) * multiplier;
+};
 
 export const toDateString = (date: Date) => date.toLocaleDateString('en-us');
 
