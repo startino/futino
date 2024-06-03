@@ -11,6 +11,8 @@ import {
 	createVendors
 } from './stores';
 
+export type { ReportDatableRow, ReportContracts } from '$lib/server/db/report';
+
 export interface Context {
 	iam: IAM;
 	currentProfile: ReturnType<typeof createCurrentProfile>;
