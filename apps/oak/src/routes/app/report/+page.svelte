@@ -11,34 +11,36 @@
 	let selectedPeriod = today(getLocalTimeZone());
 
 	const getReportRows = (data: ReportContracts, period: CalendarDate): ReportDatableRow[] => {
-		return data.map((c) => {
-			const billedAmount = c.bills.reduce((prev, curr) => {
-				const postingPeriod = parseDate(curr.posting_period);
-				if (postingPeriod.compare(period) > 0) return prev;
-				return prev + curr.amount;
-			}, 0);
+		return data
+			.filter((c) => period.compare(parseDate(c.start_date)) >= 0)
+			.map((c) => {
+				const billedAmount = c.bills.reduce((prev, curr) => {
+					const postingPeriod = parseDate(curr.posting_period);
+					if (postingPeriod.compare(period) > 0) return prev;
+					return prev + curr.amount;
+				}, 0);
 
-			let elapsedMonths: number;
+				let elapsedMonths: number;
 
-			if (
-				period.compare(parseDate(c.end_date)) <= 0 &&
-				period.compare(parseDate(c.start_date)) >= 0
-			) {
-				elapsedMonths = getMonthsDifference(c.start_date, period.toString());
-			} else if (period.compare(parseDate(c.end_date)) > 0) {
-				elapsedMonths = getMonthsDifference(c.start_date, c.end_date);
-			} else {
-				elapsedMonths = 0;
-			}
+				if (
+					period.compare(parseDate(c.end_date)) <= 0 &&
+					period.compare(parseDate(c.start_date)) >= 0
+				) {
+					elapsedMonths = getMonthsDifference(c.start_date, period.toString());
+				} else if (period.compare(parseDate(c.end_date)) > 0) {
+					elapsedMonths = getMonthsDifference(c.start_date, c.end_date);
+				} else {
+					elapsedMonths = 0;
+				}
 
-			const totalMonths = getMonthsDifference(c.start_date, c.end_date);
+				const totalMonths = getMonthsDifference(c.start_date, c.end_date);
 
-			let accrualBalance = 0;
+				let accrualBalance = 0;
 
-			accrualBalance = (elapsedMonths / totalMonths) * c.amount - billedAmount;
+				accrualBalance = (elapsedMonths / totalMonths) * c.amount - billedAmount;
 
-			return { ...c, billedAmount, accrualBalance, openAmount: c.amount - billedAmount };
-		});
+				return { ...c, billedAmount, accrualBalance, openAmount: c.amount - billedAmount };
+			});
 	};
 
 	$: rows = getReportRows(data.contracts, selectedPeriod);
@@ -51,5 +53,9 @@
 </div>
 
 {#key selectedPeriod}
-	<DataTable data={rows} />
+	{#if rows.length > 0}
+		<DataTable data={rows} />
+	{:else}
+		<p class="text-muted-foreground">No data available for this period</p>
+	{/if}
 {/key}
