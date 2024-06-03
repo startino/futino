@@ -170,26 +170,24 @@
 						</Form.Field>
 
 						<Form.Field {form} name="invoice_date">
-							<Form.Control>
+							<Form.Control let:attrs>
 								<Form.Label>Invoice Date</Form.Label>
+								<input hidden bind:value={$formData.invoice_date} {...attrs} />
 								<Popover.Root>
-									<Form.Control let:attrs>
-										<input hidden bind:value={$formData.invoice_date} {...attrs} />
-										<div>
-											<Popover.Trigger
-												class={cn(
-													buttonVariants({ variant: 'outline' }),
-													'w-[220px] justify-start pl-4 text-left font-normal',
-													!invoiceDate && 'text-muted-foreground'
-												)}
-											>
-												{invoiceDate
-													? df.format(invoiceDate.toDate(getLocalTimeZone()))
-													: 'Pick a date'}
-												<CalendarIcon class="ml-auto h-4 w-4 opacity-50" />
-											</Popover.Trigger>
-										</div>
-									</Form.Control>
+									<div>
+										<Popover.Trigger
+											class={cn(
+												buttonVariants({ variant: 'outline' }),
+												'w-[220px] justify-start pl-4 text-left font-normal',
+												!invoiceDate && 'text-muted-foreground'
+											)}
+										>
+											{invoiceDate
+												? df.format(invoiceDate.toDate(getLocalTimeZone()))
+												: 'Pick a date'}
+											<CalendarIcon class="ml-auto h-4 w-4 opacity-50" />
+										</Popover.Trigger>
+									</div>
 									<Popover.Content class="w-auto p-0" side="left">
 										<DatePicker bind:value={invoiceDate} />
 									</Popover.Content>
