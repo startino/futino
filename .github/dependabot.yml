@@ -10,59 +10,23 @@ updates:
     schedule:
       interval: "daily"
 
-  # Packages
-  - package-ecosystem: "npm"
-    directory: "/packages/lorc"
-    schedule:
-      interval: "daily"
-
-  - package-ecosystem: "npm"
-    directory: "/packages/tsconfig"
-    schedule:
-      interval: "daily"
-
   # Apps
-  - package-ecosystem: "npm"
-    directory: "/apps/anzelmo"
-    schedule:
-      interval: "daily"
-
   - package-ecosystem: "npm"
     directory: "/apps/bapta"
     schedule:
-      interval: "daily"
-
-  - package-ecosystem: "npm"
-    directory: "/apps/buffalo"
-    schedule:
-      interval: "daily"
-
-  - package-ecosystem: "npm"
-    directory: "/apps/caffeino"
-    schedule:
-      interval: "daily"
+      interval: "weekly"
 
   - package-ecosystem: "npm"
     directory: "/apps/oak"
     schedule:
-      interval: "daily"
+      interval: "weekly"
 
   - package-ecosystem: "npm"
     directory: "/apps/startino"
     schedule:
-      interval: "daily"
-
-  - package-ecosystem: "npm"
-    directory: "/apps/template"
-    schedule:
-      interval: "daily"
-
-  - package-ecosystem: "npm"
-    directory: "/apps/website"
-    schedule:
-      interval: "daily"
+      interval: "weekly"
 
   - package-ecosystem: "npm"
     directory: "/apps/wonderlee"
     schedule:
-      interval: "daily"
+      interval: "weekly"
