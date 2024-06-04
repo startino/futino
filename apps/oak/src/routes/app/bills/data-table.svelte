@@ -9,9 +9,9 @@
 	import { Button } from '$lib/components/ui/button';
 	import { Input } from '$lib/components/ui/input';
 	import { formatAmount, toDateString } from '$lib/utils';
-	import type { BillDatableRow } from '$lib/types';
+	import type { BillDataTableRow } from '$lib/types';
 
-	export let data: BillDatableRow[];
+	export let data: BillDataTableRow[];
 
 	const table = createTable(writable(data), {
 		page: addPagination(),
@@ -22,6 +22,29 @@
 	});
 
 	const columns = table.createColumns([
+		table.column({
+			accessor: 'creator',
+			header: 'Bill Creator',
+			plugins: {
+				filter: {
+					getFilterValue: (value) => value.full_name
+				},
+				sort: {
+					disable: true
+				}
+			},
+			cell: ({ value }) => value.full_name
+		}),
+		table.column({
+			accessor: 'amount',
+			header: 'Amount',
+			cell: ({ value }) => formatAmount(value),
+			plugins: {
+				filter: {
+					exclude: true
+				}
+			}
+		}),
 		table.column({
 			accessor: 'contract',
 			header: 'Contract',
@@ -35,6 +58,7 @@
 				}
 			}
 		}),
+
 		table.column({
 			id: 'contract-owner',
 			accessor: 'contract',
@@ -49,16 +73,7 @@
 			},
 			cell: ({ value }) => value.owner.full_name
 		}),
-		table.column({
-			accessor: 'amount',
-			header: 'Amount',
-			cell: ({ value }) => formatAmount(value),
-			plugins: {
-				filter: {
-					exclude: true
-				}
-			}
-		}),
+
 		table.column({
 			accessor: 'invoice_date',
 			header: 'Invoice date',

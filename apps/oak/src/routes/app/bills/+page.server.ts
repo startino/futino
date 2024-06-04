@@ -2,27 +2,16 @@ import { error, fail, type RecursiveRequired } from '@sveltejs/kit';
 import { message, setError, superValidate } from 'sveltekit-superforms';
 import { zod } from 'sveltekit-superforms/adapters';
 
-import type { BillDatableRow } from '$lib/types';
 import { billSchema } from '$lib/schemas';
+import { getBillDataTableRow } from '$lib/server/db/bills';
 
 export const load = async ({ locals: { organization, supabase } }) => {
 	const form = await superValidate(zod(billSchema));
 
-	const { data: bills, error: billsError } = await supabase
-		.from('bills')
-		.select(
-			`
-        *,
-        contract:contract_id (
-          *,
-          vendor:vendor_id (*),
-          owner:owner_id (*)
-        )
-      `
-		)
-		.eq('organization_id', organization.id)
-		.order('created_at', { ascending: false })
-		.returns<BillDatableRow[]>();
+	const { data: bills, error: billsError } = await getBillDataTableRow({
+		client: supabase,
+		orgId: organization.id
+	});
 
 	if (billsError) {
 		console.log({ billsError });
@@ -33,7 +22,7 @@ export const load = async ({ locals: { organization, supabase } }) => {
 };
 
 export const actions = {
-	default: async ({ locals: { supabase, organization }, request }) => {
+	default: async ({ locals: { supabase, organization, currentProfile }, request }) => {
 		const form = await superValidate(request, zod(billSchema));
 
 		if (!form.valid) {
@@ -44,7 +33,7 @@ export const actions = {
 
 		const { error } = await supabase
 			.from('bills')
-			.insert({ ...formData, organization_id: organization.id });
+			.insert({ ...formData, organization_id: organization.id, creator_id: currentProfile.id });
 
 		if (error) {
 			return setError(form, 'Unable to add the bill. Please try again', { status: 500 });

@@ -11,7 +11,8 @@ import {
 	createVendors
 } from './stores';
 
-export type { ReportDatableRow, ReportContracts } from '$lib/server/db/report';
+export type { ReportDataTableRow, ReportContracts } from '$lib/server/db/report';
+export type { BillDataTableRow } from '$lib/server/db/bills';
 
 export interface Context {
 	iam: IAM;
@@ -33,10 +34,6 @@ export interface ContractDatableRow extends Tables<'contracts'> {
 export interface JoinedProfile extends Tables<'profiles'> {
 	approver: Tables<'profiles'> | null;
 	department: Tables<'departments'> | null;
-}
-
-export interface BillDatableRow extends Tables<'bills'> {
-	contract: Tables<'contracts'> & { vendor: Tables<'vendors'>; owner: Tables<'profiles'> };
 }
 
 export interface JoinedContract extends Tables<'contracts'> {
