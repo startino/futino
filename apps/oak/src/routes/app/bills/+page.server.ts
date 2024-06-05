@@ -4,7 +4,8 @@ import { zod } from 'sveltekit-superforms/adapters';
 
 import { billSchema } from '$lib/schemas';
 import { getBillDataTableRow } from '$lib/server/db/bills';
-import { findApprover, sendEmailNotif } from '$lib/utils';
+import { findApprover } from '$lib/server/db/profiles';
+import { sendEmailNotif } from '$lib/utils';
 import { PUBLIC_SITE_URL } from '$env/static/public';
 
 export const load = async ({ locals: { organization, supabase } }) => {

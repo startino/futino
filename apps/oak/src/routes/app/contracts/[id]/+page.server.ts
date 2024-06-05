@@ -4,7 +4,7 @@ import type { JoinedContract } from '$lib/types';
 import { SMTP_USER } from '$env/static/private';
 import { PUBLIC_SITE_URL } from '$env/static/public';
 import type { Tables } from '$lib/server/supabase.types.js';
-import { findApprover } from '$lib/utils.js';
+import { findApprover } from '$lib/server/db/profiles';
 
 export const load = async ({ locals: { supabase }, params }) => {
 	const { id } = params;

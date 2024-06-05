@@ -9,7 +9,7 @@ import type { ContractDatableRow } from '$lib/types';
 import { SMTP_USER } from '$env/static/private';
 import { PUBLIC_SITE_URL } from '$env/static/public';
 import type { Tables, Database } from '$lib/server/supabase.types.js';
-import { findApprover } from '$lib/utils';
+import { findApprover } from '$lib/server/db/profiles';
 
 export const load = async ({ locals: { currentProfile, supabase } }) => {
 	const { data, error: e } = await supabase
