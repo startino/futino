@@ -4,15 +4,40 @@ import { twMerge } from 'tailwind-merge';
 import { cubicOut } from 'svelte/easing';
 import type { TransitionConfig } from 'svelte/transition';
 import type { SupabaseClient, PostgrestError } from '@supabase/supabase-js';
-import type { Context } from '$lib/types';
+import type { Context, EmailContextMap } from '$lib/types';
 import { getContext as getSvelteContext, setContext as setSvelteContext } from 'svelte';
 import type { Tables, Database } from '$lib/server/supabase.types';
 import * as PDFJS from 'pdfjs-dist';
 import * as pdfWorker from 'pdfjs-dist/build/pdf.worker.mjs';
+import type { createSMPTransport } from '../hooks.server';
+import { PUBLIC_SMTP_USER } from '$env/static/public';
 
 PDFJS.GlobalWorkerOptions.workerSrc = 'pdfjs-dist/build/pdf.worker.mjs';
 
 export const pdfjsLib = PDFJS;
+
+export const sendEmailNotif = async <K extends keyof EmailContextMap>(
+	type: K,
+	option: {
+		context: EmailContextMap[K];
+		subject: string;
+		receiverProfileId: string;
+		smtp: ReturnType<typeof createSMPTransport>;
+		client: SupabaseClient<Database>;
+	}
+) => {
+	const { context, client, receiverProfileId, subject, smtp } = option;
+	const {
+		data: { user }
+	} = await client.auth.admin.getUserById(receiverProfileId);
+	smtp.sendMail({
+		template: type,
+		from: `"Oak" <${PUBLIC_SMTP_USER}>`,
+		to: user.email,
+		subject,
+		context
+	});
+};
 
 export const renderPDF = async (pdf: PDFJS.PDFDocumentProxy, container: HTMLElement) => {
 	for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
@@ -53,13 +78,13 @@ export const getMonthsDifference = (startStr: string, endStr: string) => {
 export const toDateString = (date: Date) => date.toLocaleDateString('en-us');
 
 export const findApprover = async (
-	currentProfile: Tables<'profiles'>,
+	profile: Tables<'profiles'>,
 	amount: number,
 	supabase: SupabaseClient<Database>
 ): Promise<{ approver: Tables<'profiles'> | null; error: PostgrestError | null }> => {
-	if (currentProfile.roles.includes('signer')) return { approver: currentProfile, error: null };
+	if (profile.roles.includes('signer')) return { approver: profile, error: null };
 
-	if (!currentProfile.approver_id) {
+	if (!profile.approver_id) {
 		const { data: signer, error } = await supabase
 			.from('profiles')
 			.select()
@@ -75,7 +100,7 @@ export const findApprover = async (
 	const { data: approver, error } = await supabase
 		.from('profiles')
 		.select()
-		.eq('id', currentProfile.approver_id)
+		.eq('id', profile.approver_id)
 		.single();
 
 	if (error) return { approver: null, error };

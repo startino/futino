@@ -14,6 +14,10 @@ import {
 export type { ReportDataTableRow, ReportContracts } from '$lib/server/db/report';
 export type { BillDataTableRow } from '$lib/server/db/bills';
 
+export interface EmailContextMap {
+	'new-entry': { link: { url: string; label: string }; entryName: string };
+}
+
 export interface Context {
 	iam: IAM;
 	currentProfile: ReturnType<typeof createCurrentProfile>;

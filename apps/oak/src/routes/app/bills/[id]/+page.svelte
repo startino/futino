@@ -109,7 +109,7 @@
 			{#if bill.approver}
 				<p>{bill.approver.full_name}</p>
 			{:else}
-				<p class="text-muted-foreground">Bill not approved yet</p>
+				<p class="text-muted-foreground">No approver</p>
 			{/if}
 		</div>
 

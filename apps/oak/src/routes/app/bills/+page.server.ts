@@ -4,6 +4,8 @@ import { zod } from 'sveltekit-superforms/adapters';
 
 import { billSchema } from '$lib/schemas';
 import { getBillDataTableRow } from '$lib/server/db/bills';
+import { findApprover, sendEmailNotif } from '$lib/utils';
+import { PUBLIC_SITE_URL } from '$env/static/public';
 
 export const load = async ({ locals: { organization, supabase } }) => {
 	const form = await superValidate(zod(billSchema));
@@ -22,7 +24,10 @@ export const load = async ({ locals: { organization, supabase } }) => {
 };
 
 export const actions = {
-	default: async ({ locals: { supabase, organization, currentProfile }, request }) => {
+	default: async ({
+		locals: { supabase, organization, currentProfile, smtpTransporter },
+		request
+	}) => {
 		const form = await superValidate(request, zod(billSchema));
 
 		if (!form.valid) {
@@ -52,17 +57,35 @@ export const actions = {
 			);
 		}
 
-		const { error } = await supabase
+		const { approver } = await findApprover(currentProfile, formData.amount, supabase);
+
+		const { data, error } = await supabase
 			.from('bills')
 			.insert({
 				...formData,
 				organization_id: organization.id,
 				creator_id: currentProfile.id,
-				attachment: path
-			});
+				attachment: path,
+				approver_id: approver ? approver.id : null
+			})
+			.select()
+			.single();
 
 		if (error) {
 			return setError(form, 'Unable to add the bill. Please try again', { status: 500 });
+		}
+
+		if (approver) {
+			sendEmailNotif('new-entry', {
+				subject: 'New Bill',
+				receiverProfileId: approver.id,
+				client: supabase,
+				smtp: smtpTransporter,
+				context: {
+					link: { url: `${PUBLIC_SITE_URL}/app/bills/${data.id}`, label: 'View bill' },
+					entryName: 'bill'
+				}
+			});
 		}
 
 		return message(form, 'Bill successfully added!');
