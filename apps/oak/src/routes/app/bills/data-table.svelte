@@ -108,12 +108,16 @@
 		table.column({
 			accessor: 'posting_period',
 			header: 'Posting period',
-			cell: ({ value }) => toDateString(new Date(value)),
+			cell: ({ value }) => (value ? toDateString(new Date(value)) : 'pending approval'),
 			plugins: {
 				filter: {
 					exclude: true
 				}
 			}
+		}),
+		table.column({
+			accessor: 'status',
+			header: 'Status'
 		})
 	]);
 

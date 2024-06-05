@@ -39,6 +39,20 @@
 		</div>
 
 		<div class="grid gap-2">
+			<h2 class="font-bold">Bill amount</h2>
+			<p>{formatAmount(bill.amount)}</p>
+		</div>
+
+		<div class="grid gap-2">
+			<h2 class="font-bold">Description</h2>
+			{#if bill.description}
+				<p>{bill.description}</p>
+			{:else}
+				<p class="text-muted-foreground">No description</p>
+			{/if}
+		</div>
+
+		<div class="grid gap-2">
 			<h2 class="font-bold">Contract</h2>
 			<p>{`#${bill.contract.number} ${bill.contract.vendor.name}`}</p>
 		</div>
@@ -46,11 +60,6 @@
 		<div class="grid gap-2">
 			<h2 class="font-bold">Contract Owner</h2>
 			<p>{bill.contract.owner.full_name}</p>
-		</div>
-
-		<div class="grid gap-2">
-			<h2 class="font-bold">Bill amount</h2>
-			<p>{formatAmount(bill.amount)}</p>
 		</div>
 
 		<div class="grid gap-2">

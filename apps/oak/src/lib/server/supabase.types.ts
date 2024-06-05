@@ -108,7 +108,7 @@ export type Database = {
           accrual_period: string
           amount: number
           approver_id: string | null
-          attachment: string | null
+          attachment: string
           contract_id: string
           created_at: string
           creator_id: string | null
@@ -118,7 +118,7 @@ export type Database = {
           id: string
           invoice_date: string
           organization_id: string
-          posting_period: string
+          posting_period: string | null
           project_id: string | null
           spend_category_id: string | null
           status: Database["public"]["Enums"]["bill_status"]
@@ -129,7 +129,7 @@ export type Database = {
           accrual_period: string
           amount: number
           approver_id?: string | null
-          attachment?: string | null
+          attachment: string
           contract_id?: string
           created_at?: string
           creator_id?: string | null
@@ -139,7 +139,7 @@ export type Database = {
           id?: string
           invoice_date: string
           organization_id?: string
-          posting_period: string
+          posting_period?: string | null
           project_id?: string | null
           spend_category_id?: string | null
           status?: Database["public"]["Enums"]["bill_status"]
@@ -150,7 +150,7 @@ export type Database = {
           accrual_period?: string
           amount?: number
           approver_id?: string | null
-          attachment?: string | null
+          attachment?: string
           contract_id?: string
           created_at?: string
           creator_id?: string | null
@@ -160,7 +160,7 @@ export type Database = {
           id?: string
           invoice_date?: string
           organization_id?: string
-          posting_period?: string
+          posting_period?: string | null
           project_id?: string | null
           spend_category_id?: string | null
           status?: Database["public"]["Enums"]["bill_status"]

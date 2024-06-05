@@ -13,7 +13,9 @@ export const billSchema = z.object({
 	invoice_date: z.string().date(),
 	due_date: z.string().date(),
 	accrual_period: z.string().date(),
-	posting_period: z.string().date()
+	attachment: z
+		.instanceof(File, { message: 'Please include the invoice in PDF.' })
+		.refine((f) => f.size / 1024 / 1024 < 5, 'Max 5 MiB upload size.')
 });
 
 export const emailSchema = z.object({
