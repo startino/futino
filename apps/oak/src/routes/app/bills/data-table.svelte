@@ -10,6 +10,7 @@
 	import { Input } from '$lib/components/ui/input';
 	import { formatAmount, toDateString } from '$lib/utils';
 	import type { BillDataTableRow } from '$lib/types';
+	import { goto } from '$app/navigation';
 
 	export let data: BillDataTableRow[];
 
@@ -167,9 +168,13 @@
 				{/each}
 			</Table.Header>
 			<Table.Body {...$tableBodyAttrs}>
-				{#each $pageRows as row (row.id)}
+				{#each $pageRows as row, i (row.id)}
 					<Subscribe rowAttrs={row.attrs()} let:rowAttrs>
-						<Table.Row {...rowAttrs}>
+						<Table.Row
+							{...rowAttrs}
+							class="cursor-pointer"
+							on:click={() => goto(`/app/bills/${data[i].id}`)}
+						>
 							{#each row.cells as cell (cell.id)}
 								<Subscribe attrs={cell.attrs()} let:attrs>
 									<Table.Cell {...attrs}>
