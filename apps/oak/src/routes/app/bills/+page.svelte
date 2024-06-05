@@ -252,35 +252,6 @@
 							<Form.FieldErrors />
 						</Form.Field>
 
-						<Form.Field {form} name="posting_period">
-							<Form.Control>
-								<Form.Label>Posting Period</Form.Label>
-								<Popover.Root>
-									<Form.Control let:attrs>
-										<input hidden bind:value={$formData.due_date} {...attrs} />
-										<div>
-											<Popover.Trigger
-												class={cn(
-													buttonVariants({ variant: 'outline' }),
-													'w-[220px] justify-start pl-4 text-left font-normal',
-													!postingPeriod && 'text-muted-foreground'
-												)}
-											>
-												{postingPeriod
-													? df.format(postingPeriod.toDate(getLocalTimeZone()))
-													: 'Pick a date'}
-												<CalendarIcon class="ml-auto h-4 w-4 opacity-50" />
-											</Popover.Trigger>
-										</div>
-									</Form.Control>
-									<Popover.Content class="w-auto p-0" side="left">
-										<DatePicker bind:value={postingPeriod} />
-									</Popover.Content>
-								</Popover.Root>
-							</Form.Control>
-							<Form.FieldErrors />
-						</Form.Field>
-
 						<Form.Button disabled={$delayed} type="submit">
 							{#if $delayed}
 								<Loader2 class="animate-spin" />
