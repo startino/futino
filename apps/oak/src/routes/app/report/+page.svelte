@@ -14,11 +14,9 @@
 		return data
 			.filter((c) => period.compare(parseDate(c.start_date)) >= 0)
 			.map((c) => {
-				const billedAmount = c.bills.reduce((prev, curr) => {
-					const postingPeriod = parseDate(curr.posting_period);
-					if (postingPeriod.compare(period) > 0) return prev;
-					return prev + curr.amount;
-				}, 0);
+				const billedAmount = c.bills
+					.filter((b) => b.posting_period && parseDate(b.posting_period).compare(period) > 0)
+					.reduce((prev, curr) => prev + curr.amount, 0);
 
 				let elapsedMonths: number;
 

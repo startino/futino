@@ -1,12 +1,39 @@
 <script lang="ts">
+	import { View, Loader2 } from 'lucide-svelte';
+
 	import * as Breadcrumb from '$lib/components/ui/breadcrumb';
 	import * as Card from '$lib/components/ui/card';
+	import * as Dialog from '$lib/components/ui/dialog';
+	import { Button } from '$lib/components/ui/button';
 	import { Badge } from '$lib/components/ui/badge';
-	import { formatAmount, toDateString } from '$lib/utils';
+	import { formatAmount, toDateString, pdfjsLib, renderPDF } from '$lib/utils';
+	import type { PDFDocumentProxy } from 'pdfjs-dist';
+	import { onMount } from 'svelte';
 	export let data;
 
 	const { bill } = data;
 	const title = `Bill for #${bill.contract.number} ${bill.contract.vendor.name}`;
+
+	let pdf: PDFDocumentProxy;
+	let pdfSpot: HTMLElement;
+	let pdfContainer: HTMLElement;
+	let isLoadingPDF = true;
+
+	onMount(async () => {
+		pdf = await pdfjsLib.getDocument(data.attachmentUrl).promise;
+		await renderPDF(pdf, pdfContainer);
+		isLoadingPDF = false;
+	});
+
+	const appendContainer = (node: HTMLDivElement) => {
+		node.appendChild(pdfContainer);
+
+		return {
+			destroy() {
+				pdfSpot.appendChild(pdfContainer);
+			}
+		};
+	};
 </script>
 
 <Breadcrumb.Root class="mb-6">
@@ -85,5 +112,36 @@
 				<p class="text-muted-foreground">Bill not approved yet</p>
 			{/if}
 		</div>
+
+		<div class="grid gap-2">
+			<h2 class="font-bold">Attachment</h2>
+
+			<Dialog.Root>
+				<Dialog.Trigger disabled={isLoadingPDF}>
+					<Button class="flex gap-2" variant="outline">
+						{#if isLoadingPDF}
+							<Loader2 class="animate-spin" />
+						{:else}
+							<View /> View invoice
+						{/if}
+					</Button>
+				</Dialog.Trigger>
+				<Dialog.Content
+					id="dialog-content"
+					class="max-h-dvh w-full max-w-screen-md overflow-y-scroll px-0"
+				>
+					<Dialog.Title class="px-6">Invoice</Dialog.Title>
+					<div use:appendContainer></div>
+				</Dialog.Content>
+			</Dialog.Root>
+		</div>
 	</Card.Content>
 </Card.Root>
+
+<div class="invisible h-0 w-0 overflow-hidden" id="pdf-spot" bind:this={pdfSpot}>
+	<div
+		id="pdf-container"
+		class="grid w-screen max-w-screen-md gap-4"
+		bind:this={pdfContainer}
+	></div>
+</div>

@@ -7,9 +7,13 @@ export const load = async ({ locals: { supabase }, params }) => {
 
 	if (billError) {
 		billError.code === 'PGRST116'
-			? error(404, 'Contract Not Found!')
+			? error(404, 'Bill Not Found!')
 			: error(500, 'Something went wrong.');
 	}
 
-	return { bill };
+	const {
+		data: { signedUrl }
+	} = await supabase.storage.from('invoices').createSignedUrl(bill.attachment, 60 * 60 * 24);
+
+	return { bill, attachmentUrl: signedUrl };
 };

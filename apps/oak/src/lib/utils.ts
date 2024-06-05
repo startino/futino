@@ -14,6 +14,29 @@ PDFJS.GlobalWorkerOptions.workerSrc = 'pdfjs-dist/build/pdf.worker.mjs';
 
 export const pdfjsLib = PDFJS;
 
+export const renderPDF = async (pdf: PDFJS.PDFDocumentProxy, container: HTMLElement) => {
+	for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
+		const canvas = document.createElement('canvas');
+		const page = await pdf.getPage(pageNum);
+
+		let viewport = page.getViewport({ scale: 1 });
+		const scale = container.clientWidth / viewport.width;
+		viewport = page.getViewport({ scale });
+
+		canvas.width = viewport.width;
+		canvas.height = viewport.height;
+
+		const context = canvas.getContext('2d');
+		const renderContext = {
+			canvasContext: context,
+			viewport: viewport
+		};
+
+		page.render(renderContext);
+		container.appendChild(canvas);
+	}
+};
+
 export const getMonthsDifference = (startStr: string, endStr: string) => {
 	let start = parseDate(startStr);
 	let end = parseDate(endStr);
