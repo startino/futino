@@ -6,8 +6,7 @@ import { zod } from 'sveltekit-superforms/adapters';
 
 import { contractSchema } from '$lib/schemas';
 import type { ContractDatableRow } from '$lib/types';
-import { SMTP_USER } from '$env/static/private';
-import { PUBLIC_SITE_URL } from '$env/static/public';
+import { PUBLIC_SITE_URL, PUBLIC_SMTP_USER } from '$env/static/public';
 import type { Tables, Database } from '$lib/server/supabase.types.js';
 import { findApprover } from '$lib/server/db/profiles';
 
@@ -121,7 +120,7 @@ const sendNotification = async (
 
 	transporter.sendMail({
 		template: 'new-contract',
-		from: `"Oak" <${SMTP_USER}>`,
+		from: `"Oak" <${PUBLIC_SMTP_USER}>`,
 		to: user.email,
 		subject: 'New contract',
 		context: {
