@@ -1,6 +1,11 @@
 import { z } from 'zod';
 import type { Enums } from '$lib/server/supabase.types';
 
+export const billApprovalSchema = z.object({
+	bill_id: z.string().uuid(),
+	time_zone: z.string()
+});
+
 export const billSchema = z.object({
 	contract_id: z.string().uuid(),
 	project_id: z.string().uuid('A project is required'),
@@ -13,7 +18,9 @@ export const billSchema = z.object({
 	invoice_date: z.string().date(),
 	due_date: z.string().date(),
 	accrual_period: z.string().date(),
-	posting_period: z.string().date()
+	attachment: z
+		.instanceof(File, { message: 'Please include the invoice in PDF.' })
+		.refine((f) => f.size / 1024 / 1024 < 5, 'Max 5 MiB upload size.')
 });
 
 export const emailSchema = z.object({

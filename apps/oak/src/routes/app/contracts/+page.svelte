@@ -316,7 +316,7 @@
 											{#if fileName}
 												{fileName}
 											{:else}
-												Upload PDF
+												Select contract PDF
 											{/if}
 											<Paperclip />
 										</div>

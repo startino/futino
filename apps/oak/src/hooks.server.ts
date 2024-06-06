@@ -1,11 +1,10 @@
-import { PUBLIC_SUPABASE_URL } from '$env/static/public';
+import { PUBLIC_SUPABASE_URL, PUBLIC_SMTP_USER } from '$env/static/public';
 import {
 	STRIPE_SECRET_KEY,
 	SUPABASE_SERVICE_ROLE_KEY,
 	SMTP_HOST,
 	SMTP_PASSWORD,
-	SMTP_PORT,
-	SMTP_USER
+	SMTP_PORT
 } from '$env/static/private';
 
 import path from 'path';
@@ -55,7 +54,7 @@ export const handle: Handle = async ({ event, resolve }) => {
 		event.locals.smtpTransporter = createSMPTransport({
 			host: SMTP_HOST,
 			port: Number(SMTP_PORT),
-			user: SMTP_USER,
+			user: PUBLIC_SMTP_USER,
 			pass: SMTP_PASSWORD
 		});
 

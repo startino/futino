@@ -107,54 +107,63 @@ export type Database = {
           account_id: string | null
           accrual_period: string
           amount: number
-          attachment: string | null
+          approver_id: string | null
+          attachment: string
           contract_id: string
           created_at: string
+          creator_id: string | null
           department_id: string | null
           description: string | null
           due_date: string
           id: string
           invoice_date: string
           organization_id: string
-          posting_period: string
+          posting_period: string | null
           project_id: string | null
           spend_category_id: string | null
+          status: Database["public"]["Enums"]["bill_status"]
           vendor_id: string | null
         }
         Insert: {
           account_id?: string | null
           accrual_period: string
           amount: number
-          attachment?: string | null
+          approver_id?: string | null
+          attachment: string
           contract_id?: string
           created_at?: string
+          creator_id?: string | null
           department_id?: string | null
           description?: string | null
           due_date: string
           id?: string
           invoice_date: string
           organization_id?: string
-          posting_period: string
+          posting_period?: string | null
           project_id?: string | null
           spend_category_id?: string | null
+          status?: Database["public"]["Enums"]["bill_status"]
           vendor_id?: string | null
         }
         Update: {
           account_id?: string | null
           accrual_period?: string
           amount?: number
-          attachment?: string | null
+          approver_id?: string | null
+          attachment?: string
           contract_id?: string
           created_at?: string
+          creator_id?: string | null
           department_id?: string | null
           description?: string | null
           due_date?: string
           id?: string
           invoice_date?: string
           organization_id?: string
-          posting_period?: string
+          posting_period?: string | null
           project_id?: string | null
           spend_category_id?: string | null
+          status?: Database["public"]["Enums"]["bill_status"]
           vendor_id?: string | null
         }
         Relationships: [
@@ -166,10 +175,24 @@ export type Database = {
             referencedColumns: ["id"]
           },
           {
+            foreignKeyName: "bills_approver_id_fkey"
+            columns: ["approver_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
             foreignKeyName: "bills_contract_id_fkey"
             columns: ["contract_id"]
             isOneToOne: false
             referencedRelation: "contracts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "bills_creator_id_fkey"
+            columns: ["creator_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
             referencedColumns: ["id"]
           },
           {
@@ -222,7 +245,7 @@ export type Database = {
           id: string
           number: number
           organization_id: string
-          owner_id: string
+          owner_id: string | null
           parent_contract_id: string | null
           project_id: string | null
           signed: boolean | null
@@ -246,7 +269,7 @@ export type Database = {
           id?: string
           number?: number
           organization_id: string
-          owner_id: string
+          owner_id?: string | null
           parent_contract_id?: string | null
           project_id?: string | null
           signed?: boolean | null
@@ -270,7 +293,7 @@ export type Database = {
           id?: string
           number?: number
           organization_id?: string
-          owner_id?: string
+          owner_id?: string | null
           parent_contract_id?: string | null
           project_id?: string | null
           signed?: boolean | null
@@ -291,17 +314,17 @@ export type Database = {
             referencedColumns: ["id"]
           },
           {
-            foreignKeyName: "contracts_creator_fkey"
-            columns: ["owner_id"]
-            isOneToOne: false
-            referencedRelation: "profiles"
-            referencedColumns: ["id"]
-          },
-          {
             foreignKeyName: "contracts_organization_id_fkey"
             columns: ["organization_id"]
             isOneToOne: false
             referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "contracts_owner_id_fkey"
+            columns: ["owner_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
             referencedColumns: ["id"]
           },
           {
@@ -631,6 +654,7 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
+      bill_status: "pending approval" | "rejected" | "approved"
       contract_department: "Accounting" | "IT" | "etc"
       contract_spend_category: "Testing" | "Manufacturing" | "Legal" | "etc"
       contract_status:

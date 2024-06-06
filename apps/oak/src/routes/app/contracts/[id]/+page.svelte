@@ -5,7 +5,7 @@
 	import type { PDFDocumentProxy } from 'pdfjs-dist';
 
 	import { enhance } from '$app/forms';
-	import { pdfjsLib, formatAmount, getContext } from '$lib/utils';
+	import { pdfjsLib, formatAmount, getContext, renderPDF } from '$lib/utils';
 	import { Badge } from '$lib/components/ui/badge';
 	import * as Breadcrumb from '$lib/components/ui/breadcrumb';
 	import * as Dialog from '$lib/components/ui/dialog';
@@ -18,43 +18,18 @@
 	const currentProfile = getContext('currentProfile');
 
 	let pdf: PDFDocumentProxy;
-	let pdfSpot: HTMLDivElement;
-	let pdfContainer: HTMLDivElement;
+	let pdfSpot: HTMLElement;
+	let pdfContainer: HTMLElement;
 	let isLoadingPDF = true;
 	let isApproving = false;
 
 	const isSigner = $currentProfile.roles.includes('signer');
 
 	onMount(async () => {
-		pdf = await loadPDF();
-		await renderPDF();
+		pdf = await pdfjsLib.getDocument(data.attachmentUrl).promise;
+		await renderPDF(pdf, pdfContainer);
 		isLoadingPDF = false;
 	});
-
-	const loadPDF = async () => await pdfjsLib.getDocument(data.attachmentUrl).promise;
-
-	const renderPDF = async () => {
-		for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
-			const canvas = document.createElement('canvas');
-			const page = await pdf.getPage(pageNum);
-
-			let viewport = page.getViewport({ scale: 1 });
-			const scale = pdfContainer.clientWidth / viewport.width;
-			viewport = page.getViewport({ scale });
-
-			canvas.width = viewport.width;
-			canvas.height = viewport.height;
-
-			const context = canvas.getContext('2d');
-			const renderContext = {
-				canvasContext: context,
-				viewport: viewport
-			};
-
-			page.render(renderContext);
-			pdfContainer.appendChild(canvas);
-		}
-	};
 
 	const appendContainer = (node: HTMLDivElement) => {
 		node.appendChild(pdfContainer);

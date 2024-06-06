@@ -2,7 +2,7 @@
 	import { CalendarDate, getLocalTimeZone, parseDate, today } from '@internationalized/date';
 
 	import DataTable from './data-table.svelte';
-	import type { ReportContracts, ReportDatableRow } from '$lib/types';
+	import type { ReportContracts, ReportDataTableRow } from '$lib/types';
 	import { getMonthsDifference } from '$lib/utils';
 	import { DateInput } from '$lib/components/ui/date-input';
 
@@ -10,15 +10,13 @@
 
 	let selectedPeriod = today(getLocalTimeZone());
 
-	const getReportRows = (data: ReportContracts, period: CalendarDate): ReportDatableRow[] => {
+	const getReportRows = (data: ReportContracts, period: CalendarDate): ReportDataTableRow[] => {
 		return data
 			.filter((c) => period.compare(parseDate(c.start_date)) >= 0)
 			.map((c) => {
-				const billedAmount = c.bills.reduce((prev, curr) => {
-					const postingPeriod = parseDate(curr.posting_period);
-					if (postingPeriod.compare(period) > 0) return prev;
-					return prev + curr.amount;
-				}, 0);
+				const billedAmount = c.bills
+					.filter((b) => b.posting_period && parseDate(b.posting_period).compare(period) > 0)
+					.reduce((prev, curr) => prev + curr.amount, 0);
 
 				let elapsedMonths: number;
 

@@ -9,9 +9,10 @@
 	import { Button } from '$lib/components/ui/button';
 	import { Input } from '$lib/components/ui/input';
 	import { formatAmount, toDateString } from '$lib/utils';
-	import type { BillDatableRow } from '$lib/types';
+	import type { BillDataTableRow } from '$lib/types';
+	import { goto } from '$app/navigation';
 
-	export let data: BillDatableRow[];
+	export let data: BillDataTableRow[];
 
 	const table = createTable(writable(data), {
 		page: addPagination(),
@@ -22,6 +23,29 @@
 	});
 
 	const columns = table.createColumns([
+		table.column({
+			accessor: 'creator',
+			header: 'Bill Creator',
+			plugins: {
+				filter: {
+					getFilterValue: (value) => value.full_name
+				},
+				sort: {
+					disable: true
+				}
+			},
+			cell: ({ value }) => value.full_name
+		}),
+		table.column({
+			accessor: 'amount',
+			header: 'Amount',
+			cell: ({ value }) => formatAmount(value),
+			plugins: {
+				filter: {
+					exclude: true
+				}
+			}
+		}),
 		table.column({
 			accessor: 'contract',
 			header: 'Contract',
@@ -35,6 +59,7 @@
 				}
 			}
 		}),
+
 		table.column({
 			id: 'contract-owner',
 			accessor: 'contract',
@@ -49,16 +74,7 @@
 			},
 			cell: ({ value }) => value.owner.full_name
 		}),
-		table.column({
-			accessor: 'amount',
-			header: 'Amount',
-			cell: ({ value }) => formatAmount(value),
-			plugins: {
-				filter: {
-					exclude: true
-				}
-			}
-		}),
+
 		table.column({
 			accessor: 'invoice_date',
 			header: 'Invoice date',
@@ -92,12 +108,16 @@
 		table.column({
 			accessor: 'posting_period',
 			header: 'Posting period',
-			cell: ({ value }) => toDateString(new Date(value)),
+			cell: ({ value }) => (value ? toDateString(new Date(value)) : 'pending approval'),
 			plugins: {
 				filter: {
 					exclude: true
 				}
 			}
+		}),
+		table.column({
+			accessor: 'status',
+			header: 'Status'
 		})
 	]);
 
@@ -152,9 +172,13 @@
 				{/each}
 			</Table.Header>
 			<Table.Body {...$tableBodyAttrs}>
-				{#each $pageRows as row (row.id)}
+				{#each $pageRows as row, i (row.id)}
 					<Subscribe rowAttrs={row.attrs()} let:rowAttrs>
-						<Table.Row {...rowAttrs}>
+						<Table.Row
+							{...rowAttrs}
+							class="cursor-pointer"
+							on:click={() => goto(`/app/bills/${data[i].id}`)}
+						>
 							{#each row.cells as cell (cell.id)}
 								<Subscribe attrs={cell.attrs()} let:attrs>
 									<Table.Cell {...attrs}>

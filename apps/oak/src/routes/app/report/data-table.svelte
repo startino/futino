@@ -7,9 +7,9 @@
 	import * as Table from '$lib/components/ui/table';
 	import { Button } from '$lib/components/ui/button';
 	import { toDateString } from '$lib/utils';
-	import type { ReportDatableRow } from '$lib/types';
+	import type { ReportDataTableRow } from '$lib/types';
 
-	export let data: ReportDatableRow[];
+	export let data: ReportDataTableRow[];
 
 	const table = createTable(writable(data), {
 		page: addPagination()

@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { Plus, CalendarIcon, Loader2 } from 'lucide-svelte';
-	import { superForm } from 'sveltekit-superforms';
+	import { Plus, CalendarIcon, Loader2, Paperclip } from 'lucide-svelte';
+	import { superForm, fileProxy } from 'sveltekit-superforms';
 	import { zodClient } from 'sveltekit-superforms/adapters';
 	import { toast } from 'svelte-sonner';
 	import { DateFormatter, getLocalTimeZone, parseDate } from '@internationalized/date';
@@ -25,8 +25,13 @@
 		validators: zodClient(billSchema),
 		onUpdate: ({ form }) => {
 			if (form.valid) {
-				toast.success('Valid!');
+				toast.success('Bill successfully created!');
 				formOpen = false;
+				invoiceDate = undefined;
+				dueDate = undefined;
+				accrualPeriod = undefined;
+				fileName = null;
+				reset();
 			} else {
 				toast.error('Invalid!');
 			}
@@ -34,18 +39,19 @@
 	});
 
 	const vendors = getContext('vendors');
-	const { form: formData, enhance, errors, delayed } = form;
+	const { form: formData, enhance, errors, delayed, reset } = form;
+	const file = fileProxy(formData, 'attachment');
 	const df = new DateFormatter('en-US', {
 		dateStyle: 'long'
 	});
 
 	let formOpen = false;
+	let fileName: string | null = null;
 	let loadingContracts = false;
 	let vendorContracts: Tables<'contracts'>[] | null = null;
 	let invoiceDate = $formData.invoice_date ? parseDate($formData.invoice_date) : undefined;
 	let dueDate = $formData.due_date ? parseDate($formData.due_date) : undefined;
 	let accrualPeriod = $formData.accrual_period ? parseDate($formData.accrual_period) : undefined;
-	let postingPeriod = $formData.posting_period ? parseDate($formData.posting_period) : undefined;
 
 	const fetchContracts = async (vendorId: string) => {
 		loadingContracts = true;
@@ -82,7 +88,6 @@
 	$: $formData.invoice_date = invoiceDate ? invoiceDate.toString() : undefined;
 	$: $formData.due_date = dueDate ? dueDate.toString() : undefined;
 	$: $formData.accrual_period = accrualPeriod ? accrualPeriod.toString() : undefined;
-	$: $formData.posting_period = postingPeriod ? postingPeriod.toString() : undefined;
 </script>
 
 <h1 class="mb-10 text-3xl">Bills</h1>
@@ -95,7 +100,7 @@
 						<Button><Plus />Add</Button>
 					</Dialog.Trigger>
 				</svelte:fragment>
-				<form method="post" use:enhance class="grid gap-4">
+				<form method="post" enctype="multipart/form-data" use:enhance class="grid gap-4">
 					<input hidden bind:value={$formData.department_id} name="department_id" />
 					<input hidden bind:value={$formData.spend_category_id} name="spend_category_id" />
 					<input hidden bind:value={$formData.project_id} name="project_id" />
@@ -252,33 +257,34 @@
 							<Form.FieldErrors />
 						</Form.Field>
 
-						<Form.Field {form} name="posting_period">
-							<Form.Control>
-								<Form.Label>Posting Period</Form.Label>
-								<Popover.Root>
-									<Form.Control let:attrs>
-										<input hidden bind:value={$formData.due_date} {...attrs} />
-										<div>
-											<Popover.Trigger
-												class={cn(
-													buttonVariants({ variant: 'outline' }),
-													'w-[220px] justify-start pl-4 text-left font-normal',
-													!postingPeriod && 'text-muted-foreground'
-												)}
-											>
-												{postingPeriod
-													? df.format(postingPeriod.toDate(getLocalTimeZone()))
-													: 'Pick a date'}
-												<CalendarIcon class="ml-auto h-4 w-4 opacity-50" />
-											</Popover.Trigger>
-										</div>
-									</Form.Control>
-									<Popover.Content class="w-auto p-0" side="left">
-										<DatePicker bind:value={postingPeriod} />
-									</Popover.Content>
-								</Popover.Root>
+						<Form.Field {form} name="attachment">
+							<Form.Control let:attrs>
+								<Form.Label class="cursor-pointer">
+									<span class="mb-2 block">Attachment</span>
+									<div
+										class="flex w-fit items-center justify-start gap-4 rounded-md border border-input px-3 py-2"
+									>
+										{#if fileName}
+											{fileName}
+										{:else}
+											Select invoice PDF
+										{/if}
+										<Paperclip />
+									</div>
+									<input
+										hidden
+										type="file"
+										accept="application/pdf"
+										name="attachment"
+										on:input={(e) => (fileName = e.currentTarget.files[0].name)}
+										bind:files={$file}
+										{...attrs}
+										class="hidden"
+									/>
+								</Form.Label>
+
+								<Form.FieldErrors />
 							</Form.Control>
-							<Form.FieldErrors />
 						</Form.Field>
 
 						<Form.Button disabled={$delayed} type="submit">
