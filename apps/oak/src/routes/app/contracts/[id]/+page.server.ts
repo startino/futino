@@ -1,7 +1,7 @@
 import { error, fail } from '@sveltejs/kit';
 
 import type { JoinedContract } from '$lib/types';
-import { SMTP_USER } from '$env/static/private';
+import { PUBLIC_SMTP_USER } from '$env/static/public';
 import { PUBLIC_SITE_URL } from '$env/static/public';
 import type { Tables } from '$lib/server/supabase.types.js';
 import { findApprover } from '$lib/server/db/profiles';
@@ -94,7 +94,7 @@ export const actions = {
 
 		smtpTransporter.sendMail({
 			template: 'new-contract',
-			from: `"Oak" <${SMTP_USER}>`,
+			from: `"Oak" <${PUBLIC_SMTP_USER}>`,
 			to: user.email,
 			subject: 'New contract',
 			context: {
@@ -132,7 +132,7 @@ export const actions = {
 
 		smtpTransporter.sendMail({
 			template: 'contract-signed',
-			from: `"Oak" <${SMTP_USER}>`,
+			from: `"Oak" <${PUBLIC_SMTP_USER}>`,
 			to: user.email,
 			subject: 'Contract signed',
 			context: {

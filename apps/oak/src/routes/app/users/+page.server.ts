@@ -9,8 +9,7 @@ const { generate: generatePassword } = genarator;
 import type { Database } from '$lib/server/supabase.types';
 import { createUserByAdminSchema, updateUserByAdminSchema } from '$lib/schemas';
 import type { JoinedProfile } from '$lib/types';
-import { SMTP_USER } from '$env/static/private';
-import { PUBLIC_SITE_URL } from '$env/static/public';
+import { PUBLIC_SITE_URL, PUBLIC_SMTP_USER } from '$env/static/public';
 
 export const load = async ({ locals: { iam } }) => {
 	iam.isAllowedTo('profiles.create');
@@ -72,7 +71,7 @@ export const actions = {
 
 		smtpTransporter.sendMail({
 			template: 'new-user',
-			from: `"Oak" <${SMTP_USER}>`,
+			from: `"Oak" <${PUBLIC_SMTP_USER}>`,
 			to: formData.email,
 			subject: 'Your Oak credentials',
 			context: {
