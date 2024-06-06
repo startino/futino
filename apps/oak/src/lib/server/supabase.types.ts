@@ -41,6 +41,45 @@ export type Database = {
           },
         ]
       }
+      bill_rejections: {
+        Row: {
+          bill_id: string
+          created_at: string
+          creator_id: string
+          id: string
+          note: string
+        }
+        Insert: {
+          bill_id: string
+          created_at?: string
+          creator_id: string
+          id?: string
+          note: string
+        }
+        Update: {
+          bill_id?: string
+          created_at?: string
+          creator_id?: string
+          id?: string
+          note?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "bill_rejections_bill_id_fkey"
+            columns: ["bill_id"]
+            isOneToOne: false
+            referencedRelation: "bills"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "bill_rejections_creator_id_fkey"
+            columns: ["creator_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       "billed-customers": {
         Row: {
           cancel_at_period_end: boolean

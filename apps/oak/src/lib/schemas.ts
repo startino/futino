@@ -1,6 +1,11 @@
 import { z } from 'zod';
 import type { Enums } from '$lib/server/supabase.types';
 
+export const billRejectionSchema = z.object({
+	bill_id: z.string().uuid(),
+	note: z.string()
+});
+
 export const billApprovalSchema = z.object({
 	bill_id: z.string().uuid(),
 	time_zone: z.string()

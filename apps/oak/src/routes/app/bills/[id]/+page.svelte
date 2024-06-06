@@ -1,36 +1,60 @@
 <script lang="ts">
 	import { View, Loader2 } from 'lucide-svelte';
 	import { superForm } from 'sveltekit-superforms';
+	import { onMount } from 'svelte';
+	import { toast } from 'svelte-sonner';
+	import { zodClient } from 'sveltekit-superforms/adapters';
+	import type { PDFDocumentProxy } from 'pdfjs-dist';
 
 	import * as Breadcrumb from '$lib/components/ui/breadcrumb';
 	import * as Card from '$lib/components/ui/card';
 	import * as Dialog from '$lib/components/ui/dialog';
 	import { Button } from '$lib/components/ui/button';
 	import { Badge } from '$lib/components/ui/badge';
+	import * as Form from '$lib/components/ui/form';
+	import { Textarea } from '$lib/components/ui/textarea';
+
 	import { formatAmount, toDateString, pdfjsLib, renderPDF, getContext } from '$lib/utils';
-	import type { PDFDocumentProxy } from 'pdfjs-dist';
-	import { onMount } from 'svelte';
-	import { toast } from 'svelte-sonner';
+	import { billRejectionSchema } from '$lib/schemas';
 
 	export let data;
 
 	const currentProfile = getContext('currentProfile');
-	const iam = getContext('iam');
 	let { bill } = data;
 	const title = `Bill for #${bill.contract.number} ${bill.contract.vendor.name}`;
-	const form = superForm(data.form, {
+	const rejectionForm = superForm(data.rejectionForm, {
+		validators: zodClient(billRejectionSchema),
 		onUpdate: ({ form }) => {
 			if (form.valid) {
-				toast.success('Bill approved');
+				toast.success('Bill rejected!');
 			}
 		}
 	});
-	const { form: formData, delayed, enhance, errors } = form;
+	const {
+		form: rejectionData,
+		delayed: rejectionDelayed,
+		enhance: rejectionEnhance,
+		errors: rejectionErrors
+	} = rejectionForm;
+	const approvalForm = superForm(data.approvalForm, {
+		onUpdate: ({ form }) => {
+			if (form.valid) {
+				toast.success('Bill approved!');
+			}
+		}
+	});
+	const {
+		form: approvalData,
+		delayed: approvalDelayed,
+		enhance: approvalEnhance,
+		errors: approvalErrors
+	} = approvalForm;
 
 	let pdf: PDFDocumentProxy;
 	let pdfSpot: HTMLElement;
 	let pdfContainer: HTMLElement;
 	let isLoadingPDF = true;
+	let showRejectionForm = false;
 
 	onMount(async () => {
 		pdf = await pdfjsLib.getDocument(data.attachmentUrl).promise;
@@ -49,8 +73,9 @@
 	};
 
 	$: bill = data.bill;
-	$formData.bill_id = bill.id;
-	$formData.time_zone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+	$rejectionData.bill_id = bill.id;
+	$approvalData.bill_id = bill.id;
+	$approvalData.time_zone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 </script>
 
 <Breadcrumb.Root class="mb-6">
@@ -153,22 +178,58 @@
 			</Dialog.Root>
 		</div>
 
-		{#if ($currentProfile.id === bill.approver_id || $currentProfile.roles.includes('signer')) && bill.status !== 'approved'}
-			<form method="post" action="?/approve" use:enhance>
-				<input hidden name="bill_id" value={$formData.bill_id} />
-				<input hidden name="time_zone" value={$formData.time_zone} />
-				<Button type="submit" class="mb-4">
-					{#if $delayed}
-						<Loader2 class="animate-spin" />
-					{:else}
-						Approve
-					{/if}
-				</Button>
+		{#if ($currentProfile.id === bill.approver_id || $currentProfile.roles.includes('signer')) && !['rejected', 'approved'].includes(bill.status)}
+			{#if showRejectionForm}
+				<form method="post" action="?/reject" use:rejectionEnhance>
+					<input hidden name="bill_id" value={$rejectionData.bill_id} />
+					<Form.Field form={rejectionForm} name="note">
+						<Form.Control let:attrs>
+							<Form.Label>Add a note</Form.Label>
+							<Textarea bind:value={$rejectionData.note} {...attrs} />
+							<Form.FieldErrors />
+						</Form.Control>
+					</Form.Field>
+					<div class="mt-2 flex gap-4">
+						<Button type="submit" variant="destructive">
+							{#if $rejectionDelayed}
+								<Loader2 class="animate-spin" />
+							{:else}
+								Reject
+							{/if}
+						</Button>
 
-				{#if $errors?._errors}
-					<div class=" text-sm text-destructive">{$errors._errors[0]}</div>
-				{/if}
-			</form>
+						<Button type="button" variant="outline" on:click={() => (showRejectionForm = false)}
+							>Cancel</Button
+						>
+					</div>
+
+					{#if $rejectionErrors?._errors}
+						<div class=" text-sm text-destructive">{$rejectionErrors._errors[0]}</div>
+					{/if}
+				</form>
+			{:else}
+				<form method="post" action="?/approve" use:approvalEnhance>
+					<input hidden name="bill_id" value={$approvalData.bill_id} />
+					<input hidden name="time_zone" value={$approvalData.time_zone} />
+					<div class="mt-4 flex gap-4">
+						<Button type="submit">
+							{#if $approvalDelayed}
+								<Loader2 class="animate-spin" />
+							{:else}
+								Approve
+							{/if}
+						</Button>
+
+						<Button type="button" variant="destructive" on:click={() => (showRejectionForm = true)}
+							>Reject</Button
+						>
+					</div>
+
+					{#if $approvalErrors?._errors}
+						<div class=" text-sm text-destructive">{$approvalErrors._errors[0]}</div>
+					{/if}
+				</form>
+			{/if}
 		{/if}
 	</Card.Content>
 </Card.Root>
