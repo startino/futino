@@ -1,18 +1,31 @@
 <script lang="ts">
 	import { View, Loader2 } from 'lucide-svelte';
+	import { superForm } from 'sveltekit-superforms';
 
 	import * as Breadcrumb from '$lib/components/ui/breadcrumb';
 	import * as Card from '$lib/components/ui/card';
 	import * as Dialog from '$lib/components/ui/dialog';
 	import { Button } from '$lib/components/ui/button';
 	import { Badge } from '$lib/components/ui/badge';
-	import { formatAmount, toDateString, pdfjsLib, renderPDF } from '$lib/utils';
+	import { formatAmount, toDateString, pdfjsLib, renderPDF, getContext } from '$lib/utils';
 	import type { PDFDocumentProxy } from 'pdfjs-dist';
 	import { onMount } from 'svelte';
+	import { toast } from 'svelte-sonner';
+
 	export let data;
 
-	const { bill } = data;
+	const currentProfile = getContext('currentProfile');
+	const iam = getContext('iam');
+	let { bill } = data;
 	const title = `Bill for #${bill.contract.number} ${bill.contract.vendor.name}`;
+	const form = superForm(data.form, {
+		onUpdate: ({ form }) => {
+			if (form.valid) {
+				toast.success('Bill approved');
+			}
+		}
+	});
+	const { form: formData, delayed, enhance, errors } = form;
 
 	let pdf: PDFDocumentProxy;
 	let pdfSpot: HTMLElement;
@@ -34,6 +47,10 @@
 			}
 		};
 	};
+
+	$: bill = data.bill;
+	$formData.bill_id = bill.id;
+	$formData.time_zone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 </script>
 
 <Breadcrumb.Root class="mb-6">
@@ -135,6 +152,24 @@
 				</Dialog.Content>
 			</Dialog.Root>
 		</div>
+
+		{#if ($currentProfile.id === bill.approver_id || $currentProfile.roles.includes('signer')) && bill.status !== 'approved'}
+			<form method="post" action="?/approve" use:enhance>
+				<input hidden name="bill_id" value={$formData.bill_id} />
+				<input hidden name="time_zone" value={$formData.time_zone} />
+				<Button type="submit" class="mb-4">
+					{#if $delayed}
+						<Loader2 class="animate-spin" />
+					{:else}
+						Approve
+					{/if}
+				</Button>
+
+				{#if $errors?._errors}
+					<div class=" text-sm text-destructive">{$errors._errors[0]}</div>
+				{/if}
+			</form>
+		{/if}
 	</Card.Content>
 </Card.Root>
 
