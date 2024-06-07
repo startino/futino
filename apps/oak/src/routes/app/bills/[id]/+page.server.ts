@@ -1,10 +1,10 @@
 import { error, fail, type RecursiveRequired } from '@sveltejs/kit';
-import { setError, superValidate } from 'sveltekit-superforms';
+import { setError, superValidate, withFiles } from 'sveltekit-superforms';
 import { zod } from 'sveltekit-superforms/adapters';
 import { today } from '@internationalized/date';
 
 import { getBillById } from '$lib/server/db';
-import { billApprovalSchema, billRejectionSchema } from '$lib/schemas';
+import { billApprovalSchema, billRejectionSchema, billSchema } from '$lib/schemas';
 import { sendEmailNotif } from '$lib/utils.js';
 import { PUBLIC_SITE_URL } from '$env/static/public';
 
@@ -23,8 +23,9 @@ export const load = async ({ locals: { supabase }, params }) => {
 
 	const approvalForm = await superValidate(zod(billApprovalSchema));
 	const rejectionForm = await superValidate(zod(billRejectionSchema));
+	const billForm = await superValidate({ ...bill, attachment: undefined }, zod(billSchema));
 
-	return { bill, attachmentUrl: signedUrl, approvalForm, rejectionForm };
+	return { bill, attachmentUrl: signedUrl, approvalForm, rejectionForm, billForm };
 };
 
 export const actions = {
@@ -110,7 +111,8 @@ export const actions = {
 			const { error: updateError } = await supabase
 				.from('bills')
 				.update({
-					status: 'rejected'
+					status: 'rejected',
+					approver_id: currentProfile.id
 				})
 				.eq('id', bill.id);
 
@@ -147,5 +149,89 @@ export const actions = {
 
 			return { rejectionForm };
 		}
+	},
+	update: async ({ request, locals: { currentProfile, supabase, smtpTransporter }, url }) => {
+		const billForm = await superValidate(request, zod(billSchema));
+		const billId = url.searchParams.get('id');
+
+		if (!billForm.valid || !billId) {
+			return fail(400, { billForm: withFiles(billForm) });
+		}
+
+		const { data: bill, error: billError } = await supabase
+			.from('bills')
+			.select('*')
+			.eq('id', billId)
+			.single();
+
+		if (billError) {
+			console.log({ billError });
+			return setError(billForm, 'Unable to update this bill. Please try again', {
+				status: 500
+			});
+		}
+
+		if (
+			bill.creator_id !== currentProfile.id ||
+			['pending approval', 'approved'].includes(bill.status)
+		) {
+			return fail(400, { billForm: withFiles(billForm) });
+		}
+
+		const formData = billForm.data;
+
+		let newPath = '';
+
+		if (formData.attachment) {
+			newPath = `/${crypto.randomUUID()}-${formData.attachment.name}`;
+
+			const { error: uploadError } = await supabase.storage
+				.from('invoices')
+				.upload(newPath, formData.attachment, {
+					cacheControl: '3600',
+					upsert: false
+				});
+
+			if (uploadError) {
+				console.error(uploadError);
+				return setError(
+					withFiles(billForm),
+					'attachment',
+					'Unable to upload the file. Please try again.',
+					{
+						status: 500
+					}
+				);
+			}
+		}
+
+		const { error: updateError } = await supabase
+			.from('bills')
+			.update({
+				...formData,
+				attachment: formData.attachment ? newPath : undefined,
+				status: 'pending approval'
+			})
+			.eq('id', billId);
+
+		if (updateError) {
+			console.log({ updateError });
+			return setError(billForm, 'Unable to update this bill. Please try again', {
+				status: 500
+			});
+		}
+
+		sendEmailNotif('new-entry', {
+			subject: 'New Bill',
+			receiverProfileId: bill.approver_id,
+			client: supabase,
+			smtp: smtpTransporter,
+			context: {
+				link: { url: `${PUBLIC_SITE_URL}/app/bills/${bill.id}`, label: 'View bill' },
+				entryName: 'bill'
+			}
+		});
+
+		return { billForm: withFiles(billForm) };
 	}
 };

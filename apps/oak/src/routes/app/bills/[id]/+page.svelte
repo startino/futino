@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { View, Loader2, StickyNote } from 'lucide-svelte';
+	import { View, Loader2, StickyNote, Edit } from 'lucide-svelte';
 	import { superForm } from 'sveltekit-superforms';
 	import { onMount } from 'svelte';
 	import { toast } from 'svelte-sonner';
@@ -9,6 +9,7 @@
 	import * as Breadcrumb from '$lib/components/ui/breadcrumb';
 	import * as Card from '$lib/components/ui/card';
 	import * as Dialog from '$lib/components/ui/dialog';
+	import { FormDialog } from '$lib/components/ui/form-dialog';
 	import * as Alert from '$lib/components/ui/alert';
 	import { Button } from '$lib/components/ui/button';
 	import { Badge } from '$lib/components/ui/badge';
@@ -16,18 +17,27 @@
 	import { Textarea } from '$lib/components/ui/textarea';
 
 	import { formatAmount, toDateString, pdfjsLib, renderPDF, getContext } from '$lib/utils';
-	import { billRejectionSchema } from '$lib/schemas';
+	import { billRejectionSchema, billSchema } from '$lib/schemas';
+	import BillForm from '../bill-form.svelte';
 
 	export let data;
 
 	const currentProfile = getContext('currentProfile');
 	let { bill } = data;
 	const title = `Bill for #${bill.contract.number} ${bill.contract.vendor.name}`;
+
 	const rejectionForm = superForm(data.rejectionForm, {
 		validators: zodClient(billRejectionSchema),
 		onUpdate: ({ form }) => {
 			if (form.valid) {
 				toast.success('Bill rejected!');
+			}
+		}
+	});
+	const approvalForm = superForm(data.approvalForm, {
+		onUpdate: ({ form }) => {
+			if (form.valid) {
+				toast.success('Bill approved!');
 			}
 		}
 	});
@@ -37,13 +47,6 @@
 		enhance: rejectionEnhance,
 		errors: rejectionErrors
 	} = rejectionForm;
-	const approvalForm = superForm(data.approvalForm, {
-		onUpdate: ({ form }) => {
-			if (form.valid) {
-				toast.success('Bill approved!');
-			}
-		}
-	});
 	const {
 		form: approvalData,
 		delayed: approvalDelayed,
@@ -56,6 +59,7 @@
 	let pdfContainer: HTMLElement;
 	let isLoadingPDF = true;
 	let showRejectionForm = false;
+	let billFormOpen = false;
 
 	onMount(async () => {
 		pdf = await pdfjsLib.getDocument(data.attachmentUrl).promise;
@@ -74,7 +78,7 @@
 	};
 
 	$: bill = data.bill;
-	$: rejection = bill.rejections[0];
+	$: rejection = bill.status === 'rejected' ? bill.rejections[0] : null;
 	$rejectionData.bill_id = bill.id;
 	$approvalData.bill_id = bill.id;
 	$approvalData.time_zone = Intl.DateTimeFormat().resolvedOptions().timeZone;
@@ -107,12 +111,30 @@
 			</p>
 		</div>
 
-		{#if rejection}
-			<Alert.Root>
-				<StickyNote class="h-4 w-4" />
-				<Alert.Title>Note from {rejection.creator.full_name}:</Alert.Title>
-				<Alert.Description class="text-base">{rejection.note}</Alert.Description>
-			</Alert.Root>
+		{#if rejection && $currentProfile.id === bill.creator_id}
+			<div>
+				<Alert.Root class="mb-2">
+					<StickyNote class="h-4 w-4" />
+					<Alert.Title>Note from {rejection.creator.full_name}:</Alert.Title>
+					<Alert.Description class="text-base">{rejection.note}</Alert.Description>
+				</Alert.Root>
+				<FormDialog bind:open={billFormOpen}>
+					<svelte:fragment slot="trigger">
+						<Dialog.Trigger>
+							<Button size="sm" class="gap-1"><Edit class="h-4 w-4" />Edit bill</Button>
+						</Dialog.Trigger>
+					</svelte:fragment>
+
+					<BillForm
+						action={`?/update&id=${bill.id}`}
+						data={data.billForm}
+						onSuccess={() => {
+							billFormOpen = false;
+							toast.success('Bill updated!');
+						}}
+					/>
+				</FormDialog>
+			</div>
 		{/if}
 
 		<div class="grid gap-2">
