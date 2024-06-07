@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { View, Loader2 } from 'lucide-svelte';
+	import { View, Loader2, StickyNote } from 'lucide-svelte';
 	import { superForm } from 'sveltekit-superforms';
 	import { onMount } from 'svelte';
 	import { toast } from 'svelte-sonner';
@@ -9,6 +9,7 @@
 	import * as Breadcrumb from '$lib/components/ui/breadcrumb';
 	import * as Card from '$lib/components/ui/card';
 	import * as Dialog from '$lib/components/ui/dialog';
+	import * as Alert from '$lib/components/ui/alert';
 	import { Button } from '$lib/components/ui/button';
 	import { Badge } from '$lib/components/ui/badge';
 	import * as Form from '$lib/components/ui/form';
@@ -73,6 +74,7 @@
 	};
 
 	$: bill = data.bill;
+	$: rejection = bill.rejections[0];
 	$rejectionData.bill_id = bill.id;
 	$approvalData.bill_id = bill.id;
 	$approvalData.time_zone = Intl.DateTimeFormat().resolvedOptions().timeZone;
@@ -99,8 +101,19 @@
 	<Card.Content class="grid gap-6">
 		<div class="flex gap-2">
 			<h2 class="font-bold">Status:</h2>
-			<p><Badge>{bill.status}</Badge></p>
+			<p>
+				<Badge variant={bill.status === 'rejected' ? 'destructive' : 'default'}>{bill.status}</Badge
+				>
+			</p>
 		</div>
+
+		{#if rejection}
+			<Alert.Root>
+				<StickyNote class="h-4 w-4" />
+				<Alert.Title>Note from {rejection.creator.full_name}:</Alert.Title>
+				<Alert.Description class="text-base">{rejection.note}</Alert.Description>
+			</Alert.Root>
+		{/if}
 
 		<div class="grid gap-2">
 			<h2 class="font-bold">Bill Creator</h2>
