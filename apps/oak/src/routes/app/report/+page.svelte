@@ -15,7 +15,12 @@
 			.filter((c) => period.compare(parseDate(c.start_date)) >= 0)
 			.map((c) => {
 				const billedAmount = c.bills
-					.filter((b) => b.posting_period && parseDate(b.posting_period).compare(period) > 0)
+					.filter(
+						(b) =>
+							b.posting_period &&
+							parseDate(b.posting_period).compare(period) <= 0 &&
+							b.status === 'approved'
+					)
 					.reduce((prev, curr) => prev + curr.amount, 0);
 
 				let elapsedMonths: number;
