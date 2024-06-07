@@ -28,6 +28,8 @@ export const billSchema = z.object({
 		.refine((f) => f.size / 1024 / 1024 < 5, 'Max 5 MiB upload size.')
 });
 
+export type BillSchema = typeof billSchema;
+
 export const emailSchema = z.object({
 	email: z.string().email('Invalid email address')
 });

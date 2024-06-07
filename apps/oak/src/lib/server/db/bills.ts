@@ -18,6 +18,7 @@ export const getBillById = async ({ client, id }: { client: Client; id: string }
     `
 		)
 		.eq('id', id)
+		.order('created_at', { ascending: false })
 		.single();
 
 export const getBillDataTableRow = async ({ client, orgId }: { client: Client; orgId: string }) =>
