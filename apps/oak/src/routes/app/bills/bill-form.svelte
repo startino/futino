@@ -13,17 +13,23 @@
 	import * as Popover from '$lib/components/ui/popover';
 	import { Input } from '$lib/components/ui/input';
 	import type { Tables } from '$lib/server/supabase.types';
-	import { type BillSchema, billSchema } from '$lib/schemas';
+	import {
+		type BillSchema,
+		type OptionalBillSchema,
+		billSchema,
+		optionalBillSchema
+	} from '$lib/schemas';
 	import * as Form from '$lib/components/ui/form';
 	import { getContext, cn } from '$lib/utils';
 	import { onMount } from 'svelte';
 
-	export let data: SuperValidated<Infer<BillSchema>>;
+	export let data: SuperValidated<Infer<BillSchema | OptionalBillSchema>>;
 	export let onSuccess: () => void = () => {};
 	export let action: `?/${string}` | undefined = undefined;
+	export let type: 'create' | 'update' = 'create';
 
 	const form = superForm(data, {
-		validators: zodClient(billSchema),
+		validators: zodClient(type === 'create' ? billSchema : optionalBillSchema),
 		onUpdate: ({ form }) => {
 			if (form.valid) {
 				onSuccess();
@@ -256,7 +262,7 @@
 						{#if fileName}
 							{fileName}
 						{:else}
-							Select invoice PDF
+							{type === 'create' ? 'Select invoice PDF' : 'Replace existing invoice PDF'}
 						{/if}
 						<Paperclip />
 					</div>
