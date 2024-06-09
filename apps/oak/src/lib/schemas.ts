@@ -1,5 +1,6 @@
 import { z } from 'zod';
 import type { Enums } from '$lib/server/supabase.types';
+import { zod } from 'sveltekit-superforms/adapters';
 
 export const billRejectionSchema = z.object({
 	bill_id: z.string().uuid(),
@@ -29,6 +30,10 @@ export const billSchema = z.object({
 });
 
 export type BillSchema = typeof billSchema;
+
+export const optionalBillSchema = billSchema.partial();
+
+export type OptionalBillSchema = typeof optionalBillSchema;
 
 export const emailSchema = z.object({
 	email: z.string().email('Invalid email address')

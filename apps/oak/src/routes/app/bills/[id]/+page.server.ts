@@ -4,7 +4,12 @@ import { zod } from 'sveltekit-superforms/adapters';
 import { today } from '@internationalized/date';
 
 import { getBillById } from '$lib/server/db';
-import { billApprovalSchema, billRejectionSchema, billSchema } from '$lib/schemas';
+import {
+	billApprovalSchema,
+	billRejectionSchema,
+	billSchema,
+	optionalBillSchema
+} from '$lib/schemas';
 import { sendEmailNotif } from '$lib/utils.js';
 import { PUBLIC_SITE_URL } from '$env/static/public';
 
@@ -23,9 +28,12 @@ export const load = async ({ locals: { supabase }, params }) => {
 
 	const approvalForm = await superValidate(zod(billApprovalSchema));
 	const rejectionForm = await superValidate(zod(billRejectionSchema));
-	const billForm = await superValidate({ ...bill, attachment: undefined }, zod(billSchema));
+	const optionalBillForm = await superValidate(
+		{ ...bill, attachment: undefined },
+		zod(optionalBillSchema)
+	);
 
-	return { bill, attachmentUrl: signedUrl, approvalForm, rejectionForm, billForm };
+	return { bill, attachmentUrl: signedUrl, approvalForm, rejectionForm, optionalBillForm };
 };
 
 export const actions = {
@@ -151,7 +159,7 @@ export const actions = {
 		}
 	},
 	update: async ({ request, locals: { currentProfile, supabase, smtpTransporter }, url }) => {
-		const billForm = await superValidate(request, zod(billSchema));
+		const billForm = await superValidate(request, zod(optionalBillSchema));
 		const billId = url.searchParams.get('id');
 
 		if (!billForm.valid || !billId) {
