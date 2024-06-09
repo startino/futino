@@ -107,7 +107,7 @@
 		<Form.FieldErrors />
 	</Form.Field>
 
-	<Form.Button size="lg" disabled={$delayed}>
+	<Form.Button size="lg" class="w-full" disabled={$delayed}>
 		{#if $delayed}
 			<RotateCw class="mr-2 h-4 w-4 animate-spin" />
 		{/if}

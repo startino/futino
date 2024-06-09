@@ -10,7 +10,9 @@
 		PanelsTopLeft,
 		Building2,
 		CodeXml,
-		HardDrive
+		HardDrive,
+        MoveDown
+            
 	} from 'lucide-svelte';
 
 	import { FaqSection } from '$lib/components/ui/faq';
@@ -70,12 +72,12 @@
 <!-- Hero -->
 <section
 	id="hero"
-	class="md:prose-md prose prose-sm prose-main flex h-screen w-full max-w-7xl flex-col items-center justify-center gap-2 px-5 text-lg sm:prose-base lg:prose-lg xl:prose-xl sm:px-10 sm:text-xl md:text-2xl lg:text-4xl"
+	class=" flex h-screen w-full max-w-7xl flex-col items-center justify-center gap-2 px-5  sm:px-10 "
 >
 	<div
 		class="z-100 pointer-events-none absolute left-0 right-0 top-0 h-screen border-b border-primary/40 shadow-2xl"
 	></div>
-	<div class="flex flex-col">
+	<div class="flex flex-col text-5xl sm:text-7xl md:text-8xl lg:text-9xl mb-3 lg:mb-6">
 		<h1 class="m-0 sm:m-0">
 			Building <br /><span
 				class="m-0 bg-gradient-to-b from-primary from-50% to-background bg-clip-text text-transparent sm:m-0"
@@ -92,17 +94,15 @@
 			<br />
 		</h1>
 	</div>
-	<p class="text-pretty opacity-80">
-		Advancing the success of non-technical entrepreneurs and startups by providing the passion and
-		commitment of a tech co-founder alongside the efficiency and reliability of a professional
-		development agency.
+	<p class="text-balance opacity-80 text-lg text- max-w-3xl sm:text-lg md:text-xl lg:text-3xl mb-4 sm:mb-8 md:mb-12">
+        Software Development Firm & Tech Co-Founder – the best of both worlds to help entrepreneurs and startups succeed.
 	</p>
 
-	<div class="not-prose flex gap-4">
-		<Button href="https://cal.com/jorgelewis" target="new" class="px-12 py-7 text-2xl"
+	<div class="not-prose grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-3xl w-full">
+		<Button href="#contact"  class="w-full px-4 py-7 lg:px-12 lg:py-7 text-xl md:text-2xl"
 			>Get in Touch</Button
 		>
-		<Button href="#pricing" class="px-12 py-7 text-2xl" variant="outline">Pricing</Button>
+		<Button href="#pricing" class="w-full px-4 py-7 lg:px-12 lg:py-7 text-xl md:text-2xl" variant="outline">Pricing</Button>
 	</div>
 </section>
 
@@ -304,20 +304,19 @@
 <PricingSection />
 
 <!-- Contact Section -->
-<!-- About -->
-<section id="about">
+<section id="contact">
 	<div
 		class="mx-auto grid max-w-7xl grid-cols-1 justify-items-center gap-8 px-6 md:grid-cols-2 lg:px-8"
 	>
-		<div class=" flex max-w-3xl flex-col gap-4 text-left">
+		<div class=" flex max-w-3xl flex-col gap-4 text-center place-items-center md:text-left">
 			<h1 class="text-3xl font-bold tracking-tight text-background-on sm:text-4xl sm:text-6xl">
 				Let's do this.
 			</h1>
-			<p class="text-base">
+			<p class="text-base max-w-prose">
 				We're excited to hear about your project. Fill out the form or reach out to us at <a
 					class="text-accent underline"
 					href="mailto:contact@futi.no">contact@futi.no</a
-				> and we'll get back to you within 24 hours. Even better yet, let's have a virtual chat over
+				> and we'll get back to you within 24 hours. Even better yet, let's have a virtual chat over a
 				coffee.
 			</p>
 			<Button
@@ -335,6 +334,7 @@
 					<Avatar.Fallback>CN</Avatar.Fallback>
 				</Avatar.Root>
 			</Button>
+            <h1 class="text-xl md:hidden pt-6 flex flexrow place-items-center" >Or fill in this fom <MoveDown size="16" class="ml-2 text-primary"/></h1>
 		</div>
 		<ContactForm data={data.form} />
 	</div>
