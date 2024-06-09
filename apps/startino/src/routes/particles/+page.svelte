@@ -3,26 +3,6 @@
     //import { loadFull } from "tsparticles"; // if you are going to use `loadFull`, install the "tsparticles" package too.
     import { loadSlim } from '@tsparticles/slim'; // if you are going to use `loadSlim`, install the "@tsparticles/slim" package too.
 
-    let particlesUrl = 'http://foo.bar/particles.json'; // placeholder, replace it with a real url
-
-    let particlesConfig = {
-        particles: {
-            color: {
-                value: '#000'
-            },
-            links: {
-                enable: true,
-                color: '#000'
-            },
-            move: {
-                enable: true
-            },
-            number: {
-                value: 100
-            }
-        }
-    };
-
     let onParticlesLoaded = (event) => {
         const particlesContainer = event.detail.particles;
 
@@ -44,16 +24,6 @@
         id="tsparticles"
         class="put your classes here"
         style=""
-        options="{particlesConfig}"
-        on:particlesLoaded="{onParticlesLoaded}"
-/>
-
-<!-- or -->
-
-<Particles
-        id="tsparticles"
-        class="put your classes here"
-        style=""
-        url="{particlesUrl}"
+        options={particlesConfig}
         on:particlesLoaded="{onParticlesLoaded}"
 />

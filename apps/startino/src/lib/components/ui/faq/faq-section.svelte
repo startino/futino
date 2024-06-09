@@ -52,6 +52,7 @@
 	</div>
 	<div class="flex w-full flex-col gap-4 self-start md:col-span-3">
 		<div class="flex flex-col items-start gap-4">
+ <h3 class="text-center mx-auto">           Scroll on the cards to see more</h3>
 			<ScrollArea class="mx-auto flex max-h-[500px]  flex-col gap-12">
 				<div class="flex w-max flex-col space-y-4">
 					{#if searchInput && filteredFaqs.length === 0}
