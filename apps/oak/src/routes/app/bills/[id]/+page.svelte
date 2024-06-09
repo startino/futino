@@ -17,7 +17,7 @@
 	import { Textarea } from '$lib/components/ui/textarea';
 
 	import { formatAmount, toDateString, pdfjsLib, renderPDF, getContext } from '$lib/utils';
-	import { billRejectionSchema, billSchema } from '$lib/schemas';
+	import { billRejectionSchema } from '$lib/schemas';
 	import BillForm from '../bill-form.svelte';
 
 	export let data;
@@ -78,7 +78,7 @@
 	};
 
 	$: bill = data.bill;
-	$: rejection = bill.status === 'rejected' ? bill.rejections[0] : null;
+	$: rejection = bill.status === 'rejected' ? bill.rejections[bill.rejections.length - 1] : null;
 	$rejectionData.bill_id = bill.id;
 	$approvalData.bill_id = bill.id;
 	$approvalData.time_zone = Intl.DateTimeFormat().resolvedOptions().timeZone;
@@ -127,7 +127,8 @@
 
 					<BillForm
 						action={`?/update&id=${bill.id}`}
-						data={data.billForm}
+						type="update"
+						data={data.optionalBillForm}
 						onSuccess={() => {
 							billFormOpen = false;
 							toast.success('Bill updated!');
@@ -180,6 +181,13 @@
 			<h2 class="font-bold">Accrual Period</h2>
 			<p>{toDateString(new Date(bill.accrual_period))}</p>
 		</div>
+
+		{#if bill.posting_period}
+			<div class="grid gap-2">
+				<h2 class="font-bold">Posting Period</h2>
+				<p>{toDateString(new Date(bill.posting_period))}</p>
+			</div>
+		{/if}
 
 		<div class="grid gap-2">
 			<h2 class="font-bold">Approver</h2>
