@@ -308,7 +308,7 @@
 	<div
 		class="mx-auto grid max-w-7xl grid-cols-1 justify-items-center gap-8 px-6 md:grid-cols-2 lg:px-8"
 	>
-		<div class=" flex max-w-3xl flex-col gap-4 text-center place-items-center md:text-left">
+		<div class=" flex max-w-3xl flex-col gap-4 text-center place-items-center md:place-items-start md:text-left">
 			<h1 class="text-3xl font-bold tracking-tight text-background-on sm:text-4xl sm:text-6xl">
 				Let's do this.
 			</h1>
