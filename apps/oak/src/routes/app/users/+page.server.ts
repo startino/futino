@@ -11,8 +11,7 @@ import { createUserByAdminSchema, updateUserByAdminSchema } from '$lib/schemas';
 import type { JoinedProfile } from '$lib/types';
 import { PUBLIC_SITE_URL, PUBLIC_SMTP_USER } from '$env/static/public';
 
-export const load = async ({ locals: { iam } }) => {
-	iam.isAllowedTo('profiles.create');
+export const load = async () => {
 	const createForm = await superValidate(zod(createUserByAdminSchema));
 	const updateForm = await superValidate(zod(updateUserByAdminSchema));
 	return { createForm, updateForm };
