@@ -7,7 +7,6 @@ import {
 } from '$env/static/private';
 import { dev } from '$app/environment';
 
-import path from 'path';
 import nodemailer from 'nodemailer';
 import hbs from 'nodemailer-express-handlebars';
 import type { Database } from '$lib/server/supabase.types';
