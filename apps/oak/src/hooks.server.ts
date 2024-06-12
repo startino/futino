@@ -1,6 +1,5 @@
 import { PUBLIC_SUPABASE_URL, PUBLIC_SMTP_USER } from '$env/static/public';
 import {
-	STRIPE_SECRET_KEY,
 	SUPABASE_SERVICE_ROLE_KEY,
 	SMTP_HOST,
 	SMTP_PASSWORD,
@@ -10,7 +9,6 @@ import {
 import path from 'path';
 import nodemailer from 'nodemailer';
 import hbs from 'nodemailer-express-handlebars';
-import { Stripe } from 'stripe';
 import type { Database } from '$lib/server/supabase.types';
 import { createSupabaseServerClient } from '@supabase/auth-helpers-sveltekit';
 import { error, redirect, type Handle } from '@sveltejs/kit';
@@ -58,6 +56,8 @@ export const handle: Handle = async ({ event, resolve }) => {
 			user: PUBLIC_SMTP_USER,
 			pass: SMTP_PASSWORD
 		});
+
+		console.info(process.cwd() + (dev ? '/src' : '') + '/email-templates');
 
 		if (!event.locals.iam.canAccess(event)) return error(403, 'Forbidden action!');
 	}
