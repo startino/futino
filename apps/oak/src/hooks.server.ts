@@ -1,10 +1,11 @@
-import { PUBLIC_SUPABASE_URL, PUBLIC_SMTP_USER} from '$env/static/public';
+import { PUBLIC_SUPABASE_URL, PUBLIC_SMTP_USER } from '$env/static/public';
 import {
 	SUPABASE_SERVICE_ROLE_KEY,
 	SMTP_HOST,
 	SMTP_PASSWORD,
 	SMTP_PORT
 } from '$env/static/private';
+import { dev } from '$app/environment';
 
 import path from 'path';
 import nodemailer from 'nodemailer';
@@ -88,10 +89,10 @@ export const createSMPTransport = ({ host, port, user, pass }: SMTPOptions) => {
 
 	const handlebarOptions = {
 		viewEngine: {
-			partialsDir: path.join(process.cwd(), '/src/email-templates/'),
+			partialsDir: path.join(process.cwd(), `${dev ? '/src' : ''}/email-templates/`),
 			defaultLayout: false
 		},
-		viewPath: path.join(process.cwd(), '/src/email-templates/')
+		partialsDir: path.join(process.cwd(), `${dev ? '/src' : ''}/email-templates/`)
 	};
 
 	transporter.use('compile', hbs(handlebarOptions));
