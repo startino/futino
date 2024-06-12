@@ -87,7 +87,7 @@ export const createSMPTransport = ({ host, port, user, pass }: SMTPOptions) => {
 		}
 	});
 
-	const templatesPath = path.join(process.cwd(), dev ? 'src' : '', 'email-templates');
+	const templatesPath = process.cwd() + (dev ? '/src' : '') + '/email-templates';
 
 	const handlebarOptions = {
 		viewEngine: {
