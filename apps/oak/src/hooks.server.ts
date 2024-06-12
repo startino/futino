@@ -1,11 +1,10 @@
-import { PUBLIC_SUPABASE_URL, PUBLIC_SMTP_USER } from '$env/static/public';
+import { PUBLIC_SUPABASE_URL, PUBLIC_SMTP_USER} from '$env/static/public';
 import {
 	SUPABASE_SERVICE_ROLE_KEY,
 	SMTP_HOST,
 	SMTP_PASSWORD,
 	SMTP_PORT
 } from '$env/static/private';
-import { dev } from '$app/environment';
 
 import path from 'path';
 import nodemailer from 'nodemailer';
