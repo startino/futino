@@ -87,12 +87,14 @@ export const createSMPTransport = ({ host, port, user, pass }: SMTPOptions) => {
 		}
 	});
 
+	const templatesPath = path.join(process.cwd(), dev ? 'src' : '', 'email-templates');
+
 	const handlebarOptions = {
 		viewEngine: {
-			partialsDir: path.join(process.cwd(), `${dev ? '/src' : ''}/email-templates/`),
+			partialsDir: templatesPath,
 			defaultLayout: false
 		},
-		partialsDir: path.join(process.cwd(), `${dev ? '/src' : ''}/email-templates/`)
+		partialsDir: templatesPath
 	};
 
 	transporter.use('compile', hbs(handlebarOptions));
