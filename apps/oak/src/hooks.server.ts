@@ -1,16 +1,20 @@
-import { PUBLIC_SUPABASE_URL, PUBLIC_SMTP_USER } from '$env/static/public';
 import {
-	STRIPE_SECRET_KEY,
+	PUBLIC_SUPABASE_URL,
+	PUBLIC_SMTP_USER,
+	PUBLIC_EMAIL_TEMPLATES_LOCAL_PATH,
+	PUBLIC_EMAIL_TEMPLATES_VERCEL_PATH
+} from '$env/static/public';
+import {
 	SUPABASE_SERVICE_ROLE_KEY,
 	SMTP_HOST,
 	SMTP_PASSWORD,
 	SMTP_PORT
 } from '$env/static/private';
+import { dev } from '$app/environment';
 
 import path from 'path';
 import nodemailer from 'nodemailer';
 import hbs from 'nodemailer-express-handlebars';
-import { Stripe } from 'stripe';
 import type { Database } from '$lib/server/supabase.types';
 import { createSupabaseServerClient } from '@supabase/auth-helpers-sveltekit';
 import { error, redirect, type Handle } from '@sveltejs/kit';
@@ -90,10 +94,14 @@ export const createSMPTransport = ({ host, port, user, pass }: SMTPOptions) => {
 
 	const handlebarOptions = {
 		viewEngine: {
-			partialsDir: path.resolve('./src/lib/email-templates/'),
+			partialsDir: dev
+				? path.resolve(PUBLIC_EMAIL_TEMPLATES_LOCAL_PATH)
+				: path.resolve(PUBLIC_EMAIL_TEMPLATES_VERCEL_PATH),
 			defaultLayout: false
 		},
-		viewPath: path.resolve('./src/lib/email-templates/')
+		viewPath: dev
+			? path.resolve(PUBLIC_EMAIL_TEMPLATES_LOCAL_PATH)
+			: path.resolve(PUBLIC_EMAIL_TEMPLATES_VERCEL_PATH)
 	};
 
 	transporter.use('compile', hbs(handlebarOptions));
