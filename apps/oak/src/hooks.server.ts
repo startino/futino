@@ -1,19 +1,22 @@
 import { PUBLIC_SUPABASE_URL, PUBLIC_SMTP_USER } from '$env/static/public';
 import {
+	STRIPE_SECRET_KEY,
 	SUPABASE_SERVICE_ROLE_KEY,
 	SMTP_HOST,
 	SMTP_PASSWORD,
 	SMTP_PORT
 } from '$env/static/private';
-import { dev } from '$app/environment';
 
+import path from 'path';
 import nodemailer from 'nodemailer';
 import hbs from 'nodemailer-express-handlebars';
+import { Stripe } from 'stripe';
 import type { Database } from '$lib/server/supabase.types';
 import { createSupabaseServerClient } from '@supabase/auth-helpers-sveltekit';
 import { error, redirect, type Handle } from '@sveltejs/kit';
 import { IAM } from '$lib/iam';
 import type { JoinedProfile } from '$lib/types';
+import { dev } from '$app/environment';
 
 export const handle: Handle = async ({ event, resolve }) => {
 	const supabase = createSupabaseServerClient<Database>({
@@ -56,8 +59,6 @@ export const handle: Handle = async ({ event, resolve }) => {
 			pass: SMTP_PASSWORD
 		});
 
-		console.info(process.cwd() + (dev ? '/src' : '') + '/email-templates');
-
 		if (!event.locals.iam.canAccess(event)) return error(403, 'Forbidden action!');
 	}
 
@@ -88,12 +89,16 @@ export const createSMPTransport = ({ host, port, user, pass }: SMTPOptions) => {
 		}
 	});
 
+	const templatesPath = dev
+		? path.resolve('./src/email-templates/')
+		: path.resolve('./email-templates/');
+
 	const handlebarOptions = {
 		viewEngine: {
-			partialsDir: process.cwd() + (dev ? '/src' : '') + '/email-templates',
+			partialsDir: templatesPath,
 			defaultLayout: false
 		},
-		partialsDir: process.cwd() + (dev ? '/src' : '') + '/email-templates'
+		viewPath: templatesPath
 	};
 
 	transporter.use('compile', hbs(handlebarOptions));
