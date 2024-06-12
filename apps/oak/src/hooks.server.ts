@@ -7,7 +7,6 @@ import {
 } from '$env/static/private';
 import { dev } from '$app/environment';
 
-import path from 'path';
 import nodemailer from 'nodemailer';
 import hbs from 'nodemailer-express-handlebars';
 import type { Database } from '$lib/server/supabase.types';
@@ -87,7 +86,7 @@ export const createSMPTransport = ({ host, port, user, pass }: SMTPOptions) => {
 		}
 	});
 
-	const templatesPath = path.join(process.cwd(), dev ? 'src' : '', 'email-templates');
+	const templatesPath = process.cwd() + (dev ? '/src' : '') + '/email-templates';
 
 	const handlebarOptions = {
 		viewEngine: {
