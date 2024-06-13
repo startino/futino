@@ -214,19 +214,6 @@
 								<Form.FieldErrors />
 							</Form.Field>
 
-							<Form.Field {form} name="number">
-								<Form.Control let:attrs>
-									<Form.Label>Contract number</Form.Label>
-									<Input
-										type="number"
-										{...attrs}
-										bind:value={$formData.number}
-										on:change={(e) => ($formData.number = +e.currentTarget.value)}
-									/>
-								</Form.Control>
-								<Form.FieldErrors />
-							</Form.Field>
-
 							<Form.Field {form} name="description">
 								<Form.Control let:attrs>
 									<Form.Label>Description</Form.Label>

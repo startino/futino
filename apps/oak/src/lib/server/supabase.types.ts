@@ -367,7 +367,7 @@ export type Database = {
             referencedColumns: ["id"]
           },
           {
-            foreignKeyName: "contracts_parent_contract_fkey"
+            foreignKeyName: "contracts_parent_contract_id_fkey"
             columns: ["parent_contract_id"]
             isOneToOne: false
             referencedRelation: "contracts"

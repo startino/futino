@@ -1,6 +1,5 @@
 import { z } from 'zod';
 import type { Enums } from '$lib/server/supabase.types';
-import { zod } from 'sveltekit-superforms/adapters';
 
 export const billRejectionSchema = z.object({
 	bill_id: z.string().uuid(),
@@ -149,7 +148,6 @@ export const contractSchema = z
 		start_date: z.date(),
 		end_date: z.date(),
 		description: z.string().min(5, 'Description must be at least 5 characters long'),
-		number: z.number().gt(0, 'The contract number is required'),
 		project_id: z.string().uuid('A project is required'),
 		account_id: z.string().uuid('An account is required'),
 		department_id: z.string().uuid('A department is required'),
