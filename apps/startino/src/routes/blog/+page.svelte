@@ -11,7 +11,7 @@
 	metadescription="This is a collection of blogs written by Startino to help entrepreneurs and startups with their software startup journey"
 />
 
-<div class="md:py py-36 sm:py-32">
+<div class="py-36 sm:py-32">
 	<div class="mx-auto max-w-7xl px-6 lg:px-8">
 		<div class="mx-auto max-w-2xl lg:max-w-4xl">
 			<h2 class="text-3xl">Blog</h2>
