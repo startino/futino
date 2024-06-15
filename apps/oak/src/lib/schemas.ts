@@ -1,8 +1,8 @@
 import { z } from 'zod';
 import type { Enums } from '$lib/server/supabase.types';
 
-export const billRejectionSchema = z.object({
-	bill_id: z.string().uuid(),
+export const rejectionSchema = z.object({
+	id: z.string().uuid(),
 	note: z.string()
 });
 
@@ -144,7 +144,7 @@ export const registrationSchema = z.object({
 
 export const contractSchema = z
 	.object({
-		parent_contract_id: z.string().optional(),
+		parent_contract_id: z.string().optional().nullable(),
 		start_date: z.date(),
 		end_date: z.date(),
 		description: z.string().min(5, 'Description must be at least 5 characters long'),

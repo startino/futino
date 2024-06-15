@@ -271,6 +271,45 @@ export type Database = {
           },
         ]
       }
+      contract_rejections: {
+        Row: {
+          contract_id: string | null
+          created_at: string
+          creator_id: string
+          id: string
+          note: string | null
+        }
+        Insert: {
+          contract_id?: string | null
+          created_at?: string
+          creator_id: string
+          id?: string
+          note?: string | null
+        }
+        Update: {
+          contract_id?: string | null
+          created_at?: string
+          creator_id?: string
+          id?: string
+          note?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "contract_rejections_contract_id_fkey"
+            columns: ["contract_id"]
+            isOneToOne: false
+            referencedRelation: "contracts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "contract_rejections_creator_id_fkey"
+            columns: ["creator_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       contracts: {
         Row: {
           account_id: string | null
@@ -701,7 +740,8 @@ export type Database = {
         | "active"
         | "finished"
         | "under review"
-        | "pending signing"
+        | "approved"
+        | "rejected"
       group: "member"
       role: "admin" | "employee" | "signer"
     }

@@ -1,4 +1,6 @@
-import type { Tables } from '$lib/server/supabase.types';
+import type { SupabaseClient } from '@supabase/supabase-js';
+
+import type { Tables, Database } from '$lib/server/supabase.types';
 import type { IAM } from './iam';
 import {
 	createAccounts,
@@ -13,6 +15,8 @@ import {
 
 export type { ReportDataTableRow, ReportContracts } from '$lib/server/db/report';
 export type { BillDataTableRow } from '$lib/server/db/bills';
+
+export type Client = SupabaseClient<Database>;
 
 export interface EmailContextMap {
 	'new-entry': { link: { url: string; label: string }; entryName: 'bill' | 'contract' };

@@ -17,7 +17,7 @@
 	import { Textarea } from '$lib/components/ui/textarea';
 
 	import { formatAmount, toDateString, pdfjsLib, renderPDF, getContext } from '$lib/utils';
-	import { billRejectionSchema } from '$lib/schemas';
+	import { rejectionSchema } from '$lib/schemas';
 	import BillForm from '../bill-form.svelte';
 
 	export let data;
@@ -27,7 +27,7 @@
 	const title = `Bill for #${bill.contract.number} ${bill.contract.vendor.name}`;
 
 	const rejectionForm = superForm(data.rejectionForm, {
-		validators: zodClient(billRejectionSchema),
+		validators: zodClient(rejectionSchema),
 		onUpdate: ({ form }) => {
 			if (form.valid) {
 				toast.success('Bill rejected!');
@@ -79,7 +79,7 @@
 
 	$: bill = data.bill;
 	$: rejection = bill.status === 'rejected' ? bill.rejections[bill.rejections.length - 1] : null;
-	$rejectionData.bill_id = bill.id;
+	$rejectionData.id = bill.id;
 	$approvalData.bill_id = bill.id;
 	$approvalData.time_zone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 </script>
@@ -224,7 +224,7 @@
 		{#if ($currentProfile.id === bill.approver_id || $currentProfile.roles.includes('signer')) && !['rejected', 'approved'].includes(bill.status)}
 			{#if showRejectionForm}
 				<form method="post" action="?/reject" use:rejectionEnhance>
-					<input hidden name="bill_id" value={$rejectionData.bill_id} />
+					<input hidden name="id" value={$rejectionData.id} />
 					<Form.Field form={rejectionForm} name="note">
 						<Form.Control let:attrs>
 							<Form.Label>Add a note</Form.Label>

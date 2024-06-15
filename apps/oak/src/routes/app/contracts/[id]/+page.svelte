@@ -1,19 +1,40 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { toast } from 'svelte-sonner';
-	import { View, Loader2 } from 'lucide-svelte';
+	import { View, Loader2, StickyNote } from 'lucide-svelte';
 	import type { PDFDocumentProxy } from 'pdfjs-dist';
+	import { superForm } from 'sveltekit-superforms';
+	import { zodClient } from 'sveltekit-superforms/adapters';
 
 	import { enhance } from '$app/forms';
-	import { pdfjsLib, formatAmount, getContext, renderPDF } from '$lib/utils';
+	import { pdfjsLib, formatAmount, getContext, renderPDF, toDateString } from '$lib/utils';
 	import { Badge } from '$lib/components/ui/badge';
 	import * as Breadcrumb from '$lib/components/ui/breadcrumb';
 	import * as Dialog from '$lib/components/ui/dialog';
 	import { Button } from '$lib/components/ui/button';
 	import * as Card from '$lib/components/ui/card';
+	import * as Form from '$lib/components/ui/form';
+	import * as Alert from '$lib/components/ui/alert';
+	import { Textarea } from '$lib/components/ui/textarea';
+	import { rejectionSchema } from '$lib/schemas';
 
 	export let data;
 	export let form;
+
+	const rejectionForm = superForm(data.rejectionForm, {
+		validators: zodClient(rejectionSchema),
+		onUpdate: ({ form }) => {
+			if (form.valid) {
+				toast.success('Contract rejected!');
+			}
+		}
+	});
+	const {
+		form: rejectionData,
+		delayed: rejectionDelayed,
+		enhance: rejectionEnhance,
+		errors: rejectionErrors
+	} = rejectionForm;
 
 	const currentProfile = getContext('currentProfile');
 
@@ -22,6 +43,7 @@
 	let pdfContainer: HTMLElement;
 	let isLoadingPDF = true;
 	let isApproving = false;
+	let showRejectionForm = false;
 
 	const isSigner = $currentProfile.roles.includes('signer');
 
@@ -42,7 +64,7 @@
 	};
 
 	$: contract = data.contract;
-	$: isCurrentApprover = contract.approver && $currentProfile.id === contract.approver.id;
+	$: isApprover = contract.approver && $currentProfile.id === contract.approver.id;
 	$: if (form?.success) {
 		toast.success(form.success);
 	}
@@ -50,6 +72,9 @@
 	$: if (form?.success || form?.error) {
 		isApproving = false;
 	}
+	$: $rejectionData.id = contract.id;
+	$: rejection =
+		contract.status === 'rejected' ? contract.rejections[contract.rejections.length - 1] : null;
 </script>
 
 <Breadcrumb.Root class="mb-6">
@@ -73,8 +98,22 @@
 	<Card.Content class="grid gap-6">
 		<div class="flex gap-2">
 			<h2 class="font-bold">Status:</h2>
-			<p><Badge>{contract.status}</Badge></p>
+			<p>
+				<Badge variant={contract.status === 'rejected' ? 'destructive' : 'default'}
+					>{contract.status}</Badge
+				>
+			</p>
 		</div>
+
+		{#if rejection && $currentProfile.id === contract.owner_id}
+			<div>
+				<Alert.Root class="mb-2">
+					<StickyNote class="h-4 w-4" />
+					<Alert.Title>Note from {rejection.creator.full_name}:</Alert.Title>
+					<Alert.Description class="text-base">{rejection.note}</Alert.Description>
+				</Alert.Root>
+			</div>
+		{/if}
 
 		<div class="grid gap-2">
 			<h2 class="font-bold">Owner</h2>
@@ -96,6 +135,16 @@
 		<div class="grid gap-2">
 			<h2 class="font-bold">Amount</h2>
 			<p>{formatAmount(contract.amount)}</p>
+		</div>
+
+		<div class="grid gap-2">
+			<h2 class="font-bold">Start Date</h2>
+			<p>{toDateString(new Date(contract.start_date))}</p>
+		</div>
+
+		<div class="grid gap-2">
+			<h2 class="font-bold">End Date</h2>
+			<p>{toDateString(new Date(contract.end_date))}</p>
 		</div>
 
 		<div class="grid gap-2">
@@ -153,32 +202,77 @@
 			<span class="text-sm text-destructive">{form.error}</span>
 		{/if}
 
-		{#if !contract.signed}
-			{#if isCurrentApprover && !isSigner}
-				<form action="?/approve" method="post" use:enhance>
-					<input hidden value={contract.id} name="contract-id" />
-					<input hidden type="number" value={contract.amount} name="amount" />
-					<Button on:click={() => (isApproving = true)} class="w-full" type="submit">
-						{#if isApproving}
-							<Loader2 class="animate-spin" />
-						{:else}
-							Approve
-						{/if}
-					</Button>
-				</form>
-			{/if}
+		{#if (isApprover || isSigner) && !['rejected', 'signed'].includes(contract.status)}
+			{#if showRejectionForm}
+				<form method="post" action="?/reject" use:rejectionEnhance>
+					<input hidden name="id" value={$rejectionData.id} />
+					<Form.Field form={rejectionForm} name="note">
+						<Form.Control let:attrs>
+							<Form.Label>Add a note</Form.Label>
+							<Textarea bind:value={$rejectionData.note} {...attrs} />
+							<Form.FieldErrors />
+						</Form.Control>
+					</Form.Field>
+					<div class="mt-2 flex gap-4">
+						<Button type="submit" variant="destructive">
+							{#if $rejectionDelayed}
+								<Loader2 class="animate-spin" />
+							{:else}
+								Reject
+							{/if}
+						</Button>
 
-			{#if (isCurrentApprover && isSigner) || isSigner}
-				<form action="?/sign" method="post" use:enhance>
-					<input hidden value={contract.id} name="contract-id" />
-					<Button on:click={() => (isApproving = true)} class="w-full" type="submit">
-						{#if isApproving}
-							<Loader2 class="animate-spin" />
-						{:else}
-							Sign
-						{/if}
-					</Button>
+						<Button type="button" variant="outline" on:click={() => (showRejectionForm = false)}
+							>Cancel</Button
+						>
+					</div>
+
+					{#if $rejectionErrors?._errors}
+						<div class=" text-sm text-destructive">{$rejectionErrors._errors[0]}</div>
+					{/if}
 				</form>
+			{:else}
+				{#if isApprover && !isSigner}
+					<form action="?/approve" method="post" use:enhance>
+						<input hidden value={contract.id} name="contract-id" />
+						<div class="mt-4 flex gap-4">
+							<Button on:click={() => (isApproving = true)} type="submit">
+								{#if isApproving}
+									<Loader2 class="animate-spin" />
+								{:else}
+									Approve
+								{/if}
+							</Button>
+
+							<Button
+								type="button"
+								variant="destructive"
+								on:click={() => (showRejectionForm = true)}>Reject</Button
+							>
+						</div>
+					</form>
+				{/if}
+
+				{#if isSigner}
+					<form action="?/sign" method="post" use:enhance>
+						<input hidden value={contract.id} name="contract-id" />
+						<div class="mt-4 flex gap-4">
+							<Button on:click={() => (isApproving = true)} type="submit">
+								{#if isApproving}
+									<Loader2 class="animate-spin" />
+								{:else}
+									Sign
+								{/if}
+							</Button>
+
+							<Button
+								type="button"
+								variant="destructive"
+								on:click={() => (showRejectionForm = true)}>Reject</Button
+							>
+						</div>
+					</form>
+				{/if}
 			{/if}
 		{/if}
 	</Card.Content>
