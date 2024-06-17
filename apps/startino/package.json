@@ -64,7 +64,7 @@
 		"esm-seedrandom": "^3.0.5",
 		"force": "^0.0.3",
 		"formsnap": "^1.0.0",
-		"lucide-svelte": "^0.391.0",
+		"lucide-svelte": "^0.395.0",
 		"mdsvex": "^0.11.2",
 		"mode-watcher": "^0.3.0",
 		"nodemailer": "^6.9.13",
