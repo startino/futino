@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { toast } from 'svelte-sonner';
-	import { View, Loader2, StickyNote } from 'lucide-svelte';
+	import { View, Loader2, StickyNote, Edit } from 'lucide-svelte';
 	import type { PDFDocumentProxy } from 'pdfjs-dist';
 	import { superForm } from 'sveltekit-superforms';
 	import { zodClient } from 'sveltekit-superforms/adapters';
@@ -17,6 +17,8 @@
 	import * as Alert from '$lib/components/ui/alert';
 	import { Textarea } from '$lib/components/ui/textarea';
 	import { rejectionSchema } from '$lib/schemas';
+	import ContractForm from '../contract-form.svelte';
+	import { FormDialog } from '$lib/components/ui/form-dialog';
 
 	export let data;
 	export let form;
@@ -44,6 +46,7 @@
 	let isLoadingPDF = true;
 	let isApproving = false;
 	let showRejectionForm = false;
+	let contractFormOpen = false;
 
 	const isSigner = $currentProfile.roles.includes('signer');
 
@@ -112,6 +115,23 @@
 					<Alert.Title>Note from {rejection.creator.full_name}:</Alert.Title>
 					<Alert.Description class="text-base">{rejection.note}</Alert.Description>
 				</Alert.Root>
+				<FormDialog bind:open={contractFormOpen} title="Edit Contract">
+					<svelte:fragment slot="trigger">
+						<Dialog.Trigger>
+							<Button size="sm" class="gap-1"><Edit class="h-4 w-4" />Edit contract</Button>
+						</Dialog.Trigger>
+					</svelte:fragment>
+
+					<ContractForm
+						action={`?/update&id=${contract.id}&approverId=${rejection.creator_id}`}
+						type="update"
+						data={data.optionalContractForm}
+						onSuccess={() => {
+							contractFormOpen = false;
+							toast.success('Bill updated!');
+						}}
+					/>
+				</FormDialog>
 			</div>
 		{/if}
 

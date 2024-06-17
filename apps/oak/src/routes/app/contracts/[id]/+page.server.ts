@@ -7,7 +7,7 @@ import { PUBLIC_SMTP_USER } from '$env/static/public';
 import { PUBLIC_SITE_URL } from '$env/static/public';
 import type { Tables } from '$lib/server/supabase.types.js';
 import { findSigner } from '$lib/server/db/profiles';
-import { rejectionSchema } from '$lib/schemas';
+import { rejectionSchema, optionalContractSchema } from '$lib/schemas';
 import { sendEmailNotif } from '$lib/utils';
 
 export const load = async ({ locals: { supabase }, params }) => {
@@ -29,7 +29,15 @@ export const load = async ({ locals: { supabase }, params }) => {
 		.from('contract-attachments')
 		.createSignedUrl(contract.attachment, 60 * 60 * 24);
 
-	return { contract, attachmentUrl: signedUrl, rejectionForm };
+	const optionalContractForm = await superValidate(
+		{
+			...contract,
+			attachment: undefined
+		},
+		zod(optionalContractSchema)
+	);
+
+	return { contract, attachmentUrl: signedUrl, rejectionForm, optionalContractForm };
 };
 
 export const actions = {
@@ -196,5 +204,39 @@ export const actions = {
 
 			return { rejectionForm };
 		}
+	},
+	update: async ({ request, locals: { supabase, smtpTransporter }, url }) => {
+		const optionalContractForm = await superValidate(request, zod(optionalContractSchema));
+		const contractId = url.searchParams.get('id');
+		const approverId = url.searchParams.get('approverId');
+
+		if (!optionalContractForm.valid || !contractId || !approverId) {
+			return fail(400, { optionalContractForm });
+		}
+
+		const formData = optionalContractForm.data;
+
+		const { error: updateError } = await supabase
+			.from('contracts')
+			.update({ ...formData, attachment: undefined, status: 'pending approval' })
+			.eq('id', contractId);
+
+		if (updateError) {
+			console.log({ updateError });
+			return setError(optionalContractForm, 'Unable to update the contract. Please try again');
+		}
+
+		sendEmailNotif('new-entry', {
+			subject: 'Updated Contract',
+			receiverProfileId: approverId,
+			client: supabase,
+			smtp: smtpTransporter,
+			context: {
+				link: { url: `${PUBLIC_SITE_URL}/app/contracts/${contractId}`, label: 'View Contract' },
+				entryName: 'contract'
+			}
+		});
+
+		return { optionalContractForm };
 	}
 };

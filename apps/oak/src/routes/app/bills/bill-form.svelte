@@ -37,7 +37,9 @@
 				dueDate = undefined;
 				accrualPeriod = undefined;
 				fileName = null;
-				reset();
+				if (type === 'create') {
+					reset();
+				}
 			}
 		}
 	});

@@ -142,28 +142,31 @@ export const registrationSchema = z.object({
 	user: userSchema
 });
 
-export const contractSchema = z
-	.object({
-		parent_contract_id: z.string().optional().nullable(),
-		start_date: z.date(),
-		end_date: z.date(),
-		description: z.string().min(5, 'Description must be at least 5 characters long'),
-		project_id: z.string().uuid('A project is required'),
-		account_id: z.string().uuid('An account is required'),
-		department_id: z.string().uuid('A department is required'),
-		amount: z.number().gt(0, 'An amount is required'),
-		spend_category_id: z.string().uuid('A spend category is required'),
-		attachment: z
-			.instanceof(File, { message: 'Please upload the contract PDF.' })
-			.refine((f) => f.size / 1024 / 1024 < 5, 'Max 5 MiB upload size.'),
-		vendor_id: z.string().uuid('The vendor is required')
-	})
-	.refine((v) => v.start_date <= v.end_date, {
-		message: "End date can't be before start date",
-		path: ['end_date']
-	});
+export const contractSchema = z.object({
+	parent_contract_id: z.string().optional().nullable(),
+	start_date: z.string().date(),
+	end_date: z.string().date(),
+	description: z.string().min(5, 'Description must be at least 5 characters long'),
+	project_id: z.string().uuid('A project is required'),
+	account_id: z.string().uuid('An account is required'),
+	department_id: z.string().uuid('A department is required'),
+	amount: z.number().gt(0, 'An amount is required'),
+	spend_category_id: z.string().uuid('A spend category is required'),
+	attachment: z
+		.instanceof(File, { message: 'Please upload the contract PDF.' })
+		.refine((f) => f.size / 1024 / 1024 < 5, 'Max 5 MiB upload size.'),
+	vendor_id: z.string().uuid('The vendor is required')
+});
+// .refine((v) => v.start_date <= v.end_date, {
+// 	message: "End date can't be before start date",
+// 	path: ['end_date']
+// });
 
-export type ContractEntryForm = typeof contractSchema;
+export type ContractSchema = typeof contractSchema;
+
+export const optionalContractSchema = contractSchema.partial();
+
+export type OptionalContractSchema = typeof optionalContractSchema;
 
 export const orgManagementSchema = z.object({
 	name: z.string().min(1, 'An organization name is required'),

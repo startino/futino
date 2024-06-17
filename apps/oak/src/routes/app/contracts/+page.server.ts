@@ -20,7 +20,6 @@ export const load = async ({ locals: { currentProfile, supabase } }) => {
 
 	if (e) {
 		console.error(e);
-
 		error(500, 'Something went wrong!');
 	}
 
@@ -84,8 +83,6 @@ export const actions = {
 				organization_id: currentProfile.organization_id,
 				approver_id: approver ? approver.id : null,
 				owner_id: currentProfile.id,
-				start_date: formData.start_date.toISOString(),
-				end_date: formData.end_date.toISOString(),
 				attachment: path
 			})
 			.select('*, vendor:vendors (*)')

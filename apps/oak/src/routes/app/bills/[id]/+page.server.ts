@@ -225,7 +225,7 @@ export const actions = {
 		}
 
 		sendEmailNotif('new-entry', {
-			subject: 'New Bill',
+			subject: 'Updated Bill',
 			receiverProfileId: bill.approver_id,
 			client: supabase,
 			smtp: smtpTransporter,
