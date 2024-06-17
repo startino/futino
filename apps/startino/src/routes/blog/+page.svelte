@@ -11,12 +11,12 @@
 	metadescription="This is a collection of blogs written by Startino to help entrepreneurs and startups with their software startup journey"
 />
 
-<div class="md:py py-36 sm:py-32">
+<div class="py-36 sm:py-32">
 	<div class="mx-auto max-w-7xl px-6 lg:px-8">
 		<div class="mx-auto max-w-2xl lg:max-w-4xl">
 			<h2 class="text-3xl">Blog</h2>
 			<p class="mt-2 text-center text-lg leading-8 text-foreground/80"></p>
-			<div class="mx-auto mt-16 space-y-20 text-center lg:mt-20 lg:space-y-20">
+			<div class="mx-auto mt-16 space-y-8 lg:space-y-10 text-center lg:mt-20  flex flex-col">
 				{#each data.posts as post}
 					{#if post.published}
 						<a href="/blog/{post.slug}" class="group">
@@ -25,7 +25,7 @@
 								data-pubdate={post.date}
 							>
 								<div
-									class="aspect-[16:9] relative col-span-1 sm:aspect-[2/1] lg:aspect-1 lg:h-full lg:shrink-0"
+									class="aspect-[16/9] relative col-span-1 sm:aspect-[2/1] lg:aspect-1 lg:h-full lg:shrink-0"
 								>
 									<img
 										src={post.thumbnail}
@@ -33,7 +33,7 @@
 										class="absolute inset-0 h-full w-full rounded-2xl bg-card/20 object-cover"
 									/>
 									<div
-										class="absolute inset-0 rounded-2xl ring-1 ring-inset ring-background/10"
+										class="absolute inset-0 rounded-2xl ring-2 ring-inset ring-primary/10"
 									></div>
 								</div>
 								<div class="col-span-3">
