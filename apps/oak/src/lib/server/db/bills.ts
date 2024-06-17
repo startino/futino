@@ -1,5 +1,4 @@
-import type { SupabaseClient } from '@supabase/supabase-js';
-import type { Database } from '../supabase.types';
+import type { Client } from '$lib/types';
 
 export const getBillById = async ({ client, id }: { client: Client; id: string }) =>
 	await client
@@ -38,7 +37,6 @@ export const getBillDataTableRow = async ({ client, orgId }: { client: Client; o
 		.eq('organization_id', orgId)
 		.order('created_at', { ascending: false });
 
-type Client = SupabaseClient<Database>;
 type QueryResult = ReturnType<typeof getBillDataTableRow> extends Promise<infer R> ? R : never;
 type QueryData = QueryResult extends { data: infer D } ? D : never;
 export type BillDataTableRow = QueryData extends (infer U)[] ? U : never;

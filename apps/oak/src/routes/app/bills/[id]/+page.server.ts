@@ -4,13 +4,8 @@ import { zod } from 'sveltekit-superforms/adapters';
 import { today } from '@internationalized/date';
 
 import { getBillById } from '$lib/server/db';
-import {
-	billApprovalSchema,
-	billRejectionSchema,
-	billSchema,
-	optionalBillSchema
-} from '$lib/schemas';
-import { sendEmailNotif } from '$lib/utils.js';
+import { billApprovalSchema, rejectionSchema, optionalBillSchema } from '$lib/schemas';
+import { sendEmailNotif } from '$lib/utils';
 import { PUBLIC_SITE_URL } from '$env/static/public';
 
 export const load = async ({ locals: { supabase }, params }) => {
@@ -27,7 +22,7 @@ export const load = async ({ locals: { supabase }, params }) => {
 	} = await supabase.storage.from('invoices').createSignedUrl(bill.attachment, 60 * 60 * 24);
 
 	const approvalForm = await superValidate(zod(billApprovalSchema));
-	const rejectionForm = await superValidate(zod(billRejectionSchema));
+	const rejectionForm = await superValidate(zod(rejectionSchema));
 	const optionalBillForm = await superValidate(
 		{ ...bill, attachment: undefined },
 		zod(optionalBillSchema)
@@ -94,7 +89,7 @@ export const actions = {
 		}
 	},
 	reject: async ({ request, locals: { currentProfile, supabase, smtpTransporter } }) => {
-		const rejectionForm = await superValidate(request, zod(billRejectionSchema));
+		const rejectionForm = await superValidate(request, zod(rejectionSchema));
 
 		if (!rejectionForm.valid) {
 			return fail(400, { rejectionForm });
@@ -105,7 +100,7 @@ export const actions = {
 		const { data: bill, error } = await supabase
 			.from('bills')
 			.select()
-			.eq('id', formData.bill_id)
+			.eq('id', formData.id)
 			.single();
 
 		if (error) {
@@ -134,7 +129,7 @@ export const actions = {
 
 			const { error: rejectionError } = await supabase
 				.from('bill_rejections')
-				.insert({ creator_id: currentProfile.id, ...formData });
+				.insert({ creator_id: currentProfile.id, ...formData, bill_id: formData.id });
 
 			if (rejectionError) {
 				console.log({ rejectionError });
@@ -230,7 +225,7 @@ export const actions = {
 		}
 
 		sendEmailNotif('new-entry', {
-			subject: 'New Bill',
+			subject: 'Updated Bill',
 			receiverProfileId: bill.approver_id,
 			client: supabase,
 			smtp: smtpTransporter,

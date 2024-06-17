@@ -20,7 +20,6 @@ export const load = async ({ locals: { currentProfile, supabase } }) => {
 
 	if (e) {
 		console.error(e);
-
 		error(500, 'Something went wrong!');
 	}
 
@@ -65,11 +64,11 @@ export const actions = {
 			);
 		}
 
-		const { approver, error: approverError } = await findApprover(
-			currentProfile,
-			formData.amount,
-			supabase
-		);
+		const { approver, error: approverError } = await findApprover({
+			profile: currentProfile,
+			amount: formData.amount,
+			client: supabase
+		});
 
 		if (approverError) {
 			return setError(withFiles(form), 'Unable to add contract. Please try again.', {
@@ -84,12 +83,9 @@ export const actions = {
 				organization_id: currentProfile.organization_id,
 				approver_id: approver ? approver.id : null,
 				owner_id: currentProfile.id,
-				start_date: formData.start_date.toISOString(),
-				end_date: formData.end_date.toISOString(),
 				attachment: path
 			})
-			.select('*, vendor:vendor_id (*)')
-			.returns<Array<Tables<'contracts'> & { vendor: Tables<'vendors'> }>>()
+			.select('*, vendor:vendors (*)')
 			.single();
 
 		if (contractError) {

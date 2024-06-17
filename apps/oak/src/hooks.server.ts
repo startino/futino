@@ -57,8 +57,6 @@ export const handle: Handle = async ({ event, resolve }) => {
 			pass: SMTP_PASSWORD
 		});
 
-		console.info(process.cwd() + (dev ? '/src' : '') + '/email-templates');
-
 		if (!event.locals.iam.canAccess(event)) return error(403, 'Forbidden action!');
 	}
 

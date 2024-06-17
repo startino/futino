@@ -58,7 +58,11 @@ export const actions = {
 			);
 		}
 
-		const { approver } = await findApprover(currentProfile, formData.amount, supabase);
+		const { approver } = await findApprover({
+			profile: currentProfile,
+			amount: formData.amount,
+			client: supabase
+		});
 
 		const { data, error } = await supabase
 			.from('bills')
