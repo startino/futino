@@ -18,7 +18,7 @@ export const getReportContracts = async ({ supabase, orgId }: Option) =>
   `
 		)
 		.eq('organization_id', orgId)
-		.eq('status', 'active');
+		.eq('signed', true);
 
 export interface ReportDataTableRow extends ReportContractsItem {
 	billedAmount: number;

@@ -273,21 +273,21 @@ export type Database = {
       }
       contract_rejections: {
         Row: {
-          contract_id: string | null
+          contract_id: string
           created_at: string
           creator_id: string
           id: string
           note: string | null
         }
         Insert: {
-          contract_id?: string | null
+          contract_id?: string
           created_at?: string
           creator_id: string
           id?: string
           note?: string | null
         }
         Update: {
-          contract_id?: string | null
+          contract_id?: string
           created_at?: string
           creator_id?: string
           id?: string
@@ -626,6 +626,48 @@ export type Database = {
           id?: string
         }
         Relationships: []
+      }
+      reviewed_contract_changes: {
+        Row: {
+          contract_id: string
+          created_at: string
+          end_date: string | null
+          id: string
+          requester_id: string
+          start_date: string | null
+        }
+        Insert: {
+          contract_id: string
+          created_at?: string
+          end_date?: string | null
+          id?: string
+          requester_id?: string
+          start_date?: string | null
+        }
+        Update: {
+          contract_id?: string
+          created_at?: string
+          end_date?: string | null
+          id?: string
+          requester_id?: string
+          start_date?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "reviewed_contract_changes_contract_id_fkey"
+            columns: ["contract_id"]
+            isOneToOne: true
+            referencedRelation: "contracts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "reviewed_contract_changes_requester_id_fkey"
+            columns: ["requester_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       spend_categories: {
         Row: {

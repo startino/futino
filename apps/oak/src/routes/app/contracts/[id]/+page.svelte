@@ -222,7 +222,7 @@
 			<span class="text-sm text-destructive">{form.error}</span>
 		{/if}
 
-		{#if (isApprover || isSigner) && !['rejected', 'signed'].includes(contract.status)}
+		{#if (isApprover || isSigner) && !['rejected', 'active'].includes(contract.status)}
 			{#if showRejectionForm}
 				<form method="post" action="?/reject" use:rejectionEnhance>
 					<input hidden name="id" value={$rejectionData.id} />
