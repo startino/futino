@@ -785,7 +785,7 @@ export type Database = {
         | "approved"
         | "rejected"
       group: "member"
-      role: "admin" | "employee" | "signer"
+      role: "admin" | "employee" | "signer" | "finance"
     }
     CompositeTypes: {
       [_ in never]: never

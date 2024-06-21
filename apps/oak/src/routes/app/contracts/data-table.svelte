@@ -161,7 +161,7 @@
 			</div>
 		{/if}
 
-		{#if $currentProfile.roles.includes('admin')}
+		{#if $currentProfile.roles.includes('finance')}
 			<div class="flex items-center space-x-2">
 				<Switch id="contract-reviews" bind:checked={contractReviewsMode} />
 				<Label for="contract-reviews" class="text-sm text-primary">Contract Reviews Mode</Label>
@@ -170,7 +170,7 @@
 		<span class="flex-grow" />
 		<slot name="entry-form" />
 	</div>
-	{#if $currentProfile.roles.includes('admin') && contractReviewsMode}
+	{#if $currentProfile.roles.includes('finance') && contractReviewsMode}
 		<div class="mb-2">
 			<Button disabled={sendingReviews || selectedContracts.length === 0} on:click={handleReviews}>
 				{#if sendingReviews}
