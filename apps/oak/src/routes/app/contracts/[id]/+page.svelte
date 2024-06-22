@@ -78,6 +78,7 @@
 	$: $rejectionData.id = contract.id;
 	$: rejection =
 		contract.status === 'rejected' ? contract.rejections[contract.rejections.length - 1] : null;
+	$: reviewChange = contract.status === 'under review' ? contract.review_change : null;
 </script>
 
 <Breadcrumb.Root class="mb-6">
@@ -128,10 +129,61 @@
 						data={data.optionalContractForm}
 						onSuccess={() => {
 							contractFormOpen = false;
-							toast.success('Bill updated!');
+							toast.success('Contract updated!');
 						}}
 					/>
 				</FormDialog>
+			</div>
+		{/if}
+
+		{#if reviewChange && [contract.owner_id, reviewChange.requester_id].includes($currentProfile.id)}
+			<div>
+				<Alert.Root class="mb-2">
+					<StickyNote class="h-4 w-4" />
+					<Alert.Title class="mb-4"
+						>Review Requested by {reviewChange.requester.full_name}:</Alert.Title
+					>
+					{#if reviewChange.note}
+						<Alert.Description class="text-base">{reviewChange.note}</Alert.Description>
+					{/if}
+					<FormDialog bind:open={contractFormOpen} title="Edit Contract">
+						<svelte:fragment slot="trigger">
+							{#if reviewChange.status === 'idle' && contract.owner_id === $currentProfile.id}
+								<div class="flex gap-2">
+									<Dialog.Trigger>
+										<Button size="sm" class="gap-1"><Edit class="h-4 w-4" />Edit contract</Button>
+									</Dialog.Trigger>
+
+									<Button size="sm" class="gap-1" variant="outline">Dismiss</Button>
+								</div>
+							{:else if reviewChange.status === 'pending approval'}
+								<h3 class="mb-1">Changes pending for approval</h3>
+								<ul class="list-disc text-muted-foreground">
+									<li>
+										start date: {toDateString(new Date(contract.start_date))} -> {toDateString(
+											new Date(reviewChange.start_date)
+										)}
+									</li>
+									<li>
+										end date: {toDateString(new Date(contract.end_date))} -> {toDateString(
+											new Date(reviewChange.end_date)
+										)}
+									</li>
+								</ul>
+							{/if}
+						</svelte:fragment>
+
+						<ContractForm
+							action={`?/review&id=${contract.review_change.id}&approverId=${reviewChange.requester_id}`}
+							type="update"
+							data={data.optionalContractForm}
+							onSuccess={() => {
+								contractFormOpen = false;
+								toast.success('Review submitted!');
+							}}
+						/>
+					</FormDialog>
+				</Alert.Root>
 			</div>
 		{/if}
 

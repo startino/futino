@@ -238,5 +238,44 @@ export const actions = {
 		});
 
 		return { optionalContractForm };
+	},
+	review: async ({ request, locals: { supabase, smtpTransporter }, url }) => {
+		const optionalContractForm = await superValidate(request, zod(optionalContractSchema));
+		const reviewId = url.searchParams.get('id');
+		const approverId = url.searchParams.get('approverId');
+
+		if (!optionalContractForm.valid || !reviewId || !approverId) {
+			return fail(400, { optionalContractForm });
+		}
+
+		const { start_date, end_date } = optionalContractForm.data;
+
+		const { data: review, error: updateError } = await supabase
+			.from('reviewed_contract_changes')
+			.update({ start_date, end_date, status: 'pending approval' })
+			.eq('id', reviewId)
+			.select(
+				'*, contract:contracts (*, vendor:vendors (*), owner:profiles!contracts_owner_id_fkey (*))'
+			)
+			.single();
+
+		if (updateError) {
+			console.log({ updateError });
+			return setError(optionalContractForm, 'Unable to review the contract. Please try again');
+		}
+
+		sendEmailNotif('review-submitted', {
+			subject: 'Review submitted',
+			receiverProfileId: approverId,
+			client: supabase,
+			smtp: smtpTransporter,
+			context: {
+				baseUrl: PUBLIC_SITE_URL,
+				contract: review.contract,
+				ownerName: review.contract.owner.full_name
+			}
+		});
+
+		return { optionalContractForm };
 	}
 };

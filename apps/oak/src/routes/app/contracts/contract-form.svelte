@@ -50,7 +50,7 @@
 		}
 	});
 
-	const { form: formData, enhance, errors, delayed, reset } = form;
+	const { form: formData, enhance, errors, delayed, reset, isTainted, tainted } = form;
 	const file = fileProxy(formData, 'attachment');
 	const currentProfile = getContext('currentProfile');
 	const projects = getContext('projects');
@@ -276,7 +276,7 @@
 			</Form.Control>
 		</Form.Field>
 	{/if}
-	<Form.Button type="submit" disabled={$delayed} class="my-4 w-full">
+	<Form.Button disabled={!isTainted($tainted) || $delayed} type="submit" class="my-4 w-full">
 		{#if $delayed}
 			<Loader2 class="animate-spin" />
 		{:else}

@@ -19,6 +19,11 @@ export type { BillDataTableRow } from '$lib/server/db/bills';
 export type Client = SupabaseClient<Database>;
 
 export interface EmailContextMap {
+	'review-submitted': {
+		contract: Tables<'contracts'> & { vendor: Tables<'vendors'> };
+		baseUrl: string;
+		ownerName: string;
+	};
 	'review-contracts': { contracts: Tables<'contracts'>[]; baseUrl: string };
 	'new-entry': { link: { url: string; label: string }; entryName: 'bill' | 'contract' };
 	'entry-validation': {

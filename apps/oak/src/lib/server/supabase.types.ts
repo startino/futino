@@ -633,24 +633,30 @@ export type Database = {
           created_at: string
           end_date: string | null
           id: string
+          note: string | null
           requester_id: string
           start_date: string | null
+          status: Database["public"]["Enums"]["review_status"]
         }
         Insert: {
           contract_id: string
           created_at?: string
           end_date?: string | null
           id?: string
+          note?: string | null
           requester_id?: string
           start_date?: string | null
+          status?: Database["public"]["Enums"]["review_status"]
         }
         Update: {
           contract_id?: string
           created_at?: string
           end_date?: string | null
           id?: string
+          note?: string | null
           requester_id?: string
           start_date?: string | null
+          status?: Database["public"]["Enums"]["review_status"]
         }
         Relationships: [
           {
@@ -785,6 +791,7 @@ export type Database = {
         | "approved"
         | "rejected"
       group: "member"
+      review_status: "idle" | "pending approval" | "rejected"
       role: "admin" | "employee" | "signer" | "finance"
     }
     CompositeTypes: {
