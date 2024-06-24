@@ -43,8 +43,7 @@
 	let pdf: PDFDocumentProxy;
 	let pdfSpot: HTMLElement;
 	let pdfContainer: HTMLElement;
-	let isLoadingPDF = true;
-	let isApproving = false;
+	let loadStatus: 'idle' | 'approving-contract' | 'approving-review' | 'loading-pdf' = 'idle';
 	let showRejectionForm = false;
 	let contractFormOpen = false;
 
@@ -53,8 +52,33 @@
 	onMount(async () => {
 		pdf = await pdfjsLib.getDocument(data.attachmentUrl).promise;
 		await renderPDF(pdf, pdfContainer);
-		isLoadingPDF = false;
+		loadStatus = 'loading-pdf';
 	});
+
+	const approveReview = async () => {
+		loadStatus = 'approving-review';
+
+		const response = await fetch(`/api/approve-review/${reviewChange.id}`, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			}
+		});
+
+		const { error, message } = await response.json();
+
+		if (error) {
+			toast.error(error);
+			loadStatus = 'idle';
+			return;
+		}
+
+		toast.success(message);
+		data.contract.status = 'active';
+		reviewChange = null;
+
+		loadStatus = 'idle';
+	};
 
 	const appendContainer = (node: HTMLDivElement) => {
 		node.appendChild(pdfContainer);
@@ -73,7 +97,7 @@
 	}
 
 	$: if (form?.success || form?.error) {
-		isApproving = false;
+		loadStatus = 'idle';
 	}
 	$: $rejectionData.id = contract.id;
 	$: rejection =
@@ -113,7 +137,7 @@
 			<div>
 				<Alert.Root class="mb-2">
 					<StickyNote class="h-4 w-4" />
-					<Alert.Title>Note from {rejection.creator.full_name}:</Alert.Title>
+					<Alert.Title>Note from {rejection.creator.full_name}</Alert.Title>
 					<Alert.Description class="text-base">{rejection.note}</Alert.Description>
 				</Alert.Root>
 				<FormDialog bind:open={contractFormOpen} title="Edit Contract">
@@ -170,6 +194,27 @@
 										)}
 									</li>
 								</ul>
+
+								{#if $currentProfile.id === reviewChange.requester_id}
+									<div class="mt-4 flex gap-2">
+										<Button
+											disabled={loadStatus === 'approving-review'}
+											size="sm"
+											on:click={approveReview}
+										>
+											{#if loadStatus === 'approving-review'}
+												<Loader2 class="animate-spin" />
+											{:else}
+												Approve review
+											{/if}
+										</Button>
+										<Button
+											disabled={loadStatus === 'approving-review'}
+											size="sm"
+											variant="destructive">Reject</Button
+										>
+									</div>
+								{/if}
 							{/if}
 						</svelte:fragment>
 
@@ -251,9 +296,9 @@
 			<h2 class="font-bold">Attachment</h2>
 
 			<Dialog.Root>
-				<Dialog.Trigger disabled={isLoadingPDF}>
+				<Dialog.Trigger disabled={loadStatus === 'loading-pdf'}>
 					<Button class="flex gap-2" variant="outline">
-						{#if isLoadingPDF}
+						{#if loadStatus === 'loading-pdf'}
 							<Loader2 class="animate-spin" />
 						{:else}
 							<View /> View attachment
@@ -329,8 +374,8 @@
 					<form action="?/sign" method="post" use:enhance>
 						<input hidden value={contract.id} name="contract-id" />
 						<div class="mt-4 flex gap-4">
-							<Button on:click={() => (isApproving = true)} type="submit">
-								{#if isApproving}
+							<Button on:click={() => (loadStatus = 'approving-contract')} type="submit">
+								{#if loadStatus === 'approving-contract'}
 									<Loader2 class="animate-spin" />
 								{:else}
 									Sign
