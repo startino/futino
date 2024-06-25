@@ -252,7 +252,7 @@ export const actions = {
 
 		const { data: review, error: updateError } = await supabase
 			.from('reviewed_contract_changes')
-			.update({ start_date, end_date, status: 'pending approval' })
+			.update({ start_date, end_date, status: 'pending approval', note: null })
 			.eq('id', reviewId)
 			.select(
 				'*, contract:contracts (*, vendor:vendors (*), owner:profiles!contracts_owner_id_fkey (*))'

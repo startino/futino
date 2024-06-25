@@ -40,7 +40,8 @@
 
 				let accrualBalance = 0;
 
-				accrualBalance = (elapsedMonths / totalMonths) * c.amount - billedAmount;
+				accrualBalance =
+					(elapsedMonths / (totalMonths === 0 ? 1 : totalMonths)) * c.amount - billedAmount;
 
 				return { ...c, billedAmount, accrualBalance, openAmount: c.amount - billedAmount };
 			});

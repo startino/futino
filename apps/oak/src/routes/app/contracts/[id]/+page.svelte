@@ -19,6 +19,7 @@
 	import { rejectionSchema } from '$lib/schemas';
 	import ContractForm from '../contract-form.svelte';
 	import { FormDialog } from '$lib/components/ui/form-dialog';
+	import { Description } from 'formsnap';
 
 	export let data;
 	export let form;
@@ -43,9 +44,16 @@
 	let pdf: PDFDocumentProxy;
 	let pdfSpot: HTMLElement;
 	let pdfContainer: HTMLElement;
-	let loadStatus: 'idle' | 'approving-contract' | 'approving-review' | 'loading-pdf' = 'idle';
+	let loadStatus:
+		| 'idle'
+		| 'approving-contract'
+		| 'approving-review'
+		| 'rejecting-review'
+		| 'loading-pdf' = 'idle';
 	let showRejectionForm = false;
+	let rejectionFieldOpen = false;
 	let contractFormOpen = false;
+	let reviewRejectionNote = '';
 
 	const isSigner = $currentProfile.roles.includes('signer');
 
@@ -78,6 +86,36 @@
 		reviewChange = null;
 
 		loadStatus = 'idle';
+	};
+
+	const rejectReview = async () => {
+		if (!reviewRejectionNote) {
+			return;
+		}
+
+		loadStatus = 'rejecting-review';
+
+		const response = await fetch(`/api/reject-review/${reviewChange.id}`, {
+			method: 'POST',
+			body: JSON.stringify({ note: reviewRejectionNote }),
+			headers: {
+				'Content-Type': 'application/json'
+			}
+		});
+
+		const { error, message } = await response.json();
+
+		if (error) {
+			toast.error(error);
+			loadStatus = 'idle';
+			return;
+		}
+
+		toast.success(message);
+		loadStatus = 'idle';
+		rejectionFieldOpen = false;
+		reviewChange.status = 'rejected';
+		reviewChange.note = reviewRejectionNote;
 	};
 
 	const appendContainer = (node: HTMLDivElement) => {
@@ -162,13 +200,22 @@
 
 		{#if reviewChange && [contract.owner_id, reviewChange.requester_id].includes($currentProfile.id)}
 			<div>
-				<Alert.Root class="mb-2">
+				<Alert.Root
+					class="mb-2"
+					variant={reviewChange.status === 'rejected' ? 'destructive' : 'default'}
+				>
 					<StickyNote class="h-4 w-4" />
-					<Alert.Title class="mb-4"
-						>Review Requested by {reviewChange.requester.full_name}:</Alert.Title
-					>
+					<Alert.Title class="mb-4">
+						Review Requested by {reviewChange.requester.full_name} - <Badge variant="outline"
+							>{reviewChange.status}</Badge
+						>
+					</Alert.Title>
+
 					{#if reviewChange.note}
-						<Alert.Description class="text-base">{reviewChange.note}</Alert.Description>
+						<Alert.Description class="text-items-baseline mb-4 text-base text-foreground">
+							<h3>Rejection note</h3>
+							<p class="text-muted-foreground">{reviewChange.note}</p>
+						</Alert.Description>
 					{/if}
 					<FormDialog bind:open={contractFormOpen} title="Edit Contract">
 						<svelte:fragment slot="trigger">
@@ -180,8 +227,8 @@
 
 									<Button size="sm" class="gap-1" variant="outline">Dismiss</Button>
 								</div>
-							{:else if reviewChange.status === 'pending approval'}
-								<h3 class="mb-1">Changes pending for approval</h3>
+							{:else if ['pending approval', 'rejected'].includes(reviewChange.status)}
+								<h3 class="mb-1 text-foreground">Changes pending for approval</h3>
 								<ul class="list-disc text-muted-foreground">
 									<li>
 										start date: {toDateString(new Date(contract.start_date))} -> {toDateString(
@@ -195,25 +242,54 @@
 									</li>
 								</ul>
 
-								{#if $currentProfile.id === reviewChange.requester_id}
-									<div class="mt-4 flex gap-2">
-										<Button
-											disabled={loadStatus === 'approving-review'}
-											size="sm"
-											on:click={approveReview}
-										>
-											{#if loadStatus === 'approving-review'}
-												<Loader2 class="animate-spin" />
-											{:else}
-												Approve review
-											{/if}
-										</Button>
-										<Button
-											disabled={loadStatus === 'approving-review'}
-											size="sm"
-											variant="destructive">Reject</Button
-										>
-									</div>
+								{#if $currentProfile.id === reviewChange.requester_id && reviewChange.status === 'pending approval'}
+									{#if rejectionFieldOpen && reviewChange.status === 'pending approval'}
+										<div>
+											<Textarea
+												bind:value={reviewRejectionNote}
+												class="my-2"
+												placeholder="Add a note..."
+											/>
+											<div class="flex gap-2">
+												<Button
+													disabled={loadStatus === 'rejecting-review'}
+													size="sm"
+													variant="destructive"
+													on:click={rejectReview}
+												>
+													{#if loadStatus === 'rejecting-review'}
+														<Loader2 class="animate-spin" />
+													{:else}
+														Reject review
+													{/if}
+												</Button>
+
+												<Button variant="ghost" on:click={() => (rejectionFieldOpen = false)}>
+													Cancel
+												</Button>
+											</div>
+										</div>
+									{:else}
+										<div class="mt-4 flex gap-2">
+											<Button
+												disabled={loadStatus === 'approving-review'}
+												size="sm"
+												on:click={approveReview}
+											>
+												{#if loadStatus === 'approving-review'}
+													<Loader2 class="animate-spin" />
+												{:else}
+													Approve review
+												{/if}
+											</Button>
+
+											<Button
+												variant="ghost"
+												disabled={loadStatus === 'approving-review'}
+												on:click={() => (rejectionFieldOpen = true)}>Reject review</Button
+											>
+										</div>
+									{/if}
 								{/if}
 							{/if}
 						</svelte:fragment>
