@@ -19,7 +19,6 @@
 	import { rejectionSchema } from '$lib/schemas';
 	import ContractForm from '../contract-form.svelte';
 	import { FormDialog } from '$lib/components/ui/form-dialog';
-	import { Description } from 'formsnap';
 
 	export let data;
 	export let form;
@@ -49,6 +48,7 @@
 		| 'approving-contract'
 		| 'approving-review'
 		| 'rejecting-review'
+		| 'dismissing-review'
 		| 'loading-pdf' = 'idle';
 	let showRejectionForm = false;
 	let rejectionFieldOpen = false;
@@ -116,6 +116,31 @@
 		rejectionFieldOpen = false;
 		reviewChange.status = 'rejected';
 		reviewChange.note = reviewRejectionNote;
+	};
+
+	const dismissReview = async () => {
+		loadStatus = 'dismissing-review';
+
+		const response = await fetch(`/api/dismiss-review/${reviewChange.id}`, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			}
+		});
+
+		const { error, message } = await response.json();
+
+		if (error) {
+			toast.error(error);
+			loadStatus = 'idle';
+			return;
+		}
+
+		toast.success(message);
+		data.contract.status = 'active';
+		reviewChange = null;
+
+		loadStatus = 'idle';
 	};
 
 	const appendContainer = (node: HTMLDivElement) => {
@@ -219,17 +244,9 @@
 					{/if}
 					<FormDialog bind:open={contractFormOpen} title="Edit Contract">
 						<svelte:fragment slot="trigger">
-							{#if reviewChange.status === 'idle' && contract.owner_id === $currentProfile.id}
-								<div class="flex gap-2">
-									<Dialog.Trigger>
-										<Button size="sm" class="gap-1"><Edit class="h-4 w-4" />Edit contract</Button>
-									</Dialog.Trigger>
-
-									<Button size="sm" class="gap-1" variant="outline">Dismiss</Button>
-								</div>
-							{:else if ['pending approval', 'rejected'].includes(reviewChange.status)}
+							{#if ['pending approval', 'rejected'].includes(reviewChange.status)}
 								<h3 class="mb-1 text-foreground">Changes pending for approval</h3>
-								<ul class="list-disc text-muted-foreground">
+								<ul class="mb-4 list-disc text-muted-foreground">
 									<li>
 										start date: {toDateString(new Date(contract.start_date))} -> {toDateString(
 											new Date(reviewChange.start_date)
@@ -291,6 +308,28 @@
 										</div>
 									{/if}
 								{/if}
+							{/if}
+
+							{#if ['idle', 'rejected'].includes(reviewChange.status) && contract.owner_id === $currentProfile.id}
+								<div class="flex gap-2">
+									<Dialog.Trigger>
+										<Button size="sm" class="gap-1"><Edit class="h-4 w-4" />Edit contract</Button>
+									</Dialog.Trigger>
+
+									<Button
+										size="sm"
+										class="gap-1"
+										variant="outline"
+										disabled={loadStatus === 'dismissing-review'}
+										on:click={dismissReview}
+									>
+										{#if loadStatus === 'dismissing-review'}
+											<Loader2 class="animate-spin" />
+										{:else}
+											Dismiss Review
+										{/if}
+									</Button>
+								</div>
 							{/if}
 						</svelte:fragment>
 

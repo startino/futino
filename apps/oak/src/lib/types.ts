@@ -29,7 +29,7 @@ export interface EmailContextMap {
 	'entry-validation': {
 		link: { url: string; label: string };
 		entryName: 'bill' | 'contract' | 'review change';
-		action: 'signed' | 'approved' | 'rejected';
+		action: 'signed' | 'approved' | 'rejected' | 'dismissed';
 	};
 }
 
