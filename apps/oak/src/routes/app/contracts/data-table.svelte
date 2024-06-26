@@ -1,10 +1,17 @@
 <script lang="ts">
+	import { createEventDispatcher } from 'svelte';
 	import { writable } from 'svelte/store';
-	import { ArrowUpDown, Search } from 'lucide-svelte';
+	import { ArrowUpDown, Loader2, Search } from 'lucide-svelte';
 
 	import { createTable, Subscribe } from '$lib/svelte-headless-table';
-	import { addPagination, addTableFilter, addSortBy } from '$lib/svelte-headless-table/plugins';
-	import { Render } from '$lib/svelte-render';
+	import {
+		addPagination,
+		addTableFilter,
+		addSortBy,
+		addSelectedRows,
+		addHiddenColumns
+	} from '$lib/svelte-headless-table/plugins';
+	import { createRender, Render } from '$lib/svelte-render';
 	import * as Table from '$lib/components/ui/table';
 	import { Button } from '$lib/components/ui/button';
 	import { Input } from '$lib/components/ui/input';
@@ -13,23 +20,43 @@
 	import { cn, formatAmount, getContext } from '$lib/utils';
 	import type { ContractDatableRow } from '$lib/types';
 	import { goto } from '$app/navigation';
+	import DataTableCheckbox from './data-table-checkbox.svelte';
 
 	export let data: ContractDatableRow[];
 
 	export let userPendingApprovalsMode: boolean;
 	export let userPendingApprovalsCount: number;
+	export let contractReviewsMode: boolean;
+	export let sendingReviews: boolean;
 
+	const dispatch = createEventDispatcher();
 	const iam = getContext('iam');
+	const currentProfile = getContext('currentProfile');
 
 	const table = createTable(writable(data), {
 		page: addPagination(),
 		sort: addSortBy(),
 		filter: addTableFilter({
 			fn: ({ filterValue, value }) => value.toLowerCase().includes(filterValue.toLocaleLowerCase())
-		})
+		}),
+		select: addSelectedRows(),
+		hide: addHiddenColumns()
 	});
 
 	const columns = table.createColumns([
+		table.column({
+			accessor: 'id',
+			header: (_, { pluginStates }) => {
+				const { allPageRowsSelected } = pluginStates.select;
+				return createRender(DataTableCheckbox, { checked: allPageRowsSelected });
+			},
+			cell: ({ row }, { pluginStates }) => {
+				const { getRowState } = pluginStates.select;
+				const { isSelected } = getRowState(row);
+
+				return createRender(DataTableCheckbox, { checked: isSelected });
+			}
+		}),
 		table.column({
 			accessor: 'number',
 			header: 'Number',
@@ -95,11 +122,24 @@
 		})
 	]);
 
-	const { headerRows, pageRows, tableAttrs, tableBodyAttrs, pluginStates } =
+	const { headerRows, pageRows, tableAttrs, tableBodyAttrs, pluginStates, rows } =
 		table.createViewModel(columns);
 
 	const { hasNextPage, hasPreviousPage, pageIndex } = pluginStates.page;
 	const { filterValue } = pluginStates.filter;
+	const { selectedDataIds } = pluginStates.select;
+	const { hiddenColumnIds } = pluginStates.hide;
+
+	const handleReviews = () => {
+		if (selectedContracts.length === 0) return;
+		dispatch('request-reviews', { contracts: selectedContracts });
+	};
+
+	$: if (!contractReviewsMode) {
+		$hiddenColumnIds = ['id'];
+	}
+
+	$: selectedContracts = Object.keys($selectedDataIds).map((k) => data[k]);
 </script>
 
 <div>
@@ -114,15 +154,33 @@
 			/>
 		</div>
 
-		{#if iam.isAllowedTo('contracts.update') && userPendingApprovalsCount > 0}
+		{#if iam.isAllowedTo('contracts.update') && userPendingApprovalsCount > 0 && !contractReviewsMode}
 			<div class="flex items-center space-x-2">
 				<Switch id="user-pending-approvals" bind:checked={userPendingApprovalsMode} />
 				<Label for="user-pending-approvals" class="text-sm text-primary">Pending approvals</Label>
 			</div>
 		{/if}
+
+		{#if $currentProfile.roles.includes('finance')}
+			<div class="flex items-center space-x-2">
+				<Switch id="contract-reviews" bind:checked={contractReviewsMode} />
+				<Label for="contract-reviews" class="text-sm text-primary">Contract Reviews Mode</Label>
+			</div>
+		{/if}
 		<span class="flex-grow" />
 		<slot name="entry-form" />
 	</div>
+	{#if $currentProfile.roles.includes('finance') && contractReviewsMode}
+		<div class="mb-2">
+			<Button disabled={sendingReviews || selectedContracts.length === 0} on:click={handleReviews}>
+				{#if sendingReviews}
+					<Loader2 class="animate-spin" />
+				{:else}
+					Request reviews
+				{/if}
+			</Button>
+		</div>
+	{/if}
 	<div class="rounded-md border">
 		<Table.Root {...$tableAttrs}>
 			<Table.Header>
@@ -131,7 +189,7 @@
 						<Table.Row>
 							{#each headerRow.cells as cell (cell.id)}
 								<Subscribe attrs={cell.attrs()} let:attrs props={cell.props()} let:props>
-									<Table.Head {...attrs}>
+									<Table.Head {...attrs} class="[&:has([role=checkbox])]:pl-3">
 										{#if cell.id === 'amount'}
 											<div class="text-right">
 												<Render of={cell.render()} />
@@ -157,6 +215,7 @@
 						<Table.Row
 							{...rowAttrs}
 							class={cn('cursor-pointer')}
+							data-state={$selectedDataIds[row.id] && 'selected'}
 							on:click={() => goto(`/app/contracts/${data[i].id}`)}
 						>
 							{#each row.cells as cell (cell.id)}
@@ -180,6 +239,10 @@
 	</div>
 
 	<div class="flex items-center justify-end space-x-4 py-4">
+		<div class="flex-1 text-sm text-muted-foreground">
+			{Object.keys($selectedDataIds).length} of{' '}
+			{$rows.length} row(s) selected.
+		</div>
 		<Button
 			variant="outline"
 			size="sm"

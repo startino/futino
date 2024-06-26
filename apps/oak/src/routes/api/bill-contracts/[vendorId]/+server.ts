@@ -5,7 +5,7 @@ export const GET = async ({ locals: { supabase }, params }) => {
 		.from('contracts')
 		.select()
 		.eq('vendor_id', params.vendorId)
-		.eq('status', 'active');
+		.eq('signed', true);
 
 	if (error) {
 		if (error.code === '22P02') {

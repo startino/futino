@@ -9,6 +9,7 @@
 	import { FormDialog } from '$lib/components/ui/form-dialog';
 	import * as AlertDialog from '$lib/components/ui/alert-dialog';
 	import ContractForm from './contract-form.svelte';
+	import type { ContractDatableRow } from '$lib/types';
 
 	export let data;
 
@@ -16,15 +17,56 @@
 	const currentProfile = getContext('currentProfile');
 
 	let formOpen = false;
-	let contracts = data.contracts;
+	let sendingReviews = false;
+	let contracts = { ...data.contracts };
 	let userPending = data.contracts.filter(
 		(c) => c.approver_id === $currentProfile.id && c.status === 'pending approval'
 	);
 	let userPendingApprovalsMode = false;
+	let contractReviewsMode = false;
 	let selectVendorId: string | null = null;
+
+	const handleReviews = async (e) => {
+		const reviewContracts = e.detail.contracts as ContractDatableRow[];
+
+		const contractIds = reviewContracts.map((c) => c.id);
+		sendingReviews = true;
+
+		const response = await fetch('/api/request-reviews', {
+			method: 'POST',
+			body: JSON.stringify({ reviewContracts }),
+			headers: {
+				'Content-Type': 'application/json'
+			}
+		});
+
+		const { error, message } = await response.json();
+
+		if (error) {
+			toast.error(error);
+			sendingReviews = false;
+			return;
+		}
+
+		toast.success(message);
+		console.log(contractIds);
+
+		contracts = contracts.filter((c) => !contractIds.includes(c.id));
+
+		data.contracts = data.contracts.map((c) => {
+			if (contractIds.includes(c.id)) {
+				return { ...c, status: 'under review' };
+			}
+			return c;
+		});
+
+		sendingReviews = false;
+	};
 
 	$: if (userPendingApprovalsMode) {
 		contracts = userPending;
+	} else if (contractReviewsMode) {
+		contracts = data.contracts.filter((c) => c.status === 'active');
 	} else {
 		contracts = data.contracts;
 	}
@@ -39,7 +81,10 @@
 		<DataTable
 			data={contracts}
 			bind:userPendingApprovalsMode
+			bind:contractReviewsMode
 			userPendingApprovalsCount={userPending.length}
+			bind:sendingReviews
+			on:request-reviews={handleReviews}
 		>
 			<svelte:fragment slot="entry-form">
 				{#if iam.isAllowedTo('contracts.create') && !iam.isAllowedTo('contracts.sign') && !$currentProfile.approver_id}
@@ -62,7 +107,7 @@
 					</AlertDialog.Root>
 				{/if}
 
-				{#if (iam.isAllowedTo('contracts.create') && $currentProfile.approver_id) || iam.isAllowedTo('contracts.sign')}
+				{#if ((iam.isAllowedTo('contracts.create') && $currentProfile.approver_id) || iam.isAllowedTo('contracts.sign')) && !contractReviewsMode}
 					<FormDialog bind:open={formOpen} title="Add contract">
 						<svelte:fragment slot="trigger">
 							<Dialog.Trigger>

@@ -5,7 +5,7 @@ import { zod } from 'sveltekit-superforms/adapters';
 import { getContractById } from '$lib/server/db';
 import { PUBLIC_SMTP_USER } from '$env/static/public';
 import { PUBLIC_SITE_URL } from '$env/static/public';
-import type { Tables } from '$lib/server/supabase.types.js';
+import type { Tables } from '$lib/server/supabase.types';
 import { findSigner } from '$lib/server/db/profiles';
 import { rejectionSchema, optionalContractSchema } from '$lib/schemas';
 import { sendEmailNotif } from '$lib/utils';
@@ -234,6 +234,45 @@ export const actions = {
 			context: {
 				link: { url: `${PUBLIC_SITE_URL}/app/contracts/${contractId}`, label: 'View Contract' },
 				entryName: 'contract'
+			}
+		});
+
+		return { optionalContractForm };
+	},
+	review: async ({ request, locals: { supabase, smtpTransporter }, url }) => {
+		const optionalContractForm = await superValidate(request, zod(optionalContractSchema));
+		const reviewId = url.searchParams.get('id');
+		const approverId = url.searchParams.get('approverId');
+
+		if (!optionalContractForm.valid || !reviewId || !approverId) {
+			return fail(400, { optionalContractForm });
+		}
+
+		const { start_date, end_date } = optionalContractForm.data;
+
+		const { data: review, error: updateError } = await supabase
+			.from('reviewed_contract_changes')
+			.update({ start_date, end_date, status: 'pending approval', note: null })
+			.eq('id', reviewId)
+			.select(
+				'*, contract:contracts (*, vendor:vendors (*), owner:profiles!contracts_owner_id_fkey (*))'
+			)
+			.single();
+
+		if (updateError) {
+			console.log({ updateError });
+			return setError(optionalContractForm, 'Unable to review the contract. Please try again');
+		}
+
+		sendEmailNotif('review-submitted', {
+			subject: 'Review submitted',
+			receiverProfileId: approverId,
+			client: supabase,
+			smtp: smtpTransporter,
+			context: {
+				baseUrl: PUBLIC_SITE_URL,
+				contract: review.contract,
+				ownerName: review.contract.owner.full_name
 			}
 		});
 

@@ -273,21 +273,21 @@ export type Database = {
       }
       contract_rejections: {
         Row: {
-          contract_id: string | null
+          contract_id: string
           created_at: string
           creator_id: string
           id: string
           note: string | null
         }
         Insert: {
-          contract_id?: string | null
+          contract_id?: string
           created_at?: string
           creator_id: string
           id?: string
           note?: string | null
         }
         Update: {
-          contract_id?: string | null
+          contract_id?: string
           created_at?: string
           creator_id?: string
           id?: string
@@ -627,6 +627,54 @@ export type Database = {
         }
         Relationships: []
       }
+      reviewed_contract_changes: {
+        Row: {
+          contract_id: string
+          created_at: string
+          end_date: string | null
+          id: string
+          note: string | null
+          requester_id: string
+          start_date: string | null
+          status: Database["public"]["Enums"]["review_status"]
+        }
+        Insert: {
+          contract_id: string
+          created_at?: string
+          end_date?: string | null
+          id?: string
+          note?: string | null
+          requester_id?: string
+          start_date?: string | null
+          status?: Database["public"]["Enums"]["review_status"]
+        }
+        Update: {
+          contract_id?: string
+          created_at?: string
+          end_date?: string | null
+          id?: string
+          note?: string | null
+          requester_id?: string
+          start_date?: string | null
+          status?: Database["public"]["Enums"]["review_status"]
+        }
+        Relationships: [
+          {
+            foreignKeyName: "reviewed_contract_changes_contract_id_fkey"
+            columns: ["contract_id"]
+            isOneToOne: true
+            referencedRelation: "contracts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "reviewed_contract_changes_requester_id_fkey"
+            columns: ["requester_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       spend_categories: {
         Row: {
           created_at: string
@@ -743,7 +791,8 @@ export type Database = {
         | "approved"
         | "rejected"
       group: "member"
-      role: "admin" | "employee" | "signer"
+      review_status: "idle" | "pending approval" | "rejected"
+      role: "admin" | "employee" | "signer" | "finance"
     }
     CompositeTypes: {
       [_ in never]: never

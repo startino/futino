@@ -15,7 +15,8 @@ export const getContractById = async ({ client, id }: { client: Client; id: stri
       parent_contract:contracts (*),
       spend_category:spend_categories (*),
       account:accounts (*),
-      rejections:contract_rejections (*, creator:profiles (*))
+      rejections:contract_rejections (*, creator:profiles (*)),
+      review_change:reviewed_contract_changes (*, requester:profiles (*))
       `
 		)
 		.eq('id', id)

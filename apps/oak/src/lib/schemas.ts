@@ -59,7 +59,9 @@ export const updateUserByAdminSchema = z.object({
 	department_id: z.string().uuid().optional().nullable(),
 	approver_id: z.string().uuid().optional().nullable(),
 	roles: z
-		.array(z.enum(['employee', 'admin', 'signer'] as [Enums<'role'>, ...Enums<'role'>[]]))
+		.array(
+			z.enum(['employee', 'admin', 'signer', 'finance'] as [Enums<'role'>, ...Enums<'role'>[]])
+		)
 		.min(1, 'Select at least one role'),
 	approval_threshold: z.number().gte(0)
 });
@@ -75,7 +77,9 @@ export const createUserByAdminSchema = z.object({
 	department_id: z.string().uuid().optional().nullable(),
 	approver_id: z.string().uuid().optional().nullable(),
 	roles: z
-		.array(z.enum(['employee', 'admin', 'signer'] as [Enums<'role'>, ...Enums<'role'>[]]))
+		.array(
+			z.enum(['employee', 'admin', 'signer', 'finance'] as [Enums<'role'>, ...Enums<'role'>[]])
+		)
 		.min(1, 'Select at least one role'),
 	password: z.string().readonly().default('************')
 });

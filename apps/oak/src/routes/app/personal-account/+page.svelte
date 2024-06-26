@@ -109,7 +109,7 @@
 		<AlertDialog.Header>
 			<AlertDialog.Title>
 				{#if state === 'password-recovery-link-sent'}
-					<span> Reset link sent! </span>
+					<span>Reset link sent!</span>
 				{/if}
 
 				{#if state === 'email-recovery-link-sent'}
@@ -120,13 +120,15 @@
 			<AlertDialog.Description>
 				{#if state === 'password-recovery-link-sent'}
 					<span>
-						We've sent a password reset link to your email. This might take a couple of minutes
+						We've sent a password reset link to at {data.email}. This might take a couple of minutes
 						before you receive it. Use this link to update your password.
 					</span>
 				{/if}
 
 				{#if state === 'email-recovery-link-sent'}
-					<span>We've sent a confirmation email to verify your email address.</span>
+					<span
+						>We've sent a confirmation email at {data.email} to verify your new email address.</span
+					>
 				{/if}
 			</AlertDialog.Description>
 		</AlertDialog.Header>

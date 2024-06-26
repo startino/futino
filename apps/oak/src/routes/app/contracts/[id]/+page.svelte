@@ -43,18 +43,105 @@
 	let pdf: PDFDocumentProxy;
 	let pdfSpot: HTMLElement;
 	let pdfContainer: HTMLElement;
-	let isLoadingPDF = true;
-	let isApproving = false;
+	let loadStatus:
+		| 'idle'
+		| 'approving-contract'
+		| 'approving-review'
+		| 'rejecting-review'
+		| 'dismissing-review'
+		| 'loading-pdf' = 'idle';
 	let showRejectionForm = false;
+	let rejectionFieldOpen = false;
 	let contractFormOpen = false;
+	let reviewRejectionNote = '';
 
 	const isSigner = $currentProfile.roles.includes('signer');
 
 	onMount(async () => {
 		pdf = await pdfjsLib.getDocument(data.attachmentUrl).promise;
 		await renderPDF(pdf, pdfContainer);
-		isLoadingPDF = false;
+		loadStatus = 'loading-pdf';
 	});
+
+	const approveReview = async () => {
+		loadStatus = 'approving-review';
+
+		const response = await fetch(`/api/approve-review/${reviewChange.id}`, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			}
+		});
+
+		const { error, message } = await response.json();
+
+		if (error) {
+			toast.error(error);
+			loadStatus = 'idle';
+			return;
+		}
+
+		toast.success(message);
+		data.contract.status = 'active';
+		reviewChange = null;
+
+		loadStatus = 'idle';
+	};
+
+	const rejectReview = async () => {
+		if (!reviewRejectionNote) {
+			return;
+		}
+
+		loadStatus = 'rejecting-review';
+
+		const response = await fetch(`/api/reject-review/${reviewChange.id}`, {
+			method: 'POST',
+			body: JSON.stringify({ note: reviewRejectionNote }),
+			headers: {
+				'Content-Type': 'application/json'
+			}
+		});
+
+		const { error, message } = await response.json();
+
+		if (error) {
+			toast.error(error);
+			loadStatus = 'idle';
+			return;
+		}
+
+		toast.success(message);
+		loadStatus = 'idle';
+		rejectionFieldOpen = false;
+		reviewChange.status = 'rejected';
+		reviewChange.note = reviewRejectionNote;
+	};
+
+	const dismissReview = async () => {
+		loadStatus = 'dismissing-review';
+
+		const response = await fetch(`/api/dismiss-review/${reviewChange.id}`, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			}
+		});
+
+		const { error, message } = await response.json();
+
+		if (error) {
+			toast.error(error);
+			loadStatus = 'idle';
+			return;
+		}
+
+		toast.success(message);
+		data.contract.status = 'active';
+		reviewChange = null;
+
+		loadStatus = 'idle';
+	};
 
 	const appendContainer = (node: HTMLDivElement) => {
 		node.appendChild(pdfContainer);
@@ -73,11 +160,12 @@
 	}
 
 	$: if (form?.success || form?.error) {
-		isApproving = false;
+		loadStatus = 'idle';
 	}
 	$: $rejectionData.id = contract.id;
 	$: rejection =
 		contract.status === 'rejected' ? contract.rejections[contract.rejections.length - 1] : null;
+	$: reviewChange = contract.status === 'under review' ? contract.review_change : null;
 </script>
 
 <Breadcrumb.Root class="mb-6">
@@ -112,7 +200,7 @@
 			<div>
 				<Alert.Root class="mb-2">
 					<StickyNote class="h-4 w-4" />
-					<Alert.Title>Note from {rejection.creator.full_name}:</Alert.Title>
+					<Alert.Title>Note from {rejection.creator.full_name}</Alert.Title>
 					<Alert.Description class="text-base">{rejection.note}</Alert.Description>
 				</Alert.Root>
 				<FormDialog bind:open={contractFormOpen} title="Edit Contract">
@@ -128,10 +216,134 @@
 						data={data.optionalContractForm}
 						onSuccess={() => {
 							contractFormOpen = false;
-							toast.success('Bill updated!');
+							toast.success('Contract updated!');
 						}}
 					/>
 				</FormDialog>
+			</div>
+		{/if}
+
+		{#if reviewChange && [contract.owner_id, reviewChange.requester_id].includes($currentProfile.id)}
+			<div>
+				<Alert.Root
+					class="mb-2"
+					variant={reviewChange.status === 'rejected' ? 'destructive' : 'default'}
+				>
+					<StickyNote class="h-4 w-4" />
+					<Alert.Title class="mb-4">
+						Review Requested by {reviewChange.requester.full_name} - <Badge variant="outline"
+							>{reviewChange.status}</Badge
+						>
+					</Alert.Title>
+
+					{#if reviewChange.note}
+						<Alert.Description class="text-items-baseline mb-4 text-base text-foreground">
+							<h3>Rejection note</h3>
+							<p class="text-muted-foreground">{reviewChange.note}</p>
+						</Alert.Description>
+					{/if}
+					<FormDialog bind:open={contractFormOpen} title="Edit Contract">
+						<svelte:fragment slot="trigger">
+							{#if ['pending approval', 'rejected'].includes(reviewChange.status)}
+								<h3 class="mb-1 text-foreground">Changes pending for approval</h3>
+								<ul class="mb-4 list-disc text-muted-foreground">
+									<li>
+										start date: {toDateString(new Date(contract.start_date))} -> {toDateString(
+											new Date(reviewChange.start_date)
+										)}
+									</li>
+									<li>
+										end date: {toDateString(new Date(contract.end_date))} -> {toDateString(
+											new Date(reviewChange.end_date)
+										)}
+									</li>
+								</ul>
+
+								{#if $currentProfile.id === reviewChange.requester_id && reviewChange.status === 'pending approval'}
+									{#if rejectionFieldOpen && reviewChange.status === 'pending approval'}
+										<div>
+											<Textarea
+												bind:value={reviewRejectionNote}
+												class="my-2"
+												placeholder="Add a note..."
+											/>
+											<div class="flex gap-2">
+												<Button
+													disabled={loadStatus === 'rejecting-review'}
+													size="sm"
+													variant="destructive"
+													on:click={rejectReview}
+												>
+													{#if loadStatus === 'rejecting-review'}
+														<Loader2 class="animate-spin" />
+													{:else}
+														Reject review
+													{/if}
+												</Button>
+
+												<Button variant="ghost" on:click={() => (rejectionFieldOpen = false)}>
+													Cancel
+												</Button>
+											</div>
+										</div>
+									{:else}
+										<div class="mt-4 flex gap-2">
+											<Button
+												disabled={loadStatus === 'approving-review'}
+												size="sm"
+												on:click={approveReview}
+											>
+												{#if loadStatus === 'approving-review'}
+													<Loader2 class="animate-spin" />
+												{:else}
+													Approve review
+												{/if}
+											</Button>
+
+											<Button
+												variant="ghost"
+												disabled={loadStatus === 'approving-review'}
+												on:click={() => (rejectionFieldOpen = true)}>Reject review</Button
+											>
+										</div>
+									{/if}
+								{/if}
+							{/if}
+
+							{#if ['idle', 'rejected'].includes(reviewChange.status) && contract.owner_id === $currentProfile.id}
+								<div class="flex gap-2">
+									<Dialog.Trigger>
+										<Button size="sm" class="gap-1"><Edit class="h-4 w-4" />Edit contract</Button>
+									</Dialog.Trigger>
+
+									<Button
+										size="sm"
+										class="gap-1"
+										variant="outline"
+										disabled={loadStatus === 'dismissing-review'}
+										on:click={dismissReview}
+									>
+										{#if loadStatus === 'dismissing-review'}
+											<Loader2 class="animate-spin" />
+										{:else}
+											Dismiss Review
+										{/if}
+									</Button>
+								</div>
+							{/if}
+						</svelte:fragment>
+
+						<ContractForm
+							action={`?/review&id=${contract.review_change.id}&approverId=${reviewChange.requester_id}`}
+							type="update"
+							data={data.optionalContractForm}
+							onSuccess={() => {
+								contractFormOpen = false;
+								toast.success('Review submitted!');
+							}}
+						/>
+					</FormDialog>
+				</Alert.Root>
 			</div>
 		{/if}
 
@@ -199,9 +411,9 @@
 			<h2 class="font-bold">Attachment</h2>
 
 			<Dialog.Root>
-				<Dialog.Trigger disabled={isLoadingPDF}>
+				<Dialog.Trigger disabled={loadStatus === 'loading-pdf'}>
 					<Button class="flex gap-2" variant="outline">
-						{#if isLoadingPDF}
+						{#if loadStatus === 'loading-pdf'}
 							<Loader2 class="animate-spin" />
 						{:else}
 							<View /> View attachment
@@ -222,7 +434,7 @@
 			<span class="text-sm text-destructive">{form.error}</span>
 		{/if}
 
-		{#if (isApprover || isSigner) && !['rejected', 'signed'].includes(contract.status)}
+		{#if (isApprover || isSigner) && !['rejected', 'active'].includes(contract.status)}
 			{#if showRejectionForm}
 				<form method="post" action="?/reject" use:rejectionEnhance>
 					<input hidden name="id" value={$rejectionData.id} />
@@ -277,8 +489,8 @@
 					<form action="?/sign" method="post" use:enhance>
 						<input hidden value={contract.id} name="contract-id" />
 						<div class="mt-4 flex gap-4">
-							<Button on:click={() => (isApproving = true)} type="submit">
-								{#if isApproving}
+							<Button on:click={() => (loadStatus = 'approving-contract')} type="submit">
+								{#if loadStatus === 'approving-contract'}
 									<Loader2 class="animate-spin" />
 								{:else}
 									Sign

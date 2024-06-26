@@ -73,7 +73,7 @@
 		reset: updateReset
 	} = updateForm;
 
-	const roles: Enums<'role'>[] = ['employee', 'admin', 'signer'];
+	const roles: Enums<'role'>[] = ['employee', 'admin', 'signer', 'finance'];
 	let createFormOpen = false;
 	let updateFormOpen = false;
 	let selectedProfile: JoinedProfile | null = null;

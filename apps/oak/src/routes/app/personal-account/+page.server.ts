@@ -21,6 +21,9 @@ export const actions = {
 		const { error } = await supabase.auth.updateUser({ email: emailForm.data.email });
 
 		if (error) {
+			if (error.code === 'email_exists') {
+				return setError(emailForm, 'email', 'This email is already registered', { status: 400 });
+			}
 			return setError(emailForm, 'email', 'Unable to update the email. Please try again.', {
 				status: 500
 			});
