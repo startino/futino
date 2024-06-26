@@ -30,7 +30,7 @@ export const POST = async ({ locals: { supabase, currentProfile, smtpTransporter
 
 		sendEmailNotif('entry-validation', {
 			subject: 'Contract review dismissed',
-			receiverProfileId: contract.owner_id,
+			receiverProfileId: review.requester_id,
 			client: supabase,
 			smtp: smtpTransporter,
 			context: {
