@@ -1,10 +1,10 @@
 import { type ClassValue, clsx } from 'clsx';
-import { parseDate } from '@internationalized/date';
+import { parseDate, CalendarDate } from '@internationalized/date';
 import { twMerge } from 'tailwind-merge';
 import { cubicOut } from 'svelte/easing';
 import type { TransitionConfig } from 'svelte/transition';
 import type { SupabaseClient, PostgrestError } from '@supabase/supabase-js';
-import type { Context, EmailContextMap } from '$lib/types';
+import type { Context, EmailContextMap, ReportContracts, ReportDataTableRow } from '$lib/types';
 import { getContext as getSvelteContext, setContext as setSvelteContext } from 'svelte';
 import type { Tables, Database } from '$lib/server/supabase.types';
 import * as PDFJS from 'pdfjs-dist';
@@ -15,6 +15,59 @@ import { PUBLIC_SMTP_USER } from '$env/static/public';
 PDFJS.GlobalWorkerOptions.workerSrc = 'pdfjs-dist/build/pdf.worker.mjs';
 
 export const pdfjsLib = PDFJS;
+
+export const  arrayToCSV = (data: any[]) => {
+  const csvRows = [];
+  const headers = Object.keys(data[0]);
+  csvRows.push(headers.join(','));
+
+  for (const row of data) {
+    const values = headers.map(header => {
+      const escaped = ('' + row[header]).replace(/"/g, '\\"');
+      return `"${escaped}"`;
+    });
+    csvRows.push(values.join(','));
+  }
+
+  return csvRows.join('\n');
+}
+
+export const  getReportRows = (data: ReportContracts, period: CalendarDate): ReportDataTableRow[] => {
+	return data
+		.filter((c) => period.compare(parseDate(c.start_date)) >= 0)
+		.map((c) => {
+			const billedAmount = c.bills
+				.filter(
+					(b) =>
+						b.posting_period &&
+						parseDate(b.posting_period).compare(period) <= 0 &&
+						b.status === 'approved'
+				)
+				.reduce((prev, curr) => prev + curr.amount, 0);
+
+			let elapsedMonths: number;
+
+			if (
+				period.compare(parseDate(c.end_date)) <= 0 &&
+				period.compare(parseDate(c.start_date)) >= 0
+			) {
+				elapsedMonths = getMonthsDifference(c.start_date, period.toString());
+			} else if (period.compare(parseDate(c.end_date)) > 0) {
+				elapsedMonths = getMonthsDifference(c.start_date, c.end_date);
+			} else {
+				elapsedMonths = 0;
+			}
+
+			const totalMonths = getMonthsDifference(c.start_date, c.end_date);
+
+			let accrualBalance = 0;
+
+			accrualBalance =
+				(elapsedMonths / (totalMonths === 0 ? 1 : totalMonths)) * c.amount - billedAmount;
+
+			return { ...c, billedAmount, accrualBalance, openAmount: c.amount - billedAmount };
+		});
+};
 
 export const sendEmailNotif = async <K extends keyof EmailContextMap>(
 	type: K,
