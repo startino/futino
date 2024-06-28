@@ -3,8 +3,7 @@ import { superValidate, setError } from 'sveltekit-superforms';
 import { zod } from 'sveltekit-superforms/adapters';
 
 import { getContractById } from '$lib/server/db';
-import { PUBLIC_SMTP_USER } from '$env/static/public';
-import { PUBLIC_SITE_URL } from '$env/static/public';
+import { PUBLIC_SMTP_USER, PUBLIC_SITE_URL } from '$env/static/public';
 import type { Tables } from '$lib/server/supabase.types';
 import { findSigner } from '$lib/server/db/profiles';
 import { rejectionSchema, optionalContractSchema } from '$lib/schemas';

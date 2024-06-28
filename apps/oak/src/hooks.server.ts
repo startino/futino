@@ -29,6 +29,9 @@ export const handle: Handle = async ({ event, resolve }) => {
 	} = await supabase.auth.getUser();
 
 	if (!user) {
+		if (event.url.pathname.startsWith('/api')) {
+			error(401);
+		}
 		if (event.url.pathname.startsWith('/app')) {
 			redirect(303, '/login');
 		}
