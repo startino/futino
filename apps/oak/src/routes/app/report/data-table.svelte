@@ -1,12 +1,13 @@
 <script lang="ts">
 	import { writable } from 'svelte/store';
-	import { ChevronDown } from 'lucide-svelte';
+	import { ChevronDown, ArrowUpDown } from 'lucide-svelte';
 
 	import { createTable, Subscribe } from '$lib/svelte-headless-table';
 	import {
 		addPagination,
 		addHiddenColumns,
-		addTableFilter
+		addTableFilter,
+		addSortBy
 	} from '$lib/svelte-headless-table/plugins';
 	import { Render } from '$lib/svelte-render';
 	import * as Table from '$lib/components/ui/table';
@@ -21,6 +22,7 @@
 	const table = createTable(writable(data), {
 		page: addPagination(),
 		hide: addHiddenColumns(),
+		sort: addSortBy(),
 		filter: addTableFilter({
 			fn: ({ filterValue, value }) => value.toLowerCase().includes(filterValue.toLocaleLowerCase())
 		})
@@ -33,7 +35,7 @@
 			cell: ({ value }) => value.name,
 			plugins: {
 				filter: {
-					getFilterValue: (value) => value.name
+					exclude: true
 				}
 			}
 		}),
@@ -42,6 +44,9 @@
 			header: 'Parent Contract',
 			cell: ({ value }) => (value[0] ? value[0].number : 'none'),
 			plugins: {
+				sort: {
+					getSortValue: (value) => value[0]?.number ?? 0
+				},
 				filter: {
 					getFilterValue: (value) => value[0]?.number ?? 'none'
 				}
@@ -53,7 +58,12 @@
 		}),
 		table.column({
 			accessor: 'description',
-			header: 'Description'
+			header: 'Description',
+			plugins: {
+				filter: {
+					exclude: true
+				}
+			}
 		}),
 		table.column({
 			accessor: 'start_date',
@@ -61,7 +71,7 @@
 			cell: ({ value }) => toDateString(new Date(value)),
 			plugins: {
 				filter: {
-					getFilterValue: (value) => toDateString(new Date(value))
+					exclude: true
 				}
 			}
 		}),
@@ -71,7 +81,7 @@
 			cell: ({ value }) => toDateString(new Date(value)),
 			plugins: {
 				filter: {
-					getFilterValue: (value) => toDateString(new Date(value))
+					exclude: true
 				}
 			}
 		}),
@@ -85,7 +95,7 @@
 			cell: ({ value }) => value.number,
 			plugins: {
 				filter: {
-					getFilterValue: (value) => value.number
+					exclude: true
 				}
 			}
 		}),
@@ -152,7 +162,12 @@
 
 <div>
 	<div class="flex items-center py-4">
-		<Input class="max-w-sm" placeholder="Filter..." type="text" bind:value={$filterValue} />
+		<Input
+			class="max-w-sm"
+			placeholder="Filter contract numbers..."
+			type="text"
+			bind:value={$filterValue}
+		/>
 
 		<DropdownMenu.Root>
 			<DropdownMenu.Trigger asChild let:builder>
@@ -185,6 +200,11 @@
 										<div class="text-right">
 											<Render of={cell.render()} />
 										</div>
+									{:else if ['parent', 'number'].includes(cell.id)}
+										<Button variant="ghost" on:click={props.sort.toggle}>
+											<Render of={cell.render()} />
+											<ArrowUpDown class={'ml-2 h-4 w-4'} />
+										</Button>
 									{:else}
 										<Render of={cell.render()} />
 									{/if}
