@@ -22,6 +22,7 @@
 	import * as Form from '$lib/components/ui/form';
 	import { getContext, cn } from '$lib/utils';
 	import { onMount } from 'svelte';
+	import DateInput from '$lib/components/ui/date-input/date-input.svelte';
 
 	export let data: SuperValidated<Infer<BillSchema | OptionalBillSchema>>;
 	export let onSuccess: () => void = () => {};
@@ -177,23 +178,9 @@
 			<Form.Control let:attrs>
 				<Form.Label>Invoice Date</Form.Label>
 				<input hidden bind:value={$formData.invoice_date} {...attrs} />
-				<Popover.Root>
-					<div>
-						<Popover.Trigger
-							class={cn(
-								buttonVariants({ variant: 'outline' }),
-								'w-[220px] justify-start pl-4 text-left font-normal',
-								!invoiceDate && 'text-muted-foreground'
-							)}
-						>
-							{invoiceDate ? df.format(invoiceDate.toDate(getLocalTimeZone())) : 'Pick a date'}
-							<CalendarIcon class="ml-auto h-4 w-4 opacity-50" />
-						</Popover.Trigger>
-					</div>
-					<Popover.Content class="w-auto p-0" side="left">
-						<DatePicker bind:value={invoiceDate} />
-					</Popover.Content>
-				</Popover.Root>
+				<div>
+					<DateInput bind:value={invoiceDate} />
+				</div>
 			</Form.Control>
 			<Form.FieldErrors />
 		</Form.Field>
@@ -205,21 +192,9 @@
 					<Form.Control let:attrs>
 						<input hidden bind:value={$formData.due_date} {...attrs} />
 						<div>
-							<Popover.Trigger
-								class={cn(
-									buttonVariants({ variant: 'outline' }),
-									'w-[220px] justify-start pl-4 text-left font-normal',
-									!dueDate && 'text-muted-foreground'
-								)}
-							>
-								{dueDate ? df.format(dueDate.toDate(getLocalTimeZone())) : 'Pick a date'}
-								<CalendarIcon class="ml-auto h-4 w-4 opacity-50" />
-							</Popover.Trigger>
+							<DateInput bind:value={dueDate} />
 						</div>
 					</Form.Control>
-					<Popover.Content class="w-auto p-0" side="left">
-						<DatePicker bind:value={dueDate} />
-					</Popover.Content>
 				</Popover.Root>
 			</Form.Control>
 			<Form.FieldErrors />
@@ -232,23 +207,9 @@
 					<Form.Control let:attrs>
 						<input hidden bind:value={$formData.due_date} {...attrs} />
 						<div>
-							<Popover.Trigger
-								class={cn(
-									buttonVariants({ variant: 'outline' }),
-									'w-[220px] justify-start pl-4 text-left font-normal',
-									!accrualPeriod && 'text-muted-foreground'
-								)}
-							>
-								{accrualPeriod
-									? df.format(accrualPeriod.toDate(getLocalTimeZone()))
-									: 'Pick a date'}
-								<CalendarIcon class="ml-auto h-4 w-4 opacity-50" />
-							</Popover.Trigger>
+							<DateInput bind:value={accrualPeriod} />
 						</div>
 					</Form.Control>
-					<Popover.Content class="w-auto p-0" side="left">
-						<DatePicker bind:value={accrualPeriod} />
-					</Popover.Content>
 				</Popover.Root>
 			</Form.Control>
 			<Form.FieldErrors />
