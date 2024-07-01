@@ -45,7 +45,7 @@
 		"bits-ui": "^0.21.0",
 		"clsx": "^2.1.0",
 		"crypto-js": "^4.2.0",
-		"lucide-svelte": "^0.396.0",
+		"lucide-svelte": "^0.399.0",
 		"mdsvex": "^0.11.0",
 		"tailwind-merge": "^2.2.0",
 		"tailwind-variants": "^0.2.0"
