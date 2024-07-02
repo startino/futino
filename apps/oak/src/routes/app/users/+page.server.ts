@@ -10,8 +10,7 @@ import type { Database } from '$lib/server/supabase.types';
 import { createUserByAdminSchema, updateUserByAdminSchema } from '$lib/schemas';
 import type { JoinedProfile } from '$lib/types';
 import { PUBLIC_SITE_URL, PUBLIC_SMTP_USER } from '$env/static/public';
-import { emails } from '$lib/emails.js';
-import { sendEmailNotif } from '$lib/utils.js';
+import { emails } from '$lib/emails';
 
 export const load = async () => {
 	const createForm = await superValidate(zod(createUserByAdminSchema));

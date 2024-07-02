@@ -3,17 +3,17 @@ import {
 	SUPABASE_SERVICE_ROLE_KEY,
 	SMTP_HOST,
 	SMTP_PASSWORD,
-	SMTP_PORT
+	SMTP_PORT,
+	STRIPE_SECRET_KEY
 } from '$env/static/private';
 
-import path from 'path';
 import nodemailer from 'nodemailer';
-import type { Database } from '$lib/server/supabase.types';
+import Stripe from 'stripe';
 import { createSupabaseServerClient } from '@supabase/auth-helpers-sveltekit';
 import { error, redirect, type Handle } from '@sveltejs/kit';
 import { IAM } from '$lib/iam';
 import type { JoinedProfile } from '$lib/types';
-import { dev } from '$app/environment';
+import type { Database } from '$lib/server/supabase.types';
 
 export const handle: Handle = async ({ event, resolve }) => {
 	const supabase = createSupabaseServerClient<Database>({
@@ -21,7 +21,9 @@ export const handle: Handle = async ({ event, resolve }) => {
 		supabaseKey: SUPABASE_SERVICE_ROLE_KEY,
 		event
 	});
+
 	event.locals.supabase = supabase;
+	event.locals.stripe = new Stripe(STRIPE_SECRET_KEY);
 
 	const {
 		data: { user }
