@@ -10,6 +10,8 @@ import type { Database } from '$lib/server/supabase.types';
 import { createUserByAdminSchema, updateUserByAdminSchema } from '$lib/schemas';
 import type { JoinedProfile } from '$lib/types';
 import { PUBLIC_SITE_URL, PUBLIC_SMTP_USER } from '$env/static/public';
+import { emails } from '$lib/emails.js';
+import { sendEmailNotif } from '$lib/utils.js';
 
 export const load = async () => {
 	const createForm = await superValidate(zod(createUserByAdminSchema));
@@ -69,15 +71,14 @@ export const actions = {
 		});
 
 		smtpTransporter.sendMail({
-			template: 'new-user',
 			from: `"Oak" <${PUBLIC_SMTP_USER}>`,
 			to: formData.email,
 			subject: 'Your Oak credentials',
-			context: {
+			html: emails['new-user']({
 				email: formData.email,
 				password: formData.password,
-				action_link
-			}
+				actionLink: action_link
+			})
 		});
 
 		const { data: newProfile, error: profileError } = await supabase
