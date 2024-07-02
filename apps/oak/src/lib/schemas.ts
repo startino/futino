@@ -154,7 +154,7 @@ export const contractSchema = z.object({
 	project_id: z.string().uuid('A project is required'),
 	account_id: z.string().uuid('An account is required'),
 	department_id: z.string().uuid('A department is required'),
-	amount: z.number().gt(0, 'An amount is required'),
+	amount: z.number({message: 'An amount is required'}),
 	spend_category_id: z.string().uuid('A spend category is required'),
 	attachment: z
 		.instanceof(File, { message: 'Please upload the contract PDF.' })

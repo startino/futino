@@ -3,10 +3,11 @@ import { parseDate, CalendarDate } from '@internationalized/date';
 import { twMerge } from 'tailwind-merge';
 import { cubicOut } from 'svelte/easing';
 import type { TransitionConfig } from 'svelte/transition';
-import type { SupabaseClient, PostgrestError } from '@supabase/supabase-js';
-import type { Context, EmailContextMap, ReportContracts, ReportDataTableRow } from '$lib/types';
+import type { SupabaseClient } from '@supabase/supabase-js';
+import type { Context, ReportContracts, ReportDataTableRow } from '$lib/types';
 import { getContext as getSvelteContext, setContext as setSvelteContext } from 'svelte';
-import type { Tables, Database } from '$lib/server/supabase.types';
+import type { Database } from '$lib/server/supabase.types';
+import { emails } from '$lib/emails';
 import * as PDFJS from 'pdfjs-dist';
 import * as pdfWorker from 'pdfjs-dist/build/pdf.worker.mjs';
 import type { createSMPTransport } from '../hooks.server';
@@ -16,23 +17,26 @@ PDFJS.GlobalWorkerOptions.workerSrc = 'pdfjs-dist/build/pdf.worker.mjs';
 
 export const pdfjsLib = PDFJS;
 
-export const  arrayToCSV = (data: any[]) => {
-  const csvRows = [];
-  const headers = Object.keys(data[0]);
-  csvRows.push(headers.join(','));
+export const arrayToCSV = (data: any[]) => {
+	const csvRows = [];
+	const headers = Object.keys(data[0]);
+	csvRows.push(headers.join(','));
 
-  for (const row of data) {
-    const values = headers.map(header => {
-      const escaped = ('' + row[header]).replace(/"/g, '\\"');
-      return `"${escaped}"`;
-    });
-    csvRows.push(values.join(','));
-  }
+	for (const row of data) {
+		const values = headers.map((header) => {
+			const escaped = ('' + row[header]).replace(/"/g, '\\"');
+			return `"${escaped}"`;
+		});
+		csvRows.push(values.join(','));
+	}
 
-  return csvRows.join('\n');
-}
+	return csvRows.join('\n');
+};
 
-export const  getReportRows = (data: ReportContracts, period: CalendarDate): ReportDataTableRow[] => {
+export const getReportRows = (
+	data: ReportContracts,
+	period: CalendarDate
+): ReportDataTableRow[] => {
 	return data
 		.filter((c) => period.compare(parseDate(c.start_date)) >= 0)
 		.map((c) => {
@@ -69,10 +73,10 @@ export const  getReportRows = (data: ReportContracts, period: CalendarDate): Rep
 		});
 };
 
-export const sendEmailNotif = async <K extends keyof EmailContextMap>(
+export const sendEmailNotif = async <K extends keyof typeof emails>(
 	type: K,
 	option: {
-		context: EmailContextMap[K];
+		context: Parameters<(typeof emails)[K]>[0];
 		subject: string;
 		receiverProfileId: string;
 		smtp: ReturnType<typeof createSMPTransport>;
@@ -84,11 +88,10 @@ export const sendEmailNotif = async <K extends keyof EmailContextMap>(
 		data: { user }
 	} = await client.auth.admin.getUserById(receiverProfileId);
 	smtp.sendMail({
-		template: type,
 		from: `"Oak" <${PUBLIC_SMTP_USER}>`,
 		to: user.email,
 		subject,
-		context
+		html: emails[type](context as any)
 	});
 };
 

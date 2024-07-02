@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Loader2, CalendarIcon, Paperclip } from 'lucide-svelte';
+	import { Loader2, Paperclip } from 'lucide-svelte';
 	import type { SuperValidated, Infer } from 'sveltekit-superforms';
 	import { superForm, fileProxy } from 'sveltekit-superforms';
 	import { zodClient } from 'sveltekit-superforms/adapters';
@@ -14,10 +14,9 @@
 	import { Combobox } from '$lib/components/ui/combobox';
 	import { Textarea } from '$lib/components/ui/textarea';
 	import { Input } from '$lib/components/ui/input';
-	import { buttonVariants } from '$lib/components/ui/button';
 	import DatePicker from '$lib/components/atoms/DatePicker.svelte';
 	import * as Popover from '$lib/components/ui/popover';
-	import { getContext, cn } from '$lib/utils';
+	import { getContext } from '$lib/utils';
 	import * as Form from '$lib/components/ui/form';
 	import {
 		type ContractSchema,
@@ -26,6 +25,7 @@
 		optionalContractSchema
 	} from '$lib/schemas';
 	import type { ContractDatableRow } from '$lib/types';
+	import { DateInput } from '$lib/components/ui/date-input';
 
 	export let data: SuperValidated<Infer<ContractSchema | OptionalContractSchema>>;
 	export let onSuccess: () => void = () => {};
@@ -200,16 +200,7 @@
 			<input hidden bind:value={$formData.start_date} {...attrs} />
 			<Popover.Root>
 				<div>
-					<Popover.Trigger
-						class={cn(
-							buttonVariants({ variant: 'outline' }),
-							'w-[220px] justify-start pl-4 text-left font-normal',
-							!startDateValue && 'text-muted-foreground'
-						)}
-					>
-						{startDateValue ? df.format(startDateValue.toDate(getLocalTimeZone())) : 'Pick a date'}
-						<CalendarIcon class="ml-auto h-4 w-4 opacity-50" />
-					</Popover.Trigger>
+					<DateInput bind:value={startDateValue} />
 				</div>
 				<Popover.Content class="w-auto p-0" side="right">
 					<DatePicker bind:value={startDateValue} bind:placeholder={startDatePlaceholder} />
@@ -225,16 +216,7 @@
 				<Form.Control let:attrs>
 					<input hidden bind:value={$formData.end_date} {...attrs} />
 					<div>
-						<Popover.Trigger
-							class={cn(
-								buttonVariants({ variant: 'outline' }),
-								'w-[220px] justify-start pl-4 text-left font-normal',
-								!endDateValue && 'text-muted-foreground'
-							)}
-						>
-							{endDateValue ? df.format(endDateValue.toDate(getLocalTimeZone())) : 'Pick a date'}
-							<CalendarIcon class="ml-auto h-4 w-4 opacity-50" />
-						</Popover.Trigger>
+						<DateInput bind:value={endDateValue} />
 					</div>
 				</Form.Control>
 				<Popover.Content class="w-auto p-0" side="right">

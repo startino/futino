@@ -3,7 +3,6 @@ import { superValidate, setError } from 'sveltekit-superforms';
 import { zod } from 'sveltekit-superforms/adapters';
 
 import { getContractById } from '$lib/server/db';
-import { PUBLIC_SMTP_USER } from '$env/static/public';
 import { PUBLIC_SITE_URL } from '$env/static/public';
 import type { Tables } from '$lib/server/supabase.types';
 import { findSigner } from '$lib/server/db/profiles';
@@ -87,18 +86,17 @@ export const actions = {
 		}
 
 		if (signer) {
-			const {
-				data: { user }
-			} = await supabase.auth.admin.getUserById(signer.id);
-
-			smtpTransporter.sendMail({
-				template: 'new-contract',
-				from: `"Oak" <${PUBLIC_SMTP_USER}>`,
-				to: user.email,
+			sendEmailNotif('new-entry', {
+				client: supabase,
+				receiverProfileId: signer.id,
+				smtp: smtpTransporter,
 				subject: 'New contract',
 				context: {
-					link: `${PUBLIC_SITE_URL}/app/contracts/${contract.id}`,
-					label: `#${contract.number} ${contract.vendor.name}`
+					entryName: 'contract',
+					link: {
+						url: `${PUBLIC_SITE_URL}/app/contracts/${contract.id}`,
+						label: `#${contract.number} ${contract.vendor.name}`
+					}
 				}
 			});
 		}
@@ -124,18 +122,18 @@ export const actions = {
 			return fail(500, { error: 'Something went wrong' });
 		}
 
-		const {
-			data: { user }
-		} = await supabase.auth.admin.getUserById(contract.owner_id);
-
-		smtpTransporter.sendMail({
-			template: 'contract-signed',
-			from: `"Oak" <${PUBLIC_SMTP_USER}>`,
-			to: user.email,
+		sendEmailNotif('entry-validation', {
+			client: supabase,
+			receiverProfileId: contract.owner_id,
+			smtp: smtpTransporter,
 			subject: 'Contract signed',
 			context: {
-				link: `${PUBLIC_SITE_URL}/app/contracts/${contract.id}`,
-				label: `#${contract.number} ${contract.vendor.name}`
+				action: 'signed',
+				entryName: 'contract',
+				link: {
+					url: `${PUBLIC_SITE_URL}/app/contracts/${contract.id}`,
+					label: `#${contract.number} ${contract.vendor.name}`
+				}
 			}
 		});
 

@@ -8,7 +8,6 @@ import {
 
 import path from 'path';
 import nodemailer from 'nodemailer';
-import hbs from 'nodemailer-express-handlebars';
 import type { Database } from '$lib/server/supabase.types';
 import { createSupabaseServerClient } from '@supabase/auth-helpers-sveltekit';
 import { error, redirect, type Handle } from '@sveltejs/kit';
@@ -29,6 +28,9 @@ export const handle: Handle = async ({ event, resolve }) => {
 	} = await supabase.auth.getUser();
 
 	if (!user) {
+		if (event.url.pathname.startsWith('/api')) {
+			error(401);
+		}
 		if (event.url.pathname.startsWith('/app')) {
 			redirect(303, '/login');
 		}
@@ -86,20 +88,6 @@ export const createSMPTransport = ({ host, port, user, pass }: SMTPOptions) => {
 			rejectUnauthorized: false
 		}
 	});
-
-	const templatesPath = dev
-		? path.resolve('./src/email-templates/')
-		: path.resolve('./email-templates/');
-
-	const handlebarOptions = {
-		viewEngine: {
-			partialsDir: templatesPath,
-			defaultLayout: false
-		},
-		viewPath: templatesPath
-	};
-
-	transporter.use('compile', hbs(handlebarOptions));
 
 	return transporter;
 };
