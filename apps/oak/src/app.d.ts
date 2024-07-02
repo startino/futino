@@ -12,6 +12,7 @@ declare global {
 	namespace App {
 		interface Locals {
 			stripe: Stripe;
+			subscription: Stripe.Subscription | null;
 			smtpTransporter: ReturnType<typeof createSMPTransport>;
 			supabase: SupabaseClient<Database>;
 			currentProfile: JoinedProfile;

@@ -50,6 +50,16 @@ export const handle: Handle = async ({ event, resolve }) => {
 			.single();
 		const { data: policy } = await supabase.from('resource_policy').select().single();
 
+		const subscriptionResponse = await event.locals.stripe.subscriptions.list({
+			customer: currentProfile.stripe_customer_id
+		});
+
+		const subscription = subscriptionResponse.data[0] ?? null;
+
+		if (!subscription && !event.url.pathname.startsWith('/app/subscription')) {
+			redirect(303, '/app/subscription');
+		}
+
 		event.locals.iam = new IAM(policy.content, currentProfile);
 		event.locals.organization = organization;
 		event.locals.currentProfile = currentProfile;
