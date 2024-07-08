@@ -13,7 +13,8 @@
 		createDepartments,
 		createVendors,
 		createSpendCategories,
-		createProfiles
+		createProfiles,
+		createStripeData
 	} from '$lib/stores';
 	import { IAM } from '$lib/iam';
 
@@ -23,6 +24,7 @@
 	const iam = new IAM(data.resourcePolicy, storesData.currentProfile);
 
 	setContext('iam', iam);
+	setContext('stripeData', createStripeData(data.stripeData));
 	setContext('currentProfile', createCurrentProfile(storesData.currentProfile));
 	setContext('organization', createOrganization(storesData.organization));
 	setContext('projects', createProjects(storesData.projects));

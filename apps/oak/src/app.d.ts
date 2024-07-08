@@ -13,6 +13,7 @@ declare global {
 		interface Locals {
 			stripe: Stripe;
 			subscription: Stripe.Subscription | null;
+			paymentMethod: Stripe.PaymentMethod | null;
 			smtpTransporter: ReturnType<typeof createSMPTransport>;
 			supabase: SupabaseClient<Database>;
 			currentProfile: JoinedProfile;

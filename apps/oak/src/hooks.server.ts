@@ -51,10 +51,16 @@ export const handle: Handle = async ({ event, resolve }) => {
 		const { data: policy } = await supabase.from('resource_policy').select().single();
 
 		const subscriptionResponse = await event.locals.stripe.subscriptions.list({
-			customer: currentProfile.stripe_customer_id
+			customer: organization.stripe_customer_id
 		});
 
+		const paymentMethodResponse = await event.locals.stripe.customers.listPaymentMethods(
+			organization.stripe_customer_id,
+			{ limit: 1 }
+		);
+
 		const subscription = subscriptionResponse.data[0] ?? null;
+		const paymentMethod = paymentMethodResponse.data[0] ?? null;
 
 		if (!subscription && !event.url.pathname.startsWith('/app/subscription')) {
 			redirect(303, '/app/subscription');
@@ -63,6 +69,7 @@ export const handle: Handle = async ({ event, resolve }) => {
 		event.locals.iam = new IAM(policy.content, currentProfile);
 		event.locals.organization = organization;
 		event.locals.currentProfile = currentProfile;
+		event.locals.paymentMethod = paymentMethod;
 		event.locals.user = user;
 		event.locals.smtpTransporter = createSMPTransport({
 			host: SMTP_HOST,
