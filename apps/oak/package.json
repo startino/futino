@@ -51,7 +51,7 @@
 		"cmdk-sv": "^0.0.17",
 		"dotenv": "^16.4.5",
 		"embla-carousel-svelte": "8.1.3",
-		"formsnap": "^1.0.0",
+		"formsnap": "^1.0.1",
 		"generate-password": "^1.7.1",
 		"lucide-svelte": "^0.396.0",
 		"mdsvex": "^0.11.0",
