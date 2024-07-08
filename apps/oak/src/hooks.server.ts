@@ -70,6 +70,7 @@ export const handle: Handle = async ({ event, resolve }) => {
 		event.locals.organization = organization;
 		event.locals.currentProfile = currentProfile;
 		event.locals.paymentMethod = paymentMethod;
+		event.locals.subscription = subscription;
 		event.locals.user = user;
 		event.locals.smtpTransporter = createSMPTransport({
 			host: SMTP_HOST,
