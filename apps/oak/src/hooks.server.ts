@@ -37,6 +37,9 @@ export const handle: Handle = async ({ event, resolve }) => {
 			redirect(303, '/login');
 		}
 	} else {
+		if (['/app', '/app/'].includes(event.url.pathname)) {
+			redirect(303, '/app/contracts');
+		}
 		const { data: currentProfile } = await supabase
 			.from('profiles')
 			.select('*, approver:approver_id (*), department:department_id (*)')
