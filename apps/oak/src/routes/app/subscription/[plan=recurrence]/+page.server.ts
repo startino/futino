@@ -2,8 +2,14 @@ import { PUBLIC_STRIPE_MONTHLY_PRICE_ID, PUBLIC_STRIPE_YEARLY_PRICE_ID } from '$
 import { error, redirect } from '@sveltejs/kit';
 import type Stripe from 'stripe';
 
-export const load = async ({ locals: { stripe, subscription, organization }, params }) => {
-	if (subscription && subscription.status === 'active') {
+export const load = async ({
+	locals: { stripe, subscription, organization, currentProfile },
+	params
+}) => {
+	if (
+		(subscription && subscription.status === 'active') ||
+		!currentProfile.roles.includes('admin')
+	) {
 		throw redirect(302, '/app/subscription');
 	}
 

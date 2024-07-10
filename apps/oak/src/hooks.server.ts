@@ -51,7 +51,9 @@ export const handle: Handle = async ({ event, resolve }) => {
 		const { data: policy } = await supabase.from('resource_policy').select().single();
 
 		const subscriptionResponse = await event.locals.stripe.subscriptions.list({
-			customer: organization.stripe_customer_id
+			customer: organization.stripe_customer_id,
+			status: 'all',
+			limit: 1
 		});
 
 		const paymentMethodResponse = await event.locals.stripe.customers.listPaymentMethods(
@@ -59,7 +61,7 @@ export const handle: Handle = async ({ event, resolve }) => {
 			{ limit: 1 }
 		);
 
-		const subscription = subscriptionResponse.data[0] ?? null;
+		let subscription = subscriptionResponse.data[0] ?? null;
 		const paymentMethod = paymentMethodResponse.data[0] ?? null;
 
 		if (!subscription && !event.url.pathname.startsWith('/app/subscription')) {
