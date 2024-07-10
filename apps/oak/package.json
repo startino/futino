@@ -12,7 +12,7 @@
 		"format": "prettier --write ."
 	},
 	"devDependencies": {
-		"@sveltejs/adapter-auto": "^3.2.1",
+		"@sveltejs/adapter-auto": "^3.2.2",
 		"@sveltejs/adapter-vercel": "^5.3.0",
 		"@sveltejs/kit": "^2.5.18",
 		"@sveltejs/vite-plugin-svelte": "^3.1.1",
@@ -27,7 +27,7 @@
 		"postcss": "^8.4.39",
 		"postcss-load-config": "^6.0.1",
 		"prettier": "^3.3.2",
-		"prettier-plugin-svelte": "^3.2.3",
+		"prettier-plugin-svelte": "^3.2.5",
 		"prettier-plugin-tailwindcss": "^0.6.2",
 		"supabase": "^1.163.2",
 		"svelte": "^4.2.18",
@@ -46,12 +46,12 @@
 		"@tailwindcss/aspect-ratio": "^0.4.2",
 		"@tailwindcss/typography": "^0.5.12",
 		"@types/nodemailer": "^6.4.15",
-		"bits-ui": "^0.21.10",
+		"bits-ui": "^0.21.12",
 		"clsx": "^2.1.1",
 		"cmdk-sv": "^0.0.17",
 		"dotenv": "^16.4.5",
 		"embla-carousel-svelte": "8.1.3",
-		"formsnap": "^1.0.0",
+		"formsnap": "^1.0.1",
 		"generate-password": "^1.7.1",
 		"lucide-svelte": "^0.396.0",
 		"mdsvex": "^0.11.0",
@@ -70,7 +70,7 @@
 		"sveltekit-superforms": "^2.15.2",
 		"tailwind-merge": "^2.3.0",
 		"tailwind-variants": "^0.2.1",
-		"vaul-svelte": "^0.3.1",
+		"vaul-svelte": "^0.3.2",
 		"zod": "^3.23.8"
 	}
 }
