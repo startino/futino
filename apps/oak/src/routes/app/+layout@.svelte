@@ -1,10 +1,12 @@
 <script lang="ts">
+	import { getLocalTimeZone, parseDate, today } from '@internationalized/date';
+
 	import '$styling';
 	import Shell from '$lib/components/organisms/Shell.svelte';
 	import Sidebar from '$lib/components/organisms/Sidebar.svelte';
 	import { Skeleton } from '$lib/components/ui/skeleton';
 	import { navigating } from '$app/stores';
-	import { setContext } from '$lib/utils';
+	import { setContext, timestampToISODate } from '$lib/utils';
 	import {
 		createAccounts,
 		createCurrentProfile,
@@ -13,17 +15,30 @@
 		createDepartments,
 		createVendors,
 		createSpendCategories,
-		createProfiles
+		createProfiles,
+		createStripeData
 	} from '$lib/stores';
 	import { IAM } from '$lib/iam';
 
 	export let data;
 	const storesData = data.storesData;
+	let stripeData = data.stripeData;
 
 	const iam = new IAM(data.resourcePolicy, storesData.currentProfile);
 
+	if (
+		stripeData.subscription &&
+		stripeData.subscription.status === 'canceled' &&
+		parseDate(timestampToISODate(stripeData.subscription.current_period_end)).compare(
+			today(getLocalTimeZone())
+		) > 0
+	) {
+		stripeData.subscription = null;
+	}
+
 	setContext('iam', iam);
 	setContext('currentProfile', createCurrentProfile(storesData.currentProfile));
+	setContext('stripeData', createStripeData(stripeData));
 	setContext('organization', createOrganization(storesData.organization));
 	setContext('projects', createProjects(storesData.projects));
 	setContext('accounts', createAccounts(storesData.accounts));

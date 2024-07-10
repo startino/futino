@@ -1,6 +1,14 @@
 <script lang="ts">
 	import LucideIcon from '$lib/components/atoms/LucideIcon.svelte';
-	import { ReceiptText, Receipt, PieChart, Users, User, Building2 } from 'lucide-svelte';
+	import {
+		ReceiptText,
+		Receipt,
+		PieChart,
+		Users,
+		User,
+		Building2,
+		CalendarPlus2
+	} from 'lucide-svelte';
 	import { page } from '$app/stores';
 	import Logo from '../atoms/Logo.svelte';
 
@@ -36,6 +44,11 @@
 			label: 'Organization Account',
 			href: '/organization-account',
 			icon: Building2
+		},
+		{
+			label: 'Subscription',
+			href: '/subscription',
+			icon: CalendarPlus2
 		}
 	];
 

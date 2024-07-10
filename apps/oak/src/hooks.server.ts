@@ -3,17 +3,17 @@ import {
 	SUPABASE_SERVICE_ROLE_KEY,
 	SMTP_HOST,
 	SMTP_PASSWORD,
-	SMTP_PORT
+	SMTP_PORT,
+	STRIPE_SECRET_KEY
 } from '$env/static/private';
 
-import path from 'path';
 import nodemailer from 'nodemailer';
-import type { Database } from '$lib/server/supabase.types';
+import Stripe from 'stripe';
 import { createSupabaseServerClient } from '@supabase/auth-helpers-sveltekit';
 import { error, redirect, type Handle } from '@sveltejs/kit';
 import { IAM } from '$lib/iam';
 import type { JoinedProfile } from '$lib/types';
-import { dev } from '$app/environment';
+import type { Database } from '$lib/server/supabase.types';
 
 export const handle: Handle = async ({ event, resolve }) => {
 	const supabase = createSupabaseServerClient<Database>({
@@ -21,7 +21,9 @@ export const handle: Handle = async ({ event, resolve }) => {
 		supabaseKey: SUPABASE_SERVICE_ROLE_KEY,
 		event
 	});
+
 	event.locals.supabase = supabase;
+	event.locals.stripe = new Stripe(STRIPE_SECRET_KEY);
 
 	const {
 		data: { user }
@@ -48,9 +50,29 @@ export const handle: Handle = async ({ event, resolve }) => {
 			.single();
 		const { data: policy } = await supabase.from('resource_policy').select().single();
 
+		const subscriptionResponse = await event.locals.stripe.subscriptions.list({
+			customer: organization.stripe_customer_id,
+			status: 'all',
+			limit: 1
+		});
+
+		const paymentMethodResponse = await event.locals.stripe.customers.listPaymentMethods(
+			organization.stripe_customer_id,
+			{ limit: 1 }
+		);
+
+		let subscription = subscriptionResponse.data[0] ?? null;
+		const paymentMethod = paymentMethodResponse.data[0] ?? null;
+
+		if (!subscription && !event.url.pathname.startsWith('/app/subscription')) {
+			redirect(303, '/app/subscription');
+		}
+
 		event.locals.iam = new IAM(policy.content, currentProfile);
 		event.locals.organization = organization;
 		event.locals.currentProfile = currentProfile;
+		event.locals.paymentMethod = paymentMethod;
+		event.locals.subscription = subscription;
 		event.locals.user = user;
 		event.locals.smtpTransporter = createSMPTransport({
 			host: SMTP_HOST,

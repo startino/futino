@@ -13,7 +13,7 @@ export const load = async () => {
 };
 
 export const actions = {
-	default: async ({ request, locals: { supabase } }) => {
+	default: async ({ request, locals: { supabase, stripe } }) => {
 		const form = await superValidate(request, zod(registrationSchema));
 
 		if (!form.valid) {
@@ -23,32 +23,39 @@ export const actions = {
 		type FormData = RecursiveRequired<typeof form.data>;
 
 		const formData: FormData = form.data as FormData;
-
-		const { data: org, error: orgErr } = await supabase
-			.from('organizations')
-			.insert({ name: formData.organization.name })
-			.select()
-			.single();
-
-		if (orgErr) {
-			return setError(form, 'Something went wrong. Please, try again', { status: 500 });
-		}
-
 		const userData = formData.user;
-		const { error } = await supabase.auth.signUp({
-			email: userData.email,
-			password: userData.password,
-			options: {
-				emailRedirectTo: `${PUBLIC_SITE_URL}/login`,
-				data: {
-					organization_id: org.id,
-					roles: ['admin'],
-					full_name: userData.fullName
-				}
-			}
-		});
 
-		if (error) {
+		try {
+			const stripeCustomer = await stripe.customers.create({
+				email: userData.email,
+				name: userData.fullName
+			});
+
+			const { data: org, error: orgErr } = await supabase
+				.from('organizations')
+				.insert({ name: formData.organization.name, stripe_customer_id: stripeCustomer.id })
+				.select()
+				.single();
+
+			if (orgErr) throw orgErr;
+
+			const { error } = await supabase.auth.signUp({
+				email: userData.email,
+				password: userData.password,
+				options: {
+					emailRedirectTo: `${PUBLIC_SITE_URL}/login`,
+					data: {
+						organization_id: org.id,
+						roles: ['admin'],
+						full_name: userData.fullName
+					}
+				}
+			});
+
+			if (error) throw error;
+		} catch (error) {
+			console.warn('Error while registering organization: ', { error });
+
 			if (error.code === 'email_exists') {
 				return setError(form, 'This email is already registered', { status: 400 });
 			}

@@ -3,6 +3,7 @@ import type { SupabaseClient } from '@supabase/supabase-js';
 import type { Tables, Database } from '$lib/server/supabase.types';
 import type { IAM } from './iam';
 import {
+	createStripeData,
 	createAccounts,
 	createCurrentProfile,
 	createDepartments,
@@ -35,6 +36,7 @@ export interface EmailContextMap {
 
 export interface Context {
 	iam: IAM;
+	stripeData: ReturnType<typeof createStripeData>;
 	currentProfile: ReturnType<typeof createCurrentProfile>;
 	organization: ReturnType<typeof createOrganization>;
 	departments: ReturnType<typeof createDepartments>;
