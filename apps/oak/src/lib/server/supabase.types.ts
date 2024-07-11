@@ -629,6 +629,7 @@ export type Database = {
           contract_id: string
           created_at: string
           end_date: string | null
+          explanation: string | null
           id: string
           note: string | null
           requester_id: string
@@ -639,6 +640,7 @@ export type Database = {
           contract_id: string
           created_at?: string
           end_date?: string | null
+          explanation?: string | null
           id?: string
           note?: string | null
           requester_id?: string
@@ -649,6 +651,7 @@ export type Database = {
           contract_id?: string
           created_at?: string
           end_date?: string | null
+          explanation?: string | null
           id?: string
           note?: string | null
           requester_id?: string
