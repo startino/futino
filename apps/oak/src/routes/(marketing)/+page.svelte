@@ -45,45 +45,12 @@
 	</div>
 	<div class="mx-auto max-w-7xl px-6 pb-24 pt-10 sm:pb-40 lg:flex lg:px-8 lg:pt-40">
 		<div class="mx-auto max-w-2xl flex-shrink-0 lg:mx-0 lg:max-w-xl lg:pt-8">
-			<img
-				class="not-prose h-11"
-				src="https://tailwindui.com/img/logos/mark.svg?color=teal&shade=500"
-				alt="Your Company"
-			/>
-			<div class="mt-24 sm:mt-32 lg:mt-16">
-				<a href="#" class="inline-flex space-x-6">
-					<span
-						class="rounded-full bg-primary-500/10 px-3 py-1 text-sm text-primary-500 ring-1 ring-inset ring-primary-500/20"
-						>Latest updates</span
-					>
-					<span class="inline-flex items-center space-x-2 text-sm text-foreground/70">
-						<span>Just shipped v1.0</span>
-						<svg
-							class="h-5 w-5 text-gray-500"
-							viewBox="0 0 20 20"
-							fill="currentColor"
-							aria-hidden="true"
-						>
-							<path
-								fill-rule="evenodd"
-								d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z"
-								clip-rule="evenodd"
-							/>
-						</svg>
-					</span>
-				</a>
-			</div>
-			<h2 class="m-0 pt-12 font-bold tracking-tight sm:m-0">
+			<h1 class="m-0 pt-12 text-2xl font-bold tracking-tight sm:m-0">
 				Create & Manage Your Contracts In One Place
-			</h2>
-			<p class="m-0 pt-6 tracking-tight sm:m-0">
-				Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo.
-				Elit sunt amet fugiat veniam occaecat fugiat aliqua.
-			</p>
+			</h1>
+
 			<div class="mt-10 flex items-center gap-x-6">
-				<Button href="/register" size="lg">
-					<h4 class="m-0 sm:m-0">Get Started</h4>
-				</Button>
+				<Button href="/register" size="lg">Get Started</Button>
 			</div>
 		</div>
 		<div
@@ -91,7 +58,7 @@
 		>
 			<div class="max-w-3xl flex-none sm:max-w-5xl lg:max-w-none">
 				<img
-					src=""
+					src="/screenshot.jpeg"
 					alt="App screenshot"
 					width="2432"
 					height="1442"
