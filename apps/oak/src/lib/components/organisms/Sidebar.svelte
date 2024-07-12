@@ -11,6 +11,7 @@
 	} from 'lucide-svelte';
 	import { page } from '$app/stores';
 	import Logo from '../atoms/Logo.svelte';
+	import { getContext } from '$lib/utils';
 
 	const baseHref = '/app';
 
@@ -55,6 +56,8 @@
 	export let bottomNavigation = [
 		{ name: 'Logout', href: 'logout', icon: 'LogOut', current: false }
 	];
+
+	const currentProfile = getContext('currentProfile');
 </script>
 
 <!-- Static sidebar for desktop -->
@@ -63,12 +66,14 @@
 	<div
 		class="flex grow flex-col gap-y-5 overflow-hidden rounded-lg bg-background px-6 pb-6 text-muted-foreground shadow-lg"
 	>
-		<div class="flex h-16 shrink-0 items-center px-2 pt-6">
-			<a href="https://flowbite.com" class="mr-4 flex place-items-center space-x-2">
+		<div class="mb-4 grid h-16 shrink-0 items-center gap-4 px-2 pt-6">
+			<a href="/app" class="mr-4 flex place-items-center space-x-2">
 				<Logo color="accent" />
 				<span class="self-center whitespace-nowrap text-2xl font-semibold dark:text-white">Oak</span
 				>
 			</a>
+
+			<span class="text-accent">( {$currentProfile.full_name} )</span>
 		</div>
 		<nav>
 			<ul role="list" class=" mb-10">

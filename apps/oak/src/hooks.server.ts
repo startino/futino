@@ -37,51 +37,74 @@ export const handle: Handle = async ({ event, resolve }) => {
 			redirect(303, '/login');
 		}
 	} else {
-		const { data: currentProfile } = await supabase
-			.from('profiles')
-			.select('*, approver:approver_id (*), department:department_id (*)')
-			.eq('id', user.id)
-			.returns<JoinedProfile[]>()
-			.single();
-		const { data: organization } = await supabase
-			.from('organizations')
-			.select()
-			.eq('id', currentProfile.organization_id)
-			.single();
-		const { data: policy } = await supabase.from('resource_policy').select().single();
-
-		const subscriptionResponse = await event.locals.stripe.subscriptions.list({
-			customer: organization.stripe_customer_id,
-			status: 'all',
-			limit: 1
-		});
-
-		const paymentMethodResponse = await event.locals.stripe.customers.listPaymentMethods(
-			organization.stripe_customer_id,
-			{ limit: 1 }
-		);
-
-		let subscription = subscriptionResponse.data[0] ?? null;
-		const paymentMethod = paymentMethodResponse.data[0] ?? null;
-
-		if (!subscription && !event.url.pathname.startsWith('/app/subscription')) {
-			redirect(303, '/app/subscription');
+		if (['/app', '/app/'].includes(event.url.pathname)) {
+			redirect(303, '/app/contracts');
 		}
 
-		event.locals.iam = new IAM(policy.content, currentProfile);
-		event.locals.organization = organization;
-		event.locals.currentProfile = currentProfile;
-		event.locals.paymentMethod = paymentMethod;
-		event.locals.subscription = subscription;
-		event.locals.user = user;
-		event.locals.smtpTransporter = createSMPTransport({
-			host: SMTP_HOST,
-			port: Number(SMTP_PORT),
-			user: PUBLIC_SMTP_USER,
-			pass: SMTP_PASSWORD
-		});
+		if (['/', '/login', '/register'].includes(event.url.pathname)) {
+			redirect(303, '/app');
+		}
 
-		if (!event.locals.iam.canAccess(event)) return error(403, 'Forbidden action!');
+		try {
+			const { data: currentProfile, error: profileError } = await supabase
+				.from('profiles')
+				.select('*, approver:approver_id (*), department:department_id (*)')
+				.eq('id', user.id)
+				.returns<JoinedProfile[]>()
+				.single();
+
+			if (profileError) throw profileError;
+
+			const { data: organization, error: orgError } = await supabase
+				.from('organizations')
+				.select()
+				.eq('id', currentProfile.organization_id)
+				.single();
+
+			if (orgError) throw orgError;
+
+			const { data: policy, error: policyError } = await supabase
+				.from('resource_policy')
+				.select()
+				.single();
+
+			if (policyError) throw policyError;
+
+			const subscriptionResponse = await event.locals.stripe.subscriptions.list({
+				customer: organization.stripe_customer_id,
+				status: 'all',
+				limit: 1
+			});
+
+			const paymentMethodResponse = await event.locals.stripe.customers.listPaymentMethods(
+				organization.stripe_customer_id,
+				{ limit: 1 }
+			);
+
+			let subscription = subscriptionResponse.data[0] ?? null;
+			const paymentMethod = paymentMethodResponse.data[0] ?? null;
+
+			if (!subscription && !event.url.pathname.startsWith('/app/subscription')) {
+				redirect(303, '/app/subscription');
+			}
+
+			event.locals.iam = new IAM(policy.content, currentProfile);
+			event.locals.organization = organization;
+			event.locals.currentProfile = currentProfile;
+			event.locals.paymentMethod = paymentMethod;
+			event.locals.subscription = subscription;
+			event.locals.user = user;
+			event.locals.smtpTransporter = createSMPTransport({
+				host: SMTP_HOST,
+				port: Number(SMTP_PORT),
+				user: PUBLIC_SMTP_USER,
+				pass: SMTP_PASSWORD
+			});
+			if (!event.locals.iam.canAccess(event)) return error(403, 'Forbidden action!');
+		} catch (e) {
+			console.warn('Hooks error: ', e);
+			return error(500, 'Something Went Wrong!');
+		}
 	}
 
 	return resolve(event, {

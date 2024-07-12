@@ -45,6 +45,7 @@
 	let pdfContainer: HTMLElement;
 	let loadStatus:
 		| 'idle'
+		| 'submitting-explanation'
 		| 'approving-contract'
 		| 'approving-review'
 		| 'rejecting-review'
@@ -54,6 +55,8 @@
 	let rejectionFieldOpen = false;
 	let contractFormOpen = false;
 	let reviewRejectionNote = '';
+	let reviewStep: 1 | 2 = 1;
+	let reviewExplanation: string | null = null;
 
 	const isSigner = $currentProfile.roles.includes('signer');
 
@@ -139,6 +142,33 @@
 		toast.success(message);
 		data.contract.status = 'active';
 		reviewChange = null;
+
+		loadStatus = 'idle';
+	};
+
+	const handleReviewExplanation = async () => {
+		loadStatus = 'submitting-explanation';
+
+		const response = await fetch(`/api/explain-review-change/${reviewChange.id}`, {
+			method: 'POST',
+			body: JSON.stringify({ explanation: reviewExplanation }),
+			headers: {
+				'Content-Type': 'application/json'
+			}
+		});
+
+		const { error, message } = await response.json();
+
+		if (error) {
+			toast.error(error);
+			loadStatus = 'idle';
+			return;
+		}
+
+		toast.success(message);
+		reviewChange.explanation = reviewExplanation;
+		contractFormOpen = false;
+		reviewStep = 1;
 
 		loadStatus = 'idle';
 	};
@@ -245,19 +275,24 @@
 					<FormDialog bind:open={contractFormOpen} title="Edit Contract">
 						<svelte:fragment slot="trigger">
 							{#if ['pending approval', 'rejected'].includes(reviewChange.status)}
-								<h3 class="mb-1 text-foreground">Changes pending for approval</h3>
-								<ul class="mb-4 list-disc text-muted-foreground">
-									<li>
-										start date: {toDateString(new Date(contract.start_date))} -> {toDateString(
-											new Date(reviewChange.start_date)
-										)}
-									</li>
-									<li>
-										end date: {toDateString(new Date(contract.end_date))} -> {toDateString(
-											new Date(reviewChange.end_date)
-										)}
-									</li>
-								</ul>
+								<div class="mb-4 space-y-1">
+									<h3 class="text-foreground">Changes pending for approval:</h3>
+									<ul class="list-disc text-muted-foreground">
+										<li>
+											start date: {toDateString(new Date(contract.start_date))} -> {toDateString(
+												new Date(reviewChange.start_date)
+											)}
+										</li>
+										<li>
+											end date: {toDateString(new Date(contract.end_date))} -> {toDateString(
+												new Date(reviewChange.end_date)
+											)}
+										</li>
+									</ul>
+
+									<h3 class="text-foreground">Explanation:</h3>
+									<p class="text-muted-foreground">{reviewChange.explanation}</p>
+								</div>
 
 								{#if $currentProfile.id === reviewChange.requester_id && reviewChange.status === 'pending approval'}
 									{#if rejectionFieldOpen && reviewChange.status === 'pending approval'}
@@ -333,15 +368,33 @@
 							{/if}
 						</svelte:fragment>
 
-						<ContractForm
-							action={`?/review&id=${contract.review_change.id}&approverId=${reviewChange.requester_id}`}
-							type="update"
-							data={data.optionalContractForm}
-							onSuccess={() => {
-								contractFormOpen = false;
-								toast.success('Review submitted!');
-							}}
-						/>
+						{#if reviewStep === 1}
+							<h3>1 - Changes</h3>
+							<ContractForm
+								action={`?/review&id=${contract.review_change.id}&approverId=${reviewChange.requester_id}`}
+								type="update"
+								data={data.optionalContractForm}
+								onSuccess={() => {
+									reviewStep = 2;
+									toast.success('Review submitted!');
+								}}
+							/>
+						{/if}
+
+						{#if reviewStep === 2}
+							<h3>2 - Explanation</h3>
+							<Textarea placeholder="Explain the changes..." bind:value={reviewExplanation} />
+							<Button
+								on:click={handleReviewExplanation}
+								disabled={loadStatus === 'submitting-explanation' || !reviewExplanation}
+							>
+								{#if loadStatus === 'submitting-explanation'}
+									<Loader2 class="animate-spin" />
+								{:else}
+									Submit
+								{/if}
+							</Button>
+						{/if}
 					</FormDialog>
 				</Alert.Root>
 			</div>
