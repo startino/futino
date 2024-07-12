@@ -41,6 +41,10 @@ export const handle: Handle = async ({ event, resolve }) => {
 			redirect(303, '/app/contracts');
 		}
 
+		if (['/', '/login', '/register'].includes(event.url.pathname)) {
+			redirect(303, '/app');
+		}
+
 		try {
 			const { data: currentProfile, error: profileError } = await supabase
 				.from('profiles')
@@ -96,13 +100,12 @@ export const handle: Handle = async ({ event, resolve }) => {
 				user: PUBLIC_SMTP_USER,
 				pass: SMTP_PASSWORD
 			});
+			if (!event.locals.iam.canAccess(event)) return error(403, 'Forbidden action!');
 		} catch (e) {
 			console.warn('Hooks error: ', e);
 			return error(500, 'Something Went Wrong!');
 		}
 	}
-
-	if (!event.locals.iam.canAccess(event)) return error(403, 'Forbidden action!');
 
 	return resolve(event, {
 		filterSerializedResponseHeaders(name) {
