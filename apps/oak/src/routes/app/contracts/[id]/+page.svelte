@@ -62,8 +62,9 @@
 
 	onMount(async () => {
 		pdf = await pdfjsLib.getDocument(data.attachmentUrl).promise;
-		await renderPDF(pdf, pdfContainer);
 		loadStatus = 'loading-pdf';
+		await renderPDF(pdf, pdfContainer);
+		loadStatus = 'idle';
 	});
 
 	const approveReview = async () => {
