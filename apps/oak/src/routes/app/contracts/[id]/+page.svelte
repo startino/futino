@@ -373,7 +373,7 @@
 							<h3>1 - Changes</h3>
 							<ContractForm
 								action={`?/review&id=${contract.review_change.id}&approverId=${reviewChange.requester_id}`}
-								type="update"
+								type="review-update"
 								data={data.optionalContractForm}
 								onSuccess={() => {
 									reviewStep = 2;
