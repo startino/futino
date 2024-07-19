@@ -31,7 +31,7 @@
 	export let onSuccess: () => void = () => {};
 	export let onVendorSelect: (vendorId: string | null) => void = () => {};
 	export let action: `?/${string}` | undefined = undefined;
-	export let type: 'create' | 'update' = 'create';
+	export let type: 'create' | 'update' | 'review-update' = 'create';
 	export let parentContracts: ContractDatableRow[] = [];
 
 	const form = superForm(data, {
@@ -76,7 +76,7 @@
 </script>
 
 <form method="POST" {action} enctype="multipart/form-data" class="grid gap-4" use:enhance>
-	{#if type === 'create'}
+	{#if ['create', 'update'].includes(type)}
 		<Form.Field {form} name="vendor_id">
 			<Form.Control let:attrs>
 				<Form.Label>Vendor</Form.Label>
@@ -227,7 +227,7 @@
 		</Form.Control>
 	</Form.Field>
 
-	{#if type === 'create'}
+	{#if ['create', 'update'].includes(type)}
 		<Form.Field {form} name="attachment">
 			<Form.Control let:attrs>
 				<Form.Label class="cursor-pointer">
@@ -237,6 +237,8 @@
 					>
 						{#if fileName}
 							{fileName}
+						{:else if type === 'update'}
+							Replace contract PDF
 						{:else}
 							Select contract PDF
 						{/if}

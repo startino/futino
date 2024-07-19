@@ -26,10 +26,14 @@ export const load = async ({ locals: { organization, supabase } }) => {
 
 export const actions = {
 	default: async ({
-		locals: { supabase, organization, currentProfile, smtpTransporter },
+		locals: { supabase, organization, currentProfile, smtpTransporter, iam },
 		request
 	}) => {
 		const form = await superValidate(request, zod(billSchema));
+
+		if (!iam.isAllowedTo('bills.create')) {
+			return error(401, 'Not allowed to add bill');
+		}
 
 		if (!form.valid) {
 			return fail(400, { form: withFiles(form) });
@@ -64,7 +68,7 @@ export const actions = {
 			client: supabase
 		});
 
-		const { data, error } = await supabase
+		const { data, error: BillError } = await supabase
 			.from('bills')
 			.insert({
 				...formData,
@@ -76,7 +80,7 @@ export const actions = {
 			.select()
 			.single();
 
-		if (error) {
+		if (BillError) {
 			return setError(form, 'Unable to add the bill. Please try again', { status: 500 });
 		}
 
