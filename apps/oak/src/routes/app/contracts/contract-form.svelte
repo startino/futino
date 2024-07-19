@@ -110,7 +110,7 @@
 							{attrs}
 						/>
 					{:else}
-						<p class="text-xs font-bold text-accent">No parent contract</p>
+						<p class="text-xs font-bold text-accent">none</p>
 					{/if}
 				</div>
 			</Form.Control>

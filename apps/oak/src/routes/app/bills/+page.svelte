@@ -22,7 +22,25 @@
 {#key data.bills}
 	<DataTable data={data.bills}>
 		<svelte:fragment slot="entry-form">
-			{#if iam.isAllowedTo('bills.create') && !$currentProfile.approver_id}
+			{#if !iam.isAllowedTo('bills.create')}
+				<AlertDialog.Root>
+					<AlertDialog.Trigger>
+						<Button><Plus />Add</Button>
+					</AlertDialog.Trigger>
+					<AlertDialog.Content>
+						<AlertDialog.Header>
+							<AlertDialog.Title>Not allowed</AlertDialog.Title>
+							<AlertDialog.Description>
+								Only users with finance roles can add bills. Please reach out to your admin to
+								update your role if necessary.
+							</AlertDialog.Description>
+						</AlertDialog.Header>
+						<AlertDialog.Footer>
+							<AlertDialog.Action>OK</AlertDialog.Action>
+						</AlertDialog.Footer>
+					</AlertDialog.Content>
+				</AlertDialog.Root>
+			{:else if !$currentProfile.approver_id}
 				<AlertDialog.Root>
 					<AlertDialog.Trigger>
 						<Button><Plus />Add</Button>
@@ -39,29 +57,7 @@
 						</AlertDialog.Footer>
 					</AlertDialog.Content>
 				</AlertDialog.Root>
-			{/if}
-
-			{#if !iam.isAllowedTo('bills.create')}
-				<AlertDialog.Root>
-					<AlertDialog.Trigger>
-						<Button><Plus />Add</Button>
-					</AlertDialog.Trigger>
-					<AlertDialog.Content>
-						<AlertDialog.Header>
-							<AlertDialog.Title>Not allowed</AlertDialog.Title>
-							<AlertDialog.Description>
-								Only users with finance roles can add a bill. Please reach out to your admin to
-								update your role if necessary
-							</AlertDialog.Description>
-						</AlertDialog.Header>
-						<AlertDialog.Footer>
-							<AlertDialog.Action>OK</AlertDialog.Action>
-						</AlertDialog.Footer>
-					</AlertDialog.Content>
-				</AlertDialog.Root>
-			{/if}
-
-			{#if iam.isAllowedTo('bills.create')}
+			{:else}
 				<FormDialog bind:open={formOpen} title="Add bill">
 					<svelte:fragment slot="trigger">
 						<Dialog.Trigger>

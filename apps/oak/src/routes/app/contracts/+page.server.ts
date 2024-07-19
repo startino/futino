@@ -1,14 +1,12 @@
-import type { SupabaseClient } from '@supabase/supabase-js';
-import type { Transporter, SentMessageInfo } from 'nodemailer';
 import { error, fail, type RecursiveRequired } from '@sveltejs/kit';
 import { message, setError, superValidate, withFiles } from 'sveltekit-superforms/server';
 import { zod } from 'sveltekit-superforms/adapters';
 
 import { contractSchema } from '$lib/schemas';
 import type { ContractDatableRow } from '$lib/types';
-import { PUBLIC_SITE_URL, PUBLIC_SMTP_USER } from '$env/static/public';
-import type { Tables, Database } from '$lib/server/supabase.types.js';
+import { PUBLIC_SITE_URL } from '$env/static/public';
 import { findApprover } from '$lib/server/db/profiles';
+import { sendEmailNotif } from '$lib/utils';
 
 export const load = async ({ locals: { currentProfile, supabase } }) => {
 	const { data, error: e } = await supabase
@@ -19,7 +17,7 @@ export const load = async ({ locals: { currentProfile, supabase } }) => {
 		.returns<ContractDatableRow[]>();
 
 	if (e) {
-		console.error(e);
+		console.warn(e);
 		error(500, 'Something went wrong!');
 	}
 
@@ -30,7 +28,7 @@ export const load = async ({ locals: { currentProfile, supabase } }) => {
 
 export const actions = {
 	default: async ({ request, locals: { supabase, currentProfile, smtpTransporter, iam } }) => {
-		if (!iam.isAllowedTo('contracts.sign') && !currentProfile.approver_id) {
+		if (!iam.isAllowedTo('contracts.create') || !currentProfile.approver_id) {
 			return error(403);
 		}
 		const form = await superValidate(request, zod(contractSchema));
@@ -53,7 +51,7 @@ export const actions = {
 			});
 
 		if (uploadError) {
-			console.error(uploadError);
+			console.warn({ uploadError });
 			return setError(
 				withFiles(form),
 				'attachment',
@@ -71,6 +69,7 @@ export const actions = {
 		});
 
 		if (approverError) {
+			console.warn('approver error', { approverError });
 			return setError(withFiles(form), 'Unable to add contract. Please try again.', {
 				status: 500
 			});
@@ -89,39 +88,27 @@ export const actions = {
 			.single();
 
 		if (contractError) {
-			console.error(error);
+			console.warn({ contractError });
 			return setError(withFiles(form), 'Unable to add contract. Please try again.', {
 				status: 500
 			});
 		}
 
 		// If the user is a signer no need to notify anyone
-		if (!iam.isAllowedTo('contracts.sign') && approver) {
-			sendNotification(approver, newContract, smtpTransporter, supabase);
-		}
+		sendEmailNotif('new-entry', {
+			receiverProfileId: approver.id,
+			subject: 'New contract',
+			smtp: smtpTransporter,
+			client: supabase,
+			context: {
+				entryName: 'contract',
+				link: {
+					url: `${PUBLIC_SITE_URL}/app/contracts/${newContract.id}`,
+					label: `#${newContract.number} ${newContract.vendor.name}`
+				}
+			}
+		});
 
 		return message(withFiles(form), 'success');
 	}
-};
-
-const sendNotification = async (
-	approver: Tables<'profiles'>,
-	contract: Tables<'contracts'> & { vendor: Tables<'vendors'> },
-	transporter: Transporter<SentMessageInfo>,
-	supabase: SupabaseClient<Database>
-) => {
-	const {
-		data: { user }
-	} = await supabase.auth.admin.getUserById(approver.id);
-
-	transporter.sendMail({
-		template: 'new-contract',
-		from: `"Oak" <${PUBLIC_SMTP_USER}>`,
-		to: user.email,
-		subject: 'New contract',
-		context: {
-			link: `${PUBLIC_SITE_URL}/app/contracts/${contract.id}`,
-			label: `#${contract.number} ${contract.vendor.name}`
-		}
-	});
 };

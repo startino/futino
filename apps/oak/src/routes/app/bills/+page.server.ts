@@ -17,7 +17,7 @@ export const load = async ({ locals: { organization, supabase } }) => {
 	});
 
 	if (billsError) {
-		console.log({ billsError });
+		console.log('Error while loading', { billsError });
 		return error(500, 'Something went wrong!');
 	}
 
