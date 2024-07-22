@@ -5,8 +5,13 @@ import { zod } from 'sveltekit-superforms/adapters';
 import { contractSchema } from '$lib/schemas';
 import type { ContractDatableRow } from '$lib/types';
 import { PUBLIC_SITE_URL } from '$env/static/public';
-import { findApprover } from '$lib/server/db/profiles';
+import {
+	findApproverByThreshold,
+	getApprover,
+	getInitialContractApprover
+} from '$lib/server/db/profiles';
 import { sendEmailNotif } from '$lib/utils';
+import type { Tables } from '$lib/server/supabase.types.js';
 
 export const load = async ({ locals: { currentProfile, supabase } }) => {
 	const { data, error: e } = await supabase
@@ -62,7 +67,7 @@ export const actions = {
 			);
 		}
 
-		const { approver, error: approverError } = await findApprover({
+		let { approver, error: approverError } = await getInitialContractApprover({
 			profile: currentProfile,
 			amount: formData.amount,
 			client: supabase
