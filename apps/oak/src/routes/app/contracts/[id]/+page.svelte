@@ -453,7 +453,7 @@
 			<p>{contract.department.name}</p>
 		</div>
 		<div class="grid gap-2">
-			<h2 class="font-bold">Approver</h2>
+			<h2 class="font-bold">Current Approver</h2>
 			{#if contract.approver}
 				<p>{contract.approver.full_name}</p>
 			{:else}
@@ -539,7 +539,7 @@
 					</form>
 				{/if}
 
-				{#if isSigner}
+				{#if isApprover && isSigner}
 					<form action="?/sign" method="post" use:enhance>
 						<input hidden value={contract.id} name="contract-id" />
 						<div class="mt-4 flex gap-4">

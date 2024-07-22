@@ -5,7 +5,7 @@ import { zod } from 'sveltekit-superforms/adapters';
 import { getContractById } from '$lib/server/db';
 import { PUBLIC_SITE_URL } from '$env/static/public';
 import type { Tables } from '$lib/server/supabase.types';
-import { findSigner } from '$lib/server/db/profiles';
+import { findSigner, getApprover } from '$lib/server/db/profiles';
 import { rejectionSchema, optionalContractSchema } from '$lib/schemas';
 import { sendEmailNotif } from '$lib/utils';
 
@@ -60,23 +60,37 @@ export const actions = {
 			return fail(500, { error: 'Something went wrong' });
 		}
 
-		if (!iam.isAllowedTo('contracts.update')) return fail(400);
-
 		if (currentProfile.id !== contract.approver_id || currentProfile.id === contract.owner_id)
 			return error(403);
 
-		const { data: signer, error: signerError } = await findSigner({
-			client: supabase,
-			orgID: organization.id
-		});
+		let nextApproverId: string | null = null;
 
-		if (signerError) {
-			return error(500);
+		if (contract.amount <= currentProfile.approval_threshold) {
+			const { data: signer, error: signerError } = await findSigner({
+				client: supabase,
+				orgID: organization.id
+			});
+
+			if (signerError) {
+				return error(500);
+			}
+
+			nextApproverId = signer.id;
+		} else {
+			const { approver, error: approverError } = await getApprover({
+				client: supabase,
+				profile: currentProfile
+			});
+			if (approverError) {
+				return error(500);
+			}
+
+			nextApproverId = approver.id;
 		}
 
 		const { error: updateError } = await supabase
 			.from('contracts')
-			.update({ status: 'approved' })
+			.update({ status: 'pending approval', approver_id: nextApproverId })
 			.eq('id', contractId)
 			.single();
 
@@ -85,10 +99,10 @@ export const actions = {
 			return fail(500, { error: 'Something went wrong' });
 		}
 
-		if (signer) {
+		if (nextApproverId) {
 			sendEmailNotif('new-entry', {
 				client: supabase,
-				receiverProfileId: signer.id,
+				receiverProfileId: nextApproverId,
 				smtp: smtpTransporter,
 				subject: 'New contract',
 				context: {
