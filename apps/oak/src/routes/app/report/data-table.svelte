@@ -12,7 +12,7 @@
 	import { Render } from '$lib/svelte-render';
 	import * as Table from '$lib/components/ui/table';
 	import { Button } from '$lib/components/ui/button';
-	import { toDateString } from '$lib/utils';
+	import { roundToPenny, toDateString } from '$lib/utils';
 	import * as DropdownMenu from '$lib/components/ui/dropdown-menu';
 	import { Input } from '$lib/components/ui/input';
 	import type { ReportDataTableRow } from '$lib/types';
@@ -135,6 +135,7 @@
 		}),
 		table.column({
 			accessor: 'accrualBalance',
+			cell: ({ value }) => roundToPenny(value),
 			header: 'Accrual Balance'
 		}),
 		table.column({
@@ -196,7 +197,7 @@
 						{#each headerRow.cells as cell (cell.id)}
 							<Subscribe attrs={cell.attrs()} let:attrs props={cell.props()} let:props>
 								<Table.Head {...attrs}>
-									{#if ['amount', 'billedAmount', 'accrualBalance', 'openAmount'].includes(cell.id)}
+									{#if ['amount', 'billedAmount', 'accrualBalance', 'openAmount', 'number', 'parent'].includes(cell.id)}
 										<div class="text-right">
 											<Render of={cell.render()} />
 										</div>
@@ -222,7 +223,7 @@
 						{#each row.cells as cell (cell.id)}
 							<Subscribe attrs={cell.attrs()} let:attrs>
 								<Table.Cell {...attrs}>
-									{#if ['amount', 'billedAmount', 'accrualBalance', 'openAmount'].includes(cell.id)}
+									{#if ['amount', 'billedAmount', 'accrualBalance', 'openAmount', 'number', 'parent'].includes(cell.id)}
 										<div class="text-right">
 											<Render of={cell.render()} />
 										</div>

@@ -17,6 +17,8 @@ PDFJS.GlobalWorkerOptions.workerSrc = 'pdfjs-dist/build/pdf.worker.mjs';
 
 export const pdfjsLib = PDFJS;
 
+export const roundToPenny = (value: number): number => parseFloat(value.toFixed(2));
+
 export const timestampToISODate = (timestamp: number): string => {
 	const date = new Date(timestamp);
 	const year = date.getFullYear();
