@@ -46,7 +46,7 @@ export const findApproverByThreshold = async ({
 	return await findApproverByThreshold({ profile: approver, amount, client });
 };
 
-export const getInitialContractApprover = async ({
+export const getInitialApprover = async ({
 	profile,
 	amount,
 	client

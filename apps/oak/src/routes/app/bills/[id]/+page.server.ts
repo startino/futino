@@ -3,7 +3,7 @@ import { setError, superValidate, withFiles } from 'sveltekit-superforms';
 import { zod } from 'sveltekit-superforms/adapters';
 import { today } from '@internationalized/date';
 
-import { getBillById } from '$lib/server/db';
+import { getApprover, getBillById } from '$lib/server/db';
 import { billApprovalSchema, rejectionSchema, optionalBillSchema } from '$lib/schemas';
 import { sendEmailNotif } from '$lib/utils';
 import { PUBLIC_SITE_URL } from '$env/static/public';
@@ -41,21 +41,27 @@ export const actions = {
 
 		const formData = approvalForm.data;
 
-		const { data: bill, error } = await supabase
+		const { data: bill, error: billError } = await supabase
 			.from('bills')
 			.select()
 			.eq('id', formData.bill_id)
 			.single();
 
-		if (error) {
-			console.log({ error });
-
+		if (billError) {
+			console.log({ billError });
 			return setError(approvalForm, 'Unable to approve this bill. Please try again', {
 				status: 500
 			});
 		}
 
-		if (bill.approver_id === currentProfile.id || currentProfile.roles.includes('signer')) {
+		if (bill.approver_id !== currentProfile.id) {
+			return error(403);
+		}
+
+		if (
+			bill.amount <= currentProfile.approval_threshold ||
+			(currentProfile.id === bill.approver_id && currentProfile.roles.includes('signer'))
+		) {
 			const { error: updateError } = await supabase
 				.from('bills')
 				.update({
@@ -84,9 +90,43 @@ export const actions = {
 					action: 'approved'
 				}
 			});
+		} else {
+			const { approver, error: approverError } = await getApprover({
+				client: supabase,
+				profile: currentProfile
+			});
+			if (approverError) {
+				return error(500);
+			}
 
-			return { approvalForm };
+			const { error: updateError } = await supabase
+				.from('bills')
+				.update({
+					approver_id: approver.id
+				})
+				.eq('id', bill.id);
+
+			if (updateError) {
+				console.log({ updateError });
+
+				return setError(approvalForm, 'Unable to approve this bill. Please try again', {
+					status: 500
+				});
+			}
+
+			sendEmailNotif('new-entry', {
+				subject: 'New Bill',
+				receiverProfileId: approver.id,
+				client: supabase,
+				smtp: smtpTransporter,
+				context: {
+					link: { url: `${PUBLIC_SITE_URL}/app/bills/${bill.id}`, label: 'View bill' },
+					entryName: 'bill'
+				}
+			});
 		}
+
+		return { approvalForm };
 	},
 	reject: async ({ request, locals: { currentProfile, supabase, smtpTransporter } }) => {
 		const rejectionForm = await superValidate(request, zod(rejectionSchema));
