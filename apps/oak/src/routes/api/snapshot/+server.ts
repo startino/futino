@@ -15,7 +15,7 @@ export const GET = async ({ locals: { supabase } }) => {
 		const reportRows = getReportRows(reportContracts, period);
 		const csvData = reportRows.map((row) => ({
 			Vendor: row.vendor.name,
-			'Parent contract': row.parent.number ?? row.number,
+			'Parent contract': row.parent.number,
 			Contract: row.number,
 			Description: row.description,
 			'Start Date': toDateString(new Date(row.start_date)),

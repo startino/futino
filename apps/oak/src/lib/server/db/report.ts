@@ -8,7 +8,7 @@ export const getReportContracts = async ({ supabase, orgId }: Option) =>
 		.select(
 			`
     *,
-    parent:contracts (number),
+    parent:parent_contract_id (*),
     bills (*),
     vendor:vendors (name),
     department:departments (number, name),

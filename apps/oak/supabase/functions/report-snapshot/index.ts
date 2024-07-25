@@ -22,23 +22,23 @@ const getMonthsDifference = (startStr: string, endStr: string) => {
 	return (yearDifference * 12 + monthDifference) * multiplier;
 };
 
-const  arrayToCSV = (data: any[]) => {
-  const csvRows = [];
-  const headers = Object.keys(data[0]);
-  csvRows.push(headers.join(','));
+const arrayToCSV = (data: any[]) => {
+	const csvRows = [];
+	const headers = Object.keys(data[0]);
+	csvRows.push(headers.join(','));
 
-  for (const row of data) {
-    const values = headers.map(header => {
-      const escaped = ('' + row[header]).replace(/"/g, '\\"');
-      return `"${escaped}"`;
-    });
-    csvRows.push(values.join(','));
-  }
+	for (const row of data) {
+		const values = headers.map((header) => {
+			const escaped = ('' + row[header]).replace(/"/g, '\\"');
+			return `"${escaped}"`;
+		});
+		csvRows.push(values.join(','));
+	}
 
-  return csvRows.join('\n');
-}
+	return csvRows.join('\n');
+};
 
-const  getReportRows = (data: ReportContracts, period: CalendarDate): ReportDataTableRow[] => {
+const getReportRows = (data: ReportContracts, period: CalendarDate): ReportDataTableRow[] => {
 	return data
 		.filter((c) => period.compare(parseDate(c.start_date)) >= 0)
 		.map((c) => {
@@ -81,7 +81,7 @@ const getReportContracts = async ({ supabase, orgId }: Option) =>
 		.select(
 			`
     *,
-    parent:contracts (number),
+    parent:parent_contract_id (*),
     bills (*),
     vendor:vendors (name),
     department:departments (number, name),
@@ -107,45 +107,55 @@ type QueryResult = ReturnType<typeof getReportContracts> extends Promise<infer R
 export type ReportContracts = QueryResult extends { data: infer D } ? D : never;
 type ReportContractsItem = ReportContracts extends (infer U)[] ? U : never;
 
-
 Deno.serve(async (req) => {
 	const supabase = createClient(
 		Deno.env.get('SUPABASE_URL'),
-		Deno.env.get('SUPABASE_SERVICE_ROLE_KEY'),
+		Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')
 	);
 
-  let period = today(getLocalTimeZone());
-  let orgToCSV: Record<string, Blob> = {};
+	let period = today(getLocalTimeZone());
+	let orgToCSV: Record<string, Blob> = {};
 
-  const {data: organizations} = await supabase.from('organizations').select();
+	const { data: organizations } = await supabase.from('organizations').select();
 
-  if (!organizations) return new Response("OK", { headers: { 'Content-Type': 'application/json' } })
+	if (!organizations)
+		return new Response('OK', { headers: { 'Content-Type': 'application/json' } });
 
-  for (const org of organizations) {
-    const { data: reportContracts } = await getReportContracts({ supabase, orgId: org.id });
-    const reportRows = getReportRows(reportContracts, period);
-    const csvData = reportRows.map(row => ({Vendor: row.vendor.name, "Parent contract": row.parent.number ?? row.number, Contract: row.number, Description: row.description, "Start Date": toDateString(new Date(row.start_date)), "End Date": toDateString(new Date(row.end_date)), Amount: row.openAmount, Department: `${row.department.number} - ${row.department.name}`, Project: row.project.name, Category: row.category.name, "Billed Amount": row.billedAmount, "Accrual Balance": row.accrualBalance, "Open Amount": row.openAmount }))
+	for (const org of organizations) {
+		const { data: reportContracts } = await getReportContracts({ supabase, orgId: org.id });
+		const reportRows = getReportRows(reportContracts, period);
+		const csvData = reportRows.map((row) => ({
+			Vendor: row.vendor.name,
+			'Parent contract': row.parent.number,
+			Contract: row.number,
+			Description: row.description,
+			'Start Date': toDateString(new Date(row.start_date)),
+			'End Date': toDateString(new Date(row.end_date)),
+			Amount: row.openAmount,
+			Department: `${row.department.number} - ${row.department.name}`,
+			Project: row.project.name,
+			Category: row.category.name,
+			'Billed Amount': row.billedAmount,
+			'Accrual Balance': row.accrualBalance,
+			'Open Amount': row.openAmount
+		}));
 
-    if (csvData[0]) {
-      orgToCSV[org.id] = new Blob([arrayToCSV(csvData)], { type: 'text/csv'});
-    }
-  }
+		if (csvData[0]) {
+			orgToCSV[org.id] = new Blob([arrayToCSV(csvData)], { type: 'text/csv' });
+		}
+	}
 
-  for (const [orgId, csv] of Object.entries(orgToCSV)) {
-    const path = `/${orgId}/${period} ${crypto.randomUUID()}`;
+	for (const [orgId, csv] of Object.entries(orgToCSV)) {
+		const path = `/${orgId}/${period} ${crypto.randomUUID()}`;
 
-		const {error} = await supabase.storage
-			.from('report-snapshots')
-			.upload(path, csv, {
-				cacheControl: '3600',
-				upsert: false
-			});
-  }
+		const { error } = await supabase.storage.from('report-snapshots').upload(path, csv, {
+			cacheControl: '3600',
+			upsert: false
+		});
+	}
 
-	return new Response("OK", { headers: { 'Content-Type': 'application/json' } });
+	return new Response('OK', { headers: { 'Content-Type': 'application/json' } });
 });
-
-
 
 /* To invoke locally:
 
