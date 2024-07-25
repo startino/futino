@@ -91,6 +91,9 @@ export const sendEmailNotif = async <K extends keyof typeof emails>(
 		client: SupabaseClient<Database>;
 	}
 ) => {
+	if (!option.receiverProfileId) {
+		return;
+	}
 	const { context, client, receiverProfileId, subject, smtp } = option;
 	const {
 		data: { user }

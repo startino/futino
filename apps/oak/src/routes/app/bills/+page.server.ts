@@ -4,7 +4,7 @@ import { zod } from 'sveltekit-superforms/adapters';
 
 import { billSchema } from '$lib/schemas';
 import { getBillDataTableRow } from '$lib/server/db/bills';
-import { findApproverByThreshold, findSigner } from '$lib/server/db/profiles';
+import { findSigner, getInitialApprover } from '$lib/server/db/profiles';
 import { sendEmailNotif } from '$lib/utils';
 import { PUBLIC_SITE_URL } from '$env/static/public';
 import type { Tables } from '$lib/server/supabase.types';
@@ -63,22 +63,17 @@ export const actions = {
 			);
 		}
 
-		let approver: Tables<'profiles'> | null = null;
-
-		const { approver: approverWithThreshold } = await findApproverByThreshold({
+		const { approver, error: approverError } = await getInitialApprover({
 			profile: currentProfile,
 			amount: formData.amount,
 			client: supabase
 		});
 
-		if (approverWithThreshold) {
-			approver = approverWithThreshold;
-		} else {
-			const { data: signer } = await findSigner({
-				client: supabase,
-				orgID: currentProfile.organization_id
+		if (approverError) {
+			console.warn('approver error', { approverError });
+			return setError(withFiles(form), 'Unable to add contract. Please try again.', {
+				status: 500
 			});
-			approver = signer;
 		}
 
 		const { data, error: BillError } = await supabase
