@@ -68,6 +68,7 @@ export const getReportRows = (
 				elapsedMonths = getMonthsDifference(c.start_date, period.toString());
 			} else if (period.compare(parseDate(c.end_date)) > 0) {
 				elapsedMonths = getMonthsDifference(c.start_date, c.end_date);
+				elapsedMonths === 0 && (elapsedMonths = 1);
 			} else {
 				elapsedMonths = 0;
 			}

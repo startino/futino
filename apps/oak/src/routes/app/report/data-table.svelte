@@ -42,13 +42,15 @@
 		table.column({
 			accessor: 'parent',
 			header: 'Parent Contract',
-			cell: ({ value }) => value[0].number,
+			cell: ({ value }: { value: { number: number } }) => {
+				return value.number;
+			},
 			plugins: {
 				sort: {
-					getSortValue: (value) => value[0]?.number
+					getSortValue: (value) => value.number
 				},
 				filter: {
-					getFilterValue: (value) => value[0]?.number
+					getFilterValue: (value) => value.number
 				}
 			}
 		}),
