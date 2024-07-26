@@ -44,6 +44,11 @@
 	});
 
 	const vendors = getContext('vendors');
+	const accounts = getContext('accounts');
+	const departments = getContext('departments');
+	const spendCategories = getContext('spendCategories');
+	const projects = getContext('projects');
+
 	const { form: formData, enhance, errors, delayed, reset } = form;
 	const file = fileProxy(formData, 'attachment');
 
@@ -151,6 +156,65 @@
 			</Form.Control>
 			<Form.FieldErrors />
 		</Form.Field>
+
+		{#if $formData.contract_id}
+			<Form.Field {form} name="account_id">
+				<Form.Control let:attrs>
+					<Form.Label>Account number</Form.Label>
+					<div>
+						<Combobox
+							placeholder="Select an account number"
+							items={$accounts.map((c) => ({ label: c.number.toString(), value: c.id }))}
+							bind:value={$formData.account_id}
+							{attrs}
+						/>
+					</div>
+				</Form.Control>
+				<Form.FieldErrors />
+			</Form.Field>
+			<Form.Field {form} name="spend_category_id">
+				<Form.Control let:attrs>
+					<Form.Label>Spend category</Form.Label>
+					<div>
+						<Combobox
+							placeholder="Select a spend category"
+							items={$spendCategories.map((c) => ({ label: c.name, value: c.id }))}
+							bind:value={$formData.spend_category_id}
+							{attrs}
+						/>
+					</div>
+				</Form.Control>
+				<Form.FieldErrors />
+			</Form.Field>
+			<Form.Field {form} name="department_id">
+				<Form.Control let:attrs>
+					<Form.Label>Department</Form.Label>
+					<div>
+						<Combobox
+							placeholder="Select a department"
+							items={$departments.map((d) => ({ label: d.name, value: d.id }))}
+							bind:value={$formData.department_id}
+							{attrs}
+						/>
+					</div>
+				</Form.Control>
+				<Form.FieldErrors />
+			</Form.Field>
+			<Form.Field {form} name="project_id">
+				<Form.Control let:attrs>
+					<Form.Label>Project</Form.Label>
+					<div>
+						<Combobox
+							placeholder="Select a project"
+							items={$projects.map((d) => ({ label: d.name, value: d.id }))}
+							bind:value={$formData.project_id}
+							{attrs}
+						/>
+					</div>
+				</Form.Control>
+				<Form.FieldErrors />
+			</Form.Field>
+		{/if}
 
 		<Form.Field {form} name="description">
 			<Form.Control let:attrs>

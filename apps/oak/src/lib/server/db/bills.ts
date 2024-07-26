@@ -6,6 +6,10 @@ export const getBillById = async ({ client, id }: { client: Client; id: string }
 		.select(
 			`
         *,
+        account:accounts (*),
+        project:projects (*),
+        spend_category:spend_categories (*),
+        department:departments (*),
         rejections:bill_rejections (*, creator:profiles (*)),
         approver:profiles!bills_approver_id_fkey (*),
         creator:profiles!bills_creator_id_fkey (*),
