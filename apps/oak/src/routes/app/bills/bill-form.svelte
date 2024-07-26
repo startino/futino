@@ -7,8 +7,6 @@
 
 	import { Combobox } from '$lib/components/ui/combobox';
 	import { Textarea } from '$lib/components/ui/textarea';
-	import { buttonVariants } from '$lib/components/ui/button';
-	import DatePicker from '$lib/components/atoms/DatePicker.svelte';
 
 	import * as Popover from '$lib/components/ui/popover';
 	import { Input } from '$lib/components/ui/input';
@@ -23,6 +21,7 @@
 	import { getContext, cn } from '$lib/utils';
 	import { onMount } from 'svelte';
 	import DateInput from '$lib/components/ui/date-input/date-input.svelte';
+	import { MonthPicker } from '$lib/components/ui/month-picker';
 
 	export let data: SuperValidated<Infer<BillSchema | OptionalBillSchema>>;
 	export let onSuccess: () => void = () => {};
@@ -36,7 +35,6 @@
 				onSuccess();
 				invoiceDate = undefined;
 				dueDate = undefined;
-				accrualPeriod = undefined;
 				fileName = null;
 				if (type === 'create') {
 					reset();
@@ -46,18 +44,19 @@
 	});
 
 	const vendors = getContext('vendors');
+	const accounts = getContext('accounts');
+	const departments = getContext('departments');
+	const spendCategories = getContext('spendCategories');
+	const projects = getContext('projects');
+
 	const { form: formData, enhance, errors, delayed, reset } = form;
 	const file = fileProxy(formData, 'attachment');
-	const df = new DateFormatter('en-US', {
-		dateStyle: 'long'
-	});
 
 	let fileName: string | null = null;
 	let loadingContracts = false;
 	let vendorContracts: Tables<'contracts'>[] | null = null;
 	let invoiceDate = $formData.invoice_date ? parseDate($formData.invoice_date) : undefined;
 	let dueDate = $formData.due_date ? parseDate($formData.due_date) : undefined;
-	let accrualPeriod = $formData.accrual_period ? parseDate($formData.accrual_period) : undefined;
 
 	const fetchContracts = async (vendorId: string) => {
 		loadingContracts = true;
@@ -95,9 +94,13 @@
 		$formData.vendor_id && fetchContracts($formData.vendor_id);
 	});
 
-	$: $formData.invoice_date = invoiceDate ? invoiceDate.toString() : undefined;
+	$: {
+		$formData.invoice_date = invoiceDate ? invoiceDate.toString() : undefined;
+		if (!dueDate && invoiceDate) {
+			dueDate = invoiceDate.add({ days: 30 });
+		}
+	}
 	$: $formData.due_date = dueDate ? dueDate.toString() : undefined;
-	$: $formData.accrual_period = accrualPeriod ? accrualPeriod.toString() : undefined;
 </script>
 
 <form method="post" {action} enctype="multipart/form-data" use:enhance class="grid gap-4">
@@ -154,6 +157,65 @@
 			<Form.FieldErrors />
 		</Form.Field>
 
+		{#if $formData.contract_id}
+			<Form.Field {form} name="account_id">
+				<Form.Control let:attrs>
+					<Form.Label>Account number</Form.Label>
+					<div>
+						<Combobox
+							placeholder="Select an account number"
+							items={$accounts.map((c) => ({ label: c.number.toString(), value: c.id }))}
+							bind:value={$formData.account_id}
+							{attrs}
+						/>
+					</div>
+				</Form.Control>
+				<Form.FieldErrors />
+			</Form.Field>
+			<Form.Field {form} name="spend_category_id">
+				<Form.Control let:attrs>
+					<Form.Label>Spend category</Form.Label>
+					<div>
+						<Combobox
+							placeholder="Select a spend category"
+							items={$spendCategories.map((c) => ({ label: c.name, value: c.id }))}
+							bind:value={$formData.spend_category_id}
+							{attrs}
+						/>
+					</div>
+				</Form.Control>
+				<Form.FieldErrors />
+			</Form.Field>
+			<Form.Field {form} name="department_id">
+				<Form.Control let:attrs>
+					<Form.Label>Department</Form.Label>
+					<div>
+						<Combobox
+							placeholder="Select a department"
+							items={$departments.map((d) => ({ label: d.name, value: d.id }))}
+							bind:value={$formData.department_id}
+							{attrs}
+						/>
+					</div>
+				</Form.Control>
+				<Form.FieldErrors />
+			</Form.Field>
+			<Form.Field {form} name="project_id">
+				<Form.Control let:attrs>
+					<Form.Label>Project</Form.Label>
+					<div>
+						<Combobox
+							placeholder="Select a project"
+							items={$projects.map((d) => ({ label: d.name, value: d.id }))}
+							bind:value={$formData.project_id}
+							{attrs}
+						/>
+					</div>
+				</Form.Control>
+				<Form.FieldErrors />
+			</Form.Field>
+		{/if}
+
 		<Form.Field {form} name="description">
 			<Form.Control let:attrs>
 				<Form.Label>Description</Form.Label>
@@ -205,9 +267,8 @@
 				<Form.Label>Accrual Period</Form.Label>
 				<Popover.Root>
 					<Form.Control let:attrs>
-						<input hidden bind:value={$formData.due_date} {...attrs} />
 						<div>
-							<DateInput bind:value={accrualPeriod} />
+							<MonthPicker bind:value={$formData.accrual_period} {...attrs} />
 						</div>
 					</Form.Control>
 				</Popover.Root>

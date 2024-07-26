@@ -168,6 +168,26 @@
 		</div>
 
 		<div class="grid gap-2">
+			<h2 class="font-bold">Account</h2>
+			<p>{bill.account.number}</p>
+		</div>
+
+		<div class="grid gap-2">
+			<h2 class="font-bold">Project</h2>
+			<p>{bill.project.name}</p>
+		</div>
+
+		<div class="grid gap-2">
+			<h2 class="font-bold">Spend Category</h2>
+			<p>{bill.spend_category.name}</p>
+		</div>
+
+		<div class="grid gap-2">
+			<h2 class="font-bold">Department</h2>
+			<p>{bill.department.name}</p>
+		</div>
+
+		<div class="grid gap-2">
 			<h2 class="font-bold">Invoice Date</h2>
 			<p>{toDateString(new Date(bill.invoice_date))}</p>
 		</div>
@@ -179,7 +199,12 @@
 
 		<div class="grid gap-2">
 			<h2 class="font-bold">Accrual Period</h2>
-			<p>{toDateString(new Date(bill.accrual_period))}</p>
+			<p>
+				{new Date(bill.accrual_period).toLocaleDateString('en-US', {
+					year: 'numeric',
+					month: 'long'
+				})}
+			</p>
 		</div>
 
 		{#if bill.posting_period}

@@ -19,10 +19,10 @@ export const billSchema = z.object({
 	vendor_id: z.string().uuid('The vendor is required'),
 	spend_category_id: z.string().uuid('A spend category is required'),
 	description: z.string().min(1, 'A description is required').optional(),
-	amount: z.number().gt(0, 'An amount is required'),
+	amount: z.number({ message: 'An amount is required' }),
 	invoice_date: z.string().date(),
 	due_date: z.string().date(),
-	accrual_period: z.string().date(),
+	accrual_period: z.string(),
 	attachment: z
 		.instanceof(File, { message: 'Please include the invoice in PDF.' })
 		.refine((f) => f.size / 1024 / 1024 < 5, 'Max 5 MiB upload size.')
@@ -154,7 +154,7 @@ export const contractSchema = z.object({
 	project_id: z.string().uuid('A project is required'),
 	account_id: z.string().uuid('An account is required'),
 	department_id: z.string().uuid('A department is required'),
-	amount: z.number({message: 'An amount is required'}),
+	amount: z.number({ message: 'An amount is required' }),
 	spend_category_id: z.string().uuid('A spend category is required'),
 	attachment: z
 		.instanceof(File, { message: 'Please upload the contract PDF.' })
