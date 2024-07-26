@@ -89,7 +89,12 @@
 		$formData.vendor_id && fetchContracts($formData.vendor_id);
 	});
 
-	$: $formData.invoice_date = invoiceDate ? invoiceDate.toString() : undefined;
+	$: {
+		$formData.invoice_date = invoiceDate ? invoiceDate.toString() : undefined;
+		if (!dueDate && invoiceDate) {
+			dueDate = invoiceDate.add({ days: 30 });
+		}
+	}
 	$: $formData.due_date = dueDate ? dueDate.toString() : undefined;
 </script>
 
