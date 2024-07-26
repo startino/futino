@@ -42,9 +42,7 @@
 		table.column({
 			accessor: 'parent',
 			header: 'Parent Contract',
-			cell: ({ value }) => {
-				console.log(value);
-
+			cell: ({ value }: { value: { number: number } }) => {
 				return value.number;
 			},
 			plugins: {
