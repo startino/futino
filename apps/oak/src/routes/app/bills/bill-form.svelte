@@ -7,8 +7,6 @@
 
 	import { Combobox } from '$lib/components/ui/combobox';
 	import { Textarea } from '$lib/components/ui/textarea';
-	import { buttonVariants } from '$lib/components/ui/button';
-	import DatePicker from '$lib/components/atoms/DatePicker.svelte';
 
 	import * as Popover from '$lib/components/ui/popover';
 	import { Input } from '$lib/components/ui/input';
@@ -23,6 +21,7 @@
 	import { getContext, cn } from '$lib/utils';
 	import { onMount } from 'svelte';
 	import DateInput from '$lib/components/ui/date-input/date-input.svelte';
+	import { MonthPicker } from '$lib/components/ui/month-picker';
 
 	export let data: SuperValidated<Infer<BillSchema | OptionalBillSchema>>;
 	export let onSuccess: () => void = () => {};
@@ -36,7 +35,6 @@
 				onSuccess();
 				invoiceDate = undefined;
 				dueDate = undefined;
-				accrualPeriod = undefined;
 				fileName = null;
 				if (type === 'create') {
 					reset();
@@ -48,16 +46,12 @@
 	const vendors = getContext('vendors');
 	const { form: formData, enhance, errors, delayed, reset } = form;
 	const file = fileProxy(formData, 'attachment');
-	const df = new DateFormatter('en-US', {
-		dateStyle: 'long'
-	});
 
 	let fileName: string | null = null;
 	let loadingContracts = false;
 	let vendorContracts: Tables<'contracts'>[] | null = null;
 	let invoiceDate = $formData.invoice_date ? parseDate($formData.invoice_date) : undefined;
 	let dueDate = $formData.due_date ? parseDate($formData.due_date) : undefined;
-	let accrualPeriod = $formData.accrual_period ? parseDate($formData.accrual_period) : undefined;
 
 	const fetchContracts = async (vendorId: string) => {
 		loadingContracts = true;
@@ -97,7 +91,6 @@
 
 	$: $formData.invoice_date = invoiceDate ? invoiceDate.toString() : undefined;
 	$: $formData.due_date = dueDate ? dueDate.toString() : undefined;
-	$: $formData.accrual_period = accrualPeriod ? accrualPeriod.toString() : undefined;
 </script>
 
 <form method="post" {action} enctype="multipart/form-data" use:enhance class="grid gap-4">
@@ -205,9 +198,8 @@
 				<Form.Label>Accrual Period</Form.Label>
 				<Popover.Root>
 					<Form.Control let:attrs>
-						<input hidden bind:value={$formData.due_date} {...attrs} />
 						<div>
-							<DateInput bind:value={accrualPeriod} />
+							<MonthPicker bind:value={$formData.accrual_period} {...attrs} />
 						</div>
 					</Form.Control>
 				</Popover.Root>

@@ -98,7 +98,8 @@
 		table.column({
 			accessor: 'accrual_period',
 			header: 'Accrual period',
-			cell: ({ value }) => toDateString(new Date(value)),
+			cell: ({ value }) =>
+				new Date(value).toLocaleDateString('en-US', { year: 'numeric', month: 'long' }),
 			plugins: {
 				filter: {
 					exclude: true

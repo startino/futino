@@ -179,7 +179,12 @@
 
 		<div class="grid gap-2">
 			<h2 class="font-bold">Accrual Period</h2>
-			<p>{toDateString(new Date(bill.accrual_period))}</p>
+			<p>
+				{new Date(bill.accrual_period).toLocaleDateString('en-US', {
+					year: 'numeric',
+					month: 'long'
+				})}
+			</p>
 		</div>
 
 		{#if bill.posting_period}
