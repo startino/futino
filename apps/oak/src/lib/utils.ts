@@ -68,7 +68,6 @@ export const getReportRows = (
 				elapsedMonths = getMonthsDifference(c.start_date, period.toString());
 			} else if (period.compare(parseDate(c.end_date)) > 0) {
 				elapsedMonths = getMonthsDifference(c.start_date, c.end_date);
-				elapsedMonths === 0 && (elapsedMonths = 1);
 			} else {
 				elapsedMonths = 0;
 			}
@@ -135,17 +134,29 @@ export const renderPDF = async (pdf: PDFJS.PDFDocumentProxy, container: HTMLElem
 export const getMonthsDifference = (startStr: string, endStr: string) => {
 	let start = parseDate(startStr);
 	let end = parseDate(endStr);
-	let multiplier = 1;
+	let multiplier: 1 | -1 = 1;
 
-	if (start.compare(end) > 0) multiplier = -1;
+	if (start.compare(end) > 0) {
+		multiplier = -1;
+		[start, end] = [end, start];
+	}
 
 	const yearDifference = end.year - start.year;
 	const monthDifference = end.month - start.month;
 
-	return (yearDifference * 12 + monthDifference) * multiplier;
+	let difference = (yearDifference * 12 + monthDifference) * multiplier;
+
+	if (start.year === end.year && start.month === end.month) {
+		const lastDayOfMonth = new Date(end.year, end.month, 0).getDate();
+		if (start.day === 1 && end.day === lastDayOfMonth) {
+			difference = multiplier;
+		}
+	}
+
+	return difference;
 };
 
-export const toDateString = (date: Date) => date.toLocaleDateString('en-us');
+export const toDateString = (date: Date) => date.toLocaleDateString('en-US');
 
 export const formatAmount = (value: number) =>
 	new Intl.NumberFormat('en-US', {

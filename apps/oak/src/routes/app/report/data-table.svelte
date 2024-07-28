@@ -199,7 +199,7 @@
 						{#each headerRow.cells as cell (cell.id)}
 							<Subscribe attrs={cell.attrs()} let:attrs props={cell.props()} let:props>
 								<Table.Head {...attrs}>
-									{#if ['amount', 'billedAmount', 'accrualBalance', 'openAmount', 'number', 'parent'].includes(cell.id)}
+									{#if ['amount', 'billedAmount', 'accrualBalance', 'openAmount'].includes(cell.id)}
 										<div class="text-right">
 											<Render of={cell.render()} />
 										</div>
@@ -225,8 +225,12 @@
 						{#each row.cells as cell (cell.id)}
 							<Subscribe attrs={cell.attrs()} let:attrs>
 								<Table.Cell {...attrs}>
-									{#if ['amount', 'billedAmount', 'accrualBalance', 'openAmount', 'number', 'parent'].includes(cell.id)}
+									{#if ['amount', 'billedAmount', 'accrualBalance', 'openAmount'].includes(cell.id)}
 										<div class="text-right">
+											<Render of={cell.render()} />
+										</div>
+									{:else if ['parent', 'number'].includes(cell.id)}
+										<div class="text-center">
 											<Render of={cell.render()} />
 										</div>
 									{:else}
