@@ -122,8 +122,10 @@
 		})
 	]);
 
-	const { headerRows, pageRows, tableAttrs, tableBodyAttrs, pluginStates } =
-		table.createViewModel(columns);
+	const { headerRows, pageRows, tableAttrs, tableBodyAttrs, pluginStates } = table.createViewModel(
+		columns,
+		{ rowDataId: (item) => item.id }
+	);
 
 	const { hasNextPage, hasPreviousPage, pageIndex } = pluginStates.page;
 	const { filterValue } = pluginStates.filter;
@@ -178,7 +180,7 @@
 						<Table.Row
 							{...rowAttrs}
 							class="cursor-pointer"
-							on:click={() => goto(`/app/bills/${data[i].id}`)}
+							on:click={() => goto(`/app/bills/${row.dataId}`)}
 						>
 							{#each row.cells as cell (cell.id)}
 								<Subscribe attrs={cell.attrs()} let:attrs>
