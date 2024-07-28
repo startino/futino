@@ -58,9 +58,6 @@
 	const departments = getContext('departments');
 	const spendCategories = getContext('spendCategories');
 	const vendors = getContext('vendors');
-	const df = new DateFormatter('en-US', {
-		dateStyle: 'long'
-	});
 
 	let fileName: string | null = null;
 	let startDateValue = $formData.start_date

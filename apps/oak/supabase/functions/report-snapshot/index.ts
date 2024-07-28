@@ -12,14 +12,26 @@ export const toDateString = (date: Date) => date.toLocaleDateString('en-us');
 const getMonthsDifference = (startStr: string, endStr: string) => {
 	let start = parseDate(startStr);
 	let end = parseDate(endStr);
-	let multiplier = 1;
+	let multiplier: 1 | -1 = 1;
 
-	if (start.compare(end) > 0) multiplier = -1;
+	if (start.compare(end) > 0) {
+		multiplier = -1;
+		[start, end] = [end, start];
+	}
 
 	const yearDifference = end.year - start.year;
 	const monthDifference = end.month - start.month;
 
-	return (yearDifference * 12 + monthDifference) * multiplier;
+	let difference = (yearDifference * 12 + monthDifference) * multiplier;
+
+	if (start.year === end.year && start.month === end.month) {
+		const lastDayOfMonth = new Date(end.year, end.month, 0).getDate();
+		if (start.day === 1 && end.day === lastDayOfMonth) {
+			difference = multiplier;
+		}
+	}
+
+	return difference;
 };
 
 const arrayToCSV = (data: any[]) => {

@@ -210,7 +210,7 @@
 				{/each}
 			</Table.Header>
 			<Table.Body {...$tableBodyAttrs}>
-				{#each $pageRows as row, i (row.id)}
+				{#each $pageRows as row (row.id)}
 					<Subscribe rowAttrs={row.attrs()} let:rowAttrs>
 						<Table.Row
 							{...rowAttrs}
