@@ -123,7 +123,7 @@
 	]);
 
 	const { headerRows, pageRows, tableAttrs, tableBodyAttrs, pluginStates, rows } =
-		table.createViewModel(columns);
+		table.createViewModel(columns, { rowDataId: (item) => item.id });
 
 	const { hasNextPage, hasPreviousPage, pageIndex } = pluginStates.page;
 	const { filterValue } = pluginStates.filter;
@@ -216,7 +216,7 @@
 							{...rowAttrs}
 							class={cn('cursor-pointer')}
 							data-state={$selectedDataIds[row.id] && 'selected'}
-							on:click={() => goto(`/app/contracts/${data[i].id}`)}
+							on:click={() => goto(`/app/contracts/${row.dataId}`)}
 						>
 							{#each row.cells as cell (cell.id)}
 								<Subscribe attrs={cell.attrs()} let:attrs>
