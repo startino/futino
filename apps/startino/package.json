@@ -66,7 +66,7 @@
 		"formsnap": "^1.0.0",
 		"lucide-svelte": "^0.417.0",
 		"mdsvex": "^0.11.2",
-		"mode-watcher": "^0.3.1",
+		"mode-watcher": "^0.4.1",
 		"nodemailer": "^6.9.13",
 		"nodemailer-express-handlebars": "^6.1.2",
 		"object-hash": "^3.0.0",
