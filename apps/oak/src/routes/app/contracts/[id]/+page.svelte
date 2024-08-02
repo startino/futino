@@ -549,14 +549,14 @@
 				{/if}
 
 				{#if isApprover && isSigner}
-					<form action="?/sign" method="post" use:enhance>
+					<form action="?/activate" method="post" use:enhance>
 						<input hidden value={contract.id} name="contract-id" />
 						<div class="mt-4 flex gap-4">
 							<Button on:click={() => (loadStatus = 'approving-contract')} type="submit">
 								{#if loadStatus === 'approving-contract'}
 									<Loader2 class="animate-spin" />
 								{:else}
-									Sign
+									Give final approval
 								{/if}
 							</Button>
 
