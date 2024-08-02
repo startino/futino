@@ -6,6 +6,7 @@
 /// <reference types="https://esm.sh/@supabase/functions-js/src/edge-runtime.d.ts" />
 import { createClient, type SupabaseClient } from 'https://esm.sh/@supabase/supabase-js@2';
 import { today, getLocalTimeZone, parseDate } from 'npm:@internationalized/date';
+import { toDate } from 'npm:date-fns-tz';
 
 export const toDateString = (date: Date) => date.toLocaleDateString('en-us');
 
@@ -142,8 +143,8 @@ Deno.serve(async (req) => {
 			'Parent contract': row.parent.number,
 			Contract: row.number,
 			Description: row.description,
-			'Start Date': toDateString(new Date(row.start_date)),
-			'End Date': toDateString(new Date(row.end_date)),
+			'Start Date': toDateString(toDate(row.start_date)),
+			'End Date': toDateString(toDate(row.end_date)),
 			Amount: row.openAmount,
 			Department: `${row.department.number} - ${row.department.name}`,
 			Project: row.project.name,

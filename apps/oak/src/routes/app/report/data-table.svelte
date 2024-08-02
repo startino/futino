@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { writable } from 'svelte/store';
 	import { ChevronDown, ArrowUpDown } from 'lucide-svelte';
+	import { toDate } from 'date-fns-tz';
 
 	import { createTable, Subscribe } from '$lib/svelte-headless-table';
 	import {
@@ -12,7 +13,7 @@
 	import { Render } from '$lib/svelte-render';
 	import * as Table from '$lib/components/ui/table';
 	import { Button } from '$lib/components/ui/button';
-	import { parseDateString, roundToPenny, toDateString } from '$lib/utils';
+	import { roundToPenny, toDateString } from '$lib/utils';
 	import * as DropdownMenu from '$lib/components/ui/dropdown-menu';
 	import { Input } from '$lib/components/ui/input';
 	import type { ReportDataTableRow } from '$lib/types';
@@ -70,7 +71,7 @@
 		table.column({
 			accessor: 'start_date',
 			header: 'Start Date',
-			cell: ({ value }) => toDateString(parseDateString(value)),
+			cell: ({ value }) => toDateString(toDate(value)),
 			plugins: {
 				filter: {
 					exclude: true
@@ -80,7 +81,7 @@
 		table.column({
 			accessor: 'end_date',
 			header: 'End Date',
-			cell: ({ value }) => toDateString(parseDateString(value)),
+			cell: ({ value }) => toDateString(toDate(value)),
 			plugins: {
 				filter: {
 					exclude: true

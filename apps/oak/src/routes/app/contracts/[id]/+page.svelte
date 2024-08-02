@@ -5,16 +5,10 @@
 	import type { PDFDocumentProxy } from 'pdfjs-dist';
 	import { superForm } from 'sveltekit-superforms';
 	import { zodClient } from 'sveltekit-superforms/adapters';
+	import { toDate } from 'date-fns-tz';
 
 	import { enhance } from '$app/forms';
-	import {
-		pdfjsLib,
-		formatAmount,
-		getContext,
-		renderPDF,
-		toDateString,
-		parseDateString
-	} from '$lib/utils';
+	import { pdfjsLib, formatAmount, getContext, renderPDF, toDateString } from '$lib/utils';
 	import { Badge } from '$lib/components/ui/badge';
 	import * as Breadcrumb from '$lib/components/ui/breadcrumb';
 	import * as Dialog from '$lib/components/ui/dialog';
@@ -432,12 +426,12 @@
 
 		<div class="grid gap-2">
 			<h2 class="font-bold">Start Date</h2>
-			<p>{toDateString(parseDateString(contract.start_date))}</p>
+			<p>{toDateString(toDate(contract.start_date))}</p>
 		</div>
 
 		<div class="grid gap-2">
 			<h2 class="font-bold">End Date</h2>
-			<p>{toDateString(parseDateString(contract.end_date))}</p>
+			<p>{toDateString(toDate(contract.end_date))}</p>
 		</div>
 
 		<div class="grid gap-2">
