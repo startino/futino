@@ -402,6 +402,14 @@
 			</div>
 		{/if}
 
+		{#if !contract.enters_report}
+			<p class="text-muted-foreground">This contract is not part of the report.</p>
+		{:else if ['pending approval', 'rejected'].includes(contract.status)}
+			<p class="text-muted-foreground">This contract once approved will be part of the report.</p>
+		{:else}
+			<p class="text-muted-foreground">This contract is part of the report.</p>
+		{/if}
+
 		<div class="grid gap-2">
 			<h2 class="font-bold">Owner</h2>
 			<p>{contract.owner.full_name}</p>

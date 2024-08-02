@@ -13,6 +13,8 @@
 
 	import { Combobox } from '$lib/components/ui/combobox';
 	import { Textarea } from '$lib/components/ui/textarea';
+	import { Checkbox } from '$lib/components/ui/checkbox';
+	import { Label } from '$lib/components/ui/label';
 	import { Input } from '$lib/components/ui/input';
 	import DatePicker from '$lib/components/atoms/DatePicker.svelte';
 	import * as Popover from '$lib/components/ui/popover';
@@ -255,6 +257,22 @@
 
 				<Form.FieldErrors />
 			</Form.Control>
+		</Form.Field>
+
+		<Form.Field {form} name="enters_report">
+			<Form.Control let:attrs>
+				<div class="flex items-center space-x-2">
+					<Checkbox {...attrs} id="terms" bind:checked={$formData.enters_report} />
+					<Form.Label
+						for="terms"
+						class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+					>
+						Contract enters report
+					</Form.Label>
+				</div>
+				<input name={attrs.name} value={$formData.enters_report} hidden />
+			</Form.Control>
+			<Form.FieldErrors />
 		</Form.Field>
 	{/if}
 	<Form.Button disabled={!isTainted($tainted) || $delayed} type="submit" class="my-4 w-full">

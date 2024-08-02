@@ -320,6 +320,7 @@ export type Database = {
           department_id: string | null
           description: string | null
           end_date: string
+          enters_report: boolean
           id: string
           number: number
           organization_id: string
@@ -344,6 +345,7 @@ export type Database = {
           department_id?: string | null
           description?: string | null
           end_date: string
+          enters_report?: boolean
           id?: string
           number?: number
           organization_id: string
@@ -368,6 +370,7 @@ export type Database = {
           department_id?: string | null
           description?: string | null
           end_date?: string
+          enters_report?: boolean
           id?: string
           number?: number
           organization_id?: string
