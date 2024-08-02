@@ -18,6 +18,8 @@ export const getReportContracts = async ({ supabase, orgId }: Option) =>
   `
 		)
 		.eq('organization_id', orgId)
+		.eq('enters_report', true)
+		.eq('signed', true)
 		.or(`status.eq.active,status.eq.${'under review'}`);
 
 export interface ReportDataTableRow extends ReportContractsItem {
