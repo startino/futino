@@ -67,6 +67,15 @@
 			}
 		}),
 		table.column({
+			accessor: 'enters_report',
+			header: 'In report',
+			plugins: {
+				filter: {
+					exclude: true
+				}
+			}
+		}),
+		table.column({
 			accessor: 'owner',
 			header: 'Owner',
 			plugins: {

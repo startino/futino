@@ -159,7 +159,8 @@ export const contractSchema = z.object({
 	attachment: z
 		.instanceof(File, { message: 'Please upload the contract PDF.' })
 		.refine((f) => f.size / 1024 / 1024 < 5, 'Max 5 MiB upload size.'),
-	vendor_id: z.string().uuid('The vendor is required')
+	vendor_id: z.string().uuid('The vendor is required'),
+	enters_report: z.boolean().default(true)
 });
 // .refine((v) => v.start_date <= v.end_date, {
 // 	message: "End date can't be before start date",
