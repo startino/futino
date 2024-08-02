@@ -16,7 +16,14 @@
 	import * as Form from '$lib/components/ui/form';
 	import { Textarea } from '$lib/components/ui/textarea';
 
-	import { formatAmount, toDateString, pdfjsLib, renderPDF, getContext } from '$lib/utils';
+	import {
+		formatAmount,
+		toDateString,
+		pdfjsLib,
+		renderPDF,
+		getContext,
+		parseDateString
+	} from '$lib/utils';
 	import { rejectionSchema } from '$lib/schemas';
 	import BillForm from '../bill-form.svelte';
 
@@ -189,12 +196,12 @@
 
 		<div class="grid gap-2">
 			<h2 class="font-bold">Invoice Date</h2>
-			<p>{toDateString(new Date(bill.invoice_date))}</p>
+			<p>{toDateString(parseDateString(bill.invoice_date))}</p>
 		</div>
 
 		<div class="grid gap-2">
 			<h2 class="font-bold">Due Date</h2>
-			<p>{toDateString(new Date(bill.due_date))}</p>
+			<p>{toDateString(parseDateString(bill.due_date))}</p>
 		</div>
 
 		<div class="grid gap-2">

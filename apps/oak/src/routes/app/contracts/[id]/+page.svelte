@@ -7,7 +7,14 @@
 	import { zodClient } from 'sveltekit-superforms/adapters';
 
 	import { enhance } from '$app/forms';
-	import { pdfjsLib, formatAmount, getContext, renderPDF, toDateString } from '$lib/utils';
+	import {
+		pdfjsLib,
+		formatAmount,
+		getContext,
+		renderPDF,
+		toDateString,
+		parseDateString
+	} from '$lib/utils';
 	import { Badge } from '$lib/components/ui/badge';
 	import * as Breadcrumb from '$lib/components/ui/breadcrumb';
 	import * as Dialog from '$lib/components/ui/dialog';
@@ -425,12 +432,12 @@
 
 		<div class="grid gap-2">
 			<h2 class="font-bold">Start Date</h2>
-			<p>{toDateString(new Date(contract.start_date))}</p>
+			<p>{toDateString(parseDateString(contract.start_date))}</p>
 		</div>
 
 		<div class="grid gap-2">
 			<h2 class="font-bold">End Date</h2>
-			<p>{toDateString(new Date(contract.end_date))}</p>
+			<p>{toDateString(parseDateString(contract.end_date))}</p>
 		</div>
 
 		<div class="grid gap-2">

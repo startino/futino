@@ -12,7 +12,7 @@
 	import { Render } from '$lib/svelte-render';
 	import * as Table from '$lib/components/ui/table';
 	import { Button } from '$lib/components/ui/button';
-	import { roundToPenny, toDateString } from '$lib/utils';
+	import { parseDateString, roundToPenny, toDateString } from '$lib/utils';
 	import * as DropdownMenu from '$lib/components/ui/dropdown-menu';
 	import { Input } from '$lib/components/ui/input';
 	import type { ReportDataTableRow } from '$lib/types';
@@ -70,7 +70,7 @@
 		table.column({
 			accessor: 'start_date',
 			header: 'Start Date',
-			cell: ({ value }) => toDateString(new Date(value)),
+			cell: ({ value }) => toDateString(parseDateString(value)),
 			plugins: {
 				filter: {
 					exclude: true
@@ -80,7 +80,7 @@
 		table.column({
 			accessor: 'end_date',
 			header: 'End Date',
-			cell: ({ value }) => toDateString(new Date(value)),
+			cell: ({ value }) => toDateString(parseDateString(value)),
 			plugins: {
 				filter: {
 					exclude: true
