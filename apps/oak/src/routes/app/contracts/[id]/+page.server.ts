@@ -117,7 +117,7 @@ export const actions = {
 
 		return { success: 'Contract approved!' };
 	},
-	sign: async ({ request, locals: { supabase, iam, smtpTransporter, currentProfile } }) => {
+	activate: async ({ request, locals: { supabase, iam, smtpTransporter } }) => {
 		const contractId = (await request.formData()).get('contract-id');
 
 		if (!contractId) return fail(400, { error: 'A contract ID is required' });
@@ -126,7 +126,7 @@ export const actions = {
 
 		const { data: contract, error: updateError } = await supabase
 			.from('contracts')
-			.update({ signed: true, status: 'active', signer_id: currentProfile.id })
+			.update({ status: 'active' })
 			.eq('id', contractId)
 			.select('*, vendor:vendors (*)')
 			.single();
