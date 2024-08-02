@@ -4,6 +4,7 @@
 	import { onMount } from 'svelte';
 	import { toast } from 'svelte-sonner';
 	import { zodClient } from 'sveltekit-superforms/adapters';
+	import { toDate } from 'date-fns-tz';
 	import type { PDFDocumentProxy } from 'pdfjs-dist';
 
 	import * as Breadcrumb from '$lib/components/ui/breadcrumb';
@@ -189,12 +190,12 @@
 
 		<div class="grid gap-2">
 			<h2 class="font-bold">Invoice Date</h2>
-			<p>{toDateString(new Date(bill.invoice_date))}</p>
+			<p>{toDateString(toDate(bill.invoice_date))}</p>
 		</div>
 
 		<div class="grid gap-2">
 			<h2 class="font-bold">Due Date</h2>
-			<p>{toDateString(new Date(bill.due_date))}</p>
+			<p>{toDateString(toDate(bill.due_date))}</p>
 		</div>
 
 		<div class="grid gap-2">

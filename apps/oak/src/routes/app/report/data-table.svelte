@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { writable } from 'svelte/store';
 	import { ChevronDown, ArrowUpDown } from 'lucide-svelte';
+	import { toDate } from 'date-fns-tz';
 
 	import { createTable, Subscribe } from '$lib/svelte-headless-table';
 	import {
@@ -70,7 +71,7 @@
 		table.column({
 			accessor: 'start_date',
 			header: 'Start Date',
-			cell: ({ value }) => toDateString(new Date(value)),
+			cell: ({ value }) => toDateString(toDate(value)),
 			plugins: {
 				filter: {
 					exclude: true
@@ -80,7 +81,7 @@
 		table.column({
 			accessor: 'end_date',
 			header: 'End Date',
-			cell: ({ value }) => toDateString(new Date(value)),
+			cell: ({ value }) => toDateString(toDate(value)),
 			plugins: {
 				filter: {
 					exclude: true

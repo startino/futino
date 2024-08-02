@@ -3,6 +3,7 @@ import { today, getLocalTimeZone } from '@internationalized/date';
 import { arrayToCSV, getReportRows, toDateString } from '$lib/utils';
 import { getReportContracts } from '$lib/server/db/report';
 import { json } from '@sveltejs/kit';
+import { toDate } from 'date-fns-tz';
 
 export const GET = async ({ locals: { supabase } }) => {
 	let period = today(getLocalTimeZone());
@@ -18,8 +19,8 @@ export const GET = async ({ locals: { supabase } }) => {
 			'Parent contract': row.parent.number,
 			Contract: row.number,
 			Description: row.description,
-			'Start Date': toDateString(new Date(row.start_date)),
-			'End Date': toDateString(new Date(row.end_date)),
+			'Start Date': toDateString(toDate(row.start_date)),
+			'End Date': toDateString(toDate(row.end_date)),
 			Amount: row.openAmount,
 			Department: `${row.department.number} - ${row.department.name}`,
 			Project: row.project.name,
