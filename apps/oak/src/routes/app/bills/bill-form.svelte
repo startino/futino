@@ -18,10 +18,11 @@
 		optionalBillSchema
 	} from '$lib/schemas';
 	import * as Form from '$lib/components/ui/form';
-	import { getContext, cn } from '$lib/utils';
+	import { getContext, cn, toDateString } from '$lib/utils';
 	import { onMount } from 'svelte';
 	import DateInput from '$lib/components/ui/date-input/date-input.svelte';
 	import { MonthPicker } from '$lib/components/ui/month-picker';
+	import { toDate } from 'date-fns-tz';
 
 	export let data: SuperValidated<Infer<BillSchema | OptionalBillSchema>>;
 	export let onSuccess: () => void = () => {};
@@ -101,6 +102,10 @@
 		}
 	}
 	$: $formData.due_date = dueDate ? dueDate.toString() : undefined;
+	$: $formData.readable_id =
+		$formData.vendor_id && invoiceDate
+			? `${$vendors.find((v) => v.id === $formData.vendor_id).name}_${toDateString(toDate(invoiceDate.toString()))}`
+			: undefined;
 </script>
 
 <form method="post" {action} enctype="multipart/form-data" use:enhance class="grid gap-4">
@@ -108,6 +113,7 @@
 	<input hidden bind:value={$formData.spend_category_id} name="spend_category_id" />
 	<input hidden bind:value={$formData.project_id} name="project_id" />
 	<input hidden bind:value={$formData.account_id} name="account_id" />
+	<input hidden bind:value={$formData.readable_id} name="readable_id" />
 
 	<Form.Field {form} name="vendor_id">
 		<Form.Control let:attrs>

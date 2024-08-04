@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { writable } from 'svelte/store';
 	import { ArrowUpDown, Search } from 'lucide-svelte';
+	import { toDate } from 'date-fns-tz';
 
 	import { createTable, Subscribe } from '$lib/svelte-headless-table';
 	import { addPagination, addTableFilter, addSortBy } from '$lib/svelte-headless-table/plugins';
@@ -23,6 +24,11 @@
 	});
 
 	const columns = table.createColumns([
+		table.column({
+			accessor: 'readable_id',
+			header: 'ID',
+			plugins: { filter: { exclude: true }, sort: { disable: true } }
+		}),
 		table.column({
 			accessor: 'creator',
 			header: 'Bill Creator',
@@ -78,7 +84,7 @@
 		table.column({
 			accessor: 'invoice_date',
 			header: 'Invoice date',
-			cell: ({ value }) => toDateString(new Date(value)),
+			cell: ({ value }) => toDateString(toDate(value)),
 			plugins: {
 				filter: {
 					exclude: true
@@ -88,7 +94,7 @@
 		table.column({
 			accessor: 'due_date',
 			header: 'Due date',
-			cell: ({ value }) => toDateString(new Date(value)),
+			cell: ({ value }) => toDateString(toDate(value)),
 			plugins: {
 				filter: {
 					exclude: true
