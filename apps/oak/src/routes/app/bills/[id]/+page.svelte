@@ -25,7 +25,7 @@
 
 	const currentProfile = getContext('currentProfile');
 	let { bill } = data;
-	const title = `Bill for #${bill.contract.number} ${bill.contract.vendor.name}`;
+	const title = bill.readable_id;
 
 	const rejectionForm = superForm(data.rejectionForm, {
 		validators: zodClient(rejectionSchema),

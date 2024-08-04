@@ -17,6 +17,7 @@ export const billSchema = z.object({
 	account_id: z.string().uuid('An account is required'),
 	department_id: z.string().uuid('A department is required'),
 	vendor_id: z.string().uuid('The vendor is required'),
+	readable_id: z.string(),
 	spend_category_id: z.string().uuid('A spend category is required'),
 	description: z.string().min(1, 'A description is required').optional(),
 	amount: z.number({ message: 'An amount is required' }),

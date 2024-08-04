@@ -156,9 +156,11 @@ export type Database = {
           due_date: string
           id: string
           invoice_date: string
+          number: number
           organization_id: string
           posting_period: string | null
           project_id: string | null
+          readable_id: string
           spend_category_id: string | null
           status: Database["public"]["Enums"]["bill_status"]
           vendor_id: string | null
@@ -177,9 +179,11 @@ export type Database = {
           due_date: string
           id?: string
           invoice_date: string
+          number?: number
           organization_id?: string
           posting_period?: string | null
           project_id?: string | null
+          readable_id: string
           spend_category_id?: string | null
           status?: Database["public"]["Enums"]["bill_status"]
           vendor_id?: string | null
@@ -198,9 +202,11 @@ export type Database = {
           due_date?: string
           id?: string
           invoice_date?: string
+          number?: number
           organization_id?: string
           posting_period?: string | null
           project_id?: string | null
+          readable_id?: string
           spend_category_id?: string | null
           status?: Database["public"]["Enums"]["bill_status"]
           vendor_id?: string | null
