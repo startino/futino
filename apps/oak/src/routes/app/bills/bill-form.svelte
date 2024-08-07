@@ -58,6 +58,7 @@
 	let vendorContracts: Tables<'contracts'>[] | null = null;
 	let invoiceDate = $formData.invoice_date ? parseDate($formData.invoice_date) : undefined;
 	let dueDate = $formData.due_date ? parseDate($formData.due_date) : undefined;
+	let selectedVendorId: string | null = null;
 
 	const fetchContracts = async (vendorId: string) => {
 		loadingContracts = true;
@@ -95,17 +96,18 @@
 		$formData.vendor_id && fetchContracts($formData.vendor_id);
 	});
 
-	$: {
-		$formData.invoice_date = invoiceDate ? invoiceDate.toString() : undefined;
-		if (!dueDate && invoiceDate) {
-			dueDate = invoiceDate.add({ days: 30 });
-		}
+	$: console.log($errors);
+
+	$: $formData.invoice_date = invoiceDate ? invoiceDate.toString() : undefined;
+	$: if (!dueDate && invoiceDate) {
+		dueDate = invoiceDate.add({ days: 30 });
 	}
 	$: $formData.due_date = dueDate ? dueDate.toString() : undefined;
 	$: $formData.readable_id =
-		$formData.vendor_id && invoiceDate
-			? `${$vendors.find((v) => v.id === $formData.vendor_id).name}_${toDateString(toDate(invoiceDate.toString()))}`
+		selectedVendorId && invoiceDate
+			? `${$vendors.find((v) => v.id === selectedVendorId).name}_${toDateString(toDate(invoiceDate.toString()))}`
 			: undefined;
+	$: $formData.vendor_id = selectedVendorId;
 </script>
 
 <form method="post" {action} enctype="multipart/form-data" use:enhance class="grid gap-4">
@@ -125,7 +127,7 @@
 					disabled={loadingContracts}
 					loading={loadingContracts}
 					items={$vendors.map((v) => ({ label: v.name, value: v.id }))}
-					bind:value={$formData.vendor_id}
+					bind:value={selectedVendorId}
 					onChange={async (v) => {
 						if (!v) {
 							$formData.vendor_id = undefined;
@@ -312,8 +314,7 @@
 						hidden
 						type="file"
 						accept="application/pdf"
-						name="attachment"
-						on:input={(e) => (fileName = e.currentTarget.files[0].name)}
+						on:input={(e) => (fileName = e.currentTarget.files[0]?.name ?? null)}
 						bind:files={$file}
 						{...attrs}
 						class="hidden"

@@ -44,6 +44,18 @@ export const actions = {
 
 		const path = `/${crypto.randomUUID()}-${formData.attachment.name}`;
 
+		const billCount = (
+			await supabase
+				.from('bills')
+				.select('*', { count: 'exact' })
+				.eq('number', formData.number)
+				.eq('vendor_id', formData.vendor_id)
+		).count;
+
+		if (billCount > 0) {
+			return setError(withFiles(form), 'number', 'This bill number already exist for this vendor');
+		}
+
 		try {
 			const { data: contract, error: contractError } = await supabase
 				.from('contracts')
@@ -106,14 +118,9 @@ export const actions = {
 		} catch (error) {
 			console.error(error);
 
-			return setError(
-				withFiles(form),
-				'attachment',
-				'Unable to upload the file. Please try again.',
-				{
-					status: 500
-				}
-			);
+			return setError(withFiles(form), 'Unable add the bill. Please try again.', {
+				status: 500
+			});
 		}
 
 		return message(form, 'Bill successfully added!');

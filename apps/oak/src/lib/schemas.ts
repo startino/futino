@@ -12,13 +12,13 @@ export const billApprovalSchema = z.object({
 });
 
 export const billSchema = z.object({
-	contract_id: z.string().uuid(),
+	contract_id: z.string().uuid('Select a contract'),
 	project_id: z.string().uuid('A project is required'),
 	account_id: z.string().uuid('An account is required'),
 	department_id: z.string().uuid('A department is required'),
 	vendor_id: z.string().uuid('The vendor is required'),
 	readable_id: z.string(),
-	number: z.number(),
+	number: z.number().gt(0, { message: 'A bill number is required' }),
 	spend_category_id: z.string().uuid('A spend category is required'),
 	description: z.string().min(1, 'A description is required').optional(),
 	amount: z.number({ message: 'An amount is required' }),
