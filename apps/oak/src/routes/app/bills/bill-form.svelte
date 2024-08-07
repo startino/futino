@@ -242,6 +242,18 @@
 			<Form.FieldErrors />
 		</Form.Field>
 
+		<Form.Field {form} name="number">
+			<Form.Control let:attrs>
+				<Form.Label>Number</Form.Label>
+				<Input
+					{...attrs}
+					on:change={(e) => ($formData.number = +e.currentTarget.value)}
+					bind:value={$formData.number}
+				/>
+			</Form.Control>
+			<Form.FieldErrors />
+		</Form.Field>
+
 		<Form.Field {form} name="invoice_date">
 			<Form.Control let:attrs>
 				<Form.Label>Invoice Date</Form.Label>
