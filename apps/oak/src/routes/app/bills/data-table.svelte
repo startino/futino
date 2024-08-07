@@ -30,6 +30,15 @@
 			plugins: { filter: { exclude: true }, sort: { disable: true } }
 		}),
 		table.column({
+			accessor: 'number',
+			header: 'Number',
+			plugins: {
+				filter: {
+					exclude: true
+				}
+			}
+		}),
+		table.column({
 			accessor: 'creator',
 			header: 'Bill Creator',
 			plugins: {
