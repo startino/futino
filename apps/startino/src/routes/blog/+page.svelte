@@ -8,7 +8,7 @@
 <SEO
 	slug="blog"
 	title="Blog • Startino"
-	metadescription="This is a collection of blogs written by Startino to help entrepreneurs and startups with their software startup journey"
+	metadescription="This is a collection of blogs written by Startino to help industry experts with entrepreneurial spirits with their software startup journey"
 />
 
 <div class="py-36 sm:py-32">
