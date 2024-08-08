@@ -11,8 +11,7 @@
 		Building2,
 		CodeXml,
 		HardDrive,
-        MoveDown
-            
+		MoveDown
 	} from 'lucide-svelte';
 
 	import { FaqSection } from '$lib/components/ui/faq';
@@ -72,12 +71,12 @@
 <!-- Hero -->
 <section
 	id="hero"
-	class=" flex h-screen w-full max-w-7xl flex-col items-center justify-center gap-2 px-5  sm:px-10 "
+	class=" flex h-screen w-full max-w-7xl flex-col items-center justify-center gap-2 px-5 sm:px-10"
 >
 	<div
 		class="z-100 pointer-events-none absolute left-0 right-0 top-0 h-screen border-b border-primary/40 shadow-2xl"
 	></div>
-	<div class="flex flex-col text-5xl sm:text-7xl md:text-8xl lg:text-9xl mb-3 lg:mb-6">
+	<div class="mb-3 flex flex-col text-5xl sm:text-7xl md:text-8xl lg:mb-6 lg:text-9xl">
 		<h1 class="m-0 sm:m-0">
 			Building <br /><span
 				class="m-0 bg-gradient-to-b from-primary from-50% to-background bg-clip-text text-transparent sm:m-0"
@@ -94,15 +93,22 @@
 			<br />
 		</h1>
 	</div>
-	<p class="text-balance opacity-80 text-lg text- max-w-3xl sm:text-lg md:text-xl lg:text-3xl mb-4 sm:mb-8 md:mb-12">
-        Software Development Firm & Tech Co-Founder – the best of both worlds to help entrepreneurs and startups succeed.
+	<p
+		class="text- mb-4 max-w-3xl text-balance text-lg opacity-80 sm:mb-8 sm:text-lg md:mb-12 md:text-xl lg:text-3xl"
+	>
+		Software Development Firm – the best of both worlds to help industry experts with
+		entrepreneurial spirits succeed.
 	</p>
 
-	<div class="not-prose grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-3xl w-full">
-		<Button href="#contact"  class="w-full px-4 py-7 lg:px-12 lg:py-7 text-xl md:text-2xl"
+	<div class="not-prose grid w-full max-w-3xl grid-cols-1 gap-4 sm:grid-cols-2">
+		<Button href="#contact" class="w-full px-4 py-7 text-xl md:text-2xl lg:px-12 lg:py-7"
 			>Get in Touch</Button
 		>
-		<Button href="#pricing" class="w-full px-4 py-7 lg:px-12 lg:py-7 text-xl md:text-2xl" variant="outline">Pricing</Button>
+		<Button
+			href="#pricing"
+			class="w-full px-4 py-7 text-xl md:text-2xl lg:px-12 lg:py-7"
+			variant="outline">Pricing</Button
+		>
 	</div>
 </section>
 
@@ -308,16 +314,18 @@
 	<div
 		class="mx-auto grid max-w-7xl grid-cols-1 justify-items-center gap-8 px-6 md:grid-cols-2 lg:px-8"
 	>
-		<div class=" flex max-w-3xl flex-col gap-4 text-center place-items-center md:place-items-start md:text-left">
+		<div
+			class=" flex max-w-3xl flex-col place-items-center gap-4 text-center md:place-items-start md:text-left"
+		>
 			<h1 class="text-3xl font-bold tracking-tight text-background-on sm:text-4xl sm:text-6xl">
 				Let's do this.
 			</h1>
-			<p class="text-base max-w-prose">
+			<p class="max-w-prose text-base">
 				We're excited to hear about your project. Fill out the form or reach out to us at <a
 					class="text-accent underline"
 					href="mailto:contact@futi.no">contact@futi.no</a
-				> and we'll get back to you within 24 hours. Even better yet, let's have a virtual chat over a
-				coffee.
+				> and we'll get back to you within 24 hours. Even better yet, let's have a virtual chat over
+				a coffee.
 			</p>
 			<Button
 				href="https://cal.com/jorgelewis"
@@ -334,7 +342,9 @@
 					<Avatar.Fallback>CN</Avatar.Fallback>
 				</Avatar.Root>
 			</Button>
-            <h1 class="text-xl md:hidden pt-6 flex flexrow place-items-center" >Or fill in this fom <MoveDown size="16" class="ml-2 text-primary"/></h1>
+			<h1 class="flexrow flex place-items-center pt-6 text-xl md:hidden">
+				Or fill in this fom <MoveDown size="16" class="ml-2 text-primary" />
+			</h1>
 		</div>
 		<ContactForm data={data.form} />
 	</div>
