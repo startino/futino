@@ -53,7 +53,7 @@
 		"@tsparticles/slim": "^3.4.0",
 		"@tsparticles/svelte": "^3.1.1",
 		"@types/wicg-file-system-access": "^2023.10.5",
-		"@xyflow/svelte": "^0.1.11",
+		"@xyflow/svelte": "^0.1.14",
 		"axios": "^1.7.3",
 		"bits-ui": "^0.21.12",
 		"carta-md": "^4.3.3",
