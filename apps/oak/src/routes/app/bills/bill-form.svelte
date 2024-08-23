@@ -143,6 +143,14 @@
 	</Form.Field>
 
 	{#if vendorContracts && $formData.vendor_id && !$errors.vendor_id}
+		<Form.Field {form} name="number">
+			<Form.Control let:attrs>
+				<Form.Label>Number</Form.Label>
+				<Input {...attrs} bind:value={$formData.number} />
+			</Form.Control>
+			<Form.FieldErrors />
+		</Form.Field>
+
 		<Form.Field {form} name="contract_id">
 			<Form.Control let:attrs>
 				<Form.Label>Contract</Form.Label>
@@ -239,18 +247,6 @@
 					{...attrs}
 					on:change={(e) => ($formData.amount = +e.currentTarget.value)}
 					bind:value={$formData.amount}
-				/>
-			</Form.Control>
-			<Form.FieldErrors />
-		</Form.Field>
-
-		<Form.Field {form} name="number">
-			<Form.Control let:attrs>
-				<Form.Label>Number</Form.Label>
-				<Input
-					{...attrs}
-					on:change={(e) => ($formData.number = +e.currentTarget.value)}
-					bind:value={$formData.number}
 				/>
 			</Form.Control>
 			<Form.FieldErrors />
