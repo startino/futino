@@ -21,18 +21,14 @@ const getMonthsDifference = (startStr: string, endStr: string) => {
 	}
 
 	const yearDifference = end.year - start.year;
-	const monthDifference = end.month - start.month;
+	let monthDifference = end.month - start.month;
 
-	let difference = (yearDifference * 12 + monthDifference) * multiplier;
-
-	if (start.year === end.year && start.month === end.month) {
-		const lastDayOfMonth = new Date(end.year, end.month, 0).getDate();
-		if (start.day === 1 && end.day === lastDayOfMonth) {
-			difference = multiplier;
-		}
+	const lastDayOfMonth = new Date(end.year, end.month, 0).getDate();
+	if (start.day === 1 && end.day === lastDayOfMonth) {
+		monthDifference = monthDifference + 1;
 	}
 
-	return difference;
+	return (yearDifference * 12 + monthDifference) * multiplier;
 };
 
 const arrayToCSV = (data: any[]) => {
