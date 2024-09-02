@@ -49,7 +49,6 @@
 		}
 
 		toast.success(message);
-		console.log(contractIds);
 
 		contracts = contracts.filter((c) => !contractIds.includes(c.id));
 
