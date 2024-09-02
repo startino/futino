@@ -148,7 +148,7 @@
 		$hiddenColumnIds = ['id'];
 	}
 
-	$: selectedContracts = Object.keys($selectedDataIds).map((k) => data[k]);
+	$: selectedContracts = Object.keys($selectedDataIds).map((k) => data.find((c) => c.id === k));
 </script>
 
 <div>
