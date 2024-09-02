@@ -59,7 +59,7 @@
 		"carta-md": "^4.4.5",
 		"cheerio": "1.0.0-rc.12",
 		"clsx": "^2.1.1",
-		"dayjs": "^1.11.12",
+		"dayjs": "^1.11.13",
 		"esm-env": "^1.0.0",
 		"esm-seedrandom": "^3.0.5",
 		"force": "^0.0.3",
