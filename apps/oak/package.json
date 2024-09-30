@@ -68,7 +68,7 @@
 		"svelte-sonner": "^0.3.22",
 		"svelte-stripe": "^1.1.7",
 		"svelte-subscribe": "^2.0.1",
-		"sveltekit-superforms": "^2.17.0",
+		"sveltekit-superforms": "^2.19.0",
 		"tailwind-merge": "^2.5.2",
 		"tailwind-variants": "^0.2.1",
 		"vaul-svelte": "^0.3.2",
