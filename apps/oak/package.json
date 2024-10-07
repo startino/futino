@@ -61,7 +61,7 @@
 		"nodemailer-express-handlebars": "^7.0.0",
 		"pdfjs-dist": "^4.2.67",
 		"radix-icons-svelte": "^1.2.1",
-		"stripe": "^16.6.0",
+		"stripe": "^17.1.0",
 		"svelte-french-toast": "^1.2.0",
 		"svelte-keyed": "^2.0.0",
 		"svelte-radix": "^1.1.0",
