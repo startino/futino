@@ -22,7 +22,7 @@
 />
 
 <article
-	class="sm:prose-md prose prose-blog mx-auto max-w-none px-4 md:prose-lg xl:prose-xl"
+	class="sm:prose-md prose prose-blog mx-auto max-w-none px-4 md:prose-lg xl:prose-xl py-36 sm:py-32"
 	data-pubdate={metadata.date}
 >
 	<div
