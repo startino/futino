@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { formatDate } from '$lib/utils';
 	import SEO from '$lib/components/SEO/index.svelte';
+	import { badgeVariants } from '$lib/components/ui/badge';
 
 	export let data;
 </script>
@@ -16,7 +17,7 @@
 		<div class="mx-auto max-w-2xl lg:max-w-4xl">
 			<h2 class="text-3xl">Blog</h2>
 			<p class="mt-2 text-center text-lg leading-8 text-foreground/80"></p>
-			<div class="mx-auto mt-16 space-y-8 lg:space-y-10 text-center lg:mt-20  flex flex-col">
+			<div class="mx-auto mt-16 flex flex-col space-y-8 text-center lg:mt-20 lg:space-y-10">
 				{#each data.posts as post}
 					{#if post.published}
 						<a href="/blog/{post.slug}" class="group">
@@ -24,18 +25,6 @@
 								class="relative isolate flex flex-col gap-8 lg:grid lg:grid-cols-4"
 								data-pubdate={post.date}
 							>
-								<div
-									class="aspect-[16/9] relative col-span-1 sm:aspect-[2/1] lg:aspect-1 lg:h-full lg:shrink-0"
-								>
-									<img
-										src={post.thumbnail}
-										alt="Thumbnail for {post.title}"
-										class="absolute inset-0 h-full w-full rounded-2xl bg-card/20 object-cover"
-									/>
-									<div
-										class="absolute inset-0 rounded-2xl ring-2 ring-inset ring-primary/10"
-									></div>
-								</div>
 								<div class="col-span-3">
 									<div class="flex items-center gap-x-4 text-xs">
 										<time datetime={post.date} class="text-foreground/70"
@@ -52,6 +41,11 @@
 											{post.description}
 										</p>
 									</div>
+									<ul class="mt-2 flex gap-2">
+										{#each post.categories as category}
+											<li class={badgeVariants({ variant: 'outline' })}>{category}</li>
+										{/each}
+									</ul>
 									<div class="mt-2 flex border-t border-gray-900/5 pt-2">
 										<div class="relative flex items-center gap-x-4">
 											<img

@@ -50,6 +50,7 @@ export async function get_blog_data(base = BLOG_PATH): Promise<BlogData> {
 				date_formatted,
 				description: metadata?.description ?? '',
 				published: metadata?.published ?? false,
+				categories: metadata?.categories ?? [],
 				slug,
 				title: metadata?.title ?? '',
 				file,
@@ -76,7 +77,7 @@ export function get_blog_list(blog_data: BlogData) {
 				thumbnail,
 				date_formatted,
 				author,
-				category
+				categories
 			}
 		}) => ({
 			slug,
@@ -87,7 +88,7 @@ export function get_blog_list(blog_data: BlogData) {
 			thumbnail,
 			date_formatted,
 			author,
-			category
+			categories
 		})
 	);
 }
@@ -117,9 +118,15 @@ export function extractFrontmatter(markdown: string) {
 
 	frontmatter.split('\n').forEach((pair) => {
 		const items = pair.split(':');
-		const [key, value] = [items[0], items.slice(1).join(':')];
+		let [key, value] = [items[0] as keyof MarkdownMetadata, items.slice(1).join(':')];
+
 		if (key && value) {
-			metadata[key] = removeQuotes(value).trim();
+			value = removeQuotes(value).trim();
+			let listItems: string[] | null = null;
+			if (key === 'categories') {
+				listItems = value.split(', ');
+			}
+			metadata[key] = listItems ?? value;
 		}
 	});
 
