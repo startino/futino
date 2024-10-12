@@ -26,4 +26,5 @@ export type MarkdownMetadata = {
 	author: string;
 	published: boolean;
 	thumbnail: string;
+	categories: string[];
 };
