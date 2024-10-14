@@ -12,15 +12,15 @@
 	metadescription="This is a collection of blogs written by Startino to help industry experts with entrepreneurial spirits with their software startup journey"
 />
 
-<div class="py-36 sm:py-32">
+<div class="">
 	<div class="mx-auto max-w-7xl px-6 lg:px-8">
 		<div class="mx-auto max-w-2xl lg:max-w-4xl">
-			<h2 class="text-3xl">Blog</h2>
+			<h2 class="text-3xl text-left">Blog</h2>
 			<p class="mt-2 text-center text-lg leading-8 text-foreground/80"></p>
-			<div class="mx-auto mt-16 flex flex-col space-y-8 text-center lg:mt-20 lg:space-y-10">
+			<div class="mx-auto mt-16 flex flex-col space-y-8 text-center lg:space-y-10">
 				{#each data.posts as post}
 					{#if post.published}
-						<a href="/blog/{post.slug}" class="group">
+						<a href="/blog/{post.slug}" class="group border rounded-2xl p-6 border-border bg-surface">
 							<article
 								class="relative isolate flex flex-col gap-8 lg:grid lg:grid-cols-4"
 								data-pubdate={post.date}
@@ -43,7 +43,7 @@
 									</div>
 									<ul class="mt-2 flex gap-2">
 										{#each post.categories as category}
-											<li class={badgeVariants({ variant: 'outline' })}>{category}</li>
+											<li class="bg-primary rounded-md text-primary-on px-2 py-1 text-sm font-semibold">{category}</li>
 										{/each}
 									</ul>
 									<div class="mt-2 flex border-t border-gray-900/5 pt-2">
