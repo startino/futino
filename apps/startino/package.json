@@ -71,7 +71,7 @@
 		"nodemailer-express-handlebars": "^7.0.0",
 		"object-hash": "^3.0.0",
 		"svelte-markdown": "^0.4.1",
-		"svelte-sonner": "^0.3.24",
+		"svelte-sonner": "^0.3.28",
 		"svelte-stripe": "^1.2.0",
 		"tailwind-merge": "^2.5.3",
 		"tailwind-variants": "^0.2.1",
