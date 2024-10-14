@@ -50,14 +50,7 @@
 				>{metadata.date_formatted}</time
 			>
 		</div>
-		<div class="relative aspect-1 w-full max-w-prose shrink-0">
-			<img
-				src={metadata.thumbnail}
-				alt="Thumbnail for {metadata.title}"
-				class="absolute inset-0 h-full w-full rounded-2xl bg-card object-cover"
-			/>
-			<div class="absolute inset-0 rounded-2xl ring-1 ring-inset ring-background/10"></div>
-		</div>
+
 	</div>
 
 	<!-- eslint-disable-next-line svelte/no-at-html-tags -->
