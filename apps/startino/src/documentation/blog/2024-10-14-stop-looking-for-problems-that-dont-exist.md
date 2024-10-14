@@ -1,7 +1,7 @@
 ---
 title: soon-to-be founders, stop looking for problems that don’t exist
 
-description: The hype and fraudulent concept of a “software as a subscription” has stolen the opportunity that future founders might’ve had.
+description: A critique of entrepreneurs focusing on SaaS models before identifying real problems. Emphasizes a problem-first approach and solving one's own issues as a starting point for successful entrepreneurship.
 
 date: 2024-10-14
 

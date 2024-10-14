@@ -63,6 +63,9 @@
 										</div>
 									</div>
 								</div>
+								<div class="flex lg:place-self-end mr-4 gap-x-4">
+									<p class="text-sm font-light text-foreground">Read more...</p>
+								</div>
 							</article>
 						</a>
 					{/if}
