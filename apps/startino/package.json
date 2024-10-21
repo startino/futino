@@ -63,7 +63,7 @@
 		"esm-env": "^1.0.0",
 		"esm-seedrandom": "^3.0.5",
 		"force": "^0.0.3",
-		"formsnap": "^1.0.0",
+		"formsnap": "^1.0.1",
 		"lucide-svelte": "^0.446.0",
 		"mdsvex": "^0.12.3",
 		"mode-watcher": "^0.4.1",
