@@ -1,7 +1,7 @@
 ---
-title: Did you build without distribution again?
+title: did you build without distribution again?
 
-description: SaaS founders too often build without distribution, which is a recipe for failure. I'll explain why and how we try to avoid it.
+description: SaaS founders too often build without distribution, which is a recipe for failure. I'll explain why and how we try to avoid it by securing distribution before building.
 
 date: 2024-10-23
 
