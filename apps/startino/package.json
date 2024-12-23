@@ -47,7 +47,7 @@
 		"@octokit/rest": "^21.0.1",
 		"@stripe/stripe-js": "^5.2.0",
 		"@supabase/ssr": "^0.5.1",
-		"@supabase/supabase-js": "^2.46.1",
+		"@supabase/supabase-js": "^2.47.10",
 		"@sveltejs/adapter-vercel": "^5.5.2",
 		"@sveltejs/site-kit": "^5.2.2",
 		"@tsparticles/slim": "^3.4.0",
