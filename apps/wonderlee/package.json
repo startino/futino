@@ -43,7 +43,7 @@
 	"type": "module",
 	"dependencies": {
 		"bits-ui": "^0.21.0",
-		"clsx": "^2.1.0",
+		"clsx": "^2.1.1",
 		"crypto-js": "^4.2.0",
 		"lucide-svelte": "^0.462.0",
 		"mdsvex": "^0.12.3",
