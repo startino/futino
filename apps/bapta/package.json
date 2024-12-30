@@ -15,7 +15,7 @@
 		"@supabase/supabase-js": "^2.47.10",
 		"@sveltejs/adapter-vercel": "^5.1.0",
 		"@sveltejs/kit": "^2.15.1",
-		"@sveltejs/vite-plugin-svelte": "^5.0.1",
+		"@sveltejs/vite-plugin-svelte": "^5.0.3",
 		"@types/crypto-js": "^4.2.2",
 		"@types/eslint": "9.6.1",
 		"@types/mapbox-gl": "^3.1.0",
