@@ -18,7 +18,7 @@
 		"@sveltejs/vite-plugin-svelte": "^5.0.3",
 		"@types/crypto-js": "^4.2.2",
 		"@types/eslint": "9.6.1",
-		"@types/mapbox-gl": "^3.1.0",
+		"@types/mapbox-gl": "^3.4.1",
 		"@typescript-eslint/eslint-plugin": "^8.18.0",
 		"@typescript-eslint/parser": "^8.17.0",
 		"autoprefixer": "^10.4.16",
@@ -45,7 +45,7 @@
 		"clsx": "^2.1.1",
 		"crypto-js": "^4.2.0",
 		"lucide-svelte": "^0.469.0",
-		"mapbox-gl": "^3.1.2",
+		"mapbox-gl": "^3.9.2",
 		"mdsvex": "^0.12.3",
 		"tailwind-merge": "^2.5.5",
 		"tailwind-variants": "^0.3.0"
