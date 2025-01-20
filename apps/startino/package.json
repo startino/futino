@@ -45,7 +45,7 @@
 		"@cartamd/plugin-code": "^4.0.6",
 		"@dagrejs/dagre": "^1.1.4",
 		"@octokit/rest": "^21.0.1",
-		"@stripe/stripe-js": "^5.4.0",
+		"@stripe/stripe-js": "^4.10.0",
 		"@supabase/ssr": "^0.5.1",
 		"@supabase/supabase-js": "^2.47.12",
 		"@sveltejs/adapter-vercel": "^5.5.2",
