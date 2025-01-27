@@ -20,7 +20,7 @@
 		"@types/eslint": "9.6.1",
 		"@types/mapbox-gl": "^3.4.1",
 		"@typescript-eslint/eslint-plugin": "^8.19.1",
-		"@typescript-eslint/parser": "^8.17.0",
+		"@typescript-eslint/parser": "^8.21.0",
 		"autoprefixer": "^10.4.20",
 		"eslint": "^9.17.0",
 		"eslint-config-prettier": "^10.0.1",
