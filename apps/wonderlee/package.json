@@ -22,7 +22,7 @@
 		"@tailwindcss/typography": "^0.5.15",
 		"@types/eslint": "9.6.1",
 		"@typescript-eslint/eslint-plugin": "^8.17.0",
-		"@typescript-eslint/parser": "^8.21.0",
+		"@typescript-eslint/parser": "^8.22.0",
 		"autoprefixer": "^10.4.20",
 		"eslint": "^9.18.0",
 		"eslint-config-prettier": "^9.1.0",
