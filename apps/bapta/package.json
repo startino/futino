@@ -12,7 +12,7 @@
 		"format": "prettier --write ."
 	},
 	"devDependencies": {
-		"@supabase/supabase-js": "^2.47.10",
+		"@supabase/supabase-js": "^2.48.1",
 		"@sveltejs/adapter-vercel": "^5.5.3",
 		"@sveltejs/kit": "^2.15.2",
 		"@sveltejs/vite-plugin-svelte": "^5.0.3",
