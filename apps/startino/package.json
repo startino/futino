@@ -48,7 +48,7 @@
 		"@stripe/stripe-js": "^4.10.0",
 		"@supabase/ssr": "^0.5.1",
 		"@supabase/supabase-js": "^2.48.1",
-		"@sveltejs/adapter-vercel": "^5.6.1",
+		"@sveltejs/adapter-vercel": "^5.6.2",
 		"@sveltejs/site-kit": "^5.2.2",
 		"@tsparticles/slim": "^3.4.0",
 		"@tsparticles/svelte": "^3.1.1",
